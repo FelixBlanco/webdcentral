@@ -9,11 +9,18 @@ import { RegisterService } from '../../services/register.service';
 })
 export class RegisterComponent implements OnInit {
 
+  data:any = {
+    name:null, email:null, username:null, password:null 
+  }
   constructor(
     private _registerService:RegisterService
   ) { }
 
   ngOnInit() {
+  }
+
+  addRegister(){
+    this._registerService.addRegistro(this.data);
   }
 
 }

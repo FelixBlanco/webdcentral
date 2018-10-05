@@ -8,6 +8,8 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
+  email:any; password:any; 
+
   constructor(
     private _loginService:LoginService
   ) { }
@@ -15,4 +17,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  ingresarLogin(email= this.email, password = this.password ):void{
+    const data:any = [email, password]; 
+    this._loginService.ingresarLogin(data);
+  }
 }

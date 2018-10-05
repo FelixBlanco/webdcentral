@@ -12,5 +12,12 @@ const httpOptions = {
 })
 export class RegisterService {
 
-  constructor() { }
+  constructor(
+    private http:HttpClient
+  ) { }
+
+  addRegistro(data:any){
+    console.log(data);
+  }
+
 }
