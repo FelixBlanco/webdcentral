@@ -36,4 +36,27 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        if ($this->attemptLogin($request)) {
+            $user = Auth::user();
+            $success['token'] = $user->createToken('MyApp')->accessToken;
+            $success['user'] = $user;
+            return response()->json($success, 200);
+        }
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    public function logout()
+    {
+        $user = Auth::user();
+        $user->token()->revoke();
+        $user->token()->delete();
+
+        return response()->json(null, 204);
+    }
 }
