@@ -169,7 +169,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 
         /*PERSONALIZADOS*/
-
+        Barryvdh\Cors\ServiceProvider::class,
 
     ],
 
