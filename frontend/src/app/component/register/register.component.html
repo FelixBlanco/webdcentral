@@ -3,17 +3,17 @@
 <hr>
 
 <div class="form-group">
-  <input type="text" placeholder="nombre">
+  <input type="text" [(ngModel)]="v_register.nombre" placeholder="nombre">
 </div>
 <div class="form-group">
-  <input type="text" placeholder="Correo Electronico">
+  <input type="text" [(ngModel)]="v_register.email" placeholder="Correo Electronico">
 </div>
 <div class="form-group">
-  <input type="text" placeholder="Nombre de Usuario">
+  <input type="text" [(ngModel)]="v_register.username" placeholder="Nombre de Usuario">
 </div>
 <div class="form-group">
-  <input type="password" placeholder="Contraseña">
+  <input type="password" [(ngModel)]="v_register.password" placeholder="Contraseña">
 </div>
 <div class="form-group">
-  <button class="btn btn-primary">Registrame</button>
+  <button class="btn btn-primary" (click)="addRegister()">Registrame</button>
 </div>
