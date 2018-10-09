@@ -17,17 +17,17 @@ use Illuminate\Http\Request;
     return $request->user();
 });*/
 
-Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
+//Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     //Route::post('/user/register','oldAuthController@store');
 
     //Route::post('/user/sigin','oldAuthController@sigin');
 
-    Route::resource('user', 'UserController');
+   
 
     //Auth::routes();
 
-});
+//});
 
 /*Route::post('login', 'API\oldAuthController@login');
 Route::post('register', 'API\oldAuthController@register');
@@ -50,7 +50,13 @@ Route::group([ 'prefix' => 'auth', ], function() {
 });
 
 
+/***
+| TODO NUESTRO GRUPO DE RUTAS ****/
+
 Route::group(['prefix' => 'v1','middleware' => 'cors'],function(){
+
+    // User
+     Route::resource('user', 'UserController');
 	
 	// Config Home
 	Route::get('config-home','ConfigHomeController@getConfigHome')->name('config-home');

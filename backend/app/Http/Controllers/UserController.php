@@ -73,6 +73,7 @@ class UserController extends Controller {
             $response = [
                 'msj'  => 'Usuario Creado',
                 'user' => $usuario,
+                'status' => '200'
             ];
             DB::commit();
 
@@ -87,7 +88,6 @@ class UserController extends Controller {
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
             ], 500);
         }
-
 
     }
 
