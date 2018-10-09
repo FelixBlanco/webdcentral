@@ -171,7 +171,7 @@ return [
 
 
         /*PERSONALIZADOS*/
-
+        Barryvdh\Cors\ServiceProvider::class,
 
     ],
 

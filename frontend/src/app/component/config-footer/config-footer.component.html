@@ -1,16 +1,22 @@
-<p>Configuracion de Footer</p>
-<div class="form group">
-  <label>Dirección</label>
-  <textarea name="" cols="10" rows="5" placeholder="Dirección"></textarea>
-</div>
-<div class="form group">
-  <label>Numero de Contactos</label>
-  <input type="text"  placeholder="Numero de Contactos">
-</div>
-<div class="form group">
-  <label>Mails de Ventas</label>
-  <input type="text"  placeholder="Mails de Ventas">
-</div>
-<div class="form group">
-  <button class="btn btn-success">Agregar</button> 
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h3>Configuracion de Footer</h3>
+      <div class="form-group">
+        <label>Dirección</label>
+        <textarea name="" cols="10" rows="5" placeholder="Dirección" class="form-control" [(ngModel)]="data.direccion"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Numero de Contactos</label>
+        <input type="text"  placeholder="Numero de Contactos" class="form-control" [(ngModel)]="data.nro_contacto">
+      </div>
+      <div class="form-group">
+        <label>Mails de Ventas</label>
+        <input type="text"  placeholder="Mails de Ventas" class="form-control" [(ngModel)]="data.email">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-success" (click)="upgradeCondigFooter()">Actualizar</button> 
+      </div>
+    </div>
+  </div>
 </div>

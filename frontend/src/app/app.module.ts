@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LandingComponent } from './component/landing/landing.component';
@@ -11,6 +11,7 @@ import { LoginComponent } from './component/login/login.component';
 import { ForgetComponent } from './component/forget/forget.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { ConfigFooterComponent } from './component/config-footer/config-footer.component';
+import { ConfigHomeComponent } from './component/config-home/config-home.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
   { path: 'forget', component: ForgetComponent },
 
   { path: 'config-footer', component: ConfigFooterComponent },
+  { path: 'config-home', component: ConfigHomeComponent },
   
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
     LoginComponent,
     ForgetComponent,
     PageNotFoundComponent,
-    ConfigFooterComponent
+    ConfigFooterComponent,
+    ConfigHomeComponent
   ],
   imports: [
     BrowserModule,

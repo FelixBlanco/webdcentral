@@ -49,3 +49,17 @@ Route::group([ 'prefix' => 'auth', ], function() {
     });
 });
 
+
+Route::group(['prefix' => 'v1','middleware' => 'cors'],function(){
+	
+	// Config Home
+	Route::get('config-home','ConfigHomeController@getConfigHome')->name('config-home');
+	Route::post('upgrade_config_home','ConfigHomeController@upgradeConfigHome')->name('upgrade_config_home');	
+	
+	// Config Footer
+	Route::get('config-footer','ConfigFooterController@getInfo')->name('config-footer');
+	Route::post('update-config-footer','ConfigFooterController@updateInfo')->name('update-config-footer');
+
+});	
+
+
