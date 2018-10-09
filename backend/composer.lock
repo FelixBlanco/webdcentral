@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "904104130cc76e461c391f37c7c37523",
+    "content-hash": "53bb8deb0776960f2ebef38993a6ad8e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -57,44 +57,6 @@
                 "stack"
             ],
             "time": "2017-12-20T14:37:45+00:00"
-        },
-        {
-            "name": "bacon/bacon-qr-code",
-            "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/defuse/php-encryption.git",
-                "reference": "0f407c43b953d571421e0020ba92082ed5fb7620"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/0f407c43b953d571421e0020ba92082ed5fb7620",
-                "reference": "0f407c43b953d571421e0020ba92082ed5fb7620",
-                "shasum": ""
-            },
-            "require": {
-                "ext-openssl": "*",
-                "paragonie/random_compat": ">= 2",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "nikic/php-parser": "^2.0|^3.0|^4.0",
-                "phpunit/phpunit": "^4|^5"
-            },
-            "bin": [
-                "bin/generate-defuse-key"
-            ],
-            "authors": [
-                {
-                    "name": "Ben Scholzen 'DASPRiD'",
-                    "email": "mail@dasprids.de",
-                    "homepage": "http://www.dasprids.de",
-                    "role": "Developer"
-                }
-            ],
-            "description": "BaconQrCode is a QR code generator for PHP.",
-            "homepage": "https://github.com/Bacon/BaconQrCode",
-            "time": "2017-10-17T09:59:25+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",
@@ -159,24 +121,31 @@
             "time": "2018-09-06T13:20:53+00:00"
         },
         {
-            "name": "barryvdh/laravel-dompdf",
-            "version": "v0.8.3",
+            "name": "defuse/php-encryption",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/barryvdh/laravel-dompdf.git",
-                "reference": "46781d0304277845a19c09c169bc595fd182cce4"
+                "url": "https://github.com/defuse/php-encryption.git",
+                "reference": "0f407c43b953d571421e0020ba92082ed5fb7620"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/46781d0304277845a19c09c169bc595fd182cce4",
-                "reference": "46781d0304277845a19c09c169bc595fd182cce4",
+                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/0f407c43b953d571421e0020ba92082ed5fb7620",
+                "reference": "0f407c43b953d571421e0020ba92082ed5fb7620",
                 "shasum": ""
             },
             "require": {
-                "dompdf/dompdf": "^0.8",
-                "illuminate/support": "5.5.x|5.6.x|5.7.x",
-                "php": ">=7"
+                "ext-openssl": "*",
+                "paragonie/random_compat": ">= 2",
+                "php": ">=5.4.0"
             },
+            "require-dev": {
+                "nikic/php-parser": "^2.0|^3.0|^4.0",
+                "phpunit/phpunit": "^4|^5"
+            },
+            "bin": [
+                "bin/generate-defuse-key"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -889,16 +858,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.8",
+            "version": "v5.7.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "763b64a43ebb6042e463aab4214d4cc9722147be"
+                "reference": "172f69f86bb86e107fb9fafff293b4b01291cf05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/763b64a43ebb6042e463aab4214d4cc9722147be",
-                "reference": "763b64a43ebb6042e463aab4214d4cc9722147be",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/172f69f86bb86e107fb9fafff293b4b01291cf05",
+                "reference": "172f69f86bb86e107fb9fafff293b4b01291cf05",
                 "shasum": ""
             },
             "require": {
@@ -1027,7 +996,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-10-04T14:47:20+00:00"
+            "time": "2018-10-09T13:28:28+00:00"
         },
         {
             "name": "laravel/passport",
