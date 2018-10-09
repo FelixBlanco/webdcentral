@@ -19,9 +19,9 @@ use Illuminate\Http\Request;
 
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
-    //Route::post('/user/register','AuthController@store');
+    //Route::post('/user/register','oldAuthController@store');
 
-    //Route::post('/user/sigin','AuthController@sigin');
+    //Route::post('/user/sigin','oldAuthController@sigin');
 
     Route::resource('user', 'UserController');
 
@@ -29,12 +29,23 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
 });
 
-Route::post('login', 'API\AuthController@login');
-Route::post('register', 'API\AuthController@register');
+/*Route::post('login', 'API\oldAuthController@login');
+Route::post('register', 'API\oldAuthController@register');
 
 //protected routes
-Route::group([ 'middleware' => 'auth:api' ], function() {
+Route::group([ 'middleware' => 'api' ], function() {
     Route::get('logout', 'Auth\LoginController@logout');
-    Route::post('details', 'API\AuthController@details');
+    Route::post('details', 'API\oldAuthController@details');
+});*/
+
+Route::group([ 'prefix' => 'auth', ], function() {
+    Route::post('login', 'API\AuthController@login');
+    //Route::post('signup', 'API\AuthController@signup');
+
+
+    Route::group([ 'middleware' => 'auth:api', ], function() {
+        Route::get('logout', 'API\AuthController@logout');
+        Route::get('user', 'API\AuthController@user');
+    });
 });
 

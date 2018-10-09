@@ -105,7 +105,7 @@ class UserController extends Controller {
 
             $response = [
                 'msj'  => 'Info del Usuario',
-                'user' => $user,
+                'user' => $user
             ];
 
             return response()->json($response, 200);
@@ -141,24 +141,23 @@ class UserController extends Controller {
         $this->validate($request, [
             'name'                  => 'required|max:30|min:2',
             'email'                 => 'required|unique:tb_users,email,'.$request->id,
-            'password'              => 'required|min:8|confirmed',
+            'password'              => 'required|min:8',
             'userName'              => 'required|unique:tb_users,userName,'.$request->id,
-            'password_confirmation' => 'required|min:8',
+
         ], [
             'name.required'                  => 'El Nombre es requerido',
             'name.max'                       => 'El Nombre no puede tener mas de 20 caracteres',
             'name.min'                       => 'El Nombre no puede tener menos de 2 caracteres',
+
             'email.unique'                   => 'Este Email ya se encuentra en uso',
             'email.email'                    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
             'email.required'                 => 'El Email es requerido',
-            'password_confirmation.required' => 'Este campo es requerido',
+
             'password.required'              => 'Este campo es requerido',
-            'password.confirmed'             => 'Las contraseña no coinciden vuelva a intentar',
             'password.min'                   => 'La contraseña debe de tener minimo 8 caracteres',
             'userName'                       => 'El User Name es requerido',
-            'userName.unique'                => 'El User Name ya esta en uso',
-            'password_confirmation'          => 'La contraseña es requerida',
 
+            'userName.unique'                => 'El User Name ya esta en uso',
         ]);
 
         DB::beginTransaction();

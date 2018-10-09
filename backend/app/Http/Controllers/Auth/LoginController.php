@@ -51,12 +51,44 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
-    public function logout()
+    /*public function logout()
     {
         $user = Auth::user();
         $user->token()->revoke();
         $user->token()->delete();
 
         return response()->json(null, 204);
+    }*/
+
+    /*public function logout()
+    {
+        $accessToken = Auth::user()->token();
+
+        DB::table('oauth_refresh_tokens')
+            ->where('access_token_id', $accessToken->id)
+            ->update([
+                'revoked' => true
+            ]);
+
+        $accessToken->revoke();
+        return response()->json(null, 204);
+    }*/
+
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        $json = [
+            'success' => true,
+            'code' => 200,
+            'message' => 'You are Logged out.',
+        ];
+        return response()->json($json, '200');
     }
 }
