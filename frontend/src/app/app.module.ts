@@ -22,6 +22,7 @@ const appRoutes: Routes = [
 
   { path: 'config-footer', component: ConfigFooterComponent },
   { path: 'config-home', component: ConfigHomeComponent },
+  { path: 'home', component: HomeComponent },
   
   { path: '**', component: PageNotFoundComponent }
 ];

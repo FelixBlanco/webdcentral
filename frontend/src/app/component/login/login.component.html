@@ -10,22 +10,18 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="email">Correo Electronico</label>
-            <input type="text" placeholder="Correo Electronico" id="email" class="form-control" ngModel="email">
+            <input type="text" placeholder="Correo Electronico" id="email" class="form-control" [(ngModel)]="email">
           </div>
           <div class="form-group">
             <label for="password">Contraseña</label>
-            <input type="password" placeholder="Contraseña" id="password" class="form-control" ngModel="password">
+            <input type="password" placeholder="Contraseña" id="password" class="form-control" [(ngModel)]="password">
           </div>
           <div class="form-group">
             <button class="btn btn-success btn-block" (click)="ingresarLogin()">Ingresar</button>
           </div>
       
           <p><a routerLink="forget">Olvide mi contraseña</a></p>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-          <button type="button" class="btn btn-success" (click)="addRegister()">ACEPTAR</button>
-        </div>
+          
       </div>
     </div>
   </div>

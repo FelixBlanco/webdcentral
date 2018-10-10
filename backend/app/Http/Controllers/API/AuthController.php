@@ -50,6 +50,7 @@ class AuthController extends Controller {
      * @return [string] expires_at
      */
     public function login(Request $request) {
+        //return $request->all();
         $request->validate([
             'email'       => 'required|string|email',
             'password'    => 'required|string',
