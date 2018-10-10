@@ -29,7 +29,14 @@
           <label for="">Repetir Contraseña</label>
           <input type="password" [(ngModel)]="v_register.password_r" (keyup)="verificacionPassword()" class="form-control" placeholder="Repite Contraseña">
         </div>
+        <!--
+        <div class="form-group">
+            <label for="">Foto de Perfil</label>
+            <input type="file" [(ngModel)]="v_register.foto_perfil" (change)="upFoto($event)">
+          </div>
       </div>
+      -->
+        
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
         <button type="button" class="btn btn-success" (click)="addRegister()">ACEPTAR</button>

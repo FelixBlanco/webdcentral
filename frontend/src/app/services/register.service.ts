@@ -14,7 +14,7 @@ export class RegisterService {
 
   constructor(private http: HttpClient) { }
 
-  _addRegister(data:any){ console.log(data);
+  _addRegister(data:any){ 
     return this.http.post('http://localhost:8000/api/v1/user',data,httpOptions);
   }
 

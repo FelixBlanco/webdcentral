@@ -12,6 +12,7 @@ import { ForgetComponent } from './component/forget/forget.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { ConfigFooterComponent } from './component/config-footer/config-footer.component';
 import { ConfigHomeComponent } from './component/config-home/config-home.component';
+import { HomeComponent } from './component/home/home.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
     ForgetComponent,
     PageNotFoundComponent,
     ConfigFooterComponent,
-    ConfigHomeComponent
+    ConfigHomeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
