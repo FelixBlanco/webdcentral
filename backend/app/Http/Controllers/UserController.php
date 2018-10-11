@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+
+use Image;
+
 class UserController extends Controller {
     /**
      * Display a listing of the resource.
@@ -46,6 +51,8 @@ class UserController extends Controller {
             'password'              => 'required|min:8|confirmed',
             'userName'              => 'required|unique:tb_users,userName,'.$request->id.',id',
             'password_confirmation' => 'required|min:8',
+            'tipoPerfil'            => 'required',
+            'foto_perfil'           => 'image|required|mimes:jpeg,png,jpg,gif,svg',
         ], [
             'name.required'                  => 'El Nombre es requerido',
             'name.max'                       => 'El Nombre no puede tener mas de 20 caracteres',
@@ -60,20 +67,37 @@ class UserController extends Controller {
             'userName'                       => 'El User Name es requerido',
             'userName.unique'                => 'El User Name ya esta en uso',
             'password_confirmation'          => 'La contraseña es requerida',
+            'tipoPerfil.required'            => 'Este campo es requerido',
 
         ]);
 
         DB::beginTransaction();
 
         try {
-            $usuario           = new User($request->all());
+            $usuario = new User($request->all());
+
+            /*para la foto*/
+            $originalImage  = $request->foto_perfil;
+            $thumbnailImage = Image::make($originalImage);
+            $thumbnailImage->fit(2048, 2048, function($constraint) {
+                $constraint->aspectRatio();
+            });
+            $nombre_publico = $originalImage->getClientOriginalName();
+            $extension      = $originalImage->getClientOriginalExtension();
+            $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+            $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+            Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
+            /*para la foto*/
+
+            $usuario->foto_perfil=$nombre_interno;
+
+
             $usuario->password = bcrypt($request->password);
             $usuario->save();
 
             $response = [
                 'msj'  => 'Usuario Creado',
                 'user' => $usuario,
-                'status' => '200'
             ];
             DB::commit();
 
@@ -105,7 +129,7 @@ class UserController extends Controller {
 
             $response = [
                 'msj'  => 'Info del Usuario',
-                'user' => $user
+                'user' => $user,
             ];
 
             return response()->json($response, 200);
@@ -139,25 +163,25 @@ class UserController extends Controller {
     public function update(Request $request, $id) {
 
         $this->validate($request, [
-            'name'                  => 'required|max:30|min:2',
-            'email'                 => 'required|unique:tb_users,email,'.$request->id,
-            'password'              => 'required|min:8',
-            'userName'              => 'required|unique:tb_users,userName,'.$request->id,
+            'name'     => 'required|max:30|min:2',
+            'email'    => 'required|unique:tb_users,email,'.$request->id,
+            'password' => 'required|min:8',
+            'userName' => 'required|unique:tb_users,userName,'.$request->id,
 
         ], [
-            'name.required'                  => 'El Nombre es requerido',
-            'name.max'                       => 'El Nombre no puede tener mas de 20 caracteres',
-            'name.min'                       => 'El Nombre no puede tener menos de 2 caracteres',
+            'name.required' => 'El Nombre es requerido',
+            'name.max'      => 'El Nombre no puede tener mas de 20 caracteres',
+            'name.min'      => 'El Nombre no puede tener menos de 2 caracteres',
 
-            'email.unique'                   => 'Este Email ya se encuentra en uso',
-            'email.email'                    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
-            'email.required'                 => 'El Email es requerido',
+            'email.unique'   => 'Este Email ya se encuentra en uso',
+            'email.email'    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
+            'email.required' => 'El Email es requerido',
 
-            'password.required'              => 'Este campo es requerido',
-            'password.min'                   => 'La contraseña debe de tener minimo 8 caracteres',
-            'userName'                       => 'El User Name es requerido',
+            'password.required' => 'Este campo es requerido',
+            'password.min'      => 'La contraseña debe de tener minimo 8 caracteres',
+            'userName'          => 'El User Name es requerido',
 
-            'userName.unique'                => 'El User Name ya esta en uso',
+            'userName.unique' => 'El User Name ya esta en uso',
         ]);
 
         DB::beginTransaction();
@@ -217,13 +241,29 @@ class UserController extends Controller {
             ];
 
             DB::commit();
-            return response()->json($response,200);
+
+            return response()->json($response, 200);
         } catch (\Exception $e) {
             DB::rollback();
-            Log::error('Ha ocurrido un error en UserController: ' . $e->getMessage() . ', Linea: ' . $e->getLine());
+            Log::error('Ha ocurrido un error en UserController: '.$e->getMessage().', Linea: '.$e->getLine());
+
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de eliminar los datos.',
             ], 500);
+        }
+    }
+
+
+    public function getFotoPerfil($archivo) {
+
+        if (Storage::exists('/perfil/'.$archivo)) {
+
+            /* habilitar si quieres recibir la imagen en streaming  */
+            return Storage::response("perfil/".$archivo);
+
+            //return response()->json(Storage::url('galeri/'.$archivo), 201);
+        } else {
+            return response()->json('Archivo no encontrado', 404);
         }
     }
 }

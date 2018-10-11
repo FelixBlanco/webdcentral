@@ -22,7 +22,7 @@ class User extends Authenticatable
         'password',
         'userName',
         'tipoPerfil',
-        ''
+        'foto_perfil'
     ];
 
     /**
@@ -41,8 +41,4 @@ class User extends Authenticatable
 
         return $this->api_token;
     }
-
-   /* public function AauthAcessToken(){
-        return $this->hasMany('\App\OauthAccessToken');
-    }*/
 }

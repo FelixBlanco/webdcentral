@@ -19,25 +19,6 @@ class AuthController extends Controller {
      * @param  [string] password_confirmation
      * @return [string] message
      */
-    /*public function signup(Request $request) {
-        $request->validate([
-            'name'     => 'required|string',
-            'email'    => 'required|string|email|unique:tb_users',
-            'password' => 'required|string|confirmed',
-        ]);
-
-        $user = new User([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
-
-        $user->save();
-
-        return response()->json([
-            'message' => 'Successfully created user!',
-        ], 201);
-    }*/
 
     /**
      * Login user and create token
@@ -107,11 +88,9 @@ class AuthController extends Controller {
     public function user(Request $request) {
 
         try {
-
-            return response()->json($request->user());
-
+            return response()->json($request->user(),201);
         } catch (\Exception $e) {
-            Log::error('Ha ocurrido un error en UserController: '.$e->getMessage().', Linea: '.$e->getLine());
+            Log::error('Ha ocurrido un error en AuthController: '.$e->getMessage().', Linea: '.$e->getLine());
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de obtener los datos.',
