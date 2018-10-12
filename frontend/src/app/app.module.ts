@@ -13,6 +13,9 @@ import { PageNotFoundComponent } from './component/page-not-found/page-not-found
 import { ConfigFooterComponent } from './component/config-footer/config-footer.component';
 import { ConfigHomeComponent } from './component/config-home/config-home.component';
 import { HomeComponent } from './component/home/home.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { NavUnoComponent } from './component/nav-uno/nav-uno.component';
+import { NavDosComponent } from './component/nav-dos/nav-dos.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -37,7 +40,10 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     ConfigFooterComponent,
     ConfigHomeComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent,
+    NavUnoComponent,
+    NavDosComponent
   ],
   imports: [
     BrowserModule,
