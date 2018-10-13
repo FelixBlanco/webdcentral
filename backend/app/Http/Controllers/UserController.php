@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 use Image;
@@ -20,6 +21,11 @@ class UserController extends Controller {
     public function index() {
 
         $users    = User::all();
+        $users->each(function ($users) {
+            $users->perfil;
+            return $users;
+        });
+
         $response = [
             'msj'   => 'Lista de usuarios',
             'users' => $users,
@@ -45,29 +51,29 @@ class UserController extends Controller {
      */
     public function store(Request $request) {
 
+        $password_default = 123456;
+
+
+
         $this->validate($request, [
-            'name'                  => 'required|max:30|min:2',
-            'email'                 => 'required|unique:tb_users,email,'.$request->id.',id',
-            'password'              => 'required|min:8|confirmed',
-            'userName'              => 'required|unique:tb_users,userName,'.$request->id.',id',
-            'password_confirmation' => 'required|min:8',
-            'tipoPerfil'            => 'required',
-            'foto_perfil'           => 'image|required|mimes:jpeg,png,jpg,gif,svg',
+            'name'          => 'required|max:30|min:2',
+            'email'         => 'required|unique:tb_users,email,'.$request->id.',id',
+            'password'      => 'min:8', /*ya no sera requerida, debido a que puede ser null*/
+            'userName'      => 'required|unique:tb_users,userName,'.$request->id.',id',
+            'fk_idPerfil' => 'required',
+            'fotoPerfil'    => 'image|required|mimes:jpeg,png,jpg,gif,svg',
         ], [
-            'name.required'                  => 'El Nombre es requerido',
-            'name.max'                       => 'El Nombre no puede tener mas de 20 caracteres',
-            'name.min'                       => 'El Nombre no puede tener menos de 2 caracteres',
-            'email.unique'                   => 'Este Email ya se encuentra en uso',
-            'email.email'                    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
-            'email.required'                 => 'El Email es requerido',
-            'password_confirmation.required' => 'Este campo es requerido',
-            'password.required'              => 'Este campo es requerido',
-            'password.confirmed'             => 'Las contraseña no coinciden vuelva a intentar',
-            'password.min'                   => 'La contraseña debe de tener minimo 8 caracteres',
-            'userName'                       => 'El User Name es requerido',
-            'userName.unique'                => 'El User Name ya esta en uso',
-            'password_confirmation'          => 'La contraseña es requerida',
-            'tipoPerfil.required'            => 'Este campo es requerido',
+            'name.required'          => 'El Nombre es requerido',
+            'name.max'               => 'El Nombre no puede tener mas de 20 caracteres',
+            'name.min'               => 'El Nombre no puede tener menos de 2 caracteres',
+            'email.unique'           => 'Este Email ya se encuentra en uso',
+            'email.email'            => 'El Email debe de tener un formato ejemplo@ejemplo.com',
+            'email.required'         => 'El Email es requerido',
+            'password.min'           => 'La contraseña debe de tener minimo 8 caracteres',
+            'userName'               => 'El User Name es requerido',
+            'userName.unique'        => 'El User Name ya esta en uso',
+            'fk_tipoPerfil.required' => 'Este campo es requerido',
+            'fotoPerfil.reqired'     => 'La foto de perfil es requerida',
 
         ]);
 
@@ -76,8 +82,12 @@ class UserController extends Controller {
         try {
             $usuario = new User($request->all());
 
+
+
             /*para la foto*/
-            $originalImage  = $request->foto_perfil;
+            $originalImage = $request->fotoPerfil;
+
+
             $thumbnailImage = Image::make($originalImage);
             $thumbnailImage->fit(2048, 2048, function($constraint) {
                 $constraint->aspectRatio();
@@ -89,8 +99,7 @@ class UserController extends Controller {
             Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
             /*para la foto*/
 
-            $usuario->foto_perfil=$nombre_interno;
-
+            $usuario->fotoPerfil = $nombre_interno;
 
             $usuario->password = bcrypt($request->password);
             $usuario->save();
@@ -100,6 +109,7 @@ class UserController extends Controller {
                 'user' => $usuario,
             ];
             DB::commit();
+
 
             return response()->json($response, 201);
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConfigFootersTable extends Migration
+class CreatePesoProductosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateConfigFootersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_config_footers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->mediumText('direccion')->nullable();
-            $table->string('nro_contacto')->nullable();
-            $table->string('email')->nullable();
+        Schema::create('tb_pesos_productos', function (Blueprint $table) {
+            $table->increments('idPesoProducto');
+            $table->string('peso');
+            $table->integer('fk_idProducto')->unsigned();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateConfigFootersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_config_footers');
+        Schema::dropIfExists('tb_pesos_productos');
     }
 }

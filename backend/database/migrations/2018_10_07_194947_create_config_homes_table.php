@@ -28,6 +28,6 @@ class CreateConfigHomesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('config_homes');
+        Schema::dropIfExists('tb_config_homes');
     }
 }

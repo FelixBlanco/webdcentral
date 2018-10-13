@@ -16,5 +16,14 @@ Route::get('/', function() {
     return view('welcome');
 });
 
+Route::get('email', function() {
+
+
+    Mail::raw('Tu contraseña es', function($mensaje) {
+        $mensaje->from('us@example.com', 'Laravel');
+        $mensaje->to('alecortez240192@gmail.com')->subject('Your Reminder!');
+    });
+});
+
 
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddApiToken extends Migration
+class CreateSlidesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddApiToken extends Migration
      */
     public function up()
     {
-        Schema::table('tb_users', function (Blueprint $table) {
-            $table->char('api_token', 60)->nullable()->after('password');
+        Schema::create('tb_slides', function (Blueprint $table) {
+            $table->increments('idSlide');
+            $table->string('titulo');
+            $table->string('imagen');
+            $table->integer('fk_idProducto')->unsigned();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddApiToken extends Migration
      */
     public function down()
     {
-        Schema::table('tb_users', function (Blueprint $table) {
-            $table->dropColumn('api_token');
-        });
+        Schema::dropIfExists('slides');
     }
 }
