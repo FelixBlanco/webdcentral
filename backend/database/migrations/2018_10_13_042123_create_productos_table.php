@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGaleriaHomesTable extends Migration
+class CreateProductosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreateGaleriaHomesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_galeria_home', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('tb_productos', function (Blueprint $table) {
+            $table->increments('idProducto');
+            $table->string('nombre');
             $table->string('titulo');
+            $table->string('urlImage');
+            $table->string('promocion');
+            $table->string('categoria');
+            $table->integer('fk_idPesoProducto')->unsigned();
 
             $table->timestamps();
         });
@@ -28,6 +33,6 @@ class CreateGaleriaHomesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_galeria_home');
+        Schema::dropIfExists('tb_productos');
     }
 }

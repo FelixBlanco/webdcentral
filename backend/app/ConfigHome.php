@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ConfigHome extends Model
 {
     protected $table = 'tb_config_homes';
+    protected $primaryKey = 'idConfigHome';
+
     protected $fillable = ['color','logo'];
 }

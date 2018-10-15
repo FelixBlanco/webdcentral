@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
 			'userName' => 'AdminWebcentral',
 			'password' => '$2y$12$73xeeVbFGvJHQjG6HcdQJ.OqjbaoX6NJlsdfLyPh3A7PbvC0PO7nW', // 12345
 			'email' => 'admin@example.org',
-			'tipoPerfil' => 'admin'
+			'fk_idPerfil' => '1'
     	]);
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Prueba;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 use Image;
@@ -19,7 +21,13 @@ class UserController extends Controller {
      */
     public function index() {
 
-        $users    = User::all();
+        $users = User::all();
+        $users->each(function($users) {
+            $users->perfil;
+
+            return $users;
+        });
+
         $response = [
             'msj'   => 'Lista de usuarios',
             'users' => $users,
@@ -45,39 +53,41 @@ class UserController extends Controller {
      */
     public function store(Request $request) {
 
+        $password_default = 123456;
+
         $this->validate($request, [
-            'name'                  => 'required|max:30|min:2',
-            'email'                 => 'required|unique:tb_users,email,'.$request->id.',id',
-            'password'              => 'required|min:8|confirmed',
-            'userName'              => 'required|unique:tb_users,userName,'.$request->id.',id',
-            'password_confirmation' => 'required|min:8',
-            'tipoPerfil'            => 'required',
-            'foto_perfil'           => 'image|required|mimes:jpeg,png,jpg,gif,svg',
+            'name'        => 'required|max:30|min:2',
+            'email'       => 'required|unique:tb_users,email,'.$request->id.',id',
+            'password'    => 'min:8', /*ya no sera requerida, debido a que puede ser null*/
+            'userName'    => 'required|unique:tb_users,userName,'.$request->id.',id',
+            'fk_idPerfil' => 'required',
+            'fotoPerfil'  => 'image|required|mimes:jpeg,png,jpg,gif,svg',
         ], [
-            'name.required'                  => 'El Nombre es requerido',
-            'name.max'                       => 'El Nombre no puede tener mas de 20 caracteres',
-            'name.min'                       => 'El Nombre no puede tener menos de 2 caracteres',
-            'email.unique'                   => 'Este Email ya se encuentra en uso',
-            'email.email'                    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
-            'email.required'                 => 'El Email es requerido',
-            'password_confirmation.required' => 'Este campo es requerido',
-            'password.required'              => 'Este campo es requerido',
-            'password.confirmed'             => 'Las contraseña no coinciden vuelva a intentar',
-            'password.min'                   => 'La contraseña debe de tener minimo 8 caracteres',
-            'userName'                       => 'El User Name es requerido',
-            'userName.unique'                => 'El User Name ya esta en uso',
-            'password_confirmation'          => 'La contraseña es requerida',
-            'tipoPerfil.required'            => 'Este campo es requerido',
+            'name.required'          => 'El Nombre es requerido',
+            'name.max'               => 'El Nombre no puede tener mas de 20 caracteres',
+            'name.min'               => 'El Nombre no puede tener menos de 2 caracteres',
+            'email.unique'           => 'Este Email ya se encuentra en uso',
+            'email.email'            => 'El Email debe de tener un formato ejemplo@ejemplo.com',
+            'email.required'         => 'El Email es requerido',
+            'password.min'           => 'La contraseña debe de tener minimo 8 caracteres',
+            'userName'               => 'El User Name es requerido',
+            'userName.unique'        => 'El User Name ya esta en uso',
+            'fk_idPerfil.required' => 'Este campo es requerido',
+            'fotoPerfil.reqired'     => 'La foto de perfil es requerida',
 
         ]);
 
         DB::beginTransaction();
 
         try {
+
             $usuario = new User($request->all());
 
+
             /*para la foto*/
-            $originalImage  = $request->foto_perfil;
+            $originalImage = $request->fotoPerfil;
+
+
             $thumbnailImage = Image::make($originalImage);
             $thumbnailImage->fit(2048, 2048, function($constraint) {
                 $constraint->aspectRatio();
@@ -89,10 +99,17 @@ class UserController extends Controller {
             Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
             /*para la foto*/
 
-            $usuario->foto_perfil=$nombre_interno;
+
+            $usuario->fotoPerfil = $nombre_interno;
 
 
-            $usuario->password = bcrypt($request->password);
+            if (is_null($request->password) == true) {
+                $usuario->password = bcrypt($password_default);
+                $usuario->generateToken();
+            } else {
+                $usuario->password = bcrypt($request->password);
+            }
+
             $usuario->save();
 
             $response = [
@@ -100,6 +117,14 @@ class UserController extends Controller {
                 'user' => $usuario,
             ];
             DB::commit();
+
+            /*enviando correo si la clave es por defecto*/
+
+            if (is_null($request->password) == true) {
+
+                Mail::to($usuario->email)->send(new Prueba($usuario, $password_default));
+            }
+
 
             return response()->json($response, 201);
 
@@ -167,6 +192,7 @@ class UserController extends Controller {
             'email'    => 'required|unique:tb_users,email,'.$request->id,
             'password' => 'required|min:8',
             'userName' => 'required|unique:tb_users,userName,'.$request->id,
+            'fk_idPerfil' => 'required',
 
         ], [
             'name.required' => 'El Nombre es requerido',
@@ -182,12 +208,36 @@ class UserController extends Controller {
             'userName'          => 'El User Name es requerido',
 
             'userName.unique' => 'El User Name ya esta en uso',
+            'fk_idPerfil.required' => 'Este campo es requerido',
         ]);
 
         DB::beginTransaction();
 
         try {
             $user = User::findOrFail($id);
+
+            if(is_null($request->fotoPerfil)){
+
+            }else{
+
+                /*para la foto*/
+                $originalImage = $request->fotoPerfil;
+
+
+                $thumbnailImage = Image::make($originalImage);
+                $thumbnailImage->fit(2048, 2048, function($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension      = $originalImage->getClientOriginalExtension();
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+                Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $user->fotoPerfil = $nombre_interno;
+                /*para la foto*/
+            }
+
 
             $pass_last = $user->password;
             $user->fill($request->all());
@@ -265,6 +315,54 @@ class UserController extends Controller {
             return response()->json('Archivo no encontrado', 404);
         }
     }
+
+
+    public function setClave(Request $request, $api_token) {
+
+        $this->validate($request, [
+            'password' => 'required|min:8',
+        ], [
+            'password.required' => 'Este campo es requerido',
+            'password.min'      => 'La contraseña debe de tener minimo 8 caracteres',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+
+            $user = User::where('api_token', $api_token)->first();
+
+            $user = User::findOrFail($user->id);
+
+            $pass_last = $user->password;
+            $user->fill($request->all());
+
+            if ($request->password != null && ! empty($request->password)) {
+                $user->password = bcrypt($request->password);
+            } else {
+                $user->password = $pass_last;
+            }
+
+            $response = [
+                'msj'  => 'Info del Usuario actulizada',
+                'user' => $user,
+            ];
+
+
+            $user->save();
+            DB::commit();
+
+            return response()->json($response, 200);
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error('Ha ocurrido un error en UserController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+            ], 500);
+        }
+
 
     // Actualizamos o agragamos la img de perfil
     public function upgradeFotoPerfil(Request $request){

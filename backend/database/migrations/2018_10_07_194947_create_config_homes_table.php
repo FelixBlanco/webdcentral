@@ -14,7 +14,7 @@ class CreateConfigHomesTable extends Migration
     public function up()
     {
         Schema::create('tb_config_homes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('idConfigHome');
             $table->string('color')->nulleble();
             $table->string('logo')->nulleble();
             $table->timestamps();
@@ -28,6 +28,6 @@ class CreateConfigHomesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('config_homes');
+        Schema::dropIfExists('tb_config_homes');
     }
 }
