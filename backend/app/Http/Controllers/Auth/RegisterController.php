@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Zend\Diactoros\Request;
+
 
 class RegisterController extends Controller
 {
@@ -70,5 +72,21 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             /*'remember_token'=>str_random(100),*/
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+        ]);
+
+        $this->guard()->login($user);
+        $success['token'] = $user->createToken('nfce_client')->accessToken;
+        $success['user'] = $user;
+        return response()->json($success, 201);
     }
 }

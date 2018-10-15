@@ -12,12 +12,10 @@ const httpOptions = {
 })
 export class RegisterService {
 
-  constructor(
-    private http:HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
-  addRegistro(data:any){
-    console.log(data);
+  _addRegister(data:any){ 
+    return this.http.post('http://localhost:8000/api/v1/user',data,httpOptions);
   }
 
 }

@@ -9,9 +9,8 @@ import { ConfigHomeService } from '../../services/config-home.service'
 
 export class ConfigHomeComponent implements OnInit {
 
-  imgLogo; 
-  color:string; 
-  
+  c_h: any = { imgLogo: null, color: null, set_logo:null }
+
   constructor(
     private _configHomeService:ConfigHomeService 
     ) { }
@@ -20,30 +19,35 @@ export class ConfigHomeComponent implements OnInit {
     this.getConfigHome();
   }
 
-  upLogo(event){
-    this.imgLogo = event.target.files[0]
-    console.log(<File>event.target.files[0])
-  }
-
   getConfigHome(){
     this._configHomeService._getConfigHome().subscribe(
-      resp => {
+      (resp:any) => {
+        console.log(resp);
         if(resp != null){
-          this.imgLogo = 'cccc'; 
-          this.color = 'ccc' ; 
+          this.c_h.imgLogo = resp.logo; 
+          this.c_h.color = resp.color ;
+          this.c_h.set_logo = resp.set_logo; 
         }else{
-          this.imgLogo = null; 
-          this.color = null;   
+          this.c_h.imgLogo = null; 
+          this.c_h.color = null;  
+          this.c_h.set_logo = null;   
         }
       }
     );
   }
 
-  upgradeConfigHome(logo:any){
-    console.log('Hola')
-    const data:any = { logo : 'hhhh', color : "#2312312"  };
-    this._configHomeService._upgradeConfigHome(data).subscribe(resp => {
-      console.log(resp)
+  upLogo(event){
+    var foto_x : File = event.target.files[0]; // Ubicamos la IMG
+    this.c_h.imgLogo = foto_x
+  }
+
+  upgradeConfigHome(){
+    var formData: FormData = new FormData(); // Damos Formato
+    formData.append('foto', this.c_h.imgLogo);
+    formData.append('color', this.c_h.color)
+
+    this._configHomeService._upgradeConfigHome(formData).subscribe(resp => {
+      this.getConfigHome();
     });
   }
 

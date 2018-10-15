@@ -14,9 +14,9 @@ class CreateConfigFootersTable extends Migration
     public function up()
     {
         Schema::create('tb_config_footers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('idConfigFooter');
             $table->mediumText('direccion')->nullable();
-            $table->string('nro_contacto')->nullable();
+            $table->string('nroContacto')->nullable();
             $table->string('email')->nullable();
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateConfigFootersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('config_footers');
+        Schema::dropIfExists('tb_config_footers');
     }
 }

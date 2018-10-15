@@ -1,26 +1,31 @@
-<a routerLink="/">Volver al Inicio</a>
-
-<hr>
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="email">Correo Electronico</label>
-        <input type="text" placeholder="Correo Electronico" id="email" class="form-control" ngModel="email">
-      </div>
-      <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input type="password" placeholder="Contraseña" id="password" class="form-control" ngModel="password">
-      </div>
-      <div class="form-group">
-        <button class="btn btn-success btn-block" (click)="ingresarLogin()">Ingresar</button>
-      </div>
-      <div class="form-group">
-        <hr>
-        <p><a routerLink="forget">Olvide mi contraseña</a></p>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: orange; ">
+          <h5 class="modal-title" id="loginModalLabel">INICIAR</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="email">Correo Electronico</label>
+            <input type="text" placeholder="Correo Electronico" id="email" class="form-control" [(ngModel)]="email">
+            <div class="invalid-feedback">
+              Please provide a valid zip.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" placeholder="Contraseña" id="password" class="form-control" [(ngModel)]="password">
+          </div>
+          <div class="form-group">
+            <button class="btn btn-success btn-block" (click)="ingresarLogin()">Ingresar</button>
+          </div>
+      
+          <p><a routerLink="forget">Olvide mi contraseña</a></p>
+          
       </div>
     </div>
   </div>
-</div>
-
-
+  

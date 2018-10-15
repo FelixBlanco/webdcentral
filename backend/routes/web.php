@@ -12,30 +12,18 @@
 */
 
 
+Route::get('/', function() {
+    return view('welcome');
+});
 
-Route::group(['middleware' => 'auth'], function () {
+Route::get('email', function() {
 
-    Route::get('/', function() {
-        return view('welcome');
+
+    Mail::raw('Tu contraseña es', function($mensaje) {
+        $mensaje->from('us@example.com', 'Laravel');
+        $mensaje->to('alecortez240192@gmail.com')->subject('Your Reminder!');
     });
-
 });
 
 
 
-/*Route::get('pdf122', function () {
-    return response(\SimpleSoftwareIO\QrCode\Facades\QrCode::generate('Transfórmame en un QrCode!'));
-});*/
-
-Route::get('form', 'PdfController@index');
-
-
-/* Recibe
-  array:3 [
-  "token" => ""
-  "nroMachine" => ""
-]*/
-Route::post('pdf', 'PdfController@pdf')->name('pdf');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

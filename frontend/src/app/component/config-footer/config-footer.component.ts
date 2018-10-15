@@ -45,8 +45,8 @@ export class ConfigFooterComponent implements OnInit {
 
   upgradeCondigFooter(){
     this._confgFooterService._upgradeConfigFooter(this.data).subscribe(
-      resp => { },
-      error => { }
+      resp => { console.log('Fino') },
+      error => { console.log(error) }
     );
   }
 }
