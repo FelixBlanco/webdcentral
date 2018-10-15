@@ -14,7 +14,7 @@ class CreateGaleriaHomesTable extends Migration
     public function up()
     {
         Schema::create('tb_galeria_home', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('idGaleriaHome');
             $table->string('titulo');
 
             $table->timestamps();

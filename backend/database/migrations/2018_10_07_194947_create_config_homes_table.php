@@ -14,7 +14,7 @@ class CreateConfigHomesTable extends Migration
     public function up()
     {
         Schema::create('tb_config_homes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('idConfigHome');
             $table->string('color')->nulleble();
             $table->string('logo')->nulleble();
             $table->timestamps();

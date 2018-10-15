@@ -17,7 +17,7 @@ class CreateSlidesTable extends Migration
             $table->increments('idSlide');
             $table->string('titulo');
             $table->string('imagen');
-            $table->integer('fk_idProducto')->unsigned();
+            $table->integer('fk_idProducto')->unsigned()->nullable();
             $table->timestamps();
         });
     }

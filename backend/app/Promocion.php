@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Producto extends Model {
-
-    protected $table      = 'tb_productos';
-    protected $primaryKey = 'idProducto';
+class Promocion extends Model
+{
+    protected $table      = 'tb_promociones';
+    protected $primaryKey = 'idPromo';
 
     protected $fillable = [
         'nombre',
@@ -15,6 +15,6 @@ class Producto extends Model {
         'urlImage',
         'promocion',
         'categoria',
-        'fk_idPesoProducto',
+        'fk_listaPesos',
     ];
 }

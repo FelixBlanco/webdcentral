@@ -13,6 +13,7 @@ class ConfigFooter extends Model {
      */
 
     protected $table = 'tb_config_footers';
+    protected $primaryKey = 'idConfigFooter';
 
 
     protected $fillable = [

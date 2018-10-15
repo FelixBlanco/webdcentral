@@ -40,9 +40,10 @@ class GaleriaHomeController extends Controller {
      */
     public function store(Request $request) {
 
+
         try {
 
-            if ($request->user()->tipoPerfil == 1) {
+            if ($request->user()->fk_idPerfil == 1) {
 
                 $this->validate($request, [
                     'filename' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
@@ -74,7 +75,7 @@ class GaleriaHomeController extends Controller {
 
                 $response = [
                     'msj'         => 'Imagen guardada exitosamente',
-                    'id_dataBase' => $imagemodel->id,
+                    'id_dataBase' => $imagemodel->idGaleriaHome,
                     'calidad'     => '2048*2048',
                     'size'        => $size = (Storage::size('/galeri/'.$nombre_interno) / 1000000).' Mb',
                     'name'        => '/galeri/'.$nombre_interno,

@@ -15,10 +15,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('tb_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('userName')->nullable();
-            $table->string('password');
-            $table->string('email');
+            $table->string('password')->nullable();
+            $table->string('email')->nullable();
             $table->integer('fk_idPerfil')->unsigned();
             $table->string('fotoPerfil')->nullable();
 
