@@ -55,7 +55,12 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     Route::resource('user', 'UserController');    // User CRUD
 
+
     Route::put('setClave/{api_token}', 'UserController@setClave'); // Cambio de clave
+
+    // Actualizamos las imagenes de perfil
+    Route::post('upgrade-foto-perfil','UserController@upgradeFotoPerfil');
+
 
     /*con esta puede tener acceso a una foto de perfil en streaming*/
     Route::get('getFotoPerfil/{nombreImagen}','UserController@getFotoPerfil');

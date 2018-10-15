@@ -305,17 +305,17 @@ class UserController extends Controller {
 
 
     public function getFotoPerfil($archivo) {
-
         if (Storage::exists('/perfil/'.$archivo)) {
 
-            /* habilitar si quieres recibir la imagen en streaming  */
+            /* -habilitar si quieres recibir la imagen en streaming  */
             return Storage::response("perfil/".$archivo);
 
-            //return response()->json(Storage::url('galeri/'.$archivo), 201);
+            //-return response()->json(Storage::url('galeri/'.$archivo), 201);
         } else {
             return response()->json('Archivo no encontrado', 404);
         }
     }
+
 
     public function setClave(Request $request, $api_token) {
 
@@ -363,5 +363,15 @@ class UserController extends Controller {
             ], 500);
         }
 
+
+    // Actualizamos o agragamos la img de perfil
+    public function upgradeFotoPerfil(Request $request){
+
+        $name = $request->img_perfil->store('perfil');
+
+        $u = User::find($request->user_id);
+        $u->foto_perfil = $name;
+        $u->save(); 
+        return $u; 
     }
 }

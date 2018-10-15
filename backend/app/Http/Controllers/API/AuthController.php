@@ -69,8 +69,11 @@ class AuthController extends Controller {
      */
     public function user(Request $request) {
 
+        $u = $request->user();
+        $u->img_perfil = asset('storage/'.$request->user()->foto_perfil); // Podemos solicitar la URL directamente aca
+
         try {
-            return response()->json($request->user(),201);
+            return response()->json($u,201);
         } catch (\Exception $e) {
             Log::error('Ha ocurrido un error en AuthController: '.$e->getMessage().', Linea: '.$e->getLine());
 

@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.font-light{ font-weight: lighter }
+.font-bold{ font-weight: bold }
+
+.txt-negro{ color:black }
+.txt-azul{ color: #009BDD }
+.txt-blanco{ color: #ffffff }
+.txt-naranja{  color: #E97604 }
+.txt-verde{  color: #90BB1E }
+
+.bg-azul{ background-color: #009BDD }
+.bg-blanco{ background-color: #ffffff }
+.bg-naranja{  background-color: #E97604 }
+.bg-verde{  background-color: #90BB1E }
+
+.txt-negro a{ color:black }
+.txt-azul a{ color: #009BDD }
+.txt-blanco a { color: #ffffff }
+.txt-naranja a {  color: #E97604 }
+.txt-verde a {  color: #90BB1E }
