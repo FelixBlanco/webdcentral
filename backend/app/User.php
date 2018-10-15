@@ -11,6 +11,7 @@ class User extends Authenticatable
 {
     use HasApiTokens,Notifiable;
     protected $table = 'tb_users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,8 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'userName',
-        'tipoPerfil',
-        'foto_perfil'
+        'fk_idPerfil',
+        'fotoPerfil'
     ];
 
     /**
@@ -34,11 +35,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $dates = ['created_at','deleted_at'];
+
     public function generateToken()
     {
         $this->api_token = str_random(60);
         $this->save();
 
         return $this->api_token;
+    }
+
+    public function perfil()
+    {
+        return $this->belongsTo('App\Perfil', 'fk_idPerfil');
     }
 }

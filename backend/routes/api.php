@@ -21,6 +21,8 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('logout', 'API\AuthController@logout');//cerrar sesion
         Route::get('getUser', 'API\AuthController@user');//Obtener usuarios autenticados
         Route::resource('galeriaHome', 'GaleriaHomeController'); //Para galeria Home
+
+        Route::post('createSlides','SlideController@createSlides'); //Para que un user admin cree un slide
     });
 });
 
@@ -28,10 +30,37 @@ Route::group([ 'prefix' => 'auth' ], function() {
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
+
+    /*para las ofertas*/
+    Route::resource('ofertas', 'OfertaController');
+
+    Route::get('ofertas/getImagenOferta/{imagenOferta}','OfertaController@getImagenOferta');
+
+    /* con esta ruta se busca y retorna la imagen del slider Slides*/
+    Route::get('getSlides/imagen/{imagen}','SlideController@getSlideImage');
+
+    /* con esta ruta se busca y envian todos los Slides*/
+    Route::get('getSlides','SlideController@listar');
+
+    /* con esta ruta se busca y envia el Slides con ese id*/
+    Route::get('getSlides/{idSlide}','SlideController@listarPorId');
+
+    /* con esta ruta se busca y envian todos los productos*/
+    Route::get('getProductos','ProductoController@listar');
+
+    /* con esta ruta se busca y envian todos los productos que correspondan con la inicial del producto*/
+    Route::get('getProductos/{nombre}','ProductoController@listarPorNombre');
+
+    Route::get('enviarCorreo','CorreoController@enviarCorreo');
+
     Route::resource('user', 'UserController');    // User CRUD
+
+
+    Route::put('setClave/{api_token}', 'UserController@setClave'); // Cambio de clave
 
     // Actualizamos las imagenes de perfil
     Route::post('upgrade-foto-perfil','UserController@upgradeFotoPerfil');
+
 
     /*con esta puede tener acceso a una foto de perfil en streaming*/
     Route::get('getFotoPerfil/{nombreImagen}','UserController@getFotoPerfil');
@@ -46,6 +75,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('config-footer', 'ConfigFooterController@getInfo')->name('config-footer');
     Route::post('update-config-footer', 'ConfigFooterController@updateInfo')->name('update-config-footer');
 
-});	
+});
 
 

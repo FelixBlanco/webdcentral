@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConfigFootersTable extends Migration
+class CreateGaleriaHomesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateConfigFootersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_config_footers', function (Blueprint $table) {
-            $table->increments('idConfigFooter');
-            $table->mediumText('direccion')->nullable();
-            $table->string('nroContacto')->nullable();
-            $table->string('email')->nullable();
+        Schema::create('tb_galeria_home', function (Blueprint $table) {
+            $table->increments('idGaleriaHome');
+            $table->string('titulo');
+
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateConfigFootersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_config_footers');
+        Schema::dropIfExists('tb_galeria_home');
     }
 }
