@@ -3,26 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Prueba;
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-
 use Image;
 
-class UserController extends Controller {
+class UserController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
 
         $users = User::all();
-        $users->each(function($users) {
+        $users->each(function ($users) {
             $users->perfil;
 
             return $users;
@@ -41,7 +41,8 @@ class UserController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         //
     }
 
@@ -51,7 +52,8 @@ class UserController extends Controller {
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $password_default = 123456;
 
@@ -63,17 +65,17 @@ class UserController extends Controller {
             'fk_idPerfil' => 'required',
             'fotoPerfil'  => 'image|required|mimes:jpeg,png,jpg,gif,svg',
         ], [
-            'name.required'          => 'El Nombre es requerido',
-            'name.max'               => 'El Nombre no puede tener mas de 20 caracteres',
-            'name.min'               => 'El Nombre no puede tener menos de 2 caracteres',
-            'email.unique'           => 'Este Email ya se encuentra en uso',
-            'email.email'            => 'El Email debe de tener un formato ejemplo@ejemplo.com',
-            'email.required'         => 'El Email es requerido',
-            'password.min'           => 'La contraseña debe de tener minimo 8 caracteres',
-            'userName'               => 'El User Name es requerido',
-            'userName.unique'        => 'El User Name ya esta en uso',
+            'name.required'        => 'El Nombre es requerido',
+            'name.max'             => 'El Nombre no puede tener mas de 20 caracteres',
+            'name.min'             => 'El Nombre no puede tener menos de 2 caracteres',
+            'email.unique'         => 'Este Email ya se encuentra en uso',
+            'email.email'          => 'El Email debe de tener un formato ejemplo@ejemplo.com',
+            'email.required'       => 'El Email es requerido',
+            'password.min'         => 'La contraseña debe de tener minimo 8 caracteres',
+            'userName'             => 'El User Name es requerido',
+            'userName.unique'      => 'El User Name ya esta en uso',
             'fk_idPerfil.required' => 'Este campo es requerido',
-            'fotoPerfil.reqired'     => 'La foto de perfil es requerida',
+            'fotoPerfil.reqired'   => 'La foto de perfil es requerida',
 
         ]);
 
@@ -83,25 +85,21 @@ class UserController extends Controller {
 
             $usuario = new User($request->all());
 
-
             /*para la foto*/
             $originalImage = $request->fotoPerfil;
 
-
             $thumbnailImage = Image::make($originalImage);
-            $thumbnailImage->fit(2048, 2048, function($constraint) {
+            $thumbnailImage->fit(2048, 2048, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $nombre_publico = $originalImage->getClientOriginalName();
-            $extension      = $originalImage->getClientOriginalExtension();
+            $extension = $originalImage->getClientOriginalExtension();
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
             Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
             /*para la foto*/
 
-
             $usuario->fotoPerfil = $nombre_interno;
-
 
             if (is_null($request->password) == true) {
                 $usuario->password = bcrypt($password_default);
@@ -125,9 +123,7 @@ class UserController extends Controller {
                 Mail::to($usuario->email)->send(new Prueba($usuario, $password_default));
             }
 
-
             return response()->json($response, 201);
-
         } catch (\Exception $e) {
 
             DB::rollback();
@@ -137,7 +133,6 @@ class UserController extends Controller {
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
             ], 500);
         }
-
     }
 
     /**
@@ -146,7 +141,8 @@ class UserController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id)
+    {
 
         try {
 
@@ -158,7 +154,6 @@ class UserController extends Controller {
             ];
 
             return response()->json($response, 200);
-
         } catch (\Exception $e) {
             Log::error('Ha ocurrido un error en UserController: '.$e->getMessage().', Linea: '.$e->getLine());
 
@@ -174,7 +169,8 @@ class UserController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         //
     }
 
@@ -185,13 +181,14 @@ class UserController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
 
         $this->validate($request, [
-            'name'     => 'required|max:30|min:2',
-            'email'    => 'required|unique:tb_users,email,'.$request->id,
-            'password' => 'required|min:8',
-            'userName' => 'required|unique:tb_users,userName,'.$request->id,
+            'name'        => 'required|max:30|min:2',
+            'email'       => 'required|unique:tb_users,email,'.$request->id,
+            'password'    => 'required|min:8',
+            'userName'    => 'required|unique:tb_users,userName,'.$request->id,
             'fk_idPerfil' => 'required',
 
         ], [
@@ -207,7 +204,7 @@ class UserController extends Controller {
             'password.min'      => 'La contraseña debe de tener minimo 8 caracteres',
             'userName'          => 'El User Name es requerido',
 
-            'userName.unique' => 'El User Name ya esta en uso',
+            'userName.unique'      => 'El User Name ya esta en uso',
             'fk_idPerfil.required' => 'Este campo es requerido',
         ]);
 
@@ -216,20 +213,18 @@ class UserController extends Controller {
         try {
             $user = User::findOrFail($id);
 
-            if(is_null($request->fotoPerfil)){
-
-            }else{
+            if (is_null($request->fotoPerfil)) {
+            } else {
 
                 /*para la foto*/
                 $originalImage = $request->fotoPerfil;
 
-
                 $thumbnailImage = Image::make($originalImage);
-                $thumbnailImage->fit(2048, 2048, function($constraint) {
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
                     $constraint->aspectRatio();
                 });
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension      = $originalImage->getClientOriginalExtension();
+                $extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
                 Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
@@ -237,7 +232,6 @@ class UserController extends Controller {
                 $user->fotoPerfil = $nombre_interno;
                 /*para la foto*/
             }
-
 
             $pass_last = $user->password;
             $user->fill($request->all());
@@ -253,12 +247,10 @@ class UserController extends Controller {
                 'user' => $user,
             ];
 
-
             $user->save();
             DB::commit();
 
             return response()->json($response, 200);
-
         } catch (\Exception $e) {
             DB::rollback();
             Log::error('Ha ocurrido un error en UserController: '.$e->getMessage().', Linea: '.$e->getLine());
@@ -267,8 +259,6 @@ class UserController extends Controller {
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
             ], 500);
         }
-
-
     }
 
     /**
@@ -277,7 +267,8 @@ class UserController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
 
         DB::beginTransaction();
 
@@ -303,21 +294,20 @@ class UserController extends Controller {
         }
     }
 
-
-    public function getFotoPerfil($archivo) {
+    public function getFotoPerfil($archivo)
+    {
         if (Storage::exists('/perfil/'.$archivo)) {
 
             /* -habilitar si quieres recibir la imagen en streaming  */
             return Storage::response("perfil/".$archivo);
-
             //-return response()->json(Storage::url('galeri/'.$archivo), 201);
         } else {
             return response()->json('Archivo no encontrado', 404);
         }
     }
 
-
-    public function setClave(Request $request, $api_token) {
+    public function setClave(Request $request, $api_token)
+    {
 
         $this->validate($request, [
             'password' => 'required|min:8',
@@ -348,12 +338,10 @@ class UserController extends Controller {
                 'user' => $user,
             ];
 
-
             $user->save();
             DB::commit();
 
             return response()->json($response, 200);
-
         } catch (\Exception $e) {
             DB::rollback();
             Log::error('Ha ocurrido un error en UserController: '.$e->getMessage().', Linea: '.$e->getLine());
@@ -362,16 +350,18 @@ class UserController extends Controller {
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
             ], 500);
         }
-
+    }
 
     // Actualizamos o agragamos la img de perfil
-    public function upgradeFotoPerfil(Request $request){
+    public function upgradeFotoPerfil(Request $request)
+    {
 
         $name = $request->img_perfil->store('perfil');
 
         $u = User::find($request->user_id);
         $u->foto_perfil = $name;
-        $u->save(); 
-        return $u; 
+        $u->save();
+
+        return $u;
     }
 }

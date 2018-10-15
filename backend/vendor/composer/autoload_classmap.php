@@ -21,11 +21,10 @@ return array(
     'App\\Http\\Controllers\\ConfigFooterController' => $baseDir . '/app/Http/Controllers/ConfigFooterController.php',
     'App\\Http\\Controllers\\ConfigHomeController' => $baseDir . '/app/Http/Controllers/ConfigHomeController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
-
     'App\\Http\\Controllers\\CorreoController' => $baseDir . '/app/Http/Controllers/CorreoController.php',
-
     'App\\Http\\Controllers\\GaleriaHomeController' => $baseDir . '/app/Http/Controllers/GaleriaHomeController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\OfertaController' => $baseDir . '/app/Http/Controllers/OfertaController.php',
     'App\\Http\\Controllers\\ProductoController' => $baseDir . '/app/Http/Controllers/ProductoController.php',
     'App\\Http\\Controllers\\RegisterController' => $baseDir . '/app/Http/Controllers/RegisterController.php',
     'App\\Http\\Controllers\\SlideController' => $baseDir . '/app/Http/Controllers/SlideController.php',
