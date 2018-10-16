@@ -9,13 +9,12 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
+
   token:any =  localStorage.getItem('access_token');
 
   dataUser:any = {
     id:null, 
     userName: null,
-    foto_perfil: null,
     img_perfil:null
   };
 
@@ -36,10 +35,10 @@ export class HomeComponent implements OnInit {
         this.dataUser.id = resp.id;
         this.dataUser.userName = resp.userName; 
         this.dataUser.img_perfil = resp.img_perfil;
-        console.log(this.token)
       },
       error => {
-        this.router.navigate(['']);
+        console.log('Algo anda mal')
+        //this.router.navigate(['']);
        }
     )
   }

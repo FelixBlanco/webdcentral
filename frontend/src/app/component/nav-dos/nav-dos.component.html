@@ -3,32 +3,39 @@
   <div class="row">
     <div class="col-md-4">
       <!-- Logo -->
-      logo
+      <img src="../../assets/logo.png" class="img-fluid" alt="">
     </div>
-    <div class="col-md-7">
-      <ul class="nav font-light">
-        <li class="nav-item txt-negro">
-          <a href="#" class="nav-link active font-bold">OFERTAS</a>
-        </li>
-        <li class="nav-item txt-negro">
-            <a href="#" class="nav-link">MASCOTAS</a>
-        </li>
-        <li class="nav-item txt-negro">
-          <a href="#" class="nav-link">MARCAS</a>
-        </li>
-        <li class="nav-item txt-negro">
-          <a href="#" class="nav-link">SERVICIOS</a>
-        </li>
-        <li class="nav-item txt-negro">
-            <a href="#" class="nav-link">BLOG</a>
-        </li>
-        <li class="nav-item txt-negro">
-          <a href="#" class="nav-link">RECOMPRAR</a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-1">
-      lupa
+    <div class="col-md-8">
+      <div id="searchInput" style="margin-top:5%;">
+        <input type="text" class="form-control"> <span (click)="close_buscar()">x</span>
+      </div>
+      <div id="nav-dos">
+          <ul class="nav font-light justify-content-end" style="margin-top:3%; font-size:18px;">
+              <li class="nav-item txt-negro">
+                <a href="#" class="nav-link active font-bold">OFERTAS</a>
+              </li>
+              <li class="nav-item txt-negro">
+                  <a href="#" class="nav-link" data-toggle="modal" data-target="#mascotasModal">MASCOTAS</a>
+              </li>
+              <li class="nav-item txt-negro">
+                <a href="#" class="nav-link" data-toggle="modal" data-target="#marcaModal">MARCAS</a>
+              </li>
+              <li class="nav-item txt-negro">
+                <a href="#" class="nav-link">SERVICIOS</a>
+              </li>
+              <li class="nav-item txt-negro">
+                  <a href="#" class="nav-link">BLOG</a>
+              </li>
+              <li class="nav-item txt-negro">
+                <a href="#" class="nav-link">RECOMPRAR</a>
+              </li>
+              <li class="nav-item txt-negro">
+                <a href="#" class="nav-link">
+                  <img src="../../assets/lupa.png" class="img-fluid" alt="" (click)="buscar()">
+                </a>
+              </li>
+            </ul>
+      </div>
     </div>
   </div>
 </div>

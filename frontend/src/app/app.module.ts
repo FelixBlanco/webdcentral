@@ -16,6 +16,9 @@ import { PageNotFoundComponent } from './component/page-not-found/page-not-found
 import { FooterComponent } from './component/footer/footer.component';
 import { NavUnoComponent } from './component/nav-uno/nav-uno.component';
 import { NavDosComponent } from './component/nav-dos/nav-dos.component';
+import { EntregaComponent } from './component/entrega/entrega.component';
+import { MarcaComponent } from './component/marca/marca.component';
+import { MascotasComponent } from './component/mascotas/mascotas.component';
 
 
 const appRoutes: Routes = [
@@ -40,6 +43,9 @@ const appRoutes: Routes = [
     FooterComponent,
     NavUnoComponent,
     NavDosComponent,
+    EntregaComponent,
+    MarcaComponent,
+    MascotasComponent,
 
   ],
   imports: [

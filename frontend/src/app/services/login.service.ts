@@ -15,7 +15,8 @@ const httpOptions = {
 export class LoginService {
   
   token:any =  localStorage.getItem('access_token');
-  
+  dataUser:any;
+
   constructor(
     private http: HttpClient
   ) { }

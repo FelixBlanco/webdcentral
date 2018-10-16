@@ -1,0 +1,42 @@
+<div class="modal fade" id="marcaModal" tabindex="-1" role="dialog" aria-labelledby="marcaModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-naranja">
+        <h5 class="modal-title txt-blanco" id="marcaModalTitle">MARCAS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="txt-blanco">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li *ngFor="let i of alfaveto">
+            {{i}}
+          </li>
+        </ul>
+        <hr>
+
+        <p class="bg-naranja txt-blanco" style="border-radius:6px; padding:4px;">A</p>
+        <div class="row">
+          <div class="col-md-4 text-center">
+            A Otro lado <br>
+            A Otro lado <br>
+            A Otro lado <br>
+          </div>
+          <div class="col-md-4 text-center">
+            A Otro lado <br>
+            A Otro lado <br>
+            A Otro lado <br>
+          </div>
+          <div class="col-md-4 text-center">
+            A Otro lado <br>
+            A Otro lado <br>
+            A Otro lado <br>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <p style="color:green;"><b>BUSCAR</b></p>
+      </div>
+    </div>
+  </div>
+</div>
