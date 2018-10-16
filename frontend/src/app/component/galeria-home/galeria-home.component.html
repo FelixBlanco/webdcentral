@@ -7,13 +7,13 @@
       </div>
       <div class="form-group">
         <label for="">Lista de Productos (faltan los producto en laravel)</label>
-        <select name="" id="" class="form-control">
-          <option value=""></option>
+        <select [(ngModel)]="fk_idProducto" id="" class="form-control">
+          <option value="null">Null porque no tenemos productos</option>
         </select>
       </div>
       <div class="form-group">
         (campo no creado en laravel)
-        <input type="file">
+        <input type="file" (change)="upImg($event)">
       </div>
       <div class="form-group">
         <button class="btn btn-success" (click)="addSlideHome()">Guardar</button>

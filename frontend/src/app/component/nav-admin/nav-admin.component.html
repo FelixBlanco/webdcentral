@@ -16,7 +16,10 @@
             <a routerLink="galeria-home" class="nav-link">Galeria Home</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" routerLink="perfil"><img src="{{dataUser.img_perfil}}" alt="" width="32"> {{ dataUser.userName }} </a>
+            <a class="nav-link" routerLink="perfil">
+                <img src="{{dataUser.img_perfil}}" alt="" width="32"> 
+                {{ dataUser.userName }} 
+            </a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="#" (click)="salirLogin()">Salir</a>

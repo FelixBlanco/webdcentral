@@ -37,13 +37,12 @@ class SlideController extends Controller {
     }
 
     public function createSlides(Request $request) {
-
         $this->validate($request, [
             'titulo' => 'required',
             'imagen' => 'required',
         ], [
             'titulo.required' => 'El titulo es requerido',
-            'imagen.reqired'  => 'La imagen es requerida',
+            'imagen.required'  => 'La imagen es requerida',
 
         ]);
 
