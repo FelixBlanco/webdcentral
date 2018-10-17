@@ -17,7 +17,11 @@ class OfertaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-
+        $o = Oferta::orderby('idOferta','desc')->get();
+        $o->each(function($o){
+            $o->set_imagen = asset('storage/oferta/'.$o->imagen);
+        });
+        return $o; 
     }
 
     /**
@@ -112,7 +116,7 @@ class OfertaController extends Controller {
 
             $response = [
                 'msj'  => 'Info de la oferta',
-                'user' => $oferta,
+                'oferta' => $oferta,
             ];
 
             return response()->json($response, 200);
