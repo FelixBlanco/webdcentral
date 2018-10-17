@@ -63,17 +63,17 @@ class UserController extends Controller {
             'fk_idPerfil' => 'required',
             'fotoPerfil'  => 'image|required|mimes:jpeg,png,jpg,gif,svg',
         ], [
-            'name.required'          => 'El Nombre es requerido',
-            'name.max'               => 'El Nombre no puede tener mas de 20 caracteres',
-            'name.min'               => 'El Nombre no puede tener menos de 2 caracteres',
-            'email.unique'           => 'Este Email ya se encuentra en uso',
-            'email.email'            => 'El Email debe de tener un formato ejemplo@ejemplo.com',
-            'email.required'         => 'El Email es requerido',
-            'password.min'           => 'La contraseña debe de tener minimo 8 caracteres',
-            'userName'               => 'El User Name es requerido',
-            'userName.unique'        => 'El User Name ya esta en uso',
+            'name.required'        => 'El Nombre es requerido',
+            'name.max'             => 'El Nombre no puede tener mas de 20 caracteres',
+            'name.min'             => 'El Nombre no puede tener menos de 2 caracteres',
+            'email.unique'         => 'Este Email ya se encuentra en uso',
+            'email.email'          => 'El Email debe de tener un formato ejemplo@ejemplo.com',
+            'email.required'       => 'El Email es requerido',
+            'password.min'         => 'La contraseña debe de tener minimo 8 caracteres',
+            'userName'             => 'El User Name es requerido',
+            'userName.unique'      => 'El User Name ya esta en uso',
             'fk_idPerfil.required' => 'Este campo es requerido',
-            'fotoPerfil.reqired'     => 'La foto de perfil es requerida',
+            'fotoPerfil.reqired'   => 'La foto de perfil es requerida',
 
         ]);
 
@@ -188,10 +188,10 @@ class UserController extends Controller {
     public function update(Request $request, $id) {
 
         $this->validate($request, [
-            'name'     => 'required|max:30|min:2',
-            'email'    => 'required|unique:tb_users,email,'.$request->id,
-            'password' => 'required|min:8',
-            'userName' => 'required|unique:tb_users,userName,'.$request->id,
+            'name'        => 'required|max:30|min:2',
+            'email'       => 'required|unique:tb_users,email,'.$request->id,
+            'password'    => 'required|min:8',
+            'userName'    => 'required|unique:tb_users,userName,'.$request->id,
             'fk_idPerfil' => 'required',
 
         ], [
@@ -207,7 +207,7 @@ class UserController extends Controller {
             'password.min'      => 'La contraseña debe de tener minimo 8 caracteres',
             'userName'          => 'El User Name es requerido',
 
-            'userName.unique' => 'El User Name ya esta en uso',
+            'userName.unique'      => 'El User Name ya esta en uso',
             'fk_idPerfil.required' => 'Este campo es requerido',
         ]);
 
@@ -216,9 +216,9 @@ class UserController extends Controller {
         try {
             $user = User::findOrFail($id);
 
-            if(is_null($request->fotoPerfil)){
+            if (is_null($request->fotoPerfil)) {
 
-            }else{
+            } else {
 
                 /*para la foto*/
                 $originalImage = $request->fotoPerfil;
@@ -362,16 +362,51 @@ class UserController extends Controller {
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
             ], 500);
         }
+    }
 
 
     // Actualizamos o agragamos la img de perfil
-    public function upgradeFotoPerfil(Request $request){
+    public function upgradeFotoPerfil(Request $request) {
 
         $name = $request->img_perfil->store('perfil');
 
-        $u = User::find($request->user_id);
+        $u              = User::find($request->user_id);
         $u->foto_perfil = $name;
-        $u->save(); 
-        return $u; 
+        $u->save();
+
+        return $u;
+    }
+
+    public function reestablecerClave(Request $request) {
+
+        $this->validate($request, [
+            'email' => 'required',
+        ], [
+            'email.required' => 'El Email es requerido',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (is_null($user)) {
+
+            $response = [
+                'msj' => 'Email no existe',
+            ];
+
+            return response()->json($response, 404);
+        } else {
+            $clave_nueva    = str_random(6);
+            $user->password = bcrypt($clave_nueva);
+            $user->save();
+
+            Mail::to($user->email)->send(new Prueba($usuario, $password_default));
+            $response = [
+                'msj'       => 'Email enviado exitosamente, revise su correo para proceder al inicio de sesión',
+                'user'      => $user,
+                'clave_new' => $clave_nueva,
+            ];
+
+            return response()->json($response, 404);
+        }
     }
 }

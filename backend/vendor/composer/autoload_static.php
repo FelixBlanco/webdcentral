@@ -459,11 +459,10 @@ class ComposerStaticInit382161484a43228177101e3df006e07c
         'App\\Http\\Controllers\\ConfigFooterController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConfigFooterController.php',
         'App\\Http\\Controllers\\ConfigHomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConfigHomeController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-
         'App\\Http\\Controllers\\CorreoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CorreoController.php',
-
         'App\\Http\\Controllers\\GaleriaHomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/GaleriaHomeController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\OfertaController' => __DIR__ . '/../..' . '/app/Http/Controllers/OfertaController.php',
         'App\\Http\\Controllers\\ProductoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductoController.php',
         'App\\Http\\Controllers\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegisterController.php',
         'App\\Http\\Controllers\\SlideController' => __DIR__ . '/../..' . '/app/Http/Controllers/SlideController.php',
