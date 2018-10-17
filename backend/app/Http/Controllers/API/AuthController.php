@@ -70,7 +70,7 @@ class AuthController extends Controller {
     public function user(Request $request) {
 
         $u = $request->user();
-        $u->img_perfil = asset('storage/'.$request->user()->foto_perfil); // Podemos solicitar la URL directamente aca
+        $u->img_perfil = asset('storage/'.$request->user()->fotoPerfil); // Podemos solicitar la URL directamente aca
 
         try {
             return response()->json($u,201);

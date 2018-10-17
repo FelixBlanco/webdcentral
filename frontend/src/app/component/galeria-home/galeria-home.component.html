@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h3>Galeria Home</h3>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Titulo" [(ngModel)]="new_galeria.titulo" required>
+      </div>
+      <div class="form-group">
+        <label for="">Lista de Productos (faltan los producto en laravel)</label>
+        <select [(ngModel)]="fk_idProducto" id="" class="form-control">
+          <option value="null">Null porque no tenemos productos</option>
+        </select>
+      </div>
+      <div class="form-group">
+        (campo no creado en laravel)
+        <input type="file" (change)="upImg($event)">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-success" (click)="addSlideHome()">Guardar</button>
+      </div>
+    </div>  
+  </div>
+</div>
