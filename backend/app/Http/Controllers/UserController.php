@@ -214,6 +214,7 @@ class UserController extends Controller
             $user = User::findOrFail($id);
 
             if (is_null($request->fotoPerfil)) {
+
             } else {
 
                 /*para la foto*/
@@ -352,16 +353,59 @@ class UserController extends Controller
         }
     }
 
+
+
+    // Actualizamos o agragamos la img de perfil
+    public function upgradeFotoPerfil(Request $request) {
+
+
     // Actualizamos o agragamos la img de perfil
     public function upgradeFotoPerfil(Request $request)
     {
 
+
         $name = $request->img_perfil->store('perfil');
 
-        $u = User::find($request->user_id);
+        $u              = User::find($request->user_id);
         $u->foto_perfil = $name;
         $u->save();
 
         return $u;
+
+    }
+
+    public function reestablecerClave(Request $request) {
+
+        $this->validate($request, [
+            'email' => 'required',
+        ], [
+            'email.required' => 'El Email es requerido',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (is_null($user)) {
+
+            $response = [
+                'msj' => 'Email no existe',
+            ];
+
+            return response()->json($response, 404);
+        } else {
+            $clave_nueva    = str_random(6);
+            $user->password = bcrypt($clave_nueva);
+            $user->save();
+
+            Mail::to($user->email)->send(new Prueba($usuario, $password_default));
+            $response = [
+                'msj'       => 'Email enviado exitosamente, revise su correo para proceder al inicio de sesión',
+                'user'      => $user,
+                'clave_new' => $clave_nueva,
+            ];
+
+            return response()->json($response, 404);
+        }
+
+
     }
 }
