@@ -368,7 +368,7 @@ class UserController extends Controller
     }
 
     public function reestablecerClave(Request $request) {
-
+        
         $this->validate($request, [
             'email' => 'required',
         ], [
