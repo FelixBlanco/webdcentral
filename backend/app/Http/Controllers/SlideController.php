@@ -15,6 +15,9 @@ class SlideController extends Controller {
     public function listar() {
 
         $slides = Slide::get();
+        $slides->each(function($slides){
+            $slides->set_imagen = asset('storage/slide/'.$slides->imagen);        
+        });
 
         $response = [
             'msj'      => 'Lista de slides',
