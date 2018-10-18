@@ -8,7 +8,7 @@ use App\ConfigFooter;
 class ConfigFooterController extends Controller
 {
     public function getInfo(){
-    	return ConfigFooter::find(1);
+    	return ConfigFooter::first();
     }
 
     public function updateInfo(Request $request){
@@ -17,7 +17,7 @@ class ConfigFooterController extends Controller
     	// vamos a dejar el unico registro 
     	// para editar
 
-    	$d = ConfigFooter::find(1);
+    	$d = ConfigFooter::first();
     	
     	if (empty($d)) { // Caso de estar vacio
     		$c = new ConfigFooter($request->all());

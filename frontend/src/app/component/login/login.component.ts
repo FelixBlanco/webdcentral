@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this._loginService.ingresarLogin(data).subscribe(
       (resp:any) =>{
         localStorage.setItem('access_token',resp.access_token)
-        this.router.navigate(['/home']);
+        
         $("#loginModal").modal('hide');
       },
       (error:any) => {

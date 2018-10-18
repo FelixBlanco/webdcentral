@@ -1,10 +1,33 @@
 <div class="container">
   <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-4">
           <div class="form-group">
-              <label for="">Editar Foto de Perfil </label>
-              <input type="file" (change)="upImgPerfil($event)"> <button class="btn btn-primary" (click)="upgradeImgPerfil()">Cambiar foto de perfil</button>
+              <img src="{{img_perfil}}" class="img-fluid" alt="" width="100"> <br>    
+              <label for="">Editar Foto de Perfil </label> <br>
+              <input type="file" (change)="upImgPerfil($event)"> <br>
+              <button class="btn btn-primary" (click)="upgradeImgPerfil()">Cambiar foto de perfil</button>
           </div>
+      </div>
+      <div class="col-md-8">
+            <div class="form-group">
+                <label for="">Nombre</label>
+                <input type="text" [(ngModel)]="form.name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Correo Electronico</label>
+                <input type="text" [(ngModel)]="form.email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Username</label>
+                <input type="text" [(ngModel)]="form.userName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Password</label>
+                <input type="password" class="form-control">
+            </div>       
+            <div class="form-group">
+              <button class="btn btn-primary" (click)="upgradeFormPerfil()">Actualizar</button>
+            </div> 
       </div>
   </div>
 </div>

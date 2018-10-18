@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.getAuthUser();
+    //this.getAuthUser();
   }
 
   getAuthUser(){

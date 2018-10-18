@@ -17,13 +17,19 @@ export class NavAdminComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
   ) { 
-    this._loginService._getAuthUser().subscribe((resp:any) => {
-      this.dataUser.userName = resp.userName;
-      this.dataUser.img_perfil = resp.img_perfil;
-    })
+
   }
 
   ngOnInit() {
+    this._loginService._getAuthUser().subscribe(
+    (resp:any) => {
+      this.dataUser.userName = resp.userName;
+      this.dataUser.img_perfil = resp.img_perfil;
+    },
+    error => {
+      console.log(error);
+      this.router.navigate(['']);
+    })
   }
 
   salirLogin(){
