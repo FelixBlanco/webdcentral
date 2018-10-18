@@ -353,21 +353,14 @@ class UserController extends Controller
         }
     }
 
-
-
-    // Actualizamos o agragamos la img de perfil
-    public function upgradeFotoPerfil(Request $request) {
-
-
     // Actualizamos o agragamos la img de perfil
     public function upgradeFotoPerfil(Request $request)
     {
 
-
         $name = $request->img_perfil->store('perfil');
 
         $u              = User::find($request->user_id);
-        $u->foto_perfil = $name;
+        $u->fotoPerfil = $name;
         $u->save();
 
         return $u;
