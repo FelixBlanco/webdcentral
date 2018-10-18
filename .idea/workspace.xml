@@ -2,149 +2,232 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/blade.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/webdcentral.iml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/ChangeLog-2.2.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/ChangeLog-3.0.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/ChangeLog-3.1.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/ChangeLog-3.2.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/ChangeLog-3.3.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/ChangeLog-4.0.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/ChangeLog-5.0.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/ChangeLog-5.1.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/ChangeLog-5.2.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/ChangeLog-5.3.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/ChangeLog-6.0.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/holder.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/html5shiv.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/respond.min.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/composer.lock" afterPath="$PROJECT_DIR$/backend/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/resources/views/correos/informacion.blade.php" afterPath="$PROJECT_DIR$/backend/resources/views/correos/informacion.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/routes/api.php" afterPath="$PROJECT_DIR$/backend/routes/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/autoload.php" afterPath="$PROJECT_DIR$/backend/vendor/autoload.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/ClassLoader.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/ClassLoader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/LICENSE" afterPath="$PROJECT_DIR$/backend/vendor/composer/LICENSE" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_classmap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_files.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_files.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_namespaces.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_namespaces.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_psr4.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_psr4.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_real.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_real.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_static.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/installed.json" afterPath="$PROJECT_DIR$/backend/vendor/composer/installed.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/laravel/tinker/README.md" afterPath="$PROJECT_DIR$/backend/vendor/laravel/tinker/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/laravel/tinker/config/tinker.php" afterPath="$PROJECT_DIR$/backend/vendor/laravel/tinker/config/tinker.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/laravel/tinker/src/Console/TinkerCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/laravel/tinker/src/Console/TinkerCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/box.json.dist" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/box.json.dist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/composer.json" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/AbstractClassPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/AbstractClassPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/AssignThisVariablePass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/AssignThisVariablePass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/CallTimePassByReferencePass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/CallTimePassByReferencePass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/CalledClassPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/CalledClassPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/CodeCleanerPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/CodeCleanerPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ExitPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ExitPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/FinalClassPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/FinalClassPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/FunctionContextPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/FunctionContextPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/FunctionReturnInWriteContextPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/FunctionReturnInWriteContextPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ImplicitReturnPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ImplicitReturnPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/InstanceOfPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/InstanceOfPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/LeavePsyshAlonePass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/LeavePsyshAlonePass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/LegacyEmptyPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/LegacyEmptyPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ListPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ListPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/LoopContextPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/LoopContextPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/MagicConstantsPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/MagicConstantsPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/NamespaceAwarePass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/NamespaceAwarePass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/NamespacePass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/NamespacePass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/NoReturnValue.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/NoReturnValue.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/PassableByReferencePass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/PassableByReferencePass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/RequirePass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/RequirePass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/StrictTypesPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/StrictTypesPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/UseStatementPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/UseStatementPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ValidClassNamePass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ValidClassNamePass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ValidConstantPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ValidConstantPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ValidConstructorPass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ValidConstructorPass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ValidFunctionNamePass.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/CodeCleaner/ValidFunctionNamePass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/BufferCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/BufferCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ClearCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ClearCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/Command.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/Command.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/DocCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/DocCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/DumpCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/DumpCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/EditCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/EditCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ExitCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ExitCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/HelpCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/HelpCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/HistoryCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/HistoryCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/ClassConstantEnumerator.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/ClassConstantEnumerator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/ClassEnumerator.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/ClassEnumerator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/ConstantEnumerator.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/ConstantEnumerator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/Enumerator.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/Enumerator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/FunctionEnumerator.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/FunctionEnumerator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/GlobalVariableEnumerator.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/GlobalVariableEnumerator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/InterfaceEnumerator.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/InterfaceEnumerator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/MethodEnumerator.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/MethodEnumerator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/PropertyEnumerator.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/PropertyEnumerator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/TraitEnumerator.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/TraitEnumerator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/VariableEnumerator.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ListCommand/VariableEnumerator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ParseCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ParseCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/PsyVersionCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/PsyVersionCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ReflectingCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ReflectingCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ShowCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ShowCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/SudoCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/SudoCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ThrowUpCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/ThrowUpCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/TimeitCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/TimeitCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/TimeitCommand/TimeitVisitor.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/TimeitCommand/TimeitVisitor.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/TraceCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/TraceCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/WhereamiCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/WhereamiCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/WtfCommand.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Command/WtfCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ConfigPaths.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ConfigPaths.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Configuration.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Configuration.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ConsoleColorFactory.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ConsoleColorFactory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Context.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Context.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ContextAware.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ContextAware.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/BreakException.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/BreakException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/DeprecatedException.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/DeprecatedException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/ErrorException.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/ErrorException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/Exception.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/Exception.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/FatalErrorException.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/FatalErrorException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/ParseErrorException.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/ParseErrorException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/RuntimeException.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/RuntimeException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/ThrowUpException.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/ThrowUpException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/TypeErrorException.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Exception/TypeErrorException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ExecutionClosure.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ExecutionClosure.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ExecutionLoop/AbstractListener.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ExecutionLoop/AbstractListener.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ExecutionLoop/Listener.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ExecutionLoop/Listener.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ExecutionLoop/ProcessForker.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ExecutionLoop/ProcessForker.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ExecutionLoop/RunkitReloader.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ExecutionLoop/RunkitReloader.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ExecutionLoopClosure.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ExecutionLoopClosure.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Formatter/CodeFormatter.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Formatter/CodeFormatter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Formatter/DocblockFormatter.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Formatter/DocblockFormatter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Formatter/Formatter.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Formatter/Formatter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Formatter/SignatureFormatter.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Formatter/SignatureFormatter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Input/CodeArgument.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Input/CodeArgument.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Input/FilterOptions.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Input/FilterOptions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Input/ShellInput.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Input/ShellInput.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Input/SilentInput.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Input/SilentInput.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Output/OutputPager.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Output/OutputPager.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Output/PassthruPager.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Output/PassthruPager.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Output/ProcOutputPager.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Output/ProcOutputPager.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Output/ShellOutput.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Output/ShellOutput.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ParserFactory.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/ParserFactory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Readline/GNUReadline.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Readline/GNUReadline.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Readline/HoaConsole.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Readline/HoaConsole.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Readline/Libedit.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Readline/Libedit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Readline/Readline.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Readline/Readline.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Readline/Transient.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Readline/Transient.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Reflection/ReflectionClassConstant.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Reflection/ReflectionClassConstant.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Reflection/ReflectionConstant.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Reflection/ReflectionConstant.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Reflection/ReflectionConstant_.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Reflection/ReflectionConstant_.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Reflection/ReflectionLanguageConstruct.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Reflection/ReflectionLanguageConstruct.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Reflection/ReflectionLanguageConstructParameter.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Reflection/ReflectionLanguageConstructParameter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Shell.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Shell.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Sudo.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Sudo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Sudo/SudoVisitor.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Sudo/SudoVisitor.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/AutoCompleter.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/AutoCompleter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/AbstractContextAwareMatcher.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/AbstractContextAwareMatcher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/AbstractDefaultParametersMatcher.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/AbstractDefaultParametersMatcher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/AbstractMatcher.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/AbstractMatcher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/ClassAttributesMatcher.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/ClassAttributesMatcher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/ClassMethodDefaultParametersMatcher.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/ClassMethodDefaultParametersMatcher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/ClassNamesMatcher.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/ClassNamesMatcher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/ConstantsMatcher.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/ConstantsMatcher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/FunctionDefaultParametersMatcher.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/FunctionDefaultParametersMatcher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/FunctionsMatcher.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/FunctionsMatcher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/ObjectAttributesMatcher.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/TabCompletion/Matcher/ObjectAttributesMatcher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Util/Docblock.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Util/Docblock.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Util/Json.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Util/Json.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Util/Mirror.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Util/Mirror.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Util/Str.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/Util/Str.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/VarDumper/Cloner.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/VarDumper/Cloner.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/VarDumper/Dumper.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/VarDumper/Dumper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/VarDumper/Presenter.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/VarDumper/Presenter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/VarDumper/PresenterAware.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/VarDumper/PresenterAware.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/functions.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/src/functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/test/CodeCleaner/ListPassTest.php" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/test/CodeCleaner/ListPassTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/psy/psysh/vendor-bin/box/composer.json" afterPath="$PROJECT_DIR$/backend/vendor/psy/psysh/vendor-bin/box/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/LICENSE" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/composer.json" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/deprecations.md" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/deprecations.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/AbstractAdapter.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/AbstractAdapter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/AbstractFtpAdapter.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/AbstractFtpAdapter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/CanOverwriteFiles.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/CanOverwriteFiles.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Ftp.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Ftp.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Ftpd.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Ftpd.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Local.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Local.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/NullAdapter.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/NullAdapter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Polyfill/NotSupportingVisibilityTrait.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Polyfill/NotSupportingVisibilityTrait.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Polyfill/StreamedCopyTrait.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Polyfill/StreamedCopyTrait.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Polyfill/StreamedReadingTrait.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Polyfill/StreamedReadingTrait.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Polyfill/StreamedTrait.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Polyfill/StreamedTrait.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Polyfill/StreamedWritingTrait.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/Polyfill/StreamedWritingTrait.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/SynologyFtp.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Adapter/SynologyFtp.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/AdapterInterface.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/AdapterInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Config.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/ConfigAwareTrait.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/ConfigAwareTrait.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Directory.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Directory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Exception.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Exception.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/File.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/File.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/FileExistsException.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/FileExistsException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/FileNotFoundException.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/FileNotFoundException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Filesystem.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Filesystem.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/FilesystemInterface.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/FilesystemInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/FilesystemNotFoundException.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/FilesystemNotFoundException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Handler.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Handler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/MountManager.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/MountManager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/NotSupportedException.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/NotSupportedException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/AbstractPlugin.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/AbstractPlugin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/EmptyDir.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/EmptyDir.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/ForcedCopy.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/ForcedCopy.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/ForcedRename.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/ForcedRename.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/GetWithMetadata.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/GetWithMetadata.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/ListFiles.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/ListFiles.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/ListPaths.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/ListPaths.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/ListWith.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/ListWith.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/PluggableTrait.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/PluggableTrait.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/PluginNotFoundException.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Plugin/PluginNotFoundException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/PluginInterface.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/PluginInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/ReadInterface.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/ReadInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/RootViolationException.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/RootViolationException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/SafeStorage.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/SafeStorage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/UnreadableFileException.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/UnreadableFileException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Util.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Util.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Util/ContentListingFormatter.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Util/ContentListingFormatter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Util/MimeType.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Util/MimeType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Util/StreamHasher.php" afterPath="$PROJECT_DIR$/backend/vendor/league/flysystem/src/Util/StreamHasher.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.gitattributes" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.gitattributes" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.github/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.github/CONTRIBUTING.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.github/ISSUE_TEMPLATE.md" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.github/ISSUE_TEMPLATE.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.github/stale.yml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.github/stale.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.gitignore" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.php_cs.dist" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.php_cs.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.travis.yml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/LICENSE" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/README.md" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/build.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/build.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/composer.json" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/phpunit.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/phpunit.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/CodeCoverage.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/CodeCoverage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Driver/Driver.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Driver/Driver.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Driver/PHPDBG.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Driver/PHPDBG.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Driver/Xdebug.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Driver/Xdebug.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Exception/Exception.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Exception/Exception.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Exception/InvalidArgumentException.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Exception/InvalidArgumentException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Exception/MissingCoversAnnotationException.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Exception/MissingCoversAnnotationException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Exception/RuntimeException.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Exception/RuntimeException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Exception/UnintentionallyCoveredCodeException.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Exception/UnintentionallyCoveredCodeException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Filter.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Filter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Node/AbstractNode.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Node/AbstractNode.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Node/Builder.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Node/Builder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Node/Directory.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Node/Directory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Node/File.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Node/File.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Node/Iterator.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Node/Iterator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Clover.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Clover.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Crap4j.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Crap4j.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Facade.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Facade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Dashboard.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Dashboard.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Directory.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Directory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/File.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/File.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/coverage_bar.html.dist" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/coverage_bar.html.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/css/bootstrap.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/css/style.css" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/dashboard.html.dist" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/dashboard.html.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/directory.html.dist" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/directory.html.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/directory_item.html.dist" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/directory_item.html.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/file.html.dist" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/file.html.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/file_item.html.dist" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/file_item.html.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/bootstrap.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/d3.min.js" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/d3.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/file.js" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/file.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/jquery.min.js" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/jquery.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/nv.d3.min.js" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/nv.d3.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/method_item.html.dist" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/method_item.html.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/PHP.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/PHP.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Text.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Text.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/BuildInformation.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/BuildInformation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Coverage.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Coverage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Directory.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Directory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Facade.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Facade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/File.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/File.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Method.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Method.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Node.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Node.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Project.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Project.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Report.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Report.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Source.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Source.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Tests.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Tests.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Totals.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Totals.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Unit.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Report/Xml/Unit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Util.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Util.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Version.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/src/Version.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/TestCase.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/TestCase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/BankAccount-clover.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/BankAccount-clover.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/BankAccount-crap4j.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/BankAccount-crap4j.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/BankAccount-text.txt" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/BankAccount-text.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/BankAccount.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/BankAccount.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/BankAccountTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/BankAccountTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageClassExtendedTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageClassExtendedTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageClassTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageClassTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageFunctionParenthesesTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageFunctionParenthesesTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageFunctionParenthesesWhitespaceTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageFunctionParenthesesWhitespaceTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageFunctionTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageFunctionTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageMethodOneLineAnnotationTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageMethodOneLineAnnotationTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageMethodParenthesesTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageMethodParenthesesTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageMethodParenthesesWhitespaceTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageMethodParenthesesWhitespaceTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageMethodTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageMethodTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageNoneTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageNoneTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageNotPrivateTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageNotPrivateTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageNotProtectedTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageNotProtectedTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageNotPublicTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageNotPublicTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageNothingTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageNothingTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoveragePrivateTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoveragePrivateTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageProtectedTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageProtectedTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoveragePublicTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoveragePublicTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageTwoDefaultClassAnnotations.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoverageTwoDefaultClassAnnotations.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoveredClass.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoveredClass.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoveredFunction.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/CoveredFunction.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageClassExtendedTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageClassExtendedTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageClassTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageClassTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageCoversClassPublicTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageCoversClassPublicTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageCoversClassTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageCoversClassTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageMethodTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageMethodTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageNotPrivateTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageNotPrivateTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageNotProtectedTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageNotProtectedTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageNotPublicTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageNotPublicTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoveragePrivateTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoveragePrivateTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageProtectedTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoverageProtectedTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoveragePublicTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoveragePublicTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoveredClass.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NamespaceCoveredClass.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NotExistingCoveredElementTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/NotExistingCoveredElementTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForBankAccount/BankAccount.php.html" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForBankAccount/BankAccount.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForBankAccount/dashboard.html" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForBankAccount/dashboard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForBankAccount/index.html" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForBankAccount/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForClassWithAnonymousFunction/dashboard.html" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForClassWithAnonymousFunction/dashboard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForClassWithAnonymousFunction/index.html" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForClassWithAnonymousFunction/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForClassWithAnonymousFunction/source_with_class_and_anonymous_function.php.html" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForClassWithAnonymousFunction/source_with_class_and_anonymous_function.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForFileWithIgnoredLines/dashboard.html" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForFileWithIgnoredLines/dashboard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForFileWithIgnoredLines/index.html" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForFileWithIgnoredLines/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForFileWithIgnoredLines/source_with_ignore.php.html" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/HTML/CoverageForFileWithIgnoredLines/source_with_ignore.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/XML/CoverageForBankAccount/BankAccount.php.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/XML/CoverageForBankAccount/BankAccount.php.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/XML/CoverageForBankAccount/index.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/XML/CoverageForBankAccount/index.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/XML/CoverageForClassWithAnonymousFunction/index.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/XML/CoverageForClassWithAnonymousFunction/index.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/XML/CoverageForClassWithAnonymousFunction/source_with_class_and_anonymous_function.php.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/XML/CoverageForClassWithAnonymousFunction/source_with_class_and_anonymous_function.php.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/XML/CoverageForFileWithIgnoredLines/index.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/XML/CoverageForFileWithIgnoredLines/index.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/XML/CoverageForFileWithIgnoredLines/source_with_ignore.php.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/Report/XML/CoverageForFileWithIgnoredLines/source_with_ignore.php.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/class-with-anonymous-function-clover.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/class-with-anonymous-function-clover.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/class-with-anonymous-function-crap4j.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/class-with-anonymous-function-crap4j.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/class-with-anonymous-function-text.txt" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/class-with-anonymous-function-text.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/ignored-lines-clover.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/ignored-lines-clover.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/ignored-lines-crap4j.xml" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/ignored-lines-crap4j.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/ignored-lines-text.txt" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/ignored-lines-text.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/source_with_class_and_anonymous_function.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/source_with_class_and_anonymous_function.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/source_with_ignore.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/source_with_ignore.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/source_with_namespace.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/source_with_namespace.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/source_with_oneline_annotations.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/source_with_oneline_annotations.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/source_without_ignore.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/source_without_ignore.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/source_without_namespace.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/_files/source_without_namespace.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/bootstrap.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/bootstrap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/BuilderTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/BuilderTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/CloverTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/CloverTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/CodeCoverageTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/CodeCoverageTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/Crap4jTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/Crap4jTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/FilterTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/FilterTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/HTMLTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/HTMLTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/TextTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/TextTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/UtilTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/UtilTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/XmlTest.php" afterPath="$PROJECT_DIR$/backend/vendor/phpunit/php-code-coverage/tests/tests/XmlTest.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -155,14 +238,44 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="352" column="5" lean-forward="false" selection-start-line="352" selection-start-column="5" selection-end-line="352" selection-end-column="5" />
+            <state relative-caret-position="-28">
+              <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReclamosYSugerencia.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/app/ReclamosYSugerencia.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="13" column="15" lean-forward="false" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReclamoSugerenciaController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ReclamoSugerenciaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="64" column="25" lean-forward="false" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
               <folding>
-                <marker date="1539607316183" expanded="true" signature="262:264" ph="..." />
+                <element signature="e#40#68#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -170,28 +283,51 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>upgradeFotoPerfil</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/backend/resources/views/correos/informacion.blade.php" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/OfertaController.php" />
+        <option value="$PROJECT_DIR$/backend/app/ReclamosYSugerencia.php" />
+        <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_18_033053_create_reclamos_y_sugerencias_table.php" />
+        <option value="$PROJECT_DIR$/backend/routes/api.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ReclamoSugerenciaController.php" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>false</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>false</other-services-enabled>
+  </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
-    <option name="y" value="-4" />
-    <option name="width" value="1608" />
-    <option name="height" value="864" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1296" />
+    <option name="height" value="696" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -208,6 +344,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -231,6 +368,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webdcentral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webdcentral" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webdcentral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webdcentral" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -303,11 +480,10 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.php.tools.quality.phpcs.PhpCSConfigurable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
@@ -324,17 +500,6 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="INTERPRETER_PATH" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings />
       <method />
@@ -374,6 +539,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -400,6 +571,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\parrillaaj\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="" />
@@ -408,38 +582,50 @@
       <option name="presentableId" value="Default" />
       <updated>1539606845799</updated>
       <workItem from="1539606851244" duration="463000" />
+      <workItem from="1539829542563" duration="7266000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="463000" />
+    <option name="totallyTimeSpent" value="7729000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1608" height="864" extended-state="6" />
+    <frame x="-8" y="-8" width="1296" height="696" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16953126" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="NativeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924694" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934928" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924694" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="JSON Viewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="JSON Viewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -448,14 +634,245 @@
     <breakpoint-manager />
     <watches-manager />
   </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="webdcentral" />
+        <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="webdcentral" />
+        <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+      </PATH_ELEMENT>
+    </PATH>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="352" column="5" lean-forward="false" selection-start-line="352" selection-start-column="5" selection-end-line="352" selection-end-column="5" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/ConfigFooter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Correo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/resources/views/correos/informacion.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
           <folding>
-            <marker date="1539607316183" expanded="true" signature="262:264" ph="..." />
+            <marker date="1539830389518" expanded="true" signature="240:255" ph="..." />
+            <marker date="1539830389518" expanded="true" signature="331:337" ph="..." />
+            <marker date="1539830389518" expanded="true" signature="485:526" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="25" column="19" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PhpStorm2017.1/phpstorm64.exe.vmoptions">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-10-18.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="-746">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Oferta.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="13" column="15" lean-forward="false" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Promocion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="18" column="6" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="18" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_15_020924_create_ofertas_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_14_050239_add_api_token_to_users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_14_024810_create_correos_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2014_10_12_100000_create_password_resets_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_07_171632_create_config_footers_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_07_194947_create_config_homes_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_12_005751_create_perfil_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_13_015533_create_galeria_homes_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_13_042123_create_productos_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_13_042203_create_peso_productos_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2014_10_12_000000_create_users_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OfertaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_18_033053_create_reclamos_y_sugerencias_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="22" column="11" lean-forward="true" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-28">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/ReclamosYSugerencia.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="13" column="15" lean-forward="false" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ReclamoSugerenciaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="64" column="25" lean-forward="false" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
