@@ -350,6 +350,7 @@ class UserController extends Controller {
     }
 
     // Actualizamos o agragamos la img de perfil
+
     public function upgradeFotoPerfil(Request $request) {
 
         $this->validate($request, [
@@ -371,6 +372,15 @@ class UserController extends Controller {
             'msj'  => 'Foto de perfil actualizada correctamente',
             'user' => $user,
         ];
+
+    public function upgradeFotoPerfil(Request $request)
+    {
+
+        $name = $request->img_perfil->store('perfil');
+
+        $u              = User::find($request->user_id);
+        $u->fotoPerfil = $name;
+        $u->save();
 
         return response()->json($response, 200);
 

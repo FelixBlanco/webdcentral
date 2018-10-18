@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { GaleriaHomeService } from '../../services/galeria-home.service';
 import { LoginService } from '../../services/login.service'
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Authorization': 'Bearer ' + localStorage.getItem('access_token')
+  })
+};
 @Component({
   selector: 'app-galeria-home',
   templateUrl: './galeria-home.component.html',
@@ -14,35 +23,30 @@ export class GaleriaHomeComponent implements OnInit {
     imagen:null
   } 
 
-  dataUser:any = {
-    id:null, 
-    userName: null,
-    foto_perfil: null,
-    img_perfil:null
-  };
+  list_galeria:any;
 
   constructor(
+    private http:HttpClient,
     private _galeriaHomeService: GaleriaHomeService,
-    private _loginService: LoginService
   ) { }
 
   ngOnInit() {
-    this.getAuthUser();
-  }
-
-  getAuthUser(){
-    this._loginService._getAuthUser().subscribe(
-      (resp:any) => { 
-        //this.dataUser.id = resp.id;
-        this.dataUser.userName = resp.userName; 
-        this.dataUser.img_perfil = resp.img_perfil;
-      },
-      error => {
-        //this.router.navigate(['']);
-       }
-    )
+    this.getSlideHome();
   }
   
+
+  getSlideHome(){
+    this._galeriaHomeService._getSlideHome().subscribe(
+      (resp:any) => {
+        this.list_galeria = resp.producto;
+
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
   upImg(event){
     var foto_x : File = event.target.files[0]; // Ubicamos la IMG
     this.new_galeria.imagen = foto_x
@@ -50,12 +54,18 @@ export class GaleriaHomeComponent implements OnInit {
 
   addSlideHome(){
 
-    const formData: FormData = new FormData(); // Damos Formato
-    formData.append('titulo', this.new_galeria.titulo);
-    formData.append('imagen', this.new_galeria.imagen);
+    var galeriaHome: FormData = new FormData(); // Damos Formato
+    galeriaHome.append('titulo', this.new_galeria.titulo);
+    galeriaHome.append('imagen', this.new_galeria.imagen);
 
-    this._galeriaHomeService._addSlideHome(formData).subscribe(
-      resp => { console.log(resp) },
+    return this.http.post('http://localhost:8000/api/auth/createSlides',galeriaHome,{
+      headers: new HttpHeaders({
+        'Accept':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer'+localStorage.getItem('access_token'),
+      })
+    }).subscribe(
+      (resp:any) => { console.log(resp.msj) },
       error => { console.log( error ) }
     )
   }
