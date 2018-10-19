@@ -444,6 +444,7 @@ class ComposerStaticInit382161484a43228177101e3df006e07c
     );
 
     public static $classMap = array (
+        'App\\Color' => __DIR__ . '/../..' . '/app/Color.php',
         'App\\ConfigFooter' => __DIR__ . '/../..' . '/app/ConfigFooter.php',
         'App\\ConfigHome' => __DIR__ . '/../..' . '/app/ConfigHome.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
