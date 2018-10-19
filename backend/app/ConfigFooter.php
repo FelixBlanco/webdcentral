@@ -12,12 +12,12 @@ class ConfigFooter extends Model {
      * @var string
      */
 
-    protected $table = 'tb_config_footers';
+    protected $table      = 'tb_config_footers';
     protected $primaryKey = 'idConfigFooter';
 
 
     protected $fillable = [
         'direccion',
-        'nro_contacto',
+        'nroContacto',
         'email' ];
 }

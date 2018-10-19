@@ -10,7 +10,7 @@ export class ConfigFooterComponent implements OnInit {
   
   data:any = {
       direccion: null, 
-      nro_contacto: null, 
+      nroContacto: null, 
       email: null
     };
 
@@ -27,17 +27,7 @@ export class ConfigFooterComponent implements OnInit {
   getConfigFooter(){
     this._confgFooterService._getConfigFooter().subscribe(
       resp => { 
-
-        if(resp != null){
-          this.data = resp;
-        }else{
-          this.data = {
-            direccion: null, 
-            nro_contacto: null, 
-            email: null
-          };
-      
-        }
+        this.data = resp;
       },
       error => { console.log(error) }
     )
@@ -45,7 +35,7 @@ export class ConfigFooterComponent implements OnInit {
 
   upgradeCondigFooter(){
     this._confgFooterService._upgradeConfigFooter(this.data).subscribe(
-      resp => { console.log('Fino') },
+      resp => { this.getConfigFooter();  console.log('Fino') },
       error => { console.log(error) }
     );
   }
