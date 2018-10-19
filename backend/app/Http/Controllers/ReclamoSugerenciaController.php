@@ -17,7 +17,7 @@ class ReclamoSugerenciaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //
+        return ReclamosYSugerencia::orderby('idReclamosSugerencia','desc')->get();
     }
 
     /**
@@ -60,7 +60,7 @@ class ReclamoSugerenciaController extends Controller {
 
              $response = [
                  'msj'  => 'Reclamo y o notificación Creada',
-                 'reclamo/notificacion' => $rs,
+                 'reclamo_notificacion' => $rs,
              ];
 
             return response()->json($response, 201);

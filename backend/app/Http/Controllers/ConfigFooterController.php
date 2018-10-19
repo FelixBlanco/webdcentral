@@ -24,7 +24,7 @@ class ConfigFooterController extends Controller
     		$c->save();
     	}else{
 	    	$d->direccion = $request->direccion;
-	    	$d->nro_contacto = $request->nro_contacto;
+	    	$d->nroContacto = $request->nroContacto;
 	    	$d->email = $request->email; 
 		    $d->save();
     	}

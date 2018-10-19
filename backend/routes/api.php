@@ -25,7 +25,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::post('createSlides','SlideController@createSlides'); //Para que un user admin cree un slide
 
         Route::resource('sugerencias-reclamos', 'ReclamoSugerenciaController');   //sugerencias y reclamos
-        Route::resource('colores', 'ColorController');   //sugerencias y reclamos
+        Route::resource('colores', 'ColorController');   //Colores de la web
     });
 });
 

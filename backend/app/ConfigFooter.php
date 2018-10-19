@@ -18,6 +18,6 @@ class ConfigFooter extends Model {
 
     protected $fillable = [
         'direccion',
-        'nro_contacto',
+        'nroContacto',
         'email' ];
 }

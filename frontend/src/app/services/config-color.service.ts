@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 const httpOptions = {
@@ -13,18 +12,17 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class ReclamosSugerenciasService {
+export class ConfigColorService {
 
   constructor(
-    private http:HttpClient
+    private http:HttpClient,
   ) { }
 
-  // Esperando por definicion de rutas
-  _getReclamos(){
-    return this.http.get('http://localhost:8000/api/auth/sugerencias-reclamos',httpOptions);
+  _getColor(){
+    return this.http.get('http://localhost:8000/api/auth/colores',httpOptions);
   }
 
-  _addReclamos(data:any){
-    return this.http.post('http://localhost:8000/api/auth/sugerencias-reclamos',data,httpOptions);
+  addColores(data:any){
+    return this.http.post('http://localhost:8000/api/auth/colores',data,httpOptions);
   }
 }

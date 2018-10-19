@@ -15,7 +15,7 @@ class ColorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //
+        return Color::orderby('idColor','desc')->get();
     }
 
     /**
