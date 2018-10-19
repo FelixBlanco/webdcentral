@@ -11,18 +11,16 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
-class UserController extends Controller
-{
+class UserController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
 
         $users = User::all();
-        $users->each(function ($users) {
+        $users->each(function($users) {
             $users->perfil;
 
             return $users;
@@ -41,8 +39,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -52,8 +49,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
 
         $password_default = 123456;
 
@@ -63,7 +59,7 @@ class UserController extends Controller
             'password'    => 'min:8', /*ya no sera requerida, debido a que puede ser null*/
             'userName'    => 'required|unique:tb_users,userName,'.$request->id.',id',
             'fk_idPerfil' => 'required',
-            'fotoPerfil'  => 'image|required|mimes:jpeg,png,jpg,gif,svg',
+            //'fotoPerfil'  => 'image|required|mimes:jpeg,png,jpg,gif,svg',
         ], [
             'name.required'        => 'El Nombre es requerido',
             'name.max'             => 'El Nombre no puede tener mas de 20 caracteres',
@@ -75,7 +71,7 @@ class UserController extends Controller
             'userName'             => 'El User Name es requerido',
             'userName.unique'      => 'El User Name ya esta en uso',
             'fk_idPerfil.required' => 'Este campo es requerido',
-            'fotoPerfil.reqired'   => 'La foto de perfil es requerida',
+            //'fotoPerfil.reqired'   => 'La foto de perfil es requerida',
 
         ]);
 
@@ -85,21 +81,26 @@ class UserController extends Controller
 
             $usuario = new User($request->all());
 
-            /*para la foto*/
-            $originalImage = $request->fotoPerfil;
+            if (is_null($request->fotoPerfil)) {
 
-            $thumbnailImage = Image::make($originalImage);
-            $thumbnailImage->fit(2048, 2048, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            $nombre_publico = $originalImage->getClientOriginalName();
-            $extension = $originalImage->getClientOriginalExtension();
-            $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
-            $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-            Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
-            /*para la foto*/
+            } else {
 
-            $usuario->fotoPerfil = $nombre_interno;
+                /*para la foto*/
+                $originalImage = $request->fotoPerfil;
+
+                $thumbnailImage = Image::make($originalImage);
+                $thumbnailImage->fit(2048, 2048, function($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension      = $originalImage->getClientOriginalExtension();
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+                Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
+                /*para la foto*/
+
+                $usuario->fotoPerfil = $nombre_interno;
+            }
 
             if (is_null($request->password) == true) {
                 $usuario->password = bcrypt($password_default);
@@ -141,8 +142,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
 
         try {
 
@@ -169,8 +169,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -181,13 +180,12 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
 
         $this->validate($request, [
             'name'        => 'required|max:30|min:2',
             'email'       => 'required|unique:tb_users,email,'.$request->id,
-            'password'    => 'required|min:8',
+
             'userName'    => 'required|unique:tb_users,userName,'.$request->id,
             'fk_idPerfil' => 'required',
 
@@ -200,8 +198,6 @@ class UserController extends Controller
             'email.email'    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
             'email.required' => 'El Email es requerido',
 
-            'password.required' => 'Este campo es requerido',
-            'password.min'      => 'La contraseña debe de tener minimo 8 caracteres',
             'userName'          => 'El User Name es requerido',
 
             'userName.unique'      => 'El User Name ya esta en uso',
@@ -221,11 +217,11 @@ class UserController extends Controller
                 $originalImage = $request->fotoPerfil;
 
                 $thumbnailImage = Image::make($originalImage);
-                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                $thumbnailImage->fit(2048, 2048, function($constraint) {
                     $constraint->aspectRatio();
                 });
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension = $originalImage->getClientOriginalExtension();
+                $extension      = $originalImage->getClientOriginalExtension();
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
                 Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
@@ -268,8 +264,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
 
         DB::beginTransaction();
 
@@ -295,8 +290,8 @@ class UserController extends Controller
         }
     }
 
-    public function getFotoPerfil($archivo)
-    {
+    public function getFotoPerfil($archivo) {
+
         if (Storage::exists('/perfil/'.$archivo)) {
 
             /* -habilitar si quieres recibir la imagen en streaming  */
@@ -307,8 +302,7 @@ class UserController extends Controller
         }
     }
 
-    public function setClave(Request $request, $api_token)
-    {
+    public function setClave(Request $request, $api_token) {
 
         $this->validate($request, [
             'password' => 'required|min:8',
@@ -354,17 +348,28 @@ class UserController extends Controller
     }
 
     // Actualizamos o agragamos la img de perfil
-    public function upgradeFotoPerfil(Request $request)
-    {
 
-        $name = $request->img_perfil->store('perfil');
+    public function upgradeFotoPerfil(Request $request) {
 
-        $u              = User::find($request->user_id);
-        $u->fotoPerfil = $name;
-        $u->save();
+        $this->validate($request, [
+            'id_user'    => 'required',
+            'fotoPerfil' => 'required',
+        ], [
+            'id_user.required'    => 'Este campo es requerido',
+            'fotoPerfil.required' => 'Este campo es requerido',
+        ]);
 
-        return $u;
 
+        $name = $request->fotoPerfil->store('perfil');
+
+        $user             = User::find($request->id_user);
+        $user->fotoPerfil = $name;
+        $user->save();
+
+        $response = [
+            'msj'  => 'Foto de perfil actualizada correctamente',
+            'user' => $user,
+        ];
     }
 
     public function reestablecerClave(Request $request) {

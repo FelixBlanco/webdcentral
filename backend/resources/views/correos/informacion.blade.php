@@ -12,6 +12,6 @@
 
 <p> Recuerde usar su correo y nueva clave para acceder al sistema</p>
 
-<p>Por favor siga el siguiente enlace para acceder al sistema {{url('/api/v1/setClave/'.$user->api_token)}}</p>
+{{-- <p>Por favor siga el siguiente enlace para acceder al sistema {{url('/api/v1/setClave/'.$user->api_token)}}</p>--}} {{--Aun no se que ruta debo colocar para presentar la vista --}}
 </body>
 </html>

@@ -23,6 +23,9 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::resource('galeriaHome', 'GaleriaHomeController'); //Para galeria Home
 
         Route::post('createSlides','SlideController@createSlides'); //Para que un user admin cree un slide
+
+        Route::resource('sugerencias-reclamos', 'ReclamoSugerenciaController');   //sugerencias y reclamos
+        Route::resource('colores', 'ColorController');   //sugerencias y reclamos
     });
 });
 
@@ -30,6 +33,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
+
 
     /*para las ofertas*/
     Route::resource('ofertas', 'OfertaController');
@@ -55,7 +59,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     Route::resource('user', 'UserController');    // User CRUD
 
-
     Route::put('setClave/{api_token}', 'UserController@setClave'); // Cambio de clave
 
     Route::post('reestablecerClave', 'UserController@reestablecerClave'); // recibe email y genera clave aleatoria, posterior envia email para el login
@@ -63,12 +66,12 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // Actualizamos las imagenes de perfil
     Route::post('upgrade-foto-perfil','UserController@upgradeFotoPerfil');
 
-
     /*con esta puede tener acceso a una foto de perfil en streaming*/
     Route::get('getFotoPerfil/{nombreImagen}','UserController@getFotoPerfil');
 
     /*con esta puede tener acceso a una imagen de la galeria en streaming*/
     Route::get('galeriaHome/{nombreImagen}','GaleriaHomeController@getgaleriaHome');
+
     // Config Home
     Route::get('config-home', 'ConfigHomeController@getConfigHome')->name('config-home');
     Route::post('upgrade_config_home', 'ConfigHomeController@upgradeConfigHome')->name('upgrade_config_home');

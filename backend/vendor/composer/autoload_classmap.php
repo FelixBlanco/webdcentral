@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Color' => $baseDir . '/app/Color.php',
     'App\\ConfigFooter' => $baseDir . '/app/ConfigFooter.php',
     'App\\ConfigHome' => $baseDir . '/app/ConfigHome.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
@@ -26,6 +27,7 @@ return array(
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\OfertaController' => $baseDir . '/app/Http/Controllers/OfertaController.php',
     'App\\Http\\Controllers\\ProductoController' => $baseDir . '/app/Http/Controllers/ProductoController.php',
+    'App\\Http\\Controllers\\ReclamoSugerenciaController' => $baseDir . '/app/Http/Controllers/ReclamoSugerenciaController.php',
     'App\\Http\\Controllers\\RegisterController' => $baseDir . '/app/Http/Controllers/RegisterController.php',
     'App\\Http\\Controllers\\SlideController' => $baseDir . '/app/Http/Controllers/SlideController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
@@ -50,7 +52,10 @@ return array(
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
+    'App\\ReclamosYSugerencia' => $baseDir . '/app/ReclamosYSugerencia.php',
     'App\\Slide' => $baseDir . '/app/Slide.php',
+    'App\\StatusReclamo' => $baseDir . '/app/StatusReclamo.php',
+    'App\\StatusSistema' => $baseDir . '/app/StatusSistema.php',
     'App\\User' => $baseDir . '/app/User.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
     'Asm89\\Stack\\CorsService' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
@@ -3160,6 +3165,7 @@ return array(
     'SebastianBergmann\\Timer\\RuntimeException' => $vendorDir . '/phpunit/php-timer/src/RuntimeException.php',
     'SebastianBergmann\\Timer\\Timer' => $vendorDir . '/phpunit/php-timer/src/Timer.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
+    'StatusReclamo' => $baseDir . '/database/seeds/StatusReclamo.php',
     'Symfony\\Bridge\\PsrHttpMessage\\Factory\\DiactorosFactory' => $vendorDir . '/symfony/psr-http-message-bridge/Factory/DiactorosFactory.php',
     'Symfony\\Bridge\\PsrHttpMessage\\Factory\\HttpFoundationFactory' => $vendorDir . '/symfony/psr-http-message-bridge/Factory/HttpFoundationFactory.php',
     'Symfony\\Bridge\\PsrHttpMessage\\Factory\\PsrHttpFactory' => $vendorDir . '/symfony/psr-http-message-bridge/Factory/PsrHttpFactory.php',
