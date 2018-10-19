@@ -185,7 +185,7 @@ class UserController extends Controller {
         $this->validate($request, [
             'name'        => 'required|max:30|min:2',
             'email'       => 'required|unique:tb_users,email,'.$request->id,
-            'password'    => 'required|min:8',
+
             'userName'    => 'required|unique:tb_users,userName,'.$request->id,
             'fk_idPerfil' => 'required',
 
@@ -198,8 +198,6 @@ class UserController extends Controller {
             'email.email'    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
             'email.required' => 'El Email es requerido',
 
-            'password.required' => 'Este campo es requerido',
-            'password.min'      => 'La contraseña debe de tener minimo 8 caracteres',
             'userName'          => 'El User Name es requerido',
 
             'userName.unique'      => 'El User Name ya esta en uso',
@@ -354,17 +352,17 @@ class UserController extends Controller {
     public function upgradeFotoPerfil(Request $request) {
 
         $this->validate($request, [
-            'id_user' => 'required',
+            'id_user'    => 'required',
             'fotoPerfil' => 'required',
         ], [
-            'id_user.required' => 'Este campo es requerido',
+            'id_user.required'    => 'Este campo es requerido',
             'fotoPerfil.required' => 'Este campo es requerido',
         ]);
 
 
         $name = $request->fotoPerfil->store('perfil');
 
-        $user              = User::find($request->id_user);
+        $user             = User::find($request->id_user);
         $user->fotoPerfil = $name;
         $user->save();
 
@@ -372,18 +370,6 @@ class UserController extends Controller {
             'msj'  => 'Foto de perfil actualizada correctamente',
             'user' => $user,
         ];
-
-    public function upgradeFotoPerfil(Request $request)
-    {
-
-        $name = $request->img_perfil->store('perfil');
-
-        $u              = User::find($request->user_id);
-        $u->fotoPerfil = $name;
-        $u->save();
-
-        return response()->json($response, 200);
-
     }
 
     public function reestablecerClave(Request $request) {

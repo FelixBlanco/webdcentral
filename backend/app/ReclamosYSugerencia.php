@@ -11,7 +11,17 @@ class ReclamosYSugerencia extends Model {
     protected $fillable = [
         'titulo',
         'descripcion',
-        'status',
         'fk_idUser',
+        'fk_idStatusReclamo',
     ];
+
+    public function user() {
+        return $this->belongsTo('App\User', 'fk_idUser');
+    }
+
+    public function status() {
+        return $this->belongsTo('App\StatusReclamo', 'fk_idStatusReclamo');
+    }
+
+
 }

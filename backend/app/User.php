@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Perfil', 'fk_idPerfil');
     }
+
+    public function ReclamosSugerencias()
+    {
+        return $this->hasMany('App\ReclamosYSugerencia','fk_idUser'); //muchos reclamos
+    }
 }

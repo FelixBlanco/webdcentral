@@ -40,12 +40,9 @@ class ReclamoSugerenciaController extends Controller {
         $this->validate($request, [
             'titulo'      => 'required',
             'descripcion' => 'required',
-            //'fk_idUser'   => 'required',
         ], [
             'titulo.required'      => 'El título es requerido',
             'descripcion.required' => 'La descripción es requerida',
-            //'fk_idUser.required'   => 'El es requerido',
-
         ]);
 
         DB::beginTransaction();
@@ -53,23 +50,24 @@ class ReclamoSugerenciaController extends Controller {
         try {
 
             $rs= new ReclamosYSugerencia($request->all());
-            $rs->status="abierto"; //status abierto, cerrado, recibida
             $rs->fk_idUser=Auth::user()->id;
-
+            $rs->fk_idStatusReclamo=1; //para iniciar en estatus abierto
             $rs->save();
+            $rs->status;
+            $rs->user;
 
-            $response = [
-                'msj'  => 'Reclamo/notificación Creada',
-                'reclamo/notificacion' => $rs,
-            ];
             DB::commit();
 
+             $response = [
+                 'msj'  => 'Reclamo y o notificación Creada',
+                 'reclamo/notificacion' => $rs,
+             ];
 
             return response()->json($response, 201);
         } catch (\Exception $e) {
 
             DB::rollback();
-            Log::error('Ha ocurrido un error en UserController: '.$e->getMessage().', Linea: '.$e->getLine());
+            Log::error('Ha ocurrido un error en ReclamoController: '.$e->getMessage().', Linea: '.$e->getLine());
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
