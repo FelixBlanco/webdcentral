@@ -58,6 +58,8 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     Route::put('setClave/{api_token}', 'UserController@setClave'); // Cambio de clave
 
+    Route::post('reestablecerClave', 'UserController@reestablecerClave'); // recibe email y genera clave aleatoria, posterior envia email para el login
+
     // Actualizamos las imagenes de perfil
     Route::post('upgrade-foto-perfil','UserController@upgradeFotoPerfil');
 

@@ -19,6 +19,8 @@ import { NavDosComponent } from './component/nav-dos/nav-dos.component';
 import { EntregaComponent } from './component/entrega/entrega.component';
 import { MarcaComponent } from './component/marca/marca.component';
 import { MascotasComponent } from './component/mascotas/mascotas.component';
+import { SlideHomeComponent } from './component/slide-home/slide-home.component';
+import { OfertasComponent } from './component/ofertas/ofertas.component';
 
 
 const appRoutes: Routes = [
@@ -46,6 +48,7 @@ const appRoutes: Routes = [
     EntregaComponent,
     MarcaComponent,
     MascotasComponent,
+    SlideHomeComponent,
 
   ],
   imports: [
