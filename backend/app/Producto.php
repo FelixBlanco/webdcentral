@@ -15,6 +15,7 @@ class Producto extends Model {
         'urlImage',
         'promocion',
         'categoria',
+        'fk_idSatate',
         'fk_idPesoProducto',
     ];
 }
