@@ -19,7 +19,7 @@ import { NavDosComponent } from './component/nav-dos/nav-dos.component';
 import { EntregaComponent } from './component/entrega/entrega.component';
 import { MarcaComponent } from './component/marca/marca.component';
 import { MascotasComponent } from './component/mascotas/mascotas.component';
-
+import { SlideHomeComponent } from './component/slide-home/slide-home.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -46,7 +46,7 @@ const appRoutes: Routes = [
     EntregaComponent,
     MarcaComponent,
     MascotasComponent,
-
+    SlideHomeComponent,
   ],
   imports: [
     BrowserModule,

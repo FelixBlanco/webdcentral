@@ -3,21 +3,15 @@
 <head>
     <meta charset = "UTF-8">
     <meta name = "viewport" content = "width=device-width, user-scalable=no, initial-scale=1.0">
-    <title>Correo de Prueba</title>
+    <title>Recuperación de contraseña</title>
 </head>
 <body>
-<p>Hola! Se ha registrado su nuevo usuario a las {{ $user->created_at }}.</p>
-<p>Estos son los datos</p>
-<ul>
-    <li>Nombre: {{ $user->name }}</li>
-    <li>Correo: {{ $user->email }}</li>
-    <li>UserName: {{ $user->userName }}</li>
-    <li>Clave actual: {{ $clave }}</li>
-</ul>
-<p>Rol del Usuario:</p>
-<ul>
-    <li>Rol: {{ $user->perfil->nombre }}</li>
-</ul>
-<p>Por favor siga el siguiente enlace para proceder al cambio de su contraseña {{url('/api/v1/setClave/'.$user->api_token)}}</p>
+<p>Hola! {{$user->userName}} Se ha reiniciado tu clave exitosamente.</p>
+
+<p>Esta es su nueva clave {{$clave}}</p>
+
+<p> Recuerde usar su correo y nueva clave para acceder al sistema</p>
+
+{{-- <p>Por favor siga el siguiente enlace para acceder al sistema {{url('/api/v1/setClave/'.$user->api_token)}}</p>--}} {{--Aun no se que ruta debo colocar para presentar la vista --}}
 </body>
 </html>
