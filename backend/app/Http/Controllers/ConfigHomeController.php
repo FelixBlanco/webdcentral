@@ -10,7 +10,9 @@ class ConfigHomeController extends Controller
 {
     public function getConfigHome(){
 	   	$c =  ConfigHome::first();
-	   	$c->set_logo = asset('storage/'.$c->logo); // Rutal del logo
+        if (!empty($c)) {
+            $c->set_logo = asset('storage/'.$c->logo); // Rutal del logo
+        }
 	   	return $c;
     }
 
@@ -19,8 +21,8 @@ class ConfigHomeController extends Controller
     	// Buscamos si hay registro 
     	$c_h = ConfigHome::first();
     	
-		$file = $request->foto->getClientOriginalName(); // Nombre 
-    	$name = $request->foto->store('config-home'); // Guardamos la imagen
+		$file = $request->logo->getClientOriginalName(); // Nombre 
+    	$name = $request->logo->store('config-home'); // Guardamos la imagen
     	//return $name;
 
     	if (empty($c_h)) { // Nuevo registro

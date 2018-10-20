@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigHomeService } from '../../services/config-home.service'
 
+declare var toastr;
+
 @Component({
   selector: 'app-config-home',
   templateUrl: './config-home.component.html',
@@ -22,16 +24,12 @@ export class ConfigHomeComponent implements OnInit {
   getConfigHome(){
     this._configHomeService._getConfigHome().subscribe(
       (resp:any) => {
-        console.log(resp);
-        if(resp != null){
-          this.c_h.imgLogo = resp.logo; 
-          this.c_h.color = resp.color ;
-          this.c_h.set_logo = resp.set_logo; 
-        }else{
-          this.c_h.imgLogo = null; 
-          this.c_h.color = null;  
-          this.c_h.set_logo = null;   
-        }
+        this.c_h.imgLogo = resp.logo; 
+        this.c_h.color = resp.color ;
+        this.c_h.set_logo = resp.set_logo; 
+      },
+      error => {
+        console.log(error);
       }
     );
   }
@@ -39,11 +37,13 @@ export class ConfigHomeComponent implements OnInit {
   upLogo(event){
     var foto_x : File = event.target.files[0]; // Ubicamos la IMG
     this.c_h.imgLogo = foto_x
+    console.log(event.target.value);
+    toastr('hola');
   }
 
   upgradeConfigHome(){
     var formData: FormData = new FormData(); // Damos Formato
-    formData.append('foto', this.c_h.imgLogo);
+    formData.append('logo', this.c_h.imgLogo);
     formData.append('color', this.c_h.color)
 
     this._configHomeService._upgradeConfigHome(formData).subscribe(resp => {

@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
     this._loginService.ingresarLogin(data).subscribe(
       (resp:any) =>{
         localStorage.setItem('access_token',resp.access_token)
-        
         $("#loginModal").modal('hide');
+        this.router.navigate(['home']);
       },
       (error:any) => {
         console.log('Algo salido mal');
