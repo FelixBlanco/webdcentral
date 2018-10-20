@@ -80,6 +80,10 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('config-footer', 'ConfigFooterController@getInfo')->name('config-footer');
     Route::post('update-config-footer', 'ConfigFooterController@updateInfo')->name('update-config-footer');
 
+    // CONEXION EXTERNAL SYS //
+    Route::post('get/order/bydriver', 'OrderDriverController@getAllByEmailDriver');
+
+
 });
 
 

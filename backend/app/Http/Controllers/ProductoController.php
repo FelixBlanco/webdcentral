@@ -49,8 +49,16 @@ class ProductoController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public static function create($request) {
         //
+        $product = new Producto;
+        $product->nombre = $request->nombre;
+        $product->titulo = $request->titulo;
+        $product->urlImage = $request->urlImage;
+        $product->promocion = $request->promocion;
+        $product->categoria = $request->categoria;
+        $product->fk_idPesoProducto = $request->fk_idPesoProducto;
+        $product->save();
     }
 
     /**
