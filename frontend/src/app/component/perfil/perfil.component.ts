@@ -11,7 +11,7 @@ export class PerfilComponent implements OnInit {
   
   imgPerfil:any;
   img_perfil:null;
-  form:any = { name: null, email: null, password: null, userName:null }
+  form:any = { id:null, name: null, email: null, password: null, userName:null, fk_idPerfil:null }
 
 
   constructor(
@@ -26,10 +26,12 @@ export class PerfilComponent implements OnInit {
   getAuthUser(){
     this._loginService._getAuthUser().subscribe(
       (resp:any) => {
+        this.form.id = resp.id;
         this.form.name = resp.name;
         this.form.userName = resp.userName;
         this.form.email = resp.email;
         this.img_perfil = resp.img_perfil
+        this.form.fk_idPerfil = resp.fk_idPerfil
       },
       error =>{
         console.log(error);
@@ -53,14 +55,17 @@ export class PerfilComponent implements OnInit {
   }
 
   upgradeImgPerfil(){
+    
     let form_data = new FormData();
-    form_data.append('img_perfil', this.imgPerfil);
-    form_data.append('user_id', '1');
+
+    form_data.append('fotoPerfil', this.imgPerfil);
+    form_data.append('id_user', this.form.id);
 
     this._perfilService._upgradePerfil(form_data).subscribe(
-      resp => { console.log(resp) },
-      error => { console.log(error) }
+      resp => { this.getAuthUser(); },
+      error => { console.log(error.error) }
     )
+
   }
 
 }

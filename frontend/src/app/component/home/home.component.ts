@@ -26,28 +26,12 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    //this.getAuthUser();
+    this.getAuthUser();
   }
 
   getAuthUser(){
-    this._loginService._getAuthUser().subscribe(
-      (resp:any) => { 
-        this.dataUser.id = resp.id;
-        this.dataUser.userName = resp.userName; 
-        this.dataUser.img_perfil = resp.img_perfil;
-      },
-      error => {
-        console.log('Algo anda mal')
-        //this.router.navigate(['']);
-       }
-    )
+
   }
 
-  salirLogin(){
-    this._loginService._salirLogin().subscribe(
-      (resp:any) => { this.router.navigate(['']); },
-      error => { console.log('algo salio mal'); console.log(error) }
-    )
-  }
   
 }

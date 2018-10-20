@@ -27,7 +27,9 @@ export class ConfigFooterComponent implements OnInit {
   getConfigFooter(){
     this._confgFooterService._getConfigFooter().subscribe(
       resp => { 
-        this.data = resp;
+        if(resp){
+          this.data = resp;
+        }
       },
       error => { console.log(error) }
     )

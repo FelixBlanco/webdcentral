@@ -29,10 +29,10 @@ export class LoginComponent implements OnInit {
       (resp:any) =>{
         localStorage.setItem('access_token',resp.access_token)
         $("#loginModal").modal('hide');
-        this.router.navigate(['home']);
+        location.href="/home";
       },
       (error:any) => {
-        console.log('Algo salido mal');
+        console.log('El correo o la clave estan malo');
       }
     );   
 

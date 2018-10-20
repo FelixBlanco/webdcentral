@@ -20,6 +20,7 @@ export class ReclamosSugerenciasComponent implements OnInit {
 
   ngOnInit() {
     this.getReclamos();
+    this.getLoginUser();
   }
 
   getLoginUser(){

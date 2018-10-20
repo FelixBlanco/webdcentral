@@ -20,6 +20,7 @@ import { EntregaComponent } from './component/entrega/entrega.component';
 import { MarcaComponent } from './component/marca/marca.component';
 import { MascotasComponent } from './component/mascotas/mascotas.component';
 import { SlideHomeComponent } from './component/slide-home/slide-home.component';
+import { ProductosComponent } from './componet/productos/productos.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
     MarcaComponent,
     MascotasComponent,
     SlideHomeComponent,
+    ProductosComponent,
   ],
   imports: [
     BrowserModule,

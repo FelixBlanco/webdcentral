@@ -13,6 +13,7 @@ import { GaleriaHomeComponent } from '../galeria-home/galeria-home.component';
 import { OfertasComponent } from './../ofertas/ofertas.component';
 import { ReclamosSugerenciasComponent } from './../reclamos-sugerencias/reclamos-sugerencias.component';
 import { ConfigColorComponent } from './../config-color/config-color.component';
+import { AlertsComponent } from './../alerts/alerts.component';
 
 const routerAdmin: Routes = [
   { path: 'home', component: HomeComponent,
@@ -44,7 +45,8 @@ const routerAdmin: Routes = [
     GaleriaHomeComponent,
     OfertasComponent,
     ReclamosSugerenciasComponent,
-    ConfigColorComponent
+    ConfigColorComponent,
+    AlertsComponent
   ],
   exports:[
     RouterModule

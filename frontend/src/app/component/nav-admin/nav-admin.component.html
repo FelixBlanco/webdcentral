@@ -25,7 +25,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" (click)="salirLogin()">Salir</a>
+                <a class="nav-link" (click)="salirLogin()">Salir</a>
             </li>   
           </ul>                
           <!-- <form class="form-inline my-2 my-lg-0">
@@ -41,6 +41,7 @@
           <!-- SLIDE NAV -->
           <div class="col-md-2">
             <nav class="nav flex-column" id="nav-lateral">
+              <!-- <a class="nav-link" (click)="testClick()" >Testclick</a> -->
               <a class="nav-link" routerLink="config-home">Config home</a>
               <a routerLink="config-footer" class="nav-link">Config Footer</a>
               <a routerLink="galeria-home" class="nav-link">Galeria Home</a>
@@ -53,6 +54,9 @@
           <!-- MAIN -->
           <div class="col-md-10">
             <div style="padding-top:2%;">
+              
+              <app-alerts></app-alerts>
+              
               <ng-content>
 
               </ng-content> 
