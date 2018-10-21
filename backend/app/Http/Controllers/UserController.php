@@ -394,7 +394,7 @@ class UserController extends Controller {
             $user->password = bcrypt($clave_nueva);
             $user->save();
 
-            Mail::to($user->email)->send(new Prueba($usuario, $password_default));
+            Mail::to($user->email)->send(new Prueba($user, $clave_nueva));
             $response = [
                 'msj'       => 'Email enviado exitosamente, revise su correo para proceder al inicio de sesión',
                 'user'      => $user,
