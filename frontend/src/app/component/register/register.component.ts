@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
       (resp:any) => { 
         localStorage.getItem('access_token')
         $("#registraseModal").modal('hide');
-        location.href="/home";
+        location.href="/";
       },
        (error:any) => {
          console.log(error.error.errors);

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GaleriaHomeService } from '../../services/galeria-home.service';
 import { LoginService } from '../../services/login.service'
+import { ProductosService } from '../../services/productos.service';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 const httpOptions = {
@@ -25,13 +26,17 @@ export class GaleriaHomeComponent implements OnInit {
 
   list_galeria:any;
 
+  list_productos: any;
+
   constructor(
     private http:HttpClient,
     private _galeriaHomeService: GaleriaHomeService,
-  ) { }
+    private _productosServices: ProductosService
+    ) { }
 
   ngOnInit() {
     this.getSlideHome();
+    this.getListProductos();
   }
   
 
@@ -39,10 +44,21 @@ export class GaleriaHomeComponent implements OnInit {
     this._galeriaHomeService._getSlideHome().subscribe(
       (resp:any) => {
         this.list_galeria = resp.producto;
-
       },
       error => {
         console.log(error)
+      }
+    )
+  }
+
+  getListProductos(){
+    this._productosServices._getProductos().subscribe(
+      (resp:any) => {
+        this.list_productos = resp.producto;
+        console.log(resp.producto)
+      },
+      error => {
+        console.log(error);
       }
     )
   }
@@ -57,6 +73,7 @@ export class GaleriaHomeComponent implements OnInit {
     var galeriaHome: FormData = new FormData(); // Damos Formato
     galeriaHome.append('titulo', this.new_galeria.titulo);
     galeriaHome.append('imagen', this.new_galeria.imagen);
+    galeriaHome.append('fk_idProducto',this.new_galeria.fk_idProducto);
 
     return this.http.post('http://localhost:8000/api/auth/createSlides',galeriaHome,{
       headers: new HttpHeaders({

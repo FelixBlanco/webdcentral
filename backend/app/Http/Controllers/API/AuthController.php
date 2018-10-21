@@ -96,7 +96,7 @@ class AuthController extends Controller {
 
 
     public function getUserDC($email){
-        return  DB::connection('sqlsrv')->select(" SELECT *,totalImport = 12 FROM  Transportes where Email_Transporte = '".$email."' ")[0]; 
+        //return  DB::connection('sqlsrv')->select(" SELECT *,totalImport = 12 FROM  Transportes where Email_Transporte = '".$email."' ")[0]; 
     
     }
 

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+// import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 import { HomeModule } from './component/home/home.module';
 
@@ -55,7 +57,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     FormsModule,
-    HomeModule
+    HomeModule,
+    BrowserAnimationsModule, 
+    // ToastModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

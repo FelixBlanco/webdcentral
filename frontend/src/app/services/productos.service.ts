@@ -10,6 +10,6 @@ export class ProductosService {
   ) { }
 
     _getProductos(){
-      // return this.http.get('http://localhost:8000/api/v1/')
+      return this.http.get('http://localhost:8000/api/v1/getProductos')
     }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertsService } from '../../services/alerts.service';
+// import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-alerts',
@@ -9,14 +10,17 @@ import { AlertsService } from '../../services/alerts.service';
 export class AlertsComponent implements OnInit {
 
   constructor(
-    private _alertService: AlertsService
-  ) { }
+    // public toastr: ToastsManager, 
+    //vcr: ViewContainerRef
+    ) {
+    //this.toastr.setRootViewContainerRef(vcr);
+ }
 
   ngOnInit() {
   }
 
-  activarverdad(){
-    this._alertService.Success()
+  showSuccess() {
+    // this.toastr.success('You are awesome!', 'Success!');
   }
 
 }
