@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
 use Validator;
+use Illuminate\Support\Facades\DB;
+
 
 class AuthController extends Controller {
 
@@ -70,7 +72,16 @@ class AuthController extends Controller {
     public function user(Request $request) {
 
         $u = $request->user();
+
         $u->img_perfil = asset('storage/'.$request->user()->fotoPerfil); // Podemos solicitar la URL directamente aca
+        
+        // Buscamos el usuario de DEPOCITO //
+        $userDc = $this->getUserDC($u->email);
+        if($userDc != ""){
+            $u->auto = $userDc->Modelo_Transporte." - ".$userDc->Patente_Transporte;
+            $u->totalImport = $userDc->totalImport;
+            $u->start =  "0.0";
+        }
 
         try {
             return response()->json($u,201);
@@ -81,6 +92,12 @@ class AuthController extends Controller {
                 'message' => 'Ha ocurrido un error al tratar de obtener los datos.',
             ], 500);
         }
+    }
+
+
+    public function getUserDC($email){
+        return  DB::connection('sqlsrv')->select(" SELECT *,totalImport = 12 FROM  Transportes where Email_Transporte = '".$email."' ")[0]; 
+    
     }
 
 }
