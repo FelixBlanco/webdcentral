@@ -80,9 +80,15 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('config-footer', 'ConfigFooterController@getInfo')->name('config-footer');
     Route::post('update-config-footer', 'ConfigFooterController@updateInfo')->name('update-config-footer');
 
-    // CONEXION EXTERNAL SYS //
+    // Conexion External SYS //
     Route::post('get/order/bydriver', 'OrderDriverController@getAllByEmailDriver');
 
+    // Cupones 
+    Route::post('coupns', 'CouponsController@create'); // Crear un cupon
+    Route::post('coupns/filter','CouponsController@listar'); // Obtener todos los cupones
+    Route::get('coupns/{idCoupons}','CouponsController@listarPorId');// Obtener cupones por id
+    Route::put('coupns/{idCoupons}','CouponsController@obtenerCupon'); // Obtener cupon por parte del cliente 
+    Route::get('coupns/chague/{idCuponsClient}','CouponsController@chague');// Canjear cupon por cliente
 
 });
 
