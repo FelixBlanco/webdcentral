@@ -21,7 +21,7 @@ class ProductoController extends Controller {
         $producto_desactivador = Producto::where('isOutstanding', 0)->get();
 
         $response = [
-            'msj'          => 'Producto activado',
+            'msj'          => 'Productos',
             'activados'    => $producto_activador,
             'desactivados' => $producto_desactivador,
         ];
