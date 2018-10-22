@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
+use App\CouponsClient;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -75,12 +76,25 @@ class AuthController extends Controller {
 
         $u->img_perfil = asset('storage/'.$request->user()->fotoPerfil); // Podemos solicitar la URL directamente aca
         
-        // Buscamos el usuario de DEPOCITO //
-        $userDc = $this->getUserDC($u->email);
-        if($userDc != ""){
-            $u->auto = $userDc->Modelo_Transporte." - ".$userDc->Patente_Transporte;
-            $u->totalImport = $userDc->totalImport;
-            $u->start =  "0.0";
+        // Buscamos el usuario de DEPOCITO si es chofer o cliente //
+        if($u->fk_idPerfil == 3){// Chofer
+            $userDc = $this->getUserDriverDC($u->email);
+            if($userDc != ""){
+                $u->auto = @$userDc->Modelo_Transporte." - ".$userDc->Patente_Transporte;
+                $u->totalImport = @$userDc->totalImport;
+                $u->start =  "0.0";
+            }
+        }else if($u->fk_idPerfil == 2){// Cliente
+            $userDc = $this->getUserClientDC($u->email);
+            if($userDc != ""){
+                $u->addres = @$userDc->Domicilio_Cliente;
+                $u->totalOrder = @$userDc->totalImport;
+                $u->totslCupons = CouponsClient::where("fk_idUser","=",$u->id)
+                ->leftjoin("tb_coupons","tb_coupons.idCoupons","=","tb_coupons_client.fk_idCoupons")
+                ->leftjoin("tb_productos","tb_productos.idProducto","=","tb_coupons.fk_idProducto")
+                ->where("tb_coupons_client.fk_idSatate","=","1")
+                ->get();
+            }
         }
 
         try {
@@ -95,9 +109,33 @@ class AuthController extends Controller {
     }
 
 
-    public function getUserDC($email){
-        //return  DB::connection('sqlsrv')->select(" SELECT *,totalImport = 12 FROM  Transportes where Email_Transporte = '".$email."' ")[0]; 
-    
+    public function getUserDriverDC($email){
+      
+        try{
+            $rs =   DB::connection('sqlsrv')->select(" SELECT *,totalImport = 12 FROM  Transportes where Email_Transporte = '".$email."' ")[0]; 
+            if($rs){
+                return $rs;
+            }else{
+                return null;
+            }
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    public function getUserClientDC($email){
+
+        try{
+            $rs =  DB::connection('sqlsrv')->select(" SELECT *,totalOrder = 12 FROM  Clientes where Email_Cliente = '".$email."' ")[0]; 
+            if($rs){
+                return $rs;
+            }else{
+                return null;
+            }
+        } catch (\Exception $e) {
+            return null;
+        }
+
     }
 
 }
