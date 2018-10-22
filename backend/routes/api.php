@@ -105,6 +105,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::put('coupns/{idCoupons}','CouponsController@obtenerCupon'); // Obtener cupon por parte del cliente 
     Route::get('coupns/chague/{idCuponsClient}','CouponsController@chague');// Canjear cupon por cliente
 
+    // Notification
+    Route::post('notification', 'NotificationController@add'); // Crear  Notification
+
 });
 
 
