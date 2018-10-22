@@ -17,9 +17,42 @@ class UserController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
 
-        $users = User::all();
+    public function listar(Request $request) {
+
+        if ($request->exists('offset') && $request->exists('limit')) {
+
+            $this->validate($request, [
+                'offset' => 'integer|min:1',
+                'limit'  => 'integer|min:1',
+            ], [
+                'offset.integer' => 'Debe ser numérico',
+                'limit.integer'  => 'Debe ser numérico',
+
+                'offset.min' => 'Debe tener al menos un número',
+                'limit.min'  => 'Debe tener al menos un número',
+            ]);
+
+            $users = User::offset($request->offset)
+                ->limit($request->limit)
+                ->get();
+
+        } else {
+            if ($request->exists('search')) {
+
+                $busqueda = "%".$request->search."%";
+
+                $users = User::where('name', 'like', $busqueda)
+                    ->orWhere('userName', 'like', $busqueda)
+                    ->orWhere('email', 'like', $busqueda)
+                    ->get();
+
+            } else {
+
+                $users = User::all();
+            }
+        }
+
         $users->each(function($users) {
             $users->perfil;
 
@@ -32,6 +65,11 @@ class UserController extends Controller {
         ];
 
         return response()->json($response, 202);
+
+    }
+
+    public function index() {
+
     }
 
     /**
@@ -183,8 +221,8 @@ class UserController extends Controller {
     public function update(Request $request, $id) {
 
         $this->validate($request, [
-            'name'        => 'required|max:30|min:2',
-            'email'       => 'required|unique:tb_users,email,'.$request->id,
+            'name'  => 'required|max:30|min:2',
+            'email' => 'required|unique:tb_users,email,'.$request->id,
 
             'userName'    => 'required|unique:tb_users,userName,'.$request->id,
             'fk_idPerfil' => 'required',
@@ -198,7 +236,7 @@ class UserController extends Controller {
             'email.email'    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
             'email.required' => 'El Email es requerido',
 
-            'userName'          => 'El User Name es requerido',
+            'userName' => 'El User Name es requerido',
 
             'userName.unique'      => 'El User Name ya esta en uso',
             'fk_idPerfil.required' => 'Este campo es requerido',
@@ -373,7 +411,7 @@ class UserController extends Controller {
     }
 
     public function reestablecerClave(Request $request) {
-        
+
         $this->validate($request, [
             'email' => 'required',
         ], [
