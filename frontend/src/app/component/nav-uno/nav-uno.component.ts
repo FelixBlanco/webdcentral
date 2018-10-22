@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+ 
 @Component({
   selector: 'app-nav-uno',
   templateUrl: './nav-uno.component.html',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavUnoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    
+  ) { }
 
   ngOnInit() {
   }
 
+  
 }

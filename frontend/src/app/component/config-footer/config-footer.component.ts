@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfgFooterService } from '../../services/confg-footer.service';
+import { AlertsService } from '../../services/alerts.service'
 
 @Component({
   selector: 'app-config-footer',
@@ -16,7 +17,8 @@ export class ConfigFooterComponent implements OnInit {
 
 
   constructor(
-    private _confgFooterService:ConfgFooterService
+    private _confgFooterService:ConfgFooterService,
+    private _alertService: AlertsService
   ) { }
 
   ngOnInit() {
@@ -30,15 +32,14 @@ export class ConfigFooterComponent implements OnInit {
         if(resp){
           this.data = resp;
         }
-      },
-      error => { console.log(error) }
+      }
     )
   }
 
   upgradeCondigFooter(){
     this._confgFooterService._upgradeConfigFooter(this.data).subscribe(
-      resp => { this.getConfigFooter();  console.log('Fino') },
-      error => { console.log(error) }
+      resp => { this.getConfigFooter();  this._alertService.Success('Actualizacion completada') },
+      error => { this._alertService.listError(error.error) }
     );
   }
 }

@@ -1,26 +1,112 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="form-group">
-        <input type="text" class="form-control" [(ngModel)]="form.titulo" placeholder="Titulo del reclarmo o sugerencia">
+<!-- Modal -->
+<div class="modal fade" id="reclamoModel" tabindex="-1" role="dialog" aria-labelledby="reclamoModelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reclamoModelLabel">Nuevo Reclamo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="form-group">
-        <textarea class="form-control" [(ngModel)]="form.descripcion" placeholder="descripcion"></textarea>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="">Titulo</label>
+          <input type="text" class="form-control" [(ngModel)]="form.titulo" placeholder="Titulo del reclarmo o sugerencia">
+        </div>
+        <div class="form-group">
+          <label for="">Descripción</label>
+          <textarea class="form-control" [(ngModel)]="form.descripcion" placeholder="descripcion"></textarea>
+        </div>      
       </div>
-      <div class="form-group">
-        <button class="btn btn-success" (click)="addReclamos()">Enviar</button>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="addReclamos()">Guardar Cambios</button>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group text-right">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reclamoModel">
+            Nuevo Reclamo
+          </button>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
     <div class="col-md-6">
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let r of listReclamos">
-          <h4>{{r.titulo}}</h4>
-          <p>
-            <b>Descripcion: </b> 
-            {{r.descripcion}}
-          </p>
-        </li>
-      </ul>
+
+      <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Abierto</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Recibida</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Cerrada</a>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let r of listReclamos">
+                <div *ngIf="r.fk_idStatusReclamo == '1' ">
+                  <p>{{r.titulo}} <br>
+                    <small>Status: {{r.statusReclamoSugerencia}}</small>
+                  </p>
+                  <p><b>Descripcion: </b> {{r.descripcion}}</p>
+                  <div class="form-inline">
+                    <select class="form-control" [(ngModel)]="changeStatus">
+                      <option value="2">Cerrar</option>
+                      <option value="3">Recibida</option>
+                    </select>
+                    <button class="btn btn-info btn-sm" (click)="upgradeStatus(r.idReclamosSugerencia)">Actualizar</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let r of listReclamos">
+                <div *ngIf="r.fk_idStatusReclamo == '3' "> 
+                  <p>{{r.titulo}} <br>
+                    <small>Status: {{r.statusReclamoSugerencia}}</small>
+                  </p>
+                  <p><b>Descripcion: </b> {{r.descripcion}}</p>
+                  <div class="form-inline">
+                    <select class="form-control" [(ngModel)]="changeStatus">
+                      <option value="2">Cerrar</option>
+                      <option value="3">Recibida</option>
+                    </select>
+                    <button class="btn btn-info btn-sm" (click)="upgradeStatus(r.idReclamosSugerencia)">Actualizar</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let r of listReclamos">
+                <div *ngIf="r.fk_idStatusReclamo == '2' ">
+                  <p>{{r.titulo}} <br>
+                    <small>Status: {{r.statusReclamoSugerencia}}</small>
+                  </p>
+                  <p><b>Descripcion: </b> {{r.descripcion}}</p>
+                  <div class="form-inline">
+                    <select class="form-control" [(ngModel)]="changeStatus">
+                      <option value="2">Cerrar</option>
+                      <option value="3">Recibida</option>
+                    </select>
+                    <button class="btn btn-info btn-sm" (click)="upgradeStatus(r.idReclamosSugerencia)">Actualizar</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
     </div>
   </div>
 </div>

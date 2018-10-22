@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigHomeService } from '../../services/config-home.service'
+import { AlertsService } from '../../services/alerts.service'
 
 declare var toastr;
 
@@ -14,7 +15,8 @@ export class ConfigHomeComponent implements OnInit {
   c_h: any = { imgLogo: null, color: null, set_logo:null }
 
   constructor(
-    private _configHomeService:ConfigHomeService 
+    private _configHomeService:ConfigHomeService,
+    private _alertService: AlertsService
     ) { }
 
   ngOnInit() {
@@ -27,9 +29,6 @@ export class ConfigHomeComponent implements OnInit {
         this.c_h.imgLogo = resp.logo; 
         this.c_h.color = resp.color ;
         this.c_h.set_logo = resp.set_logo; 
-      },
-      error => {
-        console.log(error);
       }
     );
   }
@@ -37,8 +36,6 @@ export class ConfigHomeComponent implements OnInit {
   upLogo(event){
     var foto_x : File = event.target.files[0]; // Ubicamos la IMG
     this.c_h.imgLogo = foto_x
-    console.log(event.target.value);
-    toastr('hola');
   }
 
   upgradeConfigHome(){
@@ -48,6 +45,7 @@ export class ConfigHomeComponent implements OnInit {
 
     this._configHomeService._upgradeConfigHome(formData).subscribe(resp => {
       this.getConfigHome();
+      this._alertService.Success('Actualizacion completada')
     });
   }
 

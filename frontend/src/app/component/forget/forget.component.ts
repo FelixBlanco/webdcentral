@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ForgetService } from '../../services/forget.service';
+import { AlertsService } from '../../services/alerts.service';
 
 @Component({
   selector: 'app-forget',
@@ -11,7 +12,8 @@ export class ForgetComponent implements OnInit {
   email: any; 
 
   constructor(
-    private _forgetService:ForgetService
+    private _forgetService:ForgetService,
+    private _alertsService:AlertsService
   ) { }
 
   ngOnInit() {
@@ -19,11 +21,15 @@ export class ForgetComponent implements OnInit {
 
   newForget(){
     this._forgetService._newForget({email:this.email}).subscribe(
-      resp => {
-        console.log('enviado')
+      (resp:any) => {
+        this._alertsService.Success(resp.msj);
       },
       error => {
-        console.log('error')
+        if(error.status == 422){
+          this._alertsService.Erros(error.error.message);
+        }else{
+          this._alertsService.Erros(error.error.msj);
+        }
       }
     )
   }

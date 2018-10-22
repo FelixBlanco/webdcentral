@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertsService } from '../../services/alerts.service';
-// import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-alerts',
@@ -9,18 +8,12 @@ import { AlertsService } from '../../services/alerts.service';
 })
 export class AlertsComponent implements OnInit {
 
-  constructor(
-    // public toastr: ToastsManager, 
-    //vcr: ViewContainerRef
-    ) {
-    //this.toastr.setRootViewContainerRef(vcr);
- }
+  constructor(){
+
+  }
 
   ngOnInit() {
   }
 
-  showSuccess() {
-    // this.toastr.success('You are awesome!', 'Success!');
-  }
 
 }

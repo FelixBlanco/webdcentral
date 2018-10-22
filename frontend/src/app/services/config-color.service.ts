@@ -25,4 +25,8 @@ export class ConfigColorService {
   addColores(data:any){
     return this.http.post('http://localhost:8000/api/auth/colores',data,httpOptions);
   }
+
+  deleteColores(id:number){
+    return this.http.delete('http://localhost:8000/api/auth/colores/'+id,httpOptions);
+  }
 }

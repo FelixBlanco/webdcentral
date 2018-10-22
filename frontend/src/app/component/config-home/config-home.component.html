@@ -8,7 +8,7 @@
               <img *ngIf="c_h.set_logo" src="{{c_h.set_logo}}" alt="" class="img-fluid mx-auto d-block">
             </div>
             <div class="col-md-4">
-              <div style="width:100%; height:100px;" [ngStyle]="{background: c_h.color }">
+              <div *ngIf="c_h.color" style="width:100%; height:100px;" [ngStyle]="{background: c_h.color }">
 
               </div>
             </div>

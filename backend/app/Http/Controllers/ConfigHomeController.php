@@ -20,11 +20,14 @@ class ConfigHomeController extends Controller
 
     	// Buscamos si hay registro 
     	$c_h = ConfigHome::first();
-    	
-		$file = $request->logo->getClientOriginalName(); // Nombre 
-    	$name = $request->logo->store('config-home'); // Guardamos la imagen
-    	//return $name;
 
+        if ($request->logo == $c_h->logo) {
+            $name = $c_h->logo;
+        }else{
+            $file = $request->logo->getClientOriginalName(); // Nombre 
+            $name = $request->logo->store('config-home'); // Guardamos la imagen
+        }
+    	
     	if (empty($c_h)) { // Nuevo registro
 
     		$c_h = new ConfigHome($request->all());

@@ -77,7 +77,11 @@ class ReclamoSugerenciaController extends Controller {
     }
 
     public function index() {
-        return ReclamosYSugerencia::orderby('idReclamosSugerencia', 'desc')->get();
+        $r = ReclamosYSugerencia::orderby('idReclamosSugerencia', 'desc')->get();
+        $r->each(function($r){
+            $r->statusReclamoSugerencia = $r->status->descripcion;
+        });
+        return $r;
     }
 
     /**

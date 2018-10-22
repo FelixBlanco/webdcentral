@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { NotifierModule } from 'angular-notifier';
 
 import { HomeModule } from './component/home/home.module';
 
@@ -60,6 +61,10 @@ const appRoutes: Routes = [
     HomeModule,
     BrowserAnimationsModule, 
     // ToastModule.forRoot()
+    NotifierModule,
+    NotifierModule.withConfig( {
+      // Custom options in here
+    } )
   ],
   providers: [],
   bootstrap: [AppComponent]

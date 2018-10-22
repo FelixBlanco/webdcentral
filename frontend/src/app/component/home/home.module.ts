@@ -18,7 +18,7 @@ import { AlertsComponent } from './../alerts/alerts.component';
 const routerAdmin: Routes = [
   { path: 'home', component: HomeComponent,
     children:[
-      { path: 'a', component: AlertsComponent },
+      { path: '', component: ConfigColorComponent },
       { path: 'perfil', component: PerfilComponent },
       { path: 'config-footer', component: ConfigFooterComponent },
       { path: 'config-home', component: ConfigHomeComponent },

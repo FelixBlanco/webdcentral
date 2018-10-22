@@ -439,7 +439,7 @@ class UserController extends Controller {
                 'clave_new' => $clave_nueva,
             ];
 
-            return response()->json($response, 404);
+            return response()->json($response, 200);
         }
 
 

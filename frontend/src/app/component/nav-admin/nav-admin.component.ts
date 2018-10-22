@@ -41,17 +41,12 @@ export class NavAdminComponent implements OnInit {
   ngOnInit() {
 
   }
-
-  testClick(){
-    console.log('test click')
-    this._alerts.Success();
-  }
-
+  
   salirLogin(){
     
     this._loginService._salirLogin().subscribe(
       (resp:any) => { 
-        console.log('Saliendo...')
+        this._alerts.Success('Saliendo...')
         localStorage.removeItem('access_token')
         this.router.navigate(['']); 
       },

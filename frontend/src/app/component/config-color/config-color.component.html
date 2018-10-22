@@ -24,6 +24,9 @@
             <div [ngStyle]="{background: c.colorOscuro }"> Oscuro </div>
             <div [ngStyle]="{background: c.colorMedio }"> Medio </div>
             <div [ngStyle]="{background: c.colorClaro }"> Claro </div>
+            <p class="text-right p-1" (click)="eliminarColor(c.idColor)">
+              eliminar
+            </p>
         </li>
       </ul>
     </div>
