@@ -25,6 +25,10 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::post('createSlides','SlideController@createSlides'); //Para que un user admin cree un slide
 
         Route::resource('sugerencias-reclamos', 'ReclamoSugerenciaController');   //sugerencias y reclamos
+
+        Route::get('obtenerStatus-sugerencias-reclamos','ReclamoSugerenciaController@obtenerStatus');  //para obtener los posibles estatus de un reclamo
+        Route::put('cambiarStatus-sugerencias-reclamos/{idReclamosSugerencia}','ReclamoSugerenciaController@cambiarStatus');  //para cambiar el estatus del reclamo debe enviar en data fk_idStatusReclamo que correponda con el id del status_reclamo, y el id del reclamo a actualizar
+
         Route::resource('colores', 'ColorController');   //Colores de la web
     });
 });
@@ -50,7 +54,17 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('getSlides/{idSlide}','SlideController@listarPorId');
 
     /* con esta ruta se busca y envian todos los productos*/
-    Route::get('getProductos','ProductoController@listar');
+    Route::post('getProductos','ProductoController@listar');
+
+    /* con esta ruta se activa isOutstanding*/
+    Route::get('onIsOutstanding/{idProducto}','ProductoController@onIsOutstanding');
+
+    /* con esta ruta se desactiva isOutstanding*/
+    Route::get('offIsOutstanding/{idProducto}','ProductoController@offIsOutstanding');
+
+    /* con esta ruta se listo los productos por isOutstanding*/
+    Route::get('listarPorIsOutstanding','ProductoController@listarPorIsOutstanding');
+
 
     /* con esta ruta se busca y envian todos los productos que correspondan con la inicial del producto*/
     Route::get('getProductos/{nombre}','ProductoController@listarPorNombre');
@@ -58,6 +72,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('enviarCorreo','CorreoController@enviarCorreo');
 
     Route::resource('user', 'UserController');    // User CRUD
+    Route::post('listarUsers','UserController@listar');
 
     Route::put('setClave/{api_token}', 'UserController@setClave'); // Cambio de clave
 
