@@ -27,6 +27,7 @@ export class SlideHomeComponent implements OnInit {
           console.log(this.colorDos)
         }        
       }
+    )
   }
 
   getSlide(){

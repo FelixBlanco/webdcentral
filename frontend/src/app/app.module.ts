@@ -23,7 +23,16 @@ import { EntregaComponent } from './component/entrega/entrega.component';
 import { MarcaComponent } from './component/marca/marca.component';
 import { MascotasComponent } from './component/mascotas/mascotas.component';
 import { SlideHomeComponent } from './component/slide-home/slide-home.component';
-import { ProductosComponent } from './componet/productos/productos.component';
+import { ProductosComponent } from './component/productos/productos.component';
+import { ProductosInicioComponent } from './component/productos-inicio/productos-inicio.component';
+import { ReclamosInicioComponent } from './component/reclamos-inicio/reclamos-inicio.component';
+import { NovedadesInicioComponent } from './component/novedades-inicio/novedades-inicio.component';
+import { MasVendidoInicioComponent } from './component/mas-vendido-inicio/mas-vendido-inicio.component';
+import { LocalesAdherideInicioComponent } from './component/locales-adheride-inicio/locales-adheride-inicio.component';
+import { EnviosInicioComponent } from './component/envios-inicio/envios-inicio.component';
+import { ImgInicioComponent } from './component/img-inicio/img-inicio.component';
+import { BajaAppInicioComponent } from './component/baja-app-inicio/baja-app-inicio.component';
+import { DestacadoInicioComponent } from './component/destacado-inicio/destacado-inicio.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -52,6 +61,15 @@ const appRoutes: Routes = [
     MascotasComponent,
     SlideHomeComponent,
     ProductosComponent,
+    ProductosInicioComponent,
+    ReclamosInicioComponent,
+    NovedadesInicioComponent,
+    MasVendidoInicioComponent,
+    LocalesAdherideInicioComponent,
+    EnviosInicioComponent,
+    ImgInicioComponent,
+    BajaAppInicioComponent,
+    DestacadoInicioComponent,
   ],
   imports: [
     BrowserModule,
