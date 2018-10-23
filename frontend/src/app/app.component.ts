@@ -13,11 +13,10 @@ export class AppComponent {
     ){
       this._configHomeService._getConfigHome().subscribe(
         (resp:any) => {
-          document.getElementById("body").style.backgroundColor = resp.color;
+          if(resp){
+            document.getElementById("body").style.backgroundColor = resp.color;
+          }
         }
-      )
-
-
-    // 
+    )
   }
 }

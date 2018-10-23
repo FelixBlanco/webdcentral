@@ -10,14 +10,6 @@ import { LoginService } from '../../services/login.service';
 })
 export class HomeComponent implements OnInit {
 
-  token:any =  localStorage.getItem('access_token');
-
-  dataUser:any = {
-    id:null, 
-    userName: null,
-    img_perfil:null
-  };
-
   constructor(
       private http: HttpClient,
       private route: ActivatedRoute,
@@ -26,12 +18,7 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.getAuthUser();
+    
   }
-
-  getAuthUser(){
-
-  }
-
   
 }

@@ -28,11 +28,13 @@ export class NavAdminComponent implements OnInit {
       (resp:any) => {
         console.log('activo');
         this.dataUser.userName = resp.userName;
-        this.dataUser.img_perfil = resp.img_perfil;
+        if(resp.img_perfil){
+          this.dataUser.img_perfil = resp.img_perfil;
+        }
+        
       },
       error => {
         console.log('no hay sesion activa');
-        //console.log(error);
         this.router.navigate(['']);
       })
 

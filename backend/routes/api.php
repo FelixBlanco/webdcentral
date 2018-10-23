@@ -56,6 +56,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     /* con esta ruta se busca y envian todos los productos*/
     Route::post('getProductos','ProductoController@listar');
 
+    /* Todo los productos */
+    Route::get('getAllProductos','ProductoController@index');
+
     /* con esta ruta se activa isOutstanding*/
     Route::get('onIsOutstanding/{idProducto}','ProductoController@onIsOutstanding');
 
@@ -108,6 +111,8 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // Notification
     Route::post('notification', 'NotificationController@add'); // Crear  Notification
 
+    // Paleta de color para el landing 
+    Route::get('paleta-color','ColorController@ultimaPaletaColores');
 });
 
 

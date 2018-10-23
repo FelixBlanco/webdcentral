@@ -23,14 +23,9 @@ export class FooterComponent implements OnInit {
   getConfigFooter(){
     this._configFooterService._getConfigFooter().subscribe(
       resp => {
-        this.footer_data = resp;
-      },
-      error =>{
-        this.footer_data = {
-          direccion: null, 
-          nro_contacto: null, 
-          email: null
-        };
+        if(resp){
+          this.footer_data = resp;
+        }
       }
     );
   }

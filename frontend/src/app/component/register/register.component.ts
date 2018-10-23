@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
               },
               (error:any) => {
                 console.log(error.error.errors)
-                this._alertService.Erros(error.error.errors.email);
+                this._alertService.listError(error.error);
               }
             );
                 

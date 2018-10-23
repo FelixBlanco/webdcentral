@@ -147,7 +147,8 @@ class ProductoController extends Controller {
 
 
     public function index() {
-        //
+        // todos los productos 
+        return Producto::get();
     }
 
     /**
