@@ -70,13 +70,17 @@ export class GaleriaHomeComponent implements OnInit {
     galeriaHome.append('imagen', this.new_galeria.imagen);
     galeriaHome.append('fk_idProducto',this.new_galeria.fk_idProducto);
 
-    return this.http.post('http://localhost:8000/api/auth/createSlides',galeriaHome,httpOptions).subscribe(
+    this._galeriaHomeService._addSlideHome(galeriaHome).subscribe(
       (resp:any) => { 
         this._alertService.Success(resp.msj);
         this.new_galeria ={titulo: null, fk_idProducto:null, imagen:null} 
       },
       error => {
-        this._alertService.listError(error.error);
+        if(error.status == 500){
+          this._alertService.Erros(error.message)
+        }else{
+          this._alertService.listError(error.error);
+        }
       }
     )
   }
