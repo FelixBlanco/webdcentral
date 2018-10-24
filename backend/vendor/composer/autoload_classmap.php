@@ -63,6 +63,7 @@ return array(
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\ReclamosYSugerencia' => $baseDir . '/app/ReclamosYSugerencia.php',
     'App\\SectionApp' => $baseDir . '/app/SectionApp.php',
+    'App\\ServiciosWeb' => $baseDir . '/app/ServiciosWeb.php',
     'App\\Slide' => $baseDir . '/app/Slide.php',
     'App\\StatusReclamo' => $baseDir . '/app/StatusReclamo.php',
     'App\\StatusSistema' => $baseDir . '/app/StatusSistema.php',

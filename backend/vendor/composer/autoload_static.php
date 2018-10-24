@@ -501,6 +501,7 @@ class ComposerStaticInit382161484a43228177101e3df006e07c
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\ReclamosYSugerencia' => __DIR__ . '/../..' . '/app/ReclamosYSugerencia.php',
         'App\\SectionApp' => __DIR__ . '/../..' . '/app/SectionApp.php',
+        'App\\ServiciosWeb' => __DIR__ . '/../..' . '/app/ServiciosWeb.php',
         'App\\Slide' => __DIR__ . '/../..' . '/app/Slide.php',
         'App\\StatusReclamo' => __DIR__ . '/../..' . '/app/StatusReclamo.php',
         'App\\StatusSistema' => __DIR__ . '/../..' . '/app/StatusSistema.php',
