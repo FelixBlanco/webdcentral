@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service'
 import { Router, ActivatedRoute } from '@angular/router';
+import { AlertsService } from '../../services/alerts.service';
 
 @Component({
   selector: 'app-nav-admin',
@@ -16,25 +17,38 @@ export class NavAdminComponent implements OnInit {
     private _loginService:LoginService,
     private route: ActivatedRoute,
     private router: Router,
+    private _alerts: AlertsService
   ) { 
+
+    /*
+      PRONTO INICIE LA EL LOGIN QUE VALIDE LA INFORMACION 
+    ****/
+
+    this._loginService._getAuthUser().subscribe(
+      (resp:any) => {
+        console.log('activo');
+        this.dataUser.userName = resp.userName;
+        if(resp.img_perfil){
+          this.dataUser.img_perfil = resp.img_perfil;
+        }
+        
+      },
+      error => {
+        console.log('no hay sesion activa');
+        this.router.navigate(['']);
+      })
 
   }
 
   ngOnInit() {
-    this._loginService._getAuthUser().subscribe(
-    (resp:any) => {
-      this.dataUser.userName = resp.userName;
-      this.dataUser.img_perfil = resp.img_perfil;
-    },
-    error => {
-      console.log(error);
-      this.router.navigate(['']);
-    })
-  }
 
+  }
+  
   salirLogin(){
+    
     this._loginService._salirLogin().subscribe(
       (resp:any) => { 
+        this._alerts.Success('Saliendo...')
         localStorage.removeItem('access_token')
         this.router.navigate(['']); 
       },

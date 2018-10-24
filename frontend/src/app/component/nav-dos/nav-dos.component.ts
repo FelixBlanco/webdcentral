@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigHomeService } from '../../services/config-home.service';
 
 declare var $:any;
 
@@ -8,10 +9,32 @@ declare var $:any;
   styleUrls: ['./nav-dos.component.css']
 })
 export class NavDosComponent implements OnInit {
+  
+  c_h:any = {
+    set_logo: null
+  };
 
-  constructor() { }
+  constructor(
+    private _configHomeService:ConfigHomeService
+  ) { }
 
   ngOnInit() {
+    this.getConfigHome()
+  }
+
+  getConfigHome(){
+    this._configHomeService._getConfigHome().subscribe(
+      (resp:any) => {
+
+        if(resp){
+          this.c_h.set_logo = resp.set_logo;
+        }else{
+          this.c_h.set_logo = null;
+        }
+        
+        
+      }
+    )
   }
 
   buscar(){ console.log("clicik")

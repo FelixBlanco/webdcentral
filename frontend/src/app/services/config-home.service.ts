@@ -24,7 +24,6 @@ export class ConfigHomeService {
    }
 
    _upgradeConfigHome(data:any){
-    console.log(data);
     return this.http.post('http://localhost:8000/api/v1/upgrade_config_home',data);
   }
 }

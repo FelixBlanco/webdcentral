@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ReclamosYSugerencia;
+use App\StatusReclamo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,71 @@ class ReclamoSugerenciaController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+    public function cambiarStatus(Request $request, $id) {
+
+        $this->validate($request, [
+            'fk_idStatusReclamo' => 'required|integer|min:1',
+        ], [
+            'fk_idStatusReclamo.required' => 'Es estatus es requerido',
+            'fk_idStatusReclamo.integer'  => 'Debe ser numérico',
+            'fk_idStatusReclamo.min'      => 'Debe tener al menos un número',
+        ]);
+
+
+        $statusRec_min=StatusReclamo::min('idStatusReclamo');
+        $statusRec_max=StatusReclamo::max('idStatusReclamo');
+
+        if($request->fk_idStatusReclamo>$statusRec_max || $request->fk_idStatusReclamo<$statusRec_min)
+        {
+            $response = [
+                'msj'  => 'El Estatus que intenta asigna No existe',
+            ];
+            return response()->json($response, 404);
+
+        }else{
+
+            DB::beginTransaction();
+
+            try {
+                $rs = ReclamosYSugerencia::findOrFail($id);
+                $rs->fill([ 'fk_idStatusReclamo'=> $request->fk_idStatusReclamo ]);
+                $rs->save();
+
+                DB::commit();
+
+                $rs->status;
+                $rs->user;
+                $response = [
+                    'msj'  => 'Status del Reclamo o sugerencia actualizado',
+                    'user' => $rs,
+                ];
+
+                return response()->json($response, 200);
+            } catch (\Exception $e) {
+                DB::rollback();
+                Log::error('Ha ocurrido un error en ReclamoController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+                return response()->json([
+                    'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+                ], 500);
+            }
+
+        }
+
+
+
+    }
+
+    public function obtenerStatus() { //para obtener los posibles estatus de un reclamo
+        return StatusReclamo::orderby('descripcion', 'desc')->get();
+    }
+
     public function index() {
-        return ReclamosYSugerencia::orderby('idReclamosSugerencia','desc')->get();
+        $r = ReclamosYSugerencia::orderby('idReclamosSugerencia', 'desc')->get();
+        $r->each(function($r){
+            $r->statusReclamoSugerencia = $r->status->descripcion;
+        });
+        return $r;
     }
 
     /**
@@ -49,19 +113,19 @@ class ReclamoSugerenciaController extends Controller {
 
         try {
 
-            $rs= new ReclamosYSugerencia($request->all());
-            $rs->fk_idUser=Auth::user()->id;
-            $rs->fk_idStatusReclamo=1; //para iniciar en estatus abierto
+            $rs                     = new ReclamosYSugerencia($request->all());
+            $rs->fk_idUser          = Auth::user()->id;
+            $rs->fk_idStatusReclamo = 1; //para iniciar en estatus abierto
             $rs->save();
             $rs->status;
             $rs->user;
 
             DB::commit();
 
-             $response = [
-                 'msj'  => 'Reclamo y o notificación Creada',
-                 'reclamo_notificacion' => $rs,
-             ];
+            $response = [
+                'msj'                  => 'Reclamo y o notificación Creada',
+                'reclamo_notificacion' => $rs,
+            ];
 
             return response()->json($response, 201);
         } catch (\Exception $e) {

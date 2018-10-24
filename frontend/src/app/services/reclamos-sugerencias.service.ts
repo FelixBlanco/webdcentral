@@ -27,4 +27,8 @@ export class ReclamosSugerenciasService {
   _addReclamos(data:any){
     return this.http.post('http://localhost:8000/api/auth/sugerencias-reclamos',data,httpOptions);
   }
+
+  _upgradeEstatus(id,changeStatus){
+    return this.http.put('http://localhost:8000/api/auth/cambiarStatus-sugerencias-reclamos/'+id,{fk_idStatusReclamo:changeStatus},httpOptions);
+  }
 }

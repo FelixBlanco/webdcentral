@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigColorService } from '../../services/config-color.service'
+import { AlertsService } from '../../services/alerts.service'
 
 @Component({
   selector: 'app-config-color',
@@ -12,7 +13,8 @@ export class ConfigColorComponent implements OnInit {
   form:any = { colorOscuro: null, colorMedio:null, colorClaro: null }
 
   constructor(
-    private _coloresServices:ConfigColorService
+    private _coloresServices:ConfigColorService,
+    private _alertServicices: AlertsService
   ) { }
 
   ngOnInit() {
@@ -22,22 +24,32 @@ export class ConfigColorComponent implements OnInit {
   getColores(){
     this._coloresServices._getColor().subscribe(
       resp => {
-        console.log(resp)
         this.colores = resp
       }
     )
   }
 
   addColores(){
-    console.log('click en add')
-    console.log(this.form)
     this._coloresServices.addColores(this.form).subscribe(
       resp => {
         this.getColores();
-        console.log(resp)
+        this.form = { colorOscuro: null, colorMedio:null, colorClaro: null }
+        this._alertServicices.Success('Se guardo correctamente')
       },
       error => {
-        console.log(error);
+        this._alertServicices.listError(error.error);
+      }
+    )
+  }
+
+  eliminarColor(id){
+    this._coloresServices.deleteColores(id).subscribe(
+      resp => {
+        this._alertServicices.Success('Se Elimino correctamente');
+        this.getColores();
+      },
+      error => {
+        this._alertServicices.listError(error.error);
       }
     )
   }

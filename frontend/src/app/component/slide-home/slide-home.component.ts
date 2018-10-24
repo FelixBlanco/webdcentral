@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GaleriaHomeService }  from '../../services/galeria-home.service';
+import { ConfigColorService } from '../../services/config-color.service';
+
 @Component({
   selector: 'app-slide-home',
   templateUrl: './slide-home.component.html',
@@ -8,23 +10,32 @@ import { GaleriaHomeService }  from '../../services/galeria-home.service';
 export class SlideHomeComponent implements OnInit {
 
   listSlide:any;
+  colorDos:any =  null;
 
   constructor(
-    private _galeriaHomeService:GaleriaHomeService
+    private _galeriaHomeService:GaleriaHomeService,
+    private _color: ConfigColorService
   ) { }
 
   ngOnInit() {
     this.getSlide()
+
+    this._color._paletaColor().subscribe(
+      (resp:any) => {
+        if(resp){
+          this.colorDos = resp.colorOscuro;
+          console.log(this.colorDos)
+        }        
+      }
+    )
   }
 
   getSlide(){
     this._galeriaHomeService._getSlideHome().subscribe(
       (resp:any) => {
-        this.listSlide = resp.producto;
-        console.log(this.listSlide)
-      },  
-      error => {
-        console.log(error);
+        if(resp){
+          this.listSlide = resp.producto;
+        }
       }
     )
   }

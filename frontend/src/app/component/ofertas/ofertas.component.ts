@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OfertasService } from '../../services/ofertas.service';
+import { AlertsService  } from '../../services/alerts.service';
+
+declare var $; 
 
 @Component({
   selector: 'app-ofertas',
@@ -13,8 +16,9 @@ export class OfertasComponent implements OnInit {
   form_ofertas:any = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
 
   constructor(
-    private ofertaServices: OfertasService
-  ) { }
+    private ofertaServices: OfertasService,
+    private _alertService:AlertsService
+    ) { }
 
   ngOnInit() {
     this.getOfertas();
@@ -24,9 +28,6 @@ export class OfertasComponent implements OnInit {
     this.ofertaServices._getOfertas().subscribe(
       resp => {
         this.listOfertas = resp 
-      },
-      errors => {
-        console.log(errors);
       }
     )
   }
@@ -34,10 +35,10 @@ export class OfertasComponent implements OnInit {
   upImagen(event){
     var imagen_x: File = event.target.files[0];
     this.form_ofertas.imagen = imagen_x;
+    this._alertService.Success('Se cargo correctamente la imagen')
   }
 
   add_updateOferta(x){
-    console.log(x)
     var formData: FormData = new FormData();
     formData.append('imagen',this.form_ofertas.imagen);
     formData.append('titulo',this.form_ofertas.titulo);
@@ -48,9 +49,12 @@ export class OfertasComponent implements OnInit {
       this.ofertaServices._addOfertas(formData).subscribe(
         resp => {
           this.getOfertas();
+          $("#agregarOfertaModal").modal('hide');
+          this.form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
+          this._alertService.Success('Se guardo correctamente')
         },
         error => {
-          console.log(error)
+          this._alertService.Erros(error.error.message);
         }
       )
     }
@@ -61,9 +65,12 @@ export class OfertasComponent implements OnInit {
         resp => {
           this.getOfertas();
           this.editOferta(this.form_ofertas.idOferta)
+          $("#editarOfertaModal").modal('hide');
+          this.form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
+          this._alertService.Success('Se edito correctamente')
         },
         error => {
-          console.log(error)
+          this._alertService.Erros(error.error.message);
         }
       )
     }
@@ -74,6 +81,7 @@ export class OfertasComponent implements OnInit {
     this.ofertaServices._showOferta(data.idOferta).subscribe(
       (resp:any) => {
         this.form_ofertas = resp.oferta
+        $("#editarOfertaModal").modal('show');
       },
       error => {
         console.log(error)

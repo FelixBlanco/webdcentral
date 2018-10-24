@@ -1,53 +1,84 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
       <div class="form-group">
-        <h4>Crear Oferta</h4>
-      </div>
-      <div class="form-group">
-        <input type="text" [(ngModel)]="form_ofertas.titulo" class="form-control" placeholder="titulo">
-      </div>
-      <div class="form-group">
-        <input type="text" [(ngModel)]="form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempre de expiracion">
-      </div>
-      <div class="form-group">
-        <label for="">Imagen</label>
-        <input type="file" (change)="upImagen($event)">
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" (click)="add_updateOferta('add')">Guardar</button>
-      </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarOfertaModal">
+            Agregar Oferta
+          </button>
+          
+          <!-- Modal new -->
+          <div class="modal fade" id="agregarOfertaModal" tabindex="-1" role="dialog" aria-labelledby="agregarOfertaModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="agregarOfertaModalLabel">Agregar Oferta</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <input type="text" [(ngModel)]="form_ofertas.titulo" class="form-control" placeholder="titulo">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" [(ngModel)]="form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempre de expiracion">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Imagen</label>
+                    <input type="file" (change)="upImagen($event)">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary" (click)="add_updateOferta('add')">Guardar Cambios</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <hr>
-
-      <div>
-        <div class="form-group">
-            <h4>Editar Oferta</h4>
-          </div>
-          <div class="form-group">
-            <input type="text" [(ngModel)]="form_ofertas.titulo" class="form-control" placeholder="titulo">
-          </div>
-          <div class="form-group">
-            <input type="text" [(ngModel)]="form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempre de expiracion">
-          </div>
-          <div class="form-group">
-            <label for="">Imagen</label>
-            <input type="file" (change)="upImagen($event)">
-          </div>
-          <div class="form-group">
-            <button class="btn btn-primary" (click)="add_updateOferta('upgrade')">Editar</button>
-          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="editarOfertaModal" tabindex="-1" role="dialog" aria-labelledby="editarOfertaModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editarOfertaModalLabel">Editar Oferta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <input type="text" [(ngModel)]="form_ofertas.titulo" class="form-control" placeholder="titulo">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" [(ngModel)]="form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempre de expiracion">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Imagen</label>
+                      <input type="file" (change)="upImagen($event)">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" (click)="add_updateOferta('upgrade')">Guardar Cambios</button>
+                  </div>
+                </div>
+              </div>
+            </div>
       </div>
     </div>
-
-    <div class="col-md-8">
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let o of listOfertas">
-          <img src="{{o.set_imagen}}" width="100" class="img-fluid" alt="">
-          {{o.titulo}} 
-          <span class="btn btn-primary" (click)="editOferta(o)"> Editar </span>
-        </li>
-      </ul>
+  </div>
+  <div class="row">
+    <div class="col-md-3" *ngFor="let o of listOfertas">
+      <div class="card" style="width: 18rem; margin-left: 10%; margin-bottom: 3%;" >
+        <img class="card-img-top"  src="{{o.set_imagen}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"> Titulo: {{o.titulo}}</h5>
+          <p class="card-text">Tiempo de Expriracion: {{o.tiempoExpi}}</p>
+          <div href="#" class="btn btn-primary btn-sm" (click)="editOferta(o)">  Editar</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

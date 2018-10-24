@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigHomeService } from '../../services/config-home.service'
+import { AlertsService } from '../../services/alerts.service'
+
+declare var toastr;
 
 @Component({
   selector: 'app-config-home',
@@ -12,7 +15,8 @@ export class ConfigHomeComponent implements OnInit {
   c_h: any = { imgLogo: null, color: null, set_logo:null }
 
   constructor(
-    private _configHomeService:ConfigHomeService 
+    private _configHomeService:ConfigHomeService,
+    private _alertService: AlertsService
     ) { }
 
   ngOnInit() {
@@ -22,15 +26,10 @@ export class ConfigHomeComponent implements OnInit {
   getConfigHome(){
     this._configHomeService._getConfigHome().subscribe(
       (resp:any) => {
-        console.log(resp);
-        if(resp != null){
+        if(resp){
           this.c_h.imgLogo = resp.logo; 
           this.c_h.color = resp.color ;
           this.c_h.set_logo = resp.set_logo; 
-        }else{
-          this.c_h.imgLogo = null; 
-          this.c_h.color = null;  
-          this.c_h.set_logo = null;   
         }
       }
     );
@@ -42,14 +41,23 @@ export class ConfigHomeComponent implements OnInit {
   }
 
   upgradeConfigHome(){
-    var formData: FormData = new FormData(); // Damos Formato
-    formData.append('foto', this.c_h.imgLogo);
-    formData.append('color', this.c_h.color)
-
-    this._configHomeService._upgradeConfigHome(formData).subscribe(resp => {
-      this.getConfigHome();
-    });
+    
+    if(this.c_h.color == '' && this.c_h.logo == ''){
+      this._alertService.Success('todos los campos son rqueridos')
+    }else{
+      var formData: FormData = new FormData(); // Damos Formato
+      formData.append('logo', this.c_h.imgLogo);
+      formData.append('color', this.c_h.color)
+  
+      this._configHomeService._upgradeConfigHome(formData).subscribe((resp:any) => {
+        this.getConfigHome();
+        document.getElementById("body").style.backgroundColor = resp.color;
+        this._alertService.Success('Actualizacion completada');
+      },
+      error => {
+        this._alertService.listError(error.error);
+      });  
+    }
+    
   }
-
-
 }

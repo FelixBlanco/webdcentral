@@ -141,4 +141,8 @@ class ColorController extends Controller {
             ], 500);
         }
     }
+
+    public function ultimaPaletaColores(){
+        return Color::orderBy('idColor','desc')->first();
+    }
 }

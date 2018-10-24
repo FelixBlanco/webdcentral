@@ -6,9 +6,9 @@
         <input type="text" class="form-control" placeholder="Titulo" [(ngModel)]="new_galeria.titulo">
       </div>
       <div class="form-group">
-        <label for="">Lista de Productos (faltan los producto en laravel)</label>
-        <select id="" class="form-control">
-          <option value="null">Null porque no tenemos productos</option>
+        <label for="">Lista de Productos</label>
+        <select [(ngModel)]="new_galeria.fk_idProducto" class="form-control" *ngFor="let l_p of list_productos">
+          <option value="{{ l_p.idProducto  }}">{{ l_p.nombre }} - {{ l_p.titulo }}</option>
         </select>
       </div>
       <div class="form-group">
