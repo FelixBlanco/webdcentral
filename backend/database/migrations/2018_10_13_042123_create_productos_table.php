@@ -20,7 +20,6 @@ class CreateProductosTable extends Migration
             $table->string('urlImage');
             $table->string('promocion');
             $table->string('categoria');
-            $table->integer('fk_idPesoProducto')->unsigned();
             $table->integer('fk_idSatate')->unsigned();
             $table->timestamps();
         });

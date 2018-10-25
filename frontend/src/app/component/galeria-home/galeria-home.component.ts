@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GaleriaHomeService } from '../../services/galeria-home.service';
-import { LoginService } from '../../services/login.service'
 import { ProductosService } from '../../services/productos.service';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { AlertsService } from '../../services/alerts.service'
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -11,6 +11,7 @@ const httpOptions = {
     'Authorization': 'Bearer ' + localStorage.getItem('access_token')
   })
 };
+
 @Component({
   selector: 'app-galeria-home',
   templateUrl: './galeria-home.component.html',
@@ -31,7 +32,8 @@ export class GaleriaHomeComponent implements OnInit {
   constructor(
     private http:HttpClient,
     private _galeriaHomeService: GaleriaHomeService,
-    private _productosServices: ProductosService
+    private _productosServices: ProductosService,
+    private _alertService: AlertsService
     ) { }
 
   ngOnInit() {
@@ -44,9 +46,6 @@ export class GaleriaHomeComponent implements OnInit {
     this._galeriaHomeService._getSlideHome().subscribe(
       (resp:any) => {
         this.list_galeria = resp.producto;
-      },
-      error => {
-        console.log(error)
       }
     )
   }
@@ -54,11 +53,7 @@ export class GaleriaHomeComponent implements OnInit {
   getListProductos(){
     this._productosServices._getProductos().subscribe(
       (resp:any) => {
-        this.list_productos = resp.producto;
-        console.log(resp.producto)
-      },
-      error => {
-        console.log(error);
+        this.list_productos = resp;
       }
     )
   }
@@ -75,15 +70,18 @@ export class GaleriaHomeComponent implements OnInit {
     galeriaHome.append('imagen', this.new_galeria.imagen);
     galeriaHome.append('fk_idProducto',this.new_galeria.fk_idProducto);
 
-    return this.http.post('http://localhost:8000/api/auth/createSlides',galeriaHome,{
-      headers: new HttpHeaders({
-        'Accept':  'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Authorization': 'Bearer'+localStorage.getItem('access_token'),
-      })
-    }).subscribe(
-      (resp:any) => { console.log(resp.msj) },
-      error => { console.log( error ) }
+    this._galeriaHomeService._addSlideHome(galeriaHome).subscribe(
+      (resp:any) => { 
+        this._alertService.Success(resp.msj);
+        this.new_galeria ={titulo: null, fk_idProducto:null, imagen:null} 
+      },
+      error => {
+        if(error.status == 500){
+          this._alertService.Erros(error.message)
+        }else{
+          this._alertService.listError(error.error);
+        }
+      }
     )
   }
 }

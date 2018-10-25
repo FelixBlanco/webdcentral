@@ -39,7 +39,7 @@ class SlideController extends Controller {
         return response()->json($response, 201);
     }
 
-    public function createSlides(Request $request) {
+    public function createSlides(Request $request) {       
         $this->validate($request, [
             'titulo' => 'required',
             'imagen' => 'required',

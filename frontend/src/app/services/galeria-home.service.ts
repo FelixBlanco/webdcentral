@@ -3,7 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
+    'Accept':  'application/json',
     'Access-Control-Allow-Origin': '*',
     'Authorization': 'Bearer ' + localStorage.getItem('access_token')
   })
@@ -19,6 +19,7 @@ export class GaleriaHomeService {
   ) { }
   
   _addSlideHome(data:any){
+    console.log(data)
     return this.http.post('http://localhost:8000/api/auth/createSlides',data,httpOptions);
   }
 
