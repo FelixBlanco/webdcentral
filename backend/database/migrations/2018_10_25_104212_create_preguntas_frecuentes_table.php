@@ -15,9 +15,9 @@ class CreatePreguntasFrecuentesTable extends Migration
     {
         Schema::create('tb_preguntas_frecuentes', function (Blueprint $table) {
             $table->increments('idPreguntaFrecuente');
-            $table->text('pregunta');
-            $table->text('respuesta');
-            $table->integer('fk_idUser');
+            $table->text('pregunta')->nullable();
+            $table->text('respuesta')->nullable();
+            $table->integer('fk_idUser')->nullable();
             $table->timestamps();
         });
     }

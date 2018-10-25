@@ -32,6 +32,14 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::put('cambiarStatus-sugerencias-reclamos/{idReclamosSugerencia}', 'ReclamoSugerenciaController@cambiarStatus');  //para cambiar el estatus del reclamo debe enviar en data fk_idStatusReclamo que correponda con el id del status_reclamo, y el id del reclamo a actualizar
 
         Route::resource('colores', 'ColorController');   //Colores de la web
+
+        Route::post('crearPregunta','PreguntasFrecuenteController@crearPregunta'); //para crear una pregunta
+
+        Route::post('respoderPregunta/{idPreguntaFrecuente}','PreguntasFrecuenteController@respoderPregunta'); //para responde una pregunta
+
+        Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}','PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta o respuesta por su id
+
+        //Route::resource('preguntas-frecuentes','PreguntasFrecuenteController');
     });
 });
 
@@ -40,7 +48,6 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
-    Route::resource('preguntas-frecuentes','PreguntasFrecuenteController');
 
     Route::post('crer-serviciosWeb','ServiciosWebController@crer');
 

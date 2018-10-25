@@ -17,6 +17,9 @@ class PreguntasFrecuente extends Model
     ];
 
 
-
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'fk_idUser');
+    }
 
 }

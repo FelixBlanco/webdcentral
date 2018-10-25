@@ -9,7 +9,7 @@ class AddIsOutstandingToProductos extends Migration
     public function up()
     {
         Schema::table('tb_productos', function (Blueprint $table) {
-            $table->integer('isOutstanding')->nullable()->after('fk_idPesoProducto');
+            $table->integer('isOutstanding')->nullable()->after('fk_idSatate');
             $table->dateTime('fechaIsOutstanding')->nullable()->after('isOutstanding');
         });
     }
