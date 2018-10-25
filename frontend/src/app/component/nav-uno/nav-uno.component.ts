@@ -22,5 +22,6 @@ export class NavUnoComponent implements OnInit {
           console.log(this.colorUno)
         }        
       }
-    )  
+    )
+  }
 }

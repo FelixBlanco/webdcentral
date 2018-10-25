@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms'; //Formularios 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //Formularios 
+import { DataTablesModule } from 'angular-datatables';
 
 import { HomeComponent } from './home.component';
 import { PerfilComponent } from '../perfil/perfil.component';
@@ -14,6 +15,8 @@ import { OfertasComponent } from './../ofertas/ofertas.component';
 import { ReclamosSugerenciasComponent } from './../reclamos-sugerencias/reclamos-sugerencias.component';
 import { ConfigColorComponent } from './../config-color/config-color.component';
 import { AlertsComponent } from './../alerts/alerts.component';
+import { PreguntasFrecuentesComponent } from '../preguntas-frecuentes/preguntas-frecuentes.component';
+import { PreguntasService } from 'src/app/services/preguntas.service';
 
 const routerAdmin: Routes = [
   { path: 'home', component: HomeComponent,
@@ -26,6 +29,7 @@ const routerAdmin: Routes = [
       { path: 'ofertas', component: OfertasComponent },
       { path: 'reclamos-sugerencias', component: ReclamosSugerenciasComponent},
       { path: 'config-color', component: ConfigColorComponent},
+      { path: 'preguntas-frecuentes', component: PreguntasFrecuentesComponent},
     ]
   }
 ] 
@@ -34,7 +38,9 @@ const routerAdmin: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routerAdmin),
-    FormsModule
+    FormsModule,
+    DataTablesModule,
+    ReactiveFormsModule
   ],
   declarations: [
     HomeComponent,
@@ -47,10 +53,14 @@ const routerAdmin: Routes = [
     OfertasComponent,
     ReclamosSugerenciasComponent,
     ConfigColorComponent,
-    AlertsComponent
+    AlertsComponent,
+    PreguntasFrecuentesComponent
   ],
   exports:[
     RouterModule
+  ],
+  providers:[
+    PreguntasService
   ]
 })
 export class HomeModule { }

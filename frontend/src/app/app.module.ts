@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // import {ToastModule} from 'ng2-toastr/ng2-toastr';
-import { NotifierModule } from 'angular-notifier';
 
 import { HomeModule } from './component/home/home.module';
 
@@ -51,7 +50,7 @@ const appRoutes: Routes = [
     MarcaComponent,
     MascotasComponent,
     SlideHomeComponent,
-    ProductosComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,
@@ -59,12 +58,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     HomeModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule
     // ToastModule.forRoot()
-    NotifierModule,
-    NotifierModule.withConfig( {
-      // Custom options in here
-    } )
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
