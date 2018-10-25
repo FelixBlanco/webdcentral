@@ -40,6 +40,8 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
+    Route::resource('preguntas-frecuentes','PreguntasFrecuenteController');
+
     Route::post('crer-serviciosWeb','ServiciosWebController@crer');
 
     /*Para crear una nueva suscripcion*/
