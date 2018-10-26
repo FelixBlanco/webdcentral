@@ -34,7 +34,7 @@ class ReclamoSugerenciaController extends Controller {
         if($request->fk_idStatusReclamo>$statusRec_max || $request->fk_idStatusReclamo<$statusRec_min)
         {
             $response = [
-                'msj'  => 'El Estatus que intenta asigna No existe',
+                'msj'  => 'El Estatus que intenta asignar No existe',
             ];
             return response()->json($response, 404);
 

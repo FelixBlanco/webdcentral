@@ -40,6 +40,15 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}','PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta o respuesta por su id
 
         //Route::resource('preguntas-frecuentes','PreguntasFrecuenteController');
+
+        /*PARA LOS DESTACADOS*/
+
+        Route::post('crearDestacado','DestacadoController@crearDestacado');
+        Route::post('editarDestacado/{idDestacado}','DestacadoController@editarDestacado');
+        Route::delete('eliminarDestacado/{idDestacado}','DestacadoController@eliminarDestacado');
+        Route::get('obtenerDestacados','DestacadoController@listar');
+
+        /*PARA LOS DESTACADOS*/
     });
 });
 
