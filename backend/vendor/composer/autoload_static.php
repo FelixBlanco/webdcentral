@@ -444,6 +444,7 @@ class ComposerStaticInit382161484a43228177101e3df006e07c
     );
 
     public static $classMap = array (
+        'App\\CarritoCompra' => __DIR__ . '/../..' . '/app/CarritoCompra.php',
         'App\\Color' => __DIR__ . '/../..' . '/app/Color.php',
         'App\\ConfigFooter' => __DIR__ . '/../..' . '/app/ConfigFooter.php',
         'App\\ConfigHome' => __DIR__ . '/../..' . '/app/ConfigHome.php',
@@ -466,6 +467,7 @@ class ComposerStaticInit382161484a43228177101e3df006e07c
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CorreoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CorreoController.php',
         'App\\Http\\Controllers\\CouponsController' => __DIR__ . '/../..' . '/app/Http/Controllers/CouponsController.php',
+        'App\\Http\\Controllers\\DestacadoController' => __DIR__ . '/../..' . '/app/Http/Controllers/DestacadoController.php',
         'App\\Http\\Controllers\\GaleriaHomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/GaleriaHomeController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',

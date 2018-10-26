@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\CarritoCompra' => $baseDir . '/app/CarritoCompra.php',
     'App\\Color' => $baseDir . '/app/Color.php',
     'App\\ConfigFooter' => $baseDir . '/app/ConfigFooter.php',
     'App\\ConfigHome' => $baseDir . '/app/ConfigHome.php',
@@ -28,6 +29,7 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\CorreoController' => $baseDir . '/app/Http/Controllers/CorreoController.php',
     'App\\Http\\Controllers\\CouponsController' => $baseDir . '/app/Http/Controllers/CouponsController.php',
+    'App\\Http\\Controllers\\DestacadoController' => $baseDir . '/app/Http/Controllers/DestacadoController.php',
     'App\\Http\\Controllers\\GaleriaHomeController' => $baseDir . '/app/Http/Controllers/GaleriaHomeController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\NotificationController' => $baseDir . '/app/Http/Controllers/NotificationController.php',
