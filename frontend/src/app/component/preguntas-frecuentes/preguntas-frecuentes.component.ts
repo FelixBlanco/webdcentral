@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 interface Question{
-  id;
+  idPreguntaFrecuente;
   pregunta;
   respuesta;
   estatus;
@@ -23,23 +23,30 @@ export class PreguntasFrecuentesComponent implements OnInit {
   rows: Array<Question>;
   columns: any;
   questionForm: FormGroup;
+  questionUpdateForm: FormGroup;
   limit: number = 5;
+  questionToUpdate: Question;
   constructor(private preguntasService: PreguntasService, private fb: FormBuilder) { 
     
-    this.questions = this.preguntasService.getAll();
-    this.rows = [...this.questions];
+    this.questionForm = this.fb.group({
+      pregunta: ['', Validators.required],//Agregar validators
+      respuesta: ['', Validators.required]//Agregar Validators
+    });
+
+    this.questionUpdateForm = this.fb.group({
+      pregunta: ['', Validators.required],//Agregar validators
+      respuesta: ['', Validators.required]//Agregar Validators
+    });
+
+    this.list();
+
     this.columns = [
-      { prop: 'id'},
+      { prop: 'idPreguntaFrecuente'},
       { prop: 'pregunta' },
       { prop: 'respuesta' },
       { prop: 'estatus' },
       { prop: 'opts'}
     ];
-
-    this.questionForm =  this.fb.group({
-      pregunta: ['', Validators.required],
-      respuesta: ['', Validators.required]
-    });
   }
   
 
@@ -54,22 +61,88 @@ export class PreguntasFrecuentesComponent implements OnInit {
       || (d.respuesta.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    this.table.offset = 0;
+    this.table.offset = 0;//Requerido
+  }
+
+  list(){
+    this.preguntasService.getAll(null).subscribe((resp) => {
+      if(resp.ok && resp.status === 202){
+        this.questions = resp.body.PFrec as Array<Question>;
+        this.rows = [...this.questions];
+      }else{
+        //Ha ocurrido un error aplicar toaster
+      }
+    }, (error) => {
+      //Error interno
+    });
   }
 
   save(){
     if(this.questionForm.invalid){
-      console.log(this.questionForm.invalid);
       return;
     }
 
-    const id = this.preguntasService.getLastId();
-    const question = Object.assign(this.questionForm.value, {"estatus": true, "id":id})
-    this.preguntasService.persist(question);
-    console.log("was persisted?")
-    console.table(this.preguntasService.getAll());
+    const val = this.questionForm.value;
+    this.preguntasService.persist({pregunta: val.pregunta, respuesta: val.respuesta}).subscribe((resp) => {
+      if(resp.ok && resp.status === 201){
+        console.log('?',resp);//Aplicar toaster
+        this.questionForm.get('respuesta').setValue('');
+        this.questionForm.get('pregunta').setValue('');
+        this.list();
+      }else{
+        //ha ocurrido un error
+      }
+    }, (error) => {
+      //Error interno
+    })
+  }
+
+  update(){
+    if(this.questionUpdateForm.invalid){
+      return;
+    }
+
+    const val = this.questionUpdateForm.value;
+    const question = this.questionToUpdate;
+
+    this.preguntasService.update(
+      {
+        idPreguntaFrecuente: question.idPreguntaFrecuente, 
+        pregunta: val.pregunta, 
+        respuesta: val.respuesta
+      }
+    ).subscribe((resp)=> {
+      console.log(resp);
+      this.list();
+    },(error) => {
+      //error
+    })
+  }
+
+  delete(){
+    this.preguntasService.delete(this.questionToUpdate.idPreguntaFrecuente)
+      .subscribe((resp)=>{
+        console.log(resp);
+        this.list();
+      },(error) => {
+        //error
+      });
+  }
+
+  set({idPreguntaFrecuente,pregunta,respuesta, estatus}){
+    this.questionToUpdate = {
+      idPreguntaFrecuente : idPreguntaFrecuente,
+      pregunta: pregunta,
+      respuesta: respuesta,
+      estatus: estatus
+    }
+
+    this.questionUpdateForm.get('pregunta').setValue(pregunta);
+    this.questionUpdateForm.get('respuesta').setValue(respuesta);
+  }
+
+  rowClass(){
+    return 'text-capitalize';
   }
 }

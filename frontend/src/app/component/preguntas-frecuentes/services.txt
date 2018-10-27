@@ -1,0 +1,40 @@
+Rutas nuevas
+
+Crear: api/auth/crearPreguntaYRespuesta tipo post,
+por header: Accept:application/json
+Authorization:Bearer token
+
+DATA:
+pregunta
+respuesta
+
+Editar: api/auth/editarPreguntaORespuesta/id_pregunta,
+tipo: PUT
+header: Accept:application/json
+Authorization:Bearer tocken
+Content-Type:application/x-www-form-urlencoded
+
+DATA: 
+pregunta
+respuesta
+
+BORRAR: api/auth/borrarPreguntaORespuesta/id_pregunta
+TIPO: DELETE
+header: Accept:application/json
+Authorization:Bearer tocken
+Content-Type:application/x-www-form-urlencoded
+
+BUSCAR: api/auth/listar
+TIPO:POST
+header: Accept:application/json
+Authorization:Bearer tocken
+
+DATA(OPCIONAL):
+search:
+offset:
+limit:
+
+CONSULTAR POR ID: api/auth/verPreguntaORespuesta/id_pregunta
+TIPO:GET
+header: Accept:application/json
+Authorization:Bearer tocken

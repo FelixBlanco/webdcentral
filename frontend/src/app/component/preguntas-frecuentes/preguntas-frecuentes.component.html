@@ -30,25 +30,26 @@
               [columns]="columns"
               [columnMode]="'force'"
               [footerHeight]="'40'"
+              [rowClass]="rowClass"
               [limit]="limit">
 
-              <ngx-datatable-column name="#" prop="id"></ngx-datatable-column>
+              <ngx-datatable-column name="#" prop="idPreguntaFrecuente"></ngx-datatable-column>
               <ngx-datatable-column name="Pregunta" prop="pregunta"></ngx-datatable-column>
               <ngx-datatable-column name="Respuesta" prop="respuesta"></ngx-datatable-column>
               <ngx-datatable-column name="Estatus" prop="estatus">
                 <ng-template ngx-datatable-cell-template let-row="row">
                     <ng-container [ngSwitch]="row.estatus">
                       <span class="text-danger" *ngSwitchCase="false">INACTIVO</span>
-                      <span class="text-success" *ngSwitchDefault>ACTIVO</span>
+                      <span class="text-success " *ngSwitchDefault>ACTIVO</span>
                     </ng-container>
                 </ng-template>                    
               </ngx-datatable-column>
 
               <ngx-datatable-column name="" prop="opts">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                  <a class="btn btn-default" data-toggle="modal" data-target="#modificar"><fa-icon [icon]="['far', 'edit']"></fa-icon></a>
-                  <a class="btn btn-default" data-toggle="modal" data-target="#eliminar"><fa-icon [icon]="['far', 'trash-alt']"></fa-icon></a>
-                  <a class="btn btn-default" data-toggle="modal" data-target="#estatus"><fa-icon [icon]="['fas', 'ban']"></fa-icon></a>
+                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#modificar"><fa-icon [icon]="['far', 'edit']"></fa-icon></a>
+                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><fa-icon [icon]="['far', 'trash-alt']"></fa-icon></a>
+                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#estatus"><fa-icon [icon]="['fas', 'ban']"></fa-icon></a>
                 </ng-template>                    
               </ngx-datatable-column>
 
@@ -60,7 +61,7 @@
                     let-curPage="curPage">
                     <div style="padding: 5px 5px">
                       <div>
-                        Total registros: {{pageSize}} de {{rowCount}} |
+                        Registros totales: {{rowCount}} |
                         Página: {{curPage}}
                       </div>
                     </div>
@@ -73,7 +74,7 @@
                         [size]="pageSize"
                         [count]="rowCount"
                         [hidden]="!((rowCount / pageSize) > 1)"
-                        (change)="table.onFooterPage($event)">
+                        (change)="table.onFooterPage($event)" style="flex: 1 1 60%">
                     </datatable-pager>
                   </ng-template>
                   
@@ -111,7 +112,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-success" (click)="save()">Guardar</button>
+        <button type="submit" class="btn btn-success" data-dismiss="modal" [disabled]="questionForm.invalid" (click)="save()">Guardar</button>
       </div>
     </div>
   </div>
@@ -122,13 +123,13 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-azul">
-        <h5 class="modal-title text-white" id="modificarModal">Modificar</h5>
+        <h5 class="modal-title text-white" id="modificarModal">Modificar <span class="text-capitalize" *ngIf="questionToUpdate">'{{questionToUpdate.pregunta}}'</span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="questionForm">
+        <form [formGroup]="questionUpdateForm">
           <div class="form-group">
             <label for="pregunta">Pregunta:</label>
             <input type="text" formControlName="pregunta" class="form-control" id="pregunta" aria-describedby="preguntaDesc" placeholder="Escriba una pregunta">
@@ -141,7 +142,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-info bg-azul" (click)="save()">Guardar</button>
+        <button type="submit" class="btn btn-info bg-azul" data-dismiss="modal" [disabled]="questionUpdateForm.invalid" (click)="update()">Guardar</button>
       </div>
     </div>
   </div>
@@ -152,7 +153,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-danger">
-        <h5 class="modal-title text-white" id="eliminarModal">Eliminar</h5>
+        <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="questionToUpdate">'{{questionToUpdate.pregunta}}'</span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -162,7 +163,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-danger" >Eliminar</button>
+        <button type="submit" class="btn btn-danger" data-dismiss="modal" (click)="delete()">Eliminar</button>
       </div>
     </div>
   </div>
@@ -183,7 +184,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-warning">Aceptar</button>
+        <button type="submit" class="btn btn-warning" data-dismiss="modal" disabled>Aceptar</button>
       </div>
     </div>
   </div>
