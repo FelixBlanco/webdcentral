@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PreguntasService } from 'src/app/services/preguntas.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DATATABLE_LANG } from 'src/app/models/constants/datatable-languaje.constant';
+
+
+interface Question{
+  id;
+  pregunta;
+  respuesta;
+  estatus;
+}
 
 @Component({
   selector: 'app-preguntas-frecuentes',
@@ -10,21 +17,47 @@ import { DATATABLE_LANG } from 'src/app/models/constants/datatable-languaje.cons
 })
 export class PreguntasFrecuentesComponent implements OnInit {
 
-  questions: any;
+  @ViewChild('table') table;
+
+  questions: Array<Question>;
+  rows: Array<Question>;
+  columns: any;
   questionForm: FormGroup;
-  dtOptions: DataTables.Settings = {};
+  limit: number = 5;
   constructor(private preguntasService: PreguntasService, private fb: FormBuilder) { 
+    
     this.questions = this.preguntasService.getAll();
+    this.rows = [...this.questions];
+    this.columns = [
+      { prop: 'id'},
+      { prop: 'pregunta' },
+      { prop: 'respuesta' },
+      { prop: 'estatus' },
+      { prop: 'opts'}
+    ];
+
     this.questionForm =  this.fb.group({
       pregunta: ['', Validators.required],
       respuesta: ['', Validators.required]
     });
-
-    this.dtOptions.language = DATATABLE_LANG;
   }
   
 
   ngOnInit() {
+  }
+
+  updateFilter(event){
+    const val = event.target.value.toLowerCase();
+
+    const temp = this.questions.filter(function(d) {
+      return (d.pregunta.toLowerCase().indexOf(val) !== -1 || !val) 
+      || (d.respuesta.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
   }
 
   save(){

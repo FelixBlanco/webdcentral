@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //Formularios 
-import { DataTablesModule } from 'angular-datatables';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { HomeComponent } from './home.component';
 import { PerfilComponent } from '../perfil/perfil.component';
@@ -17,6 +17,11 @@ import { ConfigColorComponent } from './../config-color/config-color.component';
 import { AlertsComponent } from './../alerts/alerts.component';
 import { PreguntasFrecuentesComponent } from '../preguntas-frecuentes/preguntas-frecuentes.component';
 import { PreguntasService } from 'src/app/services/preguntas.service';
+import { FA_ICONS } from 'src/app/models/constants/fontawesome.icons.constant';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+library.add(FA_ICONS);
 
 const routerAdmin: Routes = [
   { path: 'home', component: HomeComponent,
@@ -39,8 +44,9 @@ const routerAdmin: Routes = [
     CommonModule,
     RouterModule.forChild(routerAdmin),
     FormsModule,
-    DataTablesModule,
-    ReactiveFormsModule
+    NgxDatatableModule,
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   declarations: [
     HomeComponent,

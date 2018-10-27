@@ -10,6 +10,8 @@ composer install
 
 php artisan migrate --seed
 
+php artisan passport:install
+
 php artisan passport:client --personal
 
 php artisan serve
