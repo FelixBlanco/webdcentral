@@ -21,6 +21,11 @@ export class ConfigColorService {
   _getColor(){
     return this.http.get('http://localhost:8000/api/auth/colores',httpOptions);
   }
+  
+  _paletaColor(){
+    /* Esta paleta de colores se ubican en el landing */
+    return this.http.get('http://localhost:8000/api/v1/paleta-color',httpOptions)
+  }
 
   addColores(data:any){
     return this.http.post('http://localhost:8000/api/auth/colores',data,httpOptions);

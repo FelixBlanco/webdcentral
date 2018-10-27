@@ -39,7 +39,6 @@ export class OfertasComponent implements OnInit {
   }
 
   add_updateOferta(x){
-    console.log(x)
     var formData: FormData = new FormData();
     formData.append('imagen',this.form_ofertas.imagen);
     formData.append('titulo',this.form_ofertas.titulo);
@@ -50,6 +49,8 @@ export class OfertasComponent implements OnInit {
       this.ofertaServices._addOfertas(formData).subscribe(
         resp => {
           this.getOfertas();
+          $("#agregarOfertaModal").modal('hide');
+          this.form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
           this._alertService.Success('Se guardo correctamente')
         },
         error => {
@@ -64,6 +65,8 @@ export class OfertasComponent implements OnInit {
         resp => {
           this.getOfertas();
           this.editOferta(this.form_ofertas.idOferta)
+          $("#editarOfertaModal").modal('hide');
+          this.form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
           this._alertService.Success('Se edito correctamente')
         },
         error => {

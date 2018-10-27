@@ -26,9 +26,11 @@ export class ConfigHomeComponent implements OnInit {
   getConfigHome(){
     this._configHomeService._getConfigHome().subscribe(
       (resp:any) => {
-        this.c_h.imgLogo = resp.logo; 
-        this.c_h.color = resp.color ;
-        this.c_h.set_logo = resp.set_logo; 
+        if(resp){
+          this.c_h.imgLogo = resp.logo; 
+          this.c_h.color = resp.color ;
+          this.c_h.set_logo = resp.set_logo; 
+        }
       }
     );
   }
@@ -39,15 +41,23 @@ export class ConfigHomeComponent implements OnInit {
   }
 
   upgradeConfigHome(){
-    var formData: FormData = new FormData(); // Damos Formato
-    formData.append('logo', this.c_h.imgLogo);
-    formData.append('color', this.c_h.color)
-
-    this._configHomeService._upgradeConfigHome(formData).subscribe(resp => {
-      this.getConfigHome();
-      this._alertService.Success('Actualizacion completada')
-    });
+    
+    if(this.c_h.color == '' && this.c_h.logo == ''){
+      this._alertService.Success('todos los campos son rqueridos')
+    }else{
+      var formData: FormData = new FormData(); // Damos Formato
+      formData.append('logo', this.c_h.imgLogo);
+      formData.append('color', this.c_h.color)
+  
+      this._configHomeService._upgradeConfigHome(formData).subscribe((resp:any) => {
+        this.getConfigHome();
+        document.getElementById("body").style.backgroundColor = resp.color;
+        this._alertService.Success('Actualizacion completada');
+      },
+      error => {
+        this._alertService.listError(error.error);
+      });  
+    }
+    
   }
-
-
 }

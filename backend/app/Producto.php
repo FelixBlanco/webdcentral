@@ -16,7 +16,6 @@ class Producto extends Model {
         'promocion',
         'categoria',
         'fk_idSatate',
-        'fk_idPesoProducto',
         'isOutstanding',
         'fechaIsOutstanding',
     ];

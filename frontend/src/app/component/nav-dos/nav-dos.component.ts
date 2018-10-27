@@ -25,7 +25,13 @@ export class NavDosComponent implements OnInit {
   getConfigHome(){
     this._configHomeService._getConfigHome().subscribe(
       (resp:any) => {
-        this.c_h.set_logo = resp.set_logo;
+
+        if(resp){
+          this.c_h.set_logo = resp.set_logo;
+        }else{
+          this.c_h.set_logo = null;
+        }
+        
         
       }
     )

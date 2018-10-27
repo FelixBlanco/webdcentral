@@ -33,11 +33,11 @@ export class ConfigColorComponent implements OnInit {
     this._coloresServices.addColores(this.form).subscribe(
       resp => {
         this.getColores();
+        this.form = { colorOscuro: null, colorMedio:null, colorClaro: null }
         this._alertServicices.Success('Se guardo correctamente')
       },
       error => {
         this._alertServicices.listError(error.error);
-        console.log(error);
       }
     )
   }
