@@ -444,6 +444,7 @@ class ComposerStaticInit382161484a43228177101e3df006e07c
     );
 
     public static $classMap = array (
+        'App\\CarritoCompra' => __DIR__ . '/../..' . '/app/CarritoCompra.php',
         'App\\Color' => __DIR__ . '/../..' . '/app/Color.php',
         'App\\ConfigFooter' => __DIR__ . '/../..' . '/app/ConfigFooter.php',
         'App\\ConfigHome' => __DIR__ . '/../..' . '/app/ConfigHome.php',
@@ -451,6 +452,7 @@ class ComposerStaticInit382161484a43228177101e3df006e07c
         'App\\Correo' => __DIR__ . '/../..' . '/app/Correo.php',
         'App\\Coupons' => __DIR__ . '/../..' . '/app/Coupons.php',
         'App\\CouponsClient' => __DIR__ . '/../..' . '/app/CouponsClient.php',
+        'App\\Destacado' => __DIR__ . '/../..' . '/app/Destacado.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\GaleriaHome' => __DIR__ . '/../..' . '/app/GaleriaHome.php',
         'App\\Http\\Controllers\\API\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/AuthController.php',
@@ -465,11 +467,13 @@ class ComposerStaticInit382161484a43228177101e3df006e07c
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CorreoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CorreoController.php',
         'App\\Http\\Controllers\\CouponsController' => __DIR__ . '/../..' . '/app/Http/Controllers/CouponsController.php',
+        'App\\Http\\Controllers\\DestacadoController' => __DIR__ . '/../..' . '/app/Http/Controllers/DestacadoController.php',
         'App\\Http\\Controllers\\GaleriaHomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/GaleriaHomeController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\OfertaController' => __DIR__ . '/../..' . '/app/Http/Controllers/OfertaController.php',
         'App\\Http\\Controllers\\OrderDriverController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderDriverController.php',
+        'App\\Http\\Controllers\\PreguntasFrecuenteController' => __DIR__ . '/../..' . '/app/Http/Controllers/PreguntasFrecuenteController.php',
         'App\\Http\\Controllers\\ProductSincronizeController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductSincronizeController.php',
         'App\\Http\\Controllers\\ProductoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductoController.php',
         'App\\Http\\Controllers\\ReclamoSugerenciaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReclamoSugerenciaController.php',
@@ -488,6 +492,7 @@ class ComposerStaticInit382161484a43228177101e3df006e07c
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\cors' => __DIR__ . '/../..' . '/app/Http/Middleware/Cors.php',
         'App\\Mail\\Prueba' => __DIR__ . '/../..' . '/app/Mail/Prueba.php',
+        'App\\Mail\\Suscripcion' => __DIR__ . '/../..' . '/app/Mail/Suscripcion.php',
         'App\\Notification' => __DIR__ . '/../..' . '/app/Notification.php',
         'App\\OauthAccessToken' => __DIR__ . '/../..' . '/app/OauthAccessToken.php',
         'App\\Oferta' => __DIR__ . '/../..' . '/app/Oferta.php',

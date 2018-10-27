@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\CarritoCompra' => $baseDir . '/app/CarritoCompra.php',
     'App\\Color' => $baseDir . '/app/Color.php',
     'App\\ConfigFooter' => $baseDir . '/app/ConfigFooter.php',
     'App\\ConfigHome' => $baseDir . '/app/ConfigHome.php',
@@ -13,6 +14,7 @@ return array(
     'App\\Correo' => $baseDir . '/app/Correo.php',
     'App\\Coupons' => $baseDir . '/app/Coupons.php',
     'App\\CouponsClient' => $baseDir . '/app/CouponsClient.php',
+    'App\\Destacado' => $baseDir . '/app/Destacado.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\GaleriaHome' => $baseDir . '/app/GaleriaHome.php',
     'App\\Http\\Controllers\\API\\AuthController' => $baseDir . '/app/Http/Controllers/API/AuthController.php',
@@ -27,11 +29,13 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\CorreoController' => $baseDir . '/app/Http/Controllers/CorreoController.php',
     'App\\Http\\Controllers\\CouponsController' => $baseDir . '/app/Http/Controllers/CouponsController.php',
+    'App\\Http\\Controllers\\DestacadoController' => $baseDir . '/app/Http/Controllers/DestacadoController.php',
     'App\\Http\\Controllers\\GaleriaHomeController' => $baseDir . '/app/Http/Controllers/GaleriaHomeController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\NotificationController' => $baseDir . '/app/Http/Controllers/NotificationController.php',
     'App\\Http\\Controllers\\OfertaController' => $baseDir . '/app/Http/Controllers/OfertaController.php',
     'App\\Http\\Controllers\\OrderDriverController' => $baseDir . '/app/Http/Controllers/OrderDriverController.php',
+    'App\\Http\\Controllers\\PreguntasFrecuenteController' => $baseDir . '/app/Http/Controllers/PreguntasFrecuenteController.php',
     'App\\Http\\Controllers\\ProductSincronizeController' => $baseDir . '/app/Http/Controllers/ProductSincronizeController.php',
     'App\\Http\\Controllers\\ProductoController' => $baseDir . '/app/Http/Controllers/ProductoController.php',
     'App\\Http\\Controllers\\ReclamoSugerenciaController' => $baseDir . '/app/Http/Controllers/ReclamoSugerenciaController.php',
@@ -50,6 +54,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\cors' => $baseDir . '/app/Http/Middleware/Cors.php',
     'App\\Mail\\Prueba' => $baseDir . '/app/Mail/Prueba.php',
+    'App\\Mail\\Suscripcion' => $baseDir . '/app/Mail/Suscripcion.php',
     'App\\Notification' => $baseDir . '/app/Notification.php',
     'App\\OauthAccessToken' => $baseDir . '/app/OauthAccessToken.php',
     'App\\Oferta' => $baseDir . '/app/Oferta.php',

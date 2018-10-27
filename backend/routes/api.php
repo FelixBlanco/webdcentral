@@ -33,13 +33,32 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         Route::resource('colores', 'ColorController');   //Colores de la web
 
-        Route::post('crearPregunta','PreguntasFrecuenteController@crearPregunta'); //para crear una pregunta
+        /* PREGUNTA Y RESPUESTA */
+        Route::post('crearPreguntaYRespuesta','PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
+        Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}','PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
+        Route::put('editarPreguntaORespuesta/{idPreguntaFrecuente}','PreguntasFrecuenteController@editarPreguntaORespuesta'); //para editar
+        Route::delete('borrarPreguntaORespuesta/{idPreguntaFrecuente}','PreguntasFrecuenteController@borrarPreguntaORespuesta'); //para borrar
+        Route::post('listar','PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
+        /* PREGUNTA Y RESPUESTA */
 
-        Route::post('respoderPregunta/{idPreguntaFrecuente}','PreguntasFrecuenteController@respoderPregunta'); //para responde una pregunta
+        /*PARA LOS DESTACADOS*/
 
-        Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}','PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta o respuesta por su id
+        Route::post('crearDestacado','DestacadoController@crearDestacado');
+        Route::post('editarDestacado/{idDestacado}','DestacadoController@editarDestacado');
+        Route::delete('eliminarDestacado/{idDestacado}','DestacadoController@eliminarDestacado');
+        Route::get('obtenerDestacados','DestacadoController@listar');
 
-        //Route::resource('preguntas-frecuentes','PreguntasFrecuenteController');
+        /*PARA LOS DESTACADOS*/
+
+        /*CARRITO DE COMPRA*/
+
+        Route::post('añadir','CarritoCompraController@añadir');
+        Route::put('editarCantidad{idCarrito}','CarritoCompraController@editarCantidad');
+        Route::delete('eliminar/{idCarrito}','CarritoCompraController@eliminar');
+        Route::get('obtenerCarritoPorUser/{idUser}','CarritoCompraController@obtenerCarritoPorUser');
+
+        /*CARRITO DE COMPRA*/
+
     });
 });
 
