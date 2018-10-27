@@ -32,6 +32,7 @@ import { MapaComponent } from './component/mapa/mapa.component';
 import { ComponentComponent } from './component/component.component';
 import { CuponsappComponent } from './component/cuponsapp/cuponsapp.component';
 import { NotificationappComponent } from './component/notificationapp/notificationapp.component';
+import { AuthbackendComponent } from './component/authbackend/authbackend.component';
 
 
 
@@ -64,6 +65,7 @@ import { NotificationappComponent } from './component/notificationapp/notificati
     ComponentComponent,
     CuponsappComponent,
     NotificationappComponent,
+    AuthbackendComponent,
   ],
   imports: [
     BrowserModule,

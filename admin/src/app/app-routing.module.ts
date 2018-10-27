@@ -4,6 +4,7 @@ import { GaleriaHomeComponent } from './component/galeria-home/galeria-home.comp
 import { MapaComponent } from './component/mapa/mapa.component';
 import { CuponsappComponent } from './component/cuponsapp/cuponsapp.component';
 import { NotificationappComponent } from './component/notificationapp/notificationapp.component';
+import { AuthbackendComponent } from './component/authbackend/authbackend.component';
 
 const routes: Routes = [
   { path: 'Galeria', component: GaleriaHomeComponent },
