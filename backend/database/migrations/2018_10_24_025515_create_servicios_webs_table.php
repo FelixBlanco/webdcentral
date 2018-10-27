@@ -18,9 +18,9 @@ class CreateServiciosWebsTable extends Migration
             $table->string('titulo');
             $table->string('descripcion');
             $table->string('foto');
-            $table->string('fk_idStatus');
-            $table->string('fk_idListaEmail');
-            $table->string('fk_idListaTelefono');
+            $table->integer('fk_idStatus');
+            $table->integer('fk_idListaEmail');
+            $table->integer('fk_idListaTelefono');
             $table->timestamps();
         });
     }

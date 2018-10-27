@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSuscripcionsTable extends Migration
+class CreateStateOrder extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateSuscripcionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_suscripcions', function (Blueprint $table) {
-            $table->increments('idSuscripcion');
-            $table->string('email')->nullable();
-            $table->string('motivoDeCancelacion')->nullable();
-            $table->integer('fk_idStatusSistema')->nullable();
+        //
+        Schema::create('tb_state_order', function (Blueprint $table) {
+            $table->increments('idStateOrder');
+            $table->string('StateOrder');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateSuscripcionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_suscripcions');
+        //
     }
 }
