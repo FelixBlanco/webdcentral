@@ -25,3 +25,10 @@ npm install
 ng serve | npm start
 
 PUERTO POR DEFAULT http://localhost:4200/
+
+## ACTIVACION DE ANGULAR (FRONTEND DEL BACKEND)
+npm install 
+
+ng server
+
+

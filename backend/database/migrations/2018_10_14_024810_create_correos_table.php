@@ -19,6 +19,8 @@ class CreateCorreosTable extends Migration
             $table->text('password');
 
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

@@ -19,6 +19,8 @@ class CreateNotificationTable extends Migration
             $table->string('descriptionNotification');
             $table->integer('fk_idSecctionApp');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

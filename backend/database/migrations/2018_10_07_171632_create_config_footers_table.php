@@ -19,6 +19,8 @@ class CreateConfigFootersTable extends Migration
             $table->string('nroContacto')->nullable();
             $table->string('email')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

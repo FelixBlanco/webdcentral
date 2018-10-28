@@ -3,8 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ReclamosYSugerencia extends Model {
+
+    use SoftDeletes;
     protected $table      = 'tb_reclamos_y_sugerencias';
     protected $primaryKey = 'idReclamosSugerencia';
 

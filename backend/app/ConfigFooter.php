@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ConfigFooter extends Model {
 
@@ -11,7 +12,7 @@ class ConfigFooter extends Model {
      *
      * @var string
      */
-
+    use SoftDeletes;
     protected $table      = 'tb_config_footers';
     protected $primaryKey = 'idConfigFooter';
 

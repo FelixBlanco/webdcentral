@@ -17,6 +17,8 @@ class CreateStatusReclamosTable extends Migration
             $table->increments('idStatusReclamo');
             $table->string('descripcion');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

@@ -17,6 +17,8 @@ class CreateSecctionAppTable extends Migration
             $table->increments('idSecctionApp');
             $table->string('tag');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

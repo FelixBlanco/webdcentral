@@ -20,8 +20,25 @@ class CreateProductosTable extends Migration
             $table->string('urlImage');
             $table->string('promocion');
             $table->string('categoria');
+            $table->string('codeProdSys');
+            $table->string('kiloProdcuto');
+            $table->string('SubRubro1');
+            $table->string('SubRubro2');
+            $table->string('precioL1');
+            $table->string('precioL2');
+            $table->string('precioL3');
+            $table->string('precioL4');
+            $table->string('precioL5');
+            $table->string('precioL6');
+            $table->string('precioL7');
+            $table->string('precioL8');
+            $table->string('precioL9');
+            $table->string('rubro');
+            $table->string('marca');
             $table->integer('fk_idSatate')->unsigned();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

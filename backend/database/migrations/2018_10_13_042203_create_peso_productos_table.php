@@ -18,6 +18,8 @@ class CreatePesoProductosTable extends Migration
             $table->string('peso');
             $table->integer('fk_idProducto')->unsigned();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
