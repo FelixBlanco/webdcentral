@@ -18,6 +18,8 @@ class CreatePromocionesTable extends Migration {
             $table->string('titulo');
             $table->text('promocion');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

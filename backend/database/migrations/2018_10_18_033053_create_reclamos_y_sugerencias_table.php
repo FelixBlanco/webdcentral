@@ -18,6 +18,8 @@ class CreateReclamosYSugerenciasTable extends Migration {
             $table->integer('fk_idUser')->unsigned();
             $table->integer('fk_idStatusReclamo')->unsigned();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

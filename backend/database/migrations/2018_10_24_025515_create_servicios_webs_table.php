@@ -22,6 +22,8 @@ class CreateServiciosWebsTable extends Migration
             $table->integer('fk_idListaEmail');
             $table->integer('fk_idListaTelefono');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

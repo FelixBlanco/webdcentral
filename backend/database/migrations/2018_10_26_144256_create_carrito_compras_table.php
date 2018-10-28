@@ -23,6 +23,8 @@ class CreateCarritoComprasTable extends Migration
 
             $table->integer('fk_idUser')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

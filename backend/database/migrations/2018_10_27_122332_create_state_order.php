@@ -18,7 +18,10 @@ class CreateStateOrder extends Migration
             $table->increments('idStateOrder');
             $table->string('StateOrder');
             $table->timestamps();
+
+            $table->softDeletes();
         });
+
     }
 
     /**

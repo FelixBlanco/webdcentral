@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Suscripcion extends Model
 {
+    use SoftDeletes;
 
     protected $table      = 'tb_suscripcions';
     protected $primaryKey = 'idSuscripcion';

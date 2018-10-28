@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Perfil extends Model {
 
@@ -11,7 +12,7 @@ class Perfil extends Model {
      *
      * @var string
      */
-
+    use SoftDeletes;
     protected $table = 'tb_perfil';
     protected $primaryKey = 'idPerfil'; // or null
 
