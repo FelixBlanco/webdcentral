@@ -21,6 +21,7 @@ class CreateOrderBodyTable extends Migration
             $table->string('PrecioUnitario_Producto');
             $table->string('PorcentajeDescuento_Producto');
             $table->string('Devolucion_Producto');
+            $table->integer('fk_idProducto')->unsigned()->nullable();
             $table->timestamps();
 
             $table->softDeletes();

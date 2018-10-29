@@ -24,6 +24,7 @@ class CreateOrderHeaderTable extends Migration
             $table->integer('fk_idStateOrder');
             $table->string('codeProdSys');
             $table->integer('fk_idUser');
+            $table->integer('fk_idProducto')->unsigned()->nullable();
             $table->timestamps();
 
             $table->softDeletes();
