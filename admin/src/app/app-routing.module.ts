@@ -5,12 +5,14 @@ import { MapaComponent } from './component/mapa/mapa.component';
 import { CuponsappComponent } from './component/cuponsapp/cuponsapp.component';
 import { NotificationappComponent } from './component/notificationapp/notificationapp.component';
 import { AuthbackendComponent } from './component/authbackend/authbackend.component';
+import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
 
 const routes: Routes = [
   { path: 'Galeria', component: GaleriaHomeComponent },
   { path: 'Mapa', component: MapaComponent },
   { path: 'Cupones', component: CuponsappComponent },
-  { path: 'Notificaciones', component: NotificationappComponent }
+  { path: 'Notificaciones', component: NotificationappComponent },
+  { path: 'Preguntas-Frecuentes', component: PreguntasFrecuentesComponent}
 
 ];
 
