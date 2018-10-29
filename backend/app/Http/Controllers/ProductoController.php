@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Producto;
+use App\TagProduct;
 use Carbon\Carbon;
 use function GuzzleHttp\Promise\promise_for;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+
+
 
 class ProductoController extends Controller {
     /**
@@ -164,7 +167,6 @@ class ProductoController extends Controller {
             $product->titulo            = $_product['titulo'];
             $product->urlImage          = $_product['urlImage'];
             $product->promocion         = $_product['promocion'];
-            $product->categoria         = $_product['categoria'];
             $product->codeProdSys = $_product['codeProdSys'];
             $product->kiloProdcuto = $_product['kiloProdcuto'];
             $product->SubRubro1 = $_product['SubRubro1'];
@@ -190,7 +192,6 @@ class ProductoController extends Controller {
             $rs->titulo            = $_product['titulo'];
             $rs->urlImage          = $_product['urlImage'];
             $rs->promocion         = $_product['promocion'];
-            $rs->categoria         = $_product['categoria'];
             $rs->codeProdSys = $_product['codeProdSys'];
             $rs->kiloProdcuto = $_product['kiloProdcuto'];
             $rs->SubRubro1 = $_product['SubRubro1'];
@@ -214,22 +215,24 @@ class ProductoController extends Controller {
 
     
     public static function createTag($_tag) {
+       
         $rs = TagProduct::where("codeProdSys","=",$_tag['codeProdSys'])
         ->where("tag","=",$_tag['tag'])
         ->first();
-        
-        if(!$rs){
 
-            $tag                  = new TagProduct();
-            $tag->tag             = $_tag['tag'];
-            $product->codeProdSys = $_tag['codeProdSys'];
-            $product->fk_idSatate = 1;
-            $product->save();
-        }else{
-            $tag                  = new TagProduct();
-            $product->fk_idSatate = 1;
-            $product->update();
+        if(!is_null($_tag['tag']) && !is_null($_tag['codeProdSys'])){
+            if(!$rs){
+                $tag                  = new TagProduct();
+                $tag->tag             = @$_tag['tag'];
+                $tag->codeProdSys = @$_tag['codeProdSys'];
+                $tag->fk_idSatate = 1;
+                $tag->save();
+            }else{
+                $tag                  = new TagProduct();
+                $tag->fk_idSatate = 1;
+                $tag->update();
 
+            }
         }
     }
 

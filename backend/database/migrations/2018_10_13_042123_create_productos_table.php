@@ -19,7 +19,6 @@ class CreateProductosTable extends Migration
             $table->string('titulo')->nullable();
             $table->string('urlImage')->nullable();
             $table->string('promocion')->nullable();
-            $table->string('categoria')->nullable();
             $table->string('codeProdSys')->nullable();
             $table->string('kiloProdcuto')->nullable();
             $table->string('SubRubro1')->nullable();

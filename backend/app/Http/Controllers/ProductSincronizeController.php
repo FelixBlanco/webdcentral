@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Producto;
-
+use App\TagProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProductoController;
 
@@ -25,7 +25,6 @@ class ProductSincronizeController extends Controller
             'titulo' => $item->Descripcion_Producto,
             'urlImage' => $item->WebLink_Producto,
             'promocion' => "FALTA",
-            'categoria' => $item->Descripcion_TablaGenerica,
             'codeProdSys' => $item->Codigo_Producto,
             'kiloProdcuto' => $item->Kilos_Producto,
             'SubRubro1' => $item->Descripcion_SubRubro1,
@@ -57,15 +56,21 @@ class ProductSincronizeController extends Controller
     }
 
     public function sicronizeTags(){
-        $rs = DB::connection('sqlsrv')->select(" SELECT * FROM  VistaProductosAPP "); 
+        $affectedRows = TagProduct::where('fk_idSatate', '!=', 3)->update(['fk_idSatate' => 3]);
+
+        $rs = DB::connection('sqlsrv')->select(" SELECT * FROM  VistaProductosTagsAPP "); 
        
         foreach ($rs  as $item) {
             $tag = array(
-                'codeProdSys' =>$item->codeProdSys,
-                'tag' => $item->tag
+                'codeProdSys' =>$item->Codigo_Producto,
+                'tag' => $item->Dato_TablaGenerica
             );
 
-            ProductoController::createTag($tag);
+            if($item->Codigo_Producto != "" && $item->Dato_TablaGenerica != ""){
+                if($item->Codigo_Producto != null && $item->Dato_TablaGenerica != null){
+                 ProductoController::createTag($tag);
+                }
+            }
 
         }
     }
