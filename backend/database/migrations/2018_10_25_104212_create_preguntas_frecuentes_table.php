@@ -18,7 +18,10 @@ class CreatePreguntasFrecuentesTable extends Migration
             $table->text('pregunta')->nullable();
             $table->text('respuesta')->nullable();
             $table->integer('fk_idUser')->nullable();
+            $table->integer('fk_idStatusSistema')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

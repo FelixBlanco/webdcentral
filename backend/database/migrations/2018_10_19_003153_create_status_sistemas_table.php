@@ -17,6 +17,8 @@ class CreateStatusSistemasTable extends Migration
             $table->increments('idStatusSistema');
             $table->string('descripcion');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

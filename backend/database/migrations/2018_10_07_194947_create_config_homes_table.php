@@ -18,6 +18,8 @@ class CreateConfigHomesTable extends Migration
             $table->string('color')->nulleble();
             $table->string('logo')->nulleble();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

@@ -19,6 +19,8 @@ class CreateCoupnsClientTable extends Migration
             $table->integer('fk_idcoupons')->unsigned();
             $table->integer('fk_idSatate')->unsigned();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

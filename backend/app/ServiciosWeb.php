@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ServiciosWeb extends Model
 {
+
+    use SoftDeletes;
 
     protected $table      = 'tb_servicios_web';
     protected $primaryKey = 'idServicioWeb';

@@ -18,6 +18,8 @@ class CreateGaleriaHomesTable extends Migration
             $table->string('titulo');
 
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
