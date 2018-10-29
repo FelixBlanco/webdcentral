@@ -153,6 +153,11 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // Paleta de color para el landing 
     Route::get('paleta-color', 'ColorController@ultimaPaletaColores');
+
+     // Sincronizador de productos 
+     Route::get('sincronize/product', 'ProductSincronizeController@sicronizeProduct');
+
+    
 });
 
 
