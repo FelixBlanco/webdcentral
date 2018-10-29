@@ -236,4 +236,31 @@ class ProductoController extends Controller {
         }
     }
 
+
+    public static function getAllTags() {
+        
+        
+       $response = TagProduct::select("tag")->distinct('tag')->orderBy("tag")->get();
+                    
+        return response()->json($response, 202);
+    }
+
+
+
+    public static function getAllRubros() {
+        
+        
+        $response = Producto::select("rubro")->distinct('rubro')->orderBy("rubro")->get();
+                    
+        return response()->json($response, 202);
+    }
+
+    public static function getAllMarcas() {
+        
+        
+        $response = Producto::select("marca")->distinct('marca')->orderBy("marca")->get();
+                     
+         return response()->json($response, 202);
+     }
+    
 }

@@ -158,6 +158,16 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
      // Sincronizador de productos 
      Route::get('sincronize/product', 'ProductSincronizeController@sicronizeProduct');
 
+     // OBTENER TAGS 
+     Route::get('tags/filter', 'ProductoController@getAllTags');
+
+     // OBTENER RUBROS 
+     Route::get('rubro/filter', 'ProductoController@getAllRubros');
+
+      // OBTENER MARCAS 
+      Route::get('marcas/filter', 'ProductoController@getAllMarcas');
+
+     
     
 });
 
