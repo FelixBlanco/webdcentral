@@ -33,8 +33,15 @@ import { ComponentComponent } from './component/component.component';
 import { CuponsappComponent } from './component/cuponsapp/cuponsapp.component';
 import { NotificationappComponent } from './component/notificationapp/notificationapp.component';
 import { AuthbackendComponent } from './component/authbackend/authbackend.component';
+import { GestionUsuarioComponent } from './component/gestion-usuario/gestion-usuario.component';
 
-
+import { GaleriaHomeComponent } from './component/galeria-home/galeria-home.component';
+import { PerfilComponent } from './component/perfil/perfil.component';
+import { ConfigFooterComponent } from './component/config-footer/config-footer.component';
+import { ConfigHomeComponent } from './component/config-home/config-home.component';
+import { OfertasComponent } from './component/ofertas/ofertas.component';
+import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/reclamos-sugerencias.component';
+import { ConfigColorComponent } from './component/config-color/config-color.component';
 
 @NgModule({
   declarations: [
@@ -66,13 +73,21 @@ import { AuthbackendComponent } from './component/authbackend/authbackend.compon
     CuponsappComponent,
     NotificationappComponent,
     AuthbackendComponent,
+    GestionUsuarioComponent,
+    PerfilComponent,    
+    ConfigFooterComponent,
+    ConfigHomeComponent,
+    OfertasComponent,
+    ReclamosSugerenciasComponent,
+    ConfigColorComponent,
+    GaleriaHomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    HomeModule
+    // HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
