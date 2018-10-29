@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PreguntasService } from 'src/app/services/preguntas.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertsService } from 'src/app/services/alerts.service';
 
 
 interface Question{
   idPreguntaFrecuente;
   pregunta;
   respuesta;
-  estatus;
+  fk_idStatusSistema;
 }
 
 @Component({
@@ -26,7 +27,11 @@ export class PreguntasFrecuentesComponent implements OnInit {
   questionUpdateForm: FormGroup;
   limit: number = 5;
   questionToUpdate: Question;
-  constructor(private preguntasService: PreguntasService, private fb: FormBuilder) { 
+  constructor(
+    private preguntasService: PreguntasService, 
+    private fb: FormBuilder,
+    private ts: AlertsService
+  ) { 
     
     this.questionForm = this.fb.group({
       pregunta: ['', Validators.required],//Agregar validators
@@ -44,7 +49,7 @@ export class PreguntasFrecuentesComponent implements OnInit {
       { prop: 'idPreguntaFrecuente'},
       { prop: 'pregunta' },
       { prop: 'respuesta' },
-      { prop: 'estatus' },
+      { prop: 'fk_idStatusSistema' },
       { prop: 'opts'}
     ];
   }
@@ -71,10 +76,10 @@ export class PreguntasFrecuentesComponent implements OnInit {
         this.questions = resp.body.PFrec as Array<Question>;
         this.rows = [...this.questions];
       }else{
-        //Ha ocurrido un error aplicar toaster
+        this.ts.listError("Ha ocurrido un error interno");
       }
     }, (error) => {
-      //Error interno
+      this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
     });
   }
 
@@ -86,15 +91,15 @@ export class PreguntasFrecuentesComponent implements OnInit {
     const val = this.questionForm.value;
     this.preguntasService.persist({pregunta: val.pregunta, respuesta: val.respuesta}).subscribe((resp) => {
       if(resp.ok && resp.status === 201){
-        console.log('?',resp);//Aplicar toaster
         this.questionForm.get('respuesta').setValue('');
         this.questionForm.get('pregunta').setValue('');
         this.list();
+        this.ts.Success("El registro se ha guardado con éxito");
       }else{
-        //ha ocurrido un error
+        this.ts.listError(`Ha ocurrido un error interno`);
       }
     }, (error) => {
-      //Error interno
+      this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
     })
   }
 
@@ -113,33 +118,60 @@ export class PreguntasFrecuentesComponent implements OnInit {
         respuesta: val.respuesta
       }
     ).subscribe((resp)=> {
-      console.log(resp);
-      this.list();
+      if(resp.ok && resp.status === 200){
+        this.ts.Success("Se ha actualizado la información");
+        this.list();
+      }else{
+        this.ts.listError(`Ha ocurrido un error interno`);
+      }
+      
     },(error) => {
-      //error
+      this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
     })
   }
 
   delete(){
     this.preguntasService.delete(this.questionToUpdate.idPreguntaFrecuente)
       .subscribe((resp)=>{
-        console.log(resp);
-        this.list();
+        if(resp.ok && resp.status === 200){
+          this.ts.Success("Se ha eliminado el registro");
+          this.list();
+        }else{
+          this.ts.listError(`Ha ocurrido un error interno`);
+        }
       },(error) => {
-        //error
+        this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
       });
   }
 
-  set({idPreguntaFrecuente,pregunta,respuesta, estatus}){
+  set({idPreguntaFrecuente,pregunta,respuesta, fk_idStatusSistema}){
     this.questionToUpdate = {
-      idPreguntaFrecuente : idPreguntaFrecuente,
+      idPreguntaFrecuente: idPreguntaFrecuente,
       pregunta: pregunta,
       respuesta: respuesta,
-      estatus: estatus
+      fk_idStatusSistema: fk_idStatusSistema
     }
 
     this.questionUpdateForm.get('pregunta').setValue(pregunta);
     this.questionUpdateForm.get('respuesta').setValue(respuesta);
+  }
+
+  updateStatus(){
+    const status = (this.questionToUpdate.fk_idStatusSistema === 1) ? 2: 1;
+    this.preguntasService.updateStatus(
+      {
+        idPreguntaFrecuente: this.questionToUpdate.idPreguntaFrecuente,
+        fk_idStatusSistema: status
+      }).subscribe((resp) => {
+        if(resp.ok && resp.status === 200){
+          this.ts.Success("Se ha actualizado el estatus");
+          this.list();
+        }else{
+          this.ts.listError(`Ha ocurrido un error interno`);
+        }
+      }, (error) => {
+        this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
+      })
   }
 
   rowClass(){

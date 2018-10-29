@@ -33,8 +33,8 @@ export class PreguntasService {
         return this.http.delete<any>(`http://localhost:8000/api/auth/borrarPreguntaORespuesta/${id}`,this.httpOptions) as Observable<HttpResponse<any>>;        
     }
 
-    updateStatus(id: number){
-      
+    updateStatus(data: any){
+        return this.http.put<any>(`http://localhost:8000/api/auth/cambiarStatus/${data.idPreguntaFrecuente}`,{"fk_idStatusSistema": data.fk_idStatusSistema},this.httpOptions) as Observable<HttpResponse<any>>;      
     }
 
 

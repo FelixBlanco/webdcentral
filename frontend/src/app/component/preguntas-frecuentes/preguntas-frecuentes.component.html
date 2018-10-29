@@ -36,11 +36,11 @@
               <ngx-datatable-column name="#" prop="idPreguntaFrecuente"></ngx-datatable-column>
               <ngx-datatable-column name="Pregunta" prop="pregunta"></ngx-datatable-column>
               <ngx-datatable-column name="Respuesta" prop="respuesta"></ngx-datatable-column>
-              <ngx-datatable-column name="Estatus" prop="estatus">
+              <ngx-datatable-column name="Estatus" prop="fk_idStatusSistema">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                    <ng-container [ngSwitch]="row.estatus">
-                      <span class="text-danger" *ngSwitchCase="false">INACTIVO</span>
-                      <span class="text-success " *ngSwitchDefault>ACTIVO</span>
+                    <ng-container [ngSwitch]="row.fk_idStatusSistema">
+                      <span class="text-danger" *ngSwitchCase="2">INACTIVO</span>
+                      <span class="text-success" *ngSwitchDefault>ACTIVO</span>
                     </ng-container>
                 </ng-template>                    
               </ngx-datatable-column>
@@ -180,11 +180,17 @@
         </button>
       </div>
       <div class="modal-body">
-        <p class="text-muted">El siguiente regtistro pasará a estar en estatus ???</p>
+        <p class="text-muted">
+          El siguiente regtistro pasará a estar en estatus 
+          <ng-container *ngIf="questionToUpdate" [ngSwitch]="questionToUpdate.fk_idStatusSistema">
+            <span class="text-danger" *ngSwitchCase="1">INACTIVO</span>
+            <span class="text-success" *ngSwitchDefault>ACTIVO</span>
+          </ng-container>
+        </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-warning" data-dismiss="modal" disabled>Aceptar</button>
+        <button type="submit" class="btn btn-warning text-white" data-dismiss="modal" (click)="updateStatus()">Aceptar</button>
       </div>
     </div>
   </div>
