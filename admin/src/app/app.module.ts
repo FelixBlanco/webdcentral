@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -24,7 +26,7 @@ import { ImgInicioComponent } from './component/img-inicio/img-inicio.component'
 import { BajaAppInicioComponent } from './component/baja-app-inicio/baja-app-inicio.component';
 import { DestacadoInicioComponent } from './component/destacado-inicio/destacado-inicio.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeModule } from './component/home/home.module';
 import { AppRoutingModule } from './app-routing.module';
 import { TestComponent } from './component/test/test.component';
@@ -35,13 +37,7 @@ import { NotificationappComponent } from './component/notificationapp/notificati
 import { AuthbackendComponent } from './component/authbackend/authbackend.component';
 import { GestionUsuarioComponent } from './component/gestion-usuario/gestion-usuario.component';
 
-import { GaleriaHomeComponent } from './component/galeria-home/galeria-home.component';
-import { PerfilComponent } from './component/perfil/perfil.component';
-import { ConfigFooterComponent } from './component/config-footer/config-footer.component';
-import { ConfigHomeComponent } from './component/config-home/config-home.component';
-import { OfertasComponent } from './component/ofertas/ofertas.component';
-import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/reclamos-sugerencias.component';
-import { ConfigColorComponent } from './component/config-color/config-color.component';
+
 
 @NgModule({
   declarations: [
@@ -73,21 +69,17 @@ import { ConfigColorComponent } from './component/config-color/config-color.comp
     CuponsappComponent,
     NotificationappComponent,
     AuthbackendComponent,
-    GestionUsuarioComponent,
-    PerfilComponent,    
-    ConfigFooterComponent,
-    ConfigHomeComponent,
-    OfertasComponent,
-    ReclamosSugerenciasComponent,
-    ConfigColorComponent,
-    GaleriaHomeComponent
+    GestionUsuarioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    // HomeModule
+    ReactiveFormsModule,
+    HomeModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

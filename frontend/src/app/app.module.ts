@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+// import {ToastModule} from 'ng2-toastr/ng2-toastr';
+
 import { HomeModule } from './component/home/home.module';
 
 import { AppComponent } from './app.component';
@@ -32,6 +34,7 @@ import { ImgInicioComponent } from './component/img-inicio/img-inicio.component'
 import { BajaAppInicioComponent } from './component/baja-app-inicio/baja-app-inicio.component';
 import { DestacadoInicioComponent } from './component/destacado-inicio/destacado-inicio.component';
 
+
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'registro', component: RegisterComponent },
@@ -42,6 +45,8 @@ const appRoutes: Routes = [
   
   { path: '**', component: PageNotFoundComponent }
 ];
+
+
 
 @NgModule({
   declarations: [
