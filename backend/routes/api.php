@@ -154,6 +154,21 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // Paleta de color para el landing 
     Route::get('paleta-color', 'ColorController@ultimaPaletaColores');
+
+     // Sincronizador de productos 
+     Route::get('sincronize/product', 'ProductSincronizeController@sicronizeProduct');
+
+     // OBTENER TAGS 
+     Route::get('tags/filter', 'ProductoController@getAllTags');
+
+     // OBTENER RUBROS 
+     Route::get('rubro/filter', 'ProductoController@getAllRubros');
+
+      // OBTENER MARCAS 
+      Route::get('marcas/filter', 'ProductoController@getAllMarcas');
+
+     
+    
 });
 
 
