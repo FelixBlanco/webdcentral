@@ -20,6 +20,8 @@ class CreateOfertasTable extends Migration
             $table->string('imagen');
             $table->string('status');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

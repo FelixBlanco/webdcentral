@@ -3,8 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Oferta extends Model {
+
+    use SoftDeletes;
     protected $table      = 'tb_ofertas';
     protected $primaryKey = 'idOferta';
 

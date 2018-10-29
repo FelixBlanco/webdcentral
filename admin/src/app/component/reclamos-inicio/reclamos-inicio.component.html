@@ -1,0 +1,47 @@
+<!-- Modal -->
+<div class="modal fade" id="reclamoModel" tabindex="-1" role="dialog" aria-labelledby="reclamoModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reclamoModelLabel">Nuevo Reclamo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="">Titulo</label>
+            <input type="text" class="form-control" [(ngModel)]="form.titulo" placeholder="Titulo del reclarmo o sugerencia">
+          </div>
+          <div class="form-group">
+            <label for="">Descripción</label>
+            <textarea class="form-control" [(ngModel)]="form.descripcion" placeholder="descripcion"></textarea>
+          </div>      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="addReclamos()">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div style="padding-top:4%; padding-bottom:4%; background-color: #90bb1e">
+  <div class="container">
+      <div class="row">
+        <div class="col-md-8 text-center">
+          <span class="btn btn-r txt-blanco" style="background-color: #E97604;" data-toggle="modal" data-target="#reclamoModel"><b>SUGERENCIAS</b></span>
+          <span class="btn btn-r txt-blanco" style="background-color: #F5525A; margin-left:5%" data-toggle="modal" data-target="#reclamoModel"><b>RECLAMOS</b> </span>
+        </div>
+        <div class="col-md-4">
+          <p class="text-justify txt-blanco font-light">
+            <i style="font-size:21px;">
+              En Deposito Central nos importa tu experiencia. 
+              Si tienes algun Reclamo o Sugerencia por favor has 
+              click en el Botón que corresponda.
+            </i>
+          </p>
+        </div>
+      </div>
+    </div>
+</div>

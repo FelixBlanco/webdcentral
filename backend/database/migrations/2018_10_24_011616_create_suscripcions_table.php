@@ -17,8 +17,10 @@ class CreateSuscripcionsTable extends Migration
             $table->increments('idSuscripcion');
             $table->string('email')->nullable();
             $table->string('motivoDeCancelacion')->nullable();
-            $table->string('fk_idStatusSistema')->nullable();
+            $table->integer('fk_idStatusSistema')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
