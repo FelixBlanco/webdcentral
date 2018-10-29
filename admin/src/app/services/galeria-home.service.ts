@@ -19,7 +19,6 @@ export class GaleriaHomeService {
   ) { }
   
   _addSlideHome(data:any){
-    console.log(data)
     return this.http.post('http://localhost:8000/api/auth/createSlides',data,httpOptions);
   }
 

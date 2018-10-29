@@ -12,6 +12,8 @@ const httpOptions = {
   })
 };
 
+declare var $; 
+
 @Component({
   selector: 'app-galeria-home',
   templateUrl: './galeria-home.component.html',
@@ -72,8 +74,10 @@ export class GaleriaHomeComponent implements OnInit {
 
     this._galeriaHomeService._addSlideHome(galeriaHome).subscribe(
       (resp:any) => { 
-        this._alertService.Success(resp.msj);
-        this.new_galeria ={titulo: null, fk_idProducto:null, imagen:null} 
+        //this._alertService.Success(resp.msj);
+        $("#exampleModal").modal('hide');
+        this.new_galeria ={titulo: null, fk_idProducto:null, imagen:null}
+        this.getSlideHome(); 
       },
       error => {
         if(error.status == 500){

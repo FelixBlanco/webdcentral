@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  isLoged = true; // variable para mostrar login
+
+  isLoged = localStorage.getItem('sesion_login'); // variable para mostrar login
+  
+  constructor(){}
 }

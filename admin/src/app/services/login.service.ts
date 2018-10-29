@@ -25,11 +25,11 @@ export class LoginService {
     return this.http.post('http://localhost:8000/api/auth/login',data,httpOptions);
   }
 
-  _getAuthUser(){
+  _getAuthUser(origin_token:any){
     return this.http.get('http://localhost:8000/api/auth/getUser/',{
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Bearer ' + this.token,
+        'Authorization': 'Bearer ' + origin_token,
       })
     });
   }

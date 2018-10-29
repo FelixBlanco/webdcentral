@@ -1,7 +1,14 @@
-<div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <h3>Galeria Home</h3>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Galeria Slide</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Titulo" [(ngModel)]="new_galeria.titulo">
         </div>
@@ -14,19 +21,43 @@
         <div class="form-group">
           <input type="file" (change)="upImg($event)">
         </div>
-        <div class="form-group">
-          <button class="btn btn-success" (click)="addSlideHome()">Guardar</button>
-        </div>
-  
-        <hr>
-        
-        <ul class="list-group">
-          <li class="list-group-item" *ngFor="let l_g of list_galeria">
-            <img src="{{l_g.set_imagen}}" class="img-fluid" alt="">
-            <h4>{{l_g.titulo}}</h4>
-          </li>
-        </ul>
-  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="addSlideHome()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>
+          Galeria Home -  
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+            + Nuevo
+          </button>
+        </h3>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Titulo</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Imagen</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let l_g of list_galeria">
+                <th scope="row">{{l_g.titulo}}</th>
+                <td>Mark</td>
+                <td>
+                  <img src="{{l_g.set_imagen}}" class="img-fluid" alt="" width="100px"> 
+                </td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>  
       </div>  
     </div>
   </div>
