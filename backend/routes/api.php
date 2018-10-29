@@ -39,6 +39,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::put('editarPreguntaORespuesta/{idPreguntaFrecuente}','PreguntasFrecuenteController@editarPreguntaORespuesta'); //para editar
         Route::delete('borrarPreguntaORespuesta/{idPreguntaFrecuente}','PreguntasFrecuenteController@borrarPreguntaORespuesta'); //para borrar
         Route::post('listar','PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
+        Route::put('cambiarStatus/{idPreguntaFrecuente}','PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
         /* PREGUNTA Y RESPUESTA */
 
         /*PARA LOS DESTACADOS*/
@@ -96,7 +97,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     /* con esta ruta se busca y envian todos los productos*/
     Route::post('getProductos', 'ProductoController@listar');
 
-    /* Todo los productos */
+    /*Todo los productos */
     Route::get('getAllProductos', 'ProductoController@index');
 
     /* con esta ruta se activa isOutstanding*/

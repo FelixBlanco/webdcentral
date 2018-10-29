@@ -17,6 +17,8 @@ class CreateColorsTable extends Migration {
             $table->string('colorMedio');
             $table->string('colorClaro');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

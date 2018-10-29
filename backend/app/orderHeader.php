@@ -3,11 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class orderHeader extends Model
 {
     //
-
+    use SoftDeletes;
     protected $table = 'tb_order_header';
 
     protected $primaryKey = 'idOrderHeader';

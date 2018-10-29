@@ -18,6 +18,8 @@ class CreateDestacadosTable extends Migration
             $table->string('descripcion')->nullable();
             $table->string('fk_idProducto')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

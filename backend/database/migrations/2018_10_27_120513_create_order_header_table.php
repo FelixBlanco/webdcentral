@@ -25,6 +25,8 @@ class CreateOrderHeaderTable extends Migration
             $table->string('codeProdSys');
             $table->integer('fk_idUser');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

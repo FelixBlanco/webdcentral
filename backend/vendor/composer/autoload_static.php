@@ -3629,6 +3629,7 @@ class ComposerStaticInit382161484a43228177101e3df006e07c
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'SectionAppSeeder' => __DIR__ . '/../..' . '/database/seeds/SectionAppSeeder.php',
         'StatusReclamo' => __DIR__ . '/../..' . '/database/seeds/StatusReclamo.php',
+        'StatusSistemaSeeder' => __DIR__ . '/../..' . '/database/seeds/StatusSistemaSeeder.php',
         'Symfony\\Bridge\\PsrHttpMessage\\Factory\\DiactorosFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/DiactorosFactory.php',
         'Symfony\\Bridge\\PsrHttpMessage\\Factory\\HttpFoundationFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/HttpFoundationFactory.php',
         'Symfony\\Bridge\\PsrHttpMessage\\Factory\\PsrHttpFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/PsrHttpFactory.php',

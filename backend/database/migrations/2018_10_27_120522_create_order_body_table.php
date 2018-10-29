@@ -22,6 +22,8 @@ class CreateOrderBodyTable extends Migration
             $table->string('PorcentajeDescuento_Producto');
             $table->string('Devolucion_Producto');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

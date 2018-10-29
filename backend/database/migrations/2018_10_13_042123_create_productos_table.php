@@ -37,6 +37,8 @@ class CreateProductosTable extends Migration
             $table->string('marca')->nullable();
             $table->integer('fk_idSatate')->unsigned();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

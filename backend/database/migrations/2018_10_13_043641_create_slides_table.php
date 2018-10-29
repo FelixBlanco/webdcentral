@@ -19,6 +19,8 @@ class CreateSlidesTable extends Migration
             $table->string('imagen');
             $table->integer('fk_idProducto')->unsigned()->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
