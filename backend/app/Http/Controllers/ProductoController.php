@@ -18,6 +18,12 @@ class ProductoController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function buscarGeneral(){
+
+    }
+
+
     public function listarPorIsOutstanding() {
         $producto_activador    = Producto::where('isOutstanding', 1)->get();
         $producto_desactivador = Producto::where('isOutstanding', 0)->get();
@@ -237,7 +243,6 @@ class ProductoController extends Controller {
 
 
     public static function getAllTags() {
-
 
         $response = TagProduct::select("tag")->distinct('tag')->orderBy("tag")->get();
 

@@ -4,16 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrderBodyTable extends Migration
-{
+class CreateOrderBodyTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('tb_order_body', function (Blueprint $table) {
+    public function up() {
+        Schema::create('tb_order_body', function(Blueprint $table) {
             $table->increments('idOrderBody');
             $table->integer('fk_idOrderHeader');
             $table->string('codeProdSys');
@@ -33,8 +31,7 @@ class CreateOrderBodyTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('order_body');
     }
 }
