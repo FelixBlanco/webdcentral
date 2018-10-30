@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxDatatableModule }  from '@swimlane/ngx-datatable';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -24,7 +27,7 @@ import { ImgInicioComponent } from './component/img-inicio/img-inicio.component'
 import { BajaAppInicioComponent } from './component/baja-app-inicio/baja-app-inicio.component';
 import { DestacadoInicioComponent } from './component/destacado-inicio/destacado-inicio.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeModule } from './component/home/home.module';
 import { AppRoutingModule } from './app-routing.module';
 import { TestComponent } from './component/test/test.component';
@@ -42,6 +45,10 @@ import { ConfigHomeComponent } from './component/config-home/config-home.compone
 import { OfertasComponent } from './component/ofertas/ofertas.component';
 import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/reclamos-sugerencias.component';
 import { ConfigColorComponent } from './component/config-color/config-color.component';
+import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
+import { PreguntasService } from './services/preguntas.service';
+import { AlertsService } from './services/alerts.service';
+
 
 @NgModule({
   declarations: [
@@ -80,16 +87,24 @@ import { ConfigColorComponent } from './component/config-color/config-color.comp
     OfertasComponent,
     ReclamosSugerenciasComponent,
     ConfigColorComponent,
-    GaleriaHomeComponent
+    GaleriaHomeComponent,
+    PreguntasFrecuentesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    // HomeModule
+    ReactiveFormsModule,
+    HomeModule,
+    NgxDatatableModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    PreguntasService,
+    AlertsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

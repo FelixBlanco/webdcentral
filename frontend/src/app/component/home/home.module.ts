@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms'; //Formularios 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //Formularios 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { HomeComponent } from './home.component';
 import { PerfilComponent } from '../perfil/perfil.component';
@@ -14,6 +15,13 @@ import { OfertasComponent } from './../ofertas/ofertas.component';
 import { ReclamosSugerenciasComponent } from './../reclamos-sugerencias/reclamos-sugerencias.component';
 import { ConfigColorComponent } from './../config-color/config-color.component';
 import { AlertsComponent } from './../alerts/alerts.component';
+import { PreguntasFrecuentesComponent } from '../preguntas-frecuentes/preguntas-frecuentes.component';
+import { PreguntasService } from 'src/app/services/preguntas.service';
+import { FA_ICONS } from 'src/app/models/constants/fontawesome.icons.constant';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+library.add(FA_ICONS);
 
 const routerAdmin: Routes = [
   { path: 'home', component: HomeComponent,
@@ -26,6 +34,7 @@ const routerAdmin: Routes = [
       { path: 'ofertas', component: OfertasComponent },
       { path: 'reclamos-sugerencias', component: ReclamosSugerenciasComponent},
       { path: 'config-color', component: ConfigColorComponent},
+      { path: 'preguntas-frecuentes', component: PreguntasFrecuentesComponent},
     ]
   }
 ] 
@@ -34,7 +43,10 @@ const routerAdmin: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routerAdmin),
-    FormsModule
+    FormsModule,
+    NgxDatatableModule,
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   declarations: [
     HomeComponent,
@@ -47,10 +59,14 @@ const routerAdmin: Routes = [
     OfertasComponent,
     ReclamosSugerenciasComponent,
     ConfigColorComponent,
-    AlertsComponent
+    AlertsComponent,
+    PreguntasFrecuentesComponent
   ],
   exports:[
     RouterModule
+  ],
+  providers:[
+    PreguntasService
   ]
 })
 export class HomeModule { }

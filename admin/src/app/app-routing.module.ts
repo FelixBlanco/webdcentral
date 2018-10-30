@@ -13,6 +13,7 @@ import { ConfigHomeComponent } from './component/config-home/config-home.compone
 import { OfertasComponent } from './component/ofertas/ofertas.component';
 import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/reclamos-sugerencias.component';
 import { ConfigColorComponent } from './component/config-color/config-color.component';
+import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
 
 const routes: Routes = [
   { path: 'Galeria', component: GaleriaHomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'ofertas', component: OfertasComponent },
   { path: 'reclamos-sugerencias', component: ReclamosSugerenciasComponent},
   { path: 'config-color', component: ConfigColorComponent},
+  { path: 'Preguntas-Frecuentes', component: PreguntasFrecuentesComponent}
 
 ];
 
