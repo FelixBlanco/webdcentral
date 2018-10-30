@@ -40,10 +40,12 @@ export class GestionUsuarioComponent implements OnInit {
         $("#newUserModal").modal('hide');
         this.newForm= { name: null, userNane: null, email: null }
         // this.alertService.Success('Usuario creado satifactoriamente');
+        this.alertService.msg("OK","Éxito", "Se ha guardado el registro");
         this.listaUser();
       },
       error => {
-        this.alertService.listError(error.error);
+        // this.alertService.listError(error.error);
+        this.alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
       }
     )
   }
@@ -59,10 +61,12 @@ export class GestionUsuarioComponent implements OnInit {
         this.editForm = { id:null, name: null, userNane: null, email: null, password: null }
         $("#exampleModal").modal('hide');
         // this.alertService.Success('Usuario editados exitosamente');
+        this.alertService.msg("OK","Éxito", "Se ha actualizo el registro");
         this.listaUser();
       },
       error => {
-        this.alertService.listError(error.error);
+        // this.alertService.listError(error.error);
+        this.alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
       }
     )
   }
@@ -71,10 +75,10 @@ export class GestionUsuarioComponent implements OnInit {
     this.UsuariosService.deleteUser(id).subscribe(
       resp => {
         this.listaUser();
-        console.log(resp);
+        this.alertService.msg("OK","Éxito", "Se ha elimino correctamente");
       },
       error => {
-        console.log(error);
+        this.alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
       }
     )
   }

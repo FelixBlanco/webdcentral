@@ -38,8 +38,8 @@ export class ConfigFooterComponent implements OnInit {
 
   upgradeCondigFooter(){
     this._confgFooterService._upgradeConfigFooter(this.data).subscribe(
-      resp => { this.getConfigFooter();  this._alertService.Success('Actualizacion completada') },
-      error => { this._alertService.listError(error.error) }
+      resp => { this.getConfigFooter();  this._alertService.msg("OK","Éxito", "Actualizacion exitosa"); },
+      error => { this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`); }
     );
   }
 }
