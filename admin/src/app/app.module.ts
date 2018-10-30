@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
-import { NgxDatatableModule }  from '@swimlane/ngx-datatable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -38,16 +37,6 @@ import { NotificationappComponent } from './component/notificationapp/notificati
 import { AuthbackendComponent } from './component/authbackend/authbackend.component';
 import { GestionUsuarioComponent } from './component/gestion-usuario/gestion-usuario.component';
 
-import { GaleriaHomeComponent } from './component/galeria-home/galeria-home.component';
-import { PerfilComponent } from './component/perfil/perfil.component';
-import { ConfigFooterComponent } from './component/config-footer/config-footer.component';
-import { ConfigHomeComponent } from './component/config-home/config-home.component';
-import { OfertasComponent } from './component/ofertas/ofertas.component';
-import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/reclamos-sugerencias.component';
-import { ConfigColorComponent } from './component/config-color/config-color.component';
-import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
-import { PreguntasService } from './services/preguntas.service';
-import { AlertsService } from './services/alerts.service';
 
 
 @NgModule({
@@ -80,15 +69,7 @@ import { AlertsService } from './services/alerts.service';
     CuponsappComponent,
     NotificationappComponent,
     AuthbackendComponent,
-    GestionUsuarioComponent,
-    PerfilComponent,    
-    ConfigFooterComponent,
-    ConfigHomeComponent,
-    OfertasComponent,
-    ReclamosSugerenciasComponent,
-    ConfigColorComponent,
-    GaleriaHomeComponent,
-    PreguntasFrecuentesComponent
+    GestionUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -97,14 +78,10 @@ import { AlertsService } from './services/alerts.service';
     FormsModule,
     ReactiveFormsModule,
     HomeModule,
-    NgxDatatableModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [
-    PreguntasService,
-    AlertsService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
