@@ -16,7 +16,6 @@ class Producto extends Model {
         'titulo',
         'urlImage',
         'promocion',
-        'categoria',
         'fk_idSatate',
         'isOutstanding',
         'fechaIsOutstanding',

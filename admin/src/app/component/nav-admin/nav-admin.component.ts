@@ -24,7 +24,7 @@ export class NavAdminComponent implements OnInit {
       PRONTO INICIE LA EL LOGIN QUE VALIDE LA INFORMACION 
     ****/
 
-    this._loginService._getAuthUser().subscribe(
+    this._loginService._getAuthUser(localStorage.getItem('access_token')).subscribe(
       (resp:any) => {
         console.log('activo');
         this.dataUser.userName = resp.userName;
@@ -45,7 +45,7 @@ export class NavAdminComponent implements OnInit {
   }
   
   salirLogin(){
-    
+    /*
     this._loginService._salirLogin().subscribe(
       (resp:any) => { 
         this._alerts.Success('Saliendo...')
@@ -53,7 +53,7 @@ export class NavAdminComponent implements OnInit {
         this.router.navigate(['']); 
       },
       error => { console.log('algo salio mal'); console.log(error) }
-    )
+    )*/
   }
   
 }

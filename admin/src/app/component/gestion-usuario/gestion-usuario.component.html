@@ -1,0 +1,98 @@
+<!-- Modal nuevo -->
+<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="newUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalLabel">Nuevo Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="">Nombre</label>
+          <input type="text" class="form-control" [(ngModel)]="newForm.name">
+        </div>
+        <div class="form-group">
+          <label for="">UserName</label>
+          <input type="text" class="form-control" [(ngModel)]="newForm.userName">
+        </div>
+        <div class="form-group">
+          <label for="">Correo Electronico</label>
+          <input type="text" class="form-control" [(ngModel)]="newForm.email">
+        </div>
+        <div class="form-group">
+          <label for="">Contraseña</label>
+          <input type="password" class="form-control" [(ngModel)]="newForm.password">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" (click)="addUser()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar {{editForm.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="editForm.name">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="editForm.userName">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="editForm.email">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" (click)="upgradeUser()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="p-2">Gestion de Usuarios - <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#newUserModal" > Agregar Usuario</button></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">UserName</th>
+            <th scope="col">Email</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let listUser of listUsers">
+            <th scope="row">{{listUser.name}}</th>
+            <td>{{listUser.userName}}</td>
+            <td>{{listUser.email}}</td>
+            <td>
+              <button class="btn btn-primary btn-sm" (click)="editUser(listUser)">Editar</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteUser(listUser.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

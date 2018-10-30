@@ -28,12 +28,12 @@ export class ReclamosSugerenciasComponent implements OnInit {
   }
 
   getLoginUser(){
-    this._loginService._getAuthUser().subscribe(
-      (resp:any) => {
-        this.form.fk_idUser = resp.id
-        this.idPerfil = resp.fk_idPerfil
-      }
-    )
+    // this._loginService._getAuthUser().subscribe(
+    //   (resp:any) => {
+    //     this.form.fk_idUser = resp.id
+    //     this.idPerfil = resp.fk_idPerfil
+    //   }
+    // )
   }
 
   getReclamos(){

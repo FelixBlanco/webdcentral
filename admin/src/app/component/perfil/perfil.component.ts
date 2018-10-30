@@ -24,19 +24,19 @@ export class PerfilComponent implements OnInit {
   }
 
   getAuthUser(){
-    this._loginService._getAuthUser().subscribe(
-      (resp:any) => {
-        this.form.id = resp.id;
-        this.form.name = resp.name;
-        this.form.userName = resp.userName;
-        this.form.email = resp.email;
-        this.img_perfil = resp.img_perfil
-        this.form.fk_idPerfil = resp.fk_idPerfil
-      },
-      error =>{
-        console.log(error);
-      }
-    )
+    // this._loginService._getAuthUser().subscribe(
+    //   (resp:any) => {
+    //     this.form.id = resp.id;
+    //     this.form.name = resp.name;
+    //     this.form.userName = resp.userName;
+    //     this.form.email = resp.email;
+    //     this.img_perfil = resp.img_perfil
+    //     this.form.fk_idPerfil = resp.fk_idPerfil
+    //   },
+    //   error =>{
+    //     console.log(error);
+    //   }
+    // )
   }
 
   upImgPerfil(event){
