@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div class="modal fade" id="carrito" tabindex="-1" role="dialog" aria-labelledby="carritoTittle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-azul">
+        <h5 class="modal-title text-white  text-uppercase" id="carritoTittle">Carrito de Compras</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="text-white" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card p-2">
+          <div class="card-body">
+              <ngx-datatable
+              class='bootstrap'
+              [rows]='rows'
+              [columns]='columns'
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [rowHeight]="60"
+              [scrollbarV]="true">
+              <ngx-datatable-column name="Producto" prop="producto"></ngx-datatable-column>
+              <ngx-datatable-column name="Descripción" prop="descripcion"></ngx-datatable-column>
+              <ngx-datatable-column name="Precio" prop="precio">
+                <ng-template ngx-datatable-cell-template let-row="row">
+                  <span>${{row.precio}}</span>
+                </ng-template> 
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Cantidad" prop="cantidad" >
+                  <ng-template ngx-datatable-cell-template let-row="row">
+                    <button class="btn btn-link txt-naranja" (click)="incrase(row.id,false)"><fa-icon [icon]="['fas', 'minus-circle']"></fa-icon></button>
+                    <span class="m-1">{{row.cantidad}}</span>
+                    <button class="btn btn-link txt-naranja" (click)="incrase(row.id,true)"><fa-icon [icon]="['fas', 'plus-circle']"></fa-icon></button>
+                  </ng-template>   
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Total" prop="total">
+                <ng-template ngx-datatable-cell-template let-row="row">
+                  <span>${{row.cantidad * row.precio}}</span>
+                </ng-template> 
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light text-uppercase txt-naranja font-bold" data-dismiss="modal">continuar comprando</button>
+        <button type="button" class="btn btn-light text-uppercase txt-verde font-bold" data-dismiss="modal">pagar</button>
+      </div>
+    </div>
+  </div>
+</div>
