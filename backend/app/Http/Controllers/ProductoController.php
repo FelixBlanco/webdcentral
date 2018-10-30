@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 
-
 class ProductoController extends Controller {
     /**
      * Display a listing of the resource.
@@ -116,7 +115,7 @@ class ProductoController extends Controller {
                 $busqueda = "%".$request->search."%";
 
                 $productos = Producto::where('nombre', 'like', $busqueda)
-                    ->where('fk_idSatate','=',1)
+                    ->where('fk_idSatate', '=', 1)
                     ->orWhere('titulo', 'like', $busqueda)
                     ->orWhere('categoria', 'like', $busqueda)
                     ->get();
@@ -140,7 +139,7 @@ class ProductoController extends Controller {
         $busqueda = $nombre."%";
 
         $productos = Producto::where('nombre', 'like', $busqueda)
-        ->where('fk_idSatate', '=', 1)->get();
+            ->where('fk_idSatate', '=', 1)->get();
 
         $response = [
             'msj'       => 'Lista de productos',
@@ -156,79 +155,79 @@ class ProductoController extends Controller {
         return Producto::get();
     }
 
-    
-    public static function create($_product) {
-        $rs = Producto::where("codeProdSys","=",$_product['codeProdSys'])->first();
-        
-        if(!$rs){
 
-            $product                    = new Producto();
-            $product->nombre            = $_product['nombre'];
-            $product->titulo            = $_product['titulo'];
-            $product->urlImage          = $_product['urlImage'];
-            $product->promocion         = $_product['promocion'];
-            $product->codeProdSys = $_product['codeProdSys'];
-            $product->kiloProdcuto = $_product['kiloProdcuto'];
-            $product->SubRubro1 = $_product['SubRubro1'];
-            $product->SubRubro2 = $_product['SubRubro2'];
-            $product->precioL1 = $_product['precioL1'];
-            $product->precioL2 = $_product['precioL2'];
-            $product->precioL3 = $_product['precioL3'];
-            $product->precioL4 = $_product['precioL4'];
-            $product->precioL5 = $_product['precioL5'];
-            $product->precioL6 = $_product['precioL6'];
-            $product->precioL7 = $_product['precioL7'];
-            $product->precioL8 = $_product['precioL8'];
-            $product->precioL9 = $_product['precioL9'];
-            $product->rubro = $_product['rubro'];
-            $product->marca = $_product['marca'];
-            $product->fk_idSatate = 1;
-            $product->destacado = 0;
+    public static function create($_product) {
+        $rs = Producto::where("codeProdSys", "=", $_product['codeProdSys'])->first();
+
+        if (! $rs) {
+
+            $product                = new Producto();
+            $product->nombre        = $_product['nombre'];
+            $product->titulo        = $_product['titulo'];
+            $product->urlImage      = $_product['urlImage'];
+            $product->promocion     = $_product['promocion'];
+            $product->codeProdSys   = $_product['codeProdSys'];
+            $product->kiloProdcuto  = $_product['kiloProdcuto'];
+            $product->SubRubro1     = $_product['SubRubro1'];
+            $product->SubRubro2     = $_product['SubRubro2'];
+            $product->precioL1      = $_product['precioL1'];
+            $product->precioL2      = $_product['precioL2'];
+            $product->precioL3      = $_product['precioL3'];
+            $product->precioL4      = $_product['precioL4'];
+            $product->precioL5      = $_product['precioL5'];
+            $product->precioL6      = $_product['precioL6'];
+            $product->precioL7      = $_product['precioL7'];
+            $product->precioL8      = $_product['precioL8'];
+            $product->precioL9      = $_product['precioL9'];
+            $product->rubro         = $_product['rubro'];
+            $product->marca         = $_product['marca'];
+            $product->fk_idSatate   = 1;
+            $product->destacado     = 0;
             $product->isOutstanding = 0;
 
             $product->save();
-        }else{
-            $rs->nombre            = $_product['nombre'];
-            $rs->titulo            = $_product['titulo'];
-            $rs->urlImage          = $_product['urlImage'];
-            $rs->promocion         = $_product['promocion'];
-            $rs->codeProdSys = $_product['codeProdSys'];
+        } else {
+            $rs->nombre       = $_product['nombre'];
+            $rs->titulo       = $_product['titulo'];
+            $rs->urlImage     = $_product['urlImage'];
+            $rs->promocion    = $_product['promocion'];
+            $rs->codeProdSys  = $_product['codeProdSys'];
             $rs->kiloProdcuto = $_product['kiloProdcuto'];
-            $rs->SubRubro1 = $_product['SubRubro1'];
-            $rs->SubRubro2 = $_product['SubRubro2'];
-            $rs->precioL1 = $_product['precioL1'];
-            $rs->precioL2 = $_product['precioL2'];
-            $rs->precioL3 = $_product['precioL3'];
-            $rs->precioL4 = $_product['precioL4'];
-            $rs->precioL5 = $_product['precioL5'];
-            $rs->precioL6 = $_product['precioL6'];
-            $rs->precioL7 = $_product['precioL7'];
-            $rs->precioL8 = $_product['precioL8'];
-            $rs->precioL9 = $_product['precioL9'];
-            $rs->rubro = $_product['rubro'];
-            $rs->marca = $_product['marca'];
-            $rs->fk_idSatate = 1;
+            $rs->SubRubro1    = $_product['SubRubro1'];
+            $rs->SubRubro2    = $_product['SubRubro2'];
+            $rs->precioL1     = $_product['precioL1'];
+            $rs->precioL2     = $_product['precioL2'];
+            $rs->precioL3     = $_product['precioL3'];
+            $rs->precioL4     = $_product['precioL4'];
+            $rs->precioL5     = $_product['precioL5'];
+            $rs->precioL6     = $_product['precioL6'];
+            $rs->precioL7     = $_product['precioL7'];
+            $rs->precioL8     = $_product['precioL8'];
+            $rs->precioL9     = $_product['precioL9'];
+            $rs->rubro        = $_product['rubro'];
+            $rs->marca        = $_product['marca'];
+            $rs->fk_idSatate  = 1;
             $rs->update();
 
         }
     }
 
-    
-    public static function createTag($_tag) {
-       
-        $rs = TagProduct::where("codeProdSys","=",$_tag['codeProdSys'])
-        ->where("tag","=",$_tag['tag'])
-        ->first();
 
-        if(!is_null($_tag['tag']) && !is_null($_tag['codeProdSys'])){
-            if(!$rs){
-                $tag                  = new TagProduct();
-                $tag->tag             = @$_tag['tag'];
+    public static function createTag($_tag) {
+
+        $rs = TagProduct::where("codeProdSys", "=", $_tag['codeProdSys'])
+            ->where("tag", "=", $_tag['tag'])
+            ->first();
+
+        if (! is_null($_tag['tag']) && ! is_null($_tag['codeProdSys'])) {
+            if (! $rs) {
+                $tag              = new TagProduct();
+                $tag->tag         = @$_tag['tag'];
                 $tag->codeProdSys = @$_tag['codeProdSys'];
                 $tag->fk_idSatate = 1;
                 $tag->save();
-            }else{
-                $tag                  = new TagProduct();
+            } else {
+                $tag              = new TagProduct();
                 $tag->fk_idSatate = 1;
                 $tag->update();
 
@@ -238,29 +237,28 @@ class ProductoController extends Controller {
 
 
     public static function getAllTags() {
-        
-        
-       $response = TagProduct::select("tag")->distinct('tag')->orderBy("tag")->get();
-                    
+
+
+        $response = TagProduct::select("tag")->distinct('tag')->orderBy("tag")->get();
+
         return response()->json($response, 202);
     }
 
 
-
     public static function getAllRubros() {
-        
-        
+
+
         $response = Producto::select("rubro")->distinct('rubro')->orderBy("rubro")->get();
-                    
+
         return response()->json($response, 202);
     }
 
     public static function getAllMarcas() {
-        
-        
+
+
         $response = Producto::select("marca")->distinct('marca')->orderBy("marca")->get();
-                     
-         return response()->json($response, 202);
-     }
-    
+
+        return response()->json($response, 202);
+    }
+
 }

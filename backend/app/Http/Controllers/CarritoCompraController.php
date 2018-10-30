@@ -35,7 +35,7 @@ class CarritoCompraController extends Controller {
             $producto=Producto::find($request->fk_idProducto);
 
             if($producto){
-                $precio=$producto->precio
+                //$precio=$producto->precio
 
                 $carrito = new CarritoCompra($request->all());
 
