@@ -51,7 +51,7 @@ export class OfertasComponent implements OnInit {
           // document.getElementById('#agregarOfertaModal').onclick;
           this.getOfertas();
           this.form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
-          this._alertService.msg("OK","Éxito", "Se Guardo exitosa");
+          this._alertService.msg("OK", "Éxito", "Se guardó correctamente");
         },
         error => {
           this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
@@ -67,7 +67,7 @@ export class OfertasComponent implements OnInit {
           this.editOferta(this.form_ofertas.idOferta)
           $("#editarOfertaModal").modal('hide');
           this.form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
-          this._alertService.msg("OK","Éxito", "Se Edito exitosa");
+          this._alertService.msg("OK", "Éxito", "Se editó correctamente");
         },
         error => {
           this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
