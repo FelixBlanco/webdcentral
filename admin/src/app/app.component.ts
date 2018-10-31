@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   isLoged = localStorage.getItem('sesion_login'); // variable para mostrar login
-  
+
   constructor(){}
 }

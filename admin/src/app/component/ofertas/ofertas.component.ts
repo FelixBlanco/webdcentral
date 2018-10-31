@@ -47,7 +47,8 @@ export class OfertasComponent implements OnInit {
     if(x == 'add'){   
       this.ofertaServices._addOfertas(formData).subscribe(
         resp => {
-          $("#agregarOfertaModal").modal('hide');
+          // $("#agregarOfertaModal").modal('hide');
+          // document.getElementById('#agregarOfertaModal').onclick;
           this.getOfertas();
           this.form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
           this._alertService.msg("OK","Éxito", "Se Guardo exitosa");

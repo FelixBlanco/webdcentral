@@ -14,6 +14,7 @@ export class EnviosInicioComponent implements OnInit {
   ngOnInit() {
 
     $("#como_comprar").hover(function(){
+      console.log('hover')
       $("#como_comprar").attr('src',"../assets/envios-inicio/como_comprar_2.png")
     },function(){
       $("#como_comprar").attr('src',"../assets/envios-inicio/como_comprar_1.png")
