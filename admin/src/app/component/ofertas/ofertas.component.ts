@@ -51,7 +51,7 @@ export class OfertasComponent implements OnInit {
           this.getOfertas();
           $("#agregarOfertaModal").modal('hide');
           this.form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
-          this._alertService.Success('Se guardo correctamente')
+          this._alertService.msg("OK", "Éxito", "Se guardó correctamente");
         },
         error => {
           this._alertService.Erros(error.error.message);
@@ -67,7 +67,7 @@ export class OfertasComponent implements OnInit {
           this.editOferta(this.form_ofertas.idOferta)
           $("#editarOfertaModal").modal('hide');
           this.form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
-          this._alertService.Success('Se edito correctamente')
+          this._alertService.msg("OK", "Éxito", "Se editó correctamente");
         },
         error => {
           this._alertService.Erros(error.error.message);

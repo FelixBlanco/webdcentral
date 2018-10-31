@@ -1,5 +1,5 @@
 <!-- Primer Nav -->
-<div class="container-fluid" [ngStyle]="{background: colorUno }">
+<div class="container-fluid" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
   <div class="row">
     <div class="col-md-5">
       <p class="font-light txt-blanco" style="font-size:15px; margin-top: 10px;">EL MEJOR PRECIO AL ALCANCE DE  <b class="font-bold">TU MASCOTA</b></p>
@@ -9,14 +9,14 @@
         <li class="nav-item txt-blanco">
           <a href="#" class="nav-link" data-toggle="modal" data-target="#loginModal">INGRESA</a>
         </li>
-        <li class="nav-item txt-blanco">
+        <li class="nav-item txt-blanco"> 
           <a href="#" class="nav-link">AYUDA</a>
         </li>
         <li class="nav-item txt-blanco">
           <a href="#" class="nav-link" data-toggle="modal" data-target="#registraseModal">REGISTRATE</a>
         </li>
         <li class="nav-item txt-blanco" >
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link" data-toggle="modal" data-target="#carrito">
             <img src="../assets/social/carrito.png" width="20px">
           </a>
         </li>
