@@ -56,6 +56,14 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::post('crearRedSocial','RedSocial@store');
         Route::PUT('updateRedesSociales/{id_RedSocial}','RedSocial@update');
         /*REDES SOCIALES*/
+
+        /*ORDER BODY (carrito de compra)*/
+        Route::post('añadir','OrderBodyController@añadir');
+        /*ORDER BODY (carrito de compra)*/
+
+        /*ORDER HEADER (Orden de compra)*/
+        Route::post('añadir','OrderHeaderController@añadir');
+        /*ORDER HEADER (Orden de compra)*/
     });
 });
 
