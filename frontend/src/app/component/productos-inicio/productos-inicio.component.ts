@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductosService } from '../../services/productos.service'
 
 @Component({
   selector: 'app-productos-inicio',
@@ -8,23 +7,13 @@ import { ProductosService } from '../../services/productos.service'
 })
 
 export class ProductosInicioComponent implements OnInit {
-
-  listProductos:any;
   
   constructor(
-    private _productoService: ProductosService
+
   ) { }
 
   ngOnInit() {
-    this._productoService._getProductos().subscribe(
-      resp => {
-        console.log(resp)
-        this.listProductos = resp;
-        
-      }
-    )
+
   }
-
-
 
 }

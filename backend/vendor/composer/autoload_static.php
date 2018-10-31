@@ -515,6 +515,7 @@ class ComposerStaticInit382161484a43228177101e3df006e07c
         'App\\StatusReclamo' => __DIR__ . '/../..' . '/app/StatusReclamo.php',
         'App\\StatusSistema' => __DIR__ . '/../..' . '/app/StatusSistema.php',
         'App\\Suscripcion' => __DIR__ . '/../..' . '/app/Suscripcion.php',
+        'App\\TagProduct' => __DIR__ . '/../..' . '/app/TagProduct.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\orderBody' => __DIR__ . '/../..' . '/app/orderBody.php',
         'App\\orderHeader' => __DIR__ . '/../..' . '/app/orderHeader.php',

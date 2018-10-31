@@ -6,7 +6,8 @@
 }
 
 h3{
-    display: none;
+    color: white;
+    font-weight: bold;
     margin-top: 80%;
     z-index: 1;
 }

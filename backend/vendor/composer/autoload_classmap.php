@@ -77,6 +77,7 @@ return array(
     'App\\StatusReclamo' => $baseDir . '/app/StatusReclamo.php',
     'App\\StatusSistema' => $baseDir . '/app/StatusSistema.php',
     'App\\Suscripcion' => $baseDir . '/app/Suscripcion.php',
+    'App\\TagProduct' => $baseDir . '/app/TagProduct.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\orderBody' => $baseDir . '/app/orderBody.php',
     'App\\orderHeader' => $baseDir . '/app/orderHeader.php',

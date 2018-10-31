@@ -1,0 +1,49 @@
+#kg-id{
+    margin-bottom: 6%;
+    margin-top: 7%;
+}
+
+#kg-id li{
+    margin-left: 8%;
+}
+#kg-id .badge{
+    border-radius: 100%;
+    border: 1px solid #e97604;
+    color: #e97604;
+    font-size: 14px;
+    padding: 8px;
+    width: 52px;
+}
+
+.nro{ font-size: 20px; }
+
+#count_list li{
+    margin-left: 8%;
+    font-size: 22px;
+}
+
+#nro_count span{
+    background-color: white;
+    border-radius: 100px;
+    border: 1px solid #e97604;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 8px;
+    width: 43px;
+}
+
+.btn-comprar{
+    background: #E97604;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    width: 100%;
+    margin-top: 4%;
+}
+.btn-comprar:hover{
+    color: white;
+}
+
+.card-body{
+    border-radius: 110px 110px 0px 0px;
+}
