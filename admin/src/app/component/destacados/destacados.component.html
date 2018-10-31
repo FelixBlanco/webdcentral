@@ -43,11 +43,11 @@
         
           <div class="form-group">
             <label for="Descripción">Pregunta:</label>
-            <textarea type="text" [(ngModel)]="editDestacado.descripcion" (value)="edit_form.descripcion" class="form-control" placeholder="Descripcion" [ngModelOptions]="{standalone: true}"></textarea>
+            <textarea type="text" [(ngModel)]="edit_form.descripcion" (value)="edit_form.descripcion" class="form-control" placeholder="Descripcion" [ngModelOptions]="{standalone: true}"></textarea>
           </div>
           <div class="form-group">
             <label for="producto">Producto:</label>
-            <select [(ngModel)]="editDestacado.fk_idProducto" class="form-control" [ngModelOptions]="{standalone: true}">
+            <select [(ngModel)]="edit_form.fk_idProducto" class="form-control" [ngModelOptions]="{standalone: true}">
               <option value="1">1</option>
             </select>
           </div>
@@ -60,10 +60,15 @@
     </div>
   </div>
 </div>
-    
-<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Nuevo</button>
 
-<table class="table table-striped">
+<div class="row" style="margin-top:2%;">
+  <div class="col-md-4 offset-md-8">
+      <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Nuevo</button>
+  </div>
+</div>
+
+
+<table class="table table-striped" style="margin-top:2%;">
   <tr>
     <th>Descripcion</th>
     <th></th>
@@ -71,7 +76,8 @@
   <tr *ngFor="let lista_destacado of lista_destacados">
     <td>{{ lista_destacado.descripcion }}</td>
     <td>
-      <button class="btn btn-primary" data-toggle="modal" data-target="#editar" (click)="editDestacado(lista_destacado)"><span class="glyphicon glyphicon-pencil"></span></button>
+      <!-- data-toggle="modal" data-target="#editar" -->
+      <button class="btn btn-primary"  (click)="editDestacado(lista_destacado)"><span class="glyphicon glyphicon-pencil"></span></button>
       <button class="btn btn-danger" (click)="deleteDestacados(lista_destacado.id_Destacado)"><span class="glyphicon glyphicon-trash"></span> </button>
     </td>
   </tr>

@@ -46,6 +46,7 @@ export class DestacadosComponent implements OnInit {
   }
 
   editDestacado(data:any){
+    $("#editar").modal('show');
     console.log(data.descripcion)
     this.edit_form.id_Destacado = data.id_Destacado;
     this.edit_form.descripcion = data.descripcion;

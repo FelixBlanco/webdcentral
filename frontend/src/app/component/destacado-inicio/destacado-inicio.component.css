@@ -44,6 +44,8 @@
     color: white;
 }
 
+.card{ border:none; }
+
 .card-body{
-    border-radius: 110px 110px 0px 0px;
+    border-radius: 62px 62px 0px 0px;
 }

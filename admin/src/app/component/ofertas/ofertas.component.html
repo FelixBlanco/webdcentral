@@ -69,16 +69,32 @@
       </div>
     </div>
   </div>
+  
   <div class="row">
-    <div class="col-md-3" *ngFor="let o of listOfertas">
-      <div class="card" style="width: 18rem; margin-left: 10%; margin-bottom: 3%;" >
-        <img class="card-img-top"  src="{{o.set_imagen}}" width="100px">
-        <div class="card-body">
-          <h5 class="card-title"> Titulo: {{o.titulo}}</h5>
-          <p class="card-text">Tiempo de Expriracion: {{o.tiempoExpi}}</p>
-          <div href="#" class="btn btn-primary btn-sm" (click)="editOferta(o)">  Editar</div>
-        </div>
-      </div>
+    <div class="col-md-12">
+      <table class="table">
+        <tr>
+          <th>
+            Titulo
+          </th>
+          <th>
+            Tiempo de Expiración
+          </th>
+          <th>
+              imagen
+          </th>
+          <th></th>
+        </tr>
+
+        <tr *ngFor="let o of listOfertas">
+            <td>{{o.titulo}}</td>
+            <td>{{o.tiempoExpi}}</td>
+            <td><img class="card-img-top"  src="{{o.set_imagen}}" width="100px"></td>
+            <td>
+              <div href="#" class="btn btn-primary btn-sm" (click)="editOferta(o)"> Editar</div>
+            </td>
+          </tr>
+      </table>
     </div>
   </div>
 </div>

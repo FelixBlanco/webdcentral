@@ -1,13 +1,48 @@
-<div class="container">
+<body class="hold-transition login-page">
+    <div class="login-box">
+      <div class="login-logo">
+        <a ><b>Deposito central </b>Admin</a>
+      </div>
+      <!-- /.login-logo -->
+      <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+    
+        <form action="../../index2.html" method="post">
+          <div class="form-group has-feedback">
+            <label for="">Escribe tu correo electronico</label> <br>
+            <input type="text" placeholder="Correo Electronico" [(ngModel)]="email" class="form-control">
+          </div>
+
+          <div class="row">
+            
+            <!-- /.col -->
+            <div class="col-xs-4">
+                <button class="btn btn-primary" (click)="newForget()">Entrar</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+    
+       
+        <a routerLink="">Iniciar Sesión</a><br>
+    
+      </div>
+      <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+    
+    
+    </body>
+
+<!-- <div class="container">
   <div class="row text-justify-center">
     <div class="col-md-5">
       <div class="form-group">
-        <label for="">Escribe tu correo electronico</label> <br>
-        <input type="text" placeholder="Correo Electronico" [(ngModel)]="email" class="form-control">
+
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" (click)="newForget()">Entrar</button>
+        
       </div>          
     </div>
   </div>
-</div>
+</div> -->

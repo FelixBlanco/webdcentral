@@ -52,7 +52,7 @@ export class ConfigHomeComponent implements OnInit {
   
       this._configHomeService._upgradeConfigHome(formData).subscribe((resp:any) => {
         this.getConfigHome();
-        document.getElementById("body").style.backgroundColor = resp.color;
+        // document.getElementById("body").style.backgroundColor = resp.color;
         this._alertService.msg("OK","Éxito", "Actualizacion exitosa");
       },
       error => {

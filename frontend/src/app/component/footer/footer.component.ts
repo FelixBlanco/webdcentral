@@ -29,7 +29,6 @@ export class FooterComponent implements OnInit {
       (resp:any) => {
         if(resp){
           this.colorUno = resp.colorOscuro;
-          console.log(this.colorUno)
         }        
       }
     )
