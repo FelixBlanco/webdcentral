@@ -17,14 +17,17 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._alerts.Success('Hola');
+
   }
 
   salirLogin(){
     this.loginService._salirLogin().subscribe(
       (resp:any) => { 
-        // this._alerts.Success('Saliendo...') // informamos 
+        this._alerts.msg('OK','Saliendo...') // informamos 
         localStorage.removeItem('access_token') // borramos el token
+        localStorage.removeItem('sesion_login') // removemos la sesion
+        localStorage.removeItem('userName');
+        localStorage.removeItem('imgPerfil');
         location.reload(); // reiniciamos la pagina
       },
       error => { console.log('algo salio mal'); console.log(error) }

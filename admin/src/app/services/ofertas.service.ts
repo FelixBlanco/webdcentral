@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { GlobalD } from '../global';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,24 +16,26 @@ const httpOptions = {
 })
 export class OfertasService {
 
+  public _GB: GlobalD;
+
   constructor(
-    private http:HttpClient
-  ) { }
+    private http: HttpClient,
+    public GB: GlobalD
+    ) { this._GB = GB; }
 
     _getOfertas(){
-      return this.http.get('http://localhost:8000/api/v1/ofertas',httpOptions);
+      return this.http.get(this._GB.API +'/api/v1/ofertas',httpOptions);
     }
 
     _addOfertas(data:any){
-      return this.http.post('http://localhost:8000/api/v1/ofertas',data,httpOptions);
+      return this.http.post(this._GB.API +'/api/v1/ofertas',data,httpOptions);
     }
 
     _showOferta(id:number){
-      return this.http.get('http://localhost:8000/api/v1/ofertas/'+ id,httpOptions);
+      return this.http.get(this._GB.API +'/api/v1/ofertas/'+ id,httpOptions);
     }
 
     _upgradeOferta(data:any){
-      console.log(data);
-      return this.http.put('http://localhost:8000/api/v1/ofertas/1',data,httpOptions);
+      return this.http.put(this._GB.API +'/api/v1/ofertas/1',data,httpOptions);
     }
 }

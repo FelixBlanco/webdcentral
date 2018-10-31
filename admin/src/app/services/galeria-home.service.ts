@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { GlobalD } from '../global';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,16 +15,19 @@ const httpOptions = {
 })
 export class GaleriaHomeService {
   
+  public _GB: GlobalD;
+
   constructor(
-    private http:HttpClient
-  ) { }
+    private http: HttpClient,
+    public GB: GlobalD
+    ) { this._GB = GB; }
   
   _addSlideHome(data:any){
-    return this.http.post('http://localhost:8000/api/auth/createSlides',data,httpOptions);
+    return this.http.post(this._GB.API +'/api/auth/createSlides',data,httpOptions);
   }
 
   _getSlideHome(){
-    return this.http.get('http://localhost:8000/api/v1/getSlides');
+    return this.http.get(this._GB.API +'/api/v1/getSlides');
   }
 
 }

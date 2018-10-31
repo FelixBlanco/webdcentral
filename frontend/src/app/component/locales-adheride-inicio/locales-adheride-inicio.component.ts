@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+declare var $;
+
 @Component({
   selector: 'app-locales-adheride-inicio',
   templateUrl: './locales-adheride-inicio.component.html',
@@ -10,6 +12,7 @@ export class LocalesAdherideInicioComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

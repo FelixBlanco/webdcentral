@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { GlobalD } from '../global';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,21 +15,26 @@ const httpOptions = {
 })
 export class UsuariosService {
 
-  constructor(private http: HttpClient) { }
+  public _GB: GlobalD;
+
+  constructor(
+    private http: HttpClient,
+    public GB: GlobalD
+    ) { this._GB = GB; }
 
   listaUsuarios(){
-    return this.http.post('http://localhost:8000/api/v1/listarUsers/',httpOptions);
+    return this.http.post(this._GB.API +'/api/v1/listarUsers/',httpOptions);
   }
 
   _addUser(data){
-    return this.http.post('http://localhost:8000/api/v1/user/',data,httpOptions);
+    return this.http.post(this._GB.API +'/api/v1/user/',data,httpOptions);
   }
 
   upgradeUsers(data){
-    return this.http.put('http://localhost:8000/api/v1/user/'+data.id,data,httpOptions);
+    return this.http.put(this._GB.API +'/api/v1/user/'+data.id,data,httpOptions);
   }
 
   deleteUser(id:number){
-    return this.http.delete('http://localhost:8000/api/v1/user/'+id,httpOptions);
+    return this.http.delete(this._GB.API +'/api/v1/user/'+id,httpOptions);
   }
 }
