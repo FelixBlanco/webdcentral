@@ -5,7 +5,8 @@ import {
 import { 
     faBan as fasBan,
     faPlusCircle as fasPlusCircle,
-    faMinusCircle as fasMinusCircle
+    faMinusCircle as fasMinusCircle,
+    faTimes as fasTimes
 } from '@fortawesome/free-solid-svg-icons';
 
 export const FA_ICONS: any = [
@@ -13,6 +14,7 @@ export const FA_ICONS: any = [
     farEdit,
     fasBan,
     fasPlusCircle,
-    fasMinusCircle
+    fasMinusCircle,
+    fasTimes
 ];
 
