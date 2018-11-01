@@ -35,7 +35,6 @@ export class OfertasComponent implements OnInit {
   upImagen(event){
     var imagen_x: File = event.target.files[0];
     this.form_ofertas.imagen = imagen_x;
-    this._alertService.Success('Se cargo correctamente la imagen')
   }
 
   add_updateOferta(x){
@@ -48,13 +47,14 @@ export class OfertasComponent implements OnInit {
     if(x == 'add'){   
       this.ofertaServices._addOfertas(formData).subscribe(
         resp => {
+          // $("#agregarOfertaModal").modal('hide');
+          // document.getElementById('#agregarOfertaModal').onclick;
           this.getOfertas();
-          $("#agregarOfertaModal").modal('hide');
           this.form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
           this._alertService.msg("OK", "Éxito", "Se guardó correctamente");
         },
         error => {
-          this._alertService.Erros(error.error.message);
+          this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
         }
       )
     }
@@ -70,7 +70,7 @@ export class OfertasComponent implements OnInit {
           this._alertService.msg("OK", "Éxito", "Se editó correctamente");
         },
         error => {
-          this._alertService.Erros(error.error.message);
+          this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
         }
       )
     }

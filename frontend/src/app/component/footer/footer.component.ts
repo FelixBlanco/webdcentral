@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfgFooterService } from '../../services/confg-footer.service'
+import { ConfigColorService } from '../../services/config-color.service';
 
 @Component({
   selector: 'app-footer',
@@ -14,10 +15,24 @@ export class FooterComponent implements OnInit {
     email: null
   };
   
-  constructor( private _configFooterService:ConfgFooterService) { }
+  colorUno:any; 
+
+  constructor( 
+    private _configFooterService:ConfgFooterService,
+    private _color: ConfigColorService
+  ) { }
 
   ngOnInit() {
     this.getConfigFooter();
+
+    this._color._paletaColor().subscribe(
+      (resp:any) => {
+        if(resp){
+          this.colorUno = resp.colorOscuro;
+        }        
+      }
+    )
+
   }
 
   getConfigFooter(){

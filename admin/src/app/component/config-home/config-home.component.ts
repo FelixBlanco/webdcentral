@@ -43,7 +43,8 @@ export class ConfigHomeComponent implements OnInit {
   upgradeConfigHome(){
     
     if(this.c_h.color == '' && this.c_h.logo == ''){
-      this._alertService.Success('todos los campos son rqueridos')
+      
+      this._alertService.msg("ERR", "Error", "Todos los campos son requeridos");
     }else{
       var formData: FormData = new FormData(); // Damos Formato
       formData.append('logo', this.c_h.imgLogo);
@@ -51,11 +52,11 @@ export class ConfigHomeComponent implements OnInit {
   
       this._configHomeService._upgradeConfigHome(formData).subscribe((resp:any) => {
         this.getConfigHome();
-        document.getElementById("body").style.backgroundColor = resp.color;
-        this._alertService.Success('Actualizacion completada');
+        // document.getElementById("body").style.backgroundColor = resp.color;
+        this._alertService.msg("OK","Éxito", "Actualizacion exitosa");
       },
       error => {
-        this._alertService.listError(error.error);
+        this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
       });  
     }
     

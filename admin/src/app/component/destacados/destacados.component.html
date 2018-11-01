@@ -1,0 +1,84 @@
+<!-- Modal Nuevo -->
+<div class="modal fade" id="nuevo" tabindex="-1" role="dialog" aria-labelledby="nuevoModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="nuevoModal">Agregar Destacado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+          <div class="form-group">
+            <label for="Descripción">Pregunta:</label>
+            <textarea type="text" [(ngModel)]="form.descripcion" class="form-control" placeholder="Descripcion" [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="producto">Producto:</label>
+            <select [(ngModel)]="form.fk_idProducto" class="form-control" [ngModelOptions]="{standalone: true}">
+              <option value="1">1</option>
+            </select>
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button class="btn btn-success" data-dismiss="modal" (click)="addDestacados()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="editarModal">Editar Destacado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+          <div class="form-group">
+            <label for="Descripción">Pregunta:</label>
+            <textarea type="text" [(ngModel)]="edit_form.descripcion" (value)="edit_form.descripcion" class="form-control" placeholder="Descripcion" [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="producto">Producto:</label>
+            <select [(ngModel)]="edit_form.fk_idProducto" class="form-control" [ngModelOptions]="{standalone: true}">
+              <option value="1">1</option>
+            </select>
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button class="btn btn-success" data-dismiss="modal" (click)="addDestacados()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-top:2%;">
+  <div class="col-md-4 offset-md-8">
+      <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Nuevo</button>
+  </div>
+</div>
+
+
+<table class="table table-striped" style="margin-top:2%;">
+  <tr>
+    <th>Descripcion</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let lista_destacado of lista_destacados">
+    <td>{{ lista_destacado.descripcion }}</td>
+    <td>
+      <!-- data-toggle="modal" data-target="#editar" -->
+      <button class="btn btn-primary"  (click)="editDestacado(lista_destacado)"><span class="glyphicon glyphicon-pencil"></span></button>
+      <button class="btn btn-danger" (click)="deleteDestacados(lista_destacado.id_Destacado)"><span class="glyphicon glyphicon-trash"></span> </button>
+    </td>
+  </tr>
+</table>

@@ -12,5 +12,13 @@
   <app-seting></app-seting>
 </div>
 <div *ngIf="!isLoged">
-  <app-authbackend></app-authbackend>
+  
+  <div *ngIf="url == '/'">
+    <app-authbackend></app-authbackend>
+  </div>
+
+  <div *ngIf="url == '/forget'">
+    <app-forget></app-forget>
+  </div>
+
 </div>

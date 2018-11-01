@@ -34,10 +34,10 @@ export class ConfigColorComponent implements OnInit {
       resp => {
         this.getColores();
         this.form = { colorOscuro: null, colorMedio:null, colorClaro: null }
-        this._alertServicices.Success('Se guardo correctamente')
+        this._alertServicices.msg('OK','Éxito','Se guardo correctamente');
       },
       error => {
-        this._alertServicices.listError(error.error);
+        this._alertServicices.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
       }
     )
   }
@@ -45,11 +45,11 @@ export class ConfigColorComponent implements OnInit {
   eliminarColor(id){
     this._coloresServices.deleteColores(id).subscribe(
       resp => {
-        this._alertServicices.Success('Se Elimino correctamente');
+        this._alertServicices.msg('OK','Éxito','Se actualizo correctamente');
         this.getColores();
       },
       error => {
-        this._alertServicices.listError(error.error);
+        this._alertServicices.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
       }
     )
   }
