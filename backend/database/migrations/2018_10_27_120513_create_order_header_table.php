@@ -23,7 +23,10 @@ class CreateOrderHeaderTable extends Migration
             $table->string('Codigo_Postal');
             $table->integer('fk_idStateOrder');
             $table->string('codeProdSys');
+            $table->string('comentaryClient');
+            $table->integer('fk_idUserDriver');
             $table->integer('fk_idUser');
+            $table->integer('stars')->default(0);
             $table->timestamps();
 
             $table->softDeletes();

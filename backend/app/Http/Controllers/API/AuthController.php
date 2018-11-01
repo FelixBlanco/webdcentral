@@ -82,7 +82,12 @@ class AuthController extends Controller {
             if($userDc != ""){
                 $u->auto = @$userDc->Modelo_Transporte." - ".@$userDc->Patente_Transporte;
                 $u->totalImport = @$userDc->totalImport;
-                $u->start =  "0.0";
+
+                $rsc = DB::select("SELECT  ROUND(IFNULL((select IFNULL(sum(tb_order_header.stars),0) AS stars from  tb_order_header  where  fk_idUserDriver = 1 and fk_idStateOrder = 1)/
+                ( select IFNULL(COUNT(*),0) AS stars from  tb_order_header  where  fk_idUserDriver = $u->id and fk_idStateOrder = 1),0),1)
+                promedio");
+
+                $u->start = $rsc[0]->promedio;
             }
         }else if($u->fk_idPerfil == 2){// Cliente
             $userDc = $this->getUserClientDC($u->email);
@@ -124,7 +129,7 @@ class AuthController extends Controller {
                 return null;
             }
         } catch (\Exception $e) {
-            dd($e);
+            //dd($e);
 
             return null;
         }
