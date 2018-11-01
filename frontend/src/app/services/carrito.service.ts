@@ -63,6 +63,8 @@ export class CarritoService {
      * el siguiente registro debe contar con los siguientes parámetros
      * OBLIGATORIOS
      * 
+     * Si el item ya está agregado en la lista se acumulará la cantidad
+     * 
      * @param id clave/serial/id del producto
      * @param producto nombre breve
      * @param descripcion descripción breve
@@ -70,8 +72,7 @@ export class CarritoService {
      * @param precio denominado en ARS con decimales
      */
     addItem(id, producto, descripcion, cantidad, precio): Item{
-        let items: Item[] = this.carritoSource.getValue();
-
+        
         if(!id || !producto || !descripcion || !cantidad || !precio){
             debugger;
             throw new Error(`${ 
@@ -79,15 +80,28 @@ export class CarritoService {
             } <= es indefinido o null`);
         }
 
-        const added: Item = {
-            id : id,
-            producto : producto,
-            descripcion : descripcion,
-            precio: precio,
-            cantidad: cantidad
+        let items: Item[] = this.carritoSource.getValue();
+        let added: Item;
+
+        if(items.find((item) => item.id === id)){
+            items.forEach((item)=>{
+                if(item.id === id){
+                    item.cantidad += cantidad;
+                    added = item;
+                }
+            });
+        }else{
+            added = {
+                id : id,
+                producto : producto,
+                descripcion : descripcion,
+                precio: precio,
+                cantidad: cantidad
+            }
+    
+            items.push(added);
         }
 
-        items.push(added);
 
         this.carritoSource.next(items);
 
@@ -107,7 +121,7 @@ export class CarritoService {
         
     }
 
-    incraseOrDecraseItem(id: number | string, action: boolean){
+    incraseOrDecraseItem(id: number | string, action: boolean): void{
         let items: Item[] = this.carritoSource.getValue();
 
         items.forEach((el) => {
