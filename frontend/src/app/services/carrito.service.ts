@@ -50,6 +50,48 @@ export class CarritoService {
             descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
             precio: 185.50,
             cantidad: 1
+        },
+        {
+            id: 6,
+            producto: "Royal Canin ACTIVE6",
+            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
+            precio: 185.50,
+            cantidad: 1
+        },
+        {
+            id: 7,
+            producto: "Royal Canin ACTIVE7",
+            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
+            precio: 185.50,
+            cantidad: 1
+        },
+        {
+            id: 8,
+            producto: "Royal Canin ACTIVE8",
+            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
+            precio: 185.50,
+            cantidad: 1
+        },
+        {
+            id: 9,
+            producto: "Royal Canin ACTIVE9",
+            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
+            precio: 185.50,
+            cantidad: 1
+        },
+        {
+            id: 10,
+            producto: "Royal Canin ACTIVE10",
+            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
+            precio: 185.50,
+            cantidad: 1
+        },
+        {
+            id: 11,
+            producto: "Royal Canin ACTIVE5",
+            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
+            precio: 185.50,
+            cantidad: 1
         }
     ]
 
