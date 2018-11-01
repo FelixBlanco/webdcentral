@@ -1,12 +1,5 @@
 img{
-    margin-bottom: 10%;
+    padding-bottom: 5%;
 }
 
-h4{
-    background-color: #009BDD;
-    border-radius: 300px 300px 0px 0px;
-    font-size: 20px;
-    padding: 10px;
-    color: white;
-    padding-top: 5%;
-}
+.t-b-azul{ background-color: #009BDD; color: white; }

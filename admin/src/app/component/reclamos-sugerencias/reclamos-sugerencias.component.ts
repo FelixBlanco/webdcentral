@@ -49,10 +49,10 @@ export class ReclamosSugerenciasComponent implements OnInit {
     this._reclamosSugerenciasService._addReclamos(this.form).subscribe(
       resp => {
         this.getReclamos();
-        this._alertService.Success('Reclamo agregado'); 
+        this._alertService.msg('OK','Éxito','se guardo correctamente'); 
       },
       error => {
-        this._alertService.listError(error.error);
+        this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
       }
     )
   }
@@ -61,10 +61,10 @@ export class ReclamosSugerenciasComponent implements OnInit {
     this._reclamosSugerenciasService._upgradeEstatus(id,this.changeStatus).subscribe(
       (resp:any) =>{
         this.getReclamos();
-        this._alertService.Success(resp.msj);
+        this._alertService.msg('OK','Éxito','Cambios exitosos');
       },
       error => {
-        this._alertService.listError(error.error);
+        this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
       }
     )
   }

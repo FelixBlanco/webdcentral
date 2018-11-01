@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PerfilService } from '../../services/perfil.service';
 import { LoginService } from '../../services/login.service';
+import { AlertsService } from '../../services/alerts.service'
 
 @Component({
   selector: 'app-perfil',
@@ -16,7 +17,8 @@ export class PerfilComponent implements OnInit {
 
   constructor(
     private _perfilService: PerfilService,
-    private _loginService: LoginService
+    private _loginService: LoginService,
+    private _alertService: AlertsService
   ) { }
 
   ngOnInit() {
@@ -46,10 +48,10 @@ export class PerfilComponent implements OnInit {
   upgradeFormPerfil(){
     this._perfilService._upgradeInfoPerfil(this.form).subscribe(
       resp => {
-        console.log(resp)
+        this._alertService.msg("OK","Éxito", "Actualizacion exitosa");
       },
       error => {
-        console.log(error)
+        this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
       }
     )
   }
@@ -62,8 +64,8 @@ export class PerfilComponent implements OnInit {
     form_data.append('id_user', this.form.id);
 
     this._perfilService._upgradePerfil(form_data).subscribe(
-      resp => { this.getAuthUser(); },
-      error => { console.log(error.error) }
+      resp => { this.getAuthUser(); this._alertService.msg("OK","Éxito", "Actualizacion exitosa"); },
+      error => { this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`); }
     )
 
   }

@@ -24,7 +24,6 @@ export class SlideHomeComponent implements OnInit {
       (resp:any) => {
         if(resp){
           this.colorDos = resp.colorOscuro;
-          console.log(this.colorDos)
         }        
       }
     );

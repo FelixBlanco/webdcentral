@@ -36,7 +36,8 @@ import { CuponsappComponent } from './component/cuponsapp/cuponsapp.component';
 import { NotificationappComponent } from './component/notificationapp/notificationapp.component';
 import { AuthbackendComponent } from './component/authbackend/authbackend.component';
 import { GestionUsuarioComponent } from './component/gestion-usuario/gestion-usuario.component';
-
+import { ForgetComponent } from './component/forget/forget.component';
+import { DestacadosComponent } from './component/destacados/destacados.component';
 
 
 @NgModule({
@@ -69,7 +70,9 @@ import { GestionUsuarioComponent } from './component/gestion-usuario/gestion-usu
     CuponsappComponent,
     NotificationappComponent,
     AuthbackendComponent,
-    GestionUsuarioComponent
+    GestionUsuarioComponent,
+    ForgetComponent,
+    DestacadosComponent
   ],
   imports: [
     BrowserModule,
