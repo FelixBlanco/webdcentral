@@ -80,7 +80,7 @@ class AuthController extends Controller {
         if($u->fk_idPerfil == 3){// Chofer
             $userDc = $this->getUserDriverDC($u->email);
             if($userDc != ""){
-                $u->auto = @$userDc->Modelo_Transporte." - ".$userDc->Patente_Transporte;
+                $u->auto = @$userDc->Modelo_Transporte." - ".@$userDc->Patente_Transporte;
                 $u->totalImport = @$userDc->totalImport;
                 $u->start =  "0.0";
             }
@@ -112,13 +112,20 @@ class AuthController extends Controller {
     public function getUserDriverDC($email){
       
         try{
-            $rs =   DB::connection('sqlsrv')->select(" SELECT *,totalImport = 12 FROM  Transportes where Email_Transporte = '".$email."' ")[0]; 
+            $rs =   DB::connection('sqlsrv')->select(" SELECT *,
+            (ISNULL((SELECT SUM(TotalCursoLegal)
+            FROM VentasporComprobantes where EstadoPedido = 'Cerrado' 
+            and Codigo_Transporte = Transportes.Codigo_Transporte),0))as totalImport
+             FROM  Transportes where Email_Transporte = '".$email."' ")[0]; 
+             
             if($rs){
                 return $rs;
             }else{
                 return null;
             }
         } catch (\Exception $e) {
+            dd($e);
+
             return null;
         }
     }
@@ -126,7 +133,11 @@ class AuthController extends Controller {
     public function getUserClientDC($email){
 
         try{
-            $rs =  DB::connection('sqlsrv')->select(" SELECT *,totalOrder = 12 FROM  Clientes where Email_Cliente = '".$email."' ")[0]; 
+            $rs =  DB::connection('sqlsrv')->select(" SELECT *,
+            (ISNULL((SELECT SUM(TotalCursoLegal)
+            FROM VentasporComprobantes where EstadoPedido = 'Cerrado' 
+            and Codigo_Cliente = Clientes.Codigo_Cliente),0))as totalImport
+             FROM  Clientes where Email_Cliente = '".$email."' ")[0]; 
             if($rs){
                 return $rs;
             }else{
