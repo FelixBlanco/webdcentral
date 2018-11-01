@@ -58,11 +58,11 @@ Route::group([ 'prefix' => 'auth' ], function() {
         /*REDES SOCIALES*/
 
         /*ORDER BODY (carrito de compra)*/
-        Route::post('añadir','OrderBodyController@añadir');
+        Route::post('añadirOrderBody','OrderBodyController@añadir');
         /*ORDER BODY (carrito de compra)*/
 
         /*ORDER HEADER (Orden de compra)*/
-        Route::post('añadir','OrderHeaderController@añadir');
+        Route::post('añadirOrderHeader','OrderHeaderController@añadir');
         /*ORDER HEADER (Orden de compra)*/
     });
 });

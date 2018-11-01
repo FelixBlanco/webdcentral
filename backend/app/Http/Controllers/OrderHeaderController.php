@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\orderHeader;
+use App\Producto;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,12 +15,10 @@ class OrderHeaderController extends Controller {
     public function añadir(Request $request) {
 
         $this->validate($request, [
-            'Numero_Pedido'          => 'required',
             'Numero_EncabezadoVenta' => 'required',
             'Estado_Pedido'          => 'required',
             'Domicilio_Entrega'      => 'required',
             'Codigo_Postal'          => 'required',
-            'codeProdSys'            => 'required',
             'fk_idUser'              => 'required',
             'fk_idProducto'          => 'required',
         ], [
@@ -28,7 +27,6 @@ class OrderHeaderController extends Controller {
             'Estado_Pedido.required'          => 'El campo es requerido',
             'Domicilio_Entrega.required'      => 'El campo es requerido',
             'Codigo_Postal.required'          => 'El campo es requerido',
-            'codeProdSys.required'            => 'El campo es requerido',
             'fk_idUser.required'              => 'El campo es requerido',
             'fk_idProducto.required'          => 'El campo es requerido',
         ]);
@@ -36,8 +34,19 @@ class OrderHeaderController extends Controller {
         DB::beginTransaction();
 
         try {
+            $producto = Producto::findOrFail($request->fk_idProducto);
 
-            $OB = new orderHeader($request->all());
+            $Numero_Pedido_max=orderHeader::max('idOrderHeader');
+
+            if(!is_null($Numero_Pedido_max)){
+                $Numero_Pedido='P-'.$Numero_Pedido_max+1;
+            }else{
+                $Numero_Pedido='P-1';
+            }
+
+            $OB              = new orderHeader($request->all());
+            $OB->codeProdSys = $producto->codeProdSys;
+            $OB->Numero_Pedido=$Numero_Pedido;
 
             $OB->Fecha_Pedido    = Carbon::now()->toDateString();
             $OB->fk_idStateOrder = 1;
