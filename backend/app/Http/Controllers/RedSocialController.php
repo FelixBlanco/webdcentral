@@ -45,7 +45,7 @@ class RedSocialController extends Controller {
         }
     }
 
-    public function updateRedesSociales(Request $request, $id_RedSocial) {
+    public function updateRedesSociales(Request $request, $id_redSocial) {
 
         if (is_null($request)) {
             $response = [
@@ -58,7 +58,7 @@ class RedSocialController extends Controller {
             DB::beginTransaction();
 
             try {
-                $redsocial = RedesSocial::findOrFail($id_RedSocial);
+                $redsocial = RedesSocial::findOrFail($id_redSocial);
 
                 $redsocial->fill($request->all());
 
