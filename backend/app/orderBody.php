@@ -19,6 +19,7 @@ class orderBody extends Model {
         'PrecioUnitario_Producto',
         'PorcentajeDescuento_Producto',
         'Devolucion_Producto',
+        'Numero_EncabezadoVenta',
         'fk_idProducto',
     ];
 

@@ -106,23 +106,66 @@ class OrderDriverController extends Controller
     /*
     CREA PEDIDO
     */
-    public function addHeader(Request $request){
+
+    // HEADER
+    public static function addHeader(Request $request){
 
         try{
-            DB::connection('sqlsrv')->insert("  INSERT INTO EncabezadosVentas_APP 
-            () VALUES(
+            $mytime = Carbon\Carbon::now();
 
+            DB::connection('sqlsrv')->insert("  INSERT INTO EncabezadosVentas_APP 
+            (Fecha_Pedido,
+            Numero_Pedido,
+            Estado_Pedido,
+            Domicilio_Entrega,
+            Codigo_Postal,
+            comentaryClient) VALUES(
+                 $mytime->toDateTimeString(),
+                 $request->Numero_Pedido,
+                 'Solicitado',
+                 $request->Domicilio_Entrega,
+                 $request->Codigo_Postal,
+                 $request->comentaryClient
               )"); 
 
-            return response()->json("Pedido actualizado ", 200);
+            return response()->json("Pedido creado ", 200);
             
         } catch (\Exception $e) {
             dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
-    // HEADER
 
     // BODY
+    public static function addBody(Request $request){
+
+        try{
+            foreach ($request->items as $item){
+                $mytime = Carbon\Carbon::now();
+
+                DB::connection('sqlsrv')->insert("  INSERT INTO DetalleEncabezadosVentas_APP 
+                (   codeProdSys,
+                    Cantidad_Producto,
+                    PrecioUnitario_Producto,
+                    PorcentajeDescuento_Producto,
+                    Devolucion_Producto,
+                    Numero_EncabezadoVenta,
+                ) VALUES(
+                    $item->codeProdSys,
+                    $item->Cantidad_Producto,
+                    $item->PrecioUnitario_Producto,
+                    $item->PorcentajeDescuento_Producto,
+                    $item->Devolucion_Producto,
+                    $item->Numero_EncabezadoVenta
+                )"); 
+            }
+
+            return response()->json("Poductos Agregados ", 200);
+            
+        } catch (\Exception $e) {
+            dd($e);
+            return response()->json("Error conectando a el DC", 500);
+        }
+    }
 
 }
