@@ -53,7 +53,11 @@ export class AlertsService {
    * 
    * @see https://www.npmjs.com/package/ngx-toastr
    */
-  msg(style: 'OK' | 'ERR' | 'INFO' | '', tittle: string, msgBody?: string, options?: Partial<IndividualConfig>): ActiveToast<any> {
+  msg(
+    style: 'OK' | 'ERR' | 'INFO' | '', 
+    tittle: string, 
+    msgBody?: string, 
+    options?: Partial<IndividualConfig>): ActiveToast<any> {
     
     if(!options){
       options =  {

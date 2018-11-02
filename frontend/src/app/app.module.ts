@@ -33,6 +33,10 @@ import { EnviosInicioComponent } from './component/envios-inicio/envios-inicio.c
 import { ImgInicioComponent } from './component/img-inicio/img-inicio.component';
 import { BajaAppInicioComponent } from './component/baja-app-inicio/baja-app-inicio.component';
 import { DestacadoInicioComponent } from './component/destacado-inicio/destacado-inicio.component';
+import { CarritoComponent } from './component/carrito/carrito.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { CarritoService } from './services/carrito.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 const appRoutes: Routes = [
@@ -73,6 +77,7 @@ const appRoutes: Routes = [
     ImgInicioComponent,
     BajaAppInicioComponent,
     DestacadoInicioComponent,
+    CarritoComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,9 +85,13 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     HomeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxDatatableModule,
+    FontAwesomeModule
   ],
-  providers: [],
+  providers: [
+    CarritoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { GlobalD } from '../global';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,11 +15,14 @@ const httpOptions = {
 })
 export class ForgetService {
 
+  public _GB: GlobalD;
+
   constructor(
-    private http: HttpClient 
-  ) { }
+    private http: HttpClient,
+    public GB: GlobalD
+    ) { this._GB = GB; }
 
   _newForget(data:any){
-    return this.http.post('http://localhost:8000/api/v1/reestablecerClave',data);
+    return this.http.post(this._GB.API +'/api/v1/reestablecerClave',data);
   }
 }

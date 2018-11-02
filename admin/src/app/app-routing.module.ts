@@ -5,6 +5,7 @@ import { CuponsappComponent } from './component/cuponsapp/cuponsapp.component';
 import { NotificationappComponent } from './component/notificationapp/notificationapp.component';
 import { AuthbackendComponent } from './component/authbackend/authbackend.component';
 import { GestionUsuarioComponent } from './component/gestion-usuario/gestion-usuario.component';
+import { ForgetComponent } from './component/forget/forget.component';
 
 import { GaleriaHomeComponent } from './component/galeria-home/galeria-home.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
@@ -13,8 +14,10 @@ import { ConfigHomeComponent } from './component/config-home/config-home.compone
 import { OfertasComponent } from './component/ofertas/ofertas.component';
 import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/reclamos-sugerencias.component';
 import { ConfigColorComponent } from './component/config-color/config-color.component';
+import { DestacadosComponent } from './component/destacados/destacados.component';
 
 const routes: Routes = [
+  { path: 'forget', redirectTo:  '/forget' },
   { path: 'Galeria', component: GaleriaHomeComponent },
   { path: 'Mapa', component: MapaComponent },
   { path: 'Cupones', component: CuponsappComponent },
@@ -26,6 +29,7 @@ const routes: Routes = [
   { path: 'ofertas', component: OfertasComponent },
   { path: 'reclamos-sugerencias', component: ReclamosSugerenciasComponent},
   { path: 'config-color', component: ConfigColorComponent},
+  { path: 'destacados', component: DestacadosComponent}
 
 ];
 

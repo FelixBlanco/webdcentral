@@ -75,16 +75,18 @@ export class GaleriaHomeComponent implements OnInit {
     this._galeriaHomeService._addSlideHome(galeriaHome).subscribe(
       (resp:any) => { 
         //this._alertService.Success(resp.msj);
+        this._alertService.msg("OK","Éxito", "Se ha guardado el registro");
         $("#exampleModal").modal('hide');
         this.new_galeria ={titulo: null, fk_idProducto:null, imagen:null}
         this.getSlideHome(); 
       },
       error => {
-        if(error.status == 500){
-          this._alertService.Erros(error.message)
-        }else{
-          this._alertService.listError(error.error);
-        }
+        this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+        // if(error.status == 500){
+        //   this._alertService.Erros(error.message)
+        // }else{
+        //   this._alertService.listError(error.error);
+        // }
       }
     )
   }
