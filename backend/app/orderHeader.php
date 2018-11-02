@@ -21,6 +21,7 @@ class orderHeader extends Model {
         'Codigo_Postal',
         'stars',
         'comentaryClient',
+        'Email_Cliente',
         'fk_idStateOrder',
         'fk_idUserClient',
         'fk_idUserDriver'

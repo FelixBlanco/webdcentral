@@ -22,6 +22,7 @@ class CreateOrderHeaderTable extends Migration
             $table->string('Domicilio_Entrega')->nullable();
             $table->string('Codigo_Postal')->nullable();
             $table->string('comentaryClient')->nullable();
+            $table->string('Email_Cliente')->nullable();
             $table->integer('stars')->default(0);
             $table->integer('fk_idUserDriver');
             $table->integer('fk_idUserClient');
