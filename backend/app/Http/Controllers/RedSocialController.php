@@ -2,76 +2,84 @@
 
 namespace App\Http\Controllers;
 
+use App\RedesSocial;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
-class RedSocialController extends Controller
-{
-    public function store(Request $request){
+class RedSocialController extends Controller {
 
-      
-        DB::beginTransaction();
+    public function store(Request $request) {
 
-        try {
-
-            $usuario = new User($request->all());
-
-            if (is_null($request->fotoPerfil)) {
-
-            } else {
-
-                /*para la foto*/
-                $originalImage = $request->fotoPerfil;
-
-                $thumbnailImage = Image::make($originalImage);
-                $thumbnailImage->fit(2048, 2048, function($constraint) {
-                    $constraint->aspectRatio();
-                });
-                $nombre_publico = $originalImage->getClientOriginalName();
-                $extension      = $originalImage->getClientOriginalExtension();
-                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
-                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-                Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
-                /*para la foto*/
-
-                $usuario->fotoPerfil = $nombre_interno;
-            }
-
-            if (is_null($request->password) == true) {
-                $usuario->password = bcrypt($password_default);
-                $usuario->generateToken();
-            } else {
-                $usuario->password = bcrypt($request->password);
-            }
-
-            $usuario->save();
-
+        if (is_null($request)) {
             $response = [
-                'msj'  => 'Usuario Creado',
-                'user' => $usuario,
+                'msj' => 'Debe enviar algun dato para crear',
             ];
-            DB::commit();
 
-            /*enviando correo si la clave es por defecto*/
+            return response()->json($response, 400);
 
-            if (is_null($request->password) == true) {
+        } else {
 
-                Mail::to($usuario->email)->send(new Prueba($usuario, $password_default));
+            DB::beginTransaction();
+            try {
+
+                $redsocial = new RedesSocial($request->all());
+                $redsocial->save();
+                $response = [
+                    'msj'  => 'Creado Satisfactoriamente',
+                    'user' => $redsocial,
+                ];
+                DB::commit();
+
+                return response()->json($response, 201);
+            } catch (\Exception $e) {
+
+                DB::rollback();
+                Log::error('Ha ocurrido un error en RedSocialController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+                return response()->json([
+                    'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+                ], 500);
             }
-
-            return response()->json($response, 201);
-        } catch (\Exception $e) {
-
-            DB::rollback();
-            Log::error('Ha ocurrido un error en UserController: '.$e->getMessage().', Linea: '.$e->getLine());
-
-            return response()->json([
-                'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
-            ], 500);
         }
     }
 
-    public function updateRedesSociales(Request $request,$id_RedSocial){
+    public function updateRedesSociales(Request $request, $id_RedSocial) {
 
+        if (is_null($request)) {
+            $response = [
+                'msj' => 'Debe enviar algún dato para actualizar',
+            ];
+
+            return response()->json($response, 400);
+        } else {
+
+            DB::beginTransaction();
+
+            try {
+                $redsocial = RedesSocial::findOrFail($id_RedSocial);
+
+                $redsocial->fill($request->all());
+
+                $response = [
+                    'msj'  => 'Info actulizada',
+                    'user' => $redsocial,
+                ];
+
+                $redsocial->save();
+                DB::commit();
+
+                return response()->json($response, 200);
+            } catch (\Exception $e) {
+                DB::rollback();
+                Log::error('Ha ocurrido un error en RedSocialController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+                return response()->json([
+                    'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+                ], 500);
+            }
+        }
     }
+
 }
