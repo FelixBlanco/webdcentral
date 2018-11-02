@@ -70,6 +70,7 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\ReclamosYSugerencia' => $baseDir . '/app/ReclamosYSugerencia.php',
+    'App\\RedesSocial' => $baseDir . '/app/RedesSocial.php',
     'App\\SectionApp' => $baseDir . '/app/SectionApp.php',
     'App\\ServiciosWeb' => $baseDir . '/app/ServiciosWeb.php',
     'App\\Slide' => $baseDir . '/app/Slide.php',

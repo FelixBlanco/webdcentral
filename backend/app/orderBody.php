@@ -5,8 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class orderBody extends Model
-{
+class orderBody extends Model {
 
     use SoftDeletes;
     protected $table = 'tb_order_body';
@@ -19,13 +18,11 @@ class orderBody extends Model
         'Cantidad_Producto',
         'PrecioUnitario_Producto',
         'PorcentajeDescuento_Producto',
-        'Devolucion_Producto'
+        'Devolucion_Producto',
+        'fk_idProducto',
     ];
 
-   
-
-    public function orderHeader()
-    {
+    public function orderHeader() {
         return $this->belongsTo('App\orderHeader', 'fk_idOrderHeader');
     }
 }

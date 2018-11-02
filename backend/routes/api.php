@@ -34,32 +34,36 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::resource('colores', 'ColorController');   //Colores de la web
 
         /* PREGUNTA Y RESPUESTA */
-        Route::post('crearPreguntaYRespuesta','PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
-        Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}','PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
-        Route::put('editarPreguntaORespuesta/{idPreguntaFrecuente}','PreguntasFrecuenteController@editarPreguntaORespuesta'); //para editar
-        Route::delete('borrarPreguntaORespuesta/{idPreguntaFrecuente}','PreguntasFrecuenteController@borrarPreguntaORespuesta'); //para borrar
-        Route::post('listar','PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
-        Route::put('cambiarStatus/{idPreguntaFrecuente}','PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
+        Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
+        Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
+        Route::put('editarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@editarPreguntaORespuesta'); //para editar
+        Route::delete('borrarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@borrarPreguntaORespuesta'); //para borrar
+        Route::post('listar', 'PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
+        Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
         /* PREGUNTA Y RESPUESTA */
 
         /*PARA LOS DESTACADOS*/
 
-        Route::post('crearDestacado','DestacadoController@crearDestacado');
-        Route::post('editarDestacado/{idDestacado}','DestacadoController@editarDestacado');
-        Route::delete('eliminarDestacado/{idDestacado}','DestacadoController@eliminarDestacado');
-        Route::get('obtenerDestacados','DestacadoController@listar');
+        Route::post('crearDestacado', 'DestacadoController@crearDestacado');
+        Route::post('editarDestacado/{idDestacado}', 'DestacadoController@editarDestacado');
+        Route::delete('eliminarDestacado/{idDestacado}', 'DestacadoController@eliminarDestacado');
+        Route::get('obtenerDestacados', 'DestacadoController@listar');
 
         /*PARA LOS DESTACADOS*/
 
-        /*CARRITO DE COMPRA*/
 
-        Route::post('añadir','CarritoCompraController@añadir');
-        Route::put('editarCantidad{idCarrito}','CarritoCompraController@editarCantidad');
-        Route::delete('eliminar/{idCarrito}','CarritoCompraController@eliminar');
-        Route::get('obtenerCarritoPorUser/{idUser}','CarritoCompraController@obtenerCarritoPorUser');
+        /*REDES SOCIALES*/
+        Route::post('crearRedSocial','RedSocial@store');
+        Route::PUT('updateRedesSociales/{id_RedSocial}','RedSocial@update');
+        /*REDES SOCIALES*/
 
-        /*CARRITO DE COMPRA*/
+        /*ORDER BODY (carrito de compra)*/
+        Route::post('añadirOrderBody/{fk_idOrderHeader}','OrderBodyController@añadir');
+        /*ORDER BODY (carrito de compra)*/
 
+        /*ORDER HEADER (Orden de compra)*/
+        Route::post('añadirOrderHeader','OrderHeaderController@añadir');
+        /*ORDER HEADER (Orden de compra)*/
     });
 });
 
@@ -69,16 +73,16 @@ Route::group([ 'prefix' => 'auth' ], function() {
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
 
-    Route::post('crer-serviciosWeb','ServiciosWebController@crer');
+    Route::post('crer-serviciosWeb', 'ServiciosWebController@crer');
 
     /*Para crear una nueva suscripcion*/
     Route::post('nuevaSus', 'SuscripcionController@nuevaSus');
 
     /*Para camiar el estatus a una suscripcion*/
-    Route::put('cambiarStatusSus/{idSuscripcion}','SuscripcionController@cambiarStatusSus');
+    Route::put('cambiarStatusSus/{idSuscripcion}', 'SuscripcionController@cambiarStatusSus');
 
     /*para cancelar una suscripcion*/
-    Route::get('cancelarSus/{idSuscripcion}','SuscripcionController@cancelarSus');
+    Route::get('cancelarSus/{idSuscripcion}', 'SuscripcionController@cancelarSus');
 
     /*para las ofertas*/
     Route::resource('ofertas', 'OfertaController');
@@ -155,17 +159,17 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // Paleta de color para el landing 
     Route::get('paleta-color', 'ColorController@ultimaPaletaColores');
 
-     // Sincronizador de productos 
-     Route::get('sincronize/product', 'ProductSincronizeController@sicronizeProduct');
+    // Sincronizador de productos
+    Route::get('sincronize/product', 'ProductSincronizeController@sicronizeProduct');
 
-     // OBTENER TAGS 
-     Route::get('tags/filter', 'ProductoController@getAllTags');
+    // OBTENER TAGS
+    Route::get('tags/filter', 'ProductoController@getAllTags');
 
-     // OBTENER RUBROS 
-     Route::get('rubro/filter', 'ProductoController@getAllRubros');
+    // OBTENER RUBROS
+    Route::get('rubro/filter', 'ProductoController@getAllRubros');
 
-      // OBTENER MARCAS 
-      Route::get('marcas/filter', 'ProductoController@getAllMarcas');
+    // OBTENER MARCAS
+    Route::get('marcas/filter', 'ProductoController@getAllMarcas');
 
      // Obtener pedidos de un chofer
      Route::post('order/all/driver', 'OrderDriverController@getAllByCodeDriver');

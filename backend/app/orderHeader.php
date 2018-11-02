@@ -5,8 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class orderHeader extends Model
-{
+class orderHeader extends Model {
     //
     use SoftDeletes;
     protected $table = 'tb_order_header';
@@ -26,15 +25,14 @@ class orderHeader extends Model
         'stars',
         'comentaryClient',
         'fk_idUserDriver'
+        'fk_idProducto',
     ];
 
-    public function state()
-    {
+    public function state() {
         return $this->belongsTo('App\StateOrder', 'fk_idStateOrder');
     }
 
-    public function user()
-    {
+    public function user() {
         return $this->belongsTo('App\User', 'fk_idUser');
     }
 }
