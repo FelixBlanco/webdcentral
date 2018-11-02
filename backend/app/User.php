@@ -25,7 +25,9 @@ class User extends Authenticatable
         'password',
         'userName',
         'fk_idPerfil',
-        'fotoPerfil'
+        'fotoPerfil',
+        'Codigo_Transporte',
+        'Codigo_Cliente'
     ];
 
     /**

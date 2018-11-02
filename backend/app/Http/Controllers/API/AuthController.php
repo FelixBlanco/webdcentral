@@ -74,12 +74,15 @@ class AuthController extends Controller {
 
         $u = $request->user();
 
-        $u->img_perfil = asset('storage/'.$request->user()->fotoPerfil); // Podemos solicitar la URL directamente aca
         
         // Buscamos el usuario de DEPOCITO si es chofer o cliente //
         if($u->fk_idPerfil == 3){// Chofer
             $userDc = $this->getUserDriverDC($u->email);
             if($userDc != ""){
+                $u->Codigo_Transporte = @$userDc->Codigo_Transporte;
+                $u->update();// Actualizamos el codigo de transporte
+
+
                 $u->auto = @$userDc->Modelo_Transporte." - ".@$userDc->Patente_Transporte;
                 $u->totalImport = @$userDc->totalImport;
 
@@ -92,6 +95,9 @@ class AuthController extends Controller {
         }else if($u->fk_idPerfil == 2){// Cliente
             $userDc = $this->getUserClientDC($u->email);
             if($userDc != ""){
+                $u->Codigo_Cliente = @$userDc->Codigo_Cliente;
+                $u->update();// Actualizamos el codigo de cliente
+
                 $u->addres = @$userDc->Domicilio_Cliente;
                 $u->totalOrder = @$userDc->totalImport;
                 $u->totslCupons = CouponsClient::where("fk_idUser","=",$u->id)
@@ -103,6 +109,7 @@ class AuthController extends Controller {
         }
 
         try {
+            $u->img_perfil = asset('storage/'.$request->user()->fotoPerfil); // Podemos solicitar la URL directamente aca
             return response()->json($u,201);
         } catch (\Exception $e) {
             Log::error('Ha ocurrido un error en AuthController: '.$e->getMessage().', Linea: '.$e->getLine());
