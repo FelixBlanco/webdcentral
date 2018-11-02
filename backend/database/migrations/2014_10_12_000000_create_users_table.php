@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
 
             $table->float('montoCliente')->nullable();
 
+            $table->string('Codigo_Transporte')->nullable();
+            $table->string('Codigo_Cliente')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

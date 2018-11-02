@@ -14,11 +14,11 @@ class CreateOrderBodyTable extends Migration {
         Schema::create('tb_order_body', function(Blueprint $table) {
             $table->increments('idOrderBody');
             $table->integer('fk_idOrderHeader');
-            $table->string('codeProdSys');
-            $table->string('Cantidad_Producto');
-            $table->string('PrecioUnitario_Producto');
-            $table->string('PorcentajeDescuento_Producto');
-            $table->string('Devolucion_Producto');
+            $table->string('codeProdSys')->nullable();
+            $table->string('Cantidad_Producto')->nullable();
+            $table->string('PrecioUnitario_Producto')->nullable();
+            $table->string('PorcentajeDescuento_Producto')->nullable();
+            $table->string('Devolucion_Producto')->nullable();
             $table->integer('fk_idProducto')->unsigned()->nullable();
             $table->timestamps();
 

@@ -21,9 +21,12 @@ class CreateOrderHeaderTable extends Migration
             $table->string('Estado_Pedido')->nullable();
             $table->string('Domicilio_Entrega')->nullable();
             $table->string('Codigo_Postal')->nullable();
-            $table->integer('fk_idStateOrder')->nullable();
+            $table->integer('fk_idStateOrder');
             $table->string('codeProdSys')->nullable();
-            $table->integer('fk_idUser')->nullable();
+            $table->string('comentaryClient')->nullable();
+            $table->integer('fk_idUserDriver');
+            $table->integer('fk_idUser');
+            $table->integer('stars')->default(0);
             $table->integer('fk_idProducto')->unsigned()->nullable();
             $table->timestamps();
 

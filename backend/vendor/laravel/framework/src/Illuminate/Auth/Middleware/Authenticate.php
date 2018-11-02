@@ -65,7 +65,7 @@ class Authenticate
         }
 
         throw new AuthenticationException(
-            'No Autenticado.', $guards, $this->redirectTo($request)
+            'Unauthenticated.', $guards, $this->redirectTo($request)
         );
     }
 

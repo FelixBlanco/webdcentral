@@ -171,7 +171,23 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // OBTENER MARCAS
     Route::get('marcas/filter', 'ProductoController@getAllMarcas');
 
+     // Obtener pedidos de un chofer
+     Route::post('order/all/driver', 'OrderDriverController@getAllByCodeDriver');
 
+     // Obtener pedidos actuales de un chofer
+     Route::post('order/active/driver', 'OrderDriverController@getByCodeDriver');
+
+      // Obtener productos de  un pedido
+      Route::post('order/all/products', 'OrderDriverController@getProductByPedido');
+
+       // CAMBIAR ESTADAO DE UN PEDIDO
+       Route::post('order/chanue/state', 'OrderDriverController@chagueEstadoPedido');
+
+       // CAMBIAR ESTADAO DE UN PEDIDO
+       Route::post('order/devolution/product', 'OrderDriverController@devolutionProduct');
+
+
+       
 });
 
 

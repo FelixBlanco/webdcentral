@@ -22,6 +22,9 @@ class orderHeader extends Model {
         'fk_idStateOrder',
         'codeProdSys',
         'fk_idUser',
+        'stars',
+        'comentaryClient',
+        'fk_idUserDriver'
         'fk_idProducto',
     ];
 
