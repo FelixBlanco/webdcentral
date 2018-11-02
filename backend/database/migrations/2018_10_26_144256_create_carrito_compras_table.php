@@ -15,13 +15,13 @@ class CreateCarritoComprasTable extends Migration
     {
         Schema::create('tb_carrito_compras', function (Blueprint $table) {
             $table->increments('idCarrito');
-            $table->string('producto')->nullable();
             $table->string('descripcion')->nullable();
             $table->string('precio')->nullable();
             $table->float('cantidad')->nullable();
             $table->float('total')->nullable();
 
             $table->integer('fk_idUser')->nullable();
+            $table->integer('fk_idProducto')->unsigned()->nullable();
             $table->timestamps();
 
             $table->softDeletes();
