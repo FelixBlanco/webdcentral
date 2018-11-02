@@ -4,48 +4,26 @@ namespace App\Http\Controllers;
 
 use App\orderBody;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class OrderBodyController extends Controller {
+class OrderBodyController extends Controller
+{
+    public function añadir(Request $request, $fk_idOrderHeader)
+    {
 
-    public function añadir(Request $request,$fk_idOrderHeader) {
-        dd($request->all());
+        DB::beginTransaction();
 
-        /*$this->validate($request, [
-            'codeProdSys'                  => 'required',
-            'Cantidad_Producto'            => 'required',
-            'PrecioUnitario_Producto'      => 'required',
-            'fk_idProducto'                => 'required',
-        ], [
-            'codeProdSys.required'                  => 'El campo es requerido',
-            'Cantidad_Producto.required'            => 'El campo es requerido',
-            'PrecioUnitario_Producto.required'      => 'El campo es requerido',
-            'fk_idProducto.required'                => 'El campo es requerido',
-        ]);*/
-
-        foreach ($request->items as $item){
-
-            DB::beginTransaction();
-
+        foreach ($request->items as $item) {
             try {
-
                 $OH = new orderBody($item);
-
+                $OH->fk_idOrderHeader=$fk_idOrderHeader;
                 $OH->save();
                 $OH->orderHeader;
+                $respo[]=$OH;
 
-                $response = [
-                    'msj'  => 'OrderBody Creada exitosamente',
-                    'user' => $OH,
-                ];
-                DB::commit();
-
-                return response()->json($response, 201);
             } catch (\Exception $e) {
 
-                DB::rollback();
                 Log::error('Ha ocurrido un error en OrderBodyController: '.$e->getMessage().', Linea: '.$e->getLine());
 
                 return response()->json([
@@ -53,7 +31,12 @@ class OrderBodyController extends Controller {
                 ], 500);
             }
         }
-        }
 
+        $response = [
+            'msj'  => 'OrderBody Creada exitosamente',
+            'orderHeader' => $OH,
+        ];
+        DB::commit();
 
-}
+        return response()->json($response, 201);
+    }
