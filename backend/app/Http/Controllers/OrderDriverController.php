@@ -102,6 +102,27 @@ class OrderDriverController extends Controller
         }
     }
 
+ 
+    /*
+    CREA PEDIDO
+    */
+    public function addHeader(Request $request){
 
+        try{
+            DB::connection('sqlsrv')->insert("  INSERT INTO EncabezadosVentas_APP 
+            () VALUES(
+
+              )"); 
+
+            return response()->json("Pedido actualizado ", 200);
+            
+        } catch (\Exception $e) {
+            dd($e);
+            return response()->json("Error conectando a el DC", 500);
+        }
+    }
+    // HEADER
+
+    // BODY
 
 }
