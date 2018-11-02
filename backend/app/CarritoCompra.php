@@ -13,16 +13,16 @@ class CarritoCompra extends Model
     protected $primaryKey = 'idCarrito';
 
     protected $fillable = [
-        'producto',
         'descripcion',
         'precio',
         'cantidad',
         'total',
         'fk_idUser',
+        'fk_idProducto',
     ];
 
-    public function cliente()
+    public function productos()
     {
-        return $this->belongsTo('App\User', 'fk_idUser');
+        return $this->hasMany('App\Prducto', 'fk_idProducto','idCarrito');
     }
 }

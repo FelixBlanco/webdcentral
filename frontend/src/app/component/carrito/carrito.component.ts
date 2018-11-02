@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { Observable } from 'rxjs';
+import { timeout } from 'q';
 
 @Component({
   selector: 'app-carrito',
@@ -9,28 +10,46 @@ import { Observable } from 'rxjs';
 })
 export class CarritoComponent implements OnInit {
 
-  rows: any[] = [];
-  columns = [
-    { prop: 'producto' },
-    { prop: 'descripcion' },
-    { prop: 'precio' },
-    { prop: 'cantidad'},
-    { prop: 'total' }
-  ];
+  items: any[] = [];
+  total: number;
+  cantidad: number;
 
   constructor(private carritoService: CarritoService) { 
   }
 
   ngOnInit() {
     this.carritoService.carritoItems.subscribe((val)=> {
-      this.rows = val;
+      this.items = val;
+      this.setTotal();
+      this.setCantidad();
     })
+  }
 
-    this.carritoService.removeItem(null);
+  setTotal(){
+    this.total = 0;
+    if(!this.items.length){
+      return;
+    }
+
+    this.items.forEach((val) => this.total += (val.cantidad * val.precio));
+  }
+
+  setCantidad(){
+    this.cantidad = 0;
+
+    if(!this.items.length){
+      return;
+    }
+
+    this.items.forEach((val) => this.cantidad += val.cantidad);
   }
 
   incrase(id, action){
     this.carritoService.incraseOrDecraseItem(id,action);
+  }
+
+  dissmiss(id){
+    this.carritoService.removeItem(id);
   }
 
 }

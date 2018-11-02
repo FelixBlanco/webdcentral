@@ -74,19 +74,30 @@ class AuthController extends Controller {
 
         $u = $request->user();
 
-        $u->img_perfil = asset('storage/'.$request->user()->fotoPerfil); // Podemos solicitar la URL directamente aca
         
         // Buscamos el usuario de DEPOCITO si es chofer o cliente //
         if($u->fk_idPerfil == 3){// Chofer
             $userDc = $this->getUserDriverDC($u->email);
             if($userDc != ""){
-                $u->auto = @$userDc->Modelo_Transporte." - ".$userDc->Patente_Transporte;
+                $u->Codigo_Transporte = @$userDc->Codigo_Transporte;
+                $u->update();// Actualizamos el codigo de transporte
+
+
+                $u->auto = @$userDc->Modelo_Transporte." - ".@$userDc->Patente_Transporte;
                 $u->totalImport = @$userDc->totalImport;
-                $u->start =  "0.0";
+
+                $rsc = DB::select("SELECT  ROUND(IFNULL((select IFNULL(sum(tb_order_header.stars),0) AS stars from  tb_order_header  where  fk_idUserDriver = 1 and fk_idStateOrder = 1)/
+                ( select IFNULL(COUNT(*),0) AS stars from  tb_order_header  where  fk_idUserDriver = $u->id and fk_idStateOrder = 1),0),1)
+                promedio");
+
+                $u->start = $rsc[0]->promedio;
             }
         }else if($u->fk_idPerfil == 2){// Cliente
             $userDc = $this->getUserClientDC($u->email);
             if($userDc != ""){
+                $u->Codigo_Cliente = @$userDc->Codigo_Cliente;
+                $u->update();// Actualizamos el codigo de cliente
+
                 $u->addres = @$userDc->Domicilio_Cliente;
                 $u->totalOrder = @$userDc->totalImport;
                 $u->totslCupons = CouponsClient::where("fk_idUser","=",$u->id)
@@ -98,6 +109,7 @@ class AuthController extends Controller {
         }
 
         try {
+            $u->img_perfil = asset('storage/'.$request->user()->fotoPerfil); // Podemos solicitar la URL directamente aca
             return response()->json($u,201);
         } catch (\Exception $e) {
             Log::error('Ha ocurrido un error en AuthController: '.$e->getMessage().', Linea: '.$e->getLine());
@@ -112,13 +124,20 @@ class AuthController extends Controller {
     public function getUserDriverDC($email){
       
         try{
-            $rs =   DB::connection('sqlsrv')->select(" SELECT *,totalImport = 12 FROM  Transportes where Email_Transporte = '".$email."' ")[0]; 
+            $rs =   DB::connection('sqlsrv')->select(" SELECT *,
+            (ISNULL((SELECT SUM(TotalCursoLegal)
+            FROM VentasporComprobantes where EstadoPedido = 'Cerrado' 
+            and Codigo_Transporte = Transportes.Codigo_Transporte),0))as totalImport
+             FROM  Transportes where Email_Transporte = '".$email."' ")[0]; 
+             
             if($rs){
                 return $rs;
             }else{
                 return null;
             }
         } catch (\Exception $e) {
+            //dd($e);
+
             return null;
         }
     }
@@ -126,7 +145,11 @@ class AuthController extends Controller {
     public function getUserClientDC($email){
 
         try{
-            $rs =  DB::connection('sqlsrv')->select(" SELECT *,totalOrder = 12 FROM  Clientes where Email_Cliente = '".$email."' ")[0]; 
+            $rs =  DB::connection('sqlsrv')->select(" SELECT *,
+            (ISNULL((SELECT SUM(TotalCursoLegal)
+            FROM VentasporComprobantes where EstadoPedido = 'Cerrado' 
+            and Codigo_Cliente = Clientes.Codigo_Cliente),0))as totalImport
+             FROM  Clientes where Email_Cliente = '".$email."' ")[0]; 
             if($rs){
                 return $rs;
             }else{
