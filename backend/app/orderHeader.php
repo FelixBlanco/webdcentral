@@ -19,13 +19,12 @@ class orderHeader extends Model {
         'Estado_Pedido',
         'Domicilio_Entrega',
         'Codigo_Postal',
-        'fk_idStateOrder',
-        'codeProdSys',
-        'fk_idUser',
         'stars',
         'comentaryClient',
+        'fk_idStateOrder',
+        'fk_idUserClient',
         'fk_idUserDriver'
-        'fk_idProducto',
+       
     ];
 
     public function state() {
