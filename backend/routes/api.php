@@ -58,7 +58,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
         /*REDES SOCIALES*/
 
         /*ORDER BODY (carrito de compra)*/
-        Route::post('añadirOrderBody','OrderBodyController@añadir');
+        Route::post('añadirOrderBody/{fk_idOrderHeader}','OrderBodyController@añadir');
         /*ORDER BODY (carrito de compra)*/
 
         /*ORDER HEADER (Orden de compra)*/

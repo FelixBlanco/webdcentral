@@ -10,46 +10,50 @@ use Illuminate\Support\Facades\Log;
 
 class OrderBodyController extends Controller {
 
-    public function añadir(Request $request) {
+    public function añadir(Request $request,$fk_idOrderHeader) {
+        dd($request->all());
 
-        $this->validate($request, [
-            'fk_idOrderHeader'             => 'required',
+        /*$this->validate($request, [
             'codeProdSys'                  => 'required',
             'Cantidad_Producto'            => 'required',
             'PrecioUnitario_Producto'      => 'required',
             'fk_idProducto'                => 'required',
         ], [
-            'fk_idOrderHeader.required'             => 'El campo es requerido',
             'codeProdSys.required'                  => 'El campo es requerido',
             'Cantidad_Producto.required'            => 'El campo es requerido',
             'PrecioUnitario_Producto.required'      => 'El campo es requerido',
             'fk_idProducto.required'                => 'El campo es requerido',
-        ]);
+        ]);*/
 
-        DB::beginTransaction();
+        foreach ($request->items as $item){
 
-        try {
+            DB::beginTransaction();
 
-            $OH = new orderBody($request->all());
+            try {
 
-            $OH->save();
-            $OH->orderHeader;
+                $OH = new orderBody($item);
 
-            $response = [
-                'msj'  => 'OrderBody Creada exitosamente',
-                'user' => $OH,
-            ];
-            DB::commit();
+                $OH->save();
+                $OH->orderHeader;
 
-            return response()->json($response, 201);
-        } catch (\Exception $e) {
+                $response = [
+                    'msj'  => 'OrderBody Creada exitosamente',
+                    'user' => $OH,
+                ];
+                DB::commit();
 
-            DB::rollback();
-            Log::error('Ha ocurrido un error en OrderBodyController: '.$e->getMessage().', Linea: '.$e->getLine());
+                return response()->json($response, 201);
+            } catch (\Exception $e) {
 
-            return response()->json([
-                'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
-            ], 500);
+                DB::rollback();
+                Log::error('Ha ocurrido un error en OrderBodyController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+                return response()->json([
+                    'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+                ], 500);
+            }
         }
-    }
+        }
+
+
 }

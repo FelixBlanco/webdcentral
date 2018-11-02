@@ -39,12 +39,12 @@ trait ValidatesRequests
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function validate(Request $request, array $rules,
-                             array $messages = [], array $customAttributes = [])
+    public function validate(Request $request, array $rules, array $messages = [], array $customAttributes = [])
     {
-        return $this->getValidationFactory()->make(
-            $request->all(), $rules, $messages, $customAttributes
-        )->validate();
+        return $this
+            ->getValidationFactory()
+            ->make($request->all(), $rules, $messages, $customAttributes)
+            ->validate();
     }
 
     /**

@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/RedSocialController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/RedSocialController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/database/migrations/2018_10_27_120513_create_order_header_table.php" afterPath="$PROJECT_DIR$/backend/database/migrations/2018_10_27_120513_create_order_header_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/routes/api.php" afterPath="$PROJECT_DIR$/backend/routes/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php" afterPath="$PROJECT_DIR$/backend/vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,34 +19,45 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="56" column="53" lean-forward="false" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="53" />
+            <state relative-caret-position="256">
+              <caret line="60" column="54" lean-forward="false" selection-start-line="60" selection-start-column="38" selection-end-line="60" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2018_10_13_042123_create_productos_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_13_042123_create_productos_table.php">
+      <file leaf-file-name="OrderBodyController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-              <folding />
+            <state relative-caret-position="98">
+              <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="28" />
+              <folding>
+                <element signature="e#40#58#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RedSocialController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/RedSocialController.php">
+      <file leaf-file-name="OrderHeaderController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+            <state relative-caret-position="322">
+              <caret line="51" column="51" lean-forward="true" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
               <folding>
                 <element signature="e#40#60#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="laravel-2018-11-02.log" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-02.log">
+          <provider selected="true" editor-type-id="LogFileEditorProvider">
+            <state relative-caret-position="402">
+              <caret line="32" column="148" lean-forward="false" selection-start-line="32" selection-start-column="126" selection-end-line="32" selection-end-column="148" />
             </state>
           </provider>
         </entry>
@@ -88,8 +104,8 @@
       <find>setClave</find>
       <find>social</find>
       <find>$usuario</find>
-      <find>desta</find>
       <find>id_RedSocial</find>
+      <find>desta</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\argentina\webdcentral\backend\app\Http\Controllers</dir>
@@ -109,7 +125,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_22_093853_create_notification_table.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_22_093909_create_secction_app_table.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_24_011616_create_suscripcions_table.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_24_025515_create_servicios_webs_table.php" />
@@ -147,7 +162,6 @@
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_26_144256_create_carrito_compras_table.php" />
         <option value="$PROJECT_DIR$/backend/app/CarritoCompra.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2014_10_12_000000_create_users_table.php" />
-        <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_27_120513_create_order_header_table.php" />
         <option value="$PROJECT_DIR$/backend/app/orderHeader.php" />
         <option value="$PROJECT_DIR$/backend/app/orderBody.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/CarritoCompraController.php" />
@@ -155,11 +169,13 @@
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_30_013445_create_mascotas_table.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" />
         <option value="$PROJECT_DIR$/backend/app/RedesSocial.php" />
-        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php" />
-        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php" />
-        <option value="$PROJECT_DIR$/backend/routes/api.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_30_022644_create_redes_socials_table.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/RedSocialController.php" />
+        <option value="$PROJECT_DIR$/backend/routes/api.php" />
+        <option value="$PROJECT_DIR$/backend/vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php" />
+        <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_27_120513_create_order_header_table.php" />
       </list>
     </option>
   </component>
@@ -225,6 +241,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webdcentral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webdcentral" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="storage" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webdcentral" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webdcentral" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="storage" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logs" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -464,7 +520,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104572000" />
+    <option name="totallyTimeSpent" value="108229000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
@@ -478,7 +534,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30998248" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25569177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29246935" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -588,16 +644,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backend/public/storage/perfil/img-20181009-153048-1539493058-189.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/public/storage/perfil/img-20181009-153048-1539492738-831.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/public/storage/perfil/img-20181009-153048-1539492701-693.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -795,14 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_27_120513_create_order_header_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_27_120522_create_order_body_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -814,14 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/orderBody.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -842,26 +872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="e#40#58#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="57" column="25" lean-forward="true" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
-          <folding>
-            <element signature="e#40#60#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Destacado.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -874,30 +884,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/orderHeader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="295" column="9" lean-forward="true" selection-start-line="221" selection-start-column="0" selection-end-line="295" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="56" column="53" lean-forward="false" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -918,14 +904,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_13_042123_create_productos_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/RedSocialController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -933,6 +911,89 @@
           <folding>
             <element signature="e#40#60#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/orderBody.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/orderHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" column="22" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="44" column="12" lean-forward="false" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_13_042123_create_productos_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-02.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="402">
+          <caret line="32" column="148" lean-forward="false" selection-start-line="32" selection-start-column="126" selection-end-line="32" selection-end-column="148" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="51" column="51" lean-forward="true" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
+          <folding>
+            <element signature="e#40#60#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_27_120513_create_order_header_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="295" column="9" lean-forward="true" selection-start-line="221" selection-start-column="0" selection-end-line="295" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="28" />
+          <folding>
+            <element signature="e#40#58#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="60" column="54" lean-forward="false" selection-start-line="60" selection-start-column="38" selection-end-line="60" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
