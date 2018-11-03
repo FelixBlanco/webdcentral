@@ -3,3 +3,16 @@ img{
 }
 
 .t-b-azul{ background-color: #009BDD; color: white; }
+
+.hover-normal{
+    background-color: none;
+    color: black;
+    padding: 5%;
+}
+
+.hover-blue{
+    background-color: #009Bdd;
+    border-radius: 86% 86% 0 0;
+    color: white;
+    padding: 5%;
+}

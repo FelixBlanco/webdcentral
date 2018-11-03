@@ -21,28 +21,20 @@ export class LoginComponent implements OnInit {
     private _alertService: AlertsService
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  ingresarLogin( ):void{
+  ingresarLogin( ){
   
     const data:any = {email: this.email, password : this.password}; 
     this._loginService.ingresarLogin(data).subscribe(
-      (resp:any) =>{
+      (resp:any) =>{     
         localStorage.setItem('access_token',resp.access_token)
+        localStorage.setItem('session_user','true')
         $("#loginModal").modal('hide');
-        location.href="/home";
+        location.href="/";
       },
       (error:any) => {
-
-        if(error.status == '422' ){
-          this._alertService.listError(error.error) // LIsta de errores
-        }
-
-        if(error.status == '401'){
-          this._alertService.Erros(error.error.msj) // no autorizado | cuando hay error 
-        }
-        
+        this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
       }
     );   
 

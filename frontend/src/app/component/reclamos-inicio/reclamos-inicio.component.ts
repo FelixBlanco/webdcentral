@@ -13,6 +13,8 @@ export class ReclamosInicioComponent implements OnInit {
 
   form:any = {titulo:null, descripcion:null, fk_idUser: null, fk_idStatusReclamo: 1 };
 
+  isSession  = localStorage.getItem('session_user')
+
   constructor(private _reclamosSugerenciasService: ReclamosSugerenciasService, private _alertService:AlertsService ) { }
 
   ngOnInit() {
