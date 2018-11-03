@@ -19,10 +19,12 @@ class OrderHeaderController extends Controller {
             'Domicilio_Entrega' => 'required',
             'Codigo_Postal'     => 'required',
             'fk_idProducto'     => 'required',
+            'stars'             => 'required',
         ], [
             'Domicilio_Entrega.required' => 'El campo es requerido',
             'Codigo_Postal.required'     => 'El campo es requerido',
             'fk_idProducto.required'     => 'El campo es requerido',
+            'stars.required'             => 'El campo es requerido',
         ]);
 
         DB::beginTransaction();
@@ -35,8 +37,11 @@ class OrderHeaderController extends Controller {
             if (! is_null($Numero_Pedido_max)) {
 
                 $Numero_Pedido = 'P-'.$Numero_Pedido_max + 1;
+
             } else {
+
                 $Numero_Pedido = 'P-1';
+
                 if (is_null($producto)) {
 
                     $response = [
@@ -46,11 +51,12 @@ class OrderHeaderController extends Controller {
                     return response()->json($response, 400);
                 } else {
 
-                    $OB                = new orderHeader($request->all());
-                    $OB->codeProdSys   = $producto->codeProdSys;
-                    $OB->Numero_Pedido = $Numero_Pedido;
-                    $OB->Estado_Pedido = 'Abierto';
-                    $OB->fk_idUser     = Auth::user()->id;
+                    $OB                  = new orderHeader($request->all());
+                    $OB->codeProdSys     = $producto->codeProdSys;
+                    $OB->Numero_Pedido   = $Numero_Pedido;
+                    $OB->Estado_Pedido   = 'Abierto';
+                    $OB->fk_idUserClient = Auth::user()->id;
+                    $OB->Email_Cliente   = Auth::user()->email;
 
                     $OB->Fecha_Pedido    = Carbon::now()->toDateString();
                     $OB->fk_idStateOrder = 1;
