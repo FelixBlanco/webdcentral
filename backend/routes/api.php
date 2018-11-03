@@ -189,7 +189,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // para el buscador general
     Route::get('buscarGeneral/{search?}', 'ProductoController@buscarGeneral');
 
-
 });
 
 

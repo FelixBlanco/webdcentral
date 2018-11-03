@@ -15,65 +15,53 @@ class OrderHeaderController extends Controller {
 
     public function añadir(Request $request) {
 
+        // opcional comentaryClient
+
         $this->validate($request, [
             'Domicilio_Entrega' => 'required',
             'Codigo_Postal'     => 'required',
-            'fk_idProducto'     => 'required',
             'stars'             => 'required',
         ], [
             'Domicilio_Entrega.required' => 'El campo es requerido',
             'Codigo_Postal.required'     => 'El campo es requerido',
-            'fk_idProducto.required'     => 'El campo es requerido',
             'stars.required'             => 'El campo es requerido',
         ]);
 
         DB::beginTransaction();
 
         try {
-            $producto = Producto::findOrFail($request->fk_idProducto);
+            $Numero_Pedido_max = orderHeader::max('Numero_Pedido');
+            $Numero_Pedido='';
 
-            $Numero_Pedido_max = orderHeader::max('idOrderHeader');
-
-            if (! is_null($Numero_Pedido_max)) {
-
-                $Numero_Pedido = 'P-'.$Numero_Pedido_max + 1;
-
-            } else {
-
-                $Numero_Pedido = 'P-1';
-
-                if (is_null($producto)) {
-
-                    $response = [
-                        'msj' => 'No exise el producto: '.$request->fk_idProducto,
-                    ];
-
-                    return response()->json($response, 400);
-                } else {
-
-                    $OB                  = new orderHeader($request->all());
-                    $OB->codeProdSys     = $producto->codeProdSys;
-                    $OB->Numero_Pedido   = $Numero_Pedido;
-                    $OB->Estado_Pedido   = 'Abierto';
-                    $OB->fk_idUserClient = Auth::user()->id;
-                    $OB->Email_Cliente   = Auth::user()->email;
-
-                    $OB->Fecha_Pedido    = Carbon::now()->toDateString();
-                    $OB->fk_idStateOrder = 1;
-
-                    $OB->save();
-                    $OB->user;
-                    $OB->state;
-
-                    $response = [
-                        'msj'  => 'OrderHeader Creada exitosamente',
-                        'user' => $OB,
-                    ];
-                    DB::commit();
-
-                    return response()->json($response, 201);
-                }
+            if (is_null($Numero_Pedido_max)) {
+                $Numero_Pedido = 1;
             }
+
+                $Numero_Pedido = $Numero_Pedido_max + 1;
+
+                $OB                  = new orderHeader($request->all());
+
+                $OB->Numero_Pedido   = $Numero_Pedido;
+                $OB->Estado_Pedido   = 'Abierto';
+                $OB->fk_idUserClient = Auth::user()->id;
+                $OB->Email_Cliente   = Auth::user()->email;
+                $OB->fk_idUserDriver = 0; //esto no agarra valores nulos por lo que le asigne 0 por default
+
+                $OB->Fecha_Pedido    = Carbon::now()->toDateString();
+                $OB->fk_idStateOrder = 1;
+
+                $OB->save();
+                $OB->user;
+                $OB->state;
+
+                $response = [
+                    'msj'  => 'OrderHeader Creada exitosamente',
+                    'OB' => $OB,
+                ];
+                DB::commit();
+
+                return response()->json($response, 201);
+
 
 
         } catch (\Exception $e) {

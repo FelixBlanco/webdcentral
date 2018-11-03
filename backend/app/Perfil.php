@@ -7,14 +7,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Perfil extends Model {
 
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
     use SoftDeletes;
     protected $table = 'tb_perfil';
-    protected $primaryKey = 'idPerfil'; // or null
+    protected $primaryKey = 'idPerfil';
 
     protected $fillable = [
         'nombre',
