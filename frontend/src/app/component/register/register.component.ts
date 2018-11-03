@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
     if(this.v_register.password && this.v_register.password_r && this.v_register.nombre){
       if(this.v_register.password.length != 0){
         if(this.v_register.password.length <= 8){
-          this._alertService.Erros('el password tiene que ser mayor de 8 caracteres');
+          this._alertService.msg("ERR", "Error", 'el password tiene que ser mayor de 8 caracteres');
         }else{
           if(this.v_register.password == this.v_register.password_r){
             
@@ -55,23 +55,23 @@ export class RegisterComponent implements OnInit {
 
             this._registerService._addRegister(data_i).subscribe( 
               (resp:any) => { 
-                this._alertService.Success('Iniciando...')
+                this._alertService.msg('OK','Iniciando...')
                 localStorage.getItem('access_token')
                 $("#registraseModal").modal('hide');
                 location.href="/";
               },
               (error:any) => {
-                console.log(error.error.errors)
-                this._alertService.listError(error.error);
+                this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
               }
             );
                 
           }else{
-            this._alertService.Erros('los pasword no es igual');
+            this._alertService.msg("ERR", "Error", 'los pasword no es igual');
           }
       }      
     }else{
-      this._alertService.Erros('Todos los campos son requeridos') 
+      this._alertService.msg("ERR", "Error", 'Todos los campos son requeridos');
+      
     }
 
 

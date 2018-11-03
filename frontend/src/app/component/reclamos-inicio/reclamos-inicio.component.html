@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="reclamoModelLabel">Nuevo Reclamo</h5>
+          <h5 class="modal-title" id="reclamoModelLabel">Reclamos y Sugerencias</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -30,8 +30,15 @@
   <div class="container">
       <div class="row">
         <div class="col-md-8 text-center">
-          <span class="btn btn-r txt-blanco" style="background-color: #E97604;" data-toggle="modal" data-target="#reclamoModel"><b>SUGERENCIAS</b></span>
-          <span class="btn btn-r txt-blanco" style="background-color: #F5525A; margin-left:5%" data-toggle="modal" data-target="#reclamoModel"><b>RECLAMOS</b> </span>
+          <div *ngIf="isSession; else otrosbtn">
+              <span class="btn btn-r txt-blanco" style="background-color: #E97604;" data-toggle="modal" data-target="#reclamoModel"><b>SUGERENCIAS</b></span>
+              <span class="btn btn-r txt-blanco" style="background-color: #F5525A; margin-left:5%" data-toggle="modal" data-target="#reclamoModel"><b>RECLAMOS</b> </span>
+            
+          </div>  
+          <ng-template #otrosbtn>
+              <span class="btn btn-r txt-blanco" style="background-color: #E97604;"><b>SUGERENCIAS</b></span>
+              <span class="btn btn-r txt-blanco" style="background-color: #F5525A; margin-left:5%"><b>RECLAMOS</b> </span>
+          </ng-template>
         </div>
         <div class="col-md-4">
           <p class="text-justify txt-blanco font-light">

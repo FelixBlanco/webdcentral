@@ -19,8 +19,34 @@ class ProductoController extends Controller {
      * @return \Illuminate\Http\Response
      */
 
-    public function buscarGeneral(){
+    public function buscarGeneral($search=null) {
 
+        if (!is_null($search) ) {
+
+            $busqueda = "%".$search."%";
+
+            $productos = Producto::orWhere('nombre', 'like', $busqueda)
+                ->orWhere('rubro', 'like', $busqueda)
+                ->orWhere('marca', 'like', $busqueda)
+                ->orWhere('SubRubro1', 'like', $busqueda)
+                ->orWhere('SubRubro2', 'like', $busqueda)
+                ->where('fk_idSatate', '=', 1)
+                ->get();
+
+            $response = [
+                'msj'    => 'Productos',
+                'result' => $productos,
+            ];
+
+            return response()->json($response, 200);
+        }else{
+            $response = [
+                'msj'    => 'Debe introducir un término de búsqueda',
+            ];
+
+            return response()->json($response, 404);
+
+        }
     }
 
 
@@ -42,7 +68,8 @@ class ProductoController extends Controller {
 
         try {
             $producto = Producto::findOrFail($idProducto);
-            $producto->fill([ 'isOutstanding' => 1, 'fechaIsOutstanding' => Carbon::now()->toDateTimeString() ]);
+            $producto->fill([ 'isOutstanding'      => 1,
+                              'fechaIsOutstanding' => Carbon::now()->toDateTimeString() ]);
 
             $producto->save();
 
@@ -73,7 +100,8 @@ class ProductoController extends Controller {
 
         try {
             $producto = Producto::findOrFail($idProducto);
-            $producto->fill([ 'isOutstanding' => 0, 'fechaIsOutstanding' => Carbon::now()->toDateTimeString() ]);
+            $producto->fill([ 'isOutstanding'      => 0,
+                              'fechaIsOutstanding' => Carbon::now()->toDateTimeString() ]);
             $producto->save();
 
             DB::commit();
@@ -259,7 +287,6 @@ class ProductoController extends Controller {
     }
 
     public static function getAllMarcas() {
-
 
         $response = Producto::select("marca")->distinct('marca')->orderBy("marca")->get();
 

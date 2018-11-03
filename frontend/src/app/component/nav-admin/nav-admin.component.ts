@@ -45,7 +45,6 @@ export class NavAdminComponent implements OnInit {
   }
   
   salirLogin(){
-    
     this._loginService._salirLogin().subscribe(
       (resp:any) => { 
         this._alerts.Success('Saliendo...')
