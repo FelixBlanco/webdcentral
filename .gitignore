@@ -1,5 +1,4 @@
 backend/vendor/**
 backend/.env
 backend/.rnd
-backend/.env
-backend/.rnd
+backend/vendor
