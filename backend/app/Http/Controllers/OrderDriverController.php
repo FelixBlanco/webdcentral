@@ -114,12 +114,14 @@ class OrderDriverController extends Controller
             $mytime = Carbon\Carbon::now();
 
             DB::connection('sqlsrv')->insert("  INSERT INTO EncabezadosVentas_APP 
-            (Fecha_Pedido,
-            Numero_Pedido,
-            Estado_Pedido,
-            Domicilio_Entrega,
-            Codigo_Postal,
-            comentaryClient) VALUES(
+            (   Email_Cliente,
+                Fecha_Pedido,
+                Numero_Pedido,
+                Estado_Pedido,
+                Domicilio_Entrega,
+                Codigo_Postal,
+                comentaryClient) VALUES(
+                 $request->emailEnvio   
                  $mytime->toDateTimeString(),
                  $request->Numero_Pedido,
                  'Solicitado',
@@ -144,19 +146,19 @@ class OrderDriverController extends Controller
                 $mytime = Carbon\Carbon::now();
 
                 DB::connection('sqlsrv')->insert("  INSERT INTO DetalleEncabezadosVentas_APP 
-                (   codeProdSys,
+                (   Codigo_Producto,
                     Cantidad_Producto,
                     PrecioUnitario_Producto,
                     PorcentajeDescuento_Producto,
                     Devolucion_Producto,
-                    Numero_EncabezadoVenta,
+                    Numero_Pedido,
                 ) VALUES(
                     $item->codeProdSys,
                     $item->Cantidad_Producto,
                     $item->PrecioUnitario_Producto,
                     $item->PorcentajeDescuento_Producto,
                     $item->Devolucion_Producto,
-                    $item->Numero_EncabezadoVenta
+                    $item->Numero_Pedido
                 )"); 
             }
 

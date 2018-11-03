@@ -42,15 +42,6 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
         /* PREGUNTA Y RESPUESTA */
 
-        /*PARA LOS DESTACADOS*/
-
-        Route::post('crearDestacado', 'DestacadoController@crearDestacado');
-        Route::post('editarDestacado/{idDestacado}', 'DestacadoController@editarDestacado');
-        Route::delete('eliminarDestacado/{idDestacado}', 'DestacadoController@eliminarDestacado');
-        Route::get('obtenerDestacados', 'DestacadoController@listar');
-
-        /*PARA LOS DESTACADOS*/
-
 
         /*REDES SOCIALES*/
         Route::post('crearRedSocial','RedSocial@store');
@@ -71,6 +62,15 @@ Route::group([ 'prefix' => 'auth' ], function() {
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
+
+    /*PARA LOS DESTACADOS*/
+
+    Route::post('crearDestacado', 'DestacadoController@crearDestacado');
+    Route::post('editarDestacado/{idDestacado}', 'DestacadoController@editarDestacado');
+    Route::delete('eliminarDestacado/{idDestacado}', 'DestacadoController@eliminarDestacado');
+    Route::get('obtenerDestacados', 'DestacadoController@listar');
+
+    /*PARA LOS DESTACADOS*/
 
 
     Route::post('crer-serviciosWeb', 'ServiciosWebController@crer');
