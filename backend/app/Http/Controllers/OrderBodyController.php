@@ -7,20 +7,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class OrderBodyController extends Controller
-{
-    public function añadir(Request $request, $fk_idOrderHeader)
-    {
+class OrderBodyController extends Controller {
+    public function añadir(Request $request, $fk_idOrderHeader) {
 
         DB::beginTransaction();
 
         foreach ($request->items as $item) {
             try {
-                $OH = new orderBody($item);
-                $OH->fk_idOrderHeader=$fk_idOrderHeader;
+                $OH                   = new orderBody($item);
+                $OH->fk_idOrderHeader = $fk_idOrderHeader;
                 $OH->save();
                 $OH->orderHeader;
-                $respo[]=$OH;
+                $respo[] = $OH;
 
             } catch (\Exception $e) {
 
@@ -33,10 +31,11 @@ class OrderBodyController extends Controller
         }
 
         $response = [
-            'msj'  => 'OrderBody Creada exitosamente',
+            'msj'         => 'OrderBody Creada exitosamente',
             'orderHeader' => $OH,
         ];
         DB::commit();
 
         return response()->json($response, 201);
     }
+}
