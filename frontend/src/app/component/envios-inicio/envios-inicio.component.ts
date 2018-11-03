@@ -13,29 +13,46 @@ export class EnviosInicioComponent implements OnInit {
 
   ngOnInit() {
 
-    $("#como_comprar").hover(function(){
+
+    $("#compra").hover(function(){
       console.log('hover')
-      $("#como_comprar").attr('src',"../assets/envios-inicio/como_comprar_2.png")
+      $("#compra img").attr('src',"../assets/como_envio/como_comprar_2.png")
+      $("#compra h3").removeClass('hover-normal')
+      $("#compra h3").addClass('hover-blue')
     },function(){
-      $("#como_comprar").attr('src',"../assets/envios-inicio/como_comprar_1.png")
+      $("#compra img").attr('src',"../assets/como_envio/como_comprar_1.png")
+      $("#compra h3").removeClass('hover-blue')
+      $("#compra h3").addClass('hover-normal')
     })
 
-    $("#formas_de_pago").hover(function(){
-      $("#formas_de_pago").attr('src',"../assets/envios-inicio/formas_de_pago_2.png")
+    $("#forma_pago").hover(function(){
+      $("#forma_pago img").attr('src',"../assets/como_envio/formas_de_pago_2.png")
+      $("#forma_pago h3").removeClass('hover-normal')
+      $("#forma_pago h3").addClass('hover-blue')
     },function(){
-      $("#formas_de_pago").attr('src',"../assets/envios-inicio/como_comprar_1.png")
+      $("#forma_pago img").attr('src',"../assets/como_envio/formas_de_pago_1.png")
+      $("#forma_pago h3").removeClass('hover-blue')
+      $("#forma_pago h3").addClass('hover-normal')
     })
 
-    $("#enviar").hover(function(){
-      $("#enviar").attr('src',"../assets/envios-inicio/enviar_2.png")
+    $("#envio").hover(function(){
+      $("#envio img").attr('src',"../assets/como_envio/enviar_2.png")
+      $("#envio h3").removeClass('hover-normal')
+      $("#envio h3").addClass('hover-blue')
     },function(){
-      $("#enviar").attr('src',"../assets/envios-inicio/enviar_1.png")
+      $("#envio img").attr('src',"../assets/como_envio/enviar_1.png")
+      $("#envio h3").removeClass('hover-blue')
+      $("#envio h3").addClass('hover-normal')
     })
 
-    $("#retirar_en_tienda").hover(function(){
-      $("#retirar_en_tienda").attr('src',"../assets/envios-inicio/retirar_en_tienda_2.png")
+    $("#retiro_tienda").hover(function(){
+      $("#retiro_tienda img").attr('src',"../assets/como_envio/retirar_en_tienda_2.png")
+      $("#retiro_tienda h3").removeClass('hover-normal')
+      $("#retiro_tienda h3").addClass('hover-blue')
     },function(){
-      $("#retirar_en_tienda").attr('src',"../assets/envios-inicio/retirar_en_tienda_1.png")
+      $("#retiro_tienda img").attr('src',"../assets/como_envio/retirar_en_tienda_1.png")
+      $("#retiro_tienda h3").removeClass('hover-blue')
+      $("#retiro_tienda h3").addClass('hover-normal')
     })
 
   }

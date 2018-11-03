@@ -37,7 +37,7 @@ import { CarritoComponent } from './component/carrito/carrito.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CarritoService } from './services/carrito.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { ToastrModule } from 'ngx-toastr';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -87,7 +87,8 @@ const appRoutes: Routes = [
     HomeModule,
     BrowserAnimationsModule,
     NgxDatatableModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ToastrModule.forRoot() 
   ],
   providers: [
     CarritoService
