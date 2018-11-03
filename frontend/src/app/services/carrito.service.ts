@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export interface Item{
     id: number | string;
     producto: string;
-    descripcion: string;
+    marca: string;
     precio: number;
     cantidad: number;
 }
@@ -15,89 +15,7 @@ export class CarritoService {
     carritoSource: BehaviorSubject<Item[]> = new BehaviorSubject([]);
     carritoItems: Observable<Item[]> = this.carritoSource.asObservable();
 
-    productListTemp = [
-        {
-            id: 1,
-            producto: "Royal Canin ACTIVE1",
-            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
-            precio: 185.50,
-            cantidad: 1
-        },
-        {
-            id: 2,
-            producto: "Royal Canin ACTIVE2",
-            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
-            precio: 185.50,
-            cantidad: 1
-        },
-        {
-            id: 3,
-            producto: "Royal Canin ACTIVE3",
-            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
-            precio: 185.50,
-            cantidad: 1
-        },
-        {
-            id: 4,
-            producto: "Royal Canin ACTIVE4",
-            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt Lorem ipsum dolor sit amet consecur sit descur adisping elt Lorem ipsum dolor sit amet consecur sit descur adisping elt",
-            precio: 185.50,
-            cantidad: 1
-        },
-        {
-            id: 5,
-            producto: "Royal Canin ACTIVE5",
-            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
-            precio: 185.50,
-            cantidad: 1
-        },
-        {
-            id: 6,
-            producto: "Royal Canin ACTIVE6",
-            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
-            precio: 185.50,
-            cantidad: 1
-        },
-        {
-            id: 7,
-            producto: "Royal Canin ACTIVE7",
-            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
-            precio: 185.50,
-            cantidad: 1
-        },
-        {
-            id: 8,
-            producto: "Royal Canin ACTIVE8",
-            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
-            precio: 185.50,
-            cantidad: 1
-        },
-        {
-            id: 9,
-            producto: "Royal Canin ACTIVE9",
-            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
-            precio: 185.50,
-            cantidad: 1
-        },
-        {
-            id: 10,
-            producto: "Royal Canin ACTIVE10",
-            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
-            precio: 185.50,
-            cantidad: 1
-        },
-        {
-            id: 11,
-            producto: "Royal Canin ACTIVE5",
-            descripcion: "Lorem ipsum dolor sit amet consecur sit descur adisping elt",
-            precio: 185.50,
-            cantidad: 1
-        }
-    ]
-
-
     constructor(){
-        this.carritoSource.next(this.productListTemp);
     }
 
     /**
@@ -109,16 +27,16 @@ export class CarritoService {
      * 
      * @param id clave/serial/id del producto
      * @param producto nombre breve
-     * @param descripcion descripción breve
+     * @param marca Marca de producto
      * @param cantidad la cantidad bruta de los productos sin decimales en unidades
      * @param precio denominado en ARS con decimales
      */
-    addItem(id, producto, descripcion, cantidad, precio): Item{
+    addItem(id, producto, marca, cantidad, precio): Item{
         
-        if(!id || !producto || !descripcion || !cantidad || !precio){
+        if(!id || !producto || !marca || !cantidad || !precio){
             debugger;
             throw new Error(`${ 
-                !id ? 'id' : !producto ? 'producto': !descripcion ? 'descripion':  !cantidad ? 'cantidad': !precio ? 'precio': ''
+                !id ? 'id' : !producto ? 'producto': !marca ? 'descripion':  !cantidad ? 'cantidad': !precio ? 'precio': ''
             } <= es indefinido o null`);
         }
 
@@ -136,7 +54,7 @@ export class CarritoService {
             added = {
                 id : id,
                 producto : producto,
-                descripcion : descripcion,
+                marca : marca,
                 precio: precio,
                 cantidad: cantidad
             }

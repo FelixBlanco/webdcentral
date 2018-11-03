@@ -1,4 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductosService } from 'src/app/services/productos.service';
+import * as $ from 'jquery';
+
+export interface DestacadoItem{
+  nombre: string;
+  urlImage: string;
+  codeProdSys: string;
+  kiloProdcuto: string;
+  precio: number;
+  marca: string;
+  descripcion?: string;
+  cantidad: number;
+}
 
 @Component({
   selector: 'app-destacado-inicio',
@@ -7,31 +20,72 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DestacadoInicioComponent implements OnInit {
 
-  counts:any ={
-    uno: { count: 1 },
-    dos: { count: 1 },
-    tres: { count: 1 },
-    cuatro: { count: 1 },
-    cinco: { count: 1 },
-    seis: { count: 1 },
-    siete: { count: 1 },
-    ocho: { count: 1 },
-  }
+  destacados: DestacadoItem[];
 
-  constructor() { }
+  constructor(private productosService: ProductosService) { }
 
   ngOnInit() {
-
+    this.productosService.getDestacados().subscribe(resp => {
+      console.log(resp);
+      if(resp.ok && resp.status === 200){
+        this.mapAndSet(resp.body);
+      }else{
+        // TODO Ha ocurrido un error;
+      }
+    }, error => {
+      // TODO Ha ocurrido un error
+    });
   }
 
+  mapAndSet(data: any) : void {
+    
+    const destacados: any[] = data.destacados;
 
-  mas(p:string){
-    this.counts[p].count++;
-  }
-
-  menos(p:string){
-    if(this.counts[p].count != 0){
-      this.counts[p].count--;
+    if(!destacados.length){
+      // TODO No hay destacados
+      return;
     }
+
+    let toSet: DestacadoItem[] = [];
+
+    destacados.forEach((item) => {
+      const producto = item.producto;
+
+      toSet.push({
+        codeProdSys: producto.codeProdSys,
+        nombre: producto.nombre,
+        //descripcion: producto.descripcion,
+        urlImage: producto.urlImage,
+        kiloProdcuto: producto.kiloProdcuto,
+        precio: producto.precioL2,
+        marca: producto.marca,
+        cantidad: 1
+      });
+    });
+
+    this.destacados = toSet;
+    //TODO $('.carousel').carousel();
+    console.table(this.destacados);
+
+  }
+
+  isACarruselItem($index): boolean {
+    if($index % 4){
+      return false;
+    }
+    return true;
+  }
+
+
+  getPartialItems(from, to): DestacadoItem[]{
+    let items: DestacadoItem[] = [];
+
+    this.destacados.forEach((item, i) => {
+      if(i >= from &&  i <= to){
+        items.push(item);
+      }
+    });
+
+    return items;
   }
 }

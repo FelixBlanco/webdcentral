@@ -1,0 +1,44 @@
+<div class="carousel-item" [ngClass]="{'active': isActive}">
+  
+    <div class="container">
+      <div class="row align-self-center">
+
+        <ng-container *ngFor="let item of items">
+          <div class="col-md-3">
+            <div class="card" style="width: 16rem;">
+              <img class="card-img-top" [src]="item.urlImage" alt="Card image cap">
+              <div class="card-body" style="background-color: #DCF5F9;">
+                <div class="text-center" style="color:#009BDD">{{item.marca}}</div>
+                <h5 class="card-title text-center" style="font-weight: bold; color: #009BDD">
+                  {{item.nombre}}
+                </h5>
+                <div class="text-center">
+                  <ul class="nav justify-content-center" id="kg-id">
+                    <li class="nav-item">
+                      <span class="badge">
+                        <span class="nro">{{item.kiloProdcuto}}</span> <br>
+                        <span>kg</span>
+                      </span>
+                    </li>
+                  </ul>
+                  <p class="text-center" style="font-size: 22px; font-weight: bold; color: #E97604">POR: {{item.precio | currency: 'ARS': '$'}}</p>
+                  <ul class="nav justify-content-center" id="count_list">
+                    <li class="nav-item" id="mas_count">
+                      <img src="../assets/recursos/mas.png" alt="" (click)="incrase(item, true)" class="img-fluid">
+                    </li>
+                    <li class="nav-item" id="nro_count">
+                      <span class="badge"> {{item.cantidad}} </span>
+                    </li>
+                    <li class="nav-item" id="rest_count">
+                      <img src="../assets/recursos/menos.png" alt="" (click)="incrase(item, false)" class="img-fluid">
+                    </li>
+                  </ul>
+                </div>
+                <a class="btn btn-sm btn-comprar" (click)="addItem(item)">COMPRAR</a>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+</div>

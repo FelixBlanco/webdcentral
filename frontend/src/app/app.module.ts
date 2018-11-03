@@ -38,6 +38,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CarritoService } from './services/carrito.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
+import { CarouselItemComponent } from './component/destacado-inicio/carousel-item/carousel-item.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -78,6 +79,7 @@ const appRoutes: Routes = [
     BajaAppInicioComponent,
     DestacadoInicioComponent,
     CarritoComponent,
+    CarouselItemComponent,
   ],
   imports: [
     BrowserModule,

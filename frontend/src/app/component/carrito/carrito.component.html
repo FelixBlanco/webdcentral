@@ -14,8 +14,8 @@
             <table class="table table-curved">
               <thead class="bg-azul text-white">
                 <tr>
-                  <th scope="col" width="20%">PRODUCTO</th>
-                  <th scope="col" width="40%">DESCRIPCIÓN</th>
+                  <th scope="col" width="20%">MARCA</th>
+                  <th scope="col" width="40%">PRODUCTO</th>
                   <th scope="col" width="10%">PRECIO</th>
                   <th scope="col" width="15%">CANTIDAD</th>
                   <th scope="col" width="15%">TOTAL</th>
@@ -24,8 +24,8 @@
               <tbody>
                 <ng-container *ngFor="let item of items">
                   <tr>
+                    <td>{{item.marca}}</td>
                     <td>{{item.producto}}</td>
-                    <td>{{item.descripcion}}</td>
                     <td><span class="font-bold">{{item.precio | currency: 'ARS': '$'}}</span></td>
                     <td>
                       <button class="btn btn-link txt-naranja" (click)="incrase(item.id,false)"><fa-icon [icon]="['fas', 'minus-circle']"></fa-icon></button>
