@@ -44,16 +44,16 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
 
         /*REDES SOCIALES*/
-        Route::post('crearRedSocial','RedSocialController@store');
-        Route::PUT('updateRedesSociales/{id_RedSocial}','RedSocialController@update');
+        Route::post('crearRedSocial', 'RedSocialController@store');
+        Route::PUT('updateRedesSociales/{id_RedSocial}', 'RedSocialController@update');
         /*REDES SOCIALES*/
 
         /*ORDER BODY (carrito de compra)*/
-        Route::post('añadirOrderBody/{fk_idOrderHeader}','OrderBodyController@añadir');
+        Route::post('añadirOrderBody/{fk_idOrderHeader}', 'OrderBodyController@añadir');
         /*ORDER BODY (carrito de compra)*/
 
         /*ORDER HEADER (Orden de compra)*/
-        Route::post('añadirOrderHeader','OrderHeaderController@añadir');
+        Route::post('añadirOrderHeader', 'OrderHeaderController@añadir');
         /*ORDER HEADER (Orden de compra)*/
     });
 });
@@ -171,23 +171,25 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // OBTENER MARCAS
     Route::get('marcas/filter', 'ProductoController@getAllMarcas');
 
-     // Obtener pedidos de un chofer
-     Route::post('order/all/driver', 'OrderDriverController@getAllByCodeDriver');
+    // Obtener pedidos de un chofer
+    Route::post('order/all/driver', 'OrderDriverController@getAllByCodeDriver');
 
-     // Obtener pedidos actuales de un chofer
-     Route::post('order/active/driver', 'OrderDriverController@getByCodeDriver');
+    // Obtener pedidos actuales de un chofer
+    Route::post('order/active/driver', 'OrderDriverController@getByCodeDriver');
 
-      // Obtener productos de  un pedido
-      Route::post('order/all/products', 'OrderDriverController@getProductByPedido');
+    // Obtener productos de  un pedido
+    Route::post('order/all/products', 'OrderDriverController@getProductByPedido');
 
-       // CAMBIAR ESTADAO DE UN PEDIDO
-       Route::post('order/chanue/state', 'OrderDriverController@chagueEstadoPedido');
+    // CAMBIAR ESTADAO DE UN PEDIDO
+    Route::post('order/chanue/state', 'OrderDriverController@chagueEstadoPedido');
 
-       // CAMBIAR ESTADAO DE UN PEDIDO
-       Route::post('order/devolution/product', 'OrderDriverController@devolutionProduct');
+    // CAMBIAR ESTADAO DE UN PEDIDO
+    Route::post('order/devolution/product', 'OrderDriverController@devolutionProduct');
+
+    // para el buscador general
+    Route::get('buscarGeneral/{search?}', 'ProductoController@buscarGeneral');
 
 
-       
 });
 
 
