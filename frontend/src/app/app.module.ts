@@ -89,7 +89,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     NgxDatatableModule,
     FontAwesomeModule,
-    ToastrModule
+    ToastrModule.forRoot()
   ],
   providers: [
     CarritoService
