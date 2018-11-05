@@ -19,9 +19,9 @@ class ProductoController extends Controller {
      * @return \Illuminate\Http\Response
      */
 
-    public function buscarGeneral($search=null) {
+    public function buscarGeneral($search = null) {
 
-        if (!is_null($search) ) {
+        if (! is_null($search)) {
 
             $busqueda = "%".$search."%";
 
@@ -39,9 +39,9 @@ class ProductoController extends Controller {
             ];
 
             return response()->json($response, 200);
-        }else{
+        } else {
             $response = [
-                'msj'    => 'Debe introducir un término de búsqueda',
+                'msj' => 'Debe introducir un término de búsqueda',
             ];
 
             return response()->json($response, 404);
@@ -292,5 +292,33 @@ class ProductoController extends Controller {
 
         return response()->json($response, 202);
     }
+
+    public static function searchMarca($search) {
+
+
+        if (! is_null($search)) {
+            $response = Producto::where('marca', $search)->distinct('marca')->orderBy("marca")->get();
+
+            if (is_null($response)) {
+                $response = [
+                    'msj' => 'Producto no encontrado',
+                ];
+
+                return response()->json($response, 404);
+            } else {
+                return response()->json($response, 202);
+            }
+
+        } else {
+            if (is_null($response)) {
+                $response = [
+                    'msj' => 'Debe enviar el criterio de búsqueda',
+                ];
+
+                return response()->json($response, 404);
+            }
+        }
+    }
+
 
 }
