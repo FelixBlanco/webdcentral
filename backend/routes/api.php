@@ -171,6 +171,11 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // OBTENER MARCAS
     Route::get('marcas/filter', 'ProductoController@getAllMarcas');
 
+    // OBTENER MARCAS CON SEARCH
+    Route::get('marcas/{search?}', 'ProductoController@searchMarca');
+
+
+
     // Obtener pedidos de un chofer
     Route::post('order/all/driver', 'OrderDriverController@getAllByCodeDriver');
 
