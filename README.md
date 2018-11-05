@@ -14,11 +14,19 @@ php artisan passport:install
 
 php artisan passport:client --personal
 
+php artisan storage:link
+
 php artisan serve
 
 PUERTO POR DEFAULT http://localhost:8000/
 
 ## ACTIVACION DE ANGULAR (FRONTEND)
+
+Requisitos: tener instalado nodejs
+
+npm install @angular/cli
+
+pasar al from y ejecutar lo siguiente
 
 npm install 
 
