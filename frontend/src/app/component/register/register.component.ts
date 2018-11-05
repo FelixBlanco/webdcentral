@@ -37,6 +37,11 @@ export class RegisterComponent implements OnInit {
   }
 
   addRegister(){
+
+    if(!this.v_register.nombre || !this.v_register.email || !this.v_register.userName){
+      this._alertService.msg("ERR", "Error", 'Todos los campos son requeridos');
+    }
+
     if(this.v_register.password && this.v_register.password_r && this.v_register.nombre){
       if(this.v_register.password.length != 0){
         if(this.v_register.password.length <= 8){
@@ -55,7 +60,7 @@ export class RegisterComponent implements OnInit {
 
             this._registerService._addRegister(data_i).subscribe( 
               (resp:any) => { 
-                this._alertService.msg('OK','Iniciando...')
+                this._alertService.msg('OK','Registrado')
                 localStorage.getItem('access_token')
                 $("#registraseModal").modal('hide');
                 location.href="/";

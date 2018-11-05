@@ -18,6 +18,9 @@ class SlideController extends Controller {
         $slides->each(function($slides){
             $slides->set_imagen = asset('storage/slide/'.$slides->imagen);
             $slides->producto;
+            if (!empty($slides->fk_idProducto)) {
+                $slides->nameProducto = $slides->producto->nombre;
+            }            
         });
 
         $response = [
@@ -83,6 +86,11 @@ class SlideController extends Controller {
 
                 $imagemodel         = new Slide();
                 $imagemodel->titulo = $request->titulo;
+
+                if (!empty($request->fk_idProducto)) {
+                    $imagemodel->fk_idProducto = $request->fk_idProducto;
+                }
+
                 $imagemodel->imagen = $nombre_interno;
                 $imagemodel->save();
 
