@@ -42,27 +42,18 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
         /* PREGUNTA Y RESPUESTA */
 
-        /*PARA LOS DESTACADOS*/
-
-        Route::post('crearDestacado', 'DestacadoController@crearDestacado');
-        Route::post('editarDestacado/{idDestacado}', 'DestacadoController@editarDestacado');
-        Route::delete('eliminarDestacado/{idDestacado}', 'DestacadoController@eliminarDestacado');
-        Route::get('obtenerDestacados', 'DestacadoController@listar');
-
-        /*PARA LOS DESTACADOS*/
-
 
         /*REDES SOCIALES*/
-        Route::post('crearRedSocial','RedSocial@store');
-        Route::PUT('updateRedesSociales/{id_RedSocial}','RedSocial@update');
+        Route::post('crearRedSocial', 'RedSocialController@store');
+        Route::PUT('updateRedesSociales/{id_RedSocial}', 'RedSocialController@update');
         /*REDES SOCIALES*/
 
         /*ORDER BODY (carrito de compra)*/
-        Route::post('añadirOrderBody/{fk_idOrderHeader}','OrderBodyController@añadir');
+        Route::post('añadirOrderBody/{fk_idOrderHeader}', 'OrderBodyController@añadir');
         /*ORDER BODY (carrito de compra)*/
 
         /*ORDER HEADER (Orden de compra)*/
-        Route::post('añadirOrderHeader','OrderHeaderController@añadir');
+        Route::post('añadirOrderHeader', 'OrderHeaderController@añadir');
         /*ORDER HEADER (Orden de compra)*/
     });
 });
@@ -71,6 +62,15 @@ Route::group([ 'prefix' => 'auth' ], function() {
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
+
+    /*PARA LOS DESTACADOS*/
+
+    Route::post('crearDestacado', 'DestacadoController@crearDestacado');
+    Route::post('editarDestacado/{idDestacado}', 'DestacadoController@editarDestacado');
+    Route::delete('eliminarDestacado/{idDestacado}', 'DestacadoController@eliminarDestacado');
+    Route::get('obtenerDestacados', 'DestacadoController@listar');
+
+    /*PARA LOS DESTACADOS*/
 
 
     Route::post('crer-serviciosWeb', 'ServiciosWebController@crer');
@@ -171,23 +171,29 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // OBTENER MARCAS
     Route::get('marcas/filter', 'ProductoController@getAllMarcas');
 
-     // Obtener pedidos de un chofer
-     Route::post('order/all/driver', 'OrderDriverController@getAllByCodeDriver');
-
-     // Obtener pedidos actuales de un chofer
-     Route::post('order/active/driver', 'OrderDriverController@getByCodeDriver');
-
-      // Obtener productos de  un pedido
-      Route::post('order/all/products', 'OrderDriverController@getProductByPedido');
-
-       // CAMBIAR ESTADAO DE UN PEDIDO
-       Route::post('order/chanue/state', 'OrderDriverController@chagueEstadoPedido');
-
-       // CAMBIAR ESTADAO DE UN PEDIDO
-       Route::post('order/devolution/product', 'OrderDriverController@devolutionProduct');
+    // OBTENER MARCAS CON SEARCH
+    Route::get('marcas/{search?}', 'ProductoController@searchMarca');
 
 
-       
+
+    // Obtener pedidos de un chofer
+    Route::post('order/all/driver', 'OrderDriverController@getAllByCodeDriver');
+
+    // Obtener pedidos actuales de un chofer
+    Route::post('order/active/driver', 'OrderDriverController@getByCodeDriver');
+
+    // Obtener productos de  un pedido
+    Route::post('order/all/products', 'OrderDriverController@getProductByPedido');
+
+    // CAMBIAR ESTADAO DE UN PEDIDO
+    Route::post('order/chanue/state', 'OrderDriverController@chagueEstadoPedido');
+
+    // CAMBIAR ESTADAO DE UN PEDIDO
+    Route::post('order/devolution/product', 'OrderDriverController@devolutionProduct');
+
+    // para el buscador general
+    Route::get('buscarGeneral/{search?}', 'ProductoController@buscarGeneral');
+
 });
 
 

@@ -18,4 +18,9 @@ class Slide extends Model {
         'fk_idProducto',
     ];
 
+    public function producto()
+    {
+        return $this->belongsTo('App\Producto', 'fk_idProducto');
+    }
+
 }

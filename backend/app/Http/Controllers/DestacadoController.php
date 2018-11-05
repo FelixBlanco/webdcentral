@@ -43,7 +43,7 @@ class DestacadoController extends Controller
 
                 $response = [
                     'msj'  => 'Destacado Creado',
-                    'user' => $destacado,
+                    'destacado' => $destacado,
                 ];
                 DB::commit();
 
@@ -96,7 +96,7 @@ class DestacadoController extends Controller
 
                 $response = [
                     'msj'  => 'Info actulizada',
-                    'user' => $destacado,
+                    'destacado' => $destacado,
                 ];
 
                 $destacado->save();
