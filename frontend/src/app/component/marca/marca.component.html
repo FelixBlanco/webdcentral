@@ -9,33 +9,36 @@
       </div>
       <div class="modal-body">
         <ul>
-          <li *ngFor="let i of alfaveto">
-            {{i}}
+          <li *ngFor="let i of alfabeto" (click)="find(i)" [ngClass]="(i === charSelected) ? 'active' : ''">
+              {{i}}
           </li>
         </ul>
         <hr>
-
-        <p class="bg-naranja txt-blanco" style="border-radius:6px; padding:4px;">A</p>
-        <div class="row">
-          <div class="col-md-4 text-center">
-            A Otro lado <br>
-            A Otro lado <br>
-            A Otro lado <br>
-          </div>
-          <div class="col-md-4 text-center">
-            A Otro lado <br>
-            A Otro lado <br>
-            A Otro lado <br>
-          </div>
-          <div class="col-md-4 text-center">
-            A Otro lado <br>
-            A Otro lado <br>
-            A Otro lado <br>
-          </div>
-        </div>
+        <ng-container *ngIf="!charSelected">
+          <p class="text-center text-muted font-italic">Seleccione una letra...</p>
+        </ng-container>
+        <ng-container *ngIf="charSelected">
+            <p class="bg-naranja txt-blanco text-center" style="border-radius:6px; padding:4px;">
+              {{charSelected}}
+            </p>
+            <p *ngIf="!this.marcasList.length" class="text-center text-muted font-italic">
+              No se encontraron marcas registradas
+            </p>
+            <ng-container *ngIf="this.marcasList.length">
+              <div class="row justify-content-center">
+                <ng-container *ngFor="let marca of marcasList; let i=index">
+                  <ng-container *ngIf="isARow(i)">
+                    <div class="col-4 text-center">
+                      <span *ngFor="let item of getPartialItems(i, i+3)">{{item.marca}}  <br></span>
+                    </div>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </ng-container>
+        </ng-container>
       </div>
       <div class="modal-footer">
-        <p style="color:green;"><b>BUSCAR</b></p>
+        <button class="btn btn-link txt-verde" disabled>Buscar</button>
       </div>
     </div>
   </div>

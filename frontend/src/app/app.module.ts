@@ -39,6 +39,7 @@ import { CarritoService } from './services/carrito.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
 import { CarouselItemComponent } from './component/destacado-inicio/carousel-item/carousel-item.component';
+import { MarcasService } from './services/marcas.service';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -93,7 +94,8 @@ const appRoutes: Routes = [
     ToastrModule.forRoot()
   ],
   providers: [
-    CarritoService
+    CarritoService,
+    MarcasService
   ],
   bootstrap: [AppComponent]
 })

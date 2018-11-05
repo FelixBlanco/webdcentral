@@ -1,14 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpResponse } from '@angular/common/http';
 import { GlobalD } from '../global';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Accept':  'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Authorization': 'Bearer ' + localStorage.getItem('access_token')
-  })
-};
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +9,18 @@ const httpOptions = {
 export class GaleriaHomeService {
   
   public _GB: GlobalD;
-
+  headers: HttpHeaders = new HttpHeaders({
+    'Accept':  'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Authorization': 'Bearer '+ localStorage.getItem('access_token'),
+  });
   constructor(
     private http: HttpClient,
     public GB: GlobalD
     ) { this._GB = GB; }
   
-  _addSlideHome(data:any){
-    return this.http.post(this._GB.API +'/api/auth/createSlides',data,httpOptions);
+  _addSlideHome(data:any): Observable<HttpResponse<any>>{
+    return this.http.post<any>(this._GB.API +'/api/auth/createSlides',data,{headers: this.headers, observe:'response'}) as Observable<HttpResponse<any>>;
   }
 
   _getSlideHome(){

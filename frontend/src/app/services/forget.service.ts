@@ -1,28 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { GlobalD } from '../global';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Access-Control-Allow-Origin': '*'
-    // 'Authorization': 'my-auth-token'
-  })
-};
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ForgetService {
 
-  public _GB: GlobalD;
-
-  constructor(
-    private http: HttpClient ,
-    public GB: GlobalD
-    ) { this._GB = GB; }
+  constructor(private http: HttpClient) {}
 
   _newForget(data:any){
-    return this.http.post(this._GB.API + '/api/v1/reestablecerClave',data);
+    return this.http.post(`${environment.apiHost}/api/v1/reestablecerClave`,data);
   }
 }

@@ -1,18 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GaleriaHomeService } from '../../services/galeria-home.service';
 import { ProductosService } from '../../services/productos.service';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { AlertsService } from '../../services/alerts.service'
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Authorization': 'Bearer ' + localStorage.getItem('access_token')
-  })
-};
 
-declare var $; 
 
 @Component({
   selector: 'app-galeria-home',
@@ -20,6 +11,9 @@ declare var $;
   styleUrls: ['./galeria-home.component.css']
 })
 export class GaleriaHomeComponent implements OnInit {
+
+
+  @ViewChild('image') image: ElementRef;
 
   new_galeria:any ={
     titulo: null,
@@ -32,7 +26,6 @@ export class GaleriaHomeComponent implements OnInit {
   list_productos: any;
 
   constructor(
-    private http:HttpClient,
     private _galeriaHomeService: GaleriaHomeService,
     private _productosServices: ProductosService,
     private _alertService: AlertsService
@@ -72,12 +65,15 @@ export class GaleriaHomeComponent implements OnInit {
     galeriaHome.append('imagen', this.new_galeria.imagen);
     galeriaHome.append('fk_idProducto',this.new_galeria.fk_idProducto);
 
-    this._galeriaHomeService._addSlideHome(galeriaHome).subscribe(
+    this._galeriaHomeService._addSlideHome(
+      galeriaHome
+      ).subscribe(
       (resp:any) => { 
+        console.log('galeria resp',resp)
         //this._alertService.Success(resp.msj);
         this._alertService.msg("OK","Éxito", "Se ha guardado el registro");
-        $("#exampleModal").modal('hide');
         this.new_galeria ={titulo: null, fk_idProducto:null, imagen:null}
+        this.image.nativeElement.value = '';
         this.getSlideHome(); 
       },
       error => {

@@ -32,6 +32,7 @@ export class SlideHomeComponent implements OnInit {
   getSlide(){
     this._galeriaHomeService._getSlideHome().subscribe(
       (resp:any) => {
+        console.log(resp);
         console.log(resp.producto[0])
         if(resp){
           this.listSlide = resp.producto;
