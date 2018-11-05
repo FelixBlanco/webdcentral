@@ -30,16 +30,21 @@ export class ConfigColorComponent implements OnInit {
   }
 
   addColores(){
-    this._coloresServices.addColores(this.form).subscribe(
-      resp => {
-        this.getColores();
-        this.form = { colorOscuro: null, colorMedio:null, colorClaro: null }
-        this._alertServicices.msg('OK','Éxito','Se guardo correctamente');
-      },
-      error => {
-        this._alertServicices.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
-      }
-    )
+    if(!this.form.colorOscuro || !this.form.colorMedio || !this.form.colorClaro){
+      this._alertServicices.msg('ERR','Error','Todos los campos son requeridos');
+    }else{
+      this._coloresServices.addColores(this.form).subscribe(
+        resp => {
+          this.getColores();
+          this.form = { colorOscuro: null, colorMedio:null, colorClaro: null }
+          this._alertServicices.msg('OK','Éxito','Se guardo correctamente');
+        },
+        error => {
+          this._alertServicices.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+        }
+      )
+    }
+    
   }
 
   eliminarColor(id){

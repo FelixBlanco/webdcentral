@@ -16,7 +16,7 @@
           <a href="#" class="nav-link" data-toggle="modal" data-target="#registraseModal">REGISTRATE</a>
         </li>
         <li class="nav-item txt-blanco" *ngIf="isSession">
-          <a class="nav-link" >{{ userName }}</a>
+          <a class="nav-link"  [ngStyle]=" colorDos ? {color: colorDos } : {color: '#FFFFFF' }" >{{ userName }}</a>
         </li>
 
         <li class="nav-item txt-blanco" >

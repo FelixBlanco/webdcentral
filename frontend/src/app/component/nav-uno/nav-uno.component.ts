@@ -10,7 +10,7 @@ import { AlertsService } from '../../services/alerts.service';
 })
 export class NavUnoComponent implements OnInit {
 
-  colorUno:any =  null;
+  colorUno:any =  null; colorDos:any=null;
 
   isSession  = localStorage.getItem('session_user')
   
@@ -28,6 +28,7 @@ export class NavUnoComponent implements OnInit {
       (resp:any) => {
         if(resp){
           this.colorUno = resp.colorOscuro;
+          this.colorDos = resp.colorMedio;
         }        
       }
     )
