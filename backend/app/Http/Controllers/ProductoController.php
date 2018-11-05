@@ -293,11 +293,11 @@ class ProductoController extends Controller {
         return response()->json($response, 202);
     }
 
-    public static function searchMarca($search) {
-
+    public static function searchMarca($search=null) {
 
         if (! is_null($search)) {
-            $response = Producto::where('marca', $search)->distinct('marca')->orderBy("marca")->get();
+            $busqueda = $search."%";
+            $response = Producto::where('marca', 'like',$busqueda)->distinct('marca')->orderBy("marca")->get();
 
             if (is_null($response)) {
                 $response = [
@@ -310,13 +310,13 @@ class ProductoController extends Controller {
             }
 
         } else {
-            if (is_null($response)) {
+
                 $response = [
                     'msj' => 'Debe enviar el criterio de búsqueda',
                 ];
 
                 return response()->json($response, 404);
-            }
+
         }
     }
 
