@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Log;
 use App\Producto;
 use App\TagProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ProductoController;
 
 class ProductSincronizeController extends Controller {
     // OBTENEMOS TODOS LOS PRODUCTOS DISPONIBLES  EN EL SISTEMA 
     public function sicronizeProduct(Request $request) {
 
+       
         $affectedRows = Producto::where('fk_idSatate', '!=', 3)->update([ 'fk_idSatate' => 3 ]);
-
+        
         $rs = DB::connection('sqlsrv')->select(" SELECT * FROM  VistaProductosAPP ");
 
+        
         foreach ($rs as $item) {
 
             $product = [

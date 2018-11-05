@@ -29,6 +29,7 @@ PUERTO POR DEFAULT http://localhost:4200/
 ## ACTIVACION DE ANGULAR (FRONTEND DEL BACKEND)
 npm install 
 
-ng server
+ng server --port 5200
 
+PUERTO POR DEFAULT http://localhost:5200/
 
