@@ -297,7 +297,7 @@ class ProductoController extends Controller {
 
         if (! is_null($search)) {
             $busqueda = $search."%";
-            $response = Producto::where('marca', 'like',$busqueda)->distinct('marca')->orderBy("marca")->get();
+            $response = Producto::select("marca")->where('marca', 'like',$busqueda)->distinct('marca')->orderBy("marca")->get();
 
             if (is_null($response)) {
                 $response = [
