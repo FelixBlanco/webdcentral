@@ -15,6 +15,8 @@ export class OfertasComponent implements OnInit {
   
   form_ofertas:any = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
 
+  edit_form_ofertas:any = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
+
   constructor(
     private ofertaServices: OfertasService,
     private _alertService:AlertsService
@@ -33,8 +35,13 @@ export class OfertasComponent implements OnInit {
   }
 
   upImagen(event){
-    var imagen_x: File = event.target.files[0];
+    let imagen_x: File = event.target.files[0];
     this.form_ofertas.imagen = imagen_x;
+  }
+
+  upImagenEdit(event){
+    let imagen_x: File = event.target.files[0];
+    this.edit_form_ofertas.imagen = imagen_x;
   }
 
   add_updateOferta(x){
@@ -47,11 +54,10 @@ export class OfertasComponent implements OnInit {
     if(x == 'add'){   
       this.ofertaServices._addOfertas(formData).subscribe(
         resp => {
-          // $("#agregarOfertaModal").modal('hide');
-          // document.getElementById('#agregarOfertaModal').onclick;
           this.getOfertas();
           this.form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
           this._alertService.msg("OK", "Éxito", "Se guardó correctamente");
+          $("#agregarOfertaModal").modal('hide');
         },
         error => {
           this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
@@ -60,13 +66,22 @@ export class OfertasComponent implements OnInit {
     }
 
     if(x == 'upgrade'){
-      formData.append('idOferta',this.form_ofertas.idOferta);
-      this.ofertaServices._upgradeOferta(formData).subscribe(
+
+      console.log(x)
+
+      var formData: FormData = new FormData();
+      formData.append('imagen',this.edit_form_ofertas.imagen);
+      formData.append('titulo',this.edit_form_ofertas.titulo);
+      formData.append('tiempoExpi',this.edit_form_ofertas.tiempoExpi);
+      formData.append('status',this.edit_form_ofertas.status);
+      formData.append('idOferta',this.edit_form_ofertas.idOferta);
+
+      this.ofertaServices._upgradeOferta(this.edit_form_ofertas.idOferta,formData).subscribe(
         resp => {
           this.getOfertas();
-          this.editOferta(this.form_ofertas.idOferta)
+          this.editOferta(this.edit_form_ofertas.idOferta)
           $("#editarOfertaModal").modal('hide');
-          this.form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null,status: true }
+          this.edit_form_ofertas = { idOferta:null, titulo: null,tiempoExpi: null,imagen: null}          
           this._alertService.msg("OK", "Éxito", "Se editó correctamente");
         },
         error => {
@@ -80,7 +95,7 @@ export class OfertasComponent implements OnInit {
   editOferta(data:any){
     this.ofertaServices._showOferta(data.idOferta).subscribe(
       (resp:any) => {
-        this.form_ofertas = resp.oferta
+        this.edit_form_ofertas = resp.oferta
         $("#editarOfertaModal").modal('show');
       },
       error => {

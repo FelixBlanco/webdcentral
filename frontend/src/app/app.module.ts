@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -43,13 +43,16 @@ import { CarouselItemComponent } from './component/destacado-inicio/carousel-ite
 import { MarcasService } from './services/marcas.service';
 import { AyudaComponent } from './component/ayuda/ayuda.component';
 import { PreguntasFrecuentesComponent } from './component/ayuda/preguntas-frecuentes/preguntas-frecuentes.component';
+import { OfertasInicioComponent } from './component/ofertas-inicio/ofertas-inicio.component';
+import { ContactanosInicioComponent } from './component/contactanos-inicio/contactanos-inicio.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'registro', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forget', component: ForgetComponent },
-
+  { path: 'ofertas', component: OfertasInicioComponent },
+  
   { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
   
   { path: '**', component: PageNotFoundComponent }
@@ -86,6 +89,8 @@ const appRoutes: Routes = [
     CarouselItemComponent,
     AyudaComponent,
     PreguntasFrecuentesComponent,
+    OfertasInicioComponent,
+    ContactanosInicioComponent,
   ],
   imports: [
     BrowserModule,
