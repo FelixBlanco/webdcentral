@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigColorService } from '../../services/config-color.service';
 
 @Component({
   selector: 'app-destacado-inicio',
@@ -18,10 +19,20 @@ export class DestacadoInicioComponent implements OnInit {
     ocho: { count: 1 },
   }
 
-  constructor() { }
+  colorTres:any; 
+
+  constructor(
+    private c : ConfigColorService
+  ) { }
 
   ngOnInit() {
-
+    this.c._paletaColor().subscribe(
+      (resp:any) => {
+        if(resp){
+          this.colorTres = resp.colorClaro;
+        }        
+      }
+    )
   }
 
 
