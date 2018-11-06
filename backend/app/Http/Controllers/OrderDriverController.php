@@ -30,14 +30,10 @@ class OrderDriverController extends Controller
                         $item->Ruta =  "Sin Ruta";
                     }
 
-
                     if((strcasecmp($tempRuta, $tempRuta) == 0)  || $c == 0){
                         array_push($orders,$item);
-                        Log::Debug("paso".$c);
-
                     }
-                    
-                   
+                
                     if((strcasecmp($tempRuta, $tempRuta) != 0)  || $c == count($rs)-1){
                                         $data = array("Ruta" => $tempRuta , "data" => $orders);
                         array_push($result,$data);
@@ -54,7 +50,7 @@ class OrderDriverController extends Controller
 
                 return response()->json($result, 200);
             }else{
-                return response()->json("No existe contenido ", 294);
+                return response()->json("No existe contenido ", 204);
             }
         } catch (\Exception $e) {
             dd($e);
@@ -75,7 +71,7 @@ class OrderDriverController extends Controller
            if($rs){
                 return response()->json($rs, 200);
             }else{
-                return response()->json("No existe contenido ", 294);
+                return response()->json("No existe contenido ", 204);
             }
         } catch (\Exception $e) {
             return response()->json("Error conectando a el DC", 500);
@@ -94,7 +90,7 @@ class OrderDriverController extends Controller
             if($rs){
                 return response()->json($rs, 200);
             }else{
-                return response()->json("No existe contenido ", 294);
+                return response()->json("No existe contenido ", 204);
             }
         } catch (\Exception $e) {
             //dd($e);
