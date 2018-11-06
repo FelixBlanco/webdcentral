@@ -15,7 +15,7 @@ class SlideController extends Controller {
     public function listar() {
 
         $slides = Slide::get();
-        $slides->each(function($slides){
+        $slides->each(function($slides) {
             $slides->set_imagen = asset('storage/slide/'.$slides->imagen);
             $slides->producto;
             if (!empty($slides->fk_idProducto)) {
@@ -43,16 +43,7 @@ class SlideController extends Controller {
         return response()->json($response, 201);
     }
 
-    public function createSlides(Request $request) {       
-        $this->validate($request, [
-            'titulo' => 'required',
-            'imagen' => 'required',
-        ], [
-            'titulo.required' => 'El titulo es requerido',
-            'imagen.required'  => 'La imagen es requerida',
-
-        ]);
-
+    public function createSlides(Request $request) {
 
         DB::beginTransaction();
         try {
@@ -60,9 +51,16 @@ class SlideController extends Controller {
             if ($request->user()->fk_idPerfil == 1) {
 
                 $this->validate($request, [
-                    'imagen' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
-                ]);
+                    'titulo'        => 'required',
+                    'imagen'        => 'image|required|mimes:jpeg,png,jpg,gif,svg',
+                    'fk_idProducto' => 'required',
 
+                ], [
+                    'titulo.required'        => 'El titulo es requerido',
+                    'imagen.required'        => 'La imagen es requerida',
+                    'fk_idProducto.required' => 'El producto es requerido',
+
+                ]);
 
                 $originalImage = $request->imagen;
 
@@ -80,7 +78,6 @@ class SlideController extends Controller {
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
 
-
                 Storage::disk('local')->put('/slide/'.$nombre_interno, (string) $thumbnailImage->encode());
 
 
@@ -92,8 +89,8 @@ class SlideController extends Controller {
                 }
 
                 $imagemodel->imagen = $nombre_interno;
+                $imagemodel->fk_idProducto = $request->fk_idProducto;
                 $imagemodel->save();
-
 
                 DB::commit();
 
