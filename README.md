@@ -26,7 +26,7 @@ Requisitos: tener instalado nodejs
 
 npm install @angular/cli
 
-pasar al from y ejecutar lo siguiente
+pasar al front y ejecutar lo siguiente
 
 npm install 
 
@@ -37,7 +37,7 @@ PUERTO POR DEFAULT http://localhost:4200/
 ## ACTIVACION DE ANGULAR (FRONTEND DEL BACKEND)
 npm install 
 
-ng server --port 5200
+ng server
 
 PUERTO POR DEFAULT http://localhost:5200/
 

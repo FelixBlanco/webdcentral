@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alerts.service';
 
 
-interface Question{
+export interface Question{
   idPreguntaFrecuente;
   pregunta;
   respuesta;

@@ -15,6 +15,7 @@ import { OfertasComponent } from './component/ofertas/ofertas.component';
 import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/reclamos-sugerencias.component';
 import { ConfigColorComponent } from './component/config-color/config-color.component';
 import { DestacadosComponent } from './component/destacados/destacados.component';
+import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
 
 const routes: Routes = [
   { path: 'forget', redirectTo:  '/forget' },
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'ofertas', component: OfertasComponent },
   { path: 'reclamos-sugerencias', component: ReclamosSugerenciasComponent},
   { path: 'config-color', component: ConfigColorComponent},
-  { path: 'destacados', component: DestacadosComponent}
+  { path: 'destacados', component: DestacadosComponent},
+  { path: 'preguntas-frecuentes', component: PreguntasFrecuentesComponent}
 
 ];
 

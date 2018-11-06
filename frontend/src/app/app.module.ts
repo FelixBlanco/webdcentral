@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import * as bootstrap from 'bootstrap';
 
 // import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
@@ -38,6 +39,10 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CarritoService } from './services/carrito.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
+import { CarouselItemComponent } from './component/destacado-inicio/carousel-item/carousel-item.component';
+import { MarcasService } from './services/marcas.service';
+import { AyudaComponent } from './component/ayuda/ayuda.component';
+import { PreguntasFrecuentesComponent } from './component/ayuda/preguntas-frecuentes/preguntas-frecuentes.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -78,6 +83,9 @@ const appRoutes: Routes = [
     BajaAppInicioComponent,
     DestacadoInicioComponent,
     CarritoComponent,
+    CarouselItemComponent,
+    AyudaComponent,
+    PreguntasFrecuentesComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,10 +96,11 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     NgxDatatableModule,
     FontAwesomeModule,
-    ToastrModule.forRoot() 
+    ToastrModule.forRoot()
   ],
   providers: [
-    CarritoService
+    CarritoService,
+    MarcasService
   ],
   bootstrap: [AppComponent]
 })

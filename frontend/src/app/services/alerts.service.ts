@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ToastrService, ActiveToast, IndividualConfig } from 'ngx-toastr';
-
 declare var toastr:any;
 
 @Injectable({

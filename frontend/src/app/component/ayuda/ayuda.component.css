@@ -1,0 +1,26 @@
+.container-figure{
+    background-color: #f4f6dc;
+    height: 250px;
+    padding: 40px;
+}
+
+.modal-lg {
+    max-width: 1000px;
+}
+.number-wrap{
+    width: 55px;
+    height: 55px;
+    padding: 7px;
+    background-color: white;
+    border: 1px solid #e97604;
+    position: absolute;
+    right: 40%;
+}
+.sub-number-wrap{
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+}
+.btn-green{
+    background-color: #018c36;
+}
