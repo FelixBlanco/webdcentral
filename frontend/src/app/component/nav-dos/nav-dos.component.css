@@ -1,5 +1,9 @@
 #searchInput{ display: none }
 
+#nav-dos .nav-item{
+  margin-left: -2%;
+}
+
 #nav-dos .nav-link{
   color: #e8e8e8;
 }
