@@ -49,14 +49,14 @@
                   </div>
                   <div class="modal-body">
                     <div class="form-group">
-                      <input type="text" [(ngModel)]="form_ofertas.titulo" class="form-control" placeholder="titulo">
+                      <input type="text" [(ngModel)]="edit_form_ofertas.titulo" class="form-control" placeholder="titulo">
                     </div>
                     <div class="form-group">
-                      <input type="text" [(ngModel)]="form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempo de expiracion">
+                      <input type="text" [(ngModel)]="edit_form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempo de expiracion">
                     </div>
                     <div class="form-group">
                       <label for="">Imagen</label>
-                      <input type="file" (change)="upImagen($event)">
+                      <input type="file" (change)="upImagenEdit($event)">
                     </div>
                   </div>
                   <div class="modal-footer">

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -38,13 +38,16 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CarritoService } from './services/carrito.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
+import { OfertasInicioComponent } from './component/ofertas-inicio/ofertas-inicio.component';
+import { ContactanosInicioComponent } from './component/contactanos-inicio/contactanos-inicio.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'registro', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forget', component: ForgetComponent },
-
+  { path: 'ofertas', component: OfertasInicioComponent },
+  
   { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
   
   { path: '**', component: PageNotFoundComponent }
@@ -78,6 +81,8 @@ const appRoutes: Routes = [
     BajaAppInicioComponent,
     DestacadoInicioComponent,
     CarritoComponent,
+    OfertasInicioComponent,
+    ContactanosInicioComponent,
   ],
   imports: [
     BrowserModule,
