@@ -35,19 +35,23 @@ export class GestionUsuarioComponent implements OnInit {
   }
 
   addUser(){
-    this.UsuariosService._addUser(this.newForm).subscribe(
-      resp => {
-        $("#newUserModal").modal('hide');
-        this.newForm= { name: null, userNane: null, email: null }
-        // this.alertService.Success('Usuario creado satifactoriamente');
-        this.alertService.msg("OK","Éxito", "Se ha guardado el registro");
-        this.listaUser();
-      },
-      error => {
-        // this.alertService.listError(error.error);
-        this.alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
-      }
-    )
+    if(this.newForm.password.length <= 8){
+      this.alertService.msg("ERR", "Error", 'la contraseña debe ser mayor de 8 caracteres');
+    }else{
+      this.UsuariosService._addUser(this.newForm).subscribe(
+        resp => {
+          $("#newUserModal").modal('hide');
+          this.newForm= { name: null, userNane: null, email: null }
+          // this.alertService.Success('Usuario creado satifactoriamente');
+          this.alertService.msg("OK","Éxito", "Se ha guardado el registro");
+          this.listaUser();
+        },
+        error => {
+          // this.alertService.listError(error.error);
+          this.alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+        }
+      )
+    }
   }
 
   editUser(infoUser){
