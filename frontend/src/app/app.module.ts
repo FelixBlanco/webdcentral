@@ -40,6 +40,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
 import { CarouselItemComponent } from './component/destacado-inicio/carousel-item/carousel-item.component';
 import { MarcasService } from './services/marcas.service';
+import { AyudaComponent } from './component/ayuda/ayuda.component';
+import { PreguntasFrecuentesComponent } from './component/ayuda/preguntas-frecuentes/preguntas-frecuentes.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -81,6 +83,8 @@ const appRoutes: Routes = [
     DestacadoInicioComponent,
     CarritoComponent,
     CarouselItemComponent,
+    AyudaComponent,
+    PreguntasFrecuentesComponent,
   ],
   imports: [
     BrowserModule,

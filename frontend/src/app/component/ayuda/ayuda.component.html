@@ -1,0 +1,102 @@
+<!-- Modal -->
+<div class="modal fade" id="ayudaModal" tabindex="-1" role="dialog" aria-labelledby="ayudaLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" [ngClass]="(section !== 'contacts') ?  'modal-lg': ''">
+    <div class="modal-content">
+      <div class="modal-header bg-azul">
+        <button class="btn btn-link text-white" *ngIf="section !== 'home'" (click)="routeTo('home')">
+            <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
+        </button>
+        <ng-container [ngSwitch]="section">
+          <h5 *ngSwitchCase="'home'" class="modal-title text-uppercase font-bold text-white mt-1" id="ayudaLabel">Ayuda</h5>
+          <h5 *ngSwitchCase="'questions'" class="modal-title text-uppercase font-bold text-white mt-1" id="ayudaLabel">preguntas frecuentes</h5>
+          <h5 *ngSwitchCase="'howto'" class="modal-title text-uppercase font-bold text-white mt-1" id="ayudaLabel">¿cómo usar la plataforma?</h5>
+          <h5 *ngSwitchCase="'contacts'" class="modal-title text-uppercase font-bold text-white mt-1" id="ayudaLabel">contáctanos</h5>
+        </ng-container>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <app-preguntas-frecuentes></app-preguntas-frecuentes> -->
+        <ng-container [ngSwitch]="section">
+          <ng-container *ngSwitchCase="'home'">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-3">
+                  <div class="number-wrap rounded-circle">
+                    <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
+                      <span class="font-bold">1</span>
+                    </div>
+                  </div>
+                  <div class="container-figure mt-4 rounded">
+                    <h6 class="text-center font-bold txt-naranja text-uppercase">preguntas frecuentes</h6>
+                    <img src="" alt="preguntas frecuentes"/>
+                  </div>
+                  <button class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1" (click)="routeTo('questions')">
+                    seleccionar
+                  </button>
+                </div>
+
+                <div class="col-3">
+                  <div class="number-wrap rounded-circle">
+                    <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
+                      <span class="font-bold">1</span>
+                    </div>
+                  </div>
+                  <div class="container-figure mt-4 rounded">
+                    <h6 class="text-center font-bold txt-naranja text-uppercase">¿cómo utilizar la plataforma?</h6>
+                    <img src="" alt="como utilizar"/>
+                  </div>
+                  <button class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1" (click)="routeTo('howto')">
+                    seleccionar
+                  </button>
+                </div>
+
+                <div class="col-3">
+                  <div class="number-wrap rounded-circle">
+                      <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
+                        <span class="font-bold">1</span>
+                      </div>
+                    </div>
+                    <div class="container-figure mt-4 rounded">
+                      <h6 class="text-center font-bold txt-naranja text-uppercase">contáctanos</h6>
+                      <img src="" alt="contactanos"/>
+                    </div>
+                    <button class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1" (click)="routeTo('contacts')">
+                      seleccionar
+                    </button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'questions'">
+            <app-preguntas-frecuentes></app-preguntas-frecuentes>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'howto'">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+            </div>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'contacts'">
+            <div class="text-center">
+               <img src="" alt="telefono">
+                <span class="font-bold text-uppercase">teléfonos</span>
+                <p class="text-muted">000 00 00 00 / 0000 0 00 00 / 00000</p>
+                <br>
+                <img src="" alt="telefono">
+                <span class="font-bold text-uppercase">emails</span>
+                <p class="text-muted">somedir@exammple.org / somedir@exammple.org / somedir@exammple.org</p>
+            </div>
+            <button class="btn btn-success btn-green btn-block font-bold text-uppercase">
+              donde estamos
+            </button>
+
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
