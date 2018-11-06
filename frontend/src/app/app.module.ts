@@ -40,6 +40,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
 import { OfertasInicioComponent } from './component/ofertas-inicio/ofertas-inicio.component';
 import { ContactanosInicioComponent } from './component/contactanos-inicio/contactanos-inicio.component';
+import { RecomprarInicioComponent } from './component/recomprar-inicio/recomprar-inicio.component';
+import { ServiciosInicioComponent } from './component/servicios-inicio/servicios-inicio.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -47,6 +49,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'forget', component: ForgetComponent },
   { path: 'ofertas', component: OfertasInicioComponent },
+  { path: 'recompra', component: RecomprarInicioComponent },
+  { path: 'servicios', component: ServiciosInicioComponent },
   
   { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
   
@@ -83,6 +87,8 @@ const appRoutes: Routes = [
     CarritoComponent,
     OfertasInicioComponent,
     ContactanosInicioComponent,
+    RecomprarInicioComponent,
+    ServiciosInicioComponent,
   ],
   imports: [
     BrowserModule,
