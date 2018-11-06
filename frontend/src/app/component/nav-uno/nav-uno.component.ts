@@ -12,7 +12,9 @@ export class NavUnoComponent implements OnInit {
 
   colorUno:any =  null; colorDos:any=null;
 
-  isSession  = localStorage.getItem('session_user')
+  myToken:any = localStorage.getItem('access_token');
+
+  isSession:any; 
   
   userName:any;
 
@@ -33,7 +35,7 @@ export class NavUnoComponent implements OnInit {
       }
     )
 
-    if (this.isSession){
+    if (this.myToken){
       this._loginService._getAuthUser().subscribe(
         (resp:any) => {
           this.userName = resp.userName;
@@ -43,7 +45,14 @@ export class NavUnoComponent implements OnInit {
         }
       )
     }
+
     
+    if (this.myToken) {
+      this.isSession = localStorage.getItem('session_user')
+    }else{
+      this.isSession = null;
+    }
+
   }
 
   salirLogin(){
