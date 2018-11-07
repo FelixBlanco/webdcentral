@@ -12,12 +12,15 @@ use Illuminate\Support\Facades\Log;
 class PreguntasFrecuenteController extends Controller {
 
     public function crearPreguntaYRespuesta(Request $request) {
+
         $this->validate($request, [
             'pregunta'  => 'required',
             'respuesta' => 'required',
+            'fk_idUser' => 'required',
         ], [
             'pregunta.required'  => 'La Pregunta es requerida',
             'respuesta.required' => 'La Respuesta es requerida',
+            'fk_idUser.required' => 'El user_id es requerido',
         ]);
 
         DB::beginTransaction();
@@ -26,7 +29,6 @@ class PreguntasFrecuenteController extends Controller {
 
             $PFrec = new PreguntasFrecuente($request->all());
 
-            $PFrec->fk_idUser          = Auth::user()->id;
             $PFrec->fk_idStatusSistema = 1; //para iniciarlo activo
             $PFrec->user;
             $PFrec->statu;
