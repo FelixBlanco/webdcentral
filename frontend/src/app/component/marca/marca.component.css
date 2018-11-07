@@ -8,4 +8,15 @@ ul li{
     border-radius: 10px;
     width: 35px;
     text-align: center;
+    cursor: pointer;
+}
+
+ul li.active{
+    background: #E97604;
+    color: white;
+}
+
+button{
+    padding: 0;
+    color: black;
 }

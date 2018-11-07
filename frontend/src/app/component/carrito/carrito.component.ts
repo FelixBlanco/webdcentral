@@ -1,7 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CarritoService } from 'src/app/services/carrito.service';
-import { Observable } from 'rxjs';
-import { timeout } from 'q';
 
 @Component({
   selector: 'app-carrito',

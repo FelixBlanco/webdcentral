@@ -3,7 +3,6 @@ import { PreguntasService } from 'src/app/services/preguntas.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alerts.service';
 
-
 interface Question{
   idPreguntaFrecuente;
   pregunta;

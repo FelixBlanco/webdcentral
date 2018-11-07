@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "@swimlane/ngx-datatable": "^14.0.0",
+    "@types/jquery": "^3.3.22",
     "core-js": "^2.5.4",
     "ngx-toastr": "^9.1.1",
     "rxjs": "~6.3.3",
