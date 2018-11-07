@@ -194,6 +194,8 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // para el buscador general
     Route::get('buscarGeneral/{search?}', 'ProductoController@buscarGeneral');
 
+    // Todos los perfiles
+    Route::get('perfiles','PerfilController@getPerfil');
 });
 
 
