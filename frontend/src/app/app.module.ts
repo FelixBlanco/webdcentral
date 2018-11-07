@@ -48,6 +48,8 @@ import { ContactanosInicioComponent } from './component/contactanos-inicio/conta
 import { MaterialUiModule } from './material-ui.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BusquedaComponent } from './component/busqueda/busqueda.component';
+import { RecomprarInicioComponent } from './component/recomprar-inicio/recomprar-inicio.component';
+import { ServiciosInicioComponent } from './component/servicios-inicio/servicios-inicio.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -55,6 +57,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'forget', component: ForgetComponent },
   { path: 'ofertas', component: OfertasInicioComponent },
+  { path: 'recompra', component: RecomprarInicioComponent },
+  { path: 'servicios', component: ServiciosInicioComponent },
   
   { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
   
@@ -95,6 +99,8 @@ const appRoutes: Routes = [
     OfertasInicioComponent,
     ContactanosInicioComponent,
     BusquedaComponent,
+    RecomprarInicioComponent,
+    ServiciosInicioComponent,
   ],
   imports: [
     BrowserModule,

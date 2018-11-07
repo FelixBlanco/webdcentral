@@ -29,7 +29,7 @@ class AuthController extends Controller {
 
         if (! Auth::attempt($credentials))
             return response()->json([
-                'msj' => 'No Autorizado',
+                'message' => 'Datos inválidos o usuario no existe',
             ], 401);
 
         $user = $request->user();

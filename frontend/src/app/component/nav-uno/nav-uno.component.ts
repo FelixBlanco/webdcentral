@@ -35,7 +35,7 @@ export class NavUnoComponent implements OnInit {
       }
     )
 
-    if (this.isSession){
+    if (this.myToken){
       this._loginService._getAuthUser().subscribe(
         (resp:any) => {
           this.userName = resp.userName;
