@@ -6,7 +6,7 @@
         <div class="col-md-3">
           <div class="card" style="width: 16rem;">
             <img class="card-img-top" height="300px" [src]="item.urlImage" alt="Card image cap">
-            <div class="card-body" style="background-color: #DCF5F9;">
+            <div class="card-body" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#DCF5F9' }">
               <div class="text-center" style="color:#009BDD">{{item.marca}}</div>
               <h5 class="card-title text-center" style="font-weight: bold; color: #009BDD">
                 {{item.nombre}}

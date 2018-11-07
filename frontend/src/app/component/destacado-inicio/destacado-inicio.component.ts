@@ -22,8 +22,12 @@ export interface DestacadoItem{
 export class DestacadoInicioComponent implements OnInit {
 
   destacados: DestacadoItem[];
+  colorTres:any;
 
-  constructor(private productosService: ProductosService, private carouselConfig: NgbCarouselConfig, private ts: AlertsService) { 
+  constructor(
+    private productosService: ProductosService, 
+    private carouselConfig: NgbCarouselConfig, 
+    private ts: AlertsService) { 
     this.carouselConfig.interval = 5000;
     this.carouselConfig.pauseOnHover = true;
     this.carouselConfig.showNavigationIndicators = false;
@@ -40,6 +44,8 @@ export class DestacadoInicioComponent implements OnInit {
     }, error => {
       this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
     });
+
+    
   }
 
   mapAndSet(data: any) : void {
