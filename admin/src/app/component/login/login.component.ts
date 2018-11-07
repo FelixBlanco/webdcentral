@@ -27,14 +27,16 @@ export class LoginComponent implements OnInit {
   ingresarLogin( ):void{
   
     const data:any = {email: this.email, password : this.password}; 
+    
     this._loginService.ingresarLogin(data).subscribe(
       (resp:any) =>{
-        localStorage.setItem('access_token',resp.access_token)
-        $("#loginModal").modal('hide');
-        location.href="/home";
+        console.log(resp)
+        // localStorage.setItem('access_token',resp.access_token)
+        // $("#loginModal").modal('hide');
+        // location.href="/home";
       },
       (error:any) => {
-
+        console.log(error);
         if(error.status == '422' ){
           this._alertService.listError(error.error) // LIsta de errores
         }
