@@ -33,14 +33,6 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         Route::resource('colores', 'ColorController');   //Colores de la web
 
-        /* PREGUNTA Y RESPUESTA */
-        Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
-        Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
-        Route::put('editarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@editarPreguntaORespuesta'); //para editar
-        Route::delete('borrarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@borrarPreguntaORespuesta'); //para borrar
-        Route::post('listar', 'PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
-        Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
-        /* PREGUNTA Y RESPUESTA */
 
 
         /*REDES SOCIALES*/
@@ -62,6 +54,17 @@ Route::group([ 'prefix' => 'auth' ], function() {
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
+
+    /* PREGUNTA Y RESPUESTA */
+    Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
+    Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
+    Route::put('editarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@editarPreguntaORespuesta'); //para editar
+    Route::delete('borrarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@borrarPreguntaORespuesta'); //para borrar
+    Route::post('listar', 'PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
+    Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
+    /* PREGUNTA Y RESPUESTA */
+
+
 
     /*PARA LOS DESTACADOS*/
 
@@ -196,6 +199,10 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // Todos los perfiles
     Route::get('perfiles','PerfilController@getPerfil');
+
+    //para listar Las SeccionApp
+    Route::get('listarSeccionApp','SeccionApp@listar');
+
 });
 
 

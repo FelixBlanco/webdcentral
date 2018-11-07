@@ -445,6 +445,7 @@ class ComposerStaticInitdd52b6e1d09dfe1136b9e5c758d9edf8
 
     public static $classMap = array (
         'App\\CarritoCompra' => __DIR__ . '/../..' . '/app/CarritoCompra.php',
+        'App\\Chage_user' => __DIR__ . '/../..' . '/app/Chage_user.php',
         'App\\Color' => __DIR__ . '/../..' . '/app/Color.php',
         'App\\ConfigFooter' => __DIR__ . '/../..' . '/app/ConfigFooter.php',
         'App\\ConfigHome' => __DIR__ . '/../..' . '/app/ConfigHome.php',
@@ -496,7 +497,6 @@ class ComposerStaticInitdd52b6e1d09dfe1136b9e5c758d9edf8
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\cors' => __DIR__ . '/../..' . '/app/Http/Middleware/Cors.php',
         'App\\Mail\\Prueba' => __DIR__ . '/../..' . '/app/Mail/Prueba.php',
-        'App\\Mail\\Suscripcion' => __DIR__ . '/../..' . '/app/Mail/Suscripcion.php',
         'App\\Notification' => __DIR__ . '/../..' . '/app/Notification.php',
         'App\\OauthAccessToken' => __DIR__ . '/../..' . '/app/OauthAccessToken.php',
         'App\\Oferta' => __DIR__ . '/../..' . '/app/Oferta.php',
@@ -3633,6 +3633,7 @@ class ComposerStaticInitdd52b6e1d09dfe1136b9e5c758d9edf8
         'SebastianBergmann\\Timer\\RuntimeException' => __DIR__ . '/..' . '/phpunit/php-timer/src/RuntimeException.php',
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'SeccionAppSeed' => __DIR__ . '/../..' . '/database/seeds/SeccionAppSeed.php',
         'SectionAppSeeder' => __DIR__ . '/../..' . '/database/seeds/SectionAppSeeder.php',
         'StatusReclamo' => __DIR__ . '/../..' . '/database/seeds/StatusReclamo.php',
         'StatusSistemaSeeder' => __DIR__ . '/../..' . '/database/seeds/StatusSistemaSeeder.php',

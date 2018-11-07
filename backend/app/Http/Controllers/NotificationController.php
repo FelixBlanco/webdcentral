@@ -12,8 +12,8 @@ class NotificationController extends Controller
 {
 
     public function add(Request $request){
-        DB::beginTransaction();
 
+        DB::beginTransaction();
         try {
 
                 $Coupons = new Notification();
@@ -51,8 +51,6 @@ class NotificationController extends Controller
 
     //
     public function sendNotificationFb($title,$data,$tokenFB = null){
-       
-
 
             $notification = array(
                 'title' => $title, // works fine here
