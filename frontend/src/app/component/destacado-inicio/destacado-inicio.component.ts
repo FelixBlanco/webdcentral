@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
-import * as $ from 'jquery';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AlertsService } from 'src/app/services/alerts.service';
 
 export interface DestacadoItem{
   nombre: string;
@@ -22,7 +23,11 @@ export class DestacadoInicioComponent implements OnInit {
 
   destacados: DestacadoItem[];
 
-  constructor(private productosService: ProductosService) { }
+  constructor(private productosService: ProductosService, private carouselConfig: NgbCarouselConfig, private ts: AlertsService) { 
+    this.carouselConfig.interval = 5000;
+    this.carouselConfig.pauseOnHover = true;
+    this.carouselConfig.showNavigationIndicators = false;
+  }
 
   ngOnInit() {
     this.productosService.getDestacados().subscribe(resp => {
@@ -30,10 +35,10 @@ export class DestacadoInicioComponent implements OnInit {
       if(resp.ok && resp.status === 200){
         this.mapAndSet(resp.body);
       }else{
-        // TODO Ha ocurrido un error;
+        this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
       }
     }, error => {
-      // TODO Ha ocurrido un error
+      this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
     });
   }
 
@@ -63,8 +68,6 @@ export class DestacadoInicioComponent implements OnInit {
     });
 
     this.destacados = toSet;
-    //$('#destacadosCarousel').carousel();
-
   }
 
   isACarruselItem($index): boolean {

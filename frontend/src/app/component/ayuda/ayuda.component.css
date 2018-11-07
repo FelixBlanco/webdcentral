@@ -3,6 +3,12 @@
     height: 250px;
     padding: 40px;
 }
+img{
+    width: 100px;
+    margin: 15px;
+    position: absolute;
+    bottom: 15%;
+}
 
 .modal-lg {
     max-width: 1000px;

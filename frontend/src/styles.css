@@ -4,6 +4,7 @@
 @import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 @import '~ngx-toastr/toastr.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 *{
     margin: 0px;
@@ -35,3 +36,6 @@ body{
 .txt-blanco a { color: #ffffff }
 .txt-naranja a {  color: #E97604 }
 .txt-verde a {  color: #90BB1E }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

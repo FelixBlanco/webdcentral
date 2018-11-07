@@ -11,7 +11,6 @@ import { AlertsService } from 'src/app/services/alerts.service';
 export class CarouselItemComponent implements OnInit {
 
   @Input('items') items: DestacadoItem[];
-  @Input('isActive') isActive: boolean;
 
   constructor(private carritoService: CarritoService, private toastr: AlertsService) { }
 

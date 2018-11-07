@@ -45,6 +45,9 @@ import { AyudaComponent } from './component/ayuda/ayuda.component';
 import { PreguntasFrecuentesComponent } from './component/ayuda/preguntas-frecuentes/preguntas-frecuentes.component';
 import { OfertasInicioComponent } from './component/ofertas-inicio/ofertas-inicio.component';
 import { ContactanosInicioComponent } from './component/contactanos-inicio/contactanos-inicio.component';
+import { MaterialUiModule } from './material-ui.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BusquedaComponent } from './component/busqueda/busqueda.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -91,6 +94,7 @@ const appRoutes: Routes = [
     PreguntasFrecuentesComponent,
     OfertasInicioComponent,
     ContactanosInicioComponent,
+    BusquedaComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,7 +105,9 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     NgxDatatableModule,
     FontAwesomeModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MaterialUiModule,
+    NgbModule
   ],
   providers: [
     CarritoService,

@@ -8,16 +8,17 @@
         </button>
       </div>
       <div class="modal-body">
-        <ul>
+        <ul *ngIf="!inPromise">
           <li *ngFor="let i of alfabeto" (click)="find(i)" [ngClass]="(i === charSelected) ? 'active' : ''">
               {{i}}
           </li>
         </ul>
+        <mat-progress-bar *ngIf="inPromise" mode="indeterminate"></mat-progress-bar>
         <hr>
         <ng-container *ngIf="!charSelected">
           <p class="text-center text-muted font-italic">Seleccione una letra...</p>
         </ng-container>
-        <ng-container *ngIf="charSelected">
+        <ng-container *ngIf="charSelected && !inPromise">
             <p class="bg-naranja txt-blanco text-center" style="border-radius:6px; padding:4px;">
               {{charSelected}}
             </p>

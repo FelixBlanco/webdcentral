@@ -6,6 +6,7 @@
 			</div>
 		</div>
 	</div>
+	<mat-spinner *ngIf="!destacados" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
 	<ng-container *ngIf="destacados" [ngSwitch]="destacados.length">
 		<ng-container *ngSwitchCase="0">
 			<div class="container">
@@ -19,21 +20,15 @@
 			</div>
 		</ng-container>
 		<ng-container *ngSwitchDefault>
-			<div id="destacadosCarousel" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner">
-					<ng-container *ngFor="let item of destacados; let i=index">
-						<ng-container *ngIf="isACarruselItem(i)">
-							<app-carousel-item [items]="getPartialItems(i, i+3)" [isActive]="(i === 0) ? true: false"></app-carousel-item>
-						</ng-container>
+			<ngb-carousel>
+				<ng-container *ngFor="let item of destacados; let i=index">
+					<ng-container *ngIf="isACarruselItem(i)">
+						<ng-template ngbSlide>
+							<app-carousel-item [items]="getPartialItems(i, i+3)"></app-carousel-item>	
+						</ng-template>
 					</ng-container>
-				</div>
-				<a class="carousel-control-prev" href="#destacadosCarousel" role="button" data-slide="prev">
-					<img src="../assets/flecha_celeste_izquierda.png">
-				</a>
-				<a class="carousel-control-next" href="#destacadosCarousel" role="button" data-slide="next">
-					<img src="../assets/flecha_celeste_derecha.png">
-				</a>
-			</div>
+				</ng-container>
+			</ngb-carousel>
 		</ng-container>
 	</ng-container>
 	

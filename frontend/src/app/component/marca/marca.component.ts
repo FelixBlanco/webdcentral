@@ -12,21 +12,27 @@ export class MarcaComponent implements OnInit {
   alfabeto:string[] = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y'];
   marcasList: any[] = [];
   charSelected: string;
+  inPromise: boolean;
   constructor(private marcaService: MarcasService, private ts : AlertsService) { }
 
   ngOnInit() {
   }
 
   find(i: string): void{
+    this.inPromise = true;
     this.charSelected = i;
+    this.marcasList = [];
     this.marcaService.getMarcasBy(i).subscribe(resp=> {
       if(resp.ok && resp.status === 202){
         this.marcasList = resp.body;
+        this.inPromise = false;
       }else{
         this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
+        this.inPromise = false;
       }
     }, error => {
       this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+      this.inPromise = false;
     })
   }
 

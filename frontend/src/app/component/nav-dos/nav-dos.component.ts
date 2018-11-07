@@ -36,14 +36,4 @@ export class NavDosComponent implements OnInit {
       }
     )
   }
-
-  buscar(){ console.log("clicik")
-    $("#nav-dos").css('display','none');
-    $("#searchInput").css('display','block');
-  }
-
-  close_buscar(){
-    $("#searchInput").css('display','none');
-    $("#nav-dos").css('display','block');
-  }
 }

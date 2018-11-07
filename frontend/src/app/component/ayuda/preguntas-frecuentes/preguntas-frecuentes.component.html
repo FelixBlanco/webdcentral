@@ -3,14 +3,19 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <p  *ngIf="!preguntasList" class="text-muted text-center font-italic">No existen preguntas registradas...</p>
-          <ng-container *ngIf="preguntasList">
-            <ng-container  *ngFor="let pregunta of preguntasList">
-                <ng-container *ngIf="pregunta.fk_idStatusSistema != 2">
-                  <p class="text-uppercase bg-naranja rounded p-2 text-white">{{pregunta.pregunta}}</p>
-                  <p class="card-text">{{pregunta.respuesta}}</p>
-                </ng-container>
-            </ng-container>  
+          <ng-container *ngIf="inPromise">
+              <mat-spinner mode="indeterminate" [diameter]="50" style="margin: 0 auto;"></mat-spinner>
+          </ng-container>
+          <ng-container *ngIf="!inPromise">
+            <p *ngIf="!preguntasList" class="text-muted text-center font-italic">No existen preguntas registradas...</p>
+            <ng-container *ngIf="preguntasList">
+              <ng-container  *ngFor="let pregunta of preguntasList">
+                  <ng-container *ngIf="pregunta.fk_idStatusSistema != 2">
+                    <p class="text-uppercase bg-naranja rounded p-2 text-white">{{pregunta.pregunta}}</p>
+                    <p class="card-text">{{pregunta.respuesta}}</p>
+                  </ng-container>
+              </ng-container>  
+            </ng-container>
           </ng-container>
         </div>
       </div>
