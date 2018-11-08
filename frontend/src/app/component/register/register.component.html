@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="registraseModal" tabindex="-1" role="dialog" aria-labelledby="registraseModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content" style="margin-top:25%;"> 
       <div class="modal-header bg-azul">
         <h5 class="modal-title txt-blanco" id="registraseModalLabel">REGISTRARSE</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -10,16 +10,12 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="">Nombre</label>
-          <input type="text" [(ngModel)]="v_register.nombre" class="form-control" placeholder="nombre">
+          <label for="">Dirección  de Email</label>
+          <input type="text" [(ngModel)]="v_register.email" class="form-control" placeholder="Ingrese Mail">
         </div>
         <div class="form-group">
-          <label for="">Dirección de Email</label>
-          <input type="email" [(ngModel)]="v_register.email" class="form-control" placeholder="Correo Electronico">
-        </div>
-        <div class="form-group">
-          <label for="">UserName</label>
-          <input type="text" [(ngModel)]="v_register.username" class="form-control" placeholder="Nombre de Usuario">
+          <label for="">Celular</label>
+          <input type="phone" [(ngModel)]="v_register.celular" class="form-control" placeholder="(000) 0000000">
         </div>
         <div class="form-group">
           <label for="">Contraseña</label>
@@ -38,8 +34,8 @@
       -->
         
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-        <button type="button" class="btn btn-success" (click)="addRegister()">ACEPTAR</button>
+        <button type="button" data-dismiss="modal" style="color:red;">CANCELAR</button>
+        <button type="button" (click)="addRegister()" style="color:#20883a;">ACEPTAR</button>
       </div>
     </div>
   </div>
