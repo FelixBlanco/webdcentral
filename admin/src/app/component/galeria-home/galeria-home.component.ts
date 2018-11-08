@@ -59,7 +59,6 @@ export class GaleriaHomeComponent implements OnInit {
   }
 
   addSlideHome(){
-
     var galeriaHome: FormData = new FormData(); // Damos Formato
     galeriaHome.append('titulo', this.new_galeria.titulo);
     galeriaHome.append('imagen', this.new_galeria.imagen);
@@ -80,6 +79,19 @@ export class GaleriaHomeComponent implements OnInit {
         // }else{
         //   this._alertService.listError(error.error);
         // }
+      }
+    )
+  }
+
+  deleteSlideHome(id:number){
+    this._galeriaHomeService._deleteSlideHome(id).subscribe(
+      resp => {
+        this.getSlideHome();
+        this._alertService.msg('OK','Se elimino correctamente')
+        console.log(resp);
+      },
+      error => {
+        this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
       }
     )
   }

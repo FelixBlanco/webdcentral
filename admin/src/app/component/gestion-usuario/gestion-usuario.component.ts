@@ -86,6 +86,10 @@ export class GestionUsuarioComponent implements OnInit {
     )
   }
 
+  preguntarDelete(id){
+    $("#deleteUserModal").modal('show');
+  }
+
   deleteUser(id:number){
     this.UsuariosService.deleteUser(id).subscribe(
       resp => {

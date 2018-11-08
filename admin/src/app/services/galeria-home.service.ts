@@ -30,4 +30,8 @@ export class GaleriaHomeService {
     return this.http.get(this._GB.API +'/api/v1/getSlides');
   }
 
+  _deleteSlideHome(id:number){
+    return this.http.delete(this._GB.API +'/api/auth/destroySlides/'+id,httpOptions)
+  }
+
 }
