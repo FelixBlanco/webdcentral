@@ -47,6 +47,18 @@ Route::group([ 'prefix' => 'auth' ], function() {
         /*ORDER HEADER (Orden de compra)*/
         Route::post('añadirOrderHeader', 'OrderHeaderController@añadir');
         /*ORDER HEADER (Orden de compra)*/
+
+        // Cupones
+        Route::post('cupons', 'CouponsController@create'); // Crear un cupon
+        Route::post('cupons/filter', 'CouponsController@listar'); // Obtener todos los cupones
+        Route::get('cupons/{idCoupons}', 'CouponsController@listarPorId');// Obtener cupones por id
+        Route::put('cupons', 'CouponsController@obtenerCupon'); // Obtener cupon por parte del cliente
+        Route::get('canjearCupons/{idCuponsClient?}', 'CouponsController@chague');// Canjear cupon por cliente
+
+        // Notification
+        Route::post('notification', 'NotificationController@add'); // Crear  Notification
+
+
     });
 });
 
@@ -149,15 +161,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // Conexion External SYS //
     Route::post('get/order/bydriver', 'OrderDriverController@getAllByEmailDriver');
 
-    // Cupones 
-    Route::post('coupns', 'CouponsController@create'); // Crear un cupon
-    Route::post('coupns/filter', 'CouponsController@listar'); // Obtener todos los cupones
-    Route::get('coupns/{idCoupons}', 'CouponsController@listarPorId');// Obtener cupones por id
-    Route::put('coupns/{idCoupons}', 'CouponsController@obtenerCupon'); // Obtener cupon por parte del cliente
-    Route::get('coupns/chague/{idCuponsClient}', 'CouponsController@chague');// Canjear cupon por cliente
-
-    // Notification
-    Route::post('notification', 'NotificationController@add'); // Crear  Notification
 
     // Paleta de color para el landing 
     Route::get('paleta-color', 'ColorController@ultimaPaletaColores');

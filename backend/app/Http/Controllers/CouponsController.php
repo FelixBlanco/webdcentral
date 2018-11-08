@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Chage_user;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -14,10 +16,11 @@ use App\CouponsClient;
 class CouponsController extends Controller {
     //
     public function create(Request $request) {
+
         try {
 
             $this->validate($request, [
-
+                'filename'      => 'image|required|mimes:jpeg,png,jpg,gif,svg',
                 'fk_idProducto' => 'required',
                 'title'         => 'required',
                 'description'   => 'required',
@@ -95,12 +98,21 @@ class CouponsController extends Controller {
 
     public function listar(Request $request) {
 
+        $this->validate($request, [
+            'active' => 'required',
+            'search' => 'required',
+        ], [
+            'active.required' => 'El campo es requerido',
+            'search.required' => 'El campo es requerido',
+
+        ]);
+
+
         $Coupons = Coupons::leftjoin("tb_productos", "tb_productos.idProducto", "=", "tb_coupons.fk_idProducto");
 
         $date = date('Y-m-d');
         if ($request->active) {// Solo no expiradas
             $Coupons->where('dateExpired', '>=', $date);
-
         }
 
         if ($request->search != "") {
@@ -123,7 +135,6 @@ class CouponsController extends Controller {
         return response()->json($response, 201);
     }
 
-
     public function listarPorId($idCoupons) {
 
         $Coupons = Coupons::findOrFail($idCoupons);
@@ -136,12 +147,19 @@ class CouponsController extends Controller {
         return response()->json($response, 201);
     }
 
-    public function obtenerCupon(Request $request, $id) {
+    public function obtenerCupon(Request $request) {
+
+        $this->validate($request, [
+            'fk_idcoupons' => 'required',
+        ], [
+            'fk_idcoupons.required' => 'El campo es requerido',
+        ]);
+
         DB::beginTransaction();
 
         try {
-            $cupon = CouponsClient::where("fk_idUser", "=", $request->idUser)
-                ->where("fk_idcoupons", "=", $request->idcoupons)
+            $cupon = CouponsClient::where("fk_idUser", Auth::user()->id)
+                ->where("fk_idcoupons", $request->fk_idcoupons)
                 ->first();
 
             if ($cupon) {
@@ -149,7 +167,7 @@ class CouponsController extends Controller {
             } else {
 
                 $Coupons               = new CouponsClient();
-                $Coupons->fk_idUser    = $request->fk_idUser;
+                $Coupons->fk_idUser    = Auth::user()->id;
                 $Coupons->fk_idcoupons = $request->fk_idcoupons;
                 $Coupons->fk_idSatate  = 1;
                 $Coupons->save();
@@ -175,30 +193,53 @@ class CouponsController extends Controller {
     }
 
 
-    public function chague($idCuponsClient) {
+    public function chague($idCuponsClient=null) {
 
-        DB::beginTransaction();
 
-        try {
-            $cupon              = CouponsClient::findOrFail($idCuponsClient);
-            $cupon->fk_idSatate = 2;
-            $cupon->update();
-
+        if (is_null($idCuponsClient)) {
             $response = [
-                'msj'   => 'Cupon cangeado correctamente',
-                'cupon' => $cupon,
+                'msj' => 'Falta el id del cupo',
             ];
-            DB::commit();
 
-            return response()->json($response, 200);
+            return response()->json($response, 404);
+        } else {
 
-        } catch (\Exception $e) {
-            DB::rollback();
-            Log::error('Ha ocurrido un error en CouponsController: '.$e->getMessage().', Linea: '.$e->getLine());
+            $changUser = Chage_user::where("idUser", Auth::user()->id)
+                ->where("idCuponsClient", $idCuponsClient)
+                ->first();
 
-            return response()->json([
-                'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
-            ], 500);
+            if ($changUser) {
+                return response()->json('Usted ya Canjeo este cupon', 400);
+            } else {
+
+                DB::beginTransaction();
+
+                try {
+                    $cupon              = CouponsClient::where('fk_idcoupons',$idCuponsClient)->first();
+                    $cupon->fk_idSatate = 2;
+                    $cupon->update();
+
+                    $changeUser = New Chage_user([ 'idUser' => Auth::user()->id, 'idCuponsClient' => $idCuponsClient ]);
+                    $changeUser->save();
+
+                    $response = [
+                        'msj'   => 'Cupon cangeado correctamente',
+                        'cupon' => $cupon,
+                    ];
+                    DB::commit();
+
+                    return response()->json($response, 200);
+
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    Log::error('Ha ocurrido un error en CouponsController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+                    return response()->json([
+                        'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+                    ], 500);
+                }
+
+            }
         }
     }
 }
