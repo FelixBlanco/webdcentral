@@ -23,18 +23,18 @@ export class DestacadosService {
     ) { this._GB = GB; }
 
   _getDestacados(){
-    return this.http.get(this._GB.API +'/api/auth/obtenerDestacados',httpOptions);
+    return this.http.get(this._GB.API +'/api/v1/obtenerDestacados',httpOptions);
   }
 
   _addDestacados(data:any){
-    return this.http.post(this._GB.API +'/api/auth/crearDestacado',data,httpOptions);
+    return this.http.post(this._GB.API +'/api/v1/crearDestacado',data,httpOptions);
   }
 
   _editDestacados(id:number, data:any){
-    return this.http.put(this._GB.API +'/api/auth/editarDestacado/'+id,data,httpOptions);
+    return this.http.put(this._GB.API +'/api/v1/editarDestacado/'+id,data,httpOptions);
   }
 
   _deleteDestacados(id:number){
-    return this.http.delete(this._GB.API +'/api/auth/eliminarDestacado/'+id,httpOptions);
+    return this.http.delete(this._GB.API +'/api/v1/eliminarDestacado/'+id,httpOptions);
   }
 }

@@ -164,7 +164,7 @@ class DestacadoController extends Controller
 
         $destacados->each(function($destacados) {
             $destacados->producto;
-
+            $destacados->nameProducto = $destacados->producto->nombre;
             return $destacados;
         });
 
