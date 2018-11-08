@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../services/usuarios.service';
 import { AlertsService } from '../../services/alerts.service';
+import { RolPerfilService } from '../../services/rol-perfil.service';
 
 declare var $;
 
@@ -11,25 +12,35 @@ declare var $;
 })
 export class GestionUsuarioComponent implements OnInit {
 
-  listUsers:any;
+  listUsers:any; list_rol:any;
 
-  newForm:any = { name: null, userNane: null, email: null, fk_idPerfil: 2 }
+  newForm:any = { name: null, userNane: null, email: null, fk_idPerfil: null,  }
 
-  editForm:any = { id:null, name: null, userNane: null, email: null, password: null }
+  editForm:any = { id:null, name: null, userNane: null, email: null, password: null, fk_idPerfil:null }
 
   constructor(
     private UsuariosService:UsuariosService,
     private alertService:AlertsService,
+    private rolPerfilService: RolPerfilService
     ) { }
 
   ngOnInit() {
     this.listaUser();
+    this.getRolPerfil();
   }
 
   listaUser(){
     this.UsuariosService.listaUsuarios().subscribe(
       (resp:any) =>{
         this.listUsers = resp.users
+      }
+    )
+  }
+
+  getRolPerfil(){
+    return this.rolPerfilService.getPerfil().subscribe(
+      resp => {
+        this.list_rol = resp;
       }
     )
   }

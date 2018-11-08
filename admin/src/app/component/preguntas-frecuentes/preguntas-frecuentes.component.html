@@ -102,11 +102,11 @@
         <form [formGroup]="questionForm">
           <div class="form-group">
             <label for="pregunta">Pregunta:</label>
-            <input type="text" formControlName="pregunta" class="form-control" id="pregunta" aria-describedby="preguntaDesc" placeholder="Escriba una pregunta">
+            <input type="text" formControlName="pregunta" class="form-control" id="pregunta" aria-describedby="preguntaDesc" placeholder="Escriba una pregunta" maxlength="255">
           </div>
           <div class="form-group">
             <label for="respuesta">Respuesta:</label>
-            <input type="text" formControlName="respuesta" class="form-control" id="respuesta" aria-describedby="respDesc" placeholder="Escribe una respuesta">
+            <textarea formControlName="respuesta" class="form-control" id="respuesta" aria-describedby="respDesc" placeholder="Escribe una respuesta" maxlength="255"></textarea>
           </div>
         </form>
       </div>
