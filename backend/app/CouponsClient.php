@@ -22,7 +22,7 @@ class CouponsClient extends Model
     }
 
     public function Coupons() {
-        return $this->belongsTo('App\StatusReclamo', 'fk_idcoupons');
+        return $this->belongsTo('App\Coupons', 'fk_idcoupons');
     }
 
     public function status() {

@@ -1,3 +1,24 @@
+<!-- Nodal de Salir -->
+<div class="modal fade" id="salirModal" tabindex="-1" role="dialog" aria-labelledby="salirModalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-naranja">
+        <h5 class="modal-title txt-blanco" id="salirModalTitle">SALIR</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="txt-blanco">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">  
+        <h2>¿Estas seguro que quieres salir?</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="salirLogin()">Si, salir</button>          
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Primer Nav -->
 <div class="container-fluid" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
   <div class="row">
@@ -10,7 +31,7 @@
           <a href="#" class="nav-link" data-toggle="modal" data-target="#loginModal">INGRESA</a>
         </li>
         <li class="nav-item txt-blanco"> 
-          <a href="#" class="nav-link">AYUDA</a>
+          <a href="#" class="nav-link" data-toggle="modal" data-target="#ayudaModal">AYUDA</a>
         </li>
         <li class="nav-item txt-blanco" *ngIf="!isSession">
           <a href="#" class="nav-link" data-toggle="modal" data-target="#registraseModal">REGISTRATE</a>
@@ -25,7 +46,7 @@
           </a>
         </li>
         <li class="nav-item txt-blanco" *ngIf="isSession">
-          <a class="nav-link" (click)="salirLogin()">Salir</a>
+          <a class="nav-link" data-toggle="modal" data-target="#salirModal">Salir</a>
         </li>
         <li class="nav-item txt-blanco" style="margin-left:-3%;">
             <a href="#" class="nav-link">

@@ -1,22 +1,30 @@
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-
-      <div class="carousel-item active" *ngIf="first">          
-        <img class="d-block w-100" src="{{first.set_imagen}}">
-      </div>                
-
-      <div class="carousel-item" *ngFor="let i of listSlide; let p = index">
-        <img class="d-block w-100" src="{{i.set_imagen}}">
-      </div>           
-
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <img src="../assets/flecha_izquierda.png" alt="">
-      <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span> -->
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <img src="../assets/flecha_derecha.png" alt="">
-      <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span> -->
-    </a>
+<div class="container-fluid" [ngStyle]=" colorDos ? {background: colorDos } : {background: '#FFFFFF' }">
+  <div class="row">
+    <div id="slide">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+    
+          <div class="carousel-item active" *ngIf="first">          
+            <img class="d-block w-100" src="{{first.set_imagen}}" height="850px;">
+          </div>                
+    
+          <div class="carousel-item" *ngFor="let i of listSlide; let p = index">
+            <img class="d-block w-100" src="{{i.set_imagen}}" height="850px;">
+          </div>           
+    
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <img src="../assets/flecha_izquierda.png" alt="">
+          <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span> -->
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <img src="../assets/flecha_derecha.png" alt="">
+          <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span> -->
+        </a>
+      </div>
+    </div> 
   </div>
+</div>
+
+

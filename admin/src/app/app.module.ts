@@ -38,6 +38,7 @@ import { AuthbackendComponent } from './component/authbackend/authbackend.compon
 import { GestionUsuarioComponent } from './component/gestion-usuario/gestion-usuario.component';
 import { ForgetComponent } from './component/forget/forget.component';
 import { DestacadosComponent } from './component/destacados/destacados.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { DestacadosComponent } from './component/destacados/destacados.component
     ReactiveFormsModule,
     HomeModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

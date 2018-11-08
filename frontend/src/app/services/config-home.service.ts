@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { ConfigHome } from '../models/config-home'
-import { GlobalD } from '../global';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,19 +14,14 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ConfigHomeService {
-  
-  public _GB: GlobalD;
 
-  constructor( 
-    private http: HttpClient,
-    public GB: GlobalD
-    ) { this._GB = GB; }
+  constructor(private http: HttpClient) { }
 
    _getConfigHome(){
-    return this.http.get(this._GB.API + '/api/v1/config-home',httpOptions);
+    return this.http.get(`${environment.apiHost}/api/v1/config-home`,httpOptions);
    }
 
    _upgradeConfigHome(data:any){
-    return this.http.post(this._GB.API + '/api/v1/upgrade_config_home',data);
+    return this.http.post(`${environment.apiHost}/api/v1/upgrade_config_home`,data);
   }
 }

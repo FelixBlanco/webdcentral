@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 
 class OrderDriverController extends Controller
@@ -14,15 +15,63 @@ class OrderDriverController extends Controller
        
         try{
             $rs = null;
-            $rs = DB::connection('sqlsrv')->select(" SELECT * FROM   VentasporComprobantes  
-            where Codigo_Transporte = ".$request->Codigo_Transporte." and EstadoPedido = 'En Transito'  "); 
+
+            $sql = "";
+            if($request->search != ""){
+                $sql = " AND Pedido LIKE '%".$request->search."%' ";
+            }
+
+            // POR CHOFER
+            if($request->Codigo_Transporte != ""){
+                $sql =  $sql." AND Codigo_Transporte = '".$request->Codigo_Transporte."' ";
+            }
+
+            // POR CLIENTE 
+            if($request->Codigo_Cliente != ""){
+                $sql += $sql." AND Codigo_Cliente = '".$request->Codigo_Cliente."' ";
+            }
+
+            $rs = DB::connection('sqlsrv')->select(" SELECT TOP 20 * FROM   VentasporComprobantes  
+            where   (EstadoPedido = 'En Transito' 
+            or EstadoPedido ='Cerrado') ".$sql."  order by Ruta  "); 
             
             if($rs){
-                return response()->json($rs, 200);
+
+                $result = array();
+                $orders = array();
+
+                $tempRuta = "";
+                $c = 0;
+                foreach ($rs as $item){
+                    if($item->Ruta == ""){
+                        $item->Ruta =  "Sin Ruta";
+                    }
+
+                    if((strcasecmp($tempRuta, $tempRuta) == 0)  || $c == 0){
+                        array_push($orders,$item);
+                    }
+                
+                    if((strcasecmp($tempRuta, $tempRuta) != 0)  || $c == count($rs)-1){
+                                        $data = array("Ruta" => $tempRuta , "data" => $orders);
+                        array_push($result,$data);
+                        $orders = array();
+                    }
+
+                    $tempRuta = $item->Ruta;
+                    
+                    $c++;
+
+                }
+
+
+
+                return response()->json($result, 200);
             }else{
-                return response()->json("No existe contenido ", 294);
+                return response()->json("No existe contenido ", 204);
             }
         } catch (\Exception $e) {
+            dd($e);
+
             return response()->json("Error conectando a el DC", 500);
         }
 
@@ -39,10 +88,9 @@ class OrderDriverController extends Controller
            if($rs){
                 return response()->json($rs, 200);
             }else{
-                return response()->json("No existe contenido ", 294);
+                return response()->json("No existe contenido ", 204);
             }
         } catch (\Exception $e) {
-            dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
@@ -59,7 +107,7 @@ class OrderDriverController extends Controller
             if($rs){
                 return response()->json($rs, 200);
             }else{
-                return response()->json("No existe contenido ", 294);
+                return response()->json("No existe contenido ", 204);
             }
         } catch (\Exception $e) {
             //dd($e);
@@ -79,7 +127,7 @@ class OrderDriverController extends Controller
             return response()->json("Pedido actualizado ", 200);
             
         } catch (\Exception $e) {
-            dd($e);
+           // dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
@@ -97,7 +145,7 @@ class OrderDriverController extends Controller
             return response()->json("Pedido actualizado ", 200);
             
         } catch (\Exception $e) {
-            dd($e);
+          //  dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
@@ -133,7 +181,7 @@ class OrderDriverController extends Controller
             return response()->json("Pedido creado ", 200);
             
         } catch (\Exception $e) {
-            dd($e);
+           // dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
@@ -165,7 +213,7 @@ class OrderDriverController extends Controller
             return response()->json("Poductos Agregados ", 200);
             
         } catch (\Exception $e) {
-            dd($e);
+           // dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }

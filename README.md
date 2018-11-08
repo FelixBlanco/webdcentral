@@ -26,7 +26,7 @@ Requisitos: tener instalado nodejs
 
 npm install @angular/cli
 
-pasar al from y ejecutar lo siguiente
+pasar al front y ejecutar lo siguiente
 
 npm install 
 
@@ -39,4 +39,5 @@ npm install
 
 ng server
 
+PUERTO POR DEFAULT http://localhost:5200/
 
