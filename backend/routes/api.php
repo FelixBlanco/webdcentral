@@ -199,7 +199,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
 
     //para listar Las SeccionApp
-    Route::get('listarSeccionApp','SeccionApp@listar');
+    Route::get('listarSeccionApp','SeccionAppController@listar');
 
 });
 

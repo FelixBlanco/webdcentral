@@ -14,11 +14,10 @@ use App\CouponsClient;
 class CouponsController extends Controller {
     //
     public function create(Request $request) {
-
         try {
 
             $this->validate($request, [
-                'filename'      => 'image|required|mimes:jpeg,png,jpg,gif,svg',
+
                 'fk_idProducto' => 'required',
                 'title'         => 'required',
                 'description'   => 'required',
