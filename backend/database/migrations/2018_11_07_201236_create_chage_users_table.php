@@ -17,6 +17,7 @@ class CreateChageUsersTable extends Migration {
             $table->integer('idCuponsClient')->unsigned();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -193,7 +193,7 @@ class CouponsController extends Controller {
     }
 
 
-    public function chague($idCuponsClient=null) {
+    public function chague($idCuponsClient = null) {
 
 
         if (is_null($idCuponsClient)) {
@@ -215,7 +215,7 @@ class CouponsController extends Controller {
                 DB::beginTransaction();
 
                 try {
-                    $cupon              = CouponsClient::where('fk_idcoupons',$idCuponsClient)->first();
+                    $cupon              = CouponsClient::where('fk_idcoupons', $idCuponsClient)->first();
                     $cupon->fk_idSatate = 2;
                     $cupon->update();
 
@@ -241,5 +241,33 @@ class CouponsController extends Controller {
 
             }
         }
+    }
+
+    public function delete($id) {
+        dd($id);
+
+        DB::beginTransaction();
+
+        try {
+            $CupoCliente = CouponsClient::findOrFail($id);
+            dd($CupoCliente);
+            $CupoCliente->delete();
+
+            $response = [
+                'msj'  => 'Cupon eliminado Correctamente',
+            ];
+
+            DB::commit();
+
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error('Ha ocurrido un error en CouponsController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al tratar de eliminar los datos.',
+            ], 500);
+        }
+
     }
 }
