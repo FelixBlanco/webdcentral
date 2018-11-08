@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\CarritoCompra' => $baseDir . '/app/CarritoCompra.php',
+    'App\\Chage_user' => $baseDir . '/app/Chage_user.php',
     'App\\Color' => $baseDir . '/app/Color.php',
     'App\\ConfigFooter' => $baseDir . '/app/ConfigFooter.php',
     'App\\ConfigHome' => $baseDir . '/app/ConfigHome.php',
@@ -58,7 +59,6 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\cors' => $baseDir . '/app/Http/Middleware/Cors.php',
     'App\\Mail\\Prueba' => $baseDir . '/app/Mail/Prueba.php',
-    'App\\Mail\\Suscripcion' => $baseDir . '/app/Mail/Suscripcion.php',
     'App\\Notification' => $baseDir . '/app/Notification.php',
     'App\\OauthAccessToken' => $baseDir . '/app/OauthAccessToken.php',
     'App\\Oferta' => $baseDir . '/app/Oferta.php',
@@ -3195,6 +3195,7 @@ return array(
     'SebastianBergmann\\Timer\\RuntimeException' => $vendorDir . '/phpunit/php-timer/src/RuntimeException.php',
     'SebastianBergmann\\Timer\\Timer' => $vendorDir . '/phpunit/php-timer/src/Timer.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
+    'SeccionAppSeed' => $baseDir . '/database/seeds/SeccionAppSeed.php',
     'SectionAppSeeder' => $baseDir . '/database/seeds/SectionAppSeeder.php',
     'StatusReclamo' => $baseDir . '/database/seeds/StatusReclamo.php',
     'StatusSistemaSeeder' => $baseDir . '/database/seeds/StatusSistemaSeeder.php',

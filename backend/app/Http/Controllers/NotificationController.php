@@ -12,8 +12,8 @@ class NotificationController extends Controller
 {
 
     public function add(Request $request){
-        DB::beginTransaction();
 
+        DB::beginTransaction();
         try {
 
                 $Coupons = new Notification();
