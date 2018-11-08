@@ -25,17 +25,25 @@ class ProductoController extends Controller {
 
             $busqueda = "%".$search."%";
 
-            $productos = Producto::orWhere('nombre', 'like', $busqueda)
-                ->orWhere('rubro', 'like', $busqueda)
-                ->orWhere('marca', 'like', $busqueda)
+            $mascotas = Producto::orWhere('rubro', 'like', $busqueda)
                 ->orWhere('SubRubro1', 'like', $busqueda)
                 ->orWhere('SubRubro2', 'like', $busqueda)
                 ->where('fk_idSatate', '=', 1)
                 ->get();
 
+            $marcas = Producto::Where('marca', 'like', $busqueda)
+                ->where('fk_idSatate', '=', 1)
+                ->get();
+
+            $nombre = Producto::Where('nombre', 'like', $busqueda)
+                ->where('fk_idSatate', '=', 1)
+                ->get();
+
             $response = [
-                'msj'    => 'Productos',
-                'result' => $productos,
+                'msj'      => 'Productos',
+                'mascotas' => $mascotas,
+                'marcas'   => $marcas,
+                'nombre'   => $nombre,
             ];
 
             return response()->json($response, 200);
@@ -293,11 +301,11 @@ class ProductoController extends Controller {
         return response()->json($response, 202);
     }
 
-    public static function searchMarca($search=null) {
+    public static function searchMarca($search = null) {
 
         if (! is_null($search)) {
             $busqueda = $search."%";
-            $response = Producto::select("marca")->where('marca', 'like',$busqueda)->distinct('marca')->orderBy("marca")->get();
+            $response = Producto::select("marca")->where('marca', 'like', $busqueda)->distinct('marca')->orderBy("marca")->get();
 
             if (is_null($response)) {
                 $response = [
@@ -311,11 +319,11 @@ class ProductoController extends Controller {
 
         } else {
 
-                $response = [
-                    'msj' => 'Debe enviar el criterio de búsqueda',
-                ];
+            $response = [
+                'msj' => 'Debe enviar el criterio de búsqueda',
+            ];
 
-                return response()->json($response, 404);
+            return response()->json($response, 404);
 
         }
     }

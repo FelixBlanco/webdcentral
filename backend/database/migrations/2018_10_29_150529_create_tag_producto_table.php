@@ -19,6 +19,7 @@ class CreateTagProductoTable extends Migration
             $table->string('tag')->nullable();
             $table->integer('fk_idSatate');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
