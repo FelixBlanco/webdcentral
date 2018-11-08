@@ -51,8 +51,6 @@ class NotificationController extends Controller
 
     //
     public function sendNotificationFb($title,$data,$tokenFB = null){
-       
-
 
             $notification = array(
                 'title' => $title, // works fine here

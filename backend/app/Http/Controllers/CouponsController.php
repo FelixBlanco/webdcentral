@@ -193,7 +193,6 @@ class CouponsController extends Controller {
 
             return response()->json($response, 200);
 
-
         } catch (\Exception $e) {
             DB::rollback();
             Log::error('Ha ocurrido un error en CouponsController: '.$e->getMessage().', Linea: '.$e->getLine());
