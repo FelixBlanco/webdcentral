@@ -15,8 +15,25 @@ class OrderDriverController extends Controller
        
         try{
             $rs = null;
+
+            $sql = "";
+            if($request->search != ""){
+                $sql = " AND Pedido LIKE '%".$request->search."%' ";
+            }
+
+            // POR CHOFER
+            if($request->Codigo_Transporte != ""){
+                $sql =  $sql." AND Codigo_Transporte = '".$request->Codigo_Transporte."' ";
+            }
+
+            // POR CLIENTE 
+            if($request->Codigo_Cliente != ""){
+                $sql += $sql." AND Codigo_Cliente = '".$request->Codigo_Cliente."' ";
+            }
+
             $rs = DB::connection('sqlsrv')->select(" SELECT TOP 20 * FROM   VentasporComprobantes  
-            where Codigo_Transporte = '".$request->Codigo_Transporte."' and EstadoPedido != 'En Transito' order by Ruta  "); 
+            where   (EstadoPedido = 'En Transito' 
+            or EstadoPedido ='Cerrado') ".$sql."  order by Ruta  "); 
             
             if($rs){
 
