@@ -273,7 +273,7 @@ class CouponsController extends Controller {
         $todo=Coupons::get();
         $response = [
             'msj'     => 'Lista de Cupones',
-            'cupones' => $result,
+            'cupones' => $todo,
         ];
 
         return response()->json($response, 201);
