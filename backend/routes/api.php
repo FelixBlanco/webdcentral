@@ -59,6 +59,14 @@ Route::group([ 'prefix' => 'auth' ], function() {
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
 
+        /* PREGUNTA Y RESPUESTA */
+        Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
+        Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
+        Route::put('editarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@editarPreguntaORespuesta'); //para editar
+        Route::delete('borrarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@borrarPreguntaORespuesta'); //para borrar
+        Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
+        /* PREGUNTA Y RESPUESTA */
+
 
     });
 });
@@ -68,16 +76,8 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
-    /* PREGUNTA Y RESPUESTA */
-    Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
-    Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
-    Route::put('editarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@editarPreguntaORespuesta'); //para editar
-    Route::delete('borrarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@borrarPreguntaORespuesta'); //para borrar
+
     Route::post('listar', 'PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
-    Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
-    /* PREGUNTA Y RESPUESTA */
-
-
 
     /*PARA LOS DESTACADOS*/
 
