@@ -40,19 +40,20 @@ class OrderDriverController extends Controller
                 $result = array();
                 $orders = array();
 
-                $tempRuta = "";
+                $tempRuta = "Sin Ruta";
                 $c = 0;
                 foreach ($rs as $item){
                     if($item->Ruta == ""){
                         $item->Ruta =  "Sin Ruta";
                     }
 
-                    if((strcasecmp($tempRuta, $tempRuta) == 0)  || $c == 0){
+                    // si es igual a la aterior 
+                    if((strcasecmp($item->Ruta, $tempRuta) == 0)  || $c == 0){
                         array_push($orders,$item);
                     }
                 
-                    if((strcasecmp($tempRuta, $tempRuta) != 0)  || $c == count($rs)-1){
-                                        $data = array("Ruta" => $tempRuta , "data" => $orders);
+                    if((strcasecmp($item->Ruta, $tempRuta) != 0)  || $c == count($rs)-1){
+                        $data = array("Ruta" => $tempRuta , "data" => $orders);
                         array_push($result,$data);
                         $orders = array();
                     }
@@ -82,15 +83,60 @@ class OrderDriverController extends Controller
 
         try{
             $rs = null;
-            $rs  = DB::connection('sqlsrv')->select(" SELECT TOP 5 * FROM  VentasporComprobantes 
-            where Codigo_Transporte = ".$request->Codigo_Transporte." and EstadoPedido != 'Reparto' "); 
-           
-           if($rs){
-                return response()->json($rs, 200);
+
+            $sql = "";
+            if($request->search != ""){
+                $sql = " AND Pedido LIKE '%".$request->search."%' ";
+            }
+
+            // POR CHOFER
+            if($request->Codigo_Transporte != ""){
+                $sql =  $sql." AND Codigo_Transporte = '".$request->Codigo_Transporte."' ";
+            }
+
+          
+
+            $rs = DB::connection('sqlsrv')->select(" SELECT TOP 20 * FROM   VentasporComprobantes  
+            where   EstadoPedido != 'Reparto' ".$sql."  order by Ruta  "); 
+            
+            if($rs){
+
+                $result = array();
+                $orders = array();
+
+                $tempRuta = "Sin Ruta";
+                $c = 0;
+                foreach ($rs as $item){
+                    if($item->Ruta == ""){
+                        $item->Ruta =  "Sin Ruta";
+                    }
+
+                    // si es igual a la aterior 
+                    if((strcasecmp($item->Ruta, $tempRuta) == 0)  || $c == 0){
+                        array_push($orders,$item);
+                    }
+                
+                    if((strcasecmp($item->Ruta, $tempRuta) != 0)  || $c == count($rs)-1){
+                        $data = array("Ruta" => $tempRuta , "data" => $orders);
+                        array_push($result,$data);
+                        $orders = array();
+                    }
+
+                    $tempRuta = $item->Ruta;
+                    
+                    $c++;
+
+                }
+
+
+
+                return response()->json($result, 200);
             }else{
                 return response()->json("No existe contenido ", 204);
             }
         } catch (\Exception $e) {
+            dd($e);
+
             return response()->json("Error conectando a el DC", 500);
         }
     }
