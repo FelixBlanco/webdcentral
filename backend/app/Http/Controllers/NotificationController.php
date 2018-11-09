@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\Log;
 
 class NotificationController extends Controller {
 
+    public function listar(){
+        $noti=Notification::get();
+        $response = [
+            'msj' => 'Lista de notificaciones',
+            'notifi'=>$noti
+        ];
+
+        return response()->json($response, 201);
+
+    }
+
     public function add(Request $request) {
 
         $this->validate($request, [

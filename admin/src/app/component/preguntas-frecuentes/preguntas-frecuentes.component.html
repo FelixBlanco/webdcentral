@@ -25,7 +25,7 @@
             <ngx-datatable
               #table
               class="bootstrap"
-              [rowHeight]="80"
+              [rowHeight]="'auto'"
               [rows]="rows"
               [columns]="columns"
               [columnMode]="'force'"
@@ -33,10 +33,10 @@
               [rowClass]="rowClass"
               [limit]="limit">
 
-              <ngx-datatable-column name="#" prop="idPreguntaFrecuente"></ngx-datatable-column>
-              <ngx-datatable-column name="Pregunta" prop="pregunta"></ngx-datatable-column>
-              <ngx-datatable-column name="Respuesta" prop="respuesta"></ngx-datatable-column>
-              <ngx-datatable-column name="Estatus" prop="fk_idStatusSistema">
+              <ngx-datatable-column name="#" prop="idPreguntaFrecuente" [width]="30"></ngx-datatable-column>
+              <ngx-datatable-column name="Pregunta" prop="pregunta" [width]="200"></ngx-datatable-column>
+              <ngx-datatable-column name="Respuesta" prop="respuesta" [width]="300"></ngx-datatable-column>
+              <ngx-datatable-column name="Estatus" prop="fk_idStatusSistema" [width]="100">
                 <ng-template ngx-datatable-cell-template let-row="row">
                     <ng-container [ngSwitch]="row.fk_idStatusSistema">
                       <span class="text-danger" *ngSwitchCase="2">INACTIVO</span>
@@ -45,7 +45,7 @@
                 </ng-template>                    
               </ngx-datatable-column>
 
-              <ngx-datatable-column name="" prop="opts">
+              <ngx-datatable-column name="" prop="opts" [width]="100">
                 <ng-template ngx-datatable-cell-template let-row="row">
                   <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#modificar"><i class="fa fa-edit"></i></a>
                   <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
@@ -106,7 +106,7 @@
           </div>
           <div class="form-group">
             <label for="respuesta">Respuesta:</label>
-            <textarea formControlName="respuesta" class="form-control" id="respuesta" aria-describedby="respDesc" placeholder="Escribe una respuesta" maxlength="255"></textarea>
+            <textarea rows="4" formControlName="respuesta" class="form-control" id="respuesta" aria-describedby="respDesc" placeholder="Escribe una respuesta" maxlength="255"></textarea>
           </div>
         </form>
       </div>
@@ -136,7 +136,7 @@
           </div>
           <div class="form-group">
             <label for="respuesta">Respuesta:</label>
-            <input type="text" formControlName="respuesta" class="form-control" id="respuesta" aria-describedby="respDesc" placeholder="Escribe una respuesta">
+            <textarea  rows="4" formControlName="respuesta" class="form-control" id="respuesta" aria-describedby="respDesc" placeholder="Escribe una respuesta" maxlength="255"></textarea>
           </div>
         </form>
       </div>

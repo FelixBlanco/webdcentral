@@ -13,12 +13,12 @@ class SuscripcionController extends Controller {
     public function nuevaSus(Request $request) {
 
         $this->validate($request, [
-            'email'               => 'required|unique:tb_suscripcions,email,'.$request->idSuscripcion.',idSuscripcion',
+            'email' => 'required|unique:tb_suscripcions,email,'.$request->idSuscripcion.',idSuscripcion',
 
         ], [
-            'email.unique'                 => 'Este Email ya se encuentra en uso',
-            'email.email'                  => 'El Email debe de tener un formato ejemplo@ejemplo.com',
-            'email.required'               => 'El Email es requerido',
+            'email.unique'   => 'Este Email ya se encuentra en uso',
+            'email.email'    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
+            'email.required' => 'El Email es requerido',
 
         ]);
 
@@ -26,13 +26,13 @@ class SuscripcionController extends Controller {
 
         try {
 
-            $sus = new Suscripcion($request->all());
-            $sus->fk_idStatusSistema=1;
+            $sus                     = new Suscripcion($request->all());
+            $sus->fk_idStatusSistema = 1;
 
             $sus->save();
 
             $response = [
-                'msj'  => 'Suscripcion Creada Satisfactoriamente',
+                'msj'         => 'Suscripcion Creada Satisfactoriamente',
                 'suscripcion' => $sus,
             ];
             DB::commit();
@@ -50,10 +50,10 @@ class SuscripcionController extends Controller {
         }
     }
 
-    public function cambiarStatusSus(Request $request,$id){
+    public function cambiarStatusSus(Request $request, $id) {
 
         $this->validate($request, [
-            'fk_idStatusSistema'  => 'required',
+            'fk_idStatusSistema' => 'required',
         ], [
             'fk_idStatusSistema.required' => 'El estatus es requerido',
         ]);
@@ -64,11 +64,11 @@ class SuscripcionController extends Controller {
             $sus = Suscripcion::findOrFail($id);
 
 
-            $sus->fill(['fk_idStatusSistema'=>$request->fk_idStatusSistema]);
+            $sus->fill([ 'fk_idStatusSistema' => $request->fk_idStatusSistema ]);
 
 
             $response = [
-                'msj'  => 'Status de la suscripcion cambiada',
+                'msj'         => 'Status de la suscripcion cambiada',
                 'suscripcion' => $sus,
             ];
 
@@ -86,16 +86,17 @@ class SuscripcionController extends Controller {
         }
     }
 
-    public function cancelarSus($id){
+    public function cancelarSus($id) {
 
         $sus = Suscripcion::findOrFail($id);
-        $sus->fill(['fk_idStatusSistema'=>2]);
+        $sus->fill([ 'fk_idStatusSistema' => 2 ]);
         $sus->save();
 
         $response = [
-            'msj'  => 'Suscripcion cancelada',
+            'msj'         => 'Suscripcion cancelada',
             'suscripcion' => $sus,
         ];
+
         return response()->json($response, 200);
     }
 

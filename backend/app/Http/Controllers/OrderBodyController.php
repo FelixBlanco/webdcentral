@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Log;
 class OrderBodyController extends Controller {
 
     public function añadir(Request $request, $fk_idOrderHeader) {
-        dd($request->items);
 
         DB::beginTransaction();
 
@@ -86,9 +85,6 @@ class OrderBodyController extends Controller {
 
             return response()->json($response, 404);
         }
-
-
-
 
 
     }

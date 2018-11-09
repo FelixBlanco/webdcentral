@@ -49,7 +49,9 @@ class OfertaController extends Controller {
             'titulo.required'     => 'El Título es requerido',
             'tiempoExpi.required' => 'El Tiempo de expiracion es requerido',
             'status.required'     => 'El Status es requerido',
+            'imagen.image'     => 'La Imagen es requerida',
             'imagen.required'     => 'La Imagen es requerida',
+            'imagen.mimes' => 'Solo jpeg, png, bmp,tiff son soportados'
 
         ]);
 
