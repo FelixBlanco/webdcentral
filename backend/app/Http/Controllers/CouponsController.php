@@ -192,7 +192,6 @@ class CouponsController extends Controller {
         }
     }
 
-
     public function chague($idCuponsClient = null) {
 
 
@@ -244,13 +243,11 @@ class CouponsController extends Controller {
     }
 
     public function delete($id) {
-        dd($id);
 
         DB::beginTransaction();
 
         try {
             $CupoCliente = CouponsClient::findOrFail($id);
-            dd($CupoCliente);
             $CupoCliente->delete();
 
             $response = [

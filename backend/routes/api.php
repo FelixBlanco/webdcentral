@@ -26,6 +26,8 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         Route::post('createSlides', 'SlideController@createSlides'); //Para que un user admin cree un slide
 
+        Route::delete('destroySlides/{idSlide}', 'SlideController@destroy'); //Para que un user admin elimine un slide
+
         Route::resource('sugerencias-reclamos', 'ReclamoSugerenciaController');   //sugerencias y reclamos
 
         Route::get('obtenerStatus-sugerencias-reclamos', 'ReclamoSugerenciaController@obtenerStatus');  //para obtener los posibles estatus de un reclamo
@@ -58,6 +60,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
+        Route::get('listarNotificationes', 'NotificationController@listar'); // Listar  Notification
 
         /* PREGUNTA Y RESPUESTA */
         Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
