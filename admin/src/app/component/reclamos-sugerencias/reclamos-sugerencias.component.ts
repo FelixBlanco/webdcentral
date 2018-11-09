@@ -34,7 +34,6 @@ export class ReclamosSugerenciasComponent implements OnInit {
     this.getReclamos();
 
     $("#nav-recibida").click(function(){
-      console.log('dio recibida')
       $("#nav-abierto").removeClass('active');
       $("#nav-cerrada").removeClass('active');
       $("#nav-recibida").addClass('active');
@@ -46,7 +45,6 @@ export class ReclamosSugerenciasComponent implements OnInit {
        
     
     $("#nav-abierto").click(function(){
-      console.log('dio abierto')
       $("#nav-recibida").removeClass('active');
       $("#nav-cerrada").removeClass('active');
       $("#nav-abierto").addClass('active');
@@ -57,7 +55,6 @@ export class ReclamosSugerenciasComponent implements OnInit {
     });
 
     $("#nav-cerrada").click(function(){
-      console.log('dio cerrada')
       $("#nav-recibida").removeClass('active');
       $("#nav-abierto").removeClass('active');
       $("#nav-cerrada").addClass('active');
