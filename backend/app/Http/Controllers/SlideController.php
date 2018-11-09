@@ -131,4 +131,29 @@ class SlideController extends Controller {
             return response()->json('Archivo no encontrado', 404);
         }
     }
+
+    public function destroy($idSlide) {
+
+        DB::beginTransaction();
+
+        try {
+            $slide = Slide::findOrFail($idSlide);
+            $slide->delete();
+
+            $response = [
+                'msj'  => 'Slide eliminado Correctamente',
+            ];
+
+            DB::commit();
+
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error('Ha ocurrido un error en SlideController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al tratar de eliminar los datos.',
+            ], 500);
+        }
+    }
 }
