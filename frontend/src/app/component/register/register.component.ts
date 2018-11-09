@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   
 
   v_register:any = { 
-    nombre:null, username:null,
+    nombre:null, celular:null,
     email:null,  password: null,
     password_r : null,
     foto_perfil: null, 
@@ -38,11 +38,11 @@ export class RegisterComponent implements OnInit {
 
   addRegister(){
 
-    if(!this.v_register.nombre || !this.v_register.email || !this.v_register.userName){
+    if(!this.v_register.celular || !this.v_register.email || !this.v_register.cedular){
       this._alertService.msg("ERR", "Error", 'Todos los campos son requeridos');
     }
 
-    if(this.v_register.password && this.v_register.password_r && this.v_register.nombre){
+    if(this.v_register.password && this.v_register.password_r && this.v_register.celular){
       if(this.v_register.password.length != 0){
         if(this.v_register.password.length <= 8){
           this._alertService.msg("ERR", "Error", 'el password tiene que ser mayor de 8 caracteres');
@@ -50,10 +50,9 @@ export class RegisterComponent implements OnInit {
           if(this.v_register.password == this.v_register.password_r){
             
             const data_i:any = { 
-              name: this.v_register.nombre,
               email: this.v_register.email,
               password: this.v_register.password,
-              userName: this.v_register.username,
+              celular: this.v_register.celular,
               password_confirmation: this.v_register.password,
               fk_idPerfil: 2
             };

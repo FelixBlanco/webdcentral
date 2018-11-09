@@ -25,7 +25,7 @@ export class ReclamosInicioComponent implements OnInit {
       resp => {
         $("#reclamoModel").modal('hide');
         this.form = {titulo:null, descripcion:null, fk_idUser: null, fk_idStatusReclamo: 1 };
-        this._alertService.Success('Reclamo Enviado'); 
+        this._alertService.msg('OK','Se envio exitosamente'); 
       },
       error => {
         this._alertService.listError(error.error);
