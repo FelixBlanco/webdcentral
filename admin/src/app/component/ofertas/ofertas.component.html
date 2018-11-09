@@ -37,7 +37,7 @@
             </div>
           </div>
 
-          <!-- Modal -->
+          <!-- Modal edit-->
           <div class="modal fade" id="editarOfertaModal" tabindex="-1" role="dialog" aria-labelledby="editarOfertaModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -61,7 +61,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" (click)="add_updateOferta('upgrade')">Guardar Cambios</button>
+                    <button type="button" class="btn btn-primary" (click)="upgrade()">Guardar Cambios</button>
                   </div>
                 </div>
               </div>
@@ -92,6 +92,7 @@
             <td><img class="card-img-top"  src="{{o.set_imagen}}" width="100px"></td>
             <td>
               <div href="#" class="btn btn-primary btn-sm" (click)="editOferta(o)"> Editar</div>
+              <button class="btn btn-danger btn-sm" (click)="eliminarOferta(o.id)">Eliminar</button>
             </td>
           </tr>
       </table>

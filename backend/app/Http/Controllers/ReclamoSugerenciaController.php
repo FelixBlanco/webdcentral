@@ -77,11 +77,21 @@ class ReclamoSugerenciaController extends Controller {
     }
 
     public function index() {
-        $r = ReclamosYSugerencia::orderby('idReclamosSugerencia', 'desc')->get();
+        $r = ReclamosYSugerencia::orderby('idReclamosSugerencia', 'desc')->get(); // Todos 
+        $r_abiertos = ReclamosYSugerencia::orderby('idReclamosSugerencia', 'desc')->where('fk_idStatusReclamo',1)->get(); //Abiertos
+        $r_recibido = ReclamosYSugerencia::orderby('idReclamosSugerencia', 'desc')->where('fk_idStatusReclamo',3)->get(); //Recibido
+        $r_cerrado = ReclamosYSugerencia::orderby('idReclamosSugerencia', 'desc')->where('fk_idStatusReclamo',2)->get(); //Cerrado
+        
         $r->each(function($r){
             $r->statusReclamoSugerencia = $r->status->descripcion;
         });
-        return $r;
+        
+        return response()->json([
+            'todos' => $r,
+            'r_abiertos' => $r_abiertos,
+            'r_recibido' => $r_recibido,
+            'r_cerrado' => $r_cerrado
+        ]);
     }
 
     /**

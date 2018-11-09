@@ -18,6 +18,8 @@ export class GestionUsuarioComponent implements OnInit {
 
   editForm:any = { id:null, name: null, userNane: null, email: null, password: null, fk_idPerfil:null }
 
+  userDelete:any; 
+
   constructor(
     private UsuariosService:UsuariosService,
     private alertService:AlertsService,
@@ -86,9 +88,15 @@ export class GestionUsuarioComponent implements OnInit {
     )
   }
 
-  deleteUser(id:number){
+  preguntarDelete(id){
+    $("#deleteUserModal").modal('show');
+    this.userDelete = id;
+  }
+
+  deleteUser(id:number = this.userDelete){
     this.UsuariosService.deleteUser(id).subscribe(
       resp => {
+        $("#deleteUserModal").modal('hide');
         this.listaUser();
         this.alertService.msg("OK","Éxito", "Se ha elimino correctamente");
       },

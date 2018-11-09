@@ -1,0 +1,6 @@
+#list-recibida, #list-cerrada {
+  display: none;
+}
+.nav li{
+  cursor: pointer
+}

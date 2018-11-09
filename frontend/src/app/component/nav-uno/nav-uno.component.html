@@ -30,23 +30,33 @@
         <li class="nav-item txt-blanco" *ngIf="!isSession">
           <a href="#" class="nav-link" data-toggle="modal" data-target="#loginModal">INGRESA</a>
         </li>
-        <li class="nav-item txt-blanco"> 
+        <li class="nav-item txt-blanco" style="margin-left: -2%;"> 
           <a href="#" class="nav-link" data-toggle="modal" data-target="#ayudaModal">AYUDA</a>
         </li>
-        <li class="nav-item txt-blanco" *ngIf="!isSession">
+        <li class="nav-item txt-blanco" *ngIf="!isSession" style="margin-left: -2%;">
           <a href="#" class="nav-link" data-toggle="modal" data-target="#registraseModal">REGISTRATE</a>
         </li>
         <li class="nav-item txt-blanco" *ngIf="isSession">
           <a class="nav-link"  [ngStyle]=" colorDos ? {color: colorDos } : {color: '#FFFFFF' }" >{{ userName }}</a>
         </li>
 
-        <li class="nav-item txt-blanco" >
+        <li class="nav-item txt-blanco" style="margin-left:-3%;">
+          <a href="#" class="nav-link">
+            <div class="barra">|</div>
+          </a>
+        </li>
+        <li class="nav-item txt-blanco" style="margin-left:-3%">
           <a href="#" class="nav-link" data-toggle="modal" data-target="#carrito">
             <img src="../assets/social/carrito.png" width="20px">
           </a>
         </li>
         <li class="nav-item txt-blanco" *ngIf="isSession">
           <a class="nav-link" data-toggle="modal" data-target="#salirModal">Salir</a>
+        </li>
+        <li class="nav-item txt-blanco" style="margin-left:-1%;">
+          <a href="#" class="nav-link">
+            <div class="barra">|</div>
+          </a>
         </li>
         <li class="nav-item txt-blanco" style="margin-left:-3%;">
             <a href="#" class="nav-link">

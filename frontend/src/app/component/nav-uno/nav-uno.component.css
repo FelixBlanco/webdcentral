@@ -1,1 +1,9 @@
 .menu-icon li{ display: inline-block; margin-left: -2%;}
+
+.barra{
+    font-size: 24px;
+    margin-top: -53%;
+}
+.barra:hover{
+    color:white;
+}
