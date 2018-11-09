@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/SlideController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/SlideController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/NotificationController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/NotificationController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/routes/api.php" afterPath="$PROJECT_DIR$/backend/routes/api.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,8 +21,32 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="28" column="23" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="46" />
+            <state relative-caret-position="298">
+              <caret line="62" column="40" lean-forward="false" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NotificationController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/NotificationController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="26" />
+              <folding>
+                <element signature="e#2032#3327#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Notification.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/app/Notification.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="26" />
+              <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="32" />
+              <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -92,7 +116,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>auth</find>
       <find>pregun</find>
       <find>id</find>
       <find>busca</find>
@@ -122,6 +145,7 @@
       <find>Email</find>
       <find>createSlides</find>
       <find>slid</find>
+      <find>notifi</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\alejandro\argentina\webdcentral</dir>
@@ -150,7 +174,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/backend/app/Color.php" />
         <option value="$PROJECT_DIR$/backend/config/app.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_25_104212_create_preguntas_frecuentes_table.php" />
         <option value="$PROJECT_DIR$/backend/database/seeds/StatusSistemaSeeder.php" />
@@ -190,7 +213,6 @@
         <option value="$PROJECT_DIR$/backend/database/seeds/SeccionAppSeed.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/SeccionAppController.php" />
         <option value="$PROJECT_DIR$/backend/app/CouponsClient.php" />
-        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/NotificationController.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_11_07_201236_create_chage_users_table.php" />
         <option value="$PROJECT_DIR$/backend/app/Chage_user.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_29_150529_create_tag_producto_table.php" />
@@ -200,6 +222,8 @@
         <option value="$PROJECT_DIR$/frontend/src/app/component/login/login.component.html" />
         <option value="$PROJECT_DIR$/admin/src/app/component/forget/forget.component.html" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/SlideController.php" />
+        <option value="$PROJECT_DIR$/backend/app/Notification.php" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/NotificationController.php" />
         <option value="$PROJECT_DIR$/backend/routes/api.php" />
       </list>
     </option>
@@ -501,7 +525,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166382000" />
+    <option name="totallyTimeSpent" value="166570000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
@@ -612,7 +636,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="17" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -748,13 +772,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/database/seeds/SeccionAppSeed.php" />
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/SeccionAppController.php" />
-    <entry file="file://$PROJECT_DIR$/backend/app/Notification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/SectionApp.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -816,7 +833,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
           <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -833,14 +849,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="14">
           <caret line="212" column="20" lean-forward="false" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/NotificationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -864,7 +872,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="24" column="14" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -966,10 +973,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Notification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="26" />
+          <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="32" />
+          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/NotificationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="26" />
+          <folding>
+            <element signature="e#2032#3327#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="28" column="23" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="46" />
+        <state relative-caret-position="298">
+          <caret line="62" column="40" lean-forward="false" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="40" />
           <folding />
         </state>
       </provider>

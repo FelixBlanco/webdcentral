@@ -60,6 +60,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
+        Route::get('listarNotificationes', 'NotificationController@listar'); // Listar  Notification
 
         /* PREGUNTA Y RESPUESTA */
         Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
