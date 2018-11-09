@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/NotificationController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/NotificationController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/routes/api.php" afterPath="$PROJECT_DIR$/backend/routes/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,9 +20,27 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="62" column="40" lean-forward="false" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="40" />
+            <state relative-caret-position="332">
+              <caret line="55" column="77" lean-forward="false" selection-start-line="55" selection-start-column="77" selection-end-line="55" selection-end-column="99" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CouponsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+              <folding>
+                <element signature="e#346#2834#0#PHP" expanded="false" />
+                <element signature="e#2840#3079#0#PHP" expanded="false" />
+                <element signature="e#3085#4262#0#PHP" expanded="false" />
+                <element signature="e#4268#4546#0#PHP" expanded="false" />
+                <element signature="e#4552#5949#0#PHP" expanded="false" />
+                <element signature="e#5955#7591#0#PHP" expanded="false" />
+                <element signature="e#7597#8290#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,7 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pregun</find>
       <find>id</find>
       <find>busca</find>
       <find>cupones</find>
@@ -146,6 +162,7 @@
       <find>createSlides</find>
       <find>slid</find>
       <find>notifi</find>
+      <find>dd</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\alejandro\argentina\webdcentral</dir>
@@ -216,7 +233,6 @@
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_11_07_201236_create_chage_users_table.php" />
         <option value="$PROJECT_DIR$/backend/app/Chage_user.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_29_150529_create_tag_producto_table.php" />
-        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/PreguntasFrecuenteController.php" />
         <option value="$PROJECT_DIR$/frontend/src/app/component/login/login.component.html" />
@@ -225,6 +241,7 @@
         <option value="$PROJECT_DIR$/backend/app/Notification.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/NotificationController.php" />
         <option value="$PROJECT_DIR$/backend/routes/api.php" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php" />
       </list>
     </option>
   </component>
@@ -525,10 +542,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166570000" />
+    <option name="totallyTimeSpent" value="166785000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
+    <frame x="-8" y="-8" width="1296" height="696" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -636,7 +653,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="18" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -845,13 +862,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Chage_user.php" />
     <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-07.log" />
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="212" column="20" lean-forward="false" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -993,10 +1003,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+          <folding>
+            <element signature="e#346#2834#0#PHP" expanded="false" />
+            <element signature="e#2840#3079#0#PHP" expanded="false" />
+            <element signature="e#3085#4262#0#PHP" expanded="false" />
+            <element signature="e#4268#4546#0#PHP" expanded="false" />
+            <element signature="e#4552#5949#0#PHP" expanded="false" />
+            <element signature="e#5955#7591#0#PHP" expanded="false" />
+            <element signature="e#7597#8290#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="62" column="40" lean-forward="false" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="40" />
+        <state relative-caret-position="332">
+          <caret line="55" column="77" lean-forward="false" selection-start-line="55" selection-start-column="77" selection-end-line="55" selection-end-column="99" />
           <folding />
         </state>
       </provider>
