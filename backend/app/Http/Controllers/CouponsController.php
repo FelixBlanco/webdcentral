@@ -267,4 +267,15 @@ class CouponsController extends Controller {
         }
 
     }
+
+    public function listarTodo(){
+
+        $todo=Coupons::get();
+        $response = [
+            'msj'     => 'Lista de Cupones',
+            'cupones' => $result,
+        ];
+
+        return response()->json($response, 201);
+    }
 }
