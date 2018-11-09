@@ -26,6 +26,8 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         Route::post('createSlides', 'SlideController@createSlides'); //Para que un user admin cree un slide
 
+        Route::delete('destroySlides/{idSlide}', 'SlideController@destroy'); //Para que un user admin elimine un slide
+
         Route::resource('sugerencias-reclamos', 'ReclamoSugerenciaController');   //sugerencias y reclamos
 
         Route::get('obtenerStatus-sugerencias-reclamos', 'ReclamoSugerenciaController@obtenerStatus');  //para obtener los posibles estatus de un reclamo
@@ -55,9 +57,19 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::put('cupons', 'CouponsController@obtenerCupon'); // Obtener cupon por parte del cliente
         Route::get('canjearCupons/{idCuponsClient?}', 'CouponsController@chague');// Canjear cupon por cliente
         Route::delete('borrarCupons/{idCuponsClient?}', 'CouponsController@delete');// Canjear cupon por cliente
+        Route::get('listarTodosCupones','CouponsController@listarTodo'); //listar todo los cupones
 
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
+        Route::get('listarNotificationes', 'NotificationController@listar'); // Listar  Notification
+
+        /* PREGUNTA Y RESPUESTA */
+        Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
+        Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
+        Route::put('editarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@editarPreguntaORespuesta'); //para editar
+        Route::delete('borrarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@borrarPreguntaORespuesta'); //para borrar
+        Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
+        /* PREGUNTA Y RESPUESTA */
 
 
     });
@@ -68,16 +80,8 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
-    /* PREGUNTA Y RESPUESTA */
-    Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
-    Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
-    Route::put('editarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@editarPreguntaORespuesta'); //para editar
-    Route::delete('borrarPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@borrarPreguntaORespuesta'); //para borrar
+
     Route::post('listar', 'PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
-    Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
-    /* PREGUNTA Y RESPUESTA */
-
-
 
     /*PARA LOS DESTACADOS*/
 
