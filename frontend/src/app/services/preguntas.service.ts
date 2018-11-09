@@ -19,7 +19,7 @@ export class PreguntasService {
     }
 
     getAll(body?: any): Observable<HttpResponse<any>>{
-        return this.http.post<any>(`${environment.apiHost}/api/auth/listar`,body,this.httpOptions) as Observable<HttpResponse<any>>;
+        return this.http.post<any>(`${environment.apiHost}/api/v1/listar`,body,this.httpOptions) as Observable<HttpResponse<any>>;
     }
 
     persist(question: any): Observable<HttpResponse<any>>{

@@ -59,7 +59,12 @@ export class CuponsappComponent implements OnInit {
 
   list(){
     this.cuponsService.getAll().subscribe((resp)=>{
-      this.rows = []
+      console.log(resp)
+      /*if(resp.ok){
+        this.questions = resp.body.PFrec as Array<Question>;
+        this.rows = [...this.questions];
+      }
+      this.rows = []*/
     }, error => {
       this.as.msg("ERR", "Error", `Error listar: ${error.status} - ${error.statusText}`);
     })

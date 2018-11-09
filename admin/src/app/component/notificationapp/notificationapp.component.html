@@ -33,16 +33,14 @@
                 [limit]="limit"
                 >
   
-                <ngx-datatable-column name="Título" prop="titulo"></ngx-datatable-column>
-                <ngx-datatable-column name="Imagen" prop="pregunta"></ngx-datatable-column>
-  
-                <ngx-datatable-column name="" prop="opts">
+                <ngx-datatable-column name="Título" prop="titleNotification"></ngx-datatable-column>
+                <ngx-datatable-column name="Descripcion" prop="descriptionNotification"></ngx-datatable-column>
+                <ngx-datatable-column name="Sección App" prop="fk_idSecctionApp">
                   <ng-template ngx-datatable-cell-template let-row="row">
-                    <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#modificar"><i class="fa fa-edit"></i></a>
-                    <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
-                    <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#estatus"><i class="fa fa-ban"></i></a>
-                  </ng-template>                    
+                    {{getSeccionAppById(row.fk_idSecctionApp).tag}}
+                  </ng-template>
                 </ngx-datatable-column>
+
   
                 <ngx-datatable-footer>
                     <ng-template 
@@ -97,21 +95,21 @@
           </div>
           <div class="form-group">
             <label for="descripcion">Descripción:</label>
-            <textarea formControlName="descripcion" class="form-control" id="descripcion" placeholder="Escriba una descripción" maxlength="255"></textarea>
+            <textarea rows="4" formControlName="descripcion" class="form-control" id="descripcion" placeholder="Escriba una descripción" maxlength="255"></textarea>
           </div>
           <div class="form-group">
             <label for="seccionApp">Sección de la Aplicación:</label>
-            <select formControlName="seccionApp">
-              <option value="asd">asd</option>
-              <option value="asd">asd</option>
-              <option value="asd">asd</option>
+            <select class="form-control" formControlName="seccionApp">
+              <option *ngFor="let seccion of secciones" value="{{seccion.idSecctionApp}}">
+                {{seccion.tag | titlecase}}
+              </option>
             </select>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-success" data-dismiss="modal" [disabled]="newNotificacionForm.invalid" (click)="save()">Guardar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-success" [disabled]="newNotificacionForm.invalid || inPromise" (click)="save()">Guardar</button>
       </div>
     </div>
   </div>
