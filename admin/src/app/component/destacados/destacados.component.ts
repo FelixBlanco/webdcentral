@@ -73,9 +73,8 @@ export class DestacadosComponent implements OnInit {
     this.edit_form.id_Destacado = data.id_Destacado;
     this.edit_form.descripcion = data.descripcion;
     this.edit_form.fk_idProducto = data.fk_idProducto;
+    console.log(this.edit_form);
   }
-  
-  upgradeDestacados(){}
 
   deleteDestacados(id:number){
     this.destacadoService._deleteDestacados(id).subscribe(

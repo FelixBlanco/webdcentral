@@ -35,8 +35,11 @@ export class OfertasService {
       return this.http.get(this._GB.API +'/api/v1/ofertas/'+ id,httpOptions);
     }
 
-    _upgradeOferta(id:number, data:any){
-      console.log(data)
-      return this.http.put(this._GB.API +'/api/v1/ofertas/'+id,data);
+    _upgradeOferta(id:number,data:any){
+      return this.http.put(this._GB.API +'/api/v1/ofertas/'+id,data,httpOptions);
+    }
+
+    _deleteOfertas(id:number){
+      return this.http.delete(this._GB.API +'/api/v1/ofertas/1',httpOptions);
     }
 }

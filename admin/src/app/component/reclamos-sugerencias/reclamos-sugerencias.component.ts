@@ -3,16 +3,24 @@ import { ReclamosSugerenciasService } from '../../services/reclamos-sugerencias.
 import { LoginService  } from '../../services/login.service';
 import { AlertsService } from '../../services/alerts.service';
 
+
+declare var $;
+
 @Component({
   selector: 'app-reclamos-sugerencias',
   templateUrl: './reclamos-sugerencias.component.html',
   styleUrls: ['./reclamos-sugerencias.component.css']
 })
+
 export class ReclamosSugerenciasComponent implements OnInit {
 
   form:any = {titulo:null, descripcion:null, fk_idUser: null, fk_idStatusReclamo: 1 };
   idPerfil:any=null;
   listReclamos:any;
+
+  listReclamosAbiertos:any = null;
+  listReclamosRecibido:any = null;
+  listReclamosCerrado:any = null;
 
   changeStatus:any=null;
 
@@ -20,27 +28,54 @@ export class ReclamosSugerenciasComponent implements OnInit {
     private _reclamosSugerenciasService:ReclamosSugerenciasService,
     private _loginService: LoginService,
     private _alertService: AlertsService,
-    ) { }
+    ) {}
 
   ngOnInit() {
     this.getReclamos();
-    this.getLoginUser();
-  }
 
-  getLoginUser(){
-    // this._loginService._getAuthUser().subscribe(
-    //   (resp:any) => {
-    //     this.form.fk_idUser = resp.id
-    //     this.idPerfil = resp.fk_idPerfil
-    //   }
-    // )
+    $("#nav-recibida").click(function(){
+      console.log('dio recibida')
+      $("#nav-abierto").removeClass('active');
+      $("#nav-cerrada").removeClass('active');
+      $("#nav-recibida").addClass('active');
+      //None
+      $("#list-cerrada").css('display','none')
+      $("#list-abierto").css('display','none')
+      $("#list-recibida").css('display','block')
+    });
+       
+    
+    $("#nav-abierto").click(function(){
+      console.log('dio abierto')
+      $("#nav-recibida").removeClass('active');
+      $("#nav-cerrada").removeClass('active');
+      $("#nav-abierto").addClass('active');
+      //None
+      $("#list-cerrada").css('display','none')
+      $("#list-recibida").css('display','none')
+      $("#list-abierto").css('display','block')
+    });
+
+    $("#nav-cerrada").click(function(){
+      console.log('dio cerrada')
+      $("#nav-recibida").removeClass('active');
+      $("#nav-abierto").removeClass('active');
+      $("#nav-cerrada").addClass('active');
+      //None
+      $("#list-recibida").css('display','none')
+      $("#list-abierto").css('display','none')
+      $("#list-cerrada").css('display','block')
+    });
+
   }
 
   getReclamos(){
     this._reclamosSugerenciasService._getReclamos().subscribe(
       (resp:any) => {
-        this.getLoginUser();
-        this.listReclamos = resp
+        console.log(resp);
+        this.listReclamosAbiertos = resp.r_abiertos
+        this.listReclamosRecibido = resp.r_recibido
+        this.listReclamosCerrado = resp.r_cerrado
       }
     )
   }
