@@ -1,6 +1,73 @@
-<div class="busqueda">
+<div class="busqueda" appearance="fill">
     <mat-form-field style="width: 100%;">
-      <input matInput placeholder="Buscar Alimentos, Marcas, Mascotas...">
+      <input matInput type="search" placeholder="Buscar Alimentos, Marcas, Mascotas..." [(ngModel)]="searchValue" (keyup.enter)="search()">
       <fa-icon matSuffix [icon]="['fa', 'search']"></fa-icon>
     </mat-form-field>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="busquedaModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-azul">
+        <h5 class="modal-title text-uppercase font-bold text-white">Busqueda</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-3">
+                <div class="disabled-wrap">
+                  <div class="number-wrap rounded-circle">
+                    <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
+                      <span class="font-bold">1</span>
+                    </div>
+                  </div>
+                  <div class="container-figure mt-4 rounded">
+                    <h6 class="text-center font-bold txt-naranja text-uppercase">mascotas</h6>
+                    <!--<img src="assets/ayuda/icono_preguntas.png" alt="preguntas frecuentes"/>-->
+                    <p class="text-uppercase font-bold text-center mt-4">no se encontraron resultados</p>
+                  </div>
+                  <button class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1" disabled>
+                    seleccionar
+                  </button>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="number-wrap rounded-circle">
+                  <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
+                    <span class="font-bold">2</span>
+                  </div>
+                </div>
+                <div class="container-figure mt-4 rounded">
+                  <h6 class="text-center font-bold txt-naranja text-uppercase">productos</h6>
+                  <img src="assets/ayuda/icono_usar_plataforma.png" alt="como utilizar"/>
+                </div>
+                <button class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1">
+                  seleccionar
+                </button>
+              </div>
+
+              <div class="col-3">
+                <div class="number-wrap rounded-circle">
+                    <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
+                      <span class="font-bold">3</span>
+                    </div>
+                  </div>
+                  <div class="container-figure mt-4 rounded">
+                    <h6 class="text-center font-bold txt-naranja text-uppercase">marcas</h6>
+                    <img src="assets/ayuda/icono_contacto.png" alt="contactanos"/>
+                  </div>
+                  <button class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1">
+                    seleccionar
+                  </button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>

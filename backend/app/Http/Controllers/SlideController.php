@@ -18,9 +18,9 @@ class SlideController extends Controller {
         $slides->each(function($slides) {
             $slides->set_imagen = asset('storage/slide/'.$slides->imagen);
             $slides->producto;
-            if (!empty($slides->fk_idProducto)) {
+            if (! empty($slides->fk_idProducto)) {
                 $slides->nameProducto = $slides->producto->nombre;
-            }            
+            }
         });
 
         $response = [
@@ -45,22 +45,22 @@ class SlideController extends Controller {
 
     public function createSlides(Request $request) {
 
-        DB::beginTransaction();
-        try {
+        if ($request->user()->fk_idPerfil == 1) {
 
-            if ($request->user()->fk_idPerfil == 1) {
+            $this->validate($request, [
+                'titulo'        => 'required',
+                'imagen'        => 'image|required|mimes:jpeg,png,jpg,gif,svg',
+                'fk_idProducto' => 'required',
 
-                $this->validate($request, [
-                    'titulo'        => 'required',
-                    'imagen'        => 'image|required|mimes:jpeg,png,jpg,gif,svg',
-                    'fk_idProducto' => 'required',
+            ], [
+                'titulo.required'        => 'El titulo es requerido',
+                'imagen.required'        => 'La imagen es requerida',
+                'fk_idProducto.required' => 'El producto es requerido',
 
-                ], [
-                    'titulo.required'        => 'El titulo es requerido',
-                    'imagen.required'        => 'La imagen es requerida',
-                    'fk_idProducto.required' => 'El producto es requerido',
+            ]);
 
-                ]);
+            try {
+                DB::beginTransaction();
 
                 $originalImage = $request->imagen;
 
@@ -84,11 +84,11 @@ class SlideController extends Controller {
                 $imagemodel         = new Slide();
                 $imagemodel->titulo = $request->titulo;
 
-                if (!empty($request->fk_idProducto)) {
+                if (! empty($request->fk_idProducto)) {
                     $imagemodel->fk_idProducto = $request->fk_idProducto;
                 }
 
-                $imagemodel->imagen = $nombre_interno;
+                $imagemodel->imagen        = $nombre_interno;
                 $imagemodel->fk_idProducto = $request->fk_idProducto;
                 $imagemodel->save();
 
@@ -103,20 +103,19 @@ class SlideController extends Controller {
                 ];
 
                 return response()->json($response, 201);
-            } else {
-                response()->json('Su usuario no es administrador', 400);
+
+            } catch (\Exception $e) {
+
+                DB::rollback();
+                Log::error('Ha ocurrido un error en SlideController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+                return response()->json([
+                    'message' => 'Ha ocurrido un error al tratar de obtener los datos.',
+                ], 500);
             }
-
-        } catch (\Exception $e) {
-
-            DB::rollback();
-            Log::error('Ha ocurrido un error en SlideController: '.$e->getMessage().', Linea: '.$e->getLine());
-
-            return response()->json([
-                'message' => 'Ha ocurrido un error al tratar de obtener los datos.',
-            ], 500);
+        } else {
+            response()->json('Su usuario no es administrador', 400);
         }
-
 
     }
 
@@ -130,6 +129,31 @@ class SlideController extends Controller {
             //return response()->json(Storage::url('galeri/'.$archivo), 201);
         } else {
             return response()->json('Archivo no encontrado', 404);
+        }
+    }
+
+    public function destroy($idSlide) {
+
+        DB::beginTransaction();
+
+        try {
+            $slide = Slide::findOrFail($idSlide);
+            $slide->delete();
+
+            $response = [
+                'msj'  => 'Slide eliminado Correctamente',
+            ];
+
+            DB::commit();
+
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error('Ha ocurrido un error en SlideController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al tratar de eliminar los datos.',
+            ], 500);
         }
     }
 }
