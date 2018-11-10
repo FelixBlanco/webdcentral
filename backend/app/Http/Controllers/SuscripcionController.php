@@ -19,7 +19,6 @@ class SuscripcionController extends Controller {
             'email.unique'   => 'Este Email ya se encuentra en uso',
             'email.email'    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
             'email.required' => 'El Email es requerido',
-
         ]);
 
         DB::beginTransaction();
