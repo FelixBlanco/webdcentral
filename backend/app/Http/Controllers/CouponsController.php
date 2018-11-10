@@ -242,7 +242,7 @@ class CouponsController extends Controller {
         }
     }
 
-    public function delete($id) {
+    public function deleteCuponCliente($id) {
 
         DB::beginTransaction();
 
@@ -251,7 +251,7 @@ class CouponsController extends Controller {
             $CupoCliente->delete();
 
             $response = [
-                'msj'  => 'Cupon eliminado Correctamente',
+                'msj' => 'Cupon eliminado Correctamente',
             ];
 
             DB::commit();
@@ -268,12 +268,65 @@ class CouponsController extends Controller {
 
     }
 
-    public function listarTodo(){
+    public function listarTodo() {
 
-        $todo=Coupons::get();
+        $todo        = Coupons::where()->get();
+        $ruta_imagen = '';
+
+        if (Storage::exists('/coupons/'.$todo->imagen)) {
+
+            /* habilitar si quieres recibir la imagen en streaming  */
+            $ruta_imagen = Storage::url('coupons/'.$archivo);
+
+            /*Storage::response("coupons/".$todo->imagen);*/
+
+            //return response()->json(Storage::url('galeri/'.$archivo), 201);
+        }
+
         $response = [
             'msj'     => 'Lista de Cupones',
             'cupones' => $todo,
+            'imagen'  => $ruta_imagen,
+        ];
+
+        return response()->json($response, 201);
+    }
+
+    public function updateCupon(Request $request, $idCupons){
+
+        DB::beginTransaction();
+
+        try {
+            $cupon = Coupons::findOrFail($idCupons);
+
+            $cupon->fill($request->all());
+
+            $response = [
+                'msj'  => 'Info del Cupon actulizada',
+            ];
+
+            $cupon->save();
+            DB::commit();
+
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error('Ha ocurrido un error en CouponsController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+            ], 500);
+        }
+    }
+
+    public function deleteCupon($id){
+
+        $cupon = Coupons::findOrFail($idCupons);
+
+        $cupon->fill(['fk_idSatate'=>3]); //eliminar logicamente
+
+        $response = [
+            'msj' => 'Cupon eliminado exitosamente',
         ];
 
         return response()->json($response, 201);
