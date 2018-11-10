@@ -49,3 +49,7 @@
 .card-body{
     border-radius: 62px 62px 0px 0px;
 }
+
+.card-img-top{
+    padding: 25px;
+}

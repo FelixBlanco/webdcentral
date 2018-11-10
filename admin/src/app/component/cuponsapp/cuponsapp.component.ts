@@ -1,9 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import * as moment from 'moment';
-import { CuponesService } from 'src/app/services/cupones.service';
+import { CuponesService, Cupon } from 'src/app/services/cupones.service';
 
 declare var $: any;
 @Component({
@@ -13,23 +13,32 @@ declare var $: any;
 })
 export class CuponsappComponent implements OnInit {
 
+  @ViewChild('table') table: any;
+  @ViewChild('image') image: ElementRef
+
   limit: number;
   columns: any = [
-    { prop: 'titulo' },
-    { prop: 'producto'},
-    { prop: 'fechaExp'},
-    { prop: 'imagen' }
+    { prop: 'idCoupons' },
+    { prop: 'fk_idProducto'},
+    { prop: 'title'},
+    { prop: 'description' },
+    { prop: 'imagen' },
+    { prop: 'codeCoupns' },
+    { prop: 'dateExpired' }
+
   ];
-  newCuponForm: FormGroup;
-  cuponToUpdate: any;
-  cuponToUpdateForm: FormGroup;
   rows: any;
-  currentDate: string =  new Date().toLocaleDateString();
+  cuponsList: Cupon[];
   productsList: any[];
 
+  newCuponForm: FormGroup;
+  cuponToUpdate: Cupon;
+  cuponToUpdateForm: FormGroup;
+
+  inPromise: boolean;
+
   constructor(
-    private fb: FormBuilder, 
-    private cd: ChangeDetectorRef, 
+    private fb: FormBuilder,
     private as: AlertsService,
     private productsService: ProductosService,
     private cuponsService: CuponesService
@@ -59,14 +68,17 @@ export class CuponsappComponent implements OnInit {
 
   list(){
     this.cuponsService.getAll().subscribe((resp)=>{
-      console.log(resp)
-      /*if(resp.ok){
-        this.questions = resp.body.PFrec as Array<Question>;
-        this.rows = [...this.questions];
+      console.log(resp);
+      if(resp.ok && resp.status === 201){
+        this.cuponsList = resp.body.cupones;
+        this.rows = [...this.cuponsList];
+      }else{
+        console.error(resp);
+        this.as.msg("ERR", "Error", `Ha ocurrido un error interno`);
       }
-      this.rows = []*/
     }, error => {
-      this.as.msg("ERR", "Error", `Error listar: ${error.status} - ${error.statusText}`);
+      console.error(error);
+      this.as.msg("ERR", "Error", `Ha ocurrido un error interno`);
     })
   }
 
@@ -81,26 +93,8 @@ export class CuponsappComponent implements OnInit {
     this.list();
   }
 
-  updateFilter(event){
-    /*const val = event.target.value.toLowerCase();
-
-    const temp = this.questions.filter(function(d) {
-      return (d.pregunta.toLowerCase().indexOf(val) !== -1 || !val) 
-      || (d.respuesta.toLowerCase().indexOf(val) !== -1 || !val);
-    });
-
-    this.rows = temp;
-    this.table.offset = 0;//Requerido*/
-  }
-
-  set(row){
-    console.log(row);
-
-  }
-
   save(){
     const value = this.newCuponForm.value;
-    console.log(value);
 
     if(moment().format("YYYY-MM-DD") >= value.fechaExp){
       this.as.msg('INFO', 'Info:', 'La fecha de expiración no puede ser menor o igual que la actual');
@@ -115,23 +109,85 @@ export class CuponsappComponent implements OnInit {
     toSend.append('description', value.descripcion);
     toSend.append('dateExpired', value.fechaExp);
 
+    this.inPromise = true;
     this.cuponsService.persist(toSend).subscribe(resp => {
       if(resp.ok && resp.status === 201){
-        this.as.msg('OK', 'Éxito', 'Se ha registrado con éxito');
+        this.inPromise = false;
+        this.newCuponForm.reset();
+        this.image.nativeElement.value = "";
+        $('#nuevo').modal('hide');
+        this.as.msg('OK', 'Éxito', 'Se ha registrado el cupón');
+        this.updateLists();
       }else{
+        console.error(resp);
+        this.inPromise = false;
         this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
       }
+      this.updateLists();
     }, error => {
-      this.as.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+      console.log(error);
+      this.inPromise = false;
+      this.as.msg("ERR", "Error", 'Ha ocurrido un error interno');
     });
   }
 
   update(){
+    const value = this.cuponToUpdateForm.value;
 
+    if(moment().format("YYYY-MM-DD") >= value.fechaExp){
+      this.as.msg('INFO', 'Info', 'La fecha de expiración no puede ser menor o igual que la actual');
+      return;
+    }
+
+    let toSend = new FormData();
+
+    toSend.append('filename', value.imagen);
+    toSend.append('fk_idProducto', value.producto);
+    toSend.append('title', value.titulo);
+    toSend.append('description', value.descripcion);
+    toSend.append('dateExpired', value.fechaExp);
+
+    this.inPromise = true;
+    this.cuponsService.update(toSend).subscribe(resp => {
+      if(resp.ok && resp.status === 201){
+        this.inPromise = false;
+        this.newCuponForm.reset();
+        this.image.nativeElement.value = "";
+        $('#modificar').modal('hide');
+        this.as.msg('OK', 'Éxito', 'Se ha actualizado el cupón');
+        this.updateLists();
+      }else{
+        console.error(resp);
+        this.inPromise = false;
+        this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+      }
+      this.updateLists();
+    }, error => {
+      console.log(error);
+      this.inPromise = false;
+      this.as.msg("ERR", "Error", 'Ha ocurrido un error interno');
+    });
   }
 
   delete(){
+    this.inPromise = true;
 
+    this.cuponsService.delete(this.cuponToUpdate.idCoupons).subscribe((resp) => {
+      if(resp.ok){
+        $('#eliminar').modal('hide');
+        this.as.msg('OK', 'Éxito', 'Se ha eliminado el cupón');
+        this.updateLists();
+      }else{
+        console.error(resp);
+        this.as.msg("ERR", "Error", 'Ha ocurrido un error interno');
+      }
+      this.inPromise = false;
+
+    }, error => {
+      console.error(error);
+      this.inPromise = false;
+      this.as.msg("ERR", "Error", 'Ha ocurrido un error interno');
+    });
   }
 
   onFileChange(event) {
@@ -148,7 +204,6 @@ export class CuponsappComponent implements OnInit {
           return;
       }
 
-
       if(fileTo.size > 5000000){
         this.as.msg('ERR','Error:', 'El archivo es muy pesado');
           this.newCuponForm.patchValue({
@@ -161,5 +216,35 @@ export class CuponsappComponent implements OnInit {
         imagen: fileTo
       });
     }
+  }
+
+  updateFilter(event){
+    const val = event.target.value.toLowerCase();
+
+    const temp = this.cuponsList.filter(function(d) {
+      return (d.description.toLowerCase().indexOf(val) !== -1 || !val) 
+      || (d.title.toLowerCase().indexOf(val) !== -1 || !val)
+      || (d.description.toLowerCase().indexOf(val) !== -1 || !val);
+
+    });
+
+    this.rows = temp;
+    this.table.offset = 0;//Requerido*/
+  }
+
+  set(row:Cupon){
+    this.cuponToUpdate = row;
+    this.cuponToUpdateForm.patchValue({
+      titulo: row.title,
+      imagen: row.imagen,
+      descripcion: row.description,
+      producto: row.fk_idProducto,
+      fechaExp: row.dateExpired
+    })
+  }
+
+  getProductName(id): string{
+    return this.productsList.filter((val) => val.idProducto === id)[0].nombre;
+
   }
 }

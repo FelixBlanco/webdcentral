@@ -11,6 +11,7 @@
                   <option>5</option>
                   <option>10</option>
                   <option>20</option>
+                  <option *ngIf="notifications" value="{{notifications.length}}">Todos ({{notifications.length})</option>
                 </select>
             </div>
             <div class="col-md-7">
@@ -33,11 +34,19 @@
                 [limit]="limit"
                 >
   
-                <ngx-datatable-column name="Título" prop="titleNotification"></ngx-datatable-column>
-                <ngx-datatable-column name="Descripcion" prop="descriptionNotification"></ngx-datatable-column>
+                <ngx-datatable-column name="Título" prop="titleNotification">
+                  <ng-template ngx-datatable-cell-template let-row="row">
+                    {{row.titleNotification | titlecase}}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Descripcion" prop="descriptionNotification">
+                  <ng-template ngx-datatable-cell-template let-row="row">
+                    {{row.descriptionNotification | titlecase}}
+                  </ng-template>
+                </ngx-datatable-column>
                 <ngx-datatable-column name="Sección App" prop="fk_idSecctionApp">
                   <ng-template ngx-datatable-cell-template let-row="row">
-                    {{getSeccionAppById(row.fk_idSecctionApp).tag}}
+                    {{getSeccionAppById(row.fk_idSecctionApp).tag | titlecase}}
                   </ng-template>
                 </ngx-datatable-column>
 

@@ -3,6 +3,7 @@ import { PreguntasService } from 'src/app/services/preguntas.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alerts.service';
 
+declare var $:any;
 interface Question{
   idPreguntaFrecuente;
   pregunta;
@@ -26,6 +27,8 @@ export class PreguntasFrecuentesComponent implements OnInit {
   questionUpdateForm: FormGroup;
   limit: number = 5;
   questionToUpdate: Question;
+
+  inPromise: boolean;
   constructor(
     private preguntasService: PreguntasService, 
     private fb: FormBuilder,
@@ -83,33 +86,29 @@ export class PreguntasFrecuentesComponent implements OnInit {
   }
 
   save(){
-    if(this.questionForm.invalid){
-      return;
-    }
-
+    this.inPromise =true;
     const val = this.questionForm.value;
     this.preguntasService.persist({pregunta: val.pregunta, respuesta: val.respuesta}).subscribe((resp) => {
       if(resp.ok && resp.status === 201){
-        this.questionForm.get('respuesta').setValue('');
-        this.questionForm.get('pregunta').setValue('');
         this.list();
         this.ts.msg("OK","Éxito", "Se ha guardado el registro");
+        $('#nuevo').modal('hide');
+        this.questionForm.reset();
       }else{
         this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
       }
+      this.inPromise =false;
     }, (error) => {
+      this.inPromise =false;
       this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
     })
   }
 
   update(){
-    if(this.questionUpdateForm.invalid){
-      return;
-    }
-
     const val = this.questionUpdateForm.value;
     const question = this.questionToUpdate;
 
+    this.inPromise = true;
     this.preguntasService.update(
       {
         idPreguntaFrecuente: question.idPreguntaFrecuente, 
@@ -119,27 +118,36 @@ export class PreguntasFrecuentesComponent implements OnInit {
     ).subscribe((resp)=> {
       if(resp.ok && resp.status === 200){
         this.ts.msg("OK","Éxito", "Se ha actualizado el registro");
+        $('#modificar').modal('hide');
+        this.questionUpdateForm.reset();
         this.list();
       }else{
+        console.error(resp);
         this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
       }
-      
+      this.inPromise = false;
     },(error) => {
-      this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+      console.error(error);
+      this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
+      this.inPromise = false;
     })
   }
 
   delete(){
+    this.inPromise = true;
     this.preguntasService.delete(this.questionToUpdate.idPreguntaFrecuente)
       .subscribe((resp)=>{
         if(resp.ok && resp.status === 200){
           this.ts.msg("OK","Éxito", "Se ha eliminado el registro");
           this.list();
+          $('#eliminar').modal('hide');
         }else{
           this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
         }
+        this.inPromise = false;
       },(error) => {
-        this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+        this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
+        this.inPromise = false;
       });
   }
 
@@ -157,6 +165,7 @@ export class PreguntasFrecuentesComponent implements OnInit {
 
   updateStatus(){
     const status = (this.questionToUpdate.fk_idStatusSistema === 1) ? 2: 1;
+    this.inPromise = true;
     this.preguntasService.updateStatus(
       {
         idPreguntaFrecuente: this.questionToUpdate.idPreguntaFrecuente,
@@ -165,11 +174,16 @@ export class PreguntasFrecuentesComponent implements OnInit {
         if(resp.ok && resp.status === 200){
           this.ts.msg('OK',"Éxito", "Se ha actualizado el estatus");
           this.list();
+          $('#estatus').modal('hide');
         }else{
+          console.error(resp);
           this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
         }
+        this.inPromise = false;
       }, (error) => {
-        this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+        console.error(error);
+        this.inPromise = false;
+        this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
       })
   }
 

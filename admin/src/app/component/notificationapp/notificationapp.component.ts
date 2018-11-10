@@ -45,6 +45,7 @@ export class NotificationappComponent implements OnInit {
         this.secciones = resp.body.users;
         this.listNotifications();
       }else{
+        console.error(resp);
         this.as.msg('ERR','Ha ocurrido un error interno');
       }
     }, error => {
@@ -55,15 +56,15 @@ export class NotificationappComponent implements OnInit {
 
   listNotifications(){
     this.notificationService.getAll().subscribe((resp) => {
-      console.log(resp);
       if(resp.ok && resp.status === 201){
         this.notifications = resp.body.notifi
         this.rows = [...this.notifications];
       }else{
-        //TODO err
+        this.as.msg('ERR','Ha ocurrido un error interno');
+        console.error(resp)
       }
     }, error => {
-      //TODO err
+      this.as.msg('ERR','Ha ocurrido un error interno');
       console.error(error);
     })
   }
@@ -80,7 +81,6 @@ export class NotificationappComponent implements OnInit {
   }
 
   getSeccionAppById(id): {idSecctionApp: number, tag: string}{
-    console.log(this.secciones.filter((value) => value.idSecctionApp === id));
     return this.secciones.filter((value) => value.idSecctionApp === id)[0] as any;
   }
 
@@ -99,7 +99,7 @@ export class NotificationappComponent implements OnInit {
         this.newNotificacionForm.reset();
         $('#nuevo').modal('hide');
       }else{
-        //TODO errr
+        this.as.msg('ERR','Ha ocurrido un error interno');
         console.error(resp);
       }
       this.listNotifications();
@@ -107,7 +107,7 @@ export class NotificationappComponent implements OnInit {
     }, error => {
       console.error(error);
       this.inPromise = false;
-      //TODO errr
+      this.as.msg('ERR','Ha ocurrido un error interno');      
     })
 
   }
