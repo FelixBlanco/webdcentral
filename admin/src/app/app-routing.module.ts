@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'gestionar-usuarios', component:  GestionUsuarioComponent},
   { path: 'perfil', component: PerfilComponent },
   { path: 'config-footer', component: ConfigFooterComponent },
-  { path: 'config-home', component: ConfigHomeComponent },
+  // { path: 'config-home', component: ConfigHomeComponent },
   { path: 'ofertas', component: OfertasComponent },
   { path: 'reclamos-sugerencias', component: ReclamosSugerenciasComponent},
   { path: 'config-color', component: ConfigColorComponent},
