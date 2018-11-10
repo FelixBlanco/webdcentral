@@ -17,42 +17,41 @@ class CouponsController extends Controller {
     //
     public function create(Request $request) {
 
+        $this->validate($request, [
+            'filename'      => 'image|required|mimes:jpeg,png,jpg,gif,svg',
+            'fk_idProducto' => 'required',
+            'title'         => 'required',
+            'description'   => 'required',
+            'dateExpired'   => 'required',
+        ], [
+            'filename.required'      => 'El campo es requerido',
+            'fk_idProducto.required' => 'El campo es requerido',
+            'title.required'         => 'El campo es requerido',
+            'description.required'   => 'El campo es requerido',
+            'dateExpired.required'   => 'El campo es requerido',
+
+        ]);
+
+
+        $originalImage = $request->filename;
+
+        $thumbnailImage = Image::make($originalImage);
+
+        $thumbnailImage->fit(2048, 2048, function($constraint) {
+            $constraint->aspectRatio();
+        });
+
+
+        $nombre_publico = $originalImage->getClientOriginalName();
+        $extension      = $originalImage->getClientOriginalExtension();
+
+        $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+        $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+
+        Storage::disk('local')->put('/coupons/'.$nombre_interno, (string) $thumbnailImage->encode());
+
         try {
-
-            $this->validate($request, [
-                'filename'      => 'image|required|mimes:jpeg,png,jpg,gif,svg',
-                'fk_idProducto' => 'required',
-                'title'         => 'required',
-                'description'   => 'required',
-                'dateExpired'   => 'required',
-            ], [
-                'filename.required'      => 'El campo es requerido',
-                'fk_idProducto.required' => 'El campo es requerido',
-                'title.required'         => 'El campo es requerido',
-                'description.required'   => 'El campo es requerido',
-                'dateExpired.required'   => 'El campo es requerido',
-
-            ]);
-
-
-            $originalImage = $request->filename;
-
-            $thumbnailImage = Image::make($originalImage);
-
-            $thumbnailImage->fit(2048, 2048, function($constraint) {
-                $constraint->aspectRatio();
-            });
-
-
-            $nombre_publico = $originalImage->getClientOriginalName();
-            $extension      = $originalImage->getClientOriginalExtension();
-
-            $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
-            $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-
-
-            Storage::disk('local')->put('/coupons/'.$nombre_interno, (string) $thumbnailImage->encode());
-
             DB::beginTransaction();
 
             $Coupons                = new Coupons();
@@ -68,7 +67,8 @@ class CouponsController extends Controller {
 
 
             $response = [
-                'msj' => 'Cupon guardado exitosamente',
+                'msj'   => 'Cupon guardado exitosamente',
+                'cupon' => $Coupons,
             ];
 
             return response()->json($response, 201);
@@ -137,10 +137,10 @@ class CouponsController extends Controller {
 
     public function listarPorId($idCoupons) {
 
-        $Coupons = Coupons::findOrFail($idCoupons);
+        $Coupons = Coupons::where('fk_idSatate', 1)->where('idCoupons',$idCoupons)->first();
 
         $response = [
-            'msj'   => 'Resultado del cupones: '.$idCoupons,
+            'msj'   => 'Resultado del cupon: '.$idCoupons,
             'cupon' => $Coupons,
         ];
 
@@ -193,7 +193,6 @@ class CouponsController extends Controller {
     }
 
     public function chague($idCuponsClient = null) {
-
 
         if (is_null($idCuponsClient)) {
             $response = [
@@ -270,29 +269,25 @@ class CouponsController extends Controller {
 
     public function listarTodo() {
 
-        $todo        = Coupons::where()->get();
-        $ruta_imagen = '';
+        $todo = Coupons::where('fk_idSatate', 1)->get();
 
-        if (Storage::exists('/coupons/'.$todo->imagen)) {
-
-            /* habilitar si quieres recibir la imagen en streaming  */
-            $ruta_imagen = Storage::url('coupons/'.$archivo);
-
-            /*Storage::response("coupons/".$todo->imagen);*/
-
-            //return response()->json(Storage::url('galeri/'.$archivo), 201);
-        }
+        $todo->each(function($todo) {
+            if (is_null($todo->imagen)) {
+                $todo->set_imagen = null;
+            } else {
+                $todo->set_imagen = asset('storage/coupons/'.$todo->imagen);
+            }
+        });
 
         $response = [
             'msj'     => 'Lista de Cupones',
             'cupones' => $todo,
-            'imagen'  => $ruta_imagen,
         ];
 
         return response()->json($response, 201);
     }
 
-    public function updateCupon(Request $request, $idCupons){
+    public function updateCupon(Request $request, $idCupons) {
 
         DB::beginTransaction();
 
@@ -302,7 +297,8 @@ class CouponsController extends Controller {
             $cupon->fill($request->all());
 
             $response = [
-                'msj'  => 'Info del Cupon actulizada',
+                'msj'   => 'Info del Cupon actulizada',
+                'cupon' => $cupon,
             ];
 
             $cupon->save();
@@ -319,16 +315,26 @@ class CouponsController extends Controller {
         }
     }
 
-    public function deleteCupon($id){
+    public function deleteCupon($idCupons = null) {
+        if (is_null($idCupons)) {
 
-        $cupon = Coupons::findOrFail($idCupons);
+            $response = [
+                'msj' => 'Debe enviar por cabecera el di del cupon a eliminar',
+            ];
 
-        $cupon->fill(['fk_idSatate'=>3]); //eliminar logicamente
+            return response()->json($response, 404);
 
-        $response = [
-            'msj' => 'Cupon eliminado exitosamente',
-        ];
+        } else {
 
-        return response()->json($response, 201);
+            $cupon = Coupons::findOrFail($idCupons);
+
+            $cupon->fill([ 'fk_idSatate' => 3 ]); //eliminar logicamente
+
+            $response = [
+                'msj' => 'Cupon eliminado exitosamente',
+            ];
+
+            return response()->json($response, 201);
+        }
     }
 }
