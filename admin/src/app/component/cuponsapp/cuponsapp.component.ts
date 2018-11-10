@@ -241,6 +241,7 @@ export class CuponsappComponent implements OnInit {
       producto: row.fk_idProducto,
       fechaExp: row.dateExpired
     })
+    this.image.nativeElement.value = row.imagen;
   }
 
   getProductName(id): string{
