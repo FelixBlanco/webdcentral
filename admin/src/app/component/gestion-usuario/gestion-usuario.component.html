@@ -11,25 +11,25 @@
       <div class="modal-body">
         <div class="form-group">
           <label for="">Nombre</label>
-          <input type="text" class="form-control" [(ngModel)]="newForm.name">
+          <input type="text" class="form-control" required [(ngModel)]="newForm.name">
         </div>
         <div class="form-group">
           <label for="">UserName</label>
-          <input type="text" class="form-control" [(ngModel)]="newForm.userName">
+          <input type="text" class="form-control" required [(ngModel)]="newForm.userName">
         </div>
         <div class="form-group">
           <label for="">Tipo de Perfil</label>
-          <select class="form-control" [(ngModel)]="newForm.fk_idPerfil">
+          <select class="form-control" required [(ngModel)]="newForm.fk_idPerfil">
             <option *ngFor="let l of list_rol" value="{{l.idPerfil}}">{{l.nombre}}</option>
           </select>
         </div>
         <div class="form-group">
           <label for="">Correo Electronico</label>
-          <input type="text" class="form-control" [(ngModel)]="newForm.email">
+          <input type="text" class="form-control" required [(ngModel)]="newForm.email">
         </div>
         <div class="form-group">
           <label for="">Contraseña</label>
-          <input type="password" class="form-control" [(ngModel)]="newForm.password">
+          <input type="password" class="form-control" required [(ngModel)]="newForm.password">
         </div>
       </div>
       <div class="modal-footer">
@@ -52,17 +52,17 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <input type="text" class="form-control" [(ngModel)]="editForm.name">
+          <input type="text" class="form-control" required [(ngModel)]="editForm.name">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" [(ngModel)]="editForm.userName">
+          <input type="text" class="form-control" required [(ngModel)]="editForm.userName">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" [(ngModel)]="editForm.email">
+          <input type="text" class="form-control" required [(ngModel)]="editForm.email">
         </div>
         <div class="form-group">
           <label for="">Tipo de Perfil</label>
-          <select class="form-control" [(ngModel)]="editForm.fk_idPerfil">
+          <select class="form-control" required [(ngModel)]="editForm.fk_idPerfil">
             <option *ngFor="let lis of list_rol" value="{{lis.idPerfil}}">{{lis.nombre}}</option>
           </select>
         </div>
