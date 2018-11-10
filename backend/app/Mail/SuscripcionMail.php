@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Suscripcion;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -16,9 +17,12 @@ class SuscripcionMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $sus; //al hacer public la variable no hace falta usar with en la vista
+
+
+    public function __construct(Suscripcion $sus)
     {
-        //
+        $this->sus = $sus;
     }
 
     /**
@@ -28,6 +32,6 @@ class SuscripcionMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('correos.suscripcion');
     }
 }

@@ -103,7 +103,13 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::put('cambiarStatusSus/{idSuscripcion}', 'SuscripcionController@cambiarStatusSus');
 
     /*para cancelar una suscripcion*/
-    Route::get('cancelarSus/{idSuscripcion}', 'SuscripcionController@cancelarSus');
+    Route::put('cancelarSus/{idSuscripcion}', 'SuscripcionController@cancelarSus');
+
+    /*Listar suscriciones activas*/
+    Route::get('listarSuscripciones','SuscripcionController@listarSuscripciones');
+
+    /*Listar suscriciones canceladas*/
+    Route::get('listarSuscripcionesCanceladas','SuscripcionController@listarSuscripcionesCanceladas');
 
     /*para las ofertas*/
     Route::resource('ofertas', 'OfertaController');

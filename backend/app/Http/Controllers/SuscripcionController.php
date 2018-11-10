@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SuscripcionMail;
 use App\Suscripcion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class SuscripcionController extends Controller {
 
@@ -14,7 +16,6 @@ class SuscripcionController extends Controller {
 
         $this->validate($request, [
             'email' => 'required|unique:tb_suscripcions,email,'.$request->idSuscripcion.',idSuscripcion',
-
         ], [
             'email.unique'   => 'Este Email ya se encuentra en uso',
             'email.email'    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
@@ -30,9 +31,14 @@ class SuscripcionController extends Controller {
 
             $sus->save();
 
+
+            Mail::to($request->email)->send(new SuscripcionMail($sus));
+
             $response = [
                 'msj'         => 'Suscripcion Creada Satisfactoriamente',
-                'suscripcion' => $sus,
+                'suscripcion' => [ 'id'      => $sus->idSuscripcion,
+                                   'email'   => $sus->email,
+                                   'estatus' => $sus->estatusSitema->descripcion ],
             ];
             DB::commit();
 
@@ -60,21 +66,29 @@ class SuscripcionController extends Controller {
         DB::beginTransaction();
 
         try {
-            $sus = Suscripcion::findOrFail($id);
 
+            $sus = Suscripcion::find($id);
+            if ($sus) {
+                $sus->fill([ 'fk_idStatusSistema' => $request->fk_idStatusSistema ]);
+                $response = [
+                    'msj'         => 'Status de la suscripcion cambiada',
+                    'suscripcion' => [ 'id'      => $sus->idSuscripcion,
+                                       'email'   => $sus->email,
+                                       'estatus' => $sus->estatusSitema->descripcion ],
+                ];
 
-            $sus->fill([ 'fk_idStatusSistema' => $request->fk_idStatusSistema ]);
+                $sus->save();
+                DB::commit();
 
+                return response()->json($response, 200);
+            } else {
+                $response = [
+                    'msj' => 'No existe la suscripcion con ese id',
+                ];
 
-            $response = [
-                'msj'         => 'Status de la suscripcion cambiada',
-                'suscripcion' => $sus,
-            ];
+                return response()->json($response, 404);
+            }
 
-            $sus->save();
-            DB::commit();
-
-            return response()->json($response, 200);
         } catch (\Exception $e) {
             DB::rollback();
             Log::error('Ha ocurrido un error en SuscripcionController: '.$e->getMessage().', Linea: '.$e->getLine());
@@ -85,17 +99,62 @@ class SuscripcionController extends Controller {
         }
     }
 
-    public function cancelarSus($id) {
+    public function cancelarSus(Request $request, $id) {
 
-        $sus = Suscripcion::findOrFail($id);
-        $sus->fill([ 'fk_idStatusSistema' => 2 ]);
-        $sus->save();
+        $this->validate($request, [
+            'motivoDeCancelacion' => 'required',
+        ], [
+            'motivoDeCancelacion.required' => 'El motivo de la cancelación es requerido',
+        ]);
+
+
+        $sus = Suscripcion::find($id);
+
+        if ($sus) {
+            $sus->fill([ 'fk_idStatusSistema' => 2 ]);
+            $sus->save();
+
+            $response = [
+                'msj'         => 'Suscripcion cancelada',
+                'suscripcion' => [ 'id'      => $sus->idSuscripcion,
+                                   'email'   => $sus->email,
+                                   'estatus' => $sus->estatusSitema->descripcion,
+                                   'motivo'  => $sus->motivoDeCancelacions ],
+            ];
+
+            return response()->json($response, 200);
+        } else {
+            $response = [
+                'msj' => 'No existe la suscripcion con ese id',
+            ];
+
+            return response()->json($response, 404);
+        }
+    }
+
+    public function listarSuscripciones() {
+
+        $sus = Suscripcion::where('fk_idStatusSistema', 1)->get();
 
         $response = [
             'msj'         => 'Suscripcion cancelada',
-            'suscripcion' => $sus,
+            'suscripcion' => $sus->each(function($sus) {
+                                    $sus->estatusSitema;
+                                }),
         ];
+        return response()->json($response, 200);
+    }
 
+    public function listarSuscripcionesCanceladas() {
+
+        $sus = Suscripcion::where('fk_idStatusSistema', 2)->get();
+
+        $response = [
+            'msj'         => 'Suscripciones canceladas',
+            'suscripcion' => $sus->each(function($sus) {
+                $sus->estatusSitema;
+            }),
+        ];
         return response()->json($response, 200);
     }
 
