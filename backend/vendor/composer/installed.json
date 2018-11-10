@@ -718,7 +718,7 @@
         },
         "time": "2018-06-06T03:12:17+00:00",
         "type": "library",
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "psr-4": {
                 "Cron\\": "src/Cron/"
@@ -1874,7 +1874,7 @@
             {
                 "name": "Luís Otávio Cobucci Oblonczyk",
                 "email": "lcobucci@gmail.com",
-                "role": "Developer"
+                "role": "developer"
             }
         ],
         "description": "A simple library to work with JSON Web Token and JSON Web Signature",
