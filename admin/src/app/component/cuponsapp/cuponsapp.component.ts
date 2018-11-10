@@ -22,7 +22,7 @@ export class CuponsappComponent implements OnInit {
     { prop: 'fk_idProducto'},
     { prop: 'title'},
     { prop: 'description' },
-    { prop: 'imagen' },
+    { prop: 'set_imagen' },
     { prop: 'codeCoupns' },
     { prop: 'dateExpired' }
 
@@ -148,8 +148,8 @@ export class CuponsappComponent implements OnInit {
     toSend.append('dateExpired', value.fechaExp);
 
     this.inPromise = true;
-    this.cuponsService.update(toSend).subscribe(resp => {
-      if(resp.ok && resp.status === 201){
+    this.cuponsService.update(toSend, this.cuponToUpdate.idCoupons).subscribe(resp => {
+      if(resp.ok && resp.status === 200){
         this.inPromise = false;
         this.newCuponForm.reset();
         this.image.nativeElement.value = "";
@@ -241,11 +241,15 @@ export class CuponsappComponent implements OnInit {
       producto: row.fk_idProducto,
       fechaExp: row.dateExpired
     })
-    this.image.nativeElement.value = row.imagen;
+    //this.image.nativeElement.value = row.imagen;
   }
 
   getProductName(id): string{
     return this.productsList.filter((val) => val.idProducto === id)[0].nombre;
+  }
 
+  showImage(row: Cupon){
+    this.cuponToUpdate = row;
+    $('#imagen').modal('toggle');
   }
 }
