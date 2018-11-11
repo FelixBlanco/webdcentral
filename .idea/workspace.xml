@@ -31,25 +31,12 @@
       <file leaf-file-name="ProductoController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="352" column="30" lean-forward="true" selection-start-line="352" selection-start-column="30" selection-end-line="352" selection-end-column="30" />
+            <state relative-caret-position="266">
+              <caret line="370" column="5" lean-forward="true" selection-start-line="370" selection-start-column="5" selection-end-line="370" selection-end-column="5" />
               <folding>
                 <element signature="e#355#1838#0#PHP" expanded="false" />
                 <element signature="e#1844#2278#0#PHP" expanded="false" />
-                <element signature="e#2284#3177#0#PHP" expanded="false" />
-                <element signature="e#3183#4080#0#PHP" expanded="false" />
-                <element signature="e#4086#5310#0#PHP" expanded="false" />
-                <element signature="e#5316#5675#0#PHP" expanded="false" />
-                <element signature="e#5681#5776#0#PHP" expanded="false" />
-                <element signature="e#5782#8440#0#PHP" expanded="false" />
-                <element signature="e#8446#9114#0#PHP" expanded="false" />
-                <element signature="e#9120#9301#0#PHP" expanded="false" />
-                <element signature="e#9307#9494#0#PHP" expanded="false" />
-                <element signature="e#9500#9686#0#PHP" expanded="false" />
-                <element signature="e#9692#10432#0#PHP" expanded="false" />
-                <element signature="e#10438#10632#0#PHP" expanded="false" />
-                <element signature="e#10638#10832#0#PHP" expanded="false" />
-                <marker date="1541940007676" expanded="true" signature="12184:12499" ph="SELECT tb_pr... tb_order_body" />
+                <marker date="1541941732922" expanded="true" signature="12206:12521" ph="SELECT tb_pr... tb_order_body" />
               </folding>
             </state>
           </provider>
@@ -67,7 +54,7 @@
       <file leaf-file-name="Producto.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/Producto.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
+            <state relative-caret-position="243">
               <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="18" />
               <folding />
             </state>
@@ -77,7 +64,7 @@
       <file leaf-file-name="CouponsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
+            <state relative-caret-position="-224">
               <caret line="290" column="0" lean-forward="false" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
               <folding>
                 <element signature="e#346#2780#0#PHP" expanded="false" />
@@ -97,8 +84,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>notification</find>
-      <find>buscarGeneral</find>
       <find>config</find>
       <find>slide</find>
       <find>obte</find>
@@ -127,6 +112,8 @@
       <find>$busqueda_SubRubro2</find>
       <find>produc</find>
       <find>nombre</find>
+      <find>DB:</find>
+      <find>DB::</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\alejandro\argentina\webdcentral</dir>
@@ -135,8 +122,8 @@
       <dir>C:\xampp\htdocs\argentina\webdcentral\frontend</dir>
       <dir>C:\xampp\htdocs\argentina\webdcentral\frontend\src\app\component\login</dir>
       <dir>C:\xampp\htdocs\argentina\webdcentral\backend</dir>
-      <dir>C:\xampp\htdocs\argentina\webdcentral\backend\app\Http\Controllers</dir>
       <dir>C:\xampp\htdocs\argentina\webdcentral\backend\app\Http</dir>
+      <dir>C:\xampp\htdocs\argentina\webdcentral\backend\app\Http\Controllers</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -560,7 +547,7 @@
       <workItem from="1541684925292" duration="373000" />
       <workItem from="1541808431429" duration="11390000" />
       <workItem from="1541892858573" duration="5571000" />
-      <workItem from="1541939306196" duration="723000" />
+      <workItem from="1541939306196" duration="1707000" />
     </task>
     <task id="LOCAL-00001" summary="va faltando el fk_idUserDriver que no se de donde sacarlo">
       <created>1541250629886</created>
@@ -573,16 +560,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192649000" />
+    <option name="totallyTimeSpent" value="193633000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="696" extended-state="7" />
+    <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2453125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19964974" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="NativeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22416812" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -598,7 +586,6 @@
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="JSON Utils" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -822,6 +809,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="18" column="74" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="74" />
+          <folding>
+            <element signature="e#819#1091#0#PHP" expanded="false" />
+            <element signature="e#1097#3829#0#PHP" expanded="false" />
+            <element signature="e#3835#4236#0#PHP" expanded="false" />
+            <element signature="e#4242#4923#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -887,6 +880,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="90" column="0" lean-forward="true" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+          <folding>
+            <element signature="e#40#69#0#PHP" expanded="true" />
+            <element signature="e#320#1765#0#PHP" expanded="false" />
+            <element signature="e#3238#4270#0#PHP" expanded="false" />
+            <element signature="e#4276#4676#0#PHP" expanded="false" />
+            <element signature="e#4682#5055#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -910,6 +910,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-798">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -985,6 +986,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="297" column="0" lean-forward="false" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
+          <folding>
+            <element signature="e#417#1751#0#PHP" expanded="false" />
+            <element signature="e#1757#1789#0#PHP" expanded="false" />
+            <element signature="e#1795#1904#0#PHP" expanded="false" />
+            <element signature="e#1909#1952#0#PHP" expanded="false" />
+            <element signature="e#1958#2116#0#PHP" expanded="false" />
+            <element signature="e#2121#5618#0#PHP" expanded="false" />
+            <element signature="e#5624#5745#0#PHP" expanded="false" />
+            <element signature="e#5750#6317#0#PHP" expanded="false" />
+            <element signature="e#6323#6462#0#PHP" expanded="false" />
+            <element signature="e#6517#6697#0#PHP" expanded="false" />
+            <element signature="e#6702#9583#0#PHP" expanded="false" />
+            <element signature="e#9589#10291#0#PHP" expanded="false" />
+            <element signature="e#10297#10701#0#PHP" expanded="false" />
+            <element signature="e#10707#12063#0#PHP" expanded="false" />
+            <element signature="e#12119#12752#0#PHP" expanded="false" />
+            <element signature="e#12758#13727#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1004,9 +1023,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-10.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3178">
+          <caret line="227" column="28" lean-forward="false" selection-start-line="227" selection-start-column="16" selection-end-line="227" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
+        <state relative-caret-position="-224">
           <caret line="290" column="0" lean-forward="false" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
           <folding>
             <element signature="e#346#2780#0#PHP" expanded="false" />
@@ -1023,48 +1057,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Producto.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
+        <state relative-caret-position="243">
           <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-10.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3178">
-          <caret line="227" column="28" lean-forward="false" selection-start-line="227" selection-start-column="16" selection-end-line="227" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="352" column="30" lean-forward="true" selection-start-line="352" selection-start-column="30" selection-end-line="352" selection-end-column="30" />
+        <state relative-caret-position="266">
+          <caret line="370" column="5" lean-forward="true" selection-start-line="370" selection-start-column="5" selection-end-line="370" selection-end-column="5" />
           <folding>
             <element signature="e#355#1838#0#PHP" expanded="false" />
             <element signature="e#1844#2278#0#PHP" expanded="false" />
-            <element signature="e#2284#3177#0#PHP" expanded="false" />
-            <element signature="e#3183#4080#0#PHP" expanded="false" />
-            <element signature="e#4086#5310#0#PHP" expanded="false" />
-            <element signature="e#5316#5675#0#PHP" expanded="false" />
-            <element signature="e#5681#5776#0#PHP" expanded="false" />
-            <element signature="e#5782#8440#0#PHP" expanded="false" />
-            <element signature="e#8446#9114#0#PHP" expanded="false" />
-            <element signature="e#9120#9301#0#PHP" expanded="false" />
-            <element signature="e#9307#9494#0#PHP" expanded="false" />
-            <element signature="e#9500#9686#0#PHP" expanded="false" />
-            <element signature="e#9692#10432#0#PHP" expanded="false" />
-            <element signature="e#10438#10632#0#PHP" expanded="false" />
-            <element signature="e#10638#10832#0#PHP" expanded="false" />
-            <marker date="1541940007676" expanded="true" signature="12184:12499" ph="SELECT tb_pr... tb_order_body" />
+            <marker date="1541941732922" expanded="true" signature="12206:12521" ph="SELECT tb_pr... tb_order_body" />
           </folding>
         </state>
       </provider>
