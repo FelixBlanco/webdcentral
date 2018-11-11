@@ -48,6 +48,8 @@ export class GestionUsuarioComponent implements OnInit {
   }
 
   addUser(){
+    // newForm:any = { name: null, userNane: null, email: null, fk_idPerfil: null,  }
+    
     if(this.newForm.password.length <= 8){
       this.alertService.msg("ERR", "Error", 'la contraseña debe ser mayor de 8 caracteres');
     }else{
