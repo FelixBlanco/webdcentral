@@ -20,5 +20,12 @@ class ConfigFooter extends Model {
     protected $fillable = [
         'direccion',
         'nroContacto',
-        'email' ];
+        'mail1',
+        'mail2',
+        'direccion',
+        'latitud',
+        'longitud',
+        'whatsApp1',
+        'whatsApp2',
+    ];
 }
