@@ -7,7 +7,6 @@
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/routes/api.php" afterPath="$PROJECT_DIR$/backend/routes/api.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,14 +31,15 @@
       <file leaf-file-name="ProductoController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="360" column="13" lean-forward="true" selection-start-line="360" selection-start-column="13" selection-end-line="360" selection-end-column="13" />
+            <state relative-caret-position="238">
+              <caret line="352" column="30" lean-forward="true" selection-start-line="352" selection-start-column="30" selection-end-line="352" selection-end-column="30" />
               <folding>
                 <element signature="e#355#1838#0#PHP" expanded="false" />
                 <element signature="e#1844#2278#0#PHP" expanded="false" />
                 <element signature="e#2284#3177#0#PHP" expanded="false" />
                 <element signature="e#3183#4080#0#PHP" expanded="false" />
                 <element signature="e#4086#5310#0#PHP" expanded="false" />
+                <element signature="e#5316#5675#0#PHP" expanded="false" />
                 <element signature="e#5681#5776#0#PHP" expanded="false" />
                 <element signature="e#5782#8440#0#PHP" expanded="false" />
                 <element signature="e#8446#9114#0#PHP" expanded="false" />
@@ -49,7 +49,7 @@
                 <element signature="e#9692#10432#0#PHP" expanded="false" />
                 <element signature="e#10438#10632#0#PHP" expanded="false" />
                 <element signature="e#10638#10832#0#PHP" expanded="false" />
-                <marker date="1541939736799" expanded="true" signature="12298:12613" ph="SELECT tb_pr... tb_order_body" />
+                <marker date="1541940007676" expanded="true" signature="12184:12499" ph="SELECT tb_pr... tb_order_body" />
               </folding>
             </state>
           </provider>
@@ -97,7 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>descriptionNotification</find>
       <find>notification</find>
       <find>buscarGeneral</find>
       <find>config</find>
@@ -127,6 +126,7 @@
       <find>foo</find>
       <find>$busqueda_SubRubro2</find>
       <find>produc</find>
+      <find>nombre</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\alejandro\argentina\webdcentral</dir>
@@ -560,7 +560,7 @@
       <workItem from="1541684925292" duration="373000" />
       <workItem from="1541808431429" duration="11390000" />
       <workItem from="1541892858573" duration="5571000" />
-      <workItem from="1541939306196" duration="533000" />
+      <workItem from="1541939306196" duration="723000" />
     </task>
     <task id="LOCAL-00001" summary="va faltando el fk_idUserDriver que no se de donde sacarlo">
       <created>1541250629886</created>
@@ -573,7 +573,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192459000" />
+    <option name="totallyTimeSpent" value="192649000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="7" />
@@ -1046,14 +1046,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="360" column="13" lean-forward="true" selection-start-line="360" selection-start-column="13" selection-end-line="360" selection-end-column="13" />
+        <state relative-caret-position="238">
+          <caret line="352" column="30" lean-forward="true" selection-start-line="352" selection-start-column="30" selection-end-line="352" selection-end-column="30" />
           <folding>
             <element signature="e#355#1838#0#PHP" expanded="false" />
             <element signature="e#1844#2278#0#PHP" expanded="false" />
             <element signature="e#2284#3177#0#PHP" expanded="false" />
             <element signature="e#3183#4080#0#PHP" expanded="false" />
             <element signature="e#4086#5310#0#PHP" expanded="false" />
+            <element signature="e#5316#5675#0#PHP" expanded="false" />
             <element signature="e#5681#5776#0#PHP" expanded="false" />
             <element signature="e#5782#8440#0#PHP" expanded="false" />
             <element signature="e#8446#9114#0#PHP" expanded="false" />
@@ -1063,7 +1064,7 @@
             <element signature="e#9692#10432#0#PHP" expanded="false" />
             <element signature="e#10438#10632#0#PHP" expanded="false" />
             <element signature="e#10638#10832#0#PHP" expanded="false" />
-            <marker date="1541939736799" expanded="true" signature="12298:12613" ph="SELECT tb_pr... tb_order_body" />
+            <marker date="1541940007676" expanded="true" signature="12184:12499" ph="SELECT tb_pr... tb_order_body" />
           </folding>
         </state>
       </provider>

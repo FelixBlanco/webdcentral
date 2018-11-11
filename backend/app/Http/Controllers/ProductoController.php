@@ -342,9 +342,6 @@ class ProductoController extends Controller {
             $busqueda_rubro     = $request->rubro;
             $busqueda_SubRubro1 = $request->SubRubro1;
             $busqueda_SubRubro2 = $request->SubRubro2;
-            $f1                 = '';
-            $f2                 = '';
-            $f3                 = '';
             $result             = [];
 
             if (! is_null($busqueda_rubro)) {
