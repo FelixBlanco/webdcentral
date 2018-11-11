@@ -341,7 +341,7 @@ class ProductoController extends Controller {
             $busqueda_SubRubro2 = $request->SubRubro2;
 
             if (! is_null($request->rubro) && ! is_null($request->SubRubro1) && ! is_null($request->SubRubro2)) {
-                $productos = Producto::where('rubro', $busqueda_rubro)
+                $productos = Producto::orwhere('rubro', $busqueda_rubro)
                     ->orwhere('SubRubro1', $busqueda_SubRubro1)
                     ->orwhere('SubRubro2', $busqueda_SubRubro2)
                     ->where('fk_idSatate', 1)->get();
@@ -355,7 +355,7 @@ class ProductoController extends Controller {
             } else {
                 if (! is_null($request->rubro) && ! is_null($request->SubRubro1)) {
 
-                    $productos = Producto::where('rubro', $busqueda_rubro)
+                    $productos = Producto::orwhere('rubro', $busqueda_rubro)
                         ->orwhere('SubRubro1', $busqueda_SubRubro1)
                         ->where('fk_idSatate', 1)->get();
 
@@ -367,7 +367,7 @@ class ProductoController extends Controller {
                     return response()->json($response, 201);
                 } else {
                     if (! is_null($request->rubro)) {
-                        $productos = Producto::where('rubro', $busqueda_rubro)
+                        $productos = Producto::orwhere('rubro', $busqueda_rubro)
                             ->where('fk_idSatate', 1)->get();
 
                         $response = [
@@ -379,7 +379,7 @@ class ProductoController extends Controller {
                     } else {
                         if (!is_null($request->rubro) && !is_null($request->SubRubro2)) {
 
-                            $productos = Producto::where('rubro', $busqueda_rubro)
+                            $productos = Producto::orwhere('rubro', $busqueda_rubro)
                                 ->orwhere('SubRubro2', $busqueda_SubRubro1)
                                 ->where('fk_idSatate', 1)->get();
 
@@ -391,7 +391,7 @@ class ProductoController extends Controller {
                             return response()->json($response, 201);
                         }else{
                             if (! is_null($request->SubRubro2)) {
-                                $productos = Producto::where('SubRubro2', $busqueda_SubRubro2)
+                                $productos = Producto::orwhere('SubRubro2', $busqueda_SubRubro2)
                                     ->where('fk_idSatate', 1)->get();
 
                                 $response = [
@@ -402,7 +402,7 @@ class ProductoController extends Controller {
                                 return response()->json($response, 201);
                             }else{
                                 if (! is_null($request->SubRubro1)) {
-                                    $productos = Producto::where('SubRubro1', $busqueda_SubRubro1)
+                                    $productos = Producto::orwhere('SubRubro1', $busqueda_SubRubro1)
                                         ->where('fk_idSatate', 1)->get();
 
                                     $response = [
