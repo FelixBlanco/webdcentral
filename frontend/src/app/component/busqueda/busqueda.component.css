@@ -1,19 +1,27 @@
 .busqueda{
     position: absolute;
     right: 20px;
-    width: 25%;
+    width: 30%;
 }
 
 .container-figure{
     background-color: #f4f6dc;
     height: 250px;
-    padding: 40px;
+    padding: 40px 40px 10px 40px ;
 }
 img{
-    width: 100px;
-    margin: 15px;
-    position: absolute;
-    bottom: 15%;
+    width: 90px;
+    height: 100px;
+    margin-bottom: 1.3rem;
+}
+
+.product-draw span{
+    width: 100%;
+    display: block;
+}
+
+.product-draw span:last-child{
+    font-size: .6rem;
 }
 
 .modal-lg {

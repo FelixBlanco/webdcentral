@@ -35,7 +35,6 @@ export class DestacadoInicioComponent implements OnInit {
 
   ngOnInit() {
     this.productosService.getDestacados().subscribe(resp => {
-      console.log(resp);
       if(resp.ok && resp.status === 200){
         this.mapAndSet(resp.body);
       }else{
