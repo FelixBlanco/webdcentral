@@ -224,6 +224,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     //para listar Las SeccionApp
     Route::get('listarSeccionApp','SeccionAppController@listar');
 
+    //Lo mas vendido
+    Route::get('loMasVendido','ProductoController@loMasVendido');
+
 });
 
 

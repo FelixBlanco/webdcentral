@@ -335,91 +335,47 @@ class ProductoController extends Controller {
                 'msj' => 'Debe seleccionar algun criterio de busqueda (Recibe: rubro, SubRubro1, SubRubro2)',
             ];
 
+            return response()->json($response, 401);
+
         } else {
+
             $busqueda_rubro     = $request->rubro;
             $busqueda_SubRubro1 = $request->SubRubro1;
             $busqueda_SubRubro2 = $request->SubRubro2;
+            $f1                 = '';
+            $f2                 = '';
+            $f3                 = '';
+            $result             = [];
 
-            if (! is_null($request->rubro) && ! is_null($request->SubRubro1) && ! is_null($request->SubRubro2)) {
-                $productos = Producto::orwhere('rubro', $busqueda_rubro)
-                    ->orwhere('SubRubro1', $busqueda_SubRubro1)
-                    ->orwhere('SubRubro2', $busqueda_SubRubro2)
-                    ->where('fk_idSatate', 1)->get();
-
-                $response = [
-                    'msj'       => 'Lista de productos',
-                    'productos' => $productos,
-                ];
-
-                return response()->json($response, 201);
-            } else {
-                if (! is_null($request->rubro) && ! is_null($request->SubRubro1)) {
-
-                    $productos = Producto::orwhere('rubro', $busqueda_rubro)
-                        ->orwhere('SubRubro1', $busqueda_SubRubro1)
-                        ->where('fk_idSatate', 1)->get();
-
-                    $response = [
-                        'msj'       => 'Lista de productos',
-                        'productos' => $productos,
-                    ];
-
-                    return response()->json($response, 201);
-                } else {
-                    if (! is_null($request->rubro)) {
-                        $productos = Producto::orwhere('rubro', $busqueda_rubro)
-                            ->where('fk_idSatate', 1)->get();
-
-                        $response = [
-                            'msj'       => 'Lista de productos',
-                            'productos' => $productos,
-                        ];
-
-                        return response()->json($response, 201);
-                    } else {
-                        if (!is_null($request->rubro) && !is_null($request->SubRubro2)) {
-
-                            $productos = Producto::orwhere('rubro', $busqueda_rubro)
-                                ->orwhere('SubRubro2', $busqueda_SubRubro1)
-                                ->where('fk_idSatate', 1)->get();
-
-                            $response = [
-                                'msj'       => 'Lista de productos',
-                                'productos' => $productos,
-                            ];
-
-                            return response()->json($response, 201);
-                        }else{
-                            if (! is_null($request->SubRubro2)) {
-                                $productos = Producto::orwhere('SubRubro2', $busqueda_SubRubro2)
-                                    ->where('fk_idSatate', 1)->get();
-
-                                $response = [
-                                    'msj'       => 'Lista de productos',
-                                    'productos' => $productos,
-                                ];
-
-                                return response()->json($response, 201);
-                            }else{
-                                if (! is_null($request->SubRubro1)) {
-                                    $productos = Producto::orwhere('SubRubro1', $busqueda_SubRubro1)
-                                        ->where('fk_idSatate', 1)->get();
-
-                                    $response = [
-                                        'msj'       => 'Lista de productos',
-                                        'productos' => $productos,
-                                    ];
-
-                                    return response()->json($response, 201);
-                                }
-                            }
-                        }
-                    }
-                }
+            if (! is_null($busqueda_rubro)) {
+                $f1 = Producto::where('rubro', $busqueda_rubro)->get();
+                $result[]=$f1;
             }
+            if (! is_null($busqueda_SubRubro1)) {
+                $f2 = Producto::where('SubRubro1', $busqueda_SubRubro1)->get();
+                $result[]=$f2;
+            }
+            if (! is_null($busqueda_SubRubro2)) {
+                $f3 = Producto::where('SubRubro2', $busqueda_SubRubro2)->get();
+                $result[]=$f3;
+            }
+
+
+            $response = [
+                'msj'       => 'Lista de productos',
+                'productos' => $result,
+            ];
+
+            return response()->json($response, 201);
 
 
         }
 
+    }
+
+    public function loMasVendido() {
+        $LMV = DB::select('SELECT tb_productos .* FROM tb_order_body INNER JOIN tb_order_header ON tb_order_header.idOrderHeader = tb_order_body.fk_idOrderHeader INNER JOIN tb_productos ON tb_productos.codeProdSys = tb_order_body.codeProdSys WHERE tb_order_header.fk_idStateOrder = 2 GROUP BY tb_productos.codeProdSys, tb_productos.idProducto');
+
+        return response()->json($LMV, 201);
     }
 }
