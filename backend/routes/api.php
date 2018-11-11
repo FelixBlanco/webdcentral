@@ -186,6 +186,14 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // OBTENER RUBROS
     Route::get('rubro/filter', 'ProductoController@getAllRubros');
 
+    // OBTENER SUBSUBROS1
+    Route::get('rubro/listarSubrubro1', 'ProductoController@listarSubrubro1');
+    // OBTENER SUBSUBROS2
+    Route::get('rubro/listarSubrubro2', 'ProductoController@listarSubrubro2');
+
+    //LISTAR POR RUBRO, SURUBRO1 O SUBRUBRO2
+    Route::post('filtro3pack','ProductoController@filtro3pack');
+
     // OBTENER MARCAS
     Route::get('marcas/filter', 'ProductoController@getAllMarcas');
 
