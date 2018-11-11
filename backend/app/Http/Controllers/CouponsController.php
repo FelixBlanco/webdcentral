@@ -288,7 +288,6 @@ class CouponsController extends Controller {
     }
 
     public function updateCupon(Request $requesta, $idCupons) {
-        dd($requesta->all());
 
         DB::beginTransaction();
 

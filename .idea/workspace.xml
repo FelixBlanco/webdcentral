@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/routes/api.php" afterPath="$PROJECT_DIR$/backend/routes/api.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,22 +19,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="189" column="37" lean-forward="false" selection-start-line="189" selection-start-column="16" selection-end-line="189" selection-end-column="37" />
-              <caret line="191" column="37" lean-forward="false" selection-start-line="191" selection-start-column="16" selection-end-line="191" selection-end-column="37" />
+            <state relative-caret-position="-10">
+              <caret line="170" column="16" lean-forward="false" selection-start-line="170" selection-start-column="16" selection-end-line="170" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductoController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProductoController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="334" column="101" lean-forward="false" selection-start-line="334" selection-start-column="92" selection-end-line="334" selection-end-column="101" />
+            <state relative-caret-position="269">
+              <caret line="391" column="30" lean-forward="true" selection-start-line="391" selection-start-column="30" selection-end-line="391" selection-end-column="30" />
               <folding>
                 <element signature="e#355#1838#0#PHP" expanded="false" />
                 <element signature="e#1844#2278#0#PHP" expanded="false" />
@@ -55,11 +54,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="laravel-2018-11-10.log" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-10.log">
+          <provider selected="true" editor-type-id="LogFileEditorProvider">
+            <state relative-caret-position="-8880">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Producto.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/Producto.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="243">
-              <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="18" />
               <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="18" />
               <folding />
             </state>
@@ -69,8 +76,8 @@
       <file leaf-file-name="CouponsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="290" column="20" lean-forward="false" selection-start-line="290" selection-start-column="20" selection-end-line="290" selection-end-column="20" />
+            <state relative-caret-position="196">
+              <caret line="290" column="0" lean-forward="false" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
               <folding>
                 <element signature="e#346#2780#0#PHP" expanded="false" />
                 <element signature="e#2786#3025#0#PHP" expanded="false" />
@@ -89,11 +96,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Unauthenticated</find>
       <find>descriptionNotification</find>
       <find>notification</find>
       <find>buscarGeneral</find>
-      <find>buscar</find>
       <find>config</find>
       <find>slide</find>
       <find>obte</find>
@@ -116,9 +121,11 @@
       <find>cupo</find>
       <find>put</find>
       <find>rubro</find>
-      <find>foo</find>
-      <find>produc</find>
       <find>request-&gt;all()</find>
+      <find>produc</find>
+      <find>buscar</find>
+      <find>foo</find>
+      <find>$busqueda_SubRubro2</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\alejandro\argentina\webdcentral</dir>
@@ -190,11 +197,11 @@
         <option value="$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-10.log" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/SuscripcionController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" />
-        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_11_10_205854_add_nuevos_campos_to_config_foorter.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_07_171632_create_config_footers_table.php" />
         <option value="$PROJECT_DIR$/backend/app/ConfigFooter.php" />
         <option value="$PROJECT_DIR$/backend/routes/api.php" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" />
       </list>
     </option>
@@ -564,13 +571,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="186460000" />
+    <option name="totallyTimeSpent" value="190281000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="696" extended-state="7" />
+    <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2453125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0984375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19964974" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -692,13 +699,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backend/database/seeds/SectionAppSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="14" column="33" lean-forward="true" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/database/seeds/SeccionAppSeed.php" />
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/SeccionAppController.php" />
     <entry file="file://$PROJECT_DIR$/backend/app/Notification.php">
@@ -953,7 +953,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-10.log" />
     <entry file="file://$PROJECT_DIR$/backend/app/Coupons.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -967,23 +966,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="290" column="20" lean-forward="false" selection-start-line="290" selection-start-column="20" selection-end-line="290" selection-end-column="20" />
-          <folding>
-            <element signature="e#346#2780#0#PHP" expanded="false" />
-            <element signature="e#2786#3025#0#PHP" expanded="false" />
-            <element signature="e#3031#4208#0#PHP" expanded="false" />
-            <element signature="e#4214#4532#0#PHP" expanded="false" />
-            <element signature="e#4538#5935#0#PHP" expanded="false" />
-            <element signature="e#5941#7576#0#PHP" expanded="false" />
-            <element signature="e#7582#8286#0#PHP" expanded="false" />
-            <element signature="e#8292#8794#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1027,14 +1009,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/ConfigFooter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -1060,19 +1034,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10">
+          <caret line="170" column="16" lean-forward="false" selection-start-line="170" selection-start-column="16" selection-end-line="170" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/ConfigFooter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ConfigFooterController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="290" column="0" lean-forward="false" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
+          <folding>
+            <element signature="e#346#2780#0#PHP" expanded="false" />
+            <element signature="e#2786#3025#0#PHP" expanded="false" />
+            <element signature="e#3031#4208#0#PHP" expanded="false" />
+            <element signature="e#4214#4532#0#PHP" expanded="false" />
+            <element signature="e#4538#5935#0#PHP" expanded="false" />
+            <element signature="e#5941#7576#0#PHP" expanded="false" />
+            <element signature="e#7582#8286#0#PHP" expanded="false" />
+            <element signature="e#8292#8794#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Producto.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
-          <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="18" />
           <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-10.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="-8880">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="334" column="101" lean-forward="false" selection-start-line="334" selection-start-column="92" selection-end-line="334" selection-end-column="101" />
+        <state relative-caret-position="269">
+          <caret line="391" column="30" lean-forward="true" selection-start-line="391" selection-start-column="30" selection-end-line="391" selection-end-column="30" />
           <folding>
             <element signature="e#355#1838#0#PHP" expanded="false" />
             <element signature="e#1844#2278#0#PHP" expanded="false" />
@@ -1089,15 +1110,6 @@
             <element signature="e#10438#10632#0#PHP" expanded="false" />
             <element signature="e#10638#10832#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="189" column="37" lean-forward="false" selection-start-line="189" selection-start-column="16" selection-end-line="189" selection-end-column="37" />
-          <caret line="191" column="37" lean-forward="false" selection-start-line="191" selection-start-column="16" selection-end-line="191" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>

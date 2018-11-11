@@ -326,38 +326,100 @@ class ProductoController extends Controller {
         return response()->json($response, 202);
     }
 
-    public function filtro3pack(Request $request){
+    public function filtro3pack(Request $request) {
 
         /*Recibe: rubro, SubRubro1, SubRubro2*/
 
-        if($request->all()==[]){
+        if ($request->all() == []) {
             $response = [
-                'msj'       => 'Debe seleccionar algun criterio de busqueda (Recibe: rubro, SubRubro1, SubRubro2)',
+                'msj' => 'Debe seleccionar algun criterio de busqueda (Recibe: rubro, SubRubro1, SubRubro2)',
             ];
 
-            return response()->json($response, 404);
-        }else{
+        } else {
+            $busqueda_rubro     = $request->rubro;
+            $busqueda_SubRubro1 = $request->SubRubro1;
+            $busqueda_SubRubro2 = $request->SubRubro2;
 
-            if (!is_null($request->rubro))
-            $busqueda_rubro = $request->rubro."%";
+            if (! is_null($request->rubro) && ! is_null($request->SubRubro1) && ! is_null($request->SubRubro2)) {
+                $productos = Producto::where('rubro', $busqueda_rubro)
+                    ->orwhere('SubRubro1', $busqueda_SubRubro1)
+                    ->orwhere('SubRubro2', $busqueda_SubRubro2)
+                    ->where('fk_idSatate', 1)->get();
 
-            if (!is_null($request->SubRubro1!=null))
-            $busqueda_SubRubro1 = $request->SubRubro1."%";
+                $response = [
+                    'msj'       => 'Lista de productos',
+                    'productos' => $productos,
+                ];
 
-            if (!is_null($request->SubRubro2!=null))
-            $busqueda_SubRubro2 = $request->SubRubro2."%";
+                return response()->json($response, 201);
+            } else {
+                if (! is_null($request->rubro) && ! is_null($request->SubRubro1)) {
 
-            $productos = Producto::where('rubro', $busqueda_rubro)
-                ->orwhere('SubRubro1',  $busqueda_SubRubro1)
-                ->orwhere('SubRubro2', $busqueda_SubRubro2)
-                ->where('fk_idSatate', 1)->get();
+                    $productos = Producto::where('rubro', $busqueda_rubro)
+                        ->orwhere('SubRubro1', $busqueda_SubRubro1)
+                        ->where('fk_idSatate', 1)->get();
 
-            $response = [
-                'msj'       => 'Lista de productos',
-                'productos' => $productos,
-            ];
+                    $response = [
+                        'msj'       => 'Lista de productos',
+                        'productos' => $productos,
+                    ];
 
-            return response()->json($response, 201);
+                    return response()->json($response, 201);
+                } else {
+                    if (! is_null($request->rubro)) {
+                        $productos = Producto::where('rubro', $busqueda_rubro)
+                            ->where('fk_idSatate', 1)->get();
+
+                        $response = [
+                            'msj'       => 'Lista de productos',
+                            'productos' => $productos,
+                        ];
+
+                        return response()->json($response, 201);
+                    } else {
+                        if (!is_null($request->rubro) && !is_null($request->SubRubro2)) {
+
+                            $productos = Producto::where('rubro', $busqueda_rubro)
+                                ->orwhere('SubRubro2', $busqueda_SubRubro1)
+                                ->where('fk_idSatate', 1)->get();
+
+                            $response = [
+                                'msj'       => 'Lista de productos',
+                                'productos' => $productos,
+                            ];
+
+                            return response()->json($response, 201);
+                        }else{
+                            if (! is_null($request->SubRubro2)) {
+                                $productos = Producto::where('SubRubro2', $busqueda_SubRubro2)
+                                    ->where('fk_idSatate', 1)->get();
+
+                                $response = [
+                                    'msj'       => 'Lista de productos',
+                                    'productos' => $productos,
+                                ];
+
+                                return response()->json($response, 201);
+                            }else{
+                                if (! is_null($request->SubRubro1)) {
+                                    $productos = Producto::where('SubRubro1', $busqueda_SubRubro1)
+                                        ->where('fk_idSatate', 1)->get();
+
+                                    $response = [
+                                        'msj'       => 'Lista de productos',
+                                        'productos' => $productos,
+                                    ];
+
+                                    return response()->json($response, 201);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
         }
+
     }
 }
