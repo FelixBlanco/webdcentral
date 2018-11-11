@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/database/migrations/2018_10_07_171632_create_config_footers_table.php" afterPath="$PROJECT_DIR$/backend/database/migrations/2018_10_07_171632_create_config_footers_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/routes/api.php" afterPath="$PROJECT_DIR$/backend/routes/api.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/autoload.php" afterPath="$PROJECT_DIR$/backend/vendor/autoload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/ClassLoader.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/ClassLoader.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/LICENSE" afterPath="$PROJECT_DIR$/backend/vendor/composer/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_classmap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_real.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_real.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_static.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/ConfigFooter.php" afterPath="$PROJECT_DIR$/backend/app/ConfigFooter.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConfigFooter.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConfigFooter.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/app/ConfigFooter.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="364">
+              <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -58,11 +47,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2018_10_07_171632_create_config_footers_table.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2018_10_07_171632_create_config_footers_table.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_07_171632_create_config_footers_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="31" column="30" lean-forward="true" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+            <state relative-caret-position="182">
+              <caret line="23" column="37" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="37" />
+              <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="37" />
+              <caret line="21" column="36" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="36" />
+              <caret line="20" column="35" lean-forward="false" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="35" />
+              <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="37" />
+              <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="33" />
+              <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="33" />
+              <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="39" />
+              <caret line="15" column="41" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -194,7 +191,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/backend/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/backend/app/orderBody.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/CarritoCompraController.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_27_120522_create_order_body_table.php" />
@@ -245,6 +241,7 @@
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_11_10_205854_add_nuevos_campos_to_config_foorter.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_07_171632_create_config_footers_table.php" />
+        <option value="$PROJECT_DIR$/backend/app/ConfigFooter.php" />
       </list>
     </option>
   </component>
@@ -600,7 +597,7 @@
       <workItem from="1541672158616" duration="551000" />
       <workItem from="1541684925292" duration="373000" />
       <workItem from="1541808431429" duration="11390000" />
-      <workItem from="1541892858573" duration="5361000" />
+      <workItem from="1541892858573" duration="5571000" />
     </task>
     <task id="LOCAL-00001" summary="va faltando el fk_idUserDriver que no se de donde sacarlo">
       <created>1541250629886</created>
@@ -613,7 +610,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183853000" />
+    <option name="totallyTimeSpent" value="184063000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
@@ -1065,14 +1062,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_14_050239_add_api_token_to_users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="24" column="5" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="24" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_11_10_205854_add_nuevos_campos_to_config_foorter.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -1105,18 +1094,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/ConfigFooter.php">
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_07_171632_create_config_footers_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="182">
+          <caret line="23" column="37" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="37" />
+          <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="37" />
+          <caret line="21" column="36" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="36" />
+          <caret line="20" column="35" lean-forward="false" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="35" />
+          <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="37" />
+          <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="33" />
+          <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="33" />
+          <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="39" />
+          <caret line="15" column="41" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_07_171632_create_config_footers_table.php">
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_10_14_050239_add_api_token_to_users.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="31" column="30" lean-forward="true" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+        <state relative-caret-position="308">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="24" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/ConfigFooter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
           <folding />
         </state>
       </provider>
