@@ -297,7 +297,6 @@ class ProductoController extends Controller
 
     public static function getAllMarcas()
     {
-
         $response = Producto::select("marca")->distinct('marca')->orderBy("marca")->get();
 
         return response()->json($response, 202);

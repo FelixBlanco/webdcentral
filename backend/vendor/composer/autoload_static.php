@@ -513,6 +513,7 @@ class ComposerStaticInitf9f956ccd9dd907ec2e3e9925b3858a6
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\cors' => __DIR__ . '/../..' . '/app/Http/Middleware/Cors.php',
         'App\\Mail\\Prueba' => __DIR__ . '/../..' . '/app/Mail/Prueba.php',
+        'App\\Mail\\SuscripcionMail' => __DIR__ . '/../..' . '/app/Mail/SuscripcionMail.php',
         'App\\Notification' => __DIR__ . '/../..' . '/app/Notification.php',
         'App\\OauthAccessToken' => __DIR__ . '/../..' . '/app/OauthAccessToken.php',
         'App\\Oferta' => __DIR__ . '/../..' . '/app/Oferta.php',

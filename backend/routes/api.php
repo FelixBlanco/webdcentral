@@ -58,7 +58,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('canjearCupons/{idCuponsClient?}', 'CouponsController@chague');// Canjear cupon por cliente
         Route::delete('borrarCupons/{idCuponsClient?}', 'CouponsController@deleteCuponCliente');// Eliminar cupon por cliente
         Route::get('listarTodosCupones','CouponsController@listarTodo'); //listar todo los cupones
-        Route::post('updateCupon/{idCupons}','CouponsController@updateCupon'); //listar todo los cupones
+        Route::put('updateCupon/{idCupons}','CouponsController@updateCupon'); //listar todo los cupones
         Route::delete('deleteCupon/{idCupons}','CouponsController@deleteCupon'); //eliminar el cupon
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
@@ -191,8 +191,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // OBTENER MARCAS CON SEARCH
     Route::get('marcas/{search?}', 'ProductoController@searchMarca');
-
-
 
     // Obtener pedidos de un chofer
     Route::post('order/all/driver', 'OrderDriverController@getAllByCodeDriver');
