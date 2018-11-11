@@ -16,10 +16,10 @@ export class RubrosService {
     }
 
     getSubrubroA(){
-        return //this.http.get(`${environment.apiHost}/api/v1/rubro/filter`);
+      return this.http.get<any>(`${environment.apiHost}/api/v1/rubro/listarSubrubro1`, {observe: 'response'});
     }
 
     getSubrubroB(){
-        return //this.http.get(`${environment.apiHost}/api/v1/rubro/filter`);
+      return this.http.get<any>(`${environment.apiHost}/api/v1/rubro/listarSubrubro2`, {observe: 'response'});
     }
 }

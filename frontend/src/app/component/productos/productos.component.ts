@@ -13,6 +13,9 @@ export class ProductosComponent implements OnInit {
 
   productsList: Producto[];
   rubrosList: any[];
+  subRubrosAList: any[];
+  subRubrosBList: any[];
+
 
   constructor(
     private productsBehavior: ProductsBehaviorService,
@@ -50,6 +53,32 @@ export class ProductosComponent implements OnInit {
     }, error => {
       console.error(error);
       this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Rubros');
+    });
+
+    this.rubrosService.getSubrubroA().subscribe((resp) => {
+      if(resp.status === 202){
+        this.subRubrosAList = resp.body;
+      }else{
+        console.error(resp);
+        this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Sub Rubros A');
+        //TODO err
+      }
+    }, error => {
+      console.error(error);
+      this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Sub Rubros A');
+    })
+
+    this.rubrosService.getSubrubroB().subscribe((resp) => {
+      if(resp.status === 202){
+        this.subRubrosBList = resp.body;
+      }else{
+        console.error(resp);
+        this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Sub Rubros B');
+        //TODO err
+      }
+    }, error => {
+      console.error(error);
+      this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Sub Rubros B');
     })
   }
 
