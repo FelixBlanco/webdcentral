@@ -444,4 +444,11 @@ class UserController extends Controller {
 
 
     }
+
+
+    public function updateTokenFirebase(Request $request,$id){
+        $user = User::findOrFail($id);
+        $user->tokenFirebase = $request->tokenFirebase;
+        $user->save();
+    }
 }

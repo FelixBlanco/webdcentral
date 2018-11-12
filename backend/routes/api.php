@@ -62,7 +62,12 @@ Route::group([ 'prefix' => 'auth' ], function() {
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
         Route::get('listarNotificationes', 'NotificationController@listar'); // Listar  Notification
+        Route::get('notification/byUser/{idUser}', 'NotificationController@getByIdUser');// Obtener Notificaciones  por id usuario
+        Route::get('notification/confirm/{idNotification}', 'NotificationController@confirm'); // Listar  Notification
 
+        
+
+        
         /* PREGUNTA Y RESPUESTA */
         Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
         Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
@@ -141,6 +146,8 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     Route::resource('user', 'UserController');    // User CRUD
     Route::post('listarUsers', 'UserController@listar');
+    Route::put('user/update/tokenfb/{idUser}', 'UserController@updateTokenFirebase');
+
 
     Route::put('setClave/{api_token}', 'UserController@setClave'); // Cambio de clave
 
@@ -197,9 +204,13 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::post('order/all/products', 'OrderDriverController@getProductByPedido');
 
     // CAMBIAR ESTADAO DE UN PEDIDO
-    Route::post('order/chanue/state', 'OrderDriverController@chagueEstadoPedido');
+    Route::post('order/changue/state', 'OrderDriverController@chagueEstadoPedido');
 
-    // CAMBIAR ESTADAO DE UN PEDIDO
+    //  FINALIZAMOS UN PEDIDO ESTADAO DE UN PEDIDO
+    Route::post('order/finish', 'OrderDriverController@finishPedido');
+
+
+    // DEVOLVER  DE UN PEDIDO
     Route::post('order/devolution/product', 'OrderDriverController@devolutionProduct');
 
     // para el buscador general

@@ -27,7 +27,8 @@ class User extends Authenticatable
         'fk_idPerfil',
         'fotoPerfil',
         'Codigo_Transporte',
-        'Codigo_Cliente'
+        'Codigo_Cliente',
+        'tokenFirebase'
     ];
 
     /**

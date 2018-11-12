@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\orderHeader;
+use App\Notification;
+use App\User;
+
+
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -142,7 +148,7 @@ class OrderDriverController extends Controller
     }
 
     // OBTENEMOS PRODUCTOS DE UN  PEDIDOS ACTUALES POR CODIGO PEDIDO 
-    public function getProductByPedido(Request $request){
+    public static function getProductByPedido(Request $request){
 
         try{
             $rs = null;
@@ -167,13 +173,77 @@ class OrderDriverController extends Controller
     public function chagueEstadoPedido(Request $request){
 
         try{
+
+            
+            $order = orderHeader::where("Numero_Pedido", "=", $request->Numero_Pedido)->first();
+
+            if( $order){
+                $order->Estado_Pedido = $request->Estado_Pedido;
+                $order->fk_idStateOrder = $request->fk_idStateOrder;
+                $order->save();
+            }
+            
             DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP
              set Estado_Pedido = '".$request->Estado_Pedido."' where Numero_Pedido = '".$request->Numero_Pedido."' "); 
+
+
+            // ENVIO DE NOTIFICACION A LOS CLIENTE DE FIREBASE //
+            if( $order){
+                if($order->fk_idStateOrder == 5){
+                    if($order->fk_idUserClient > 0){
+                        
+                        $user = User::select("tokenFirebase")->findOrFail($order->fk_idUserClient);
+
+                        $data = [
+                            'descriptionNotification' => 'Confirme la recepcion de su pedido #'.$order->Numero_Pedido,
+                            'idSecctionApp' => 4 // Pedidos
+                        ];
+
+                        NotificationController::sendNotificationFb('Su pedido fue entregado',$data,$user->tokenFirebase);
+                    
+                        $notifications                          = new Notification();
+                        $notifications->titleNotification       = 'Su pedido fue entregado';
+                        $notifications->descriptionNotification = 'Confirme la recepcion de su pedido #'.$order->Numero_Pedido;
+                        $notifications->fk_idSecctionApp        = 4;// Pedidos
+                        $notifications->fk_idUser        = $order->fk_idUserClient;// Pedidos
+
+                        $notifications->save();
+                    }
+                }
+            }
 
             return response()->json("Pedido actualizado ", 200);
             
         } catch (\Exception $e) {
-           // dd($e);
+            dd($e);
+            return response()->json("Error conectando a el DC", 500);
+        }
+    }
+
+    // Finalizar Pedido
+    public function finishPedido(Request $request){
+
+        try{
+
+
+            $order = orderHeader::where("Numero_Pedido", "=", $request->Numero_Pedido)->first();
+
+            if( $order){
+                $order->Estado_Pedido = $request->Estado_Pedido;
+                $order->fk_idStateOrder = $request->fk_idStateOrder;
+                $order->stars = $request->stars;
+                $order->save();
+            }
+
+            DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP
+             set Estado_Pedido = '".$request->Estado_Pedido."'
+             , stars = ".$request->stars."
+              where Numero_Pedido = '".$request->Numero_Pedido."' "); 
+
+            return response()->json("Pedido actualizado ", 200);
+            
+        } catch (\Exception $e) {
+            dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
@@ -188,7 +258,9 @@ class OrderDriverController extends Controller
              and Codigo_Producto = '".$request->Codigo_Producto."'
               "); 
 
-            return response()->json("Pedido actualizado ", 200);
+              $request->Pedido = $request->Numero_Pedido;
+
+            return response()->json($this->getProductByPedido($request)->original, 200);
             
         } catch (\Exception $e) {
           //  dd($e);
