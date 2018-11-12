@@ -244,7 +244,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
 
     //Listar los productos del body a travez del idOrderHeader
-    Route::post('listarProductosBodyPorIdOrferHeader/{fk_idOrderHeader}','OrderBodyController@listarProductosBodyPorIdOrferHeader');
+    Route::get('listarProductosBodyPorIdOrferHeader/{fk_idOrderHeader}','OrderBodyController@listarProductosBodyPorIdOrferHeader');
 
 
 });
