@@ -25,6 +25,7 @@ class CreatePerfilClientesTable extends Migration
             $table->string('domicilioEntrega');
             $table->string('facturacion');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

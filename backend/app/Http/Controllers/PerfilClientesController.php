@@ -62,57 +62,53 @@ class PerfilClientesController extends Controller {
 
     public function update(Request $request, $idPerfilCliente) {
 
-
         DB::beginTransaction();
 
         try {
-            $user = User::findOrFail($id);
+            $pefilCliente = PerfilCliente::findOrFail($idPerfilCliente);
 
-            if (is_null($request->fotoPerfil)) {
-
-            } else {
-
-                /*para la foto*/
-                $originalImage = $request->fotoPerfil;
-
-                $thumbnailImage = Image::make($originalImage);
-                $thumbnailImage->fit(2048, 2048, function($constraint) {
-                    $constraint->aspectRatio();
-                });
-                $nombre_publico = $originalImage->getClientOriginalName();
-                $extension      = $originalImage->getClientOriginalExtension();
-                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
-                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-                Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
-
-                $user->fotoPerfil = $nombre_interno;
-                /*para la foto*/
-            }
-
-            $pass_last = $user->password;
-            $user->fill($request->all());
-
-            if ($request->password != null && ! empty($request->password)) {
-                $user->password = bcrypt($request->password);
-            } else {
-                $user->password = $pass_last;
-            }
+            $pefilCliente->update($request->all());
 
             $response = [
-                'msj'  => 'Info del Usuario actulizada',
-                'user' => $user,
+                'msj'  => 'Info del Perfil actulizada',
+                'perfil' => $pefilCliente,
             ];
 
-            $user->save();
+            //$pefilCliente->save();
             DB::commit();
 
             return response()->json($response, 200);
         } catch (\Exception $e) {
             DB::rollback();
-            Log::error('Ha ocurrido un error en UserController: '.$e->getMessage().', Linea: '.$e->getLine());
+            Log::error('Ha ocurrido un error en PerfilClientesController: '.$e->getMessage().', Linea: '.$e->getLine());
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+            ], 500);
+        }
+    }
+
+    public function destroy($idPerfilCliente) {
+
+        DB::beginTransaction();
+
+        try {
+            $pefilCliente = PerfilCliente::findOrFail($idPerfilCliente);
+            $pefilCliente->delete();
+
+            $response = [
+                'msj'  => 'Perfil eliminado Correctamente',
+            ];
+
+            DB::commit();
+
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error('Ha ocurrido un error en PerfilClientesController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al tratar de eliminar los datos.',
             ], 500);
         }
     }
