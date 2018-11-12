@@ -24,7 +24,6 @@ export class AyudaComponent implements OnInit {
 
   getConfigFooter(){
     this.footerConfigService._getConfigFooter().subscribe( (resp) => {
-      console.log(resp);
       this.footerConfig = resp;
     })
   }

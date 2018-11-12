@@ -6,7 +6,7 @@
     <title>Gracias por Suscribirse</title>
 </head>
 <body>
-<p>Hola! {{$user->userName}} Se ha suscrito correctamente.</p>
+<p>Hola! {{$sus->email}} Se ha suscrito correctamente.</p>
 
 <p>Desactiva suscrión</p>
 

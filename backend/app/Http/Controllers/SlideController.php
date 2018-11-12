@@ -99,7 +99,7 @@ class SlideController extends Controller {
                     'id_dataBase' => $imagemodel->idSlide,
                     'calidad'     => '2048*2048',
                     'size'        => $size = (Storage::size('/slide/'.$nombre_interno) / 1000000).' Mb',
-                    'name'        => '/slide/'.$nombre_interno,
+                    'name'        => 'storage/slide/'.$nombre_interno,
                 ];
 
                 return response()->json($response, 201);

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e6e6661cb7c9d3cc945977201ae53ca",
+    "content-hash": "81f52afb2d641c37a9962d5a49b173a5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1546,7 +1546,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "role": "developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",

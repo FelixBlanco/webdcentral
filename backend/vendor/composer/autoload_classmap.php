@@ -61,6 +61,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\cors' => $baseDir . '/app/Http/Middleware/Cors.php',
     'App\\Mail\\Prueba' => $baseDir . '/app/Mail/Prueba.php',
+    'App\\Mail\\SuscripcionMail' => $baseDir . '/app/Mail/SuscripcionMail.php',
     'App\\Notification' => $baseDir . '/app/Notification.php',
     'App\\OauthAccessToken' => $baseDir . '/app/OauthAccessToken.php',
     'App\\Oferta' => $baseDir . '/app/Oferta.php',

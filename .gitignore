@@ -2,3 +2,7 @@ backend/.env
 backend/vendor/
 vendor/
 backend/vendor
+backend/vendor/composer/autoload_static.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/composer/autoload_classmap.php
+backend/vendor/autoload.php
