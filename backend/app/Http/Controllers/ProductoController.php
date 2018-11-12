@@ -346,18 +346,29 @@ class ProductoController extends Controller {
 
             if (! is_null($busqueda_rubro)) {
                 $f1 = Producto::where('rubro', $busqueda_rubro)->get();
-                $result[]=$f1;
+                foreach ($f1 as $f)
+                {
+                    $result[]=$f;
+                }
             }
 
             if (! is_null($busqueda_SubRubro1)) {
                 $f2 = Producto::where('SubRubro1', $busqueda_SubRubro1)->get();
-                $result[]=$f2;
+                foreach ($f2 as $f)
+                {
+                    $result[]=$f;
+                }
+
             }
 
             if (! is_null($busqueda_SubRubro2)) {
                 $f3 = Producto::where('SubRubro2', $busqueda_SubRubro2)->get();
-                $result[]=$f3;
+                foreach ($f3 as $f)
+                {
+                    $result[]=$f;
+                }
             }
+
 
             $response = [
                 'msj'       => 'Lista de productos',

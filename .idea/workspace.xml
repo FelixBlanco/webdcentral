@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/routes/api.php" afterPath="$PROJECT_DIR$/backend/routes/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,82 +17,40 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="242" column="56" lean-forward="false" selection-start-line="242" selection-start-column="56" selection-end-line="242" selection-end-column="56" />
+            <state relative-caret-position="158">
+              <caret line="201" column="61" lean-forward="false" selection-start-line="201" selection-start-column="50" selection-end-line="201" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrderBodyController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php">
+      <file leaf-file-name="ProductoController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="92" column="76" lean-forward="false" selection-start-line="92" selection-start-column="76" selection-end-line="92" selection-end-column="76" />
+            <state relative-caret-position="186">
+              <caret line="362" column="0" lean-forward="true" selection-start-line="362" selection-start-column="0" selection-end-line="362" selection-end-column="0" />
               <folding>
-                <element signature="e#233#3111#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PerfilClientesController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/PerfilClientesController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="90" column="44" lean-forward="false" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="44" />
-              <folding>
-                <element signature="e#40#62#0#PHP" expanded="true" />
-                <element signature="e#2073#2910#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2014_10_12_000000_create_users_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/database/migrations/2014_10_12_000000_create_users_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="laravel-2018-11-11.log" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-11.log">
-          <provider selected="true" editor-type-id="LogFileEditorProvider">
-            <state relative-caret-position="430">
-              <caret line="525" column="0" lean-forward="false" selection-start-line="525" selection-start-column="0" selection-end-line="525" selection-end-column="0" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="298" column="0" lean-forward="false" selection-start-line="298" selection-start-column="0" selection-end-line="322" selection-end-column="5" />
-              <folding>
-                <element signature="e#417#1751#0#PHP" expanded="false" />
-                <element signature="e#1757#1789#0#PHP" expanded="false" />
-                <element signature="e#1795#1904#0#PHP" expanded="false" />
-                <element signature="e#1909#1952#0#PHP" expanded="false" />
-                <element signature="e#1958#2116#0#PHP" expanded="false" />
-                <element signature="e#2121#5618#0#PHP" expanded="false" />
-                <element signature="e#5624#5745#0#PHP" expanded="false" />
-                <element signature="e#5750#6317#0#PHP" expanded="false" />
-                <element signature="e#6323#6462#0#PHP" expanded="false" />
-                <element signature="e#6517#6697#0#PHP" expanded="false" />
-                <element signature="e#6702#9583#0#PHP" expanded="false" />
-                <element signature="e#9589#10291#0#PHP" expanded="false" />
-                <element signature="e#10297#10701#0#PHP" expanded="false" />
-                <element signature="e#10707#12063#0#PHP" expanded="false" />
-                <element signature="e#12119#12752#0#PHP" expanded="false" />
-                <element signature="e#12758#13727#0#PHP" expanded="false" />
+                <element signature="e#355#1838#0#PHP" expanded="false" />
+                <element signature="e#1844#2278#0#PHP" expanded="false" />
+                <element signature="e#2284#3177#0#PHP" expanded="false" />
+                <element signature="e#3183#4080#0#PHP" expanded="false" />
+                <element signature="e#4086#5310#0#PHP" expanded="false" />
+                <element signature="e#5316#5675#0#PHP" expanded="false" />
+                <element signature="e#5681#5776#0#PHP" expanded="false" />
+                <element signature="e#5782#8440#0#PHP" expanded="false" />
+                <element signature="e#8446#9114#0#PHP" expanded="false" />
+                <element signature="e#9120#9301#0#PHP" expanded="false" />
+                <element signature="e#9307#9494#0#PHP" expanded="false" />
+                <element signature="e#9500#9686#0#PHP" expanded="false" />
+                <element signature="e#9692#10432#0#PHP" expanded="false" />
+                <element signature="e#10438#10632#0#PHP" expanded="false" />
+                <element signature="e#10638#10832#0#PHP" expanded="false" />
+                <marker date="1542062142122" expanded="true" signature="11442:11633" ph="..." />
+                <marker date="1542062142122" expanded="true" signature="11937:12136" ph="..." />
+                <marker date="1542062142122" expanded="true" signature="12433:12748" ph="SELECT tb_pr... tb_order_body" />
               </folding>
             </state>
           </provider>
@@ -102,7 +60,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>correo</find>
       <find>updateCupon</find>
       <find>use</find>
       <find>user</find>
@@ -132,6 +89,7 @@
       <find>The given data was invalid.</find>
       <find>The given data was invalid</find>
       <find>produ</find>
+      <find>3pac</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -209,12 +167,12 @@
         <option value="$PROJECT_DIR$/backend/app/PerfilCliente.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_07_171632_create_config_footers_table.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2014_10_12_000000_create_users_table.php" />
-        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" />
         <option value="$PROJECT_DIR$/backend/vendor/autoload.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_11_11_193123_create_perfil_clientes_table.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/PerfilClientesController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php" />
         <option value="$PROJECT_DIR$/backend/routes/api.php" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php" />
       </list>
     </option>
   </component>
@@ -527,13 +485,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206340000" />
+    <option name="totallyTimeSpent" value="208733000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.00703125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1765625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19964974" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1007,40 +965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="290" column="0" lean-forward="true" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
-          <folding>
-            <element signature="e#355#1838#0#PHP" expanded="false" />
-            <element signature="e#1844#2278#0#PHP" expanded="false" />
-            <element signature="e#2284#3177#0#PHP" expanded="false" />
-            <element signature="e#3183#4080#0#PHP" expanded="false" />
-            <element signature="e#4086#5310#0#PHP" expanded="false" />
-            <element signature="e#5316#5675#0#PHP" expanded="false" />
-            <element signature="e#5681#5776#0#PHP" expanded="false" />
-            <element signature="e#5782#8440#0#PHP" expanded="false" />
-            <element signature="e#8446#9114#0#PHP" expanded="false" />
-            <element signature="e#9120#9301#0#PHP" expanded="false" />
-            <element signature="e#9307#9494#0#PHP" expanded="false" />
-            <element signature="e#9500#9686#0#PHP" expanded="false" />
-            <element signature="e#9692#10432#0#PHP" expanded="false" />
-            <element signature="e#10438#10632#0#PHP" expanded="false" />
-            <element signature="e#10638#10832#0#PHP" expanded="false" />
-            <element signature="e#10838#12119#0#PHP" expanded="false" />
-            <marker date="1541984927075" expanded="true" signature="12206:12521" ph="SELECT tb_pr... tb_order_body" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2014_10_12_000000_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_11_11_193123_create_perfil_clientes_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
@@ -1065,6 +989,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-11.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="430">
+          <caret line="525" column="0" lean-forward="false" selection-start-line="525" selection-start-column="0" selection-end-line="525" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2014_10_12_000000_create_users_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/PerfilClientesController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -1073,13 +1012,6 @@
             <element signature="e#40#62#0#PHP" expanded="true" />
             <element signature="e#2073#2910#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-11.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="430">
-          <caret line="525" column="0" lean-forward="false" selection-start-line="525" selection-start-column="0" selection-end-line="525" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1095,9 +1027,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="242" column="56" lean-forward="false" selection-start-line="242" selection-start-column="56" selection-end-line="242" selection-end-column="56" />
+        <state relative-caret-position="158">
+          <caret line="201" column="61" lean-forward="false" selection-start-line="201" selection-start-column="50" selection-end-line="201" selection-end-column="61" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ProductoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="362" column="0" lean-forward="true" selection-start-line="362" selection-start-column="0" selection-end-line="362" selection-end-column="0" />
+          <folding>
+            <element signature="e#355#1838#0#PHP" expanded="false" />
+            <element signature="e#1844#2278#0#PHP" expanded="false" />
+            <element signature="e#2284#3177#0#PHP" expanded="false" />
+            <element signature="e#3183#4080#0#PHP" expanded="false" />
+            <element signature="e#4086#5310#0#PHP" expanded="false" />
+            <element signature="e#5316#5675#0#PHP" expanded="false" />
+            <element signature="e#5681#5776#0#PHP" expanded="false" />
+            <element signature="e#5782#8440#0#PHP" expanded="false" />
+            <element signature="e#8446#9114#0#PHP" expanded="false" />
+            <element signature="e#9120#9301#0#PHP" expanded="false" />
+            <element signature="e#9307#9494#0#PHP" expanded="false" />
+            <element signature="e#9500#9686#0#PHP" expanded="false" />
+            <element signature="e#9692#10432#0#PHP" expanded="false" />
+            <element signature="e#10438#10632#0#PHP" expanded="false" />
+            <element signature="e#10638#10832#0#PHP" expanded="false" />
+            <marker date="1542062142122" expanded="true" signature="11442:11633" ph="..." />
+            <marker date="1542062142122" expanded="true" signature="11937:12136" ph="..." />
+            <marker date="1542062142122" expanded="true" signature="12433:12748" ph="SELECT tb_pr... tb_order_body" />
+          </folding>
         </state>
       </provider>
     </entry>
