@@ -522,6 +522,7 @@ class ComposerStaticInit7714da98247b47083a27616f4cbb7c0e
         'App\\OauthAccessToken' => __DIR__ . '/../..' . '/app/OauthAccessToken.php',
         'App\\Oferta' => __DIR__ . '/../..' . '/app/Oferta.php',
         'App\\Perfil' => __DIR__ . '/../..' . '/app/Perfil.php',
+        'App\\PerfilCliente' => __DIR__ . '/../..' . '/app/PerfilCliente.php',
         'App\\PesoProducto' => __DIR__ . '/../..' . '/app/PesoProducto.php',
         'App\\PreguntasFrecuente' => __DIR__ . '/../..' . '/app/PreguntasFrecuente.php',
         'App\\Producto' => __DIR__ . '/../..' . '/app/Producto.php',

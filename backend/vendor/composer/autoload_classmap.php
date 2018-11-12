@@ -66,6 +66,7 @@ return array(
     'App\\OauthAccessToken' => $baseDir . '/app/OauthAccessToken.php',
     'App\\Oferta' => $baseDir . '/app/Oferta.php',
     'App\\Perfil' => $baseDir . '/app/Perfil.php',
+    'App\\PerfilCliente' => $baseDir . '/app/PerfilCliente.php',
     'App\\PesoProducto' => $baseDir . '/app/PesoProducto.php',
     'App\\PreguntasFrecuente' => $baseDir . '/app/PreguntasFrecuente.php',
     'App\\Producto' => $baseDir . '/app/Producto.php',
