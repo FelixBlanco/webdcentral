@@ -371,7 +371,7 @@ class ProductoController extends Controller {
     }
 
     public function loMasVendido() {
-        $LMV = DB::connection('sqlsrv')->select('SELECT tb_productos .* FROM tb_order_body INNER JOIN tb_order_header ON tb_order_header.idOrderHeader = tb_order_body.fk_idOrderHeader INNER JOIN tb_productos ON tb_productos.codeProdSys = tb_order_body.codeProdSys WHERE tb_order_header.fk_idStateOrder = 2 GROUP BY tb_productos.codeProdSys, tb_productos.idProducto');
+        $LMV = DB::connection('mysql')->select('SELECT tb_productos .* FROM tb_order_body INNER JOIN tb_order_header ON tb_order_header.idOrderHeader = tb_order_body.fk_idOrderHeader INNER JOIN tb_productos ON tb_productos.codeProdSys = tb_order_body.codeProdSys WHERE tb_order_header.fk_idStateOrder = 2 GROUP BY tb_productos.codeProdSys, tb_productos.idProducto');
 
         return response()->json($LMV, 201);
     }
