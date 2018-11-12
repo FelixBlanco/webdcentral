@@ -369,10 +369,12 @@ class ProductoController extends Controller {
                 }
             }
 
+           $result_unico=array_unique($result);
+
 
             $response = [
                 'msj'       => 'Lista de productos',
-                'productos' => $result,
+                'productos' => $result_unico,
             ];
 
             return response()->json($response, 201);
