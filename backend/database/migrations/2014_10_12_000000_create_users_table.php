@@ -20,13 +20,13 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('email')->nullable();
             $table->integer('fk_idPerfil')->unsigned();
+            $table->integer('fk_idPerfilCliente')->unsigned()->nullable();
             $table->string('fotoPerfil')->nullable();
-
             $table->float('montoCliente')->nullable();
-
             $table->string('Codigo_Transporte')->nullable();
             $table->string('Codigo_Cliente')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('tokenFirebase')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

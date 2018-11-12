@@ -11,6 +11,7 @@
                   <option>5</option>
                   <option>10</option>
                   <option>20</option>
+                  <option *ngIf="cuponsList" value="{{cuponsList.length}}">Todos ({{cuponsList.length}})</option>
                 </select>
             </div>
             <div class="col-md-7">
@@ -25,7 +26,7 @@
               <ngx-datatable
                 #table
                 class="bootstrap"
-                [rowHeight]="80"
+                [rowHeight]="'auto'"
                 [rows]="rows"
                 [columns]="columns"
                 [columnMode]="'force'"
@@ -33,17 +34,31 @@
                 [limit]="limit"
                 >
   
-                <ngx-datatable-column name="Título" prop="titulo"></ngx-datatable-column>
-                <ngx-datatable-column name="Imagen" prop="imagen"></ngx-datatable-column>
-                <ngx-datatable-column name="Producto" prop="producto"></ngx-datatable-column>
-                <ngx-datatable-column name="Fecha de Exp" prop="fechaexp"></ngx-datatable-column>
+                <ngx-datatable-column name="Código" prop="codeCoupns"></ngx-datatable-column>
+                <ngx-datatable-column name="Título" prop="title">
+                  <ng-template ngx-datatable-cell-template let-row="row"> 
+                    {{row.title | titlecase}}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Descripción" prop="description"></ngx-datatable-column>                
+                <ngx-datatable-column name="Imagen" prop="set_imagen">
+                  <ng-template ngx-datatable-cell-template let-row="row">
+                      <img class="clickeable" [src]="row.set_imagen" alt="{{row.title}}" width="70" (click)="showImage(row)">
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Producto" prop="fk_idProducto">
+                  <ng-template ngx-datatable-cell-template let-row="row"> 
+                    {{getProductName(row.fk_idProducto) | titlecase}}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Fecha de Exp" prop="dateExpired"></ngx-datatable-column>
+
 
   
                 <ngx-datatable-column name="" prop="opts">
                   <ng-template ngx-datatable-cell-template let-row="row">
                     <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#modificar"><i class="fa fa-edit"></i></a>
                     <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
-                    <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#estatus"><i class="fa fa-ban"></i></a>
                   </ng-template>                    
                 </ngx-datatable-column>
   
@@ -109,18 +124,19 @@
             <div class="form-group">
               <label for="producto">Producto:</label>
               <select class="form-control" formControlName="producto">
+                <option value=""></option>
                 <option *ngFor="let product of productsList" value="{{product.idProducto}}">{{product.nombre}}</option>
               </select>
             </div>
             <div class="form-group">
               <label for="respuesta">Imagen del cupón:</label>
-              <input type="file" (change)="onFileChange($event)" >
+              <input #image type="file" (change)="onFileChange($event)" >
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="newCuponForm.invalid" (click)="save()">Guardar</button>
+          <button type="submit" class="btn btn-success" [disabled]="newCuponForm.invalid || inPromise" (click)="save()">Guardar</button>
         </div>
       </div>
     </div>
@@ -131,62 +147,85 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header bg-info">
-          <h5 class="modal-title text-white" id="modificarModal">Modificar <span class="text-capitalize" *ngIf="cuponToUpdate">'{{cuponToUpdate.titulo}}'</span></h5>
+          <h5 class="modal-title text-white" id="modificarModal">Modificar <span class="text-capitalize" *ngIf="cuponToUpdate">'{{cuponToUpdate.title}}'</span></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <form [formGroup]="cuponToUpdateForm">
-            <div class="form-group">
-              <label for="titulo">Título:</label>
-              <input type="text" formControlName="titulo" class="form-control" id="titulo" placeholder="Escriba un título" maxlength="255">
-            </div>
-            <div class="form-group">
-              <label for="descripcion">Descripción:</label>
-              <textarea type="text" formControlName="descripcion" class="form-control" id="descripcion" placeholder="Escriba una descripción" maxlength="255"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="fechaExp">Fecha de expiración:</label>
-              <input type="dateW" formControlName="fechaExp" class="form-control" id="fechaExp" max="currentDate">
-            </div>
-            <div class="form-group">
-              <label for="producto">Producto:</label>
-              <select formControlName="producto">
-                <option>ss</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="respuesta">Imagen del cupón:</label>
-              <input type="file" formControlName="imagen" >
-            </div>
-          </form>
+              <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" formControlName="titulo" class="form-control" id="titulo" placeholder="Escriba un título" maxlength="255">
+              </div>
+              <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea type="text" formControlName="descripcion" class="form-control" id="descripcion" placeholder="Escriba una descripción" maxlength="255"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="fechaExp">Fecha de expiración:</label>
+                <input type="date" formControlName="fechaExp" class="form-control" id="fechaExp">
+              </div>
+              <div class="form-group">
+                <label for="producto">Producto:</label>
+                <select class="form-control" formControlName="producto">
+                  <option value=""></option>
+                  <option *ngFor="let product of productsList" value="{{product.idProducto}}">{{product.nombre}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="respuesta">Imagen del cupón:</label>
+                <input #image type="file" (change)="onFileChange($event)" >
+              </div>
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-info" data-dismiss="modal" [disabled]="cuponToUpdateForm.invalid" (click)="update()">Guardar</button>
+          <button type="submit" class="btn btn-info" [disabled]="cuponToUpdateForm.invalid || inPromise" (click)="update()">Actualizar</button>
         </div>
       </div>
     </div>
   </div>
   
-    <!-- Modal Eliminar -->
-  <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-danger">
-          <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="cuponToUpdate">'{{cuponToUpdate.titulo}}'</span></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p class="text-muted">¿Desea elíminar el registro?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-danger" data-dismiss="modal" (click)="delete()">Eliminar</button>
-        </div>
+  <!-- Modal Eliminar -->
+<div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="cuponToUpdate">'{{cuponToUpdate.title}}'</span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted">¿Desea elíminar el registro?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-danger" [disabled]="inPromise" (click)="delete()">Eliminar</button>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal imagen -->
+<div class="modal fade" id="imagen" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-white" id="eliminarModal">Cupón <span class="text-capitalize" *ngIf="cuponToUpdate">'{{cuponToUpdate.title}}'</span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="width: 100%; text-align: center">
+          <img *ngIf="cuponToUpdate" [src]="cuponToUpdate.set_imagen" width="300" alt="">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

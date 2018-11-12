@@ -22,5 +22,13 @@ class SatateOrderSeeder extends Seeder
         \App\StateOrder::create([
             'StateOrder'=>'Cancelado'
         ]);
+
+        \App\StateOrder::create([
+            'StateOrder'=>'Entregado'
+        ]);
+
+        \App\StateOrder::create([
+            'StateOrder'=>'Pre Entregado'
+        ]);
     }
 }

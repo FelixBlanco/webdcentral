@@ -296,12 +296,6 @@ class UserController extends Controller {
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id) {
 
         DB::beginTransaction();
@@ -443,5 +437,12 @@ class UserController extends Controller {
         }
 
 
+    }
+
+
+    public function updateTokenFirebase(Request $request,$id){
+        $user = User::findOrFail($id);
+        $user->tokenFirebase = $request->tokenFirebase;
+        $user->save();
     }
 }

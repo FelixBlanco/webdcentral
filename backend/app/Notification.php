@@ -14,6 +14,8 @@ class Notification extends Model
     protected $fillable = [
         'titleNotification',
         'descriptionNotification',
-        'fk_idSecctionApp'
+        'fk_idSecctionApp',   
+        'fk_idUser',
+        'isConfirm'
     ];
 }

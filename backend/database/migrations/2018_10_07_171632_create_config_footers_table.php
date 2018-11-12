@@ -4,20 +4,23 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConfigFootersTable extends Migration
-{
+class CreateConfigFootersTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('tb_config_footers', function (Blueprint $table) {
+    public function up() {
+        Schema::create('tb_config_footers', function(Blueprint $table) {
             $table->increments('idConfigFooter');
             $table->mediumText('direccion')->nullable();
             $table->string('nroContacto')->nullable();
-            $table->string('email')->nullable();
+            $table->string('mail1')->nullable();
+            $table->string('mail2')->nullable();
+            $table->string('latitud')->nullable();
+            $table->string('longitud')->nullable();
+            $table->string('whatsApp1')->nullable();
+            $table->string('whatsApp2')->nullable();
             $table->timestamps();
 
             $table->softDeletes();
@@ -29,8 +32,7 @@ class CreateConfigFootersTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('tb_config_footers');
     }
 }

@@ -58,12 +58,17 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('canjearCupons/{idCuponsClient?}', 'CouponsController@chague');// Canjear cupon por cliente
         Route::delete('borrarCupons/{idCuponsClient?}', 'CouponsController@deleteCuponCliente');// Eliminar cupon por cliente
         Route::get('listarTodosCupones','CouponsController@listarTodo'); //listar todo los cupones
-        Route::post('updateCupon/{idCupons}','CouponsController@updateCupon'); //listar todo los cupones
+        Route::put('updateCupon/{idCupons}','CouponsController@updateCupon'); //listar todo los cupones
         Route::delete('deleteCupon/{idCupons}','CouponsController@deleteCupon'); //eliminar el cupon
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
         Route::get('listarNotificationes', 'NotificationController@listar'); // Listar  Notification
+        Route::get('notification/byUser/{idUser}', 'NotificationController@getByIdUser');// Obtener Notificaciones  por id usuario
+        Route::get('notification/confirm/{idNotification}', 'NotificationController@confirm'); // Listar  Notification
 
+        
+
+        
         /* PREGUNTA Y RESPUESTA */
         Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
         Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
@@ -103,7 +108,13 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::put('cambiarStatusSus/{idSuscripcion}', 'SuscripcionController@cambiarStatusSus');
 
     /*para cancelar una suscripcion*/
-    Route::get('cancelarSus/{idSuscripcion}', 'SuscripcionController@cancelarSus');
+    Route::put('cancelarSus/{idSuscripcion}', 'SuscripcionController@cancelarSus');
+
+    /*Listar suscriciones activas*/
+    Route::get('listarSuscripciones','SuscripcionController@listarSuscripciones');
+
+    /*Listar suscriciones canceladas*/
+    Route::get('listarSuscripcionesCanceladas','SuscripcionController@listarSuscripcionesCanceladas');
 
     /*para las ofertas*/
     Route::resource('ofertas', 'OfertaController');
@@ -142,6 +153,8 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     Route::resource('user', 'UserController');    // User CRUD
     Route::post('listarUsers', 'UserController@listar');
+    Route::put('user/update/tokenfb/{idUser}', 'UserController@updateTokenFirebase');
+
 
     Route::put('setClave/{api_token}', 'UserController@setClave'); // Cambio de clave
 
@@ -180,13 +193,19 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // OBTENER RUBROS
     Route::get('rubro/filter', 'ProductoController@getAllRubros');
 
+    // OBTENER SUBSUBROS1
+    Route::get('rubro/listarSubrubro1', 'ProductoController@listarSubrubro1');
+    // OBTENER SUBSUBROS2
+    Route::get('rubro/listarSubrubro2', 'ProductoController@listarSubrubro2');
+
+    //LISTAR POR RUBRO, SURUBRO1 O SUBRUBRO2
+    Route::post('filtro3pack','ProductoController@filtro3pack');
+
     // OBTENER MARCAS
     Route::get('marcas/filter', 'ProductoController@getAllMarcas');
 
     // OBTENER MARCAS CON SEARCH
     Route::get('marcas/{search?}', 'ProductoController@searchMarca');
-
-
 
     // Obtener pedidos de un chofer
     Route::post('order/all/driver', 'OrderDriverController@getAllByCodeDriver');
@@ -198,9 +217,13 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::post('order/all/products', 'OrderDriverController@getProductByPedido');
 
     // CAMBIAR ESTADAO DE UN PEDIDO
-    Route::post('order/chanue/state', 'OrderDriverController@chagueEstadoPedido');
+    Route::post('order/changue/state', 'OrderDriverController@chagueEstadoPedido');
 
-    // CAMBIAR ESTADAO DE UN PEDIDO
+    //  FINALIZAMOS UN PEDIDO ESTADAO DE UN PEDIDO
+    Route::post('order/finish', 'OrderDriverController@finishPedido');
+
+
+    // DEVOLVER  DE UN PEDIDO
     Route::post('order/devolution/product', 'OrderDriverController@devolutionProduct');
 
     // para el buscador general
@@ -211,6 +234,18 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     //para listar Las SeccionApp
     Route::get('listarSeccionApp','SeccionAppController@listar');
+
+    //Lo mas vendido
+    Route::get('loMasVendido','ProductoController@loMasVendido');
+
+    Route::post('crearPerfilCliente','PerfilClientesController@store');
+    Route::put('actualizarPerfilCliente/{idPerfilCliente}','PerfilClientesController@update');
+    Route::delete('eliminarPerfilCliente/{idPerfilCliente}','PerfilClientesController@destroy');
+
+
+    //Listar los productos del body a travez del idOrderHeader
+    Route::get('listarProductosBodyPorIdOrferHeader/{fk_idOrderHeader}','OrderBodyController@listarProductosBodyPorIdOrferHeader');
+
 
 });
 

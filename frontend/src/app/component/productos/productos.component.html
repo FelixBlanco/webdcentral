@@ -1,0 +1,111 @@
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <img class="img-fluid" src="assets/banner/banner_principal_mascotas.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <mat-spinner *ngIf="!rubrosList && !subRubrosAList && !subRubrosBList" [diameter]="80" style="margin: 0 auto;"></mat-spinner>
+                        <ng-container *ngIf="rubrosList && subRubrosAList && subRubrosBList">
+                            <p class="bg-naranja rounded text-white p-2">FILTROS</p>
+                            <form>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="rubro" class="font-bold">RUBRO</label>
+                                            <select class="form-control" id="rubro" aria-describedby="rubroHelp">
+                                                <option>Seleccione...</option>
+                                                <option *ngFor="let rubro of rubrosList" value="{{rubro.rubro}}">{{rubro.rubro}}</option>
+                                            </select>
+                                            <small id="rubroHelp" class="form-text text-muted">Lorem ipsum dolor sit amet</small>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="subRubroA" class="font-bold">SUB-RUBRO A</label>
+                                            <select class="form-control" id="subRubroA" aria-describedby="subRubroAHelp">
+                                                <option value="">Seleccione...</option>
+                                                <option *ngFor="let rubro of subRubrosAList" value="{{rubro.SubRubro1}}">{{rubro.SubRubro1}}</option>
+                                            </select>
+                                            <small id="subRubroAHelp" class="form-text text-muted">Lorem ipsum dolor sit amet</small>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="subRubroB" class="font-bold">SUB-RUBRO B</label>
+                                            <select class="form-control" id="subRubroB" aria-describedby="subRubroBHelp">
+                                                <option>Seleccione...</option>
+                                                <option *ngFor="let rubro of subRubrosBList" value="{{rubro.SubRubro2}}">{{rubro.SubRubro2}}</option>
+                                            </select>
+                                            <small id="subRubroBHelp" class="form-text text-muted">Lorem ipsum dolor sit amet</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </ng-container>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <button class="btn btn-success font-bold" (click)="filterProducts()" disabled>BUSCAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col">
+                <div class="text-center">
+                    <h2 class="txt-azul font-bold">PRODUCTOS</h2>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <ng-container *ngIf="productsList.length">
+                        <h4 class="font-italic txt-azul text-uppercase font-bold">{{productsList[0].nombre}}</h4>
+                        <h4 class="font-italic txt-azul text-uppercase font-bold">paginator</h4>
+                    </ng-container>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-spinner *ngIf="!productsList" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
+                <ng-container *ngIf="productsList" [ngSwitch]="productsList.length">
+                    <ng-container *ngSwitchCase="0">
+                        <div class="container">
+                            <div class="row m-3">
+                                <div class="col">
+                                    <div class="card">
+                                        <p class="card-body font-italic text-center text-muted">No hay productos que listar...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                        <div class="mb-3">
+                            <ngb-carousel>
+                                <ng-container *ngFor="let item of productsList; let i=index">
+                                    <ng-container *ngIf="isACarruselItem(i)">
+                                        <ng-template ngbSlide>
+                                            <app-productos-carousel-page [items]="getPartialItems(i, i+7)"></app-productos-carousel-page>
+                                        </ng-template>
+                                    </ng-container>
+                                </ng-container>
+                            </ngb-carousel>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</section>

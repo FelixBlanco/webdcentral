@@ -25,9 +25,11 @@ class User extends Authenticatable
         'password',
         'userName',
         'fk_idPerfil',
+        'fk_idPerfilCliente',
         'fotoPerfil',
         'Codigo_Transporte',
-        'Codigo_Cliente'
+        'Codigo_Cliente',
+        'tokenFirebase'
     ];
 
     /**
@@ -52,6 +54,11 @@ class User extends Authenticatable
     public function perfil()
     {
         return $this->belongsTo('App\Perfil', 'fk_idPerfil');
+    }
+
+    public function perfilCliene()
+    {
+        return $this->belongsTo('App\PerfilCliente', 'fk_idPerfilCliente');
     }
 
     public function ReclamosSugerencias()

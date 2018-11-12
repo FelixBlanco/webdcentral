@@ -11,6 +11,7 @@
                 <option>5</option>
                 <option>10</option>
                 <option>20</option>
+                <option *ngIf="questions" value="{{questions.length}}">Todos ({{questions.length}})</option>
               </select>
           </div>
           <div class="col-md-7">
@@ -112,7 +113,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-success" data-dismiss="modal" [disabled]="questionForm.invalid" (click)="save()">Guardar</button>
+        <button type="submit" class="btn btn-success" [disabled]="questionForm.invalid || inPromise" (click)="save()">Guardar</button>
       </div>
     </div>
   </div>
@@ -142,7 +143,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-info" data-dismiss="modal" [disabled]="questionUpdateForm.invalid" (click)="update()">Guardar</button>
+        <button type="submit" class="btn btn-info" [disabled]="questionUpdateForm.invalid || inPromise" (click)="update()">Guardar</button>
       </div>
     </div>
   </div>
@@ -163,7 +164,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-danger" data-dismiss="modal" (click)="delete()">Eliminar</button>
+        <button type="submit" class="btn btn-danger" [disabled]="inPromise" (click)="delete()">Eliminar</button>
       </div>
     </div>
   </div>
@@ -190,7 +191,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-warning text-white" data-dismiss="modal" (click)="updateStatus()">Aceptar</button>
+        <button type="submit" class="btn btn-warning text-white" [disabled]="inPromise" (click)="updateStatus()">Aceptar</button>
       </div>
     </div>
   </div>

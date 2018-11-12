@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 class NotificationController extends Controller {
 
     public function listar(){
+
         $noti=Notification::get();
         $response = [
             'msj' => 'Lista de notificaciones',
@@ -20,6 +21,28 @@ class NotificationController extends Controller {
         return response()->json($response, 201);
 
     }
+
+    public function getByIdUser($idUser){
+        $noti=Notification::where("fk_idUser","=",$idUser)
+        ->orWhere("fk_idUser","=",'')
+        ->get();
+        $response = [
+            'msj' => 'Lista de notificaciones',
+            'notifi'=>$noti
+        ];
+
+        return response()->json($response, 201);
+
+    }
+
+
+    public function confirm($idNotification){
+        $rs = Notification::findOrFail($idNotification);
+        $rs->fill([ 'isConfirm'=> 1]);
+        $rs->save();
+
+    }
+    
 
     public function add(Request $request) {
 
@@ -36,11 +59,11 @@ class NotificationController extends Controller {
         DB::beginTransaction();
         try {
 
-            $Coupons                          = new Notification();
-            $Coupons->titleNotification       = $request->titleNotification;
-            $Coupons->descriptionNotification = $request->descriptionNotification;
-            $Coupons->fk_idSecctionApp        = $request->fk_idSecctionApp;
-            $Coupons->save();
+            $notifications                          = new Notification();
+            $notifications->titleNotification       = $request->titleNotification;
+            $notifications->descriptionNotification = $request->descriptionNotification;
+            $notifications->fk_idSecctionApp        = $request->fk_idSecctionApp;
+            $notifications->save();
             DB::commit();
 
 
@@ -50,6 +73,7 @@ class NotificationController extends Controller {
 
             $data = [
                 'descriptionNotification' => @$request->descriptionNotification,
+                'idSecctionApp' => $request->fk_idSecctionApp
             ];
 
             $this->sendNotificationFb($Coupons->titleNotification, $data);
@@ -69,8 +93,8 @@ class NotificationController extends Controller {
 
     }
 
-    //
-    public function sendNotificationFb($title, $data, $tokenFB = null) {
+    // ENVIO DE NOTIFICACION FIRE BASE //
+    public static  function sendNotificationFb($title, $data, $tokenFB = null) {
 
         $notification = [
             'title'   => $title, // works fine here

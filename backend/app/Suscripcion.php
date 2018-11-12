@@ -17,4 +17,9 @@ class Suscripcion extends Model
         'motivoDeCancelacion',
         'fk_idStatusSistema',
     ];
+
+    public function estatusSitema()
+    {
+        return $this->belongsTo('App\StatusSistema', 'fk_idStatusSistema');
+    }
 }

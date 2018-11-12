@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import * as bootstrap from 'bootstrap';
 
@@ -50,6 +50,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BusquedaComponent } from './component/busqueda/busqueda.component';
 import { RecomprarInicioComponent } from './component/recomprar-inicio/recomprar-inicio.component';
 import { ServiciosInicioComponent } from './component/servicios-inicio/servicios-inicio.component';
+import { ProductosCarouselPageComponent } from './component/productos/productos-carousel-page/productos-carousel-page.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -59,6 +60,8 @@ const appRoutes: Routes = [
   { path: 'ofertas', component: OfertasInicioComponent },
   { path: 'recompra', component: RecomprarInicioComponent },
   { path: 'servicios', component: ServiciosInicioComponent },
+  { path: 'productos', component: ProductosComponent },
+
   
   { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
   
@@ -101,6 +104,7 @@ const appRoutes: Routes = [
     BusquedaComponent,
     RecomprarInicioComponent,
     ServiciosInicioComponent,
+    ProductosCarouselPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,7 +117,8 @@ const appRoutes: Routes = [
     FontAwesomeModule,
     ToastrModule.forRoot(),
     MaterialUiModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [
     CarritoService,
