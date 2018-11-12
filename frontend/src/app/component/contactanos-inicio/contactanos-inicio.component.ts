@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfgFooterService } from '../../services/confg-footer.service';
 
 @Component({
   selector: 'app-contactanos-inicio',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactanosInicioComponent implements OnInit {
 
-  constructor() { }
+  configFooter:any; 
+
+  constructor(private cf_service: ConfgFooterService) { }
 
   ngOnInit() {
+    this.cf_service._getConfigFooter().subscribe(
+      resp => {
+        console.log(resp)
+        this.configFooter = resp; 
+      }
+    )
   }
 
 }

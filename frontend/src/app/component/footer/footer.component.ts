@@ -9,11 +9,7 @@ import { ConfigColorService } from '../../services/config-color.service';
 })
 export class FooterComponent implements OnInit {
 
-  footer_data:any = {
-    direccion: null, 
-    nro_contacto: null, 
-    email: null
-  };
+  footer_data:any;
   
   colorUno:any; 
 

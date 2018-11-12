@@ -39,6 +39,7 @@ return array(
     'App\\Http\\Controllers\\OrderBodyController' => $baseDir . '/app/Http/Controllers/OrderBodyController.php',
     'App\\Http\\Controllers\\OrderDriverController' => $baseDir . '/app/Http/Controllers/OrderDriverController.php',
     'App\\Http\\Controllers\\OrderHeaderController' => $baseDir . '/app/Http/Controllers/OrderHeaderController.php',
+    'App\\Http\\Controllers\\PerfilClientesController' => $baseDir . '/app/Http/Controllers/PerfilClientesController.php',
     'App\\Http\\Controllers\\PerfilController' => $baseDir . '/app/Http/Controllers/PerfilController.php',
     'App\\Http\\Controllers\\PreguntasFrecuenteController' => $baseDir . '/app/Http/Controllers/PreguntasFrecuenteController.php',
     'App\\Http\\Controllers\\ProductSincronizeController' => $baseDir . '/app/Http/Controllers/ProductSincronizeController.php',
