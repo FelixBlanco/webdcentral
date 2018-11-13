@@ -248,6 +248,10 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('listarProductosBodyPorIdOrferHeader/{fk_idOrderHeader}','OrderBodyController@listarProductosBodyPorIdOrferHeader');
 
 
+    //listar todas las cabeceras de las ventas que se han hecho
+    Route::get('historialVentas/{id_cliente}','OrderBodyController@historialVentas');
+
+
 });
 
 
