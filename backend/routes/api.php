@@ -241,6 +241,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::post('crearPerfilCliente','PerfilClientesController@store');
     Route::put('actualizarPerfilCliente/{idPerfilCliente}','PerfilClientesController@update');
     Route::delete('eliminarPerfilCliente/{idPerfilCliente}','PerfilClientesController@destroy');
+    Route::get('perfilesClientes/listar','PerfilClientesController@listar');
 
 
     //Listar los productos del body a travez del idOrderHeader
