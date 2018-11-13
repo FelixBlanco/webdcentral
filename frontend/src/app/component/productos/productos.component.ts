@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Injector } from '@angular/core';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
-import { Producto } from 'src/app/services/productos.service';
+import { Producto, ProductosService } from 'src/app/services/productos.service';
 import { RubrosService } from 'src/app/services/rubros.service';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-productos',
@@ -11,17 +12,36 @@ import { AlertsService } from 'src/app/services/alerts.service';
 })
 export class ProductosComponent implements OnInit {
 
+
   productsList: Producto[];
   rubrosList: any[];
   subRubrosAList: any[];
   subRubrosBList: any[];
 
+  filterForm: FormGroup;
+  inPromise: boolean;
+
+  currentPage: number;
+  pages: number;
+  itemsPerPage: number[] = [];
 
   constructor(
     private productsBehavior: ProductsBehaviorService,
     private rubrosService: RubrosService,
-    private as: AlertsService
-  ) { }
+    private as: AlertsService,
+    private fb: FormBuilder,
+    private productosService: ProductosService
+  ) { 
+
+    this.filterForm = this.fb.group({
+      rubro: [''],
+      subRubroA: [''],
+      subRubroB: [''],
+    });
+
+    this.pages = 0;
+    
+  }
 
   ngOnInit() {
     this.iniBehavior();
@@ -30,9 +50,15 @@ export class ProductosComponent implements OnInit {
 
   setProducts(products: Producto[]): void{
     products.forEach( (product) => {
-      product.cantidad = !product.cantidad ? 0 : product.cantidad;
+      product.cantidad = !product.cantidad ? 1 : product.cantidad;
     })
-    this.productsList = products
+    this.productsList = products;
+
+    this.setTotalPages();
+  }
+
+  setCurrent({current}){
+    this.currentPage = Number(current.substr(current.length - 1)) + 1;
   }
 
   iniBehavior() : void{
@@ -48,7 +74,6 @@ export class ProductosComponent implements OnInit {
       }else{
         console.error(resp);
         this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Rubros');
-        //TODO err
       }
     }, error => {
       console.error(error);
@@ -61,7 +86,6 @@ export class ProductosComponent implements OnInit {
       }else{
         console.error(resp);
         this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Sub Rubros A');
-        //TODO err
       }
     }, error => {
       console.error(error);
@@ -74,7 +98,6 @@ export class ProductosComponent implements OnInit {
       }else{
         console.error(resp);
         this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Sub Rubros B');
-        //TODO err
       }
     }, error => {
       console.error(error);
@@ -98,11 +121,56 @@ export class ProductosComponent implements OnInit {
       }
     });
 
+    this.itemsPerPage.push(items.length);
     return items;
   }
 
   filterProducts(){
+    const rubros = this.filterForm.value;
+
+    this.inPromise = true;
+    this.productosService.filter3Pack(rubros).subscribe((resp) => {
+      if(resp.ok && resp.status === 201){
+        this.setProducts(resp.body.productos);
+      }else{
+        console.error(resp);
+        this.as.msg('ERR', 'Ha ocurrido un error interno => Filtrar por Rubros');
+      }
+      this.inPromise = false;
+    },error => {
+      console.error(error);
+      this.as.msg('ERR', 'Ha ocurrido un error interno => Filtrar por Rubros');
+      this.inPromise = false;
+    });
     
+  }
+
+  someAreEmpty(): boolean{
+    const values = this.filterForm.value;
+    return (values.rubro === '') 
+      && (values.subRubroA === '') 
+      && (values.subRubroB === '');
+  }
+
+  setTotalPages(): void{
+    this.productsList.forEach((val,index) => {
+      if(index % 8 === 0){
+        this.pages++;
+      }
+    })
+  }
+
+  clearFilter(){
+    this.filterForm.patchValue({
+      rubro: '',
+      subRubroA: '',
+      subRubroB: '',
+    })
+  }
+  
+
+  itemsOf(): number{
+    return this.itemsPerPage[this.currentPage - 1];
   }
 
 }

@@ -60,4 +60,8 @@ export class ProductosService {
     search(searchValue: string): Observable<HttpResponse<SearchBody>>{
       return this.http.get<any>(`${environment.apiHost}/api/v1/buscarGeneral/${encodeURI(searchValue)}`,{observe: 'response'});
     }
+
+    filter3Pack(filterValues: {rubro?: string, SubRubro1?: string; SubRubro2?: string}): Observable<HttpResponse<{productos: Producto[]}>>{
+      return this.http.post<any>(`${environment.apiHost}/api/v1/filtro3pack`,filterValues,{observe: 'response'});
+    }
 }

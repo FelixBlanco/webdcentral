@@ -10,7 +10,9 @@ import {
     faArrowLeft as fasArrowLeft,
     faPhoneVolume as fasPhoneVolume,
     faAt as fasAt,
-    faSearch as fasSearch
+    faSearch as fasSearch,
+    faAngleLeft as fasAngleLeft,
+    faAngleRight as fasAngleRigth
 } from '@fortawesome/free-solid-svg-icons';
 
 export const FA_ICONS: any = [
@@ -23,6 +25,8 @@ export const FA_ICONS: any = [
     fasArrowLeft,
     fasPhoneVolume,
     fasAt,
-    fasSearch
+    fasSearch,
+    fasAngleLeft,
+    fasAngleRigth
 ];
 
