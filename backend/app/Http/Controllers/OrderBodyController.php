@@ -14,11 +14,11 @@ class OrderBodyController extends Controller {
 
         DB::beginTransaction();
 
-        if(!is_null($fk_idOrderHeader)){
+        if (! is_null($fk_idOrderHeader)) {
 
-            $OH=orderHeader::find($fk_idOrderHeader);
+            $OH = orderHeader::find($fk_idOrderHeader);
 
-            if(!is_null($OH)){
+            if (! is_null($OH)) {
 
                 foreach ($request->items as $item) {
 
@@ -66,26 +66,34 @@ class OrderBodyController extends Controller {
                 ];
 
                 DB::commit();
+
                 return response()->json($response, 201);
 
-            }else{
+            } else {
 
                 $response = [
-                    'msj'         => 'El id de la orden no existe',
+                    'msj' => 'El id de la orden no existe',
                 ];
 
                 return response()->json($response, 404);
             }
 
-        }else{
+        } else {
 
             $response = [
-                'msj'         => 'Falta el id de la orden',
+                'msj' => 'Falta el id de la orden',
             ];
 
             return response()->json($response, 404);
         }
 
 
+    }
+
+    public function listarProductosBodyPorIdOrferHeader($fk_idOrderHeader) {
+
+        $productos = orderBody::where('fk_idOrderHeader', $fk_idOrderHeader)->get();
+
+        return response()->json($productos, 201);
     }
 }

@@ -238,6 +238,15 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     //Lo mas vendido
     Route::get('loMasVendido','ProductoController@loMasVendido');
 
+    Route::post('crearPerfilCliente','PerfilClientesController@store');
+    Route::put('actualizarPerfilCliente/{idPerfilCliente}','PerfilClientesController@update');
+    Route::delete('eliminarPerfilCliente/{idPerfilCliente}','PerfilClientesController@destroy');
+
+
+    //Listar los productos del body a travez del idOrderHeader
+    Route::get('listarProductosBodyPorIdOrferHeader/{fk_idOrderHeader}','OrderBodyController@listarProductosBodyPorIdOrferHeader');
+
+
 });
 
 
