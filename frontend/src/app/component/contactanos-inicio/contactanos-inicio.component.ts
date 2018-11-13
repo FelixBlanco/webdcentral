@@ -15,7 +15,6 @@ export class ContactanosInicioComponent implements OnInit {
   ngOnInit() {
     this.cf_service._getConfigFooter().subscribe(
       resp => {
-        console.log(resp)
         this.configFooter = resp; 
       }
     )

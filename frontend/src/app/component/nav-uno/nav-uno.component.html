@@ -36,9 +36,16 @@
         <li class="nav-item txt-blanco" *ngIf="!isSession" style="margin-left: -2%;">
           <a href="#" class="nav-link" data-toggle="modal" data-target="#registraseModal">REGISTRATE</a>
         </li>
+        
+        <!-- ADMIN -->
         <li class="nav-item txt-blanco" *ngIf="isSession">
           <a class="nav-link"  [ngStyle]=" colorDos ? {color: colorDos } : {color: '#FFFFFF' }" >{{ userName }}</a>
         </li>
+
+        <li class="nav-item txt-blanco" *ngIf="isSession">
+          <a routerLink="perfil-cliente" class="nav-link">Perfil Cliente</a>
+        </li>
+      
 
         <li class="nav-item txt-blanco" style="margin-left:-3%;">
           <a href="#" class="nav-link">

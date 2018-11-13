@@ -13,8 +13,8 @@ class PerfilClientesController extends Controller {
 
         $this->validate($request, [
             'nombreComercio'   => 'required',
-            'nombre'           => 'required',
-            'apellido'         => 'required',
+            // 'nombre'           => 'required',
+            // 'apellido'         => 'required',
             'documento'        => 'required',
             'correo'           => 'required',
             'telefono'         => 'required',
@@ -24,8 +24,8 @@ class PerfilClientesController extends Controller {
 
         ], [
             'nombreComercio.required'   => 'El campo es requerido',
-            'nombre.required'           => 'El campo es requerido',
-            'apellido.required'         => 'El campo es requerido',
+            // 'nombre.required'           => 'El campo es requerido',
+            // 'apellido.required'         => 'El campo es requerido',
             'documento.required'        => 'El campo es requerido',
             'correo.required'           => 'El campo es requerido',
             'telefono.required'         => 'El campo es requerido',

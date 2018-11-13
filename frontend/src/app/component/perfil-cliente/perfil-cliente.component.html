@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    
+    <div class="col-md-6">
+
+      <form [formGroup]="formData">
+
+        <div class="form-group">
+          <label for="">Nombre del Comercio</label>
+          <input type="text" class="form-control" formControlName="nombreComercio" [(ngModel)]="form.nombreComercio" placeholder="Ingrese Nombre del Comercio">
+        </div>
+  
+        <div class="form-group">
+          <label for="">Nombre</label>      
+          <input type="text" class="form-control" formControlName="nombre" [(ngModel)]="form.nombre" placeholder="Nombre">  
+        </div>
+  
+        <div class="form-group">
+          <label for="">Apellido</label>      
+          <input type="text" class="form-control" formControlName="apellido" [(ngModel)]="form.apellido" placeholder="Apellido">
+        </div>
+  
+        <div class="form-group">
+          <label for="">Documento DNI</label>      
+          <input type="text" class="form-control" formControlName="documento_dni" [(ngModel)]="form.documento_dni" placeholder="Documento DNI">
+        </div>
+  
+        <div class="form-group">
+          <label for="">Documento Otro</label>
+          <input type="text" class="form-control" formControlName="documento_otro" [(ngModel)]="form.documento_otro" placeholder="Documento Otro">        
+        </div>
+  
+        <div class="form-group">
+          <label for="">Correo Electronico</label>
+          <input type="email" class="form-control" formControlName="correo" [(ngModel)]="form.correo" placeholder="Ingrese Email">
+        </div>
+  
+        <div class="form-group">
+          <label for="">Telefono</label>
+          <div class="form-inline">
+            <input type="phone" class="form-control" formControlName="telefono_code" [(ngModel)]="form.telefono_code" placeholder="(011)" size="5">
+            <input type="phone" class="form-control" formControlName="telefono" [(ngModel)]="form.telefono" placeholder="Ingrese Telefono">
+          </div>        
+        </div>
+  
+        <div class="form-group">
+          <label for="">Celular</label>
+          <div class="form-inline">
+            <input type="phone" class="form-control" formControlName="celular_code" [(ngModel)]="form.celular_code" placeholder="(011)" size="5">
+            <input type="phone" class="form-control" formControlName="celular" [(ngModel)]="form.celular" placeholder="Ingrese Celular">
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="">Domicilio Entrega</label>
+          <input type="text" class="form-control" formControlName="domicilioEntrega" [(ngModel)]="form.domicilioEntrega" placeholder="Ingresar Domicilio entrega">
+        </div>      
+  
+        <div class="form-group">
+          <button class="btn btn-success btn-block" (click)="crear()" *ngIf="isNuevo" [disabled]="!formData.valid">Crear</button>
+          <button class="btn btn-primary btn-block" (click)="update()" *ngIf="!isNuevo">Actualizar</button>
+        </div>  
+      
+      </form>
+
+    </div>
+
+  </div>
+</div>
