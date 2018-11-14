@@ -156,4 +156,21 @@ class PerfilClientesController extends Controller
 
         return response()->json($response, 201);
     }
+
+    public function getPerfil($id)
+    {
+        $perfil_cliente = PerfilCliente::where('fk_idPerfilCliente',$id)->first();
+       
+       if (is_null($perfil_cliente)) {               
+            return null; 
+       }else{
+            $response = [
+                'msj'      => 'Perfiles',
+                'perfil' => $perfil_cliente,
+            ];
+
+            return response()->json($response, 201);        
+       }
+
+    }
 }

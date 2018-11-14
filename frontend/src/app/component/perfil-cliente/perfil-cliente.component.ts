@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { PerfilClienteService } from '../../services/perfil-cliente.service';
 import { AlertsService } from '../../services/alerts.service'
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-perfil-cliente',
@@ -15,7 +16,7 @@ export class PerfilClienteComponent implements OnInit {
   form:any={ 
     idPerfilCliente: null, nombreComercio: null, nombre: null, apellido: null,
     documento_dni:null, documento_otro:null, correo: null, telefono_code: null, 
-    telefono: null, celular_code: null, celular: null, domicilioEntrega : null
+    telefono: null, celular_code: null, celular: null, fk_idPerfilCliente: null
   };
   
   isNuevo:any; 
@@ -24,6 +25,7 @@ export class PerfilClienteComponent implements OnInit {
     private perfilService: PerfilClienteService,
     private as: AlertsService,
     private fb: FormBuilder, 
+    private user: LoginService
   ) { 
 
     this.formData = this.fb.group({
@@ -37,13 +39,40 @@ export class PerfilClienteComponent implements OnInit {
       telefono        : ['', Validators.required],
       celular_code    : ['', Validators.required],
       celular         : ['', Validators.required],
-      domicilioEntrega : ['', Validators.required],
     })
 
   }
 
   ngOnInit() {
+
     this.isNuevo = true; // Cuando llamemos la informacion, consultamos si existe en perfil-cliente
+
+    this.getPerfilCliente();
+  
+  }
+
+  getPerfilCliente(){
+    //Solicitamos la informacion del usuario 
+    this.user._getAuthUser().subscribe(
+      (resp:any) => { 
+
+        this.form.fk_idPerfilCliente = resp.id // agregamos el ID
+
+        // verificamos si ya tiene su informacio 
+        this.perfilService._getPerfilCliente(resp.id).subscribe(
+          (resp:any) => {
+            // Como ya existe , vamos a editar
+            this.form = resp.perfil; 
+            this.isNuevo = false;
+          },
+          error => {
+            // Como no hay perfil, le decimos crear            
+            this.isNuevo = true;            
+          }
+        )
+
+      }
+    )    
   }
 
   crear(){    
@@ -51,14 +80,13 @@ export class PerfilClienteComponent implements OnInit {
     const data:any = { 
       nombreComercio: this.form.nombreComercio, nombre:  this.form.nombre, apellido:  this.form.apellido,
       documento_dni: this.form.documento_dni, documento_otro: this.form.documento_otro, correo:  this.form.correo, 
-      telefono:  this.form.telefono_code +''+ this.form.telefono, celular:  this.form.celular_code +''+ this.form.celular, 
-      domicilioEntrega :  this.form.domicilioEntrega
+      telefono:  this.form.telefono_code +''+ this.form.telefono, celular:  this.form.celular_code +''+ this.form.celular
     } 
 
     this.perfilService._crear(data).subscribe(
       resp =>{
-        console.log(resp)
         this.as.msg('OK','Registro exitoso')
+        this.getPerfilCliente();
       },
       error => {
         this.as.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
@@ -69,8 +97,8 @@ export class PerfilClienteComponent implements OnInit {
   update(){
     this.perfilService._update(this.form, this.form.idPerfilCliente).subscribe(
       resp => {
-        console.log(resp)
         this.as.msg('OK','Actualizacion completada')
+        this.getPerfilCliente();
       },
       error => {
         this.as.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
