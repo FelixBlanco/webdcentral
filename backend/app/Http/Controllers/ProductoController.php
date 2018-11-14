@@ -369,8 +369,6 @@ class ProductoController extends Controller {
                 }
             }
 
-            Producto::c
-
            $result_unico=array_unique($result);
 
 
