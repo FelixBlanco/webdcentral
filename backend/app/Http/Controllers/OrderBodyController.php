@@ -97,4 +97,11 @@ class OrderBodyController extends Controller {
 
         return response()->json($productos, 201);
     }
+
+    public function historialVentas($id_cliente){
+
+        $th=orderHeader::where('fk_idUserClient',$id_cliente)->with('orderBody')->get();
+
+        return response()->json($th, 201);
+    }
 }

@@ -5,27 +5,28 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PerfilCliente extends Model {
-
+class PerfilCliente extends Model
+{
     use SoftDeletes;
-    protected $table      = 'tb_perfil_clientes';
+
+    protected $table = 'tb_perfil_clientes';
+
     protected $primaryKey = 'idPerfilCliente';
 
     protected $fillable = [
         'nombreComercio',
         'nombre',
         'apellido',
-        'documento',
+        'documento_dni',
+        'documento_otro',
         'correo',
         'telefono',
         'celular',
-        'domicilioEntrega',
-        'facturacion',
+        'fk_idPerfilCliente',
     ];
 
     public function user()
     {
-        return $this->hasOne('App\User','fk_idPerfilCliente','tb_perfil_clientes');
+        return $this->belongsTo('App\User', 'fk_idPerfilCliente');
     }
-
 }

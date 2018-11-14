@@ -250,10 +250,15 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::post('crearPerfilCliente','PerfilClientesController@store');
     Route::put('actualizarPerfilCliente/{idPerfilCliente}','PerfilClientesController@update');
     Route::delete('eliminarPerfilCliente/{idPerfilCliente}','PerfilClientesController@destroy');
+    Route::get('perfilesClientes/listar','PerfilClientesController@listar');
 
 
     //Listar los productos del body a travez del idOrderHeader
     Route::get('listarProductosBodyPorIdOrferHeader/{fk_idOrderHeader}','OrderBodyController@listarProductosBodyPorIdOrferHeader');
+
+
+    //listar todas las cabeceras de las ventas que se han hecho
+    Route::get('historialVentas/{id_cliente}','OrderBodyController@historialVentas');
 
 
 });
