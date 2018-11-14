@@ -19,7 +19,7 @@ export class ConfgFooterService {
   constructor(private http: HttpClient) {}
 
   _getConfigFooter(){
-    return this.http.get(`${environment.apiHost}api/v1/config-footer`,httpOptions);
+    return this.http.get(`${environment.apiHost}/api/v1/config-footer`,httpOptions);
   }
 
   _upgradeConfigFooter(data:any){

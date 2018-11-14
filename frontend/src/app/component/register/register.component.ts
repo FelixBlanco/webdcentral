@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from '../../services/register.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AlertsService } from '../../services/alerts.service';
 
 declare var $:any;
@@ -22,7 +22,6 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private _registerService:RegisterService,
-    private route: ActivatedRoute,
     private router: Router,
     private _alertService: AlertsService
   ) { }
@@ -56,6 +55,7 @@ export class RegisterComponent implements OnInit {
               password_confirmation: this.v_register.password,
               fk_idPerfil: 2
             };
+            console.log(data_i);
 
             this._registerService._addRegister(data_i).subscribe( 
               (resp:any) => { 

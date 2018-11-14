@@ -7,7 +7,7 @@
               <mat-spinner mode="indeterminate" [diameter]="50" style="margin: 0 auto;"></mat-spinner>
           </ng-container>
           <ng-container *ngIf="!inPromise">
-            <p *ngIf="!preguntasList" class="text-muted text-center font-italic">No existen preguntas registradas...</p>
+            <p *ngIf="!preguntasList || !preguntasList.length" class="text-muted text-center font-italic">No existen preguntas registradas...</p>
             <ng-container *ngIf="preguntasList">
               <ng-container  *ngFor="let pregunta of preguntasList">
                   <ng-container *ngIf="pregunta.fk_idStatusSistema != 2">
