@@ -9,7 +9,8 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens,Notifiable;
+    use HasApiTokens, Notifiable;
+
     protected $table = 'tb_users';
 
     use SoftDeletes;
@@ -21,15 +22,14 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
-        'password',
         'userName',
+        'email',
         'fk_idPerfil',
-        'fk_idPerfilCliente',
         'fotoPerfil',
+        'montoCliente',
         'Codigo_Transporte',
         'Codigo_Cliente',
-        'tokenFirebase'
+        'tokenFirebase',
     ];
 
     /**
@@ -38,10 +38,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
-    protected $dates = ['created_at','deleted_at'];
+    protected $dates = ['created_at', 'deleted_at'];
 
     public function generateToken()
     {
@@ -58,11 +59,11 @@ class User extends Authenticatable
 
     public function perfilCliene()
     {
-        return $this->belongsTo('App\PerfilCliente', 'fk_idPerfilCliente');
+        return $this->hasOne('App\PerfilCliente', 'fk_idPerfilCliente');
     }
 
     public function ReclamosSugerencias()
     {
-        return $this->hasMany('App\ReclamosYSugerencia','fk_idUser'); //muchos reclamos
+        return $this->hasMany('App\ReclamosYSugerencia', 'fk_idUser'); //muchos reclamos
     }
 }

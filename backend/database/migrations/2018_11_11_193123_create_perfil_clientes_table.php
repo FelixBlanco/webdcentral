@@ -15,15 +15,16 @@ class CreatePerfilClientesTable extends Migration
     {
         Schema::create('tb_perfil_clientes', function (Blueprint $table) {
             $table->increments('idPerfilCliente');
-            $table->string('nombreComercio');
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->string('documento');
-            $table->string('correo');
-            $table->string('telefono');
-            $table->string('celular');
-            $table->string('domicilioEntrega');
-            $table->string('facturacion');
+            $table->string('nombreComercio')->nullable();
+            $table->string('nombre')->nullable();
+            $table->string('apellido')->nullable();
+            $table->string('documento_dni')->nullable();
+            $table->string('documento_otro')->nullable();
+            $table->string('correo')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('celular')->nullable();
+
+            $table->integer('fk_idPerfilCliente')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('email')->nullable();
             $table->integer('fk_idPerfil')->unsigned();
-            $table->integer('fk_idPerfilCliente')->unsigned()->nullable();
             $table->string('fotoPerfil')->nullable();
             $table->float('montoCliente')->nullable();
             $table->string('Codigo_Transporte')->nullable();

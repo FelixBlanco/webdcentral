@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 class OrderBodyController extends Controller {
 
     public function añadir(Request $request, $fk_idOrderHeader) {
+        dd($request->items);
 
         DB::beginTransaction();
 
@@ -95,5 +96,12 @@ class OrderBodyController extends Controller {
         $productos = orderBody::where('fk_idOrderHeader', $fk_idOrderHeader)->get();
 
         return response()->json($productos, 201);
+    }
+
+    public function historialVentas($id_cliente){
+
+        $th=orderHeader::where('fk_idUserClient',$id_cliente)->with('orderBody')->get();
+
+        return response()->json($th, 201);
     }
 }
