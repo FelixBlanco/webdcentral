@@ -11,6 +11,7 @@
           <h5 *ngSwitchCase="'questions'" class="modal-title text-uppercase font-bold text-white mt-1" id="ayudaLabel">preguntas frecuentes</h5>
           <h5 *ngSwitchCase="'howto'" class="modal-title text-uppercase font-bold text-white mt-1" id="ayudaLabel">¿cómo usar la plataforma?</h5>
           <h5 *ngSwitchCase="'contacts'" class="modal-title text-uppercase font-bold text-white mt-1" id="ayudaLabel">contáctanos</h5>
+          <h5 *ngSwitchCase="'whereare'" class="modal-title text-uppercase font-bold text-white mt-1" id="ayudaLabel">¿Donde estamos?</h5>
         </ng-container>
         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -112,60 +113,75 @@
             </button>
           </ng-container>
           <ng-container *ngSwitchCase="'whereare'">
-            <div class="container">
-              <div class="row justify-content-center">
-                <div class="col-6">
-                  <h6 class="font-bold text-uppercase text-center">horario de atención del local: <br> lunes a viernes: de 9 hs a 20hs / sábados 9hs a 14 hs</h6>
-                  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="2">
-                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-                  </agm-map>
+            <ng-container *ngIf="!footerConfig">
+              <div class="card m-3">
+                <div class="card-body">
+                  <p class="card-text">No existe información disponible</p>
                 </div>
               </div>
-              <div class="row">
-                <div class="flex-row d-flex align-items-stretch justify-content-center">
-                  <div class="col-3">
-                    <div class="number-wrap rounded-circle">
-                      <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
-                        <span class="font-bold">1</span>
-                      </div>
-                    </div>
-                    <div class="container-figure-sm mt-4 rounded">
-                      <div class="mt-4 mb-2">
-                        <fa-icon [ngClass]="'txt-naranja'" [icon]="['fas','bus']" size="4x"></fa-icon>
-                      </div>
-                      <h6 class="text-center font-bold txt-naranja text-uppercase">Colectivos</h6>
-                      <p class="text-muted m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus illum</p>
-                    </div>
+            </ng-container>
+            <ng-container *ngIf="footerConfig">
+              <div class="container">
+                <div class="row justify-content-center mb-3">
+                  <div class="col-6">
+                    <h6 class="font-bold text-uppercase text-center">horario de atención del local: <br> {{footerConfig.horarios}}</h6>
+                    <h6 *ngIf="!footerConfig.horarios" class="font-bold text-uppercase text-center">horario de atención del local: <br> <span class="text-muted font-italic">Disculpe no tenemos horarios disponibles</span></h6>
+                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16">
+                      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                    </agm-map>
                   </div>
-                  <div class="col-3">
-                    <div class="number-wrap rounded-circle">
-                      <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
-                        <span class="font-bold">2</span>
+                </div>
+                <div class="row">
+                  <div class="d-flex align-items-stretch justify-content-center" style="width: 100%;">
+                    <div class="col-3">
+                      <div class="number-wrap rounded-circle">
+                        <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
+                          <span class="font-bold">1</span>
+                        </div>
+                      </div>
+                      <div class="container-figure-sm mt-4 rounded">
+                        <div class="mt-4 mb-2">
+                          <fa-icon [ngClass]="'txt-naranja'" [icon]="['fas','bus']" size="4x"></fa-icon>
+                        </div>
+                        <h6 class="text-center font-bold txt-naranja text-uppercase">Colectivos</h6>
+                        <p *ngIf="footerConfig.colectivos" class="text-muted m-0">{{footerConfig.colectivos}}</p>
+                        <p *ngIf="!footerConfig.colectivos" class="text-muted font-italic m-0">No hay información disponible...</p>
                       </div>
                     </div>
-                    <div class="container-figure-sm mt-4 rounded" >
-                      <div class="mt-4 mb-2">
-                        <fa-icon [ngClass]="'txt-naranja'" [icon]="['fas','bus']" size="4x"></fa-icon>
+                    <div class="col-3">
+                      <div class="number-wrap rounded-circle">
+                        <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
+                          <span class="font-bold">2</span>
+                        </div>
                       </div>
-                      <h6 class="text-center font-bold txt-naranja text-uppercase">Colectivos</h6>
+                      <div class="container-figure-sm mt-4 rounded" >
+                        <div class="mt-4 mb-2">
+                          <fa-icon [ngClass]="'txt-naranja'" [icon]="['fas','subway']" size="4x"></fa-icon>
+                        </div>
+                        <h6 class="text-center font-bold txt-naranja text-uppercase">subtes</h6>
+                        <p *ngIf="footerConfig.subtes" class="text-muted m-0">{{footerConfig.subtes}}</p>
+                        <p *ngIf="!footerConfig.subtes" class="text-muted font-italic m-0">No hay información disponible...</p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-3">
-                    <div class="number-wrap rounded-circle">
-                      <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
-                        <span class="font-bold">3</span>
+                    <div class="col-3">
+                      <div class="number-wrap rounded-circle">
+                        <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
+                          <span class="font-bold">3</span>
+                        </div>
                       </div>
-                    </div>
-                    <div class="container-figure-sm mt-4 rounded">
-                      <div class="mt-4 mb-2">
-                        <fa-icon [ngClass]="'txt-naranja'" [icon]="['fas','bus']" size="4x"></fa-icon>
+                      <div class="container-figure-sm mt-4 rounded">
+                        <div class="mt-4 mb-2">
+                          <fa-icon [ngClass]="'txt-naranja'" [icon]="['fas','car']" size="4x"></fa-icon>
+                        </div>
+                        <h6 class="text-center font-bold txt-naranja text-uppercase">avenidas cercanas</h6>
+                        <p *ngIf="footerConfig.avenidas" class="text-muted m-0">{{footerConfig.avenidas}}</p>
+                        <p *ngIf="!footerConfig.avenidas" class="text-muted font-italic m-0">No hay información disponible...</p>
                       </div>
-                      <h6 class="text-center font-bold txt-naranja text-uppercase">Colectivos</h6>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </ng-container>
           </ng-container>
         </ng-container>
       </div>

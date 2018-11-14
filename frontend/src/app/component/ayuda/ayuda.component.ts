@@ -11,8 +11,8 @@ export class AyudaComponent implements OnInit {
   section: 'home' | 'questions' | 'howto' | 'contact' | 'whereare';
   footerConfig: any;
 
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat: number;
+  lng: number;
   constructor(private footerConfigService: ConfgFooterService) {
     this.getConfigFooter();
   }
@@ -27,8 +27,9 @@ export class AyudaComponent implements OnInit {
 
   getConfigFooter(){
     this.footerConfigService._getConfigFooter().subscribe( (resp) => {
-      console.log('Configración de footer:',resp);
       this.footerConfig = resp;
+      this.lat = Number(this.footerConfig.latitud);
+      this.lng = Number(this.footerConfig.longitud);
     })
   }
   
