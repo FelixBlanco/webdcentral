@@ -39,7 +39,6 @@ class ConfigFooterController extends Controller
             $d->subtes = $request->subtes;
             $d->colectivos = $request->colectivos;
             $d->avenidas = $request->avenidas;
-            $d->latitud = $request->latitud;
 
             $d->save();
         }
