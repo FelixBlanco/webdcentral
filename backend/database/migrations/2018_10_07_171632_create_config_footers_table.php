@@ -26,7 +26,6 @@ class CreateConfigFootersTable extends Migration {
             $table->string('subtes')->nullable();
             $table->string('colectivos')->nullable();
             $table->string('avenidas')->nullable();
-            $table->string('latitud')->nullable();
 
 
             $table->timestamps();
