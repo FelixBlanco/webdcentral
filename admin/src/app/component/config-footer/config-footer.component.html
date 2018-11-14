@@ -8,11 +8,36 @@
       </div>
       <div class="form-group">
         <label>Numero de Contactos</label>
-        <input type="text"  placeholder="Numero de Contactos" class="form-control" [(ngModel)]="data.nroContacto">
+        <input type="phone"  placeholder="Numero de Contactos" class="form-control" [(ngModel)]="data.nroContacto">
       </div>
       <div class="form-group">
         <label>Mails de Ventas</label>
-        <input type="text"  placeholder="Mails de Ventas" class="form-control" [(ngModel)]="data.email">
+        <input type="email"  placeholder="Mails de Ventas" class="form-control" [(ngModel)]="data.email1">
+      </div>
+
+      <div class="form-group">
+        <label>Mails de Ventas</label>
+        <input type="email"  placeholder="Mails de Ventas" class="form-control" [(ngModel)]="data.mail2">
+      </div>
+
+      <div class="form-group">
+        <label>Latitud</label>
+        <input type="text"  placeholder="Ingrese su latitud" class="form-control" [(ngModel)]="data.latitud">
+      </div>
+
+      <div class="form-group">
+        <label>Longitud</label>
+        <input type="text"  placeholder="Ingrese la longitud" class="form-control" [(ngModel)]="data.longitud">
+      </div>
+
+      <div class="form-group">
+        <label>WhatsApp 1</label>
+        <input type="text"  placeholder="Ingrese su WhatsApp" class="form-control" [(ngModel)]="data.whatsApp1">
+      </div>
+
+      <div class="form-group">
+        <label>WhatsApp 2</label>
+        <input type="text"  placeholder="Ingrese su WhatsApp" class="form-control" [(ngModel)]="data.whatsApp2">
       </div>
       <div class="form-group">
         <button class="btn btn-success" (click)="upgradeCondigFooter()">Actualizar</button> 

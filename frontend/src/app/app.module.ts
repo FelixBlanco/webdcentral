@@ -52,6 +52,7 @@ import { BusquedaComponent } from './component/busqueda/busqueda.component';
 import { RecomprarInicioComponent } from './component/recomprar-inicio/recomprar-inicio.component';
 import { ServiciosInicioComponent } from './component/servicios-inicio/servicios-inicio.component';
 import { ProductosCarouselPageComponent } from './component/productos/productos-carousel-page/productos-carousel-page.component';
+import { PerfilClienteComponent } from './component/perfil-cliente/perfil-cliente.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -62,7 +63,7 @@ const appRoutes: Routes = [
   { path: 'recompra', component: RecomprarInicioComponent },
   { path: 'servicios', component: ServiciosInicioComponent },
   { path: 'productos', component: ProductosComponent },
-
+  { path: 'perfil-cliente', component: PerfilClienteComponent },
   
   { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
   
@@ -106,6 +107,7 @@ const appRoutes: Routes = [
     RecomprarInicioComponent,
     ServiciosInicioComponent,
     ProductosCarouselPageComponent,
+    PerfilClienteComponent,
   ],
   imports: [
     BrowserModule,
