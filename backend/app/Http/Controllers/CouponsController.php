@@ -294,13 +294,13 @@ class CouponsController extends Controller
 
             $cupon->fill($request->all());
 
-            $cupon->save();
-            DB::commit();
-
             $response = [
                 'msj'   => 'Info del Cupon actulizada',
                 'cupon' => $cupon,
             ];
+
+            $cupon->save();
+            DB::commit();
 
             return response()->json($response, 200);
         } catch (\Exception $e) {
