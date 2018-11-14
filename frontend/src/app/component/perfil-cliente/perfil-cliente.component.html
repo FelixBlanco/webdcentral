@@ -50,10 +50,15 @@
             <input type="phone" class="form-control" formControlName="celular" [(ngModel)]="form.celular" placeholder="Ingrese Celular">
           </div>
         </div>
-
+  
+        <div class="form-group">
+          <label for="">Domicilio Entrega</label>
+          <input type="text" class="form-control" formControlName="domicilioEntrega" [(ngModel)]="form.domicilioEntrega" placeholder="Ingresar Domicilio entrega">
+        </div>      
+  
         <div class="form-group">
           <button class="btn btn-success btn-block" (click)="crear()" *ngIf="isNuevo" [disabled]="!formData.valid">Crear</button>
-          <button class="btn btn-primary btn-block" (click)="update()" *ngIf="!isNuevo" [disabled]="!formData.valid">Actualizar</button>
+          <button class="btn btn-primary btn-block" (click)="update()" *ngIf="!isNuevo">Actualizar</button>
         </div>  
       
       </form>
