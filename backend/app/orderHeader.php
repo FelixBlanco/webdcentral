@@ -34,4 +34,8 @@ class orderHeader extends Model {
     public function user() {
         return $this->belongsTo('App\User', 'fk_idUser');
     }
+
+    public function orderBody() {
+        return $this->hasMany('App\orderBody', 'fk_idOrderHeader','idOrderHeader');
+    }
 }

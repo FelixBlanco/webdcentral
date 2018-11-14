@@ -20,8 +20,12 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
     Route::group([ 'middleware' => 'auth:api' ], function() {
 
+        Route::post('crearGaleriaHomeProd','GaleriaHomeProductoController@createGaleria');
+        Route::delete('borrraGaleriaHomeProd/{idGaleriaHomeProducto}','GaleriaHomeProductoController@destroy');
+
         Route::get('logout', 'API\AuthController@logout');//cerrar sesion
         Route::get('getUser', 'API\AuthController@user');//Obtener usuarios autenticados
+
         Route::resource('galeriaHome', 'GaleriaHomeController'); //Para galeria Home
 
         Route::post('createSlides', 'SlideController@createSlides'); //Para que un user admin cree un slide
@@ -120,6 +124,11 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::resource('ofertas', 'OfertaController');
 
     Route::get('ofertas/getImagenOferta/{imagenOferta}', 'OfertaController@getImagenOferta');
+
+
+    Route::get('getGaleria/producto/{imagen}','GaleriaHomeProductoController@getGaleriaImage');
+    Route::get('getGaleria/producto','GaleriaHomeProductoController@listar');
+    Route::get('getGaleria/{idGaleriaHomeProducto}','GaleriaHomeProductoController@listarPorId');
 
     /* con esta ruta se busca y retorna la imagen del slider Slides*/
     Route::get('getSlides/imagen/{imagen}', 'SlideController@getSlideImage');
@@ -241,10 +250,15 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::post('crearPerfilCliente','PerfilClientesController@store');
     Route::put('actualizarPerfilCliente/{idPerfilCliente}','PerfilClientesController@update');
     Route::delete('eliminarPerfilCliente/{idPerfilCliente}','PerfilClientesController@destroy');
+    Route::get('perfilesClientes/listar','PerfilClientesController@listar');
 
 
     //Listar los productos del body a travez del idOrderHeader
     Route::get('listarProductosBodyPorIdOrferHeader/{fk_idOrderHeader}','OrderBodyController@listarProductosBodyPorIdOrferHeader');
+
+
+    //listar todas las cabeceras de las ventas que se han hecho
+    Route::get('historialVentas/{id_cliente}','OrderBodyController@historialVentas');
 
 
 });
