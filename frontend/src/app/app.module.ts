@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import * as bootstrap from 'bootstrap';
+import { AgmCoreModule } from '@agm/core';
 
 // import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
@@ -118,7 +119,10 @@ const appRoutes: Routes = [
     ToastrModule.forRoot(),
     MaterialUiModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCiGsoFevMN2J-dXWtD_31AN4UkraR4Hq0'
+    })
   ],
   providers: [
     CarritoService,

@@ -3,11 +3,24 @@
     height: 250px;
     padding: 40px;
 }
-img{
+.container-figure img{
     width: 100px;
     margin: 15px;
     position: absolute;
     bottom: 15%;
+}
+
+.container-figure-sm{
+    background-color: #f4f6dc;
+    min-height: 200px;
+    padding: 15px;
+    text-align: center;
+    height: 90%;
+}
+
+.container-figure-sm img{
+    margin-top: 20px;
+    width: 60px;
 }
 
 .modal-lg {
@@ -29,4 +42,7 @@ img{
 }
 .btn-green{
     background-color: #018c36;
+}
+agm-map {
+    height: 300px;
 }

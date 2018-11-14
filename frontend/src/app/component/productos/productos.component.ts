@@ -23,7 +23,7 @@ export class ProductosComponent implements OnInit {
 
   currentPage: number;
   pages: number;
-  itemsPerPage: number[] = [];
+
 
   constructor(
     private productsBehavior: ProductsBehaviorService,
@@ -54,15 +54,14 @@ export class ProductosComponent implements OnInit {
     })
     this.productsList = products;
 
+    this.currentPage = 1;
+    this.pages = 0;
     this.setTotalPages();
-  }
-
-  setCurrent({current}){
-    this.currentPage = Number(current.substr(current.length - 1)) + 1;
   }
 
   iniBehavior() : void{
     this.productsBehavior.productsItems.subscribe( (products: Producto[]) => {
+      this.productsList = [];
       this.setProducts(products);
     });
   }
@@ -121,7 +120,6 @@ export class ProductosComponent implements OnInit {
       }
     });
 
-    this.itemsPerPage.push(items.length);
     return items;
   }
 
@@ -167,10 +165,10 @@ export class ProductosComponent implements OnInit {
       subRubroB: '',
     })
   }
-  
 
-  itemsOf(): number{
-    return this.itemsPerPage[this.currentPage - 1];
+  setCurrent({current}){
+    console.log(current);
+    this.currentPage = Number(current.substr(current.length - 1)) + 1;
   }
 
 }
