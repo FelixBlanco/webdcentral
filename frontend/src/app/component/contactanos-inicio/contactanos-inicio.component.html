@@ -10,15 +10,15 @@
         <div class="modal-body">
             <img src="../assets/contactame/phone.png" width="100px" class="img-fluid d-block mx-auto"> <br>
             <h4 class="text-center">TELÉFONOS</h4>
-            <p class="text-center">{{configFooter.nroContacto}} </p>
+            <p class="text-center" *ngIf="configFooter.nroContacto">{{configFooter.nroContacto}} </p>
   
             <img src="../assets/contactame/arroba.png" width="100px" class="img-fluid d-block mx-auto"> <br>
             <h4 class="text-center">MAILS</h4>
-            <p class="text-center">{{configFooter.mail1}} / {{configFooter.mail2}}  </p>
+            <p class="text-center" *ngIf="configFooter.mail1 || configFooter.mail2">{{configFooter.mail1}} / {{configFooter.mail2}}  </p>
   
             <img src="../assets/contactame/wp.png" width="100px" class="img-fluid d-block mx-auto"> <br>
             <h4 class="text-center">WHATSAPP</h4>
-            <p class="text-center">{{configFooter.whatsApp1}} / {{configFooter.whatsApp2}} </p>
+            <p class="text-center" *ngIf="configFooter.whatsApp1 || configFooter.whatsApp2">{{configFooter.whatsApp1}} / {{configFooter.whatsApp2}} </p>
   
             <button class="btn btn-success btn-block text-center" style="background-color: #028d35"> ¿DONDE ESTAMOS? </button>
       </div>

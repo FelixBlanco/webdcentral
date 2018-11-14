@@ -8,14 +8,19 @@ import { ConfgFooterService } from '../../services/confg-footer.service';
 })
 export class ContactanosInicioComponent implements OnInit {
 
-  configFooter:any; 
+  configFooter:any = {
+    nroContacto:null, mail1: null, mail2:null,
+    whatsApp1: null, whatsApp2:null
+  }; 
 
   constructor(private cf_service: ConfgFooterService) { }
 
   ngOnInit() {
     this.cf_service._getConfigFooter().subscribe(
-      resp => {
-        this.configFooter = resp; 
+      (resp:any) => {
+        if(resp){
+          this.configFooter = resp;              
+        }        
       }
     )
   }
