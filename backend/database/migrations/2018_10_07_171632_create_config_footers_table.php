@@ -21,6 +21,14 @@ class CreateConfigFootersTable extends Migration {
             $table->string('longitud')->nullable();
             $table->string('whatsApp1')->nullable();
             $table->string('whatsApp2')->nullable();
+
+            $table->string('horarios')->nullable();
+            $table->string('subtes')->nullable();
+            $table->string('colectivos')->nullable();
+            $table->string('avenidas')->nullable();
+            $table->string('latitud')->nullable();
+
+
             $table->timestamps();
 
             $table->softDeletes();

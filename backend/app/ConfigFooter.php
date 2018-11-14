@@ -5,17 +5,18 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ConfigFooter extends Model {
-
+class ConfigFooter extends Model
+{
     /**
      * The primary key for the model.
      *
      * @var string
      */
     use SoftDeletes;
-    protected $table      = 'tb_config_footers';
-    protected $primaryKey = 'idConfigFooter';
 
+    protected $table = 'tb_config_footers';
+
+    protected $primaryKey = 'idConfigFooter';
 
     protected $fillable = [
         'direccion',
@@ -27,5 +28,10 @@ class ConfigFooter extends Model {
         'longitud',
         'whatsApp1',
         'whatsApp2',
+        'horarios',
+        'subtes',
+        'colectivos',
+        'avenidas',
+        'latitud',
     ];
 }
