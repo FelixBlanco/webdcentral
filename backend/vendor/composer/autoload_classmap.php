@@ -18,6 +18,7 @@ return array(
     'App\\Destacado' => $baseDir . '/app/Destacado.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\GaleriaHome' => $baseDir . '/app/GaleriaHome.php',
+    'App\\GaleriaHomeProductos' => $baseDir . '/app/GaleriaHomeProductos.php',
     'App\\Http\\Controllers\\API\\AuthController' => $baseDir . '/app/Http/Controllers/API/AuthController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',

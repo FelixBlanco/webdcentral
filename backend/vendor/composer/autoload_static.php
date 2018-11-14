@@ -470,6 +470,7 @@ class ComposerStaticInit7714da98247b47083a27616f4cbb7c0e
         'App\\Destacado' => __DIR__ . '/../..' . '/app/Destacado.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\GaleriaHome' => __DIR__ . '/../..' . '/app/GaleriaHome.php',
+        'App\\GaleriaHomeProductos' => __DIR__ . '/../..' . '/app/GaleriaHomeProductos.php',
         'App\\Http\\Controllers\\API\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/AuthController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
