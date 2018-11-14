@@ -10,7 +10,7 @@ class Coupons extends Model
 {
     use SoftDeletes;
     protected $table      = 'tb_coupons';
-    protected $primaryKey = 'idcoupons';
+    protected $primaryKey = 'idCoupons';
 
     protected $fillable = [
         'idProdcut',
