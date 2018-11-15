@@ -32,6 +32,5 @@ class ConfigFooter extends Model
         'subtes',
         'colectivos',
         'avenidas',
-        'latitud',
     ];
 }

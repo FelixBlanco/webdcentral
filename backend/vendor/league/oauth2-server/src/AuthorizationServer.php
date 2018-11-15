@@ -9,6 +9,7 @@
 
 namespace League\OAuth2\Server;
 
+use DateInterval;
 use Defuse\Crypto\Key;
 use League\Event\EmitterAwareInterface;
 use League\Event\EmitterAwareTrait;
@@ -34,7 +35,7 @@ class AuthorizationServer implements EmitterAwareInterface
     protected $enabledGrantTypes = [];
 
     /**
-     * @var \DateInterval[]
+     * @var DateInterval[]
      */
     protected $grantTypeAccessTokenTTL = [];
 
@@ -49,9 +50,9 @@ class AuthorizationServer implements EmitterAwareInterface
     protected $publicKey;
 
     /**
-     * @var null|ResponseTypeInterface
+     * @var ResponseTypeInterface
      */
-    protected $responseType;
+    protected $responseTypePrototype;
 
     /**
      * @var ClientRepositoryInterface
@@ -86,7 +87,7 @@ class AuthorizationServer implements EmitterAwareInterface
      * @param ScopeRepositoryInterface       $scopeRepository
      * @param CryptKey|string                $privateKey
      * @param string|Key                     $encryptionKey
-     * @param null|ResponseTypeInterface     $responseType
+     * @param null|ResponseTypeInterface     $responseTypePrototype
      */
     public function __construct(
         ClientRepositoryInterface $clientRepository,
@@ -94,7 +95,7 @@ class AuthorizationServer implements EmitterAwareInterface
         ScopeRepositoryInterface $scopeRepository,
         $privateKey,
         $encryptionKey,
-        ResponseTypeInterface $responseType = null
+        ResponseTypeInterface $responseTypePrototype = null
     ) {
         $this->clientRepository = $clientRepository;
         $this->accessTokenRepository = $accessTokenRepository;
@@ -103,21 +104,35 @@ class AuthorizationServer implements EmitterAwareInterface
         if ($privateKey instanceof CryptKey === false) {
             $privateKey = new CryptKey($privateKey);
         }
+
         $this->privateKey = $privateKey;
         $this->encryptionKey = $encryptionKey;
-        $this->responseType = $responseType;
+
+        if ($responseTypePrototype === null) {
+            $responseTypePrototype = new BearerTokenResponse();
+        } else {
+            $responseTypePrototype = clone $responseTypePrototype;
+        }
+
+        if ($responseTypePrototype instanceof AbstractResponseType) {
+            $responseTypePrototype->setPrivateKey($this->privateKey);
+        }
+
+        $responseTypePrototype->setEncryptionKey($this->encryptionKey);
+
+        $this->responseTypePrototype = $responseTypePrototype;
     }
 
     /**
      * Enable a grant type on the server.
      *
      * @param GrantTypeInterface $grantType
-     * @param null|\DateInterval $accessTokenTTL
+     * @param null|DateInterval  $accessTokenTTL
      */
-    public function enableGrantType(GrantTypeInterface $grantType, \DateInterval $accessTokenTTL = null)
+    public function enableGrantType(GrantTypeInterface $grantType, DateInterval $accessTokenTTL = null)
     {
-        if ($accessTokenTTL instanceof \DateInterval === false) {
-            $accessTokenTTL = new \DateInterval('PT1H');
+        if ($accessTokenTTL instanceof DateInterval === false) {
+            $accessTokenTTL = new DateInterval('PT1H');
         }
 
         $grantType->setAccessTokenRepository($this->accessTokenRepository);
@@ -185,7 +200,7 @@ class AuthorizationServer implements EmitterAwareInterface
             }
             $tokenResponse = $grantType->respondToAccessTokenRequest(
                 $request,
-                $this->getResponseType(),
+                $this->newResponseType(),
                 $this->grantTypeAccessTokenTTL[$grantType->getIdentifier()]
             );
 
@@ -202,18 +217,9 @@ class AuthorizationServer implements EmitterAwareInterface
      *
      * @return ResponseTypeInterface
      */
-    protected function getResponseType()
+    protected function newResponseType()
     {
-        if ($this->responseType instanceof ResponseTypeInterface === false) {
-            $this->responseType = new BearerTokenResponse();
-        }
-
-        if ($this->responseType instanceof AbstractResponseType === true) {
-            $this->responseType->setPrivateKey($this->privateKey);
-        }
-        $this->responseType->setEncryptionKey($this->encryptionKey);
-
-        return $this->responseType;
+        return clone $this->responseTypePrototype;
     }
 
     /**

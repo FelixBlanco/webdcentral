@@ -37,6 +37,8 @@ export class CuponsappComponent implements OnInit {
 
   inPromise: boolean;
 
+  imgLoaded: File;
+
   constructor(
     private fb: FormBuilder,
     private as: AlertsService,
@@ -68,7 +70,6 @@ export class CuponsappComponent implements OnInit {
 
   list(){
     this.cuponsService.getAll().subscribe((resp)=>{
-      console.log(resp);
       if(resp.ok && resp.status === 201){
         this.cuponsList = resp.body.cupones;
         this.rows = [...this.cuponsList];
@@ -103,11 +104,11 @@ export class CuponsappComponent implements OnInit {
 
     let toSend = new FormData();
 
-    toSend.append('filename', value.imagen);
-    toSend.append('fk_idProducto', value.producto);
-    toSend.append('title', value.titulo);
-    toSend.append('description', value.descripcion);
-    toSend.append('dateExpired', value.fechaExp);
+    toSend.set('filename', value.imagen);
+    toSend.set('fk_idProducto', value.producto);
+    toSend.set('title', value.titulo);
+    toSend.set('description', value.descripcion);
+    toSend.set('dateExpired', value.fechaExp);
 
     this.inPromise = true;
     this.cuponsService.persist(toSend).subscribe(resp => {
@@ -141,7 +142,7 @@ export class CuponsappComponent implements OnInit {
 
     let toSend = new FormData();
 
-    toSend.append('filename', value.imagen);
+    toSend.append('filename', this.imgLoaded);
     toSend.append('fk_idProducto', value.producto);
     toSend.append('title', value.titulo);
     toSend.append('description', value.descripcion);
@@ -151,7 +152,6 @@ export class CuponsappComponent implements OnInit {
     this.cuponsService.update(toSend, this.cuponToUpdate.idCoupons).subscribe(resp => {
       if(resp.ok && resp.status === 200){
         this.inPromise = false;
-        this.newCuponForm.reset();
         this.image.nativeElement.value = "";
         $('#modificar').modal('hide');
         this.as.msg('OK', 'Éxito', 'Se ha actualizado el cupón');
@@ -163,7 +163,7 @@ export class CuponsappComponent implements OnInit {
       }
       this.updateLists();
     }, error => {
-      console.log(error);
+      console.error(error);
       this.inPromise = false;
       this.as.msg("ERR", "Error", 'Ha ocurrido un error interno');
     });
@@ -212,6 +212,7 @@ export class CuponsappComponent implements OnInit {
           return;
       }
 
+      this.imgLoaded = fileTo;
       this.newCuponForm.patchValue({
         imagen: fileTo
       });

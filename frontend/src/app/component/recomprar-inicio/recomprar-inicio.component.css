@@ -1,1 +1,26 @@
-.parrafo{ padding:10px; font-size:20px; }
+.table tbody{
+    font-size: 0.9em;
+}
+
+.table-curved th{
+    border: none;
+}
+
+.table-curved th:first-child {
+    border-radius: 7px 0 0 7px;
+}
+.table-curved th:last-child {
+    border-radius: 0 7px 7px 0;
+}
+
+.table-curved tfoot td:only-child {
+    border-radius: 0 0 7px 7px;
+}
+
+.txt-naranja{  color: #E97604 }
+.txt-verde{  color: #90BB1E }
+.bg-azul{ background-color: #009BDD }
+
+button{
+    outline: none;
+}

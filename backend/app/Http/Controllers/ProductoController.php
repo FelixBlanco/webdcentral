@@ -389,4 +389,10 @@ class ProductoController extends Controller {
 
         return response()->json($LMV, 201);
     }
+
+    public function listarPorid($idProducto){
+
+        $productos=Producto::findOrFail($idProducto);
+        return response()->json($productos, 200);
+    }
 }

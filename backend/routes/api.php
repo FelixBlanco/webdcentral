@@ -62,7 +62,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('canjearCupons/{idCuponsClient?}', 'CouponsController@chague');// Canjear cupon por cliente
         Route::delete('borrarCupons/{idCuponsClient?}', 'CouponsController@deleteCuponCliente');// Eliminar cupon por cliente
         Route::get('listarTodosCupones','CouponsController@listarTodo'); //listar todo los cupones
-        Route::put('updateCupon/{idCupons}','CouponsController@updateCupon'); //listar todo los cupones
+        Route::post('updateCupon/{idCupons}','CouponsController@updateCupon'); //acutaliza cupones
         Route::delete('deleteCupon/{idCupons}','CouponsController@deleteCupon'); //eliminar el cupon
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
@@ -129,6 +129,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('getGaleria/producto/{imagen}','GaleriaHomeProductoController@getGaleriaImage');
     Route::get('getGaleria/producto','GaleriaHomeProductoController@listar');
     Route::get('getGaleria/{idGaleriaHomeProducto}','GaleriaHomeProductoController@listarPorId');
+
 
     /* con esta ruta se busca y retorna la imagen del slider Slides*/
     Route::get('getSlides/imagen/{imagen}', 'SlideController@getSlideImage');
@@ -251,7 +252,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::put('actualizarPerfilCliente/{idPerfilCliente}','PerfilClientesController@update');
     Route::delete('eliminarPerfilCliente/{idPerfilCliente}','PerfilClientesController@destroy');
     Route::get('perfilesClientes/listar','PerfilClientesController@listar');
-
+    Route::get('get-perfil-cliente/{id}','PerfilClientesController@getPerfil');
 
     //Listar los productos del body a travez del idOrderHeader
     Route::get('listarProductosBodyPorIdOrferHeader/{fk_idOrderHeader}','OrderBodyController@listarProductosBodyPorIdOrferHeader');
@@ -259,6 +260,8 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     //listar todas las cabeceras de las ventas que se han hecho
     Route::get('historialVentas/{id_cliente}','OrderBodyController@historialVentas');
+
+    Route::get('producto/listarPorid/{idProducto}','ProductoController@listarPorid');
 
 
 });

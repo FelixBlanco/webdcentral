@@ -58,7 +58,7 @@
   
         <div class="form-group">
           <button class="btn btn-success btn-block" (click)="crear()" *ngIf="isNuevo" [disabled]="!formData.valid">Crear</button>
-          <button class="btn btn-primary btn-block" (click)="update()" *ngIf="!isNuevo">Actualizar</button>
+          <button class="btn btn-primary btn-block" (click)="update()" *ngIf="!isNuevo" [disabled]="!formData.valid">Actualizar</button>
         </div>  
       
       </form>

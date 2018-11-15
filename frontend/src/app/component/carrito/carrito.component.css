@@ -1,13 +1,13 @@
-.table tbody{
-    font-size: 0.9em;
-}
-
 .modal-lg {
     max-width: 1000px;
 }
 
 .total{
     font-size: 1.9em;
+}
+
+.table tbody{
+    font-size: 0.9em;
 }
 
 .table-curved th{

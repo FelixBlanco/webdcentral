@@ -8,8 +8,11 @@ import { ConfgFooterService } from 'src/app/services/confg-footer.service';
 })
 export class AyudaComponent implements OnInit {
 
-  section: 'home' | 'questions' | 'howto' | 'contact';
+  section: 'home' | 'questions' | 'howto' | 'contact' | 'whereare';
   footerConfig: any;
+
+  lat: number;
+  lng: number;
   constructor(private footerConfigService: ConfgFooterService) {
     this.getConfigFooter();
   }
@@ -18,13 +21,15 @@ export class AyudaComponent implements OnInit {
     this.section = 'home';
   }
 
-  routeTo(section : 'home' | 'questions' | 'howto' | 'contact'){
+  routeTo(section : 'home' | 'questions' | 'howto' | 'contact' | 'whereare'){
     this.section = section;
   }
 
   getConfigFooter(){
     this.footerConfigService._getConfigFooter().subscribe( (resp) => {
       this.footerConfig = resp;
+      this.lat = Number(this.footerConfig.latitud);
+      this.lng = Number(this.footerConfig.longitud);
     })
   }
   

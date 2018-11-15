@@ -291,16 +291,36 @@ class CouponsController extends Controller
 
                 return response()->json($response, 404);
             }
-
             $cupon->fill($request->all());
 
+            if ($request->filename){
+                $originalImage = $request->filename;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('/coupons/'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $cupon->imagen = $nombre_interno;
+            }
+
             $cupon->save();
-            DB::commit();
 
             $response = [
                 'msj'   => 'Info del Cupon actulizada',
                 'cupon' => $cupon,
             ];
+
+            DB::commit();
 
             return response()->json($response, 200);
         } catch (\Exception $e) {
