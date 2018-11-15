@@ -130,6 +130,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('getGaleria/producto','GaleriaHomeProductoController@listar');
     Route::get('getGaleria/{idGaleriaHomeProducto}','GaleriaHomeProductoController@listarPorId');
 
+
     /* con esta ruta se busca y retorna la imagen del slider Slides*/
     Route::get('getSlides/imagen/{imagen}', 'SlideController@getSlideImage');
 
@@ -259,6 +260,8 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     //listar todas las cabeceras de las ventas que se han hecho
     Route::get('historialVentas/{id_cliente}','OrderBodyController@historialVentas');
+
+    Route::get('producto/listarPorid/{idProducto}','ProductoController@listarPorid');
 
 
 });
