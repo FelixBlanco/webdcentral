@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit244be60a2d392fa859301794628687ea
+class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -2665,6 +2665,7 @@ class ComposerStaticInit244be60a2d392fa859301794628687ea
         'League\\OAuth2\\Server\\Entities\\Traits\\ClientTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/ClientTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\EntityTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/EntityTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\RefreshTokenTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/RefreshTokenTrait.php',
+        'League\\OAuth2\\Server\\Entities\\Traits\\ScopeTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/ScopeTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\TokenEntityTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/TokenEntityTrait.php',
         'League\\OAuth2\\Server\\Entities\\UserEntityInterface' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/UserEntityInterface.php',
         'League\\OAuth2\\Server\\Exception\\OAuthServerException' => __DIR__ . '/..' . '/league/oauth2-server/src/Exception/OAuthServerException.php',
@@ -4702,11 +4703,11 @@ class ComposerStaticInit244be60a2d392fa859301794628687ea
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit244be60a2d392fa859301794628687ea::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit244be60a2d392fa859301794628687ea::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit244be60a2d392fa859301794628687ea::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit244be60a2d392fa859301794628687ea::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit244be60a2d392fa859301794628687ea::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$classMap;
 
         }, null, ClassLoader::class);
     }

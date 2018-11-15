@@ -10,14 +10,18 @@
       </div>
       <div class="modal-body">
         <div class="card">
+          <div class="card-header text-center" *ngIf="inPromise">
+            <p class="font-italic">Agregando productos desde el historial, espere mientras actualizamos la información</p>
+            <mat-spinner diameter="30" style="margin: 0 auto;"></mat-spinner>
+          </div>
           <div class="card-body">
             <table class="table table-curved">
               <thead class="bg-azul text-white">
                 <tr>
                   <th scope="col" width="20%">MARCA</th>
-                  <th scope="col" width="40%">PRODUCTO</th>
+                  <th scope="col" width="35%">PRODUCTO</th>
                   <th scope="col" width="10%">PRECIO</th>
-                  <th scope="col" width="15%">CANTIDAD</th>
+                  <th scope="col" width="20%">CANTIDAD</th>
                   <th scope="col" width="15%">TOTAL</th>
                 </tr>
               </thead>

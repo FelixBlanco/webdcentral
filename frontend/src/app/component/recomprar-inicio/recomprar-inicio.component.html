@@ -4,7 +4,7 @@
       <img src="../../assets/banner/banner_principal_recomprar.jpg" class="img-fluid  d-block mx-auto">
     </div>
   </div>
-  <div class="row justify-content-center" style="
+  <!--<div class="row justify-content-center" style="
     background-color: white;
     padding-top: 0%;
     padding-bottom: 4%;
@@ -23,77 +23,66 @@
         <img src="../../assets/lupa.png" class="img-fluid" style="cursor:pointer">
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <h2 class="txt-azul font-bold text-center" style="padding:3%;">
-        ÚLTIMAS COMPRAS
-      </h2>
+<section class="mb-3">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2 class="txt-azul font-bold text-center p-3">
+          ÚLTIMAS COMPRAS
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header bg-azul txt-blanco text-uppercase">
+            <h5 class="m-2">historial de compras</h5>
+          </div>
+          <div class="card-body">
+              <div class="card">
+                <div class="card-body">
+                  <table class="table table-curved">
+                    <thead class="bg-azul text-white">
+                      <tr>
+                        <th scope="col" width="10%">PEDIDO</th>
+                        <th scope="col" width="20%">FECHA</th>
+                        <th scope="col" width="40%">DIRECCIÓN DE ENVÍO</th>
+                        <th scope="col" width="20%">ACCIONES</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngFor="let item of historialList">
+                        <tr>
+                          <td>{{item.Numero_Pedido}}</td>
+                          <td>{{item.Fecha_Pedido}}</td>
+                          <td>{{item.Domicilio_Entrega}}</td>
+                          <td>
+                            <button mat-icon-button class="txt-naranja" (click)="toPdf(item)">
+                              <fa-icon [icon]="['fas','file-pdf']" size="2x"></fa-icon>
+                            </button>
+                            <button mat-icon-button
+                              matTooltip="Agregar al carrito. La información será acumulada si es agregada nuevamente"
+                              matTooltipPosition="above"
+                              class="txt-naranja" 
+                              (click)="toRebuy(item)">
+                              <fa-icon [icon]="['fas','cart-arrow-down']" size="2x"></fa-icon>
+                            </button>
+                          </td>
+                        </tr>
+                      </ng-container>
+                      <ng-container *ngIf="!historialList.length">
+                        <tr><td colspan="4" height="80" class="font-italic text-muted text-center"><h5>No existe historial de compras asociados a su cuenta...</h5></td></tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row justify-content-center" style="margin-bottom: 2%;">
-    <div class="col-md-10">
-      <table class="table bg-blanco">
-        <thead class="txt-blanco bg-azul">
-          <tr class="text-center">
-            <th scope="col">FECHA</th>
-            <th scope="col">PRODUCTOS</th>
-            <th scope="col">PRECIO</th>
-            <th scope="col">PRECIO ACTUAL</th>
-            <th scope="col">TOTAL</th>
-            <th scope="col">TOTAL ACTUAL</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="text-center">
-            <td>05/08/2018</td>
-            <td>CAT CHOW X PIEDRAS</td>
-            <td>$ 890  <br> $ 270 </td>
-            <td>$ 1060</td>
-            <td>$ 1060</td>
-            <td>
-              <input type="checkbox" class="form-control">
-            </td>
-          </tr>
-          <tr class="text-center">
-            <td>05/08/2018</td>
-            <td>CAT CHOW X PIEDRAS</td>
-            <td>$ 890  <br> $ 270 </td>
-            <td>$ 1060</td>
-            <td>$ 1060</td>
-            <td>
-              <input type="checkbox" class="form-control">
-            </td>
-          </tr>
-          <tr class="text-center">
-            <td>05/08/2018</td>
-            <td>CAT CHOW X PIEDRAS</td>
-            <td>$ 890  <br> $ 270 </td>
-            <td>$ 1060</td>
-            <td>$ 1060</td>
-            <td>
-              <input type="checkbox" class="form-control">
-            </td>
-          </tr>
-          </tbody>
-          <tbody class="bg-azul">
-              <tr >
-                  <td colspan="4" style="border:none;"><p class="text-right txt-blanco parrafo">PRODUCTOS SELECCIONADOS <span id="numero" class="font-bold" style="font-size:40px;">2</span></p> </td>
-                  <td colspan="3" style="border:none;"><p class="txt-blanco parrafo">TOTAL ACTUAL: <span class="font-bold" style="font-size:40px;">$1120</span> </p></td>
-                </tr>
-                <tr>
-                  <td class="bg-azul" colspan="7">
-                      <button class="btn btn-block bg-naranja txt-blanco" style="margin:auto; width:80%;">RECOMPRAR</button>
-                  </td>
-                </tr>            
-         
-
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+</section>

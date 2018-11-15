@@ -1,5 +1,5 @@
 // https://v6.material.angular.io/components/categories
-import {MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, MatProgressBarModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatTooltipModule} from '@angular/material';
 import { NgModule } from '@angular/core';
 
 @NgModule({
@@ -9,7 +9,8 @@ import { NgModule } from '@angular/core';
       MatProgressSpinnerModule,
       MatProgressBarModule,
       MatFormFieldModule,
-      MatInputModule
+      MatInputModule,
+      MatTooltipModule
     ],
   exports: [
       MatButtonModule, 
@@ -17,7 +18,8 @@ import { NgModule } from '@angular/core';
       MatProgressSpinnerModule,
       MatProgressBarModule,
       MatFormFieldModule,
-      MatInputModule
+      MatInputModule,
+      MatTooltipModule
     ]
 })
 export class MaterialUiModule { }

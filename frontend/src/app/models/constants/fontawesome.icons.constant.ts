@@ -15,7 +15,9 @@ import {
     faAngleRight as fasAngleRigth,
     faBus as fasBus,
     faSubway as fasSubway,
-    faCar as fasCar
+    faCar as fasCar,
+    faFilePdf as fasFilePdf,
+    faCartArrowDown as fasCartArrowDown
 } from '@fortawesome/free-solid-svg-icons';
 
 export const FA_ICONS: any = [
@@ -33,6 +35,8 @@ export const FA_ICONS: any = [
     fasAngleRigth,
     fasBus,
     fasSubway,
-    fasCar
+    fasCar,
+    fasFilePdf,
+    fasCartArrowDown
 ];
 

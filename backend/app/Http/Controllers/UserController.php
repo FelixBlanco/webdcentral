@@ -412,10 +412,10 @@ class UserController extends Controller {
         if (is_null($user)) {
 
             $response = [
-                'msj' => 'Email no existe',
+                'msj' => 'Si eres usuario nuetro, te enviamos un Mail, revise su correo para proceder al inicio de sesión',
             ];
 
-            return response()->json($response, 404);
+            return response()->json($response, 200);
         } else {
             $clave_nueva    = str_random(6);
             $user->password = bcrypt($clave_nueva);
@@ -423,7 +423,7 @@ class UserController extends Controller {
 
             Mail::to($user->email)->send(new Prueba($user, $clave_nueva));
             $response = [
-                'msj'       => 'Email enviado exitosamente, revise su correo para proceder al inicio de sesión',
+                'msj'       => 'Si eres usuario nuetro, te enviamos un Mail, revise su correo para proceder al inicio de sesión',
                 'user'      => $user,
                 'clave_new' => $clave_nueva,
             ];

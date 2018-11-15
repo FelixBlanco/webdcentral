@@ -64,4 +64,12 @@ export class ProductosService {
     filter3Pack(filterValues: {rubro?: string, SubRubro1?: string; SubRubro2?: string}): Observable<HttpResponse<{productos: Producto[]}>>{
       return this.http.post<any>(`${environment.apiHost}/api/v1/filtro3pack`,filterValues,{observe: 'response'});
     }
+
+    getUserHistory(userId: string):Observable<HttpResponse<any>>{
+      return this.http.get<any>(`${environment.apiHost}/api/v1/historialVentas/${userId}`, {observe: 'response'});
+    }
+
+    getById(id):Observable<HttpResponse<Producto>>{
+      return this.http.get<Producto>(`${environment.apiHost}/api/v1/producto/listarPorid/${id}`, {observe: 'response'});      
+    }
 }

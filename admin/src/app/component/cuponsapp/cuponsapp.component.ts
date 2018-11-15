@@ -37,6 +37,8 @@ export class CuponsappComponent implements OnInit {
 
   inPromise: boolean;
 
+  imgLoaded: File;
+
   constructor(
     private fb: FormBuilder,
     private as: AlertsService,
@@ -100,7 +102,7 @@ export class CuponsappComponent implements OnInit {
       return;
     }
 
-    let toSend = new URLSearchParams();
+    let toSend = new FormData();
 
     toSend.set('filename', value.imagen);
     toSend.set('fk_idProducto', value.producto);
@@ -140,7 +142,7 @@ export class CuponsappComponent implements OnInit {
 
     let toSend = new FormData();
 
-    toSend.append('filename', value.imagen);
+    toSend.append('filename', this.imgLoaded);
     toSend.append('fk_idProducto', value.producto);
     toSend.append('title', value.titulo);
     toSend.append('description', value.descripcion);
@@ -210,6 +212,7 @@ export class CuponsappComponent implements OnInit {
           return;
       }
 
+      this.imgLoaded = fileTo;
       this.newCuponForm.patchValue({
         imagen: fileTo
       });
