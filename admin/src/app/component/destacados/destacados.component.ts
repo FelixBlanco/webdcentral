@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DestacadosService } from '../../services/destacados.service'
 import { AlertsService } from '../../services/alerts.service'
 import { ProductosService } from '../../services/productos.service';
@@ -13,6 +13,8 @@ declare var $;
 
 export class DestacadosComponent implements OnInit {
   
+  @ViewChild('table') table;
+
   form:any = { id_Destacado:null, descripcion:null, fk_idProducto:null };
   edit_form:any = { id_Destacado:null, descripcion:null, fk_idProducto:null };
   list_productos:any;
@@ -26,6 +28,8 @@ export class DestacadosComponent implements OnInit {
 
   rows: any;
 
+  idEliminar:number = null;
+  
   constructor(
     private destacadoService: DestacadosService,
     private alertService: AlertsService,
@@ -48,7 +52,6 @@ export class DestacadosComponent implements OnInit {
     this.destacadoService._getDestacados().subscribe(
       (resp:any) => {
         this.lista_destacados = resp.destacados;
-        this.lista_destacados = resp.destacados;
         this.rows = [...this.lista_destacados];
       }
     )
@@ -69,23 +72,51 @@ export class DestacadosComponent implements OnInit {
 
   editDestacado(data:any){
     $("#editar").modal('show');
-    console.log(data.descripcion)
     this.edit_form.id_Destacado = data.id_Destacado;
     this.edit_form.descripcion = data.descripcion;
-    this.edit_form.fk_idProducto = data.fk_idProducto;
-    console.log(this.edit_form);
+    this.edit_form.fk_idProducto = data.fk_idProducto;    
   }
 
-  deleteDestacados(id:number){
-    this.destacadoService._deleteDestacados(id).subscribe(
+  upgradeDestacado(){
+    this.destacadoService._editDestacados(this.edit_form.id_Destacado, this.edit_form).subscribe(
       resp => {
-        this.alertService.msg('OK','Éxito','Se agrego Correctamente');
+        this.alertService.msg('OK','Éxito','Se edito correctamente');
+        this.getDestacados();
+      },
+      error => {
+        this.alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+      }
+    )
+  }
+
+  modalEliminar(id:number){
+    this.idEliminar = id;
+    $("#eliminar").modal('show');
+  }
+
+  deleteDestacados(){
+    const idEliminar:number = this.idEliminar; 
+    this.destacadoService._deleteDestacados(idEliminar).subscribe(
+      resp => {
+        this.alertService.msg('OK','Éxito','Se elimino correctamente');
         this.getDestacados();
       },
       error =>{
         this.alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
       }
     )
+  }
+
+  updateFilter(event){
+    const val = event.target.value.toLowerCase();
+
+    const temp = this.lista_destacados.filter(function(d) {
+      return (d.descripcion.toLowerCase().indexOf(val) !== -1 || !val) 
+      || (d.nameProducto.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+
+    this.rows = temp;
+    this.table.offset = 0;//Requerido
   }
 
 }

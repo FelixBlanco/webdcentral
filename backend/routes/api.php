@@ -96,7 +96,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     /*PARA LOS DESTACADOS*/
 
     Route::post('crearDestacado', 'DestacadoController@crearDestacado');
-    Route::post('editarDestacado/{idDestacado}', 'DestacadoController@editarDestacado');
+    Route::put('editarDestacado/{idDestacado}', 'DestacadoController@editarDestacado');
     Route::delete('eliminarDestacado/{idDestacado}', 'DestacadoController@eliminarDestacado');
     Route::get('obtenerDestacados', 'DestacadoController@listar');
 

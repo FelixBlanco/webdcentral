@@ -12,7 +12,7 @@ export class ConfigFooterComponent implements OnInit {
   data:any = {
     id:null,
     direccio: null, 
-    email: null, nroContacto: null,
+    mail: null, nroContacto: null,
     mail1: null, mail2: null,
     latitud: null, longitud: null,
     whatsApp1: null, whatsApp2: null,

@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">  
-        <h2>¿Estas seguro que quieres salir?</h2>
+        <h4 class="text-center">¿Estas seguro que quieres salir?</h4>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -19,73 +19,77 @@
   </div>
 </div>
 
+<app-perfil-cliente></app-perfil-cliente>
+
 <!-- Primer Nav -->
-<div class="container-fluid" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
-  <div class="row">
-    <div class="col-md-5">
-      <p class="font-light txt-blanco" style="margin-left:8%; font-size:15px; margin-top: 10px;">EL MEJOR PRECIO AL ALCANCE DE  <b class="font-bold">TU MASCOTA</b></p>
-    </div>
-    <div class="col-md-7">
-      <ul class="nav justify-content-end" style="margin-top:2px; font-size: 15px;">
-        <li class="nav-item txt-blanco" *ngIf="!isSession">
-          <a href="#" class="nav-link" data-toggle="modal" data-target="#loginModal">INGRESA</a>
-        </li>
-        <li class="nav-item txt-blanco" style="margin-left: -2%;"> 
-          <a href="#" class="nav-link" data-toggle="modal" data-target="#ayudaModal">AYUDA</a>
-        </li>
-        <li class="nav-item txt-blanco" *ngIf="!isSession" style="margin-left: -2%;">
-          <a href="#" class="nav-link" data-toggle="modal" data-target="#registraseModal">REGISTRATE</a>
-        </li>
+<div>
+  <div class="container-fluid" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
+    <div class="row">
+      <div class="col-md-5">
+        <p class="font-light txt-blanco" style="margin-left:8%; font-size:15px; margin-top: 10px;">EL MEJOR PRECIO AL ALCANCE DE  <b class="font-bold">TU MASCOTA</b></p>
+      </div>
+      <div class="col-md-7">
+        <ul class="nav justify-content-end" style="margin-top:2px; font-size: 15px; margin-right: 8%; position: absolute; right: 5%;">
+          <li class="nav-item txt-blanco" *ngIf="!isSession">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#loginModal">INGRESA</a>
+          </li>
+          <li class="nav-item txt-blanco" style="margin-left: -2%;"> 
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#ayudaModal">AYUDA</a>
+          </li>
+          <li class="nav-item txt-blanco" *ngIf="!isSession" style="margin-left: -2%;">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#registraseModal">REGISTRATE</a>
+          </li>
+          
+          <!-- ADMIN -->
+          <li class="nav-item txt-blanco" *ngIf="isSession">
+            <a class="nav-link"  [ngStyle]=" colorDos ? {color: colorDos } : {color: '#FFFFFF' }" >{{ userName }}</a>
+          </li>
+  
+          <li class="nav-item txt-blanco" *ngIf="isSession">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#perfilClienteModal">Perfil Cliente</a>
+          </li>
         
-        <!-- ADMIN -->
-        <li class="nav-item txt-blanco" *ngIf="isSession">
-          <a class="nav-link"  [ngStyle]=" colorDos ? {color: colorDos } : {color: '#FFFFFF' }" >{{ userName }}</a>
-        </li>
-
-        <li class="nav-item txt-blanco" *ngIf="isSession">
-          <a routerLink="perfil-cliente" class="nav-link">Perfil Cliente</a>
-        </li>
-      
-
-        <li class="nav-item txt-blanco" style="margin-left:-3%;">
-          <a href="#" class="nav-link">
-            <div class="barra">|</div>
-          </a>
-        </li>
-        <li class="nav-item txt-blanco" style="margin-left:-3%">
-          <a href="#" class="nav-link" data-toggle="modal" data-target="#carrito">
-            <img src="../assets/social/carrito.png" width="20px">
-          </a>
-        </li>
-        <li class="nav-item txt-blanco" *ngIf="isSession">
-          <a class="nav-link" data-toggle="modal" data-target="#salirModal">Salir</a>
-        </li>
-        <li class="nav-item txt-blanco" style="margin-left:-1%;">
-          <a href="#" class="nav-link">
-            <div class="barra">|</div>
-          </a>
-        </li>
-        <li class="nav-item txt-blanco" style="margin-left:-3%;">
+  
+          <li class="nav-item txt-blanco" style="margin-left:-3%;">
             <a href="#" class="nav-link">
-              <img src="../assets/social/facebook.png" width="10px">
+              <div class="barra">|</div>
+            </a>
+          </li>
+          <li class="nav-item txt-blanco" style="margin-left:-3%">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#carrito">
+              <img src="../assets/social/carrito.png" width="20px">
+            </a>
+          </li>
+          <li class="nav-item txt-blanco" *ngIf="isSession">
+            <a class="nav-link" data-toggle="modal" data-target="#salirModal">Salir</a>
+          </li>
+          <li class="nav-item txt-blanco" style="margin-left:-1%;">
+            <a href="#" class="nav-link">
+              <div class="barra">|</div>
             </a>
           </li>
           <li class="nav-item txt-blanco" style="margin-left:-3%;">
-            <a href="#" class="nav-link">
-              <img src="../assets/social/twitter.png" width="20px">
-            </a>
-          </li>
-          <li class="nav-item txt-blanco" style="margin-left:-3%;">
-            <a href="#" class="nav-link">
-              <img src="../assets/social/instagram.png" width="20px">
-            </a>
-          </li>
-          <li class="nav-item txt-blanco" style="margin-left:-3%;">
-            <a href="#" class="nav-link">
-              <img src="../assets/social/wp.png" width="20px">
-            </a>
-          </li>
-      </ul>
+              <a href="#" class="nav-link">
+                <img src="../assets/social/facebook.png" width="10px">
+              </a>
+            </li>
+            <li class="nav-item txt-blanco" style="margin-left:-3%;">
+              <a href="#" class="nav-link">
+                <img src="../assets/social/twitter.png" width="20px">
+              </a>
+            </li>
+            <li class="nav-item txt-blanco" style="margin-left:-3%;">
+              <a href="#" class="nav-link">
+                <img src="../assets/social/instagram.png" width="20px">
+              </a>
+            </li>
+            <li class="nav-item txt-blanco" style="margin-left:-3%;">
+              <a href="#" class="nav-link">
+                <img src="../assets/social/wp.png" width="20px">
+              </a>
+            </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
