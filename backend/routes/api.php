@@ -62,7 +62,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('canjearCupons/{idCuponsClient?}', 'CouponsController@chague');// Canjear cupon por cliente
         Route::delete('borrarCupons/{idCuponsClient?}', 'CouponsController@deleteCuponCliente');// Eliminar cupon por cliente
         Route::get('listarTodosCupones','CouponsController@listarTodo'); //listar todo los cupones
-        Route::put('updateCupon/{idCupons}','CouponsController@updateCupon'); //listar todo los cupones
+        Route::post('updateCupon/{idCupons}','CouponsController@updateCupon'); //acutaliza cupones
         Route::delete('deleteCupon/{idCupons}','CouponsController@deleteCupon'); //eliminar el cupon
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
