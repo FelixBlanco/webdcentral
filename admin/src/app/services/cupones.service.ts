@@ -53,12 +53,6 @@ export class CuponesService {
     }
 
     update(data:any, id: number): Observable<HttpResponse<any>>{
-        const headers: HttpHeaders = new HttpHeaders({
-            'Accept':  'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Authorization': 'Bearer '+ localStorage.getItem('access_token'),
-            'Content-Type': 'application/x-www-form-urlencoded'
-        })
-        return this.http.put<void>(`${environment.API_URL}/api/auth/updateCupon/${id}`, data, {headers: headers,observe: 'response' }) as Observable<HttpResponse<any>>;
+        return this.http.post<void>(`${environment.API_URL}/api/auth/updateCupon/${id}`, data, this.httpOptions) as Observable<HttpResponse<any>>;
     }
 }

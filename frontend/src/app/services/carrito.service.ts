@@ -15,6 +15,10 @@ export class CarritoService {
     carritoSource: BehaviorSubject<Item[]> = new BehaviorSubject([]);
     carritoItems: Observable<Item[]> = this.carritoSource.asObservable();
 
+    orderProducts: BehaviorSubject<any[]> = new BehaviorSubject([]);
+    orderItems: Observable<any[]> = this.orderProducts.asObservable();
+
+
     constructor(){
     }
 
@@ -120,5 +124,10 @@ export class CarritoService {
         items.forEach((val) => total += (val.cantidad * val.precio));
 
         return total;
+    }
+
+    setProductsOrder(items: any[]) : void{
+        this.orderProducts.next(items);
+        console.log(this.orderProducts.value);
     }
 }
