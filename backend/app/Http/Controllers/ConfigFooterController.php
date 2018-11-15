@@ -35,6 +35,11 @@ class ConfigFooterController extends Controller
             $d->whatsApp1 = $request->whatsApp1;
             $d->whatsApp2 = $request->whatsApp2;
 
+            $d->horarios = $request->horarios;
+            $d->subtes = $request->subtes;
+            $d->colectivos = $request->colectivos;
+            $d->avenidas = $request->avenidas;
+
             $d->save();
         }
     }

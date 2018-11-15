@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import * as bootstrap from 'bootstrap';
+import { AgmCoreModule } from '@agm/core';
 
 // import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
@@ -51,6 +52,7 @@ import { BusquedaComponent } from './component/busqueda/busqueda.component';
 import { RecomprarInicioComponent } from './component/recomprar-inicio/recomprar-inicio.component';
 import { ServiciosInicioComponent } from './component/servicios-inicio/servicios-inicio.component';
 import { ProductosCarouselPageComponent } from './component/productos/productos-carousel-page/productos-carousel-page.component';
+import { PerfilClienteComponent } from './component/perfil-cliente/perfil-cliente.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -61,7 +63,7 @@ const appRoutes: Routes = [
   { path: 'recompra', component: RecomprarInicioComponent },
   { path: 'servicios', component: ServiciosInicioComponent },
   { path: 'productos', component: ProductosComponent },
-
+  { path: 'perfil-cliente', component: PerfilClienteComponent },
   
   { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
   
@@ -105,6 +107,7 @@ const appRoutes: Routes = [
     RecomprarInicioComponent,
     ServiciosInicioComponent,
     ProductosCarouselPageComponent,
+    PerfilClienteComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,7 +121,10 @@ const appRoutes: Routes = [
     ToastrModule.forRoot(),
     MaterialUiModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCiGsoFevMN2J-dXWtD_31AN4UkraR4Hq0'
+    })
   ],
   providers: [
     CarritoService,

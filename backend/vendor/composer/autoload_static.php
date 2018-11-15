@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit7714da98247b47083a27616f4cbb7c0e
+class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -470,6 +470,7 @@ class ComposerStaticInit7714da98247b47083a27616f4cbb7c0e
         'App\\Destacado' => __DIR__ . '/../..' . '/app/Destacado.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\GaleriaHome' => __DIR__ . '/../..' . '/app/GaleriaHome.php',
+        'App\\GaleriaHomeProductos' => __DIR__ . '/../..' . '/app/GaleriaHomeProductos.php',
         'App\\Http\\Controllers\\API\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/AuthController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -485,12 +486,14 @@ class ComposerStaticInit7714da98247b47083a27616f4cbb7c0e
         'App\\Http\\Controllers\\CouponsController' => __DIR__ . '/../..' . '/app/Http/Controllers/CouponsController.php',
         'App\\Http\\Controllers\\DestacadoController' => __DIR__ . '/../..' . '/app/Http/Controllers/DestacadoController.php',
         'App\\Http\\Controllers\\GaleriaHomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/GaleriaHomeController.php',
+        'App\\Http\\Controllers\\GaleriaHomeProductoController' => __DIR__ . '/../..' . '/app/Http/Controllers/GaleriaHomeProductoController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\OfertaController' => __DIR__ . '/../..' . '/app/Http/Controllers/OfertaController.php',
         'App\\Http\\Controllers\\OrderBodyController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderBodyController.php',
         'App\\Http\\Controllers\\OrderDriverController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderDriverController.php',
         'App\\Http\\Controllers\\OrderHeaderController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderHeaderController.php',
+        'App\\Http\\Controllers\\PerfilClientesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PerfilClientesController.php',
         'App\\Http\\Controllers\\PerfilController' => __DIR__ . '/../..' . '/app/Http/Controllers/PerfilController.php',
         'App\\Http\\Controllers\\PreguntasFrecuenteController' => __DIR__ . '/../..' . '/app/Http/Controllers/PreguntasFrecuenteController.php',
         'App\\Http\\Controllers\\ProductSincronizeController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductSincronizeController.php',
@@ -2661,6 +2664,7 @@ class ComposerStaticInit7714da98247b47083a27616f4cbb7c0e
         'League\\OAuth2\\Server\\Entities\\Traits\\ClientTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/ClientTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\EntityTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/EntityTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\RefreshTokenTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/RefreshTokenTrait.php',
+        'League\\OAuth2\\Server\\Entities\\Traits\\ScopeTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/ScopeTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\TokenEntityTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/TokenEntityTrait.php',
         'League\\OAuth2\\Server\\Entities\\UserEntityInterface' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/UserEntityInterface.php',
         'League\\OAuth2\\Server\\Exception\\OAuthServerException' => __DIR__ . '/..' . '/league/oauth2-server/src/Exception/OAuthServerException.php',
@@ -2891,6 +2895,7 @@ class ComposerStaticInit7714da98247b47083a27616f4cbb7c0e
         'Opis\\Closure\\SecurityProvider' => __DIR__ . '/..' . '/opis/closure/src/SecurityProvider.php',
         'Opis\\Closure\\SelfReference' => __DIR__ . '/..' . '/opis/closure/src/SelfReference.php',
         'Opis\\Closure\\SerializableClosure' => __DIR__ . '/..' . '/opis/closure/src/SerializableClosure.php',
+        'OrderSeed' => __DIR__ . '/../..' . '/database/seeds/OrderSeed.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/AssertionFailedError.php',
@@ -4697,11 +4702,11 @@ class ComposerStaticInit7714da98247b47083a27616f4cbb7c0e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit7714da98247b47083a27616f4cbb7c0e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit7714da98247b47083a27616f4cbb7c0e::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit7714da98247b47083a27616f4cbb7c0e::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit7714da98247b47083a27616f4cbb7c0e::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit7714da98247b47083a27616f4cbb7c0e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$classMap;
 
         }, null, ClassLoader::class);
     }
