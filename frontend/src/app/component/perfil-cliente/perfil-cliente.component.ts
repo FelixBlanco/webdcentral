@@ -4,6 +4,8 @@ import { PerfilClienteService } from '../../services/perfil-cliente.service';
 import { AlertsService } from '../../services/alerts.service'
 import { LoginService } from '../../services/login.service';
 
+declare var $;
+
 @Component({
   selector: 'app-perfil-cliente',
   templateUrl: './perfil-cliente.component.html',
@@ -44,11 +46,11 @@ export class PerfilClienteComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(localStorage.getItem('session_user')){ // Verificamos si esta logueado
+      this.isNuevo = true; // Cuando llamemos la informacion, consultamos si existe en perfil-cliente
 
-    this.isNuevo = true; // Cuando llamemos la informacion, consultamos si existe en perfil-cliente
-
-    this.getPerfilCliente();
-  
+      this.getPerfilCliente();
+    }  
   }
 
   getPerfilCliente(){
@@ -57,13 +59,15 @@ export class PerfilClienteComponent implements OnInit {
       (resp:any) => { 
 
         this.form.fk_idPerfilCliente = resp.id // agregamos el ID
-
+        
         // verificamos si ya tiene su informacio 
         this.perfilService._getPerfilCliente(resp.id).subscribe(
           (resp:any) => {
             // Como ya existe , vamos a editar
-            this.form = resp.perfil; 
-            this.isNuevo = false;
+            if(resp){
+              this.form = resp.perfil; 
+              this.isNuevo = false;
+            }
           },
           error => {
             // Como no hay perfil, le decimos crear            
@@ -80,13 +84,15 @@ export class PerfilClienteComponent implements OnInit {
     const data:any = { 
       nombreComercio: this.form.nombreComercio, nombre:  this.form.nombre, apellido:  this.form.apellido,
       documento_dni: this.form.documento_dni, documento_otro: this.form.documento_otro, correo:  this.form.correo, 
-      telefono:  this.form.telefono_code +''+ this.form.telefono, celular:  this.form.celular_code +''+ this.form.celular
+      telefono:  this.form.telefono_code +''+ this.form.telefono, celular:  this.form.celular_code +''+ this.form.celular,
+      fk_idPerfilCliente: this.form.fk_idPerfilCliente
     } 
 
     this.perfilService._crear(data).subscribe(
       resp =>{
         this.as.msg('OK','Registro exitoso')
         this.getPerfilCliente();
+        $("#perfilClienteModal").modal('hide');
       },
       error => {
         this.as.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
@@ -99,6 +105,7 @@ export class PerfilClienteComponent implements OnInit {
       resp => {
         this.as.msg('OK','Actualizacion completada')
         this.getPerfilCliente();
+        $("#perfilClienteModal").modal('hide');
       },
       error => {
         this.as.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);

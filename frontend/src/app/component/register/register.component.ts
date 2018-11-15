@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
 
   addRegister(){
 
-    if(!this.v_register.celular || !this.v_register.email || !this.v_register.cedular){
+    if(!this.v_register.nombre || !this.v_register.celular || !this.v_register.email || !this.v_register.cedular){
       this._alertService.msg("ERR", "Error", 'Todos los campos son requeridos');
     }
 
@@ -49,6 +49,7 @@ export class RegisterComponent implements OnInit {
           if(this.v_register.password == this.v_register.password_r){
             
             const data_i:any = { 
+              nombre: this.v_register.nombre,
               email: this.v_register.email,
               password: this.v_register.password,
               celular: this.v_register.celular,
