@@ -135,7 +135,6 @@ class LocalesAdheridoController extends Controller
         ];
 
         return response()->json($response, 201);
-
     }
 
     public function listarPorId(Request $request, $idLocalAdherido)
@@ -165,7 +164,7 @@ class LocalesAdheridoController extends Controller
                 $LAH = LocalesAdherido::find($idLocalAdherido);
             }
         }
-        if (!is_null($LAH)) {
+        if (! is_null($LAH)) {
             $LAH->each(function ($LAH) {
                 $LAH->set_imagen = asset('storage/localesAdheridos/'.$LAH->imagen);
             });
@@ -177,7 +176,6 @@ class LocalesAdheridoController extends Controller
         ];
 
         return response()->json($response, 201);
-
 
         $LAH = LocalesAdherido::with('user')->findOrFail($idLocalAdherido);
 
@@ -211,6 +209,84 @@ class LocalesAdheridoController extends Controller
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de eliminar los datos.',
+            ], 500);
+        }
+    }
+
+    public function editar(Request $request, $idLocalAdherido)
+    {
+
+        if ($request->all() == "[]") {
+            $response = [
+                'msj' => 'debe enviar algún parametro para actualizar',
+            ];
+
+            return response()->json($response, 404);
+        }
+
+        DB::beginTransaction();
+        try {
+            $LAH = LocalesAdherido::findOrFail($idLocalAdherido);
+
+            $LAH->fill($request->all());
+
+            if ($request->foto_1) {
+                $originalImage = $request->foto_1;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('/localesAdheridos/'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $LAH->foto_1 = $nombre_interno;
+            }
+
+            if ($request->foto_2) {
+                $originalImage = $request->foto_2;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno2 = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno2 = str_slug($nombre_interno2, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('/localesAdheridos/'.$nombre_interno2, (string) $thumbnailImage->encode());
+
+                $LAH->foto_2 = $nombre_interno2;
+            }
+
+            $LAH->save();
+
+            $response = [
+                'msj'   => 'Info de los locales actulizada',
+                'cupon' => $LAH,
+                'ruta_imagen'  => asset('storage/localesAdheridos/'),
+            ];
+
+            DB::commit();
+
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            //DB::rollback();
+            Log::error('Ha ocurrido un error en LocalesAdheridoController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al tratar de guardar los datos. El Local que intenta Editar tal vez no existe',
             ], 500);
         }
     }

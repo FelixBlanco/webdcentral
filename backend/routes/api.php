@@ -86,6 +86,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::post('listarLocalAdheridos','LocalesAdheridoController@listar');
         Route::post('listarPorIdLocalAdheridos/{idLocalAdherido}','LocalesAdheridoController@listarPorId');
         Route::delete('borrarLocalAdheridos/{idLocalAdherido}','LocalesAdheridoController@destroy');
+        Route::post('editarLocalAdheridos/{idLocalAdherido}','LocalesAdheridoController@editar');
         /*LOCALES ADHERIDOS*/
 
     });

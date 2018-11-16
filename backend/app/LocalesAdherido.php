@@ -13,7 +13,7 @@ class LocalesAdherido extends Model {
     protected $fillable = [
         'fk_idClasificado',
         'nombre',
-        '',
+        'descripcion',
         'foto_1',
         'foto_2',
         'fk_idUser',
