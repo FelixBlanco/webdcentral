@@ -107,7 +107,6 @@ const appRoutes: Routes = [
     RecomprarInicioComponent,
     ServiciosInicioComponent,
     ProductosCarouselPageComponent,
-    PerfilClienteComponent,
   ],
   imports: [
     BrowserModule,
