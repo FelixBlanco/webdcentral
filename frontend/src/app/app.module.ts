@@ -65,6 +65,7 @@ const appRoutes: Routes = [
   { path: 'servicios', component: ServiciosInicioComponent },
   { path: 'productos', component: ProductosComponent },
   { path: 'perfil-cliente', component: PerfilClienteComponent },
+  { path: 'galery-product', component: GaleryProductComponent },
   
   { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
   
@@ -108,6 +109,8 @@ const appRoutes: Routes = [
     RecomprarInicioComponent,
     ServiciosInicioComponent,
     ProductosCarouselPageComponent,
+    PerfilClienteComponent,
+    GaleryProductComponent,
   ],
   imports: [
     BrowserModule,

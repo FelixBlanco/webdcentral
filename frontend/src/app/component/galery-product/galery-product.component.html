@@ -17,7 +17,7 @@
               <input class="form-control" type="text" placeholder="Buscar" (keyup)='updateFilter($event)'>
           </div>
           <div class="col-3">
-              <button type="button" class="btn btn-success btn-block" data-toggle="modal">Nuevo</button>
+              <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Nuevo</button>
           </div>
         </div>
         <div class="row">
@@ -100,20 +100,20 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="questionForm">
+        <form [formGroup]="galeryForm">
           <div class="form-group">
-            <label for="pregunta">Pregunta:</label>
-            <input type="text" formControlName="pregunta" class="form-control" id="pregunta" aria-describedby="preguntaDesc" placeholder="Escriba una pregunta">
+            <label for="tittle1">Titulo:</label>
+            <input type="text" formControlName="tittle" class="form-control" id="tittle1" aria-describedby="preguntaDesc" placeholder="Escriba un Titulo">
           </div>
           <div class="form-group">
-            <label for="respuesta">Respuesta:</label>
-            <input type="text" formControlName="respuesta" class="form-control" id="respuesta" aria-describedby="respDesc" placeholder="Escribe una respuesta">
+            <label for="urlImg1">URL:</label>
+            <input type="text" formControlName="urlImg" class="form-control" id="urlImg1" aria-describedby="respDesc" placeholder="Escribe un URL">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-success" data-dismiss="modal" [disabled]="questionForm.invalid" (click)="save()">Guardar</button>
+        <button type="submit" class="btn btn-success" data-dismiss="modal" [disabled]="galeryForm.invalid" (click)="save()">Guardar</button>
       </div>
     </div>
   </div>
@@ -124,26 +124,26 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-azul">
-        <h5 class="modal-title text-white" id="modificarModal">Modificar <span class="text-capitalize" *ngIf="questionToUpdate">'{{questionToUpdate.pregunta}}'</span></h5>
+        <h5 class="modal-title text-white" id="modificarModal">Modificar <span class="text-capitalize" *ngIf="galeryProduct">'{{galeryProduct.tittle}}'</span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="questionUpdateForm">
+        <form [formGroup]="galeryUpdateForm">
           <div class="form-group">
-            <label for="pregunta">Pregunta:</label>
-            <input type="text" formControlName="pregunta" class="form-control" id="pregunta" aria-describedby="preguntaDesc" placeholder="Escriba una pregunta">
+            <label for="tittle">Titulo:</label>
+            <input type="text" formControlName="tittle" class="form-control" id="tittle" aria-describedby="preguntaDesc" placeholder="Escriba un Titulo">
           </div>
           <div class="form-group">
-            <label for="respuesta">Respuesta:</label>
-            <input type="text" formControlName="respuesta" class="form-control" id="respuesta" aria-describedby="respDesc" placeholder="Escribe una respuesta">
+            <label for="urlImg">URL:</label>
+            <input type="text" formControlName="urlImg" class="form-control" id="urlImg" aria-describedby="respDesc" placeholder="Escribea un URL">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-info bg-azul" data-dismiss="modal" [disabled]="questionUpdateForm.invalid" (click)="update()">Guardar</button>
+        <button type="submit" class="btn btn-info bg-azul" data-dismiss="modal" [disabled]="galeryUpdateForm.invalid" (click)="update()">Guardar</button>
       </div>
     </div>
   </div>
@@ -154,7 +154,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-danger">
-        <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="questionToUpdate">'{{questionToUpdate.pregunta}}'</span></h5>
+        <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="galeryProduct">'{{galeryProduct.tittle}}'</span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

@@ -28,7 +28,16 @@ export class GaleryProductComponent implements OnInit {
 
   constructor(private galeryService: GaleryProductService,
     private fb: FormBuilder, private ts: AlertsService) {
-
+      this.galeryForm = this.fb.group({
+        tittle: ['', Validators.required],//Agregar validators
+        urlImg: ['', Validators.required]//Agregar Validators
+      });
+  
+      this.galeryUpdateForm = this.fb.group({
+        tittle: ['', Validators.required],//Agregar validators
+        urlImg: ['', Validators.required]//Agregar Validators
+      });
+      
     this.list();
 
     this.columns = [
