@@ -173,12 +173,17 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::put('user/update/tokenfb/{idUser}', 'UserController@updateTokenFirebase');
 
 
+
+
     Route::put('setClave/{api_token}', 'UserController@setClave'); // Cambio de clave
 
     Route::post('reestablecerClave', 'UserController@reestablecerClave'); // recibe email y genera clave aleatoria, posterior envia email para el login
 
     // Actualizamos las imagenes de perfil
     Route::post('upgrade-foto-perfil', 'UserController@upgradeFotoPerfil');
+
+    //AGREGAR IMAGEN DE PERFIL
+    Route::post('addFotoPerfilUser','UserController@addFotoPerfil');
 
     /*con esta puede tener acceso a una foto de perfil en streaming*/
     Route::get('getFotoPerfil/{nombreImagen}', 'UserController@getFotoPerfil');
