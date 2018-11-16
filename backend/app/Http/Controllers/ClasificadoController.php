@@ -14,14 +14,11 @@ class ClasificadoController extends Controller
 {
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'titulo' => 'required',
             'foto'   => 'image|required|mimes:jpeg,png,jpg,gif,svg',
         ], [
             'titulo.required'      => 'El campo es requerido',
-            'nombre.required'      => 'El campo es requerido',
-            'descripcion.required' => 'El campo es requerido',
             'foto.required'        => 'El campo es requerido',
             'foto.image'           => 'La imagen debe tener el formato jpeg, pnp,gif,svg',
 
@@ -31,7 +28,7 @@ class ClasificadoController extends Controller
 
         try {
 
-            $clasificados = new LocalesAdherido($request->all());
+            $clasificados = new Clasificado($request->all());
 
             if (is_null($request->foto)) {
             } else {
@@ -150,7 +147,7 @@ class ClasificadoController extends Controller
         }
 
         $response = [
-            'msj'         => 'Lista de Locales Clasificados',
+            'msj'         => 'Lista clasificados',
             'Clasificado' => $clasificados,
         ];
 
@@ -232,7 +229,7 @@ class ClasificadoController extends Controller
             $clasificados->save();
 
             $response = [
-                'msj'          => 'Info de los locales actulizada',
+                'msj'          => 'Info actulizada',
                 'Clasificados' => $clasificados,
                 'ruta_imagen'  => asset('storage/Clasificados/'),
             ];

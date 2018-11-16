@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/routes/api.php" afterPath="$PROJECT_DIR$/backend/routes/api.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/autoload.php" afterPath="$PROJECT_DIR$/backend/vendor/autoload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/ClassLoader.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/ClassLoader.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_classmap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_real.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_real.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_static.php" />
     </list>
     <ignored path="$PROJECT_DIR$/admin/node_modules/" />
     <ignored path="$PROJECT_DIR$/frontend/node_modules/" />
@@ -22,29 +17,27 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
-              <caret line="92" column="39" lean-forward="false" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="39" />
+              <caret line="96" column="83" lean-forward="false" selection-start-line="96" selection-start-column="83" selection-end-line="96" selection-end-column="83" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClasificadoController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ClasificadoController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="194" column="60" lean-forward="false" selection-start-line="194" selection-start-column="60" selection-end-line="194" selection-end-column="60" />
+            <state relative-caret-position="386">
+              <caret line="240" column="29" lean-forward="true" selection-start-line="240" selection-start-column="29" selection-end-line="240" selection-end-column="29" />
               <folding>
                 <element signature="e#40#60#0#PHP" expanded="true" />
-                <element signature="e#303#2637#0#PHP" expanded="false" />
-                <element signature="e#2643#3958#0#PHP" expanded="false" />
-                <element signature="e#3964#5637#0#PHP" expanded="false" />
-                <element signature="e#4654#4948#0#PHP" expanded="false" />
-                <element signature="e#5643#6371#0#PHP" expanded="false" />
-                <element signature="e#6377#8386#0#PHP" expanded="false" />
+                <element signature="e#2512#3827#0#PHP" expanded="false" />
+                <element signature="e#3833#5495#0#PHP" expanded="false" />
+                <element signature="e#4523#4817#0#PHP" expanded="false" />
+                <element signature="e#5501#6229#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -53,8 +46,18 @@
       <file leaf-file-name="Clasificado.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/Clasificado.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="20" column="54" lean-forward="false" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="54" />
+            <state relative-caret-position="182">
+              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2018_11_16_153357_create_clasificados_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_11_16_153357_create_clasificados_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="15" column="44" lean-forward="false" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -64,9 +67,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CouponsController</find>
-      <find>u</find>
-      <find>updateCupon</find>
       <find>update</find>
       <find>notifi</find>
       <find>producto</find>
@@ -92,8 +92,11 @@
       <find>$idLocalAdherido</find>
       <find>foto_1</find>
       <find>fk_idUser</find>
-      <find>upgradeFotoPerfil</find>
       <find>idClasificado</find>
+      <find>upgradeFotoPerfil</find>
+      <find>LocalesAdherido</find>
+      <find>locales</find>
+      <find>local</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\alejandro\argentina\webdcentral\backend\app\Http\Controllers</dir>
@@ -144,8 +147,8 @@
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_11_16_153357_create_clasificados_table.php" />
         <option value="$PROJECT_DIR$/backend/app/Clasificado.php" />
-        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php" />
         <option value="$PROJECT_DIR$/backend/routes/api.php" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php" />
       </list>
     </option>
   </component>
@@ -204,46 +207,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webdcentral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webdcentral" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webdcentral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webdcentral" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -445,7 +408,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46231000" />
+    <option name="totallyTimeSpent" value="46971000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -455,7 +418,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19964974" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57978725" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2819149" sideWeight="0.496875" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2819149" sideWeight="0.496875" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JSON Viewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.166875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="JSON Utils" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -843,13 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-16.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="-2625">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -952,14 +908,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_11_16_153357_create_clasificados_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="18" column="49" lean-forward="false" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
@@ -1015,35 +963,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="96" column="83" lean-forward="false" selection-start-line="96" selection-start-column="83" selection-end-line="96" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-16.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="-4196">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_11_16_153357_create_clasificados_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="15" column="44" lean-forward="false" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Clasificado.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="20" column="54" lean-forward="false" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="54" />
+        <state relative-caret-position="182">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="194" column="60" lean-forward="false" selection-start-line="194" selection-start-column="60" selection-end-line="194" selection-end-column="60" />
+        <state relative-caret-position="386">
+          <caret line="240" column="29" lean-forward="true" selection-start-line="240" selection-start-column="29" selection-end-line="240" selection-end-column="29" />
           <folding>
             <element signature="e#40#60#0#PHP" expanded="true" />
-            <element signature="e#303#2637#0#PHP" expanded="false" />
-            <element signature="e#2643#3958#0#PHP" expanded="false" />
-            <element signature="e#3964#5637#0#PHP" expanded="false" />
-            <element signature="e#4654#4948#0#PHP" expanded="false" />
-            <element signature="e#5643#6371#0#PHP" expanded="false" />
-            <element signature="e#6377#8386#0#PHP" expanded="false" />
+            <element signature="e#2512#3827#0#PHP" expanded="false" />
+            <element signature="e#3833#5495#0#PHP" expanded="false" />
+            <element signature="e#4523#4817#0#PHP" expanded="false" />
+            <element signature="e#5501#6229#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="92" column="39" lean-forward="false" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>

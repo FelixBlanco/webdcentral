@@ -90,11 +90,11 @@ Route::group([ 'prefix' => 'auth' ], function() {
         /*LOCALES ADHERIDOS*/
 
         /*Clasificados*/
-        Route::post('guardarClasificado','LocalesAdheridoController@store');
-        Route::post('listarLocalAdheridos','LocalesAdheridoController@listar');
-        Route::post('listarPorIdLocalAdheridos/{idLocalAdherido}','LocalesAdheridoController@listarPorId');
-        Route::delete('borrarLocalAdheridos/{idLocalAdherido}','LocalesAdheridoController@destroy');
-        Route::post('editarLocalAdheridos/{idLocalAdherido}','LocalesAdheridoController@editar');
+        Route::post('guardarClasificado','ClasificadoController@store');
+        Route::post('listarLocalAdheridos','ClasificadoController@listar');
+        Route::post('listarPorIdLocalAdheridos/{idLocalAdherido}','ClasificadoController@listarPorId');
+        Route::delete('borrarLocalAdheridos/{idLocalAdherido}','ClasificadoController@destroy');
+        Route::post('editarLocalAdheridos/{idLocalAdherido}','ClasificadoController@editar');
         /*Clasificados*/
 
     });
