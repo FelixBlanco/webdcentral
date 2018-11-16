@@ -15,13 +15,12 @@ class CreateLocalesAdheridosTable extends Migration {
             $table->increments('idLocalAdherido');
             $table->integer('fk_idClasificado');
             $table->string('nombre');
-            $table->string('descripción');
+            $table->string('descripcion');
             $table->string('foto_1');
             $table->string('foto_2');
             $table->integer('fk_idUser');
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 

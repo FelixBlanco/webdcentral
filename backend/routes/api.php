@@ -81,6 +81,12 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
         /* PREGUNTA Y RESPUESTA */
 
+        /*LOCALES ADHERIDOS*/
+        Route::post('guardarLocalAdherido','LocalesAdheridoController@store');
+        Route::post('listarLocalAdheridos','LocalesAdheridoController@listar');
+        Route::post('listarPorIdLocalAdheridos/{idLocalAdherido}','LocalesAdheridoController@listarPorId');
+        Route::delete('borrarLocalAdheridos/{idLocalAdherido}','LocalesAdheridoController@destroy');
+        /*LOCALES ADHERIDOS*/
 
     });
 });
