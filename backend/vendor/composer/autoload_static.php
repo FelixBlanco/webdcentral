@@ -515,6 +515,7 @@ class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\cors' => __DIR__ . '/../..' . '/app/Http/Middleware/Cors.php',
+        'App\\LocalesAdherido' => __DIR__ . '/../..' . '/app/LocalesAdherido.php',
         'App\\Mail\\Prueba' => __DIR__ . '/../..' . '/app/Mail/Prueba.php',
         'App\\Mail\\SuscripcionMail' => __DIR__ . '/../..' . '/app/Mail/SuscripcionMail.php',
         'App\\Notification' => __DIR__ . '/../..' . '/app/Notification.php',

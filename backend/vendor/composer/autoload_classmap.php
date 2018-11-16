@@ -63,6 +63,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\cors' => $baseDir . '/app/Http/Middleware/Cors.php',
+    'App\\LocalesAdherido' => $baseDir . '/app/LocalesAdherido.php',
     'App\\Mail\\Prueba' => $baseDir . '/app/Mail/Prueba.php',
     'App\\Mail\\SuscripcionMail' => $baseDir . '/app/Mail/SuscripcionMail.php',
     'App\\Notification' => $baseDir . '/app/Notification.php',

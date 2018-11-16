@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Storage;
 use Image;
 
 class UserController extends Controller {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function listar(Request $request) {
 
@@ -95,8 +90,8 @@ class UserController extends Controller {
             'name'        => 'required|max:30|min:2',
             'email'       => 'required|unique:tb_users,email,'.$request->id.',id',
             'password'    => 'min:8', /*ya no sera requerida, debido a que puede ser null*/
-            'userName'    => 'required|unique:tb_users,userName,'.$request->id.',id',
-            'fk_idPerfil' => 'required',
+            //'userName'    => 'required|unique:tb_users,userName,'.$request->id.',id',
+            //'fk_idPerfil' => 'required',
             //'fotoPerfil'  => 'image|required|mimes:jpeg,png,jpg,gif,svg',
         ], [
             'name.required'        => 'El Nombre es requerido',
@@ -106,9 +101,9 @@ class UserController extends Controller {
             'email.email'          => 'El Email debe de tener un formato ejemplo@ejemplo.com',
             'email.required'       => 'El Email es requerido',
             'password.min'         => 'La contraseña debe de tener minimo 8 caracteres',
-            'userName'             => 'El User Name es requerido',
-            'userName.unique'      => 'El User Name ya esta en uso',
-            'fk_idPerfil.required' => 'Este campo es requerido',
+            //'userName'             => 'El User Name es requerido',
+            //'userName.unique'      => 'El User Name ya esta en uso',
+            //'fk_idPerfil.required' => 'Este campo es requerido',
             //'fotoPerfil.reqired'   => 'La foto de perfil es requerida',
 
         ]);
@@ -146,6 +141,9 @@ class UserController extends Controller {
             } else {
                 $usuario->password = bcrypt($request->password);
             }
+
+            $usuario->fk_idPerfil=2;
+            $usuario->userName=$request->email;
 
             $usuario->save();
 
