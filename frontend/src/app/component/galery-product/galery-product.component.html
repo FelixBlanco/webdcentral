@@ -124,13 +124,13 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-azul">
-        <h5 class="modal-title text-white" id="modificarModal">Modificar <span class="text-capitalize" *ngIf="galeryToUpdate">'{{galeryToUpdate.pregunta}}'</span></h5>
+        <h5 class="modal-title text-white" id="modificarModal">Modificar <span class="text-capitalize" *ngIf="questionToUpdate">'{{questionToUpdate.pregunta}}'</span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="galeryUpdateForm">
+        <form [formGroup]="questionUpdateForm">
           <div class="form-group">
             <label for="pregunta">Pregunta:</label>
             <input type="text" formControlName="pregunta" class="form-control" id="pregunta" aria-describedby="preguntaDesc" placeholder="Escriba una pregunta">
@@ -143,7 +143,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-info bg-azul" data-dismiss="modal" [disabled]="galeryUpdateForm.invalid" (click)="update()">Guardar</button>
+        <button type="submit" class="btn btn-info bg-azul" data-dismiss="modal" [disabled]="questionUpdateForm.invalid" (click)="update()">Guardar</button>
       </div>
     </div>
   </div>
@@ -154,7 +154,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-danger">
-        <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="galeryToUpdate">'{{galeryToUpdate.pregunta}}'</span></h5>
+        <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="questionToUpdate">'{{questionToUpdate.pregunta}}'</span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

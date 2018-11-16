@@ -53,6 +53,7 @@ import { RecomprarInicioComponent } from './component/recomprar-inicio/recomprar
 import { ServiciosInicioComponent } from './component/servicios-inicio/servicios-inicio.component';
 import { ProductosCarouselPageComponent } from './component/productos/productos-carousel-page/productos-carousel-page.component';
 import { PerfilClienteComponent } from './component/perfil-cliente/perfil-cliente.component';
+import { GaleryProductComponent } from './component/galery-product/galery-product.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
