@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
           if(this.v_register.password == this.v_register.password_r){
             
             const data_i:any = { 
-              nombre: this.v_register.nombre,
+              name: this.v_register.nombre,
               email: this.v_register.email,
               password: this.v_register.password,
               celular: this.v_register.celular,
@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
                 this._alertService.msg('OK','Registrado')
                 localStorage.getItem('access_token')
                 $("#registraseModal").modal('hide');
-                location.href="/";
+                location.href="/"; // Fix: Esto reinicia toda la aplicación los datos en memoria de productos, carrito de compra, etc se perderían
               },
               (error:any) => {
                 this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
