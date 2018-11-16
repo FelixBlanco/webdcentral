@@ -460,6 +460,7 @@ class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
     public static $classMap = array (
         'App\\CarritoCompra' => __DIR__ . '/../..' . '/app/CarritoCompra.php',
         'App\\Chage_user' => __DIR__ . '/../..' . '/app/Chage_user.php',
+        'App\\Clasificado' => __DIR__ . '/../..' . '/app/Clasificado.php',
         'App\\Color' => __DIR__ . '/../..' . '/app/Color.php',
         'App\\ConfigFooter' => __DIR__ . '/../..' . '/app/ConfigFooter.php',
         'App\\ConfigHome' => __DIR__ . '/../..' . '/app/ConfigHome.php',
@@ -488,6 +489,7 @@ class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
         'App\\Http\\Controllers\\GaleriaHomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/GaleriaHomeController.php',
         'App\\Http\\Controllers\\GaleriaHomeProductoController' => __DIR__ . '/../..' . '/app/Http/Controllers/GaleriaHomeProductoController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\LocalesAdheridoController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocalesAdheridoController.php',
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\OfertaController' => __DIR__ . '/../..' . '/app/Http/Controllers/OfertaController.php',
         'App\\Http\\Controllers\\OrderBodyController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderBodyController.php',
@@ -2665,7 +2667,6 @@ class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
         'League\\OAuth2\\Server\\Entities\\Traits\\ClientTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/ClientTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\EntityTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/EntityTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\RefreshTokenTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/RefreshTokenTrait.php',
-        'League\\OAuth2\\Server\\Entities\\Traits\\ScopeTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/ScopeTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\TokenEntityTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/TokenEntityTrait.php',
         'League\\OAuth2\\Server\\Entities\\UserEntityInterface' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/UserEntityInterface.php',
         'League\\OAuth2\\Server\\Exception\\OAuthServerException' => __DIR__ . '/..' . '/league/oauth2-server/src/Exception/OAuthServerException.php',
