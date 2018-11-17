@@ -9,7 +9,7 @@ import { AlertsService } from 'src/app/services/alerts.service';
 })
 export class MarcaComponent implements OnInit {
   
-  alfabeto:string[] = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y'];
+  letters:string[] = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y'];
   marcasList: any[] = [];
   charSelected: string;
   inPromise: boolean;

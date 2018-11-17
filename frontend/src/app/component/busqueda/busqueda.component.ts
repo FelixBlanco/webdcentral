@@ -10,7 +10,7 @@ declare var $: any;
   templateUrl: './busqueda.component.html',
   styleUrls: ['./busqueda.component.css']
 })
-export class BusquedaComponent {
+export class BusquedaComponent implements OnInit{
 
   searchForm: FormGroup;
   searchList: SearchBody;
@@ -30,6 +30,13 @@ export class BusquedaComponent {
   }
 
 
+  ngOnInit(){
+    this.productService.productosSearchItems.subscribe((val) => {
+      this.searchList = val;
+    })
+  }
+
+
   search(){
 
     if(this.searchForm.invalid){
@@ -40,7 +47,7 @@ export class BusquedaComponent {
     this.inPromise = true;
     this.productService.search(search).subscribe(resp => {
       if(resp.ok && resp.status === 200){
-        this.searchList = resp.body;
+        this.productService.productosSearchSource.next(resp.body);
         $('#busquedaModal').modal('toggle');
       }else{
         console.error(resp);
@@ -51,7 +58,7 @@ export class BusquedaComponent {
       console.error(error);
       this.as.msg('ERR', 'Ha ocurrido un error al buscar');
       this.inPromise = false;
-    })
+    });
   }
   
 

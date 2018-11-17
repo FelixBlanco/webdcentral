@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigColorService } from '../../services/config-color.service';
 import { LoginService } from '../../services/login.service'
 import { AlertsService } from '../../services/alerts.service';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 @Component({
   selector: 'app-nav-uno',
@@ -18,13 +19,18 @@ export class NavUnoComponent implements OnInit {
   
   userName:any;
 
+  badgeContent: number = 0;
+
   constructor(
     private _color: ConfigColorService,
     private _loginService: LoginService,
-    private _alertsService: AlertsService
+    private _alertsService: AlertsService,
+    private carritoService: CarritoService
   ) { }
 
   ngOnInit() {
+
+    this.initBadgeBehavior();
 
     this._color._paletaColor().subscribe(
       (resp:any) => {
@@ -67,5 +73,12 @@ export class NavUnoComponent implements OnInit {
         this._alertsService.msg('ERR','Algo salio.')
       }
     )
+  }
+
+  initBadgeBehavior(){
+    this.carritoService.carritoItems.subscribe((vals) => {
+      console.log('mmm',vals);
+      this.badgeContent = vals.length
+    });
   }
 }
