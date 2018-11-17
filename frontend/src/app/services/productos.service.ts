@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export interface Producto{
@@ -44,6 +44,9 @@ export interface SearchBody{
   providedIn: 'root'
 })
 export class ProductosService {
+
+  productosSearchSource: BehaviorSubject<SearchBody> = new BehaviorSubject(null);
+  productosSearchItems: Observable<SearchBody> = this.productosSearchSource.asObservable();
 
   constructor(
     private http: HttpClient

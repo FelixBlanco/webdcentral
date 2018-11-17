@@ -56,7 +56,7 @@
             </a>
           </li>
           <li class="nav-item txt-blanco" style="margin-left:-3%">
-            <a href="#" class="nav-link" data-toggle="modal" data-target="#carrito">
+            <a style="cursor: pointer" class="nav-link" [matBadge]="badgeContent" [matBadgeHidden]="badgeContent === 0" matBadgePosition="above after" matBadgeColor="warn" data-toggle="modal" data-target="#carrito">
               <img src="../assets/social/carrito.png" width="20px">
             </a>
           </li>
