@@ -53,6 +53,7 @@ import { RecomprarInicioComponent } from './component/recomprar-inicio/recomprar
 import { ServiciosInicioComponent } from './component/servicios-inicio/servicios-inicio.component';
 import { ProductosCarouselPageComponent } from './component/productos/productos-carousel-page/productos-carousel-page.component';
 import { PerfilClienteComponent } from './component/perfil-cliente/perfil-cliente.component';
+import { GaleryProductComponent } from './component/galery-product/galery-product.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -63,6 +64,8 @@ const appRoutes: Routes = [
   { path: 'recompra', component: RecomprarInicioComponent },
   { path: 'servicios', component: ServiciosInicioComponent },
   { path: 'productos', component: ProductosComponent },
+  { path: 'perfil-cliente', component: PerfilClienteComponent },
+  { path: 'galery-product', component: GaleryProductComponent },
   
   { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
   
@@ -107,6 +110,7 @@ const appRoutes: Routes = [
     ServiciosInicioComponent,
     ProductosCarouselPageComponent,
     PerfilClienteComponent,
+    GaleryProductComponent,
   ],
   imports: [
     BrowserModule,
