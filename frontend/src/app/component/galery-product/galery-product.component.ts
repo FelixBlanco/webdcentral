@@ -7,7 +7,7 @@ import { AlertsService } from 'src/app/services/alerts.service';
 export interface GaleryProduct {
   id;
   tittle;
-  urlImg;
+  imgFile;
   fk_idStatusSistema;
 }
 
@@ -25,17 +25,20 @@ export class GaleryProductComponent implements OnInit {
   galeryUpdateForm: FormGroup;
   limit: number = 5;
   galeryProduct: GaleryProduct;
+  selectedFile: File;
+
+
 
   constructor(private galeryService: GaleryProductService,
     private fb: FormBuilder, private ts: AlertsService) {
       this.galeryForm = this.fb.group({
         tittle: ['', Validators.required],//Agregar validators
-        urlImg: ['', Validators.required]//Agregar Validators
+        imgFile: ['', Validators.required]//Agregar Validators
       });
   
       this.galeryUpdateForm = this.fb.group({
         tittle: ['', Validators.required],//Agregar validators
-        urlImg: ['', Validators.required]//Agregar Validators
+        imgFile: ['', Validators.required]//Agregar Validators
       });
       
     this.list();
@@ -43,13 +46,17 @@ export class GaleryProductComponent implements OnInit {
     this.columns = [
       { prop: 'id' },
       { prop: 'tittle' },
-      { prop: 'urlImg' },
+      { prop: 'imgFile' },
       { prop: 'fk_idStatusSistema' },
       { prop: 'opts' }
     ];
   }
 
   ngOnInit() {
+  }
+
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0]
   }
 
   updateFilter(event){
@@ -66,6 +73,7 @@ export class GaleryProductComponent implements OnInit {
   list() {
     this.galeryService.getAll(null).subscribe((resp) => {
       if (resp.ok && resp.status === 202) {
+        console.log("List: " + resp.body)
         this.galeryList = resp.body.PFrec as Array<GaleryProduct>;
         this.rows = [...this.galeryList];
       } else {
@@ -84,40 +92,13 @@ export class GaleryProductComponent implements OnInit {
     this.galeryService.persist({pregunta: val.pregunta, respuesta: val.respuesta}).subscribe((resp) => {
       if(resp.ok && resp.status === 201){
         this.galeryForm.get('tittle').setValue('');
-        this.galeryForm.get('urlImg').setValue('');
+        this.galeryForm.get('imgFile').setValue('');
         this.list();
         this.ts.Success("El registro se ha guardado con éxito");
       }else{
         this.ts.listError(`Ha ocurrido un error interno`);
       }
     }, (error) => {
-      this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
-    })
-  }
-
-  update(){
-    if(this.galeryUpdateForm.invalid){
-      return;
-    }
-
-    const val = this.galeryUpdateForm.value;
-    const galery = this.galeryProduct;
-
-    this.galeryService.update(
-      {
-        id: galery.id, 
-        tittle: val.tittle, 
-        urlImg: val.urlImg
-      }
-    ).subscribe((resp)=> {
-      if(resp.ok && resp.status === 200){
-        this.ts.Success("Se ha actualizado la información");
-        this.list();
-      }else{
-        this.ts.listError(`Ha ocurrido un error interno`);
-      }
-      
-    },(error) => {
       this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
     })
   }
@@ -136,35 +117,18 @@ export class GaleryProductComponent implements OnInit {
       });
   }
 
-  set({id,tittle,urlImg, fk_idStatusSistema}){
+  set({id,tittle,imgFile, fk_idStatusSistema}){
     this.galeryProduct = {
       id: id,
       tittle: tittle,
-      urlImg: urlImg,
+      imgFile: imgFile,
       fk_idStatusSistema: fk_idStatusSistema
     }
 
     this.galeryUpdateForm.get('tittle').setValue(tittle);
-    this.galeryUpdateForm.get('urlImg').setValue(urlImg);
+    this.galeryUpdateForm.get('imgFile').setValue(imgFile);
   }
 
-  updateStatus(){
-    const status = (this.galeryProduct.fk_idStatusSistema === 1) ? 2: 1;
-    this.galeryService.updateStatus(
-      {
-        id: this.galeryProduct.id,
-        fk_idStatusSistema: status
-      }).subscribe((resp) => {
-        if(resp.ok && resp.status === 200){
-          this.ts.Success("Se ha actualizado el estatus");
-          this.list();
-        }else{
-          this.ts.listError(`Ha ocurrido un error interno`);
-        }
-      }, (error) => {
-        this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
-      })
-  }
   rowClass(){
     return 'text-capitalize';
   }

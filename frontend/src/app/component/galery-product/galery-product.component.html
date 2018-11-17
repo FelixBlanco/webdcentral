@@ -6,82 +6,63 @@
       </div>
       <div class="container-fluid">
         <div class="row mb-4">
-          <div class="col-2">
-              <select class="form-control" [(ngModel)]="limit">
-                <option>5</option>
-                <option>10</option>
-                <option>20</option>
-              </select>
-          </div>
-          <div class="col-7">
-              <input class="form-control" type="text" placeholder="Buscar" (keyup)='updateFilter($event)'>
-          </div>
+        
+      
+         
           <div class="col-3">
-              <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Nuevo</button>
+            <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Nuevo</button>
           </div>
         </div>
         <div class="row">
           <div class="col mb-4">
-            <ngx-datatable
-              #table
-              class="bootstrap"
-              [rowHeight]="80"
-              [rows]="rows"
-              [columns]="columns"
-              [columnMode]="'force'"
-              [footerHeight]="'40'"
-              [rowClass]="rowClass"
-              [limit]="limit">
+            <ngx-datatable #table class="bootstrap" [rowHeight]="80" [rows]="rows" [columns]="columns" [columnMode]="'force'"
+              [footerHeight]="'40'" [rowClass]="rowClass" [limit]="limit">
 
               <ngx-datatable-column name="#" prop="id"></ngx-datatable-column>
               <ngx-datatable-column name="Titulo" prop="tittle"></ngx-datatable-column>
-              <ngx-datatable-column name="URL" prop="urlImg"></ngx-datatable-column>
+              <ngx-datatable-column name="Imagen" prop="imgFile"></ngx-datatable-column>
               <ngx-datatable-column name="Estatus" prop="fk_idStatusSistema">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                    <ng-container [ngSwitch]="row.fk_idStatusSistema">
-                      <span class="text-danger" *ngSwitchCase="2">INACTIVO</span>
-                      <span class="text-success" *ngSwitchDefault>ACTIVO</span>
-                    </ng-container>
-                </ng-template>                    
+                  <ng-container [ngSwitch]="row.fk_idStatusSistema">
+                    <span class="text-danger" *ngSwitchCase="2">INACTIVO</span>
+                    <span class="text-success" *ngSwitchDefault>ACTIVO</span>
+                  </ng-container>
+                </ng-template>
               </ngx-datatable-column>
 
               <ngx-datatable-column name="" prop="opts">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#modificar"><fa-icon [icon]="['far', 'edit']"></fa-icon></a>
-                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><fa-icon [icon]="['far', 'trash-alt']"></fa-icon></a>
-                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#estatus"><fa-icon [icon]="['fas', 'ban']"></fa-icon></a>
-                </ng-template>                    
+                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#modificar">
+                    <fa-icon [icon]="['far', 'edit']"></fa-icon>
+                  </a>
+                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar">
+                    <fa-icon [icon]="['far', 'trash-alt']"></fa-icon>
+                  </a>
+                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#estatus">
+                    <fa-icon [icon]="['fas', 'ban']"></fa-icon>
+                  </a>
+                </ng-template>
               </ngx-datatable-column>
 
               <ngx-datatable-footer>
-                  <ng-template 
-                    ngx-datatable-footer-template 
-                    let-rowCount="rowCount"
-                    let-pageSize="pageSize"
-                    let-curPage="curPage">
-                    <div style="padding: 5px 5px">
-                      <div>
-                        Registros totales: {{rowCount}} |
-                        Página: {{curPage}}
-                      </div>
+                <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize" let-curPage="curPage">
+                  <div style="padding: 5px 5px">
+                    <div>
+                      Registros totales: {{rowCount}} |
+                      Página: {{curPage}}
                     </div>
-                    <datatable-pager
-                        [pagerLeftArrowIcon]="'datatable-icon-left'"
-                        [pagerRightArrowIcon]="'datatable-icon-right'"
-                        [pagerPreviousIcon]="'datatable-icon-prev'"
-                        [pagerNextIcon]="'datatable-icon-skip'"
-                        [page]="curPage"
-                        [size]="pageSize"
-                        [count]="rowCount"
-                        [hidden]="!((rowCount / pageSize) > 1)"
-                        (change)="table.onFooterPage($event)" style="flex: 1 1 60%">
-                    </datatable-pager>
-                  </ng-template>
-                  
-                </ngx-datatable-footer>
+                  </div>
+                  <datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'" [pagerRightArrowIcon]="'datatable-icon-right'"
+                    [pagerPreviousIcon]="'datatable-icon-prev'" [pagerNextIcon]="'datatable-icon-skip'" [page]="curPage"
+                    [size]="pageSize" [count]="rowCount" [hidden]="!((rowCount / pageSize) > 1)" (change)="table.onFooterPage($event)"
+                    style="flex: 1 1 60%">
+                  </datatable-pager>
+                </ng-template>
+
+              </ngx-datatable-footer>
             </ngx-datatable>
 
-          </div>        
+          </div>
         </div>
       </div>
     </div>
@@ -103,11 +84,15 @@
         <form [formGroup]="galeryForm">
           <div class="form-group">
             <label for="tittle1">Titulo:</label>
-            <input type="text" formControlName="tittle" class="form-control" id="tittle1" aria-describedby="preguntaDesc" placeholder="Escriba un Titulo">
+            <input type="text" formControlName="tittle" class="form-control" id="tittle1" aria-describedby="preguntaDesc"
+              placeholder="Escriba un Titulo">
           </div>
           <div class="form-group">
-            <label for="urlImg1">URL:</label>
-            <input type="text" formControlName="urlImg" class="form-control" id="urlImg1" aria-describedby="respDesc" placeholder="Escribe un URL">
+            
+            <input type="file" accept="image/*" style="display: none;" formControlName="imgFile"
+              class="form-control" id="imgFile1" aria-describedby="respDesc" (change)="onFileChanged($event)" #imgFile1>
+           
+            <button class="btn btn-success" (click)="imgFile1.click()">Seleccionar Imagen</button>
           </div>
         </form>
       </div>
@@ -119,37 +104,7 @@
   </div>
 </div>
 
-<!-- Modal Modificar -->
-<div class="modal fade" id="modificar" tabindex="-1" role="dialog" aria-labelledby="modificarModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-azul">
-        <h5 class="modal-title text-white" id="modificarModal">Modificar <span class="text-capitalize" *ngIf="galeryProduct">'{{galeryProduct.tittle}}'</span></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="galeryUpdateForm">
-          <div class="form-group">
-            <label for="tittle">Titulo:</label>
-            <input type="text" formControlName="tittle" class="form-control" id="tittle" aria-describedby="preguntaDesc" placeholder="Escriba un Titulo">
-          </div>
-          <div class="form-group">
-            <label for="urlImg">URL:</label>
-            <input type="text" formControlName="urlImg" class="form-control" id="urlImg" aria-describedby="respDesc" placeholder="Escribea un URL">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-info bg-azul" data-dismiss="modal" [disabled]="galeryUpdateForm.invalid" (click)="update()">Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-  <!-- Modal Eliminar -->
+<!-- Modal Eliminar -->
 <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -165,33 +120,6 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-danger" data-dismiss="modal" (click)="delete()">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Activar/Inactivar -->
-<div class="modal fade" id="estatus" tabindex="-1" role="dialog" aria-labelledby="estatusModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-warning">
-        <h5 class="modal-title text-white" id="estatusModal">Cambiar estatus</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p class="text-muted">
-          El siguiente regtistro pasará a estar en estatus 
-          <ng-container *ngIf="galeryToUpdate" [ngSwitch]="galeryToUpdate.fk_idStatusSistema">
-            <span class="text-danger" *ngSwitchCase="1">INACTIVO</span>
-            <span class="text-success" *ngSwitchDefault>ACTIVO</span>
-          </ng-container>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-warning text-white" data-dismiss="modal" (click)="updateStatus()">Aceptar</button>
       </div>
     </div>
   </div>
