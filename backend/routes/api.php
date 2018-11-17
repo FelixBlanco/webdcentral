@@ -89,6 +89,14 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::post('editarLocalAdheridos/{idLocalAdherido}','LocalesAdheridoController@editar');
         /*LOCALES ADHERIDOS*/
 
+        /*Clasificados*/
+        Route::post('guardarClasificado','ClasificadoController@store');
+        Route::post('listarLocalAdheridos','ClasificadoController@listar');
+        Route::post('listarPorIdLocalAdheridos/{idLocalAdherido}','ClasificadoController@listarPorId');
+        Route::delete('borrarLocalAdheridos/{idLocalAdherido}','ClasificadoController@destroy');
+        Route::post('editarLocalAdheridos/{idLocalAdherido}','ClasificadoController@editar');
+        /*Clasificados*/
+
     });
 });
 

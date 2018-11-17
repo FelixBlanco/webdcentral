@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\CarritoCompra' => $baseDir . '/app/CarritoCompra.php',
     'App\\Chage_user' => $baseDir . '/app/Chage_user.php',
+    'App\\Clasificado' => $baseDir . '/app/Clasificado.php',
     'App\\Color' => $baseDir . '/app/Color.php',
     'App\\ConfigFooter' => $baseDir . '/app/ConfigFooter.php',
     'App\\ConfigHome' => $baseDir . '/app/ConfigHome.php',
@@ -36,6 +37,7 @@ return array(
     'App\\Http\\Controllers\\GaleriaHomeController' => $baseDir . '/app/Http/Controllers/GaleriaHomeController.php',
     'App\\Http\\Controllers\\GaleriaHomeProductoController' => $baseDir . '/app/Http/Controllers/GaleriaHomeProductoController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\LocalesAdheridoController' => $baseDir . '/app/Http/Controllers/LocalesAdheridoController.php',
     'App\\Http\\Controllers\\NotificationController' => $baseDir . '/app/Http/Controllers/NotificationController.php',
     'App\\Http\\Controllers\\OfertaController' => $baseDir . '/app/Http/Controllers/OfertaController.php',
     'App\\Http\\Controllers\\OrderBodyController' => $baseDir . '/app/Http/Controllers/OrderBodyController.php',
@@ -2213,7 +2215,6 @@ return array(
     'League\\OAuth2\\Server\\Entities\\Traits\\ClientTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/ClientTrait.php',
     'League\\OAuth2\\Server\\Entities\\Traits\\EntityTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/EntityTrait.php',
     'League\\OAuth2\\Server\\Entities\\Traits\\RefreshTokenTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/RefreshTokenTrait.php',
-    'League\\OAuth2\\Server\\Entities\\Traits\\ScopeTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/ScopeTrait.php',
     'League\\OAuth2\\Server\\Entities\\Traits\\TokenEntityTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/TokenEntityTrait.php',
     'League\\OAuth2\\Server\\Entities\\UserEntityInterface' => $vendorDir . '/league/oauth2-server/src/Entities/UserEntityInterface.php',
     'League\\OAuth2\\Server\\Exception\\OAuthServerException' => $vendorDir . '/league/oauth2-server/src/Exception/OAuthServerException.php',
