@@ -1,42 +1,44 @@
 <div class="modal fade" id="marcaModal" tabindex="-1" role="dialog" aria-labelledby="marcaModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-naranja">
-        <h5 class="modal-title txt-blanco" id="marcaModalTitle">MARCAS</h5>
+      <div class="modal-header bg-azul">
+        <h5 class="modal-title txt-blanco font-bold" id="marcaModalTitle">MARCAS</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true" class="txt-blanco">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <ul *ngIf="!inPromise">
-          <li *ngFor="let i of alfabeto" (click)="find(i)" [ngClass]="(i === charSelected) ? 'active' : ''">
-              {{i}}
-          </li>
-        </ul>
+        <ng-container *ngIf="!inPromise" >
+          <a *ngFor="let _ of letters" mat-stroked-button [ngClass]=" (charSelected === _ ) ? 'active' : ''" (click)="find(_)">{{_}}</a>
+        </ng-container>
         <mat-progress-bar *ngIf="inPromise" mode="indeterminate"></mat-progress-bar>
         <hr>
-        <ng-container *ngIf="!charSelected">
-          <p class="text-center text-muted font-italic">Seleccione una letra...</p>
-        </ng-container>
-        <ng-container *ngIf="charSelected && !inPromise">
-            <p class="bg-naranja txt-blanco text-center" style="border-radius:6px; padding:4px;">
-              {{charSelected}}
-            </p>
-            <p *ngIf="!this.marcasList.length" class="text-center text-muted font-italic">
-              No se encontraron marcas registradas
-            </p>
-            <ng-container *ngIf="this.marcasList.length">
-              <div class="row justify-content-center">
-                <ng-container *ngFor="let marca of marcasList; let i=index">
-                  <ng-container *ngIf="isARow(i)">
-                    <div class="col-4 text-center">
-                      <span *ngFor="let item of getPartialItems(i, i+3)">{{item.marca}}  <br></span>
-                    </div>
-                  </ng-container>
-                </ng-container>
-              </div>
+        <div class="card">
+          <div class="card-body">
+            <ng-container *ngIf="!charSelected">
+              <p class="text-center text-muted font-italic">Seleccione una letra...</p>
             </ng-container>
-        </ng-container>
+            <ng-container *ngIf="charSelected && !inPromise">
+                <p class="bg-naranja txt-blanco font-bold" style="border-radius:6px; padding:4px; font-size: 1.5rem;">
+                  <span class="m-2">{{charSelected}}</span>
+                </p>
+                <p *ngIf="!this.marcasList.length" class="text-center text-muted font-italic">
+                  No se encontraron marcas registradas
+                </p>
+                <ng-container *ngIf="this.marcasList.length">
+                  <div class="row justify-content-center m-4">
+                    <ng-container *ngFor="let marca of marcasList; let i=index">
+                      <ng-container *ngIf="isARow(i)">
+                        <div class="col-4 text-center">
+                          <span *ngFor="let item of getPartialItems(i, i+3)">{{item.marca}}  <br></span>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                </ng-container>
+            </ng-container>
+          </div>
+        </div>
       </div>
     </div>
   </div>

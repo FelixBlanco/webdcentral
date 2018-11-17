@@ -13,10 +13,14 @@ class LocalesAdherido extends Model {
     protected $fillable = [
         'fk_idClasificado',
         'nombre',
-        'descripción',
+        'descripcion',
         'foto_1',
         'foto_2',
         'fk_idUser',
     ];
+
+    public function user() {
+        return $this->belongsTo('App\User', 'fk_idUser');
+    }
 
 }

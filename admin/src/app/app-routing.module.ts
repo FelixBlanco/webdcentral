@@ -18,7 +18,6 @@ import { DestacadosComponent } from './component/destacados/destacados.component
 import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
 
 const routes: Routes = [
-  { path: 'forget', redirectTo:  '/forget' },
   { path: 'Galeria', component: GaleriaHomeComponent },
   { path: 'Mapa', component: MapaComponent },
   { path: 'Cupones', component: CuponsappComponent },
