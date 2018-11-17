@@ -1,22 +1,20 @@
-ul{
-    display: flex;
-    list-style: none;
-}
-ul li{
-    margin-left: 1%;
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 35px;
-    text-align: center;
-    cursor: pointer;
+
+.modal-lg{
+    max-width: 1000px;
 }
 
-ul li.active{
-    background: #E97604;
-    color: white;
-}
-
-button{
+.mat-stroked-button{
+    color: rgb(61, 61, 61);
+    font-weight: bold;
+    min-width: 35px;
     padding: 0;
-    color: black;
+    width: 35px;
+    height: 35px;
+    margin: 1px;
+    border-radius: 50%;
+}
+
+.mat-stroked-button.active{
+    color: white;
+    background-color: #E97604;
 }
