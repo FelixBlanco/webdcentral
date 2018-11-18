@@ -43,7 +43,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         /*REDES SOCIALES*/
         Route::post('crearRedSocial', 'RedSocialController@store');
-        Route::PUT('updateRedesSociales/{id_RedSocial}', 'RedSocialController@update');
+        Route::put('updateRedesSociales/{id_RedSocial}', 'RedSocialController@updateRedesSociales');
         /*REDES SOCIALES*/
 
         /*ORDER BODY (carrito de compra)*/
@@ -91,10 +91,10 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         /*Clasificados*/
         Route::post('guardarClasificado','ClasificadoController@store');
-        Route::post('listarLocalAdheridos','ClasificadoController@listar');
-        Route::post('listarPorIdLocalAdheridos/{idLocalAdherido}','ClasificadoController@listarPorId');
-        Route::delete('borrarLocalAdheridos/{idLocalAdherido}','ClasificadoController@destroy');
-        Route::post('editarLocalAdheridos/{idLocalAdherido}','ClasificadoController@editar');
+        Route::post('listarClasificado','ClasificadoController@listar');
+        Route::get('listarPorIdClasificado/{idClasificado}','ClasificadoController@listarPorId');
+        Route::delete('borrarClasificado/{idClasificado}','ClasificadoController@destroy');
+        Route::post('editarClasificado/{idClasificado}','ClasificadoController@editar');
         /*Clasificados*/
 
     });
@@ -283,7 +283,8 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     Route::get('producto/listarPorid/{idProducto}','ProductoController@listarPorid');
 
-
+    // Links de redes sociales
+    Route::get('get-redes','RedSocialController@getRedes');
 });
 
 

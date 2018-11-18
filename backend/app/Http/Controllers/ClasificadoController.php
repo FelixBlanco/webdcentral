@@ -53,10 +53,12 @@ class ClasificadoController extends Controller
             $clasificados->fk_idStatusSistema = 1;
 
             $clasificados->save();
+            $clasificados->user;
 
             $response = [
                 'msj'         => 'Clasificado Creado exitosamente',
                 'Clasificado' => $clasificados,
+                'ruta_imagen'  => asset('storage/Clasificados/'.$clasificados->foto),
             ];
             DB::commit();
 
@@ -115,31 +117,9 @@ class ClasificadoController extends Controller
 
     public function listarPorId(Request $request, $idClasificado)
     {
-        if ($request->exists('offset') && $request->exists('limit')) {
 
-            $this->validate($request, [
-                'offset' => 'integer|min:1',
-                'limit'  => 'integer|min:1',
-            ], [
-                'offset.integer' => 'Debe ser numérico',
-                'limit.integer'  => 'Debe ser numérico',
+        $clasificados = Clasificado::with('user')->find($idClasificado);
 
-                'offset.min' => 'Debe tener al menos un número',
-                'limit.min'  => 'Debe tener al menos un número',
-            ]);
-
-            $clasificados = Clasificado::offset($request->offset)->limit($request->limit)->with('user')->get();
-        } else {
-            if ($request->exists('search')) {
-
-                $busqueda = "%".$request->search."%";
-
-                $clasificados = Clasificado::where('titulo', 'like', $busqueda)->with('user')->get();
-            } else {
-
-                $clasificados = Clasificado::find($idClasificado);
-            }
-        }
         if (! is_null($clasificados)) {
             $clasificados->each(function ($clasificados) {
                 $clasificados->set_imagen = asset('storage/Clasificados/'.$clasificados->foto);
@@ -231,7 +211,7 @@ class ClasificadoController extends Controller
             $response = [
                 'msj'          => 'Info actulizada',
                 'Clasificados' => $clasificados,
-                'ruta_imagen'  => asset('storage/Clasificados/'),
+                'ruta_imagen'  => asset('storage/Clasificados/'.$clasificados->foto),
             ];
 
             DB::commit();

@@ -48,6 +48,9 @@ export class ProductosService {
   productosSearchSource: BehaviorSubject<SearchBody> = new BehaviorSubject(null);
   productosSearchItems: Observable<SearchBody> = this.productosSearchSource.asObservable();
 
+  productosFilterTittleSource: BehaviorSubject<string> = new BehaviorSubject(null);
+  productosFilterTittle: Observable<string> = this.productosFilterTittleSource.asObservable();
+
   constructor(
     private http: HttpClient
   ) { }

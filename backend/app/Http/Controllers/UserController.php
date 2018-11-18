@@ -11,10 +11,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
-class UserController extends Controller
-{
-    public function listar(Request $request)
-    {
+class UserController extends Controller {
+    public function listar(Request $request) {
 
         if ($request->exists('offset') && $request->exists('limit')) {
 
@@ -42,7 +40,7 @@ class UserController extends Controller
             }
         }
 
-        $users->each(function ($users) {
+        $users->each(function($users) {
             $users->perfil;
 
             return $users;
@@ -56,8 +54,7 @@ class UserController extends Controller
         return response()->json($response, 202);
     }
 
-    public function index()
-    {
+    public function index() {
     }
 
     /**
@@ -65,31 +62,32 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
 
         $password_default = 123456;
 
         $this->validate($request, [
-            'name'     => 'required|max:30|min:2',
-            'email'    => 'required|unique:tb_users,email,'.$request->id.',id',
-            'password' => 'min:8', /*ya no sera requerida, debido a que puede ser null*/
+            'name'                  => 'required|max:30|min:2',
+            'email'                 => 'required|unique:tb_users,email,'.$request->id.',id',
+            'password'              => 'min:8|confirmed', /*ya no sera requerida, debido a que puede ser null*/
+            'password_confirmation' => 'required|min:8',
             //'userName'    => 'required|unique:tb_users,userName,'.$request->id.',id',
             //'fk_idPerfil' => 'required',
             //'fotoPerfil'  => 'image|required|mimes:jpeg,png,jpg,gif,svg',
         ], [
-            'name.required'  => 'El Nombre es requerido',
-            'name.max'       => 'El Nombre no puede tener mas de 20 caracteres',
-            'name.min'       => 'El Nombre no puede tener menos de 2 caracteres',
-            'email.unique'   => 'Este Email ya se encuentra en uso',
-            'email.email'    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
-            'email.required' => 'El Email es requerido',
-            'password.min'   => 'La contraseña debe de tener minimo 8 caracteres',
+            'name.required'                  => 'El Nombre es requerido',
+            'name.max'                       => 'El Nombre no puede tener mas de 20 caracteres',
+            'name.min'                       => 'El Nombre no puede tener menos de 2 caracteres',
+            'email.unique'                   => 'Este Email ya se encuentra en uso',
+            'email.email'                    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
+            'email.required'                 => 'El Email es requerido',
+            'password.min'                   => 'La contraseña debe de tener minimo 8 caracteres',
+            'password_confirmation.required' => 'Este campo es requerido',
+            'password.confirmed'             => 'Las contraseña no coinciden vuelva a intentar',
             //'userName'             => 'El User Name es requerido',
             //'userName.unique'      => 'El User Name ya esta en uso',
             //'fk_idPerfil.required' => 'Este campo es requerido',
@@ -110,11 +108,11 @@ class UserController extends Controller
                 $originalImage = $request->fotoPerfil;
 
                 $thumbnailImage = Image::make($originalImage);
-                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                $thumbnailImage->fit(2048, 2048, function($constraint) {
                     $constraint->aspectRatio();
                 });
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension = $originalImage->getClientOriginalExtension();
+                $extension      = $originalImage->getClientOriginalExtension();
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
                 Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
@@ -131,7 +129,7 @@ class UserController extends Controller
             }
 
             $usuario->fk_idPerfil = 2;
-            $usuario->userName = $request->email;
+            $usuario->userName    = $request->email;
 
             $usuario->save();
 
@@ -166,8 +164,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
 
         try {
 
@@ -194,8 +191,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -206,8 +202,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
 
         $this->validate($request, [
             'name'  => 'required|max:30|min:2',
@@ -243,11 +238,11 @@ class UserController extends Controller
                 $originalImage = $request->fotoPerfil;
 
                 $thumbnailImage = Image::make($originalImage);
-                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                $thumbnailImage->fit(2048, 2048, function($constraint) {
                     $constraint->aspectRatio();
                 });
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension = $originalImage->getClientOriginalExtension();
+                $extension      = $originalImage->getClientOriginalExtension();
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
                 Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
@@ -284,8 +279,7 @@ class UserController extends Controller
         }
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
 
         DB::beginTransaction();
 
@@ -311,8 +305,7 @@ class UserController extends Controller
         }
     }
 
-    public function getFotoPerfil($archivo)
-    {
+    public function getFotoPerfil($archivo) {
 
         if (Storage::exists('/perfil/'.$archivo)) {
 
@@ -324,8 +317,7 @@ class UserController extends Controller
         }
     }
 
-    public function setClave(Request $request, $api_token)
-    {
+    public function setClave(Request $request, $api_token) {
 
         $this->validate($request, [
             'password' => 'required|min:8',
@@ -372,8 +364,7 @@ class UserController extends Controller
 
     // Actualizamos o agragamos la img de perfil
 
-    public function upgradeFotoPerfil(Request $request)
-    {
+    public function upgradeFotoPerfil(Request $request) {
 
         $this->validate($request, [
             'id_user'    => 'required',
@@ -386,30 +377,30 @@ class UserController extends Controller
 
         if ($usuario) {
 
-        /*para la foto*/
-        $originalImage = $request->fotoPerfil;
+            /*para la foto*/
+            $originalImage = $request->fotoPerfil;
 
-        $thumbnailImage = Image::make($originalImage);
-        $thumbnailImage->fit(2048, 2048, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $nombre_publico = $originalImage->getClientOriginalName();
-        $extension = $originalImage->getClientOriginalExtension();
-        $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
-        $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-        Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
-        /*para la foto*/
+            $thumbnailImage = Image::make($originalImage);
+            $thumbnailImage->fit(2048, 2048, function($constraint) {
+                $constraint->aspectRatio();
+            });
+            $nombre_publico = $originalImage->getClientOriginalName();
+            $extension      = $originalImage->getClientOriginalExtension();
+            $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+            $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+            Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
+            /*para la foto*/
 
-        $usuario->fotoPerfil = $nombre_interno;
-        $usuario->save();
+            $usuario->fotoPerfil = $nombre_interno;
+            $usuario->save();
 
-        $response = [
-            'msj'         => 'Imagen de perfil creada exitosamente',
-            'user'        => $usuario,
-            'ruta_imagen' => asset('storage/perfil/'),
-        ];
+            $response = [
+                'msj'         => 'Imagen de perfil creada exitosamente',
+                'user'        => $usuario,
+                'ruta_imagen' => asset('storage/perfil/'),
+            ];
 
-        return response()->json($response, 201);
+            return response()->json($response, 201);
 
         } else {
             $response = [
@@ -420,8 +411,7 @@ class UserController extends Controller
         }
     }
 
-    public function reestablecerClave(Request $request)
-    {
+    public function reestablecerClave(Request $request) {
 
         $this->validate($request, [
             'email' => 'required',
@@ -439,7 +429,7 @@ class UserController extends Controller
 
             return response()->json($response, 200);
         } else {
-            $clave_nueva = str_random(6);
+            $clave_nueva    = str_random(6);
             $user->password = bcrypt($clave_nueva);
             $user->save();
 
@@ -454,15 +444,13 @@ class UserController extends Controller
         }
     }
 
-    public function updateTokenFirebase(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
+    public function updateTokenFirebase(Request $request, $id) {
+        $user                = User::findOrFail($id);
         $user->tokenFirebase = $request->tokenFirebase;
         $user->save();
     }
 
-    public function addFotoPerfil(Request $request)
-    {
+    public function addFotoPerfil(Request $request) {
 
         $this->validate($request, [
             'id_user'    => 'required',
@@ -479,11 +467,11 @@ class UserController extends Controller
             $originalImage = $request->fotoPerfil;
 
             $thumbnailImage = Image::make($originalImage);
-            $thumbnailImage->fit(2048, 2048, function ($constraint) {
+            $thumbnailImage->fit(2048, 2048, function($constraint) {
                 $constraint->aspectRatio();
             });
             $nombre_publico = $originalImage->getClientOriginalName();
-            $extension = $originalImage->getClientOriginalExtension();
+            $extension      = $originalImage->getClientOriginalExtension();
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
             Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
