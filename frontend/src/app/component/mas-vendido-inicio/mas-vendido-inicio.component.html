@@ -1,3 +1,39 @@
+<div style="background-color: #f1f1f1; padding-top: 4%; padding-bottom: 4%;">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="text-center p-3 txt-naranja font-bold">LO MÁS VENDIDO</h2>
+			</div>
+		</div>
+	</div>
+	<mat-spinner *ngIf="!destacados" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
+	<ng-container *ngIf="destacados" [ngSwitch]="destacados.length">
+		<ng-container *ngSwitchCase="0">
+			<div class="container">
+				<div class="row m-3">
+					<div class="col">
+						<div class="card">
+							<p class="card-body font-italic text-center text-muted">No existen productos mas vendidos...</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ng-container>
+		<ng-container *ngSwitchDefault>
+			<ngb-carousel>
+				<ng-container *ngFor="let item of destacados; let i=index">
+					<ng-container *ngIf="isACarruselItem(i)">
+						<ng-template ngbSlide>
+							<app-carousel-item [items]="getPartialItems(i, i+3)"></app-carousel-item>	
+						</ng-template>
+					</ng-container>
+				</ng-container>
+			</ngb-carousel>
+		</ng-container>
+	</ng-container>
+	
+</div>
+<!-- 
 <div style="background-color: #FFFFFF; padding-top: 4%; padding-bottom: 4%;">
 	<div class="container">
 		<div class="row">
@@ -212,3 +248,4 @@
 	  </a>
 	</div>
 </div>	
+-->

@@ -45,14 +45,7 @@ export class AuthbackendComponent implements OnInit {
         )
       },
       error => {
-        this.alerService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
-        if(error.status == '422' ){
-          // this.alerService.listError(error.error) // LIsta de errores
-        }
-
-        if(error.status == '401'){
-          // this.alerService.Erros(error.error.msj) // no autorizado | cuando hay error 
-        }
+        this.alerService.msg("ERR", 'El email o la contraseña son incorrecto.');
       }
     )
   }
