@@ -35,50 +35,40 @@ export class RegisterComponent implements OnInit {
 
     addRegister() {
 
-        if (!this.v_register.nombre || !this.v_register.celular || !this.v_register.email || !this.v_register.password) {
-            this._alertService.msg("ERR", "Error", 'Todos los campos son requeridos');
-        }
+        const data_i: any = {
+            name: this.v_register.nombre,
+            email: this.v_register.email,
+            password: this.v_register.password,
+            celular: this.v_register.celular,
+            password_confirmation: this.v_register.password_r,
+            fk_idPerfil: 2
+        };
 
-        if (this.v_register.password && this.v_register.password_r && this.v_register.celular) {
-            if (this.v_register.password.length != 0) {
-                if (this.v_register.password.length <= 8) {
-                    this._alertService.msg("ERR", "Error", 'el password tiene que ser mayor de 8 caracteres');
-                } else {
-                    if (this.v_register.password == this.v_register.password_r) {
 
-                        const data_i: any = {
-                            name: this.v_register.nombre,
-                            email: this.v_register.email,
-                            password: this.v_register.password,
-                            celular: this.v_register.celular,
-                            password_confirmation: this.v_register.password,
-                            fk_idPerfil: 2
-                        };
-                        console.log(data_i);
+        this._registerService._addRegister(data_i).subscribe(
+            (resp: any) => {
+                this._alertService.msg('OK', 'Registrado')
+                localStorage.getItem('access_token')
+                $("#registraseModal").modal('hide');
+                location.href = "/"; // Fix: Esto reinicia toda la aplicación los datos en memoria de productos, carrito de compra, etc se perderían
+            },
+            (error: any) => {
+                //console.log(error);
+                this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
 
-                        this._registerService._addRegister(data_i).subscribe(
-                            (resp: any) => {
-                                this._alertService.msg('OK', 'Registrado')
-                                localStorage.getItem('access_token')
-                                $("#registraseModal").modal('hide');
-                                location.href = "/"; // Fix: Esto reinicia toda la aplicación los datos en memoria de productos, carrito de compra, etc se perderían
-                            },
-                            (error: any) => {
-                                this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
-                            }
-                        );
-
-                    } else {
-                        this._alertService.msg("ERR", "Error", 'los pasword no es igual');
-                    }
+                if (error.error.errors.email != null) {
+                    this._alertService.msg("INFO", "Info", `Info: ${error.error.errors.email}`);
                 }
-            } else {
-                this._alertService.msg("ERR", "Error", 'Todos los campos son requeridos');
-
+                if (error.error.errors.name != null) {
+                    this._alertService.msg("INFO", "Info", `Info: ${error.error.errors.name}`);
+                }
+                if (error.error.errors.password != null) {
+                    this._alertService.msg("INFO", "Info", `Info: ${error.error.errors.password[0]}`);
+                }
             }
+        );
 
-
-        }
 
     }
 }
+
