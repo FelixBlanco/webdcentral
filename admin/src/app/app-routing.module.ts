@@ -16,6 +16,7 @@ import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/r
 import { ConfigColorComponent } from './component/config-color/config-color.component';
 import { DestacadosComponent } from './component/destacados/destacados.component';
 import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
+import {  ConfigRedesComponent } from './component/config-redes/config-redes.component'
 
 const routes: Routes = [
   { path: 'Galeria', component: GaleriaHomeComponent },
@@ -30,8 +31,8 @@ const routes: Routes = [
   { path: 'reclamos-sugerencias', component: ReclamosSugerenciasComponent},
   { path: 'config-color', component: ConfigColorComponent},
   { path: 'destacados', component: DestacadosComponent},
-  { path: 'preguntas-frecuentes', component: PreguntasFrecuentesComponent}
-
+  { path: 'preguntas-frecuentes', component: PreguntasFrecuentesComponent},
+  { path: 'config-redes', component: ConfigRedesComponent }
 ];
 
 @NgModule({

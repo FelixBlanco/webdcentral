@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfgFooterService } from '../../services/confg-footer.service'
 import { ConfigColorService } from '../../services/config-color.service';
+import { ConfigRedesService } from '../../services/config-redes.service'
 
 @Component({
   selector: 'app-footer',
@@ -12,10 +13,13 @@ export class FooterComponent implements OnInit {
   footer_data:any;
   
   colorUno:any; 
+  
+  linksR:any = { facebook:null, instagram: null, twitter: null, whatsapp:null};
 
   constructor( 
     private _configFooterService:ConfgFooterService,
-    private _color: ConfigColorService
+    private _color: ConfigColorService,
+    private configRedes: ConfigRedesService
   ) { }
 
   ngOnInit() {
@@ -26,6 +30,20 @@ export class FooterComponent implements OnInit {
         if(resp){
           this.colorUno = resp.colorOscuro;
         }        
+      }
+    )
+
+    //Links Redes
+    this.configRedes._getRed().subscribe(
+      (resp:any) => {
+        if(resp.body){
+          this.linksR.facebook = resp.body.url_face
+          this.linksR.twitter = resp.body.url_twit;
+          this.linksR.instagram = resp.body.url_inst;
+          this.linksR.whatsapp = resp.body.url_what;                  
+        }else{          
+          this.linksR;
+        }
       }
     )
 

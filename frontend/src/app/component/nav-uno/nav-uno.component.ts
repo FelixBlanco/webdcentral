@@ -3,6 +3,7 @@ import { ConfigColorService } from '../../services/config-color.service';
 import { LoginService } from '../../services/login.service'
 import { AlertsService } from '../../services/alerts.service';
 import { CarritoService } from 'src/app/services/carrito.service';
+import { ConfigRedesService } from '../../services/config-redes.service'
 
 @Component({
   selector: 'app-nav-uno',
@@ -21,11 +22,14 @@ export class NavUnoComponent implements OnInit {
 
   badgeContent: number = 0;
 
+  linksR:any = { facebook:null, instagram: null, twitter: null, whatsapp:null};
+
   constructor(
     private _color: ConfigColorService,
     private _loginService: LoginService,
     private _alertsService: AlertsService,
-    private carritoService: CarritoService
+    private carritoService: CarritoService,
+    private configRedes: ConfigRedesService
   ) { }
 
   ngOnInit() {
@@ -58,6 +62,20 @@ export class NavUnoComponent implements OnInit {
     }else{
       this.isSession = null;
     }
+
+    //Links Redes
+    this.configRedes._getRed().subscribe(
+      (resp:any) => {
+        if(resp.body){
+          this.linksR.facebook = resp.body.url_face
+          this.linksR.twitter = resp.body.url_twit;
+          this.linksR.instagram = resp.body.url_inst;
+          this.linksR.whatsapp = resp.body.url_what;                  
+        }else{          
+          this.linksR;
+        }
+      }
+    )
 
   }
 

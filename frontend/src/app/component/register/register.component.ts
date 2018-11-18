@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
 
   addRegister(){
 
-    if(!this.v_register.nombre || !this.v_register.celular || !this.v_register.email || !this.v_register.cedular){
+    if(!this.v_register.nombre || !this.v_register.celular || !this.v_register.email || !this.v_register.password){
       this._alertService.msg("ERR", "Error", 'Todos los campos son requeridos');
     }
 

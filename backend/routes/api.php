@@ -43,7 +43,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         /*REDES SOCIALES*/
         Route::post('crearRedSocial', 'RedSocialController@store');
-        Route::PUT('updateRedesSociales/{id_RedSocial}', 'RedSocialController@update');
+        Route::put('updateRedesSociales/{id_RedSocial}', 'RedSocialController@updateRedesSociales');
         /*REDES SOCIALES*/
 
         /*ORDER BODY (carrito de compra)*/
@@ -283,7 +283,8 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     Route::get('producto/listarPorid/{idProducto}','ProductoController@listarPorid');
 
-
+    // Links de redes sociales
+    Route::get('get-redes','RedSocialController@getRedes');
 });
 
 

@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Log;
 
 class RedSocialController extends Controller {
 
+    public function getRedes(){
+        $r =  RedesSocial::first();
+        if(is_null($r)){
+            return response()->json('null',200);
+        }else{
+            return response()->json($r,200);
+        }
+    }
+
     public function store(Request $request) {
 
         if (is_null($request)) {
@@ -46,7 +55,6 @@ class RedSocialController extends Controller {
     }
 
     public function updateRedesSociales(Request $request, $id_redSocial) {
-
         if (is_null($request)) {
             $response = [
                 'msj' => 'Debe enviar algún dato para actualizar',
