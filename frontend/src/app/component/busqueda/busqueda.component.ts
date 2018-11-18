@@ -48,6 +48,7 @@ export class BusquedaComponent implements OnInit{
     this.productService.search(search).subscribe(resp => {
       if(resp.ok && resp.status === 200){
         this.productService.productosSearchSource.next(resp.body);
+        this.setTittleProductsFilterList(search);
         $('#busquedaModal').modal('toggle');
       }else{
         console.error(resp);
@@ -59,6 +60,10 @@ export class BusquedaComponent implements OnInit{
       this.as.msg('ERR', 'Ha ocurrido un error al buscar');
       this.inPromise = false;
     });
+  }
+
+  setTittleProductsFilterList(next: string){
+    this.productService.productosFilterTittleSource.next(next);
   }
   
 

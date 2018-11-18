@@ -97,7 +97,6 @@ export class CarritoComponent implements OnInit {
     
     this.inPromise = true;
     forkJoin(this.requests).subscribe(resps => {
-      console.log(resps);
       this.inPromise = false;
       resps.forEach( (resp) => {
         if(resp.ok && resp.status === 200){

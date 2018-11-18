@@ -72,7 +72,7 @@
                 </div>
                 <div class="d-flex justify-content-between">
                     <ng-container *ngIf="productsList.length">
-                        <h4 class="font-italic txt-azul text-uppercase font-bold">{{productsList[0].nombre}}</h4>
+                        <h4 *ngIf="tittleList" class="font-italic txt-azul text-uppercase font-bold">Coincidencias con '{{tittleList}}'</h4>
                         <h4 class="font-italic txt-azul text-uppercase font-bold">{{!currentPage ? 1 : currentPage}}/{{pages}}</h4>
                     </ng-container>
                 </div>

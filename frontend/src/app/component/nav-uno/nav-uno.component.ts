@@ -95,7 +95,6 @@ export class NavUnoComponent implements OnInit {
 
   initBadgeBehavior(){
     this.carritoService.carritoItems.subscribe((vals) => {
-      console.log('mmm',vals);
       this.badgeContent = vals.length
     });
   }
