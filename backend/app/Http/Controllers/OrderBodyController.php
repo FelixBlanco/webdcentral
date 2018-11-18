@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Log;
 class OrderBodyController extends Controller {
 
     public function añadir(Request $request, $fk_idOrderHeader) {
-        dd($request->items);
+
+        //return response()->json($request->items, 201);
+
 
         DB::beginTransaction();
 
@@ -22,6 +24,7 @@ class OrderBodyController extends Controller {
             if (! is_null($OH)) {
 
                 foreach ($request->items as $item) {
+                    dd($item['fk_idProducto']);
 
                     $this->validate($request, [
                         'codeProdSys'                  => 'required',
@@ -31,7 +34,6 @@ class OrderBodyController extends Controller {
                         'Devolucion_Producto'          => 'required',
                         'Numero_EncabezadoVenta'       => 'required',
                         'fk_idProducto'                => 'required',
-
                     ], [
                         'codeProdSys.required'                  => 'El campo es requerido',
                         'Cantidad_Producto.required'            => 'El campo es requerido',
@@ -43,11 +45,11 @@ class OrderBodyController extends Controller {
                     ]);
 
                     try {
-                        $OH                   = new orderBody($item);
-                        $OH->fk_idOrderHeader = $fk_idOrderHeader;
-                        $OH->save();
-                        $OH->orderHeader;
-                        $respo[] = $OH;
+                        $n_prod                   = new orderBody($item);
+                        $n_prod->fk_idOrderHeader = $fk_idOrderHeader;
+                        $n_prod->save();
+                        $n_prod->orderHeader;
+                        $respo[] = $n_prod;
 
                     } catch (\Exception $e) {
 
@@ -98,9 +100,9 @@ class OrderBodyController extends Controller {
         return response()->json($productos, 201);
     }
 
-    public function historialVentas($id_cliente){
+    public function historialVentas($id_cliente) {
 
-        $th=orderHeader::where('fk_idUserClient',$id_cliente)->with('orderBody')->get();
+        $th = orderHeader::where('fk_idUserClient', $id_cliente)->with('orderBody')->get();
 
         return response()->json($th, 201);
     }
