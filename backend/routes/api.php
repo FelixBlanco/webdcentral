@@ -294,6 +294,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // Links de redes sociales
     Route::get('get-redes','RedSocialController@getRedes');
+
+    // Status Sistema 
+    Route::get('status-sistema','StatusSistemaController@index');
 });
 
 

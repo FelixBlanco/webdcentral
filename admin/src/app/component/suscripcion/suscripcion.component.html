@@ -3,7 +3,11 @@
     <div class="col-md-6">
       <ul class="list-group"> <h3>Suscriptores</h3>
         <li class="list-group-item" *ngFor="let ls of list_suscrito">
-          {{ls.email}} - <button class="btn btn-danger btn-sm" (click)="deleteSPregunta(ls.idSuscripcion)">Eliminar</button>
+          {{ls.email}} - 
+          <select name="" id="" (change)="changeStatus($event,ls.idSuscripcion)">
+            <option *ngFor="let list_statu of list_status" [value]="list_statu.idStatusSistema">{{list_statu.descripcion}}</option>
+          </select>
+          <button class="btn btn-danger btn-sm" (click)="deleteSPregunta(ls.idSuscripcion)">Cancelar Suscripcion</button>
         </li>
       </ul>
     </div>
@@ -11,7 +15,7 @@
       <ul class="list-group"> <h3>Suscriptores Cancelados</h3>
         <li class="list-group-item" *ngFor="let lsc of list_suscrito_canceladas">
           {{lsc.email}} <br>
-          <!-- Razón: {{lsc.motivoDeCancelacion}} -->
+          Razón: {{lsc.motivoDeCancelacion}}
         </li>
       </ul>
     </div>

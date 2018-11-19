@@ -24,6 +24,10 @@ export class SuscripcionService {
   _getSuscripcionesCanceladas(){
     return this.http.get(`${environment.API_URL}/api/v1/listarSuscripcionesCanceladas`,httpOptions);
   }  
+  _changeStatus(idSus:number,idStatus:number){
+    return this.http.put(`${environment.API_URL}/api/v1/cambiarStatusSus/`+idSus,{ 'fk_idStatusSistema' : idStatus},httpOptions);
+    
+  }
 
   _deleteSuscripciones(data:any){
     return this.http.put(`${environment.API_URL}/api/v1/cancelarSus/`+data.id,data,httpOptions);

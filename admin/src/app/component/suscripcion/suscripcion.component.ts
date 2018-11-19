@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AlertsService } from '../../services/alerts.service'
 import { SuscripcionService } from  '../../services/suscripcion.service'
+import { StatusSistemaService } from '../../services/status-sistema.service'
 
 declare var $;
 
@@ -16,13 +17,14 @@ export class SuscripcionComponent implements OnInit {
   
   idDelete:number;
 
-  motivo: FormGroup
-
+  motivo: FormGroup; list_status:any; 
+  
   constructor(
     private sus:SuscripcionService,
     private al: AlertsService,
-    private fb: FormBuilder
-  ) { 
+    private fb: FormBuilder,
+    private statusSistemaService : StatusSistemaService
+    ) { 
     this.motivo = this.fb.group({
       'motivoDeCancelacion' : ['',Validators.required]
     })
@@ -31,6 +33,7 @@ export class SuscripcionComponent implements OnInit {
   ngOnInit() {
     this.getS();
     this.getSC();
+    this.getStatusSistema();
   }
 
   getS(){
@@ -45,6 +48,30 @@ export class SuscripcionComponent implements OnInit {
     this.sus._getSuscripcionesCanceladas().subscribe(
       (resp:any) => {
         this.list_suscrito_canceladas = resp.suscripcion
+      }
+    )
+  }
+
+  getStatusSistema(){
+    this.statusSistemaService._getStatusSistema().subscribe(
+      resp => {
+        console.log(resp)
+        this.list_status = resp
+      }
+    )
+  }
+
+  changeStatus(event,idSuscr){
+    console.log('id sus'+ idSuscr)
+    console.log(event.target.value)
+    this.sus._changeStatus(idSuscr,event.target.value).subscribe(
+      (resp:any) =>{
+        this.al.msg('OK',resp.msj)
+        console.log(resp)
+      },
+      error => {
+        this.al.msg('ERR','Algo salio mal')
+        console.log(error)
       }
     )
   }
