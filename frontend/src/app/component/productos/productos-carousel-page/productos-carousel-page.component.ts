@@ -36,7 +36,7 @@ export class ProductosCarouselPageComponent implements OnInit {
 
   addItem(item: Producto): void{
     this.carritoService.addItem(item.codeProdSys, item.nombre, item.marca, item.cantidad, item.precioL2);
-    this.toastr.msg("OK", "Éxito", `Se han agregado ${item.cantidad} '${item.nombre}' al carrito de compras`); //TODO wtf?
+    this.toastr.msg("OK", "Éxito", `Se han agregado ${item.cantidad} '${item.nombre}' al carrito de compras`); 
     item.cantidad = 1;
   }
 }

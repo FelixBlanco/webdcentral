@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -40,6 +40,23 @@ export interface SearchBody{
   marcas: Producto[]; 
   nombre: Producto[];
 }
+
+export interface PedidoHeader{
+  Codigo_Postal: string;
+  Domicilio_Entrega: string;
+  Email_Cliente: string;
+  Estado_Pedido: string;
+  Fecha_Pedido: string;
+  Numero_Pedido: number;
+  comentaryClient: string;
+  created_at: string;
+  fk_idStateOrder: number;
+  fk_idUserClient: number;
+  fk_idUserDriver: number;
+  idOrderHeader: number;
+  stars: string;
+  updated_at: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -50,6 +67,8 @@ export class ProductosService {
 
   productosFilterTittleSource: BehaviorSubject<string> = new BehaviorSubject(null);
   productosFilterTittle: Observable<string> = this.productosFilterTittleSource.asObservable();
+
+  headers: HttpHeaders;
 
   constructor(
     private http: HttpClient
@@ -78,4 +97,20 @@ export class ProductosService {
     getById(id):Observable<HttpResponse<Producto>>{
       return this.http.get<Producto>(`${environment.apiHost}/api/v1/producto/listarPorid/${id}`, {observe: 'response'});      
     }
+
+    orderHeader(data: any):Observable<HttpResponse<any>>{
+      this.headers = new HttpHeaders()
+        .append("Authorization", `Bearer ${localStorage.getItem('access_token')}`)
+        .append("Content-Type", `application/x-www-form-urlencoded`)
+
+      return this.http.post<any>(`${environment.apiHost}/api/auth/añadirOrderHeader`, data , {headers: this.headers, observe: 'response'});      
+    }
+
+    orderBody(data: any, id: number):Observable<HttpResponse<{ OB: PedidoHeader, msj: string}>>{
+      this.headers = new HttpHeaders()
+        .append("Authorization", `Bearer ${localStorage.getItem('access_token')}`)
+
+      return this.http.post<{ OB: PedidoHeader, msj: string}>(`${environment.apiHost}/api/auth/añadirOrderBody/${id}`, data , {headers: this.headers, observe: 'response'});      
+    }
+  
 }

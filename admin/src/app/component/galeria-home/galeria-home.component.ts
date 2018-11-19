@@ -83,7 +83,7 @@ export class GaleriaHomeComponent implements OnInit {
                 }
 
                 if (error.error.errors.fk_idProducto != null) {
-                    this._alertService.msg("INFO", "Info", 'Info: El producto es requerido';
+                    this._alertService.msg("INFO", "Info", 'Info: El producto es requerido');
                 }
 
             }

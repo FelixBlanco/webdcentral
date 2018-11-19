@@ -49,7 +49,7 @@ export class MasVendidoInicioComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.masVendidoService.getMasVendido().subscribe((resp:any) => {
+    /*this.masVendidoService.getMasVendido().subscribe((resp:any) => {
       if(resp.ok && resp.status === 200){
         this.mapAndSet(resp.body);
       }else{
@@ -57,7 +57,7 @@ export class MasVendidoInicioComponent implements OnInit {
       }
     }, error => {
       this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
-    });
+    });*/
   }
 
   mapAndSet(data: any) : void {
