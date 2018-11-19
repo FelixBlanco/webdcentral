@@ -5,6 +5,7 @@ import { AlertsService } from '../../services/alerts.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { ConfigRedesService } from '../../services/config-redes.service'
 import { UserTokenService } from 'src/app/services/user-token.service';
+import { Router } from '@angular/router';
 
 declare var $:any;
 
@@ -33,7 +34,8 @@ export class NavUnoComponent implements OnInit {
     private _alertsService: AlertsService,
     private carritoService: CarritoService,
     private configRedes: ConfigRedesService,
-    private userToken: UserTokenService
+    private userToken: UserTokenService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -76,6 +78,7 @@ export class NavUnoComponent implements OnInit {
         $('#salirModal').modal('hide');
         this._alertsService.msg('INFO', 'Info', `Has cerrado tu sesión`);
         this.inPromise = false;
+        this.router.navigate(['/'])
 
       },
       error => {
