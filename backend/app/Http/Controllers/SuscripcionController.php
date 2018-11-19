@@ -137,7 +137,7 @@ class SuscripcionController extends Controller {
         $sus = Suscripcion::where('fk_idStatusSistema', 1)->get();
 
         $response = [
-            'msj'         => 'Suscripcion cancelada',
+            'msj'         => 'Suscripcion',
             'suscripcion' => $sus->each(function($sus) {
                                     $sus->estatusSitema;
                                 }),

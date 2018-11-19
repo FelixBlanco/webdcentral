@@ -12,10 +12,12 @@
         </h3>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-inline">
-              <input type="text" class="form-control" placeholder="Ingrese su direccion email" style="width: 70%;">
-              <button class="btn bg-naranja txt-blanco"> REGISTRATE </button>							
-            </div>
+            <form [formGroup]="f_sus">
+              <div class="form-inline">
+                <input type="text" class="form-control" placeholder="Ingrese su direccion email" style="width: 70%;" formControlName="novedad">
+                <button class="btn bg-naranja txt-blanco" [disabled]="!f_sus.valid" (click)="addSus()"> REGISTRATE </button>							
+              </div>
+            </form>            
           </div>
         </div>
         

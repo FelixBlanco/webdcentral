@@ -57,13 +57,13 @@ export class RegisterComponent implements OnInit {
                 this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
 
                 if (error.error.errors.email != null) {
-                    this._alertService.msg("INFO", "Info", `Info: ${error.error.errors.email}`);
+                    this._alertService.msg("ERR", "Info", `Info: ${error.error.errors.email}`);
                 }
                 if (error.error.errors.name != null) {
-                    this._alertService.msg("INFO", "Info", `Info: ${error.error.errors.name}`);
+                    this._alertService.msg("ERR", "Info", `Info: ${error.error.errors.name}`);
                 }
                 if (error.error.errors.password != null) {
-                    this._alertService.msg("INFO", "Info", `Info: ${error.error.errors.password[0]}`);
+                    this._alertService.msg("ERR", "Info", `Info: ${error.error.errors.password[0]}`);
                 }
             }
         );
