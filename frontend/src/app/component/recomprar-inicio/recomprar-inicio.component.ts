@@ -25,7 +25,10 @@ export class RecomprarInicioComponent implements OnInit {
   }
 
   setHistorial(){
-    this.productosService.getUserHistory(this.userToken.getUserId().toString()).subscribe(resp => {
+
+    //this.productosService.getUserHistory(this.userToken.getUserId().toString()).subscribe(resp => {
+    this.productosService.getUserHistory("1").subscribe(resp => {
+
       if(resp.ok && resp.status === 201){
         this.historialList = resp.body;
       }else{
