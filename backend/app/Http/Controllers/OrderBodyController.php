@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\orderBody;
 use App\orderHeader;
+use App\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -11,7 +12,6 @@ use Illuminate\Support\Facades\Log;
 class OrderBodyController extends Controller {
 
     public function añadir(Request $request, $fk_idOrderHeader) {
-        dd($request->items);
 
         DB::beginTransaction();
 
@@ -23,15 +23,16 @@ class OrderBodyController extends Controller {
 
                 foreach ($request->items as $item) {
 
-                    $this->validate($request, [
+                    //para validar un arreglo que no es Request
+
+                    $this->validate($request->merge($item), [
                         'codeProdSys'                  => 'required',
                         'Cantidad_Producto'            => 'required',
                         'PrecioUnitario_Producto'      => 'required',
                         'PorcentajeDescuento_Producto' => 'required',
                         'Devolucion_Producto'          => 'required',
                         'Numero_EncabezadoVenta'       => 'required',
-                        'fk_idProducto'                => 'required',
-
+                        //'fk_idProducto'                => 'required',
                     ], [
                         'codeProdSys.required'                  => 'El campo es requerido',
                         'Cantidad_Producto.required'            => 'El campo es requerido',
@@ -39,15 +40,21 @@ class OrderBodyController extends Controller {
                         'PorcentajeDescuento_Producto.required' => 'El campo es requerido',
                         'Devolucion_Producto.required'          => 'El campo es requerido',
                         'Numero_EncabezadoVenta.required'       => 'El campo es requerido',
-                        'fk_idProducto.required'                => 'El campo es requerido',
+                        //'fk_idProducto.required'                => 'El campo es requerido',
                     ]);
 
                     try {
-                        $OH                   = new orderBody($item);
-                        $OH->fk_idOrderHeader = $fk_idOrderHeader;
-                        $OH->save();
-                        $OH->orderHeader;
-                        $respo[] = $OH;
+                        $n_prod = new orderBody($item);
+                        if (! isset($item['fk_idProducto'])) {
+                            $p = Producto::where('codeProdSys', $item['codeProdSys'])->first();
+                            if (! is_null($p)) {
+                                $n_prod->fk_idProducto = $p->idProducto;
+                            }
+                        }
+                        $n_prod->fk_idOrderHeader = $fk_idOrderHeader;
+                        $n_prod->save();
+                        $n_prod->orderHeader;
+                        $respo[] = $n_prod;
 
                     } catch (\Exception $e) {
 
@@ -62,8 +69,8 @@ class OrderBodyController extends Controller {
                 }
 
                 $response = [
-                    'msj'         => 'OrderBody Creada exitosamente',
-                    'orderHeader' => $OH,
+                    'msj'               => 'Cuerpo de la orden: '.$fk_idOrderHeader.', creada exitosamente',
+                    'cantidad agregado' => count($respo),
                 ];
 
                 DB::commit();
@@ -98,9 +105,9 @@ class OrderBodyController extends Controller {
         return response()->json($productos, 201);
     }
 
-    public function historialVentas($id_cliente){
+    public function historialVentas($id_cliente) {
 
-        $th=orderHeader::where('fk_idUserClient',$id_cliente)->with('orderBody')->get();
+        $th = orderHeader::where('fk_idUserClient', $id_cliente)->with('orderBody')->get();
 
         return response()->json($th, 201);
     }

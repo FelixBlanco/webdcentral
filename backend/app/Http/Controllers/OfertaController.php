@@ -17,11 +17,12 @@ class OfertaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $o = Oferta::orderby('idOferta','desc')->get();
-        $o->each(function($o){
+        $o = Oferta::orderby('idOferta', 'desc')->get();
+        $o->each(function($o) {
             $o->set_imagen = asset('storage/oferta/'.$o->imagen);
         });
-        return $o; 
+
+        return $o;
     }
 
     /**
@@ -49,9 +50,9 @@ class OfertaController extends Controller {
             'titulo.required'     => 'El Título es requerido',
             'tiempoExpi.required' => 'El Tiempo de expiracion es requerido',
             'status.required'     => 'El Status es requerido',
-            'imagen.image'     => 'La Imagen es requerida',
+            'imagen.image'        => 'La Imagen es requerida',
             'imagen.required'     => 'La Imagen es requerida',
-            'imagen.mimes' => 'Solo jpeg, png, bmp,tiff son soportados'
+            'imagen.mimes'        => 'Solo jpeg, png, bmp,tiff son soportados',
 
         ]);
 
@@ -84,9 +85,9 @@ class OfertaController extends Controller {
             $oferta->save();
 
             $response = [
-                'msj'              => 'Oferta Creada',
-                'ubicacion_imagen' => '/oferta/',
-                'user'             => $oferta,
+                'msj'         => 'Oferta Creada',
+                'ruta_imagen' => asset('storage/oferta/'.$oferta->imagen),
+                'oferta'      => $oferta,
             ];
             DB::commit();
 
@@ -117,7 +118,7 @@ class OfertaController extends Controller {
             $oferta = Oferta::findOrFail($id);
 
             $response = [
-                'msj'  => 'Info de la oferta',
+                'msj'    => 'Info de la oferta',
                 'oferta' => $oferta,
             ];
 
