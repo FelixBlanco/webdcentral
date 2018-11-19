@@ -36,13 +36,14 @@ export class ConfigRedesComponent implements OnInit {
   getRedes(){
     this.configRedesService._getRed().subscribe(
       (resp:any) => {
-        if(resp.body){
+        if(resp != null){
+          console.log('estamos en redes')
           this.isNew = false; // no es nuevo
-          this.formRedes.id_redSocial = resp.body.id_redSocial
-          this.formRedes.facebook = resp.body.url_face
-          this.formRedes.twitter = resp.body.url_twit;
-          this.formRedes.instagram = resp.body.url_inst;
-          this.formRedes.whatsapp = resp.body.url_what;                  
+          this.formRedes.id_redSocial = resp.id_redSocial
+          this.formRedes.facebook = resp.url_face
+          this.formRedes.twitter = resp.url_twit;
+          this.formRedes.instagram = resp.url_inst;
+          this.formRedes.whatsapp = resp.url_what;                  
         }else{          
           this.formRedes;
         }
