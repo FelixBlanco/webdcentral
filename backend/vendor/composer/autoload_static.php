@@ -548,6 +548,7 @@ class ComposerStaticInitfcea80d00b585ecc54c4638e7085a447
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\orderBody' => __DIR__ . '/../..' . '/app/orderBody.php',
         'App\\orderHeader' => __DIR__ . '/../..' . '/app/orderHeader.php',
+        'App\\serviciosAdd' => __DIR__ . '/../..' . '/app/serviciosAdd.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
         'Barryvdh\\Cors\\HandleCors' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/HandleCors.php',

@@ -74,7 +74,8 @@
                         </tr>
                       </ng-container>
                       <ng-container *ngIf="!historialList.length">
-                        <tr><td colspan="4" height="80" class="font-italic text-muted text-center"><h5>No existe historial de compras asociados a su cuenta...</h5></td></tr>
+                        <tr><td colspan="4" height="80" class="font-italic text-muted text-center"><h5>No existen compras asociados a su cuenta...</h5></td></tr>
+                        <tr><td colspan="4" height="20" class="text-center"> <a class="btn btn-light font-bold text-uppercase"[routerLink]="[ '/productos']">buscar productos</a> </td></tr>
                       </ng-container>
                     </tbody>
                   </table>

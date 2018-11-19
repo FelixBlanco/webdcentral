@@ -20,10 +20,10 @@ export class RegisterComponent implements OnInit {
         foto_perfil: null,
     }
 
-    constructor(private _registerService: RegisterService,
-                private router: Router,
-                private _alertService: AlertsService) {
-    }
+    constructor(
+        private _registerService: RegisterService,
+        private _alertService: AlertsService
+    ) {}
 
     ngOnInit() {
     }
@@ -47,13 +47,11 @@ export class RegisterComponent implements OnInit {
 
         this._registerService._addRegister(data_i).subscribe(
             (resp: any) => {
+                //TODO que se debe hacer con el cuerpo de respuesta? 
                 this._alertService.msg('OK', 'Registrado')
-                localStorage.getItem('access_token')
                 $("#registraseModal").modal('hide');
-                location.href = "/"; // Fix: Esto reinicia toda la aplicación los datos en memoria de productos, carrito de compra, etc se perderían
             },
             (error: any) => {
-                //console.log(error);
                 this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
 
                 if (error.error.errors.email != null) {

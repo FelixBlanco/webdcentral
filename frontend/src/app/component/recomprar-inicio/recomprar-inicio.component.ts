@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { UserTokenService } from 'src/app/services/user-token.service';
 
 @Component({
   selector: 'app-recomprar-inicio',
@@ -15,7 +16,8 @@ export class RecomprarInicioComponent implements OnInit {
   constructor(
     private productosService: ProductosService, 
     private carritoService: CarritoService,
-    private as: AlertsService
+    private as: AlertsService,
+    private userToken: UserTokenService
   ) { }
 
   ngOnInit() {
@@ -23,7 +25,7 @@ export class RecomprarInicioComponent implements OnInit {
   }
 
   setHistorial(){
-    this.productosService.getUserHistory("1").subscribe(resp => {
+    this.productosService.getUserHistory(this.userToken.getUserId().toString()).subscribe(resp => {
       if(resp.ok && resp.status === 201){
         this.historialList = resp.body;
       }else{

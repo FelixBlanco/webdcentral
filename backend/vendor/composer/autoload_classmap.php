@@ -96,6 +96,7 @@ return array(
     'App\\User' => $baseDir . '/app/User.php',
     'App\\orderBody' => $baseDir . '/app/orderBody.php',
     'App\\orderHeader' => $baseDir . '/app/orderHeader.php',
+    'App\\serviciosAdd' => $baseDir . '/app/serviciosAdd.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
     'Asm89\\Stack\\CorsService' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
     'Barryvdh\\Cors\\HandleCors' => $vendorDir . '/barryvdh/laravel-cors/src/HandleCors.php',
