@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../services/usuarios.service';
 import { AlertsService } from '../../services/alerts.service';
 import { RolPerfilService } from '../../services/rol-perfil.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 declare var $;
 
@@ -14,17 +15,29 @@ export class GestionUsuarioComponent implements OnInit {
 
   listUsers:any; list_rol:any;
 
-  newForm:any = { name: null, userNane: null, email: null, fk_idPerfil: null,  }
+  newForm:any = { name: null, userNane: null, email: null, fk_idPerfil: null, password_confirmation:null  }
 
   editForm:any = { id:null, name: null, userNane: null, email: null, password: null, fk_idPerfil:null }
 
   userDelete:any; 
 
+  newUser : FormGroup;
+
   constructor(
     private UsuariosService:UsuariosService,
     private alertService:AlertsService,
-    private rolPerfilService: RolPerfilService
-    ) { }
+    private rolPerfilService: RolPerfilService,
+    private fb: FormBuilder
+    ) { 
+      this.newUser = this.fb.group({
+        'nombre' : ['',Validators.required],
+        'userName' : ['',Validators.required],
+        'email' : ['',Validators.required],
+        'tipo_perfil' : ['',Validators.required],
+        'password' : ['',Validators.required],
+        'password_confirmation' : ['', Validators.required]
+      })
+    }
 
   ngOnInit() {
     this.listaUser();
@@ -56,14 +69,33 @@ export class GestionUsuarioComponent implements OnInit {
       this.UsuariosService._addUser(this.newForm).subscribe(
         resp => {
           $("#newUserModal").modal('hide');
-          this.newForm= { name: null, userNane: null, email: null }
+          this.newForm= { name: null, userNane: null, email: null, password_confirmation:null, password:null }
           // this.alertService.Success('Usuario creado satifactoriamente');
           this.alertService.msg("OK","Éxito", "Se ha guardado el registro");
           this.listaUser();
         },
         error => {
-          // this.alertService.listError(error.error);
-          this.alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+        
+          if(error.error.errors.name != null){
+            this.alertService.msg("ERR", error.error.errors.email);
+          }
+
+          if(error.error.errors.email != null){
+            this.alertService.msg("ERR", error.error.errors.email);
+          }
+
+          if(error.error.errors.password != null){
+            this.alertService.msg("ERR", error.error.errors.password);
+          }
+          
+          if(error.error.errors.password_confirmation != null){
+            this.alertService.msg("ERR", error.error.errors.password_confirmation);
+          }
+          
+          if(error.error.errors.password_confirmation != null){
+            this.alertService.msg("ERR", error.error.errors.password_confirmation);
+          }
+          
         }
       )
     }
@@ -84,8 +116,27 @@ export class GestionUsuarioComponent implements OnInit {
         this.listaUser();
       },
       error => {
-        // this.alertService.listError(error.error);
-        this.alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+        
+        if(error.error.errors.name != null){
+          this.alertService.msg("ERR", error.error.errors.email);
+        }
+
+        if(error.error.errors.email != null){
+          this.alertService.msg("ERR", error.error.errors.email);
+        }
+
+        if(error.error.errors.password != null){
+          this.alertService.msg("ERR", error.error.errors.password);
+        }
+        
+        if(error.error.errors.password_confirmation != null){
+          this.alertService.msg("ERR", error.error.errors.password_confirmation);
+        }
+        
+        if(error.error.errors.password_confirmation != null){
+          this.alertService.msg("ERR", error.error.errors.password_confirmation);
+        }
+
       }
     )
   }
@@ -103,7 +154,7 @@ export class GestionUsuarioComponent implements OnInit {
         this.alertService.msg("OK","Éxito", "Se ha elimino correctamente");
       },
       error => {
-        this.alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+        this.alertService.msg("ERR", "Error", 'Algo salio mal');
       }
     )
   }
