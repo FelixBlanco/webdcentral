@@ -53,6 +53,7 @@ import { RecomprarInicioComponent } from './component/recomprar-inicio/recomprar
 import { ServiciosInicioComponent } from './component/servicios-inicio/servicios-inicio.component';
 import { ProductosCarouselPageComponent } from './component/productos/productos-carousel-page/productos-carousel-page.component';
 import { PerfilClienteComponent } from './component/perfil-cliente/perfil-cliente.component';
+import { DepositoGuard } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -60,7 +61,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'forget', component: ForgetComponent },
   { path: 'ofertas', component: OfertasInicioComponent },
-  { path: 'recompra', component: RecomprarInicioComponent },
+  { path: 'recompra', component: RecomprarInicioComponent, canActivate: [DepositoGuard] },
   { path: 'servicios', component: ServiciosInicioComponent },
   { path: 'productos', component: ProductosComponent },
   

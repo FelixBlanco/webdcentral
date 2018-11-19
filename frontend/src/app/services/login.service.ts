@@ -27,7 +27,7 @@ export class LoginService {
     return this.http.get(`${environment.apiHost}/api/auth/getUser/`,{
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Bearer ' + this.token,
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
       })
     });
   }
@@ -36,7 +36,7 @@ export class LoginService {
     return this.http.get(`${environment.apiHost}/api/auth/logout`,{
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Bearer ' + this.token,
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
       })
     });
   }

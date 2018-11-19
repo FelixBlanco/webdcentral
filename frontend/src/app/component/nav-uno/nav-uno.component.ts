@@ -4,6 +4,9 @@ import { LoginService } from '../../services/login.service'
 import { AlertsService } from '../../services/alerts.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { ConfigRedesService } from '../../services/config-redes.service'
+import { UserTokenService } from 'src/app/services/user-token.service';
+
+declare var $:any;
 
 @Component({
   selector: 'app-nav-uno',
@@ -13,28 +16,31 @@ import { ConfigRedesService } from '../../services/config-redes.service'
 export class NavUnoComponent implements OnInit {
 
   colorUno:any =  null; colorDos:any=null;
-
-  myToken:any = localStorage.getItem('access_token');
-
-  isSession:any; 
   
-  userName:any;
+  userName:string;
 
   badgeContent: number = 0;
 
   linksR:any = { facebook:null, instagram: null, twitter: null, whatsapp:null};
+
+  token: string;
+
+  inPromise: boolean;
 
   constructor(
     private _color: ConfigColorService,
     private _loginService: LoginService,
     private _alertsService: AlertsService,
     private carritoService: CarritoService,
-    private configRedes: ConfigRedesService
+    private configRedes: ConfigRedesService,
+    private userToken: UserTokenService
   ) { }
 
   ngOnInit() {
 
     this.initBadgeBehavior();
+    this.initUserToken();
+    this.userToken.userData.subscribe(val => this.userName = val ? val.userName : '');
 
     this._color._paletaColor().subscribe(
       (resp:any) => {
@@ -45,23 +51,6 @@ export class NavUnoComponent implements OnInit {
       }
     )
 
-    if (this.myToken){
-      this._loginService._getAuthUser().subscribe(
-        (resp:any) => {
-          this.userName = resp.userName;
-        },
-        error => {
-          console.log(error);
-        }
-      )
-    }
-
-    
-    if (this.myToken) {
-      this.isSession = localStorage.getItem('session_user')
-    }else{
-      this.isSession = null;
-    }
 
     //Links Redes
     this.configRedes._getRed().subscribe(
@@ -80,15 +69,19 @@ export class NavUnoComponent implements OnInit {
   }
 
   salirLogin(){
+    this.inPromise = true;
     this._loginService._salirLogin().subscribe(
-      (resp:any) => { 
-        this._alertsService.msg('OK','Saliendo')
-        localStorage.removeItem('access_token')
-        localStorage.removeItem('session_user')
-        location.href="/"        
+      (resp:any) => {       
+        this.userToken.clear();
+        $('#salirModal').modal('hide');
+        this._alertsService.msg('INFO', 'Info', `Has cerrado tu sesión`);
+        this.inPromise = false;
+
       },
-      error => { 
-        this._alertsService.msg('ERR','Algo salio.')
+      error => {
+        console.error(error);
+        this._alertsService.msg('ERR','Algo salio mal.');
+        this.inPromise = false;
       }
     )
   }
@@ -97,5 +90,10 @@ export class NavUnoComponent implements OnInit {
     this.carritoService.carritoItems.subscribe((vals) => {
       this.badgeContent = vals.length
     });
+  }
+
+  initUserToken(){
+
+    this.userToken.token.subscribe(val => this.token = val);
   }
 }
