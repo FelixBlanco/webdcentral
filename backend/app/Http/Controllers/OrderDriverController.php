@@ -286,19 +286,19 @@ class OrderDriverController extends Controller {
                 Domicilio_Entrega,
                 Codigo_Postal,
                 comentaryClient) VALUES(
-                 $request->emailEnvio,  
-                 $mytime,
+                 '$request->Email_Cliente',  
+                 '$mytime',
                  $request->Numero_Pedido,
                  'Solicitado',
-                 $request->Domicilio_Entrega,
-                 $request->Codigo_Postal,
-                 $request->comentaryClient
+                 '$request->Domicilio_Entrega',
+                 '$request->Codigo_Postal',
+                 '$request->comentaryClient'
               )");
 
             return response()->json("Pedido creado ", 200);
 
         } catch (\Exception $e) {
-            // dd($e);
+             dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
@@ -323,7 +323,7 @@ class OrderDriverController extends Controller {
                     $item->Devolucion_Producto,
                     $item->Numero_Pedido
                 )");
-
+            }
 
             return response()->json("Poductos Agregados ", 200);
 
