@@ -135,6 +135,7 @@ class NotificationController extends Controller {
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
         $result = curl_exec($ch);
 
+
         curl_close($ch);
 
     }
