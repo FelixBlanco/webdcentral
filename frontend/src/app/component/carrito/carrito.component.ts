@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CarritoService } from 'src/app/services/carrito.service';
-import { ProductosService, Producto } from 'src/app/services/productos.service';
+import { CarritoService, Item } from 'src/app/services/carrito.service';
+import { ProductosService, Producto, PedidoHeader } from 'src/app/services/productos.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { forkJoin, Observable } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpParams } from '@angular/common/http';
 import { UserTokenService } from 'src/app/services/user-token.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 declare var $: any;
 
@@ -29,15 +30,24 @@ export class CarritoComponent implements OnInit {
 
   token: string;
 
+  orderForm: FormGroup;
+
   constructor(
     private carritoService: CarritoService, 
     private productosService: ProductosService,
     private as: AlertsService,
-    private userToken: UserTokenService
+    private userToken: UserTokenService,
+    private fb: FormBuilder
   ) { 
   }
 
   ngOnInit() {
+
+    this.orderForm = this.fb.group({
+      direccion: ['', Validators.required],
+      codPostal: ['', [Validators.required, Validators.pattern(new RegExp(/^([A-Z]{1}\d{4}[A-Z]{3}|[A-Z]{1}\d{4}|\d{4})$/))]],
+      comentario: ['']
+    });
 
     this.userToken.token.subscribe(val => this.token = val);
 
@@ -129,6 +139,65 @@ export class CarritoComponent implements OnInit {
     }
 
     this.section = section;
+  }
+
+
+  createOrder(){
+    const val = this.orderForm.value;
+    const body = new HttpParams()
+      .set("Domicilio_Entrega", val.direccion)
+      .set("Codigo_Postal", val.codPostal)
+      .set("comentaryClient", val.comentario)
+      .set("stars", "0");
+    
+    const carritoItems: Item[] =  this.carritoService.getAll();
+    let orderBody: any[] = []
+
+    carritoItems.forEach(val => {
+      orderBody.push({
+        codeProdSys: val.id,
+        Cantidad_Producto: val.cantidad,
+        PrecioUnitario_Producto: val.precio,
+        PorcentajeDescuento_Producto: 0,
+        Numero_EncabezadoVenta: 0,
+        Devolucion_Producto: 0
+      });
+    });
+
+    this.inPromise = true;
+    this.productosService.orderHeader(body.toString()).subscribe(resp => {
+      if(resp.ok && resp.status === 201){
+        const pedidoCreated: PedidoHeader = resp.body.OB;
+
+        this.productosService.orderBody({items: orderBody}, pedidoCreated.idOrderHeader).subscribe(resp => {
+          if(resp.ok && resp.status === 201){
+            this.as.msg('OK', 'Éxito', 'Se ha creado el pedido');
+            this.section = 'shipping';
+            this.carritoService.clear();
+            this.orderForm.reset();
+            
+          }else{
+            console.error(resp);
+            this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+          }
+          this.inPromise = false;
+        }, error => {
+          this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+          this.inPromise = false;
+          console.error(error);
+        });
+        
+      }else{
+        this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+        this.inPromise = false;
+        console.error(resp);
+      }
+    }, error => {
+      //TODO
+      this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno')
+      this.inPromise = false;
+      console.error(error);
+    });
   }
 
 }
