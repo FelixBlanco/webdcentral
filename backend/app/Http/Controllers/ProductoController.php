@@ -395,4 +395,51 @@ class ProductoController extends Controller {
         $productos=Producto::findOrFail($idProducto);
         return response()->json($productos, 200);
     }
+
+
+    public function getProductByRubroTag(Request $request){
+        
+        try{
+            $rs = null;
+
+            $sql = "";
+
+            if(!empty($request->tag)){
+                $sql = " where Descripcion_TablaGenerica in  ('".$request->tag."') ";
+            }
+
+            if(!empty($request->rubro) && !empty($request->tag)){
+                $sql = $sql. " and Descripcion_Rubro = '".$request->rubro."' ";
+            }
+
+            if(!empty($request->rubro) && empty($request->tag)){
+                $sql = $sql." where Descripcion_Rubro = '".$request->rubro."' ";
+            }
+
+            if((empty($request->rubro) && empty($request->tag)) && !empty($request->search)){
+                $sql = $sql." where Descripcion_Producto = like '%".$request->search."%' ";
+            }
+
+            if((!empty($request->rubro) || !empty($request->tag)) && !empty($request->search)){
+                $sql = $sql." and   Descripcion_Producto = like '%".$request->search."%' ";
+            }
+
+           
+            $rs = DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosTagsAPP  
+             ".$sql."  order by Descripcion_Producto  "); 
+
+
+
+            if($rs != null){
+                return response()->json($rs, 200);
+            }else{
+                return response()->json("Sin resultados", 204);
+            }
+        } catch (\Exception $e) {
+            dd($e);
+
+            return response()->json("Error conectando a el DC", 500);
+        }
+
+    }
 }

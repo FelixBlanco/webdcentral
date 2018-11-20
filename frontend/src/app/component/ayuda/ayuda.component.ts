@@ -27,9 +27,11 @@ export class AyudaComponent implements OnInit {
 
   getConfigFooter(){
     this.footerConfigService._getConfigFooter().subscribe( (resp) => {
-      this.footerConfig = resp;
-      this.lat = Number(this.footerConfig.latitud);
-      this.lng = Number(this.footerConfig.longitud);
+      if(resp){
+        this.footerConfig = resp;
+        this.lat = Number(this.footerConfig.latitud);
+        this.lng = Number(this.footerConfig.longitud);
+      }
     })
   }
   
