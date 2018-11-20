@@ -49,6 +49,7 @@ export class RecomprarInicioComponent implements OnInit {
       return;
     }
     this.carritoService.setProductsOrder(row.order_body);
+    this.carritoService.carritoItems.subscribe(() => this.setHistorial());
 
   }
 }
