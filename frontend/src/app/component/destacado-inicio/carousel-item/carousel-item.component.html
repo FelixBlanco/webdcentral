@@ -5,7 +5,9 @@
       <ng-container *ngFor="let item of items">
         <div class="col-md-3">
           <div class="card" style="width: 16rem;">
-            <img class="card-img-top" height="230" width="130" [src]="item.urlImage" alt="Card image cap">
+            <img *ngIf="item.urlImage" class="card-img-top" height="230" width="130" [src]="item.urlImage" alt="Card image cap">
+            <img *ngIf="!item.urlImage" src="assets/no_image_aviable.png"  alt="{{item.nombre}}"/>
+
             <div class="card-body" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#DCF5F9' }">
               <div class="text-center" style="color:#009BDD">{{item.marca}}</div>
               <h5 class="card-title text-center" style="font-weight: bold; color: #009BDD">
