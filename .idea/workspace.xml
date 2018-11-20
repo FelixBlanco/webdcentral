@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/src/app/component/ofertas/ofertas.component.ts" afterPath="$PROJECT_DIR$/admin/src/app/component/ofertas/ofertas.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/OfertaController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/OfertaController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/src/app/component/galeria-home/galeria-home.component.ts" afterPath="$PROJECT_DIR$/admin/src/app/component/galeria-home/galeria-home.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/GaleriaHomeProductoController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/GaleriaHomeProductoController.php" />
     </list>
     <ignored path="$PROJECT_DIR$/admin/node_modules/" />
     <ignored path="$PROJECT_DIR$/frontend/node_modules/" />
@@ -21,17 +22,27 @@
         <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="158">
-              <caret line="151" column="21" lean-forward="false" selection-start-line="151" selection-start-column="15" selection-end-line="151" selection-end-column="21" />
+              <caret line="22" column="87" lean-forward="false" selection-start-line="22" selection-start-column="74" selection-end-line="22" selection-end-column="87" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OfertaController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GaleriaHomeProductoController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/GaleriaHomeProductoController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="109" column="63" lean-forward="false" selection-start-line="109" selection-start-column="63" selection-end-line="109" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OfertaController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OfertaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="53" column="54" lean-forward="true" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="54" />
+            <state relative-caret-position="364">
+              <caret line="56" column="33" lean-forward="false" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -52,8 +63,8 @@
       <file leaf-file-name="galeria-home.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/src/app/component/galeria-home/galeria-home.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="66" column="43" lean-forward="false" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
+            <state relative-caret-position="164">
+              <caret line="85" column="92" lean-forward="false" selection-start-line="85" selection-start-column="92" selection-end-line="85" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -73,7 +84,7 @@
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/SlideController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
-              <caret line="58" column="83" lean-forward="true" selection-start-line="56" selection-start-column="15" selection-end-line="58" selection-end-column="83" />
+              <caret line="58" column="83" lean-forward="false" selection-start-line="56" selection-start-column="15" selection-end-line="58" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -82,7 +93,7 @@
       <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-574">
+            <state relative-caret-position="-588">
               <caret line="68" column="45" lean-forward="false" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
               <folding />
             </state>
@@ -93,7 +104,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>add</find>
       <find>mail</find>
       <find>email</find>
       <find>slide</find>
@@ -123,6 +133,7 @@
       <find>config-foo</find>
       <find>redes</find>
       <find>oferta</find>
+      <find>crearga</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\alejandro\argentina\webdcentral\backend\app\Http\Controllers</dir>
@@ -193,9 +204,10 @@
         <option value="$PROJECT_DIR$/backend/routes/api.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ConfigFooterController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/SlideController.php" />
-        <option value="$PROJECT_DIR$/admin/src/app/component/galeria-home/galeria-home.component.ts" />
         <option value="$PROJECT_DIR$/admin/src/app/component/ofertas/ofertas.component.ts" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/OfertaController.php" />
+        <option value="$PROJECT_DIR$/admin/src/app/component/galeria-home/galeria-home.component.ts" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/GaleriaHomeProductoController.php" />
       </list>
     </option>
   </component>
@@ -573,14 +585,14 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86334000" />
+    <option name="totallyTimeSpent" value="87936000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14609376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2015625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19964974" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1007,16 +1019,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-574">
+        <state relative-caret-position="-588">
           <caret line="68" column="45" lean-forward="false" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/GaleriaHomeProductoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-336">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1025,22 +1029,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
           <caret line="35" column="44" lean-forward="false" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="151" column="21" lean-forward="false" selection-start-line="151" selection-start-column="15" selection-end-line="151" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/src/app/component/galeria-home/galeria-home.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="66" column="43" lean-forward="false" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -1066,15 +1054,39 @@
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/SlideController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
-          <caret line="58" column="83" lean-forward="true" selection-start-line="56" selection-start-column="15" selection-end-line="58" selection-end-column="83" />
+          <caret line="58" column="83" lean-forward="false" selection-start-line="56" selection-start-column="15" selection-end-line="58" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="22" column="87" lean-forward="false" selection-start-line="22" selection-start-column="74" selection-end-line="22" selection-end-column="87" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OfertaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="53" column="54" lean-forward="true" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="54" />
+        <state relative-caret-position="364">
+          <caret line="56" column="33" lean-forward="false" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/src/app/component/galeria-home/galeria-home.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="85" column="92" lean-forward="false" selection-start-line="85" selection-start-column="92" selection-end-line="85" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/GaleriaHomeProductoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="109" column="63" lean-forward="false" selection-start-line="109" selection-start-column="63" selection-end-line="109" selection-end-column="63" />
           <folding />
         </state>
       </provider>
