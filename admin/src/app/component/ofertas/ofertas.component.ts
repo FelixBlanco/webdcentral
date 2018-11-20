@@ -13,9 +13,9 @@ export class OfertasComponent implements OnInit {
 
     listOfertas: any;
 
-    form_ofertas: any = {idOferta: null, titulo: null, tiempoExpi: null, imagen: null, status: true}
+    form_ofertas: any = {idOferta: "", titulo: "", tiempoExpi: "", imagen: "", status: true}
 
-    edit_form_ofertas: any = {idOferta: null, titulo: null, tiempoExpi: null, imagen: null, status: true}
+    edit_form_ofertas: any = {idOferta: "", titulo: "", tiempoExpi: "", imagen: "", status: true}
 
     constructor(private ofertaServices: OfertasService,
                 private _alertService: AlertsService) {
