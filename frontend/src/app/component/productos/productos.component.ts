@@ -187,6 +187,7 @@ export class ProductosComponent implements OnInit {
   }
 
   setCurrent({current}){
+    if(current)
     this.currentPage = Number(current.substr(current.length - 1)) + 1;
   }
 

@@ -128,6 +128,9 @@ export class CarritoService {
 
     setProductsOrder(items: any[]) : void{
         this.orderProducts.next(items);
-        console.log(this.orderProducts.value);
+    }
+
+    clear(): void{
+        this.carritoSource.next([]);
     }
 }
