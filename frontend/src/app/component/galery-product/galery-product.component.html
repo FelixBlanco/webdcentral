@@ -18,9 +18,9 @@
             <ngx-datatable #table class="bootstrap" [rowHeight]="80" [rows]="rows" [columns]="columns" [columnMode]="'force'"
               [footerHeight]="'40'" [rowClass]="rowClass" [limit]="limit">
 
-              <ngx-datatable-column name="#" prop="id"></ngx-datatable-column>
-              <ngx-datatable-column name="Titulo" prop="tittle"></ngx-datatable-column>
-              <ngx-datatable-column name="Imagen" prop="imgFile"></ngx-datatable-column>
+              <ngx-datatable-column name="#" prop="idGaleriaHomeProducto"></ngx-datatable-column>
+              <ngx-datatable-column name="Titulo" prop="titulo"></ngx-datatable-column>
+              <ngx-datatable-column name="Imagen" prop="imagen"></ngx-datatable-column>
               <ngx-datatable-column name="Estatus" prop="fk_idStatusSistema">
                 <ng-template ngx-datatable-cell-template let-row="row">
                   <ng-container [ngSwitch]="row.fk_idStatusSistema">
@@ -32,9 +32,7 @@
 
               <ngx-datatable-column name="" prop="opts">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#modificar">
-                    <fa-icon [icon]="['far', 'edit']"></fa-icon>
-                  </a>
+            
                   <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar">
                     <fa-icon [icon]="['far', 'trash-alt']"></fa-icon>
                   </a>
@@ -142,3 +140,13 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Ver Imagen -->
+<div class="modal fade" id="show" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+     Imagen
+    </div>
+  </div>
+</div>
+

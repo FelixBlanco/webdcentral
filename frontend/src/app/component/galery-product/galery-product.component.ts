@@ -5,10 +5,23 @@ import { AlertsService } from 'src/app/services/alerts.service';
 
 
 export interface GaleryProduct {
-  id;
-  tittle;
-  imgFile;
+  idGaleriaHomeProducto;
+  titulo;
+  imagen;
+  set_imagen;
+  created_at;
+  updated_at;
+  deleted_at;
   fk_idStatusSistema;
+  statu: Status;
+}
+
+export interface Status {
+  idStatusSistema;
+  descripcion;
+  created_a;
+  updated_at;
+  deleted_at;
 }
 
 class ImageSnippet {
@@ -53,14 +66,13 @@ export class GaleryProductComponent implements OnInit {
     this.columns = [
       { prop: 'id' },
       { prop: 'tittle' },
-      { prop: 'imgFile' },
-      { prop: 'fk_idStatusSistema' },
-      { prop: 'opts' }
+      { prop: 'imagen' },
+      { prop: 'fk_idStatusSistema' }
     ];
   }
 
   ngOnInit() {
-
+    
   }
 
   onFileChanged(ImageInput: any) {
@@ -80,7 +92,7 @@ export class GaleryProductComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     const temp = this.galeryList.filter(function (d) {
-      return (d.tittle.toLowerCase().indexOf(val) !== -1 || !val);
+      return (d.titulo.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
     this.rows = temp;
@@ -89,9 +101,10 @@ export class GaleryProductComponent implements OnInit {
 
   list() {
     this.galeryService.getAll(null).subscribe((resp) => {
-      if (resp.ok && resp.status === 202) {
-        console.log("List: " + resp.body)
-        this.galeryList = resp.body.PFrec as Array<GaleryProduct>;
+     
+      if (resp.ok && resp.status === 201) {
+        
+        this.galeryList = resp.body.galeria as Array<GaleryProduct>;
         this.rows = [...this.galeryList];
       } else {
         this.ts.listError("Ha ocurrido un error interno");
@@ -106,7 +119,7 @@ export class GaleryProductComponent implements OnInit {
     }
 
     const val = this.galeryForm.value;
-    this.galeryService.persist({ titulo: val.tittle, iamgen: val.imgFile }).subscribe((resp) => {
+    this.galeryService.persist({ titulo: val.tittle, imagen: this.selectedFile }).subscribe((resp) => {
       if (resp.ok && resp.status === 201) {
         this.galeryForm.get('tittle').setValue('');
         this.galeryForm.get('imgFile').setValue('');
@@ -121,7 +134,7 @@ export class GaleryProductComponent implements OnInit {
   }
 
   delete() {
-    this.galeryService.delete(this.galeryProduct.id)
+    this.galeryService.delete(this.galeryProduct.idGaleriaHomeProducto)
       .subscribe((resp) => {
         if (resp.ok && resp.status === 200) {
           this.ts.Success("Se ha eliminado el registro");
@@ -134,16 +147,25 @@ export class GaleryProductComponent implements OnInit {
       });
   }
 
-  set({ id, tittle, imgFile, fk_idStatusSistema }) {
+  set({ idGaleriaHomeProducto, tittle, imagen, set_imagen, statu, fk_idStatusSistema,
+    created_at,
+    updated_at,
+    deleted_at,
+  }) {
     this.galeryProduct = {
-      id: id,
-      tittle: tittle,
-      imgFile: imgFile,
+      idGaleriaHomeProducto: idGaleriaHomeProducto,
+      titulo: tittle,
+      imagen: imagen,
+      set_imagen: set_imagen,
+      statu: statu,
+      created_at: created_at,
+      updated_at: updated_at,
+      deleted_at: deleted_at,
       fk_idStatusSistema: fk_idStatusSistema
     }
 
     this.galeryUpdateForm.get('tittle').setValue(tittle);
-    this.galeryUpdateForm.get('imgFile').setValue(imgFile);
+    this.galeryUpdateForm.get('imgFile').setValue(imagen);
   }
 
   rowClass() {

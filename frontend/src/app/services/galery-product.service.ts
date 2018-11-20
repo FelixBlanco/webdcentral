@@ -22,7 +22,7 @@ export class GaleryProductService {
 
     getAll(body?: any): Observable<HttpResponse<any>> {
        
-        return this.http.post<any>(`${environment.apiHost}/api/v1/getGaleria/producto`, body, this.httpOptions) as Observable<HttpResponse<any>>;
+        return this.http.get<any>(`${environment.apiHost}/api/v1/getGaleria/producto`, this.httpOptions) as Observable<HttpResponse<any>>;
     }
 
     getById(id: number): Observable<HttpResponse<any>> {
@@ -30,6 +30,7 @@ export class GaleryProductService {
     }
 
     persist(body: any): Observable<HttpResponse<any>> {
+        console.log(body);
         return this.http.post<any>(`${environment.apiHost}/api/auth/crearGaleriaHomeProd`, body, this.httpOptions) as Observable<HttpResponse<any>>;
     }
 
