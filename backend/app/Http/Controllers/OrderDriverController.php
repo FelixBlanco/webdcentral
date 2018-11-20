@@ -304,7 +304,7 @@ class OrderDriverController extends Controller {
     // BODY
     public static function addBody(orderBody $item) {
         try {
-            $mytime = Carbon::now();
+            //$mytime = Carbon::now();
 
             DB::connection('sqlsrv')->insert("  INSERT INTO DetalleEncabezadosVentas_APP 
                 (   Codigo_Producto,

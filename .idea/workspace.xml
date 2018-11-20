@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/OrderDriverController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/OrderDriverController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php" />
     </list>
     <ignored path="$PROJECT_DIR$/admin/node_modules/" />
     <ignored path="$PROJECT_DIR$/frontend/node_modules/" />
@@ -23,7 +20,7 @@
         <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="312">
-              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -32,8 +29,8 @@
       <file leaf-file-name="OrderDriverController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderDriverController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="304" column="53" lean-forward="false" selection-start-line="304" selection-start-column="53" selection-end-line="304" selection-end-column="53" />
+            <state relative-caret-position="424">
+              <caret line="322" column="20" lean-forward="false" selection-start-line="322" selection-start-column="20" selection-end-line="322" selection-end-column="20" />
               <folding>
                 <element signature="e#40#58#0#PHP" expanded="true" />
                 <element signature="e#347#2371#0#PHP" expanded="false" />
@@ -41,27 +38,17 @@
                 <element signature="e#4910#6961#0#PHP" expanded="false" />
                 <element signature="e#6991#7883#0#PHP" expanded="false" />
                 <element signature="e#7932#8592#0#PHP" expanded="false" />
-                <element signature="e#10639#11688#0#PHP" expanded="false" />
-                <marker date="1542688342787" expanded="true" signature="1008:1169" ph="SELECT TOP 2... VentasporComprobantes" />
-                <marker date="1542688342787" expanded="true" signature="2911:3027" ph="SELECT TOP 2... VentasporComprobantes" />
-                <marker date="1542688342787" expanded="true" signature="4459:4521" ph="SELECT * FRO... VentasporProductos" />
-                <marker date="1542688342787" expanded="true" signature="5337:5480" ph="UPDATE Encab... " />
-                <marker date="1542688342787" expanded="true" signature="7471:7671" ph="UPDATE Encab... " />
-                <marker date="1542688342787" expanded="true" signature="8049:8282" ph="UPDATE Detal... " />
-                <marker date="1542688342787" expanded="true" signature="8801:9372" ph="INSERT INTO EncabezadosVentas_APP... " />
-                <marker date="1542688342787" expanded="true" signature="9748:10364" ph="INSERT INTO DetalleEncabezadosVentas_APP... " />
-                <marker date="1542688342787" expanded="true" signature="11114:11361" ph="SELECT TOP 2... VentasporComprobantes" />
+                <element signature="e#10641#11690#0#PHP" expanded="false" />
+                <marker date="1542689468908" expanded="true" signature="1008:1169" ph="SELECT TOP 2... VentasporComprobantes" />
+                <marker date="1542689468908" expanded="true" signature="2911:3027" ph="SELECT TOP 2... VentasporComprobantes" />
+                <marker date="1542689468908" expanded="true" signature="4459:4521" ph="SELECT * FRO... VentasporProductos" />
+                <marker date="1542689468908" expanded="true" signature="5337:5480" ph="UPDATE Encab... " />
+                <marker date="1542689468908" expanded="true" signature="7471:7671" ph="UPDATE Encab... " />
+                <marker date="1542689468908" expanded="true" signature="8049:8282" ph="UPDATE Detal... " />
+                <marker date="1542689468908" expanded="true" signature="8801:9372" ph="INSERT INTO EncabezadosVentas_APP... " />
+                <marker date="1542689468908" expanded="true" signature="9750:10366" ph="INSERT INTO DetalleEncabezadosVentas_APP... " />
+                <marker date="1542689468908" expanded="true" signature="11116:11363" ph="SELECT TOP 2... VentasporComprobantes" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrderHeaderController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -70,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
-              <caret line="57" column="62" lean-forward="false" selection-start-line="57" selection-start-column="62" selection-end-line="57" selection-end-column="62" />
+              <caret line="54" column="40" lean-forward="true" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -80,7 +67,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>The given data was invalid</find>
       <find>form</find>
       <find>form-</find>
       <find>form-da</find>
@@ -110,6 +96,7 @@
       <find>orderby</find>
       <find>star</find>
       <find>galeriahom</find>
+      <find>$mytime</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\alejandro\argentina\webdcentral\backend\app\Http\Controllers</dir>
@@ -453,10 +440,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93269000" />
+    <option name="totallyTimeSpent" value="93422000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="696" extended-state="7" />
+    <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -488,6 +475,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.164375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="JSON Utils" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -943,15 +931,23 @@
     <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderDriverController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="304" column="53" lean-forward="false" selection-start-line="304" selection-start-column="53" selection-end-line="304" selection-end-column="53" />
+        <state relative-caret-position="424">
+          <caret line="322" column="20" lean-forward="false" selection-start-line="322" selection-start-column="20" selection-end-line="322" selection-end-column="20" />
           <folding>
             <element signature="e#40#58#0#PHP" expanded="true" />
             <element signature="e#347#2371#0#PHP" expanded="false" />
@@ -959,32 +955,24 @@
             <element signature="e#4910#6961#0#PHP" expanded="false" />
             <element signature="e#6991#7883#0#PHP" expanded="false" />
             <element signature="e#7932#8592#0#PHP" expanded="false" />
-            <element signature="e#10639#11688#0#PHP" expanded="false" />
-            <marker date="1542688342787" expanded="true" signature="1008:1169" ph="SELECT TOP 2... VentasporComprobantes" />
-            <marker date="1542688342787" expanded="true" signature="2911:3027" ph="SELECT TOP 2... VentasporComprobantes" />
-            <marker date="1542688342787" expanded="true" signature="4459:4521" ph="SELECT * FRO... VentasporProductos" />
-            <marker date="1542688342787" expanded="true" signature="5337:5480" ph="UPDATE Encab... " />
-            <marker date="1542688342787" expanded="true" signature="7471:7671" ph="UPDATE Encab... " />
-            <marker date="1542688342787" expanded="true" signature="8049:8282" ph="UPDATE Detal... " />
-            <marker date="1542688342787" expanded="true" signature="8801:9372" ph="INSERT INTO EncabezadosVentas_APP... " />
-            <marker date="1542688342787" expanded="true" signature="9748:10364" ph="INSERT INTO DetalleEncabezadosVentas_APP... " />
-            <marker date="1542688342787" expanded="true" signature="11114:11361" ph="SELECT TOP 2... VentasporComprobantes" />
+            <element signature="e#10641#11690#0#PHP" expanded="false" />
+            <marker date="1542689468908" expanded="true" signature="1008:1169" ph="SELECT TOP 2... VentasporComprobantes" />
+            <marker date="1542689468908" expanded="true" signature="2911:3027" ph="SELECT TOP 2... VentasporComprobantes" />
+            <marker date="1542689468908" expanded="true" signature="4459:4521" ph="SELECT * FRO... VentasporProductos" />
+            <marker date="1542689468908" expanded="true" signature="5337:5480" ph="UPDATE Encab... " />
+            <marker date="1542689468908" expanded="true" signature="7471:7671" ph="UPDATE Encab... " />
+            <marker date="1542689468908" expanded="true" signature="8049:8282" ph="UPDATE Detal... " />
+            <marker date="1542689468908" expanded="true" signature="8801:9372" ph="INSERT INTO EncabezadosVentas_APP... " />
+            <marker date="1542689468908" expanded="true" signature="9750:10366" ph="INSERT INTO DetalleEncabezadosVentas_APP... " />
+            <marker date="1542689468908" expanded="true" signature="11116:11363" ph="SELECT TOP 2... VentasporComprobantes" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderBodyController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
-          <caret line="57" column="62" lean-forward="false" selection-start-line="57" selection-start-column="62" selection-end-line="57" selection-end-column="62" />
+          <caret line="54" column="40" lean-forward="true" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
           <folding />
         </state>
       </provider>
