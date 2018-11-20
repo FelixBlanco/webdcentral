@@ -4,6 +4,7 @@ import { ProductosService, Producto } from 'src/app/services/productos.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { forkJoin, Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
+import { UserTokenService } from 'src/app/services/user-token.service';
 
 declare var $: any;
 
@@ -26,14 +27,19 @@ export class CarritoComponent implements OnInit {
   requests: Observable<HttpResponse<Producto>>[] = [];
   itemPerCuantity: {id: number, cantidad: number}[] = [];
 
+  token: string;
+
   constructor(
     private carritoService: CarritoService, 
     private productosService: ProductosService,
-    private as: AlertsService
+    private as: AlertsService,
+    private userToken: UserTokenService
   ) { 
   }
 
   ngOnInit() {
+
+    this.userToken.token.subscribe(val => this.token = val);
 
     this.carritoService.orderItems.subscribe(val => this.updateItemsByOrder(val));
 

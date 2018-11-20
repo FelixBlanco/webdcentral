@@ -40,6 +40,7 @@ import { ForgetComponent } from './component/forget/forget.component';
 import { DestacadosComponent } from './component/destacados/destacados.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ConfigRedesComponent } from './component/config-redes/config-redes.component';
+import { SuscripcionComponent } from './component/suscripcion/suscripcion.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { ConfigRedesComponent } from './component/config-redes/config-redes.comp
     GestionUsuarioComponent,
     ForgetComponent,
     DestacadosComponent,
-    ConfigRedesComponent
+    ConfigRedesComponent,
+    SuscripcionComponent
   ],
   imports: [
     BrowserModule,

@@ -95,9 +95,9 @@
         </ng-container>
       </div>
       <div class="modal-footer" *ngIf="section === 'shipping'">
-        <button type="button"  [routerLink]="[ '/recompra']" class="btn btn-light text-uppercase txt-azul font-bold" data-dismiss="modal">historial de compras</button>
+        <button type="button" *ngIf="token" [routerLink]="[ '/recompra']" class="btn btn-light text-uppercase txt-azul font-bold" data-dismiss="modal">historial de compras</button>
         <button type="button" [routerLink]="[ '/productos']" class="btn btn-light text-uppercase txt-naranja font-bold" data-dismiss="modal">continuar comprando</button>
-        <button type="button" class="btn btn-light text-uppercase txt-verde font-bold" [disabled]="!items.length" (click)="routeTo('toBuy')" >pagar</button>
+        <button type="button" *ngIf="token" class="btn btn-light text-uppercase txt-verde font-bold" [disabled]="!items.length" (click)="routeTo('toBuy')" >pagar</button>
       </div>
     </div>
   </div>

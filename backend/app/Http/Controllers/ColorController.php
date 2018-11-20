@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Color;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class ColorController extends Controller {
+class ColorController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        return Color::orderby('idColor','desc')->get();
+    public function index()
+    {
+        return Color::orderby('idColor', 'desc')->get();
     }
 
     /**
@@ -23,7 +24,8 @@ class ColorController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         //
     }
 
@@ -33,50 +35,63 @@ class ColorController extends Controller {
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
-        $this->validate($request, [
-            'colorOscuro' => 'required|unique:tb_colores,colorOscuro,'.$request->idColor.',idColor',
-            'colorMedio'  => 'required|unique:tb_colores,colorMedio,'.$request->idColor.',idColor',
-            'colorClaro'  => 'required|unique:tb_colores,colorClaro,'.$request->idColor.',idColor',
+        $color = Color::first();
 
-        ], [
-            'colorOscuro.required' => 'El color Oscuro es requerido',
-            'colorOscuro.unique'   => 'Este color ya se encuentra en uso',
+        if (empty($color)) {
 
-            'colorMedio.required' => 'El color Medio es requerido',
-            'colorMedio.unique'   => 'Este color ya se encuentra en uso',
+            $this->validate($request, [
+                'colorOscuro' => 'required|unique:tb_colores,colorOscuro,'.$request->idColor.',idColor',
+                'colorMedio'  => 'required|unique:tb_colores,colorMedio,'.$request->idColor.',idColor',
+                'colorClaro'  => 'required|unique:tb_colores,colorClaro,'.$request->idColor.',idColor',
 
-            'colorClaro.required' => 'El color Claro es requerido',
-            'colorClaro.unique'   => 'Este color ya se encuentra en uso',
+            ], [
+                'colorOscuro.required' => 'El color Oscuro es requerido',
+                'colorOscuro.unique'   => 'Este color ya se encuentra en uso',
 
+                'colorMedio.required' => 'El color Medio es requerido',
+                'colorMedio.unique'   => 'Este color ya se encuentra en uso',
 
-        ]);
+                'colorClaro.required' => 'El color Claro es requerido',
+                'colorClaro.unique'   => 'Este color ya se encuentra en uso',
+            ]);
 
-        DB::beginTransaction();
+            DB::beginTransaction();
 
-        try {
+            try {
 
-            $color = new Color($request->all());
+                $color_n = new Color($request->all());
 
+                $color_n->save();
+
+                $response = [
+                    'msj'     => 'Colores Creados',
+                    'colores' => $color_n,
+                ];
+                DB::commit();
+
+                return response()->json($response, 201);
+            } catch (\Exception $e) {
+
+                DB::rollback();
+                Log::error('Ha ocurrido un error en ColorController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+                return response()->json([
+                    'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+                ], 500);
+            }
+        } else {
+            $color->fill($request->all());
             $color->save();
 
             $response = [
-                'msj'  => 'Colores Creados',
+                'msj'     => 'Color actualizado',
                 'colores' => $color,
             ];
-            DB::commit();
-
 
             return response()->json($response, 201);
-        } catch (\Exception $e) {
-
-            DB::rollback();
-            Log::error('Ha ocurrido un error en ColorController: '.$e->getMessage().', Linea: '.$e->getLine());
-
-            return response()->json([
-                'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
-            ], 500);
         }
     }
 
@@ -86,7 +101,8 @@ class ColorController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         //
     }
 
@@ -96,7 +112,8 @@ class ColorController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         //
     }
 
@@ -107,7 +124,8 @@ class ColorController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         //
     }
 
@@ -117,7 +135,8 @@ class ColorController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
 
         DB::beginTransaction();
 
@@ -126,7 +145,7 @@ class ColorController extends Controller {
             $color->delete();
 
             $response = [
-                'msj'  => 'Paleta de colores eliminada Correctamente',
+                'msj' => 'Paleta de colores eliminada Correctamente',
             ];
 
             DB::commit();
@@ -142,7 +161,8 @@ class ColorController extends Controller {
         }
     }
 
-    public function ultimaPaletaColores(){
-        return Color::orderBy('idColor','desc')->first();
+    public function ultimaPaletaColores()
+    {
+        return Color::orderBy('idColor', 'desc')->first();
     }
 }

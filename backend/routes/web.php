@@ -16,6 +16,10 @@ Route::get('/', function() {
     return view('welcome');
 });
 
+Route::get('mail',function(){
+	return view('correos.formato-email');
+});
+
 Route::get('email', function() {
 
 

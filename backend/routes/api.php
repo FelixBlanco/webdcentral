@@ -97,6 +97,15 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::post('editarClasificado/{idClasificado}','ClasificadoController@editar');
         /*Clasificados*/
 
+
+        /*LOCALES SERVICIOS DE TURNO*/
+        Route::post('crearServicioAdd','LocalesAdheridoController@crearServicioAdd');
+        Route::post('editarServicioAdd','LocalesAdheridoController@editarServicioAdd');
+        Route::delete('eliminarServicioAdd/{idServiciosAdd}','LocalesAdheridoController@eliminarServicioAdd');
+        Route::get('listarServiciosAdd','LocalesAdheridoController@listar');
+        /*LOCALES SERVICIOS DE TURNO*/
+
+
     });
 });
 
@@ -285,6 +294,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // Links de redes sociales
     Route::get('get-redes','RedSocialController@getRedes');
+
+    // Status Sistema 
+    Route::get('status-sistema','StatusSistemaController@index');
 });
 
 
