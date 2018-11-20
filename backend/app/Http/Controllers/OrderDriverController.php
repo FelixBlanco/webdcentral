@@ -303,6 +303,7 @@ class OrderDriverController extends Controller {
 
     // BODY
     public static function addBody(orderBody $item) {
+       
         try {
             //$mytime = Carbon::now();
 
@@ -312,14 +313,14 @@ class OrderDriverController extends Controller {
                     PrecioUnitario_Producto,
                     PorcentajeDescuento_Producto,
                     Devolucion_Producto,
-                    Numero_Pedido,
+                    Numero_EncabezadoVenta
                 ) VALUES(
                     $item->codeProdSys,
                     $item->Cantidad_Producto,
                     $item->PrecioUnitario_Producto,
                     $item->PorcentajeDescuento_Producto,
                     $item->Devolucion_Producto,
-                    $item->Numero_Pedido
+                    $item->Numero_EncabezadoVenta
                 )");
 
 
