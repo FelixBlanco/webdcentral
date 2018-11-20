@@ -36,11 +36,11 @@ export class FooterComponent implements OnInit {
     //Links Redes
     this.configRedes._getRed().subscribe(
       (resp:any) => {
-        if(resp.body){
-          this.linksR.facebook = resp.body.url_face
-          this.linksR.twitter = resp.body.url_twit;
-          this.linksR.instagram = resp.body.url_inst;
-          this.linksR.whatsapp = resp.body.url_what;                  
+        if(resp != null){
+          this.linksR.facebook = resp.url_face
+          this.linksR.twitter = resp.url_twit;
+          this.linksR.instagram = resp.url_inst;
+          this.linksR.whatsapp = resp.url_what;                  
         }else{          
           this.linksR;
         }
