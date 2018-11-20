@@ -41,6 +41,8 @@ class OfertaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+
+
         $this->validate($request, [
             'titulo'     => 'required',
             'tiempoExpi' => 'required',

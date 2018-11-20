@@ -336,4 +336,40 @@ class OrderDriverController extends Controller
         }
     }
 
+
+      // OBTENEMOS TODOS LOS PEDIDOS POR CODIGO CLIENTE 
+      public function getAllByCodeCliente(Request $request){
+       
+        try{
+            $rs = null;
+
+            $sql = "";
+            if($request->search != ""){
+                $sql = " AND Pedido LIKE '%".$request->search."%' ";
+            }
+
+        
+            // POR CLIENTE 
+            if($request->Codigo_Cliente != ""){
+                $sql  = $sql." AND Codigo_Cliente = ".$request->Codigo_Cliente." ";
+            }
+
+            $rs = DB::connection('sqlsrv')->select(" SELECT TOP 20 * FROM   VentasporComprobantes  
+            where   (EstadoPedido = 'En Transito' 
+            or EstadoPedido ='Cerrado' or EstadoPedido ='En Reparto' or 
+            EstadoPedido ='Visto' ) ".$sql."  order by Fecha_EncabezadoVenta  "); 
+            
+            if($rs){
+                return response()->json($rs, 200);
+            }else{
+                return response()->json("No existe contenido ", 204);
+            }
+        } catch (\Exception $e) {
+            dd($e);
+
+            return response()->json("Error conectando a el DC", 500);
+        }
+
+    }
+
 }
