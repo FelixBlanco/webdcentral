@@ -21,7 +21,7 @@ export class GaleryProductService {
     }
 
     getAll(body?: any): Observable<HttpResponse<any>> {
-        console.log("Token: " + localStorage.getItem('access_token'))
+       
         return this.http.post<any>(`${environment.apiHost}/api/v1/getGaleria/producto`, body, this.httpOptions) as Observable<HttpResponse<any>>;
     }
 

@@ -11,6 +11,13 @@ export interface GaleryProduct {
   fk_idStatusSistema;
 }
 
+class ImageSnippet {
+  pending: boolean = false;
+  status: string = 'init';
+
+  constructor(public src: string, public file: File) { }
+}
+
 @Component({
   selector: 'app-galery-product',
   templateUrl: './galery-product.component.html',
@@ -26,21 +33,21 @@ export class GaleryProductComponent implements OnInit {
   limit: number = 5;
   galeryProduct: GaleryProduct;
   selectedFile: File;
-
+  selectedImg: ImageSnippet;
 
 
   constructor(private galeryService: GaleryProductService,
     private fb: FormBuilder, private ts: AlertsService) {
-      this.galeryForm = this.fb.group({
-        tittle: ['', Validators.required],//Agregar validators
-        imgFile: ['', Validators.required]//Agregar Validators
-      });
-  
-      this.galeryUpdateForm = this.fb.group({
-        tittle: ['', Validators.required],//Agregar validators
-        imgFile: ['', Validators.required]//Agregar Validators
-      });
-      
+    this.galeryForm = this.fb.group({
+      tittle: ['', Validators.required],//Agregar validators
+      imgFile: ['', Validators.required]//Agregar Validators
+    });
+
+    this.galeryUpdateForm = this.fb.group({
+      tittle: ['', Validators.required],//Agregar validators
+      imgFile: ['', Validators.required]//Agregar Validators
+    });
+
     this.list();
 
     this.columns = [
@@ -53,16 +60,26 @@ export class GaleryProductComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
-  onFileChanged(event) {
-    this.selectedFile = event.target.files[0]
+  onFileChanged(ImageInput: any) {
+    this.selectedFile = ImageInput.files[0];
+    var reader = new FileReader();
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedImg = new ImageSnippet(event.target.result, this.selectedFile);
+
+      this.selectedImg.pending = false;
+      this.selectedImg.status = 'ok';
+    });
+    reader.readAsDataURL(this.selectedFile);
   }
 
-  updateFilter(event){
+  updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
-    const temp = this.galeryList.filter(function(d) {
+    const temp = this.galeryList.filter(function (d) {
       return (d.tittle.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
@@ -83,19 +100,19 @@ export class GaleryProductComponent implements OnInit {
       this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
     });
   }
-  save(){
-    if(this.galeryForm.invalid){
+  save() {
+    if (this.galeryForm.invalid) {
       return;
     }
 
     const val = this.galeryForm.value;
-    this.galeryService.persist({pregunta: val.pregunta, respuesta: val.respuesta}).subscribe((resp) => {
-      if(resp.ok && resp.status === 201){
+    this.galeryService.persist({ titulo: val.tittle, iamgen: val.imgFile }).subscribe((resp) => {
+      if (resp.ok && resp.status === 201) {
         this.galeryForm.get('tittle').setValue('');
         this.galeryForm.get('imgFile').setValue('');
         this.list();
         this.ts.Success("El registro se ha guardado con éxito");
-      }else{
+      } else {
         this.ts.listError(`Ha ocurrido un error interno`);
       }
     }, (error) => {
@@ -103,21 +120,21 @@ export class GaleryProductComponent implements OnInit {
     })
   }
 
-  delete(){
+  delete() {
     this.galeryService.delete(this.galeryProduct.id)
-      .subscribe((resp)=>{
-        if(resp.ok && resp.status === 200){
+      .subscribe((resp) => {
+        if (resp.ok && resp.status === 200) {
           this.ts.Success("Se ha eliminado el registro");
           this.list();
-        }else{
+        } else {
           this.ts.listError(`Ha ocurrido un error interno`);
         }
-      },(error) => {
+      }, (error) => {
         this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
       });
   }
 
-  set({id,tittle,imgFile, fk_idStatusSistema}){
+  set({ id, tittle, imgFile, fk_idStatusSistema }) {
     this.galeryProduct = {
       id: id,
       tittle: tittle,
@@ -129,7 +146,7 @@ export class GaleryProductComponent implements OnInit {
     this.galeryUpdateForm.get('imgFile').setValue(imgFile);
   }
 
-  rowClass(){
+  rowClass() {
     return 'text-capitalize';
   }
 
