@@ -59,6 +59,7 @@ class OrderBodyController extends Controller {
 
                     } catch (\Exception $e) {
 
+                        
                         DB::rollback();
                         Log::error('Ha ocurrido un error en OrderBodyController: '.$e->getMessage().', Linea: '.$e->getLine());
 

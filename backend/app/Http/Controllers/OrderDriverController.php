@@ -276,7 +276,6 @@ class OrderDriverController extends Controller {
         try {
             $mytime = Carbon::now();
 
-            //dd($request);
 
             DB::connection('sqlsrv')->insert("  INSERT INTO EncabezadosVentas_APP 
             (   Email_Cliente,
@@ -325,7 +324,7 @@ class OrderDriverController extends Controller {
                 ) VALUES(
                     '$codeProdSys',
                     $Cantidad_Producto,
-                    $PrecioUnitario_Producto,
+                    '$PrecioUnitario_Producto',
                     '$PorcentajeDescuento_Producto',
                     '$Devolucion_Producto',
                     '$Numero_Pedido'
@@ -362,6 +361,31 @@ class OrderDriverController extends Controller {
             where   (EstadoPedido = 'En Transito' 
             or EstadoPedido ='Cerrado' or EstadoPedido ='En Reparto' or 
             EstadoPedido ='Visto' ) ".$sql."  order by Fecha_EncabezadoVenta  ");
+
+            if ($rs) {
+                return response()->json($rs, 200);
+            } else {
+                return response()->json("No existe contenido ", 204);
+            }
+        } catch (\Exception $e) {
+            dd($e);
+
+            return response()->json("Error conectando a el DC", 500);
+        }
+
+    }
+
+     // OBTENEMOS TODOS LOS PEDIDOS EN TRAFICO
+     public function getAllOrderMap(Request $request) {
+
+        try {
+            $rs = null;
+
+            $sql = "";
+            
+
+            $rs = DB::connection('sqlsrv')->select(" SELECT TOP 20 * FROM   VentasporComprobantes  
+            where   EstadoPedido != 'En Transito' ".$sql."  order by Fecha_EncabezadoVenta  ");
 
             if ($rs) {
                 return response()->json($rs, 200);
