@@ -280,6 +280,8 @@ class OrderDriverController extends Controller
         try{
             $mytime = Carbon::now();
 
+            //dd($request);
+
             DB::connection('sqlsrv')->insert("  INSERT INTO EncabezadosVentas_APP 
             (   Email_Cliente,
                 Fecha_Pedido,
@@ -288,8 +290,8 @@ class OrderDriverController extends Controller
                 Domicilio_Entrega,
                 Codigo_Postal,
                 comentaryClient) VALUES(
-                 $request->emailEnvio   
-                 $mytime->toDateTimeString(),
+                 $request->emailEnvio,  
+                 $mytime,
                  $request->Numero_Pedido,
                  'Solicitado',
                  $request->Domicilio_Entrega,
@@ -300,7 +302,7 @@ class OrderDriverController extends Controller
             return response()->json("Pedido creado ", 200);
             
         } catch (\Exception $e) {
-           // dd($e);
+            dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
@@ -309,7 +311,6 @@ class OrderDriverController extends Controller
     public static function addBody(Request $request){
         try{
             foreach ($request->items as $item){
-                $mytime = Carbon::now();
 
                 DB::connection('sqlsrv')->insert("  INSERT INTO DetalleEncabezadosVentas_APP 
                 (   Codigo_Producto,
