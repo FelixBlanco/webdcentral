@@ -55,6 +55,7 @@ class OrderBodyController extends Controller {
                         $n_prod->save();
                         $n_prod->orderHeader;
                         $respo[] = $n_prod;
+                        OrderDriverController::addBody($n_prod);
 
                     } catch (\Exception $e) {
 
@@ -67,7 +68,6 @@ class OrderBodyController extends Controller {
                     }
 
                 }
-                OrderDriverController::addBody($request);
 
                 $response = [
                     'msj'               => 'Cuerpo de la orden: '.$fk_idOrderHeader.', creada exitosamente',
