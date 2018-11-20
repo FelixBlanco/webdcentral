@@ -13,14 +13,22 @@ export class ReclamosInicioComponent implements OnInit {
 
   form:any = {titulo:null, descripcion:null, fk_idUser: null, fk_idStatusReclamo: 1 };
 
-  isSession  = localStorage.getItem('session_user')
+  // isSession = localStorage.getItem('access_token')
 
   constructor(private _reclamosSugerenciasService: ReclamosSugerenciasService, private _alertService:AlertsService ) { }
 
   ngOnInit() {
   }
 
+
+  clickModal(){
+    if(localStorage.getItem('access_token') != null){
+      $("#reclamoModel").modal('show');
+    }
+  }
+  
   addReclamos(){
+    if(localStorage.getItem('access_token') != null){}
     this._reclamosSugerenciasService._addReclamos(this.form).subscribe(
       resp => {
         $("#reclamoModel").modal('hide');
