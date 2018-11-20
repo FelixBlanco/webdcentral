@@ -9,7 +9,11 @@ import { DestacadosService } from 'src/app/services/destacados.service';
 })
 export class MapaComponent implements OnInit {
   
-  list_order:any
+  list_order:any = {
+    Pedido: null, EstadoPedido: null, 
+    Codigo_Provincia: null, Codigo_Localidad: null,
+    Nombre_Cliente: null, Nombre_Transporte: null
+  }
 
   constructor(
     private destacadoService: DestacadosService,
@@ -21,7 +25,7 @@ export class MapaComponent implements OnInit {
   }
 
   order(){
-    this.destacadoService._getOrder().subscribe(
+    this.destacadoService._getOrdenes().subscribe(
       resp => {
         this.list_order = resp;
       }

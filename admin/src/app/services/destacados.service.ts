@@ -6,7 +6,7 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Accept':  'application/json',
     'Access-Control-Allow-Origin': '*',
-    'Authorization': 'Bearer '+localStorage.getItem('access_token')
+    'Authorization': 'Bearer '+ localStorage.getItem('access_token')
   })
 };
 
@@ -26,7 +26,7 @@ export class DestacadosService {
     return this.http.get(this._GB.API +'/api/v1/obtenerDestacados',httpOptions);
   }
 
-  _getOrder(){
+  _getOrdenes(){
     return this.http.get(this._GB.API +'/api/v1/order/all/trafic',httpOptions);
   }
 

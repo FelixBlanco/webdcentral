@@ -376,8 +376,8 @@ class OrderDriverController extends Controller {
     }
 
      // OBTENEMOS TODOS LOS PEDIDOS EN TRAFICO
-     public function getAllOrderMap(Request $request) {
-
+     public function getAllOrderMap() {
+        
         try {
             $rs = null;
 
