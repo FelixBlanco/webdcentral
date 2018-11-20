@@ -105,7 +105,6 @@ class NotificationController extends Controller {
             'vibrate' => 'default',
         ];
 
-
         if ($tokenFB != null) {
             $param = [
                 "to"           => $tokenFB,
@@ -121,6 +120,8 @@ class NotificationController extends Controller {
         }
 
 
+
+
         $headers = [
             'Authorization: key='.env('API_ACCESS_KEY', ''),
             'Content-Type: application/json',
@@ -134,6 +135,7 @@ class NotificationController extends Controller {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
         $result = curl_exec($ch);
+
 
         curl_close($ch);
 

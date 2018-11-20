@@ -27,7 +27,7 @@ export class DestacadosService {
   }
 
   _getOrdenes(){
-    return this.http.get(this._GB.API +'/api/v1/order/all/trafic',httpOptions);
+    return this.http.get('http://127.0.0.1:8888/webdcentral/backend/public/api/v1/order/all/trafic',httpOptions);
   }
 
   _addDestacados(data:any){
