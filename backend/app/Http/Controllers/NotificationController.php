@@ -105,7 +105,6 @@ class NotificationController extends Controller {
             'vibrate' => 'default',
         ];
 
-
         if ($tokenFB != null) {
             $param = [
                 "to"           => $tokenFB,
@@ -119,6 +118,8 @@ class NotificationController extends Controller {
                 "data"         => $data,
             ];
         }
+
+
 
 
         $headers = [

@@ -64,7 +64,9 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('listarTodosCupones','CouponsController@listarTodo'); //listar todo los cupones
         Route::post('updateCupon/{idCupons}','CouponsController@updateCupon'); //acutaliza cupones
         Route::delete('deleteCupon/{idCupons}','CouponsController@deleteCupon'); //eliminar el cupon
+        Route::get('cupons/listarPorIdUsuario/{idCuponsClient}', 'CouponsController@listarPorIdUsuario');// Eliminar cupon por cliente
 
+        
        
 
         // Notification
