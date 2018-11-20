@@ -3,8 +3,9 @@ import { ProductsBehaviorService } from 'src/app/services/products-behavior.serv
 import { Producto, ProductosService } from 'src/app/services/productos.service';
 import { RubrosService } from 'src/app/services/rubros.service';
 import { AlertsService } from 'src/app/services/alerts.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+declare var $:any;
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
@@ -24,6 +25,7 @@ export class ProductosComponent implements OnInit {
   currentPage: number;
   pages: number;
 
+  tittleList: string;
 
   constructor(
     private productsBehavior: ProductsBehaviorService,
@@ -37,6 +39,7 @@ export class ProductosComponent implements OnInit {
       rubro: [''],
       subRubroA: [''],
       subRubroB: [''],
+      searchValue: ['', Validators.required]
     });
 
     this.pages = 0;
@@ -46,6 +49,11 @@ export class ProductosComponent implements OnInit {
   ngOnInit() {
     this.iniBehavior();
     this.setRubros();
+    this.iniTittleBehavior();
+  }
+
+  iniTittleBehavior(){
+    this.productosService.productosFilterTittle.subscribe(val => this.tittleList = val);
   }
 
   setProducts(products: Producto[]): void{
@@ -130,6 +138,7 @@ export class ProductosComponent implements OnInit {
     this.productosService.filter3Pack(rubros).subscribe((resp) => {
       if(resp.ok && resp.status === 201){
         this.setProducts(resp.body.productos);
+        this.setTittleByRubros(rubros);
       }else{
         console.error(resp);
         this.as.msg('ERR', 'Ha ocurrido un error interno => Filtrar por Rubros');
@@ -141,6 +150,17 @@ export class ProductosComponent implements OnInit {
       this.inPromise = false;
     });
     
+  }
+
+  setTittleByRubros(rubros){
+    const keys: string[] = Object.keys(rubros);
+    let tittle: string = '';
+
+    keys.forEach((val,indx) => {
+      tittle = tittle.concat(indx === 0 ? rubros[val] : rubros[val] ? ` / ${rubros[val]}`: '');
+    })
+
+    this.productosService.productosFilterTittleSource.next(tittle);
   }
 
   someAreEmpty(): boolean{
@@ -167,8 +187,33 @@ export class ProductosComponent implements OnInit {
   }
 
   setCurrent({current}){
-    console.log(current);
     this.currentPage = Number(current.substr(current.length - 1)) + 1;
+  }
+
+  search(){
+
+    if(this.filterForm.invalid){
+      return;
+    }
+
+    const search = this.filterForm.value.searchValue;
+    this.inPromise = true;
+    this.productosService.search(search).subscribe(resp => {
+      if(resp.ok && resp.status === 200){
+        this.productosService.productosSearchSource.next(resp.body);
+        this.productosService.productosFilterTittleSource.next(search);
+
+        $('#busquedaModal').modal('toggle');
+      }else{
+        console.error(resp);
+        this.as.msg('ERR', 'Ha ocurrido un error al buscar');
+      }
+      this.inPromise = false;
+    }, error => {
+      console.error(error);
+      this.as.msg('ERR', 'Ha ocurrido un error al buscar');
+      this.inPromise = false;
+    });
   }
 
 }

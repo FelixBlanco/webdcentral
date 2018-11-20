@@ -1,69 +1,103 @@
 <!-- Modal -->
 <div class="modal fade" id="carrito" tabindex="-1" role="dialog" aria-labelledby="carritoTittle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div class="modal-dialog modal-dialog-centered" [ngClass]=" (section === 'shipping') ? 'modal-lg' : ''"  role="document">
     <div class="modal-content">
       <div class="modal-header bg-azul">
-        <h5 class="modal-title text-white  text-uppercase" id="carritoTittle"><img src="assets/social/carrito.png" alt="Carrito de compras"> Carrito de Compras</h5>
+        <ng-container *ngIf="section === 'toBuy'"> 
+            <button class="btn btn-link text-white" (click)="routeTo('shipping')">
+                <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
+            </button>
+            <h5 class="modal-title text-white text-uppercase mt-1">datos de compra</h5>
+        </ng-container>
+        
+        <h5 *ngIf="section === 'shipping'" class="modal-title text-white  text-uppercase" id="carritoTittle"><img src="assets/social/carrito.png" alt="Carrito de compras"> Carrito de Compras</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span class="text-white" aria-hidden="true">&times;</span>
         </button>
+
       </div>
       <div class="modal-body">
-        <div class="card">
-          <div class="card-header text-center" *ngIf="inPromise">
-            <p class="font-italic">Agregando productos desde el historial, espere mientras actualizamos la información</p>
-            <mat-spinner diameter="30" style="margin: 0 auto;"></mat-spinner>
-          </div>
-          <div class="card-body">
-            <table class="table table-curved">
-              <thead class="bg-azul text-white">
-                <tr>
-                  <th scope="col" width="20%">MARCA</th>
-                  <th scope="col" width="35%">PRODUCTO</th>
-                  <th scope="col" width="10%">PRECIO</th>
-                  <th scope="col" width="20%">CANTIDAD</th>
-                  <th scope="col" width="15%">TOTAL</th>
-                </tr>
-              </thead>
-              <tbody>
-                <ng-container *ngFor="let item of items">
-                  <tr>
-                    <td>{{item.marca}}</td>
-                    <td>{{item.producto}}</td>
-                    <td><span class="font-bold">{{item.precio | currency: 'ARS': '$'}}</span></td>
-                    <td>
-                      <button class="btn btn-link txt-naranja" (click)="incrase(item.id,false)"><fa-icon [icon]="['fas', 'minus-circle']"></fa-icon></button>
-                      <span class=" font-bold">{{item.cantidad}}</span>
-                      <button class="btn btn-link txt-naranja" (click)="incrase(item.id,true)"><fa-icon [icon]="['fas', 'plus-circle']"></fa-icon></button> 
-                    </td>
-                    <td>
-                      <span class="m-1 font-bold">{{item.cantidad * item.precio | currency: 'ARS': '$'}}</span>
-                      <button class="btn btn-link txt-naranja" (click)="dissmiss(item.id)">
-                        <fa-icon [icon]="['fas','times']" [size]="'lg'"></fa-icon>
-                      </button>
-                    </td>
-                  </tr>
-                </ng-container>
-                <ng-container *ngIf="!items.length">
-                  <tr><td colspan="5" height="80" class="font-italic text-muted text-center">No hay items agregados en el carrito de compra</td></tr>
-                </ng-container>
-              </tbody>
-              <tfoot class="bg-azul text-white">
-                <tr class="font-bold text-capitalize text-right">
-                  <td colspan="5">
-                    <span class="mr-4">PRODUCTOS: {{items.length}}</span>
-                    <span class="mr-4">CANTIDAD: {{cantidad}}</span>
-                    <span>TOTAL</span><span class="total m-1 font-bold">{{total | currency: 'ARS': '$'}}</span>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </div>
+        <ng-container [ngSwitch]="section">
+          <ng-container *ngSwitchCase="'shipping'">
+            <div class="card">
+              <div class="card-header text-center" *ngIf="inPromise">
+                <p class="font-italic">Agregando productos desde el historial, espere mientras actualizamos la información</p>
+                <mat-spinner diameter="30" style="margin: 0 auto;"></mat-spinner>
+              </div>
+              <div class="card-body">
+                <table class="table table-curved">
+                  <thead class="bg-azul text-white">
+                    <tr>
+                      <th scope="col" width="20%">MARCA</th>
+                      <th scope="col" width="35%">PRODUCTO</th>
+                      <th scope="col" width="10%">PRECIO</th>
+                      <th scope="col" width="20%">CANTIDAD</th>
+                      <th scope="col" width="15%">TOTAL</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngFor="let item of items">
+                      <tr>
+                        <td>{{item.marca}}</td>
+                        <td>{{item.producto}}</td>
+                        <td><span class="font-bold">{{item.precio | currency: 'ARS': '$'}}</span></td>
+                        <td>
+                          <button class="btn btn-link txt-naranja" (click)="incrase(item.id,false)"><fa-icon [icon]="['fas', 'minus-circle']"></fa-icon></button>
+                          <span class=" font-bold">{{item.cantidad}}</span>
+                          <button class="btn btn-link txt-naranja" (click)="incrase(item.id,true)"><fa-icon [icon]="['fas', 'plus-circle']"></fa-icon></button> 
+                        </td>
+                        <td>
+                          <span class="m-1 font-bold">{{item.cantidad * item.precio | currency: 'ARS': '$'}}</span>
+                          <button class="btn btn-link txt-naranja" (click)="dissmiss(item.id)">
+                            <fa-icon [icon]="['fas','times']" [size]="'lg'"></fa-icon>
+                          </button>
+                        </td>
+                      </tr>
+                    </ng-container>
+                    <ng-container *ngIf="!items.length">
+                      <tr><td colspan="5" height="80" class="font-italic text-muted text-center">No hay items agregados en el carrito de compra</td></tr>
+                    </ng-container>
+                  </tbody>
+                  <tfoot class="bg-azul text-white">
+                    <tr class="font-bold text-capitalize text-right">
+                      <td colspan="5">
+                        <span class="mr-4">PRODUCTOS: {{items.length}}</span>
+                        <span class="mr-4">CANTIDAD: {{cantidad}}</span>
+                        <span>TOTAL</span><span class="total m-1 font-bold">{{total | currency: 'ARS': '$'}}</span>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            <div class="m-2">
+              <form>
+                <div class="form-group">
+                  <label for="direccion">Dirección</label>
+                  <input type="text" class="form-control" id="direccion" placeholder="Ingrese Dirección">
+                </div>
+                <div class="form-group">
+                  <label for="codigoPostal">Código Postal</label>
+                  <input type="text" class="form-control" id="codigoPostal" placeholder="0000">
+                </div>
+                <div class="form-group">
+                  <label for="comentario">Comentario</label>
+                  <textarea rows="4" class="form-control" id="comentario" placeholder="Ingrese Comentario"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="text-right">
+              <button class="btn btn-light txt-verde font-bold">ENVIAR</button>
+            </div>
+          </ng-container>
+        </ng-container>
       </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-light text-uppercase txt-naranja font-bold" data-dismiss="modal">continuar comprando</button>
-        <button type="button" class="btn btn-light text-uppercase txt-verde font-bold" [disabled]="!items.length" data-dismiss="modal">pagar</button>
+      <div class="modal-footer" *ngIf="section === 'shipping'">
+        <button type="button" *ngIf="token" [routerLink]="[ '/recompra']" class="btn btn-light text-uppercase txt-azul font-bold" data-dismiss="modal">historial de compras</button>
+        <button type="button" [routerLink]="[ '/productos']" class="btn btn-light text-uppercase txt-naranja font-bold" data-dismiss="modal">continuar comprando</button>
+        <button type="button" *ngIf="token" class="btn btn-light text-uppercase txt-verde font-bold" [disabled]="!items.length" (click)="routeTo('toBuy')" >pagar</button>
       </div>
     </div>
   </div>

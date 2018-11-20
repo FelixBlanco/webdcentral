@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ForgetService } from '../../services/forget.service';
 import { AlertsService } from '../../services/alerts.service';
 
+declare var $;
+
 @Component({
   selector: 'app-forget',
   templateUrl: './forget.component.html',
@@ -20,18 +22,20 @@ export class ForgetComponent implements OnInit {
   }
 
   newForget(){
-    this._forgetService._newForget({email:this.email}).subscribe(
-      (resp:any) => {
-        this._alertsService.Success(resp.msj);
-      },
-      error => {
-        if(error.status == 422){
-          this._alertsService.Erros(error.error.message);
-        }else{
-          this._alertsService.Erros(error.error.msj);
+    if(this.email){
+      this._forgetService._newForget({email:this.email}).subscribe(
+        (resp:any) => {
+          $('#forgetModal').modal('hide');
+          this._alertsService.msg('OK',resp.msj);
+        },
+        error => {
+          this._alertsService.msg('ERR','algo salio mal');
         }
-      }
-    )
+      )      
+    }else{
+      this._alertsService.msg('ERR','Todos los campos son requeridos');
+    }
+
   }
 
 }

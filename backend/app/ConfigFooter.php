@@ -5,8 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ConfigFooter extends Model
-{
+class ConfigFooter extends Model {
     /**
      * The primary key for the model.
      *
@@ -23,7 +22,6 @@ class ConfigFooter extends Model
         'nroContacto',
         'mail1',
         'mail2',
-        'direccion',
         'latitud',
         'longitud',
         'whatsApp1',
@@ -32,5 +30,6 @@ class ConfigFooter extends Model
         'subtes',
         'colectivos',
         'avenidas',
+        'listaPrecio',
     ];
 }

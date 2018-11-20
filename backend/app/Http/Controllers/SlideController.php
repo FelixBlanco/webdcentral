@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Slide;
+use Illuminate\Support\Facades\Auth;
 use Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -45,7 +46,7 @@ class SlideController extends Controller {
 
     public function createSlides(Request $request) {
 
-        if ($request->user()->fk_idPerfil == 1) {
+        if (Auth::user()->fk_idPerfil == 1) {
 
             $this->validate($request, [
                 'titulo'        => 'required',
@@ -56,7 +57,6 @@ class SlideController extends Controller {
                 'titulo.required'        => 'El titulo es requerido',
                 'imagen.required'        => 'La imagen es requerida',
                 'fk_idProducto.required' => 'El producto es requerido',
-
             ]);
 
             try {
@@ -114,7 +114,7 @@ class SlideController extends Controller {
                 ], 500);
             }
         } else {
-            response()->json('Su usuario no es administrador', 400);
+            return response()->json('Su usuario no es administrador', 400);
         }
 
     }
@@ -141,7 +141,7 @@ class SlideController extends Controller {
             $slide->delete();
 
             $response = [
-                'msj'  => 'Slide eliminado Correctamente',
+                'msj' => 'Slide eliminado Correctamente',
             ];
 
             DB::commit();

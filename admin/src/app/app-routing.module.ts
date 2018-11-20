@@ -16,9 +16,10 @@ import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/r
 import { ConfigColorComponent } from './component/config-color/config-color.component';
 import { DestacadosComponent } from './component/destacados/destacados.component';
 import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
+import {  ConfigRedesComponent } from './component/config-redes/config-redes.component'
+import { SuscripcionComponent } from './component/suscripcion/suscripcion.component';
 
 const routes: Routes = [
-  { path: 'forget', redirectTo:  '/forget' },
   { path: 'Galeria', component: GaleriaHomeComponent },
   { path: 'Mapa', component: MapaComponent },
   { path: 'Cupones', component: CuponsappComponent },
@@ -31,8 +32,9 @@ const routes: Routes = [
   { path: 'reclamos-sugerencias', component: ReclamosSugerenciasComponent},
   { path: 'config-color', component: ConfigColorComponent},
   { path: 'destacados', component: DestacadosComponent},
-  { path: 'preguntas-frecuentes', component: PreguntasFrecuentesComponent}
-
+  { path: 'preguntas-frecuentes', component: PreguntasFrecuentesComponent},
+  { path: 'config-redes', component: ConfigRedesComponent },
+  { path: 'suscriptores', component: SuscripcionComponent }
 ];
 
 @NgModule({

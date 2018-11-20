@@ -111,7 +111,7 @@ class SuscripcionController extends Controller {
         $sus = Suscripcion::find($id);
 
         if ($sus) {
-            $sus->fill([ 'fk_idStatusSistema' => 2 ]);
+            $sus->fill([ 'fk_idStatusSistema' => 2, 'motivoDeCancelacion' => $request->motivoDeCancelacion ]);
             $sus->save();
 
             $response = [
@@ -137,7 +137,7 @@ class SuscripcionController extends Controller {
         $sus = Suscripcion::where('fk_idStatusSistema', 1)->get();
 
         $response = [
-            'msj'         => 'Suscripcion cancelada',
+            'msj'         => 'Suscripcion',
             'suscripcion' => $sus->each(function($sus) {
                                     $sus->estatusSitema;
                                 }),

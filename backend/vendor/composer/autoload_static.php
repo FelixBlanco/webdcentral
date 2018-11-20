@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
+class ComposerStaticInitfcea80d00b585ecc54c4638e7085a447
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -26,11 +26,11 @@ class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
         '40360c0b9b437e69bcbb7f1349ce029e' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
-        '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
+        '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -169,8 +169,8 @@ class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'Zend\\Diactoros\\' => 
         array (
@@ -460,6 +460,7 @@ class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
     public static $classMap = array (
         'App\\CarritoCompra' => __DIR__ . '/../..' . '/app/CarritoCompra.php',
         'App\\Chage_user' => __DIR__ . '/../..' . '/app/Chage_user.php',
+        'App\\Clasificado' => __DIR__ . '/../..' . '/app/Clasificado.php',
         'App\\Color' => __DIR__ . '/../..' . '/app/Color.php',
         'App\\ConfigFooter' => __DIR__ . '/../..' . '/app/ConfigFooter.php',
         'App\\ConfigHome' => __DIR__ . '/../..' . '/app/ConfigHome.php',
@@ -478,6 +479,7 @@ class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\CarritoCompraController' => __DIR__ . '/../..' . '/app/Http/Controllers/CarritoCompraController.php',
+        'App\\Http\\Controllers\\ClasificadoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClasificadoController.php',
         'App\\Http\\Controllers\\ColorController' => __DIR__ . '/../..' . '/app/Http/Controllers/ColorController.php',
         'App\\Http\\Controllers\\ConfigFooterController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConfigFooterController.php',
         'App\\Http\\Controllers\\ConfigHomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConfigHomeController.php',
@@ -488,6 +490,7 @@ class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
         'App\\Http\\Controllers\\GaleriaHomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/GaleriaHomeController.php',
         'App\\Http\\Controllers\\GaleriaHomeProductoController' => __DIR__ . '/../..' . '/app/Http/Controllers/GaleriaHomeProductoController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\LocalesAdheridoController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocalesAdheridoController.php',
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\OfertaController' => __DIR__ . '/../..' . '/app/Http/Controllers/OfertaController.php',
         'App\\Http\\Controllers\\OrderBodyController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderBodyController.php',
@@ -515,6 +518,7 @@ class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\cors' => __DIR__ . '/../..' . '/app/Http/Middleware/Cors.php',
+        'App\\LocalesAdherido' => __DIR__ . '/../..' . '/app/LocalesAdherido.php',
         'App\\Mail\\Prueba' => __DIR__ . '/../..' . '/app/Mail/Prueba.php',
         'App\\Mail\\SuscripcionMail' => __DIR__ . '/../..' . '/app/Mail/SuscripcionMail.php',
         'App\\Notification' => __DIR__ . '/../..' . '/app/Notification.php',
@@ -544,6 +548,7 @@ class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\orderBody' => __DIR__ . '/../..' . '/app/orderBody.php',
         'App\\orderHeader' => __DIR__ . '/../..' . '/app/orderHeader.php',
+        'App\\serviciosAdd' => __DIR__ . '/../..' . '/app/serviciosAdd.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
         'Barryvdh\\Cors\\HandleCors' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/HandleCors.php',
@@ -4702,11 +4707,11 @@ class ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit1cb6eaeddfea2df2d7002e7652a5faa7::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitfcea80d00b585ecc54c4638e7085a447::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitfcea80d00b585ecc54c4638e7085a447::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitfcea80d00b585ecc54c4638e7085a447::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitfcea80d00b585ecc54c4638e7085a447::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitfcea80d00b585ecc54c4638e7085a447::$classMap;
 
         }, null, ClassLoader::class);
     }

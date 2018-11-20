@@ -43,7 +43,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         /*REDES SOCIALES*/
         Route::post('crearRedSocial', 'RedSocialController@store');
-        Route::PUT('updateRedesSociales/{id_RedSocial}', 'RedSocialController@update');
+        Route::put('updateRedesSociales/{id_RedSocial}', 'RedSocialController@updateRedesSociales');
         /*REDES SOCIALES*/
 
         /*ORDER BODY (carrito de compra)*/
@@ -84,6 +84,30 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
         /* PREGUNTA Y RESPUESTA */
 
+        /*LOCALES ADHERIDOS*/
+        Route::post('guardarLocalAdherido','LocalesAdheridoController@store');
+        Route::post('listarLocalAdheridos','LocalesAdheridoController@listar');
+        Route::post('listarPorIdLocalAdheridos/{idLocalAdherido}','LocalesAdheridoController@listarPorId');
+        Route::delete('borrarLocalAdheridos/{idLocalAdherido}','LocalesAdheridoController@destroy');
+        Route::post('editarLocalAdheridos/{idLocalAdherido}','LocalesAdheridoController@editar');
+        /*LOCALES ADHERIDOS*/
+
+        /*Clasificados*/
+        Route::post('guardarClasificado','ClasificadoController@store');
+        Route::post('listarClasificado','ClasificadoController@listar');
+        Route::get('listarPorIdClasificado/{idClasificado}','ClasificadoController@listarPorId');
+        Route::delete('borrarClasificado/{idClasificado}','ClasificadoController@destroy');
+        Route::post('editarClasificado/{idClasificado}','ClasificadoController@editar');
+        /*Clasificados*/
+
+
+        /*LOCALES SERVICIOS DE TURNO*/
+        Route::post('crearServicioAdd','LocalesAdheridoController@crearServicioAdd');
+        Route::post('editarServicioAdd','LocalesAdheridoController@editarServicioAdd');
+        Route::delete('eliminarServicioAdd/{idServiciosAdd}','LocalesAdheridoController@eliminarServicioAdd');
+        Route::get('listarServiciosAdd','LocalesAdheridoController@listar');
+        /*LOCALES SERVICIOS DE TURNO*/
+
 
     });
 });
@@ -99,7 +123,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     /*PARA LOS DESTACADOS*/
 
     Route::post('crearDestacado', 'DestacadoController@crearDestacado');
-    Route::post('editarDestacado/{idDestacado}', 'DestacadoController@editarDestacado');
+    Route::put('editarDestacado/{idDestacado}', 'DestacadoController@editarDestacado');
     Route::delete('eliminarDestacado/{idDestacado}', 'DestacadoController@eliminarDestacado');
     Route::get('obtenerDestacados', 'DestacadoController@listar');
 
@@ -169,12 +193,17 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::put('user/update/tokenfb/{idUser}', 'UserController@updateTokenFirebase');
 
 
+
+
     Route::put('setClave/{api_token}', 'UserController@setClave'); // Cambio de clave
 
     Route::post('reestablecerClave', 'UserController@reestablecerClave'); // recibe email y genera clave aleatoria, posterior envia email para el login
 
     // Actualizamos las imagenes de perfil
     Route::post('upgrade-foto-perfil', 'UserController@upgradeFotoPerfil');
+
+    //AGREGAR IMAGEN DE PERFIL
+    Route::post('addFotoPerfilUser','UserController@addFotoPerfil');
 
     /*con esta puede tener acceso a una foto de perfil en streaming*/
     Route::get('getFotoPerfil/{nombreImagen}', 'UserController@getFotoPerfil');
@@ -273,7 +302,11 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     Route::get('producto/listarPorid/{idProducto}','ProductoController@listarPorid');
 
+    // Links de redes sociales
+    Route::get('get-redes','RedSocialController@getRedes');
 
+    // Status Sistema 
+    Route::get('status-sistema','StatusSistemaController@index');
 });
 
 
