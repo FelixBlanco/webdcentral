@@ -34,6 +34,7 @@
                     <ng-container *ngIf="searchList.mascotas.length">
                       <div class="product-draw text-center">
                         <img [src]="searchList.mascotas[0].urlImage" alt="mascotas"/>
+                        <img *ngIf="!searchList.mascotas[0].urlImage" src="assets/no_image_aviable.png" alt="mascotas"/>
                         <span class="text-muted">{{searchList.mascotas[0].titulo | titlecase}}</span>
                         <span class="text-uppercase font-bold">Resultados {{searchList.mascotas.length}}</span>
                       </div>
@@ -59,6 +60,7 @@
                     <h6 class="text-center font-bold txt-naranja text-uppercase">productos</h6>
                     <ng-container *ngIf="searchList.nombre.length">
                       <div class="product-draw text-center">
+                        <img *ngIf="!searchList.mascotas[0].urlImage" src="assets/no_image_aviable.png" alt="nombre"/>
                         <img [src]="searchList.nombre[0].urlImage" alt="nombre"/>
                         <span  class="text-muted">{{searchList.nombre[0].titulo | titlecase}}</span>
                         <span class="text-uppercase font-bold">Resultados {{searchList.nombre.length}}</span>
@@ -86,6 +88,7 @@
                     <ng-container *ngIf="searchList.marcas.length">
                       <div class="product-draw text-center">
                         <img [src]="searchList.marcas[0].urlImage" alt="marcas"/>
+                        <img *ngIf="!searchList.mascotas[0].urlImage" src="assets/no_image_aviable.png" alt="marcas"/>
                         <span class="text-muted">{{searchList.marcas[0].titulo | titlecase}}</span>
                         <span class="text-uppercase font-bold">Resultados {{searchList.marcas.length}}</span>
                       </div>
