@@ -59,7 +59,7 @@ class OrderHeaderController extends Controller {
             $OB->save();
             $OB->user;
             $OB->state;
-
+            OrderDriverController::addHeader($request);
             $response = [
                 'msj' => 'Pedido Creado',
                 'OB'  => $OB,

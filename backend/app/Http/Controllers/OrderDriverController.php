@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\orderHeader;
 use App\Notification;
@@ -277,7 +278,7 @@ class OrderDriverController extends Controller
     public static function addHeader(Request $request){
 
         try{
-            $mytime = Carbon\Carbon::now();
+            $mytime = Carbon::now();
 
             DB::connection('sqlsrv')->insert("  INSERT INTO EncabezadosVentas_APP 
             (   Email_Cliente,
@@ -306,10 +307,9 @@ class OrderDriverController extends Controller
 
     // BODY
     public static function addBody(Request $request){
-
         try{
             foreach ($request->items as $item){
-                $mytime = Carbon\Carbon::now();
+                $mytime = Carbon::now();
 
                 DB::connection('sqlsrv')->insert("  INSERT INTO DetalleEncabezadosVentas_APP 
                 (   Codigo_Producto,

@@ -67,6 +67,7 @@ class OrderBodyController extends Controller {
                     }
 
                 }
+                OrderDriverController::addBody($request);
 
                 $response = [
                     'msj'               => 'Cuerpo de la orden: '.$fk_idOrderHeader.', creada exitosamente',
