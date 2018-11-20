@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 
 Route::group([ 'prefix' => 'auth' ], function() {
 
-    Route::post('login', 'API\AuthController@login');//logear
+    Route::post('login', 'API\AuthController@login'); //logear
 
     Route::group([ 'middleware' => 'auth:api' ], function() {
 
@@ -64,6 +64,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('listarTodosCupones','CouponsController@listarTodo'); //listar todo los cupones
         Route::post('updateCupon/{idCupons}','CouponsController@updateCupon'); //acutaliza cupones
         Route::delete('deleteCupon/{idCupons}','CouponsController@deleteCupon'); //eliminar el cupon
+
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
         Route::get('listarNotificationes', 'NotificationController@listar'); // Listar  Notification
