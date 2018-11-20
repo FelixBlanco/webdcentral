@@ -29,17 +29,17 @@ class OrderBodyController extends Controller {
                         'codeProdSys'                  => 'required',
                         'Cantidad_Producto'            => 'required',
                         'PrecioUnitario_Producto'      => 'required',
-                        'PorcentajeDescuento_Producto' => 'required',
-                        'Devolucion_Producto'          => 'required',
-                        'Numero_EncabezadoVenta'       => 'required',
+                        //'PorcentajeDescuento_Producto' => 'required',
+                        //'Devolucion_Producto'          => 'required',
+                        //'Numero_EncabezadoVenta'       => 'required',
                         //'fk_idProducto'                => 'required',
                     ], [
                         'codeProdSys.required'                  => 'El campo es requerido',
                         'Cantidad_Producto.required'            => 'El campo es requerido',
                         'PrecioUnitario_Producto.required'      => 'El campo es requerido',
-                        'PorcentajeDescuento_Producto.required' => 'El campo es requerido',
-                        'Devolucion_Producto.required'          => 'El campo es requerido',
-                        'Numero_EncabezadoVenta.required'       => 'El campo es requerido',
+                        //'PorcentajeDescuento_Producto.required' => 'El campo es requerido',
+                        //'Devolucion_Producto.required'          => 'El campo es requerido',
+                        //'Numero_EncabezadoVenta.required'       => 'El campo es requerido',
                         //'fk_idProducto.required'                => 'El campo es requerido',
                     ]);
 
@@ -52,10 +52,10 @@ class OrderBodyController extends Controller {
                             }
                         }
                         $n_prod->fk_idOrderHeader = $fk_idOrderHeader;
+                        $n_prod->Numero_EncabezadoVenta = $fk_idOrderHeader;
                         $n_prod->save();
                         $n_prod->orderHeader;
                         $respo[] = $n_prod;
-                        OrderDriverController::addBody($n_prod);
 
                     } catch (\Exception $e) {
 
@@ -68,6 +68,9 @@ class OrderBodyController extends Controller {
                     }
 
                 }
+
+                OrderDriverController::addBody($request,$fk_idOrderHeader);
+
 
                 $response = [
                     'msj'               => 'Cuerpo de la orden: '.$fk_idOrderHeader.', creada exitosamente',

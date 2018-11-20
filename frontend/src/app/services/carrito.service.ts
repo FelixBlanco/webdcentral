@@ -38,7 +38,7 @@ export class CarritoService {
     addItem(id, producto, marca, cantidad, precio): Item{
         
         if(!id || !producto || !marca || !cantidad || !precio){
-            debugger;
+            //debugger;
             throw new Error(`${ 
                 !id ? 'id' : !producto ? 'producto': !marca ? 'descripion':  !cantidad ? 'cantidad': !precio ? 'precio': ''
             } <= es indefinido o null`);

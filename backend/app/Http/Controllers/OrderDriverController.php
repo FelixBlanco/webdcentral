@@ -298,37 +298,44 @@ class OrderDriverController extends Controller {
             return response()->json("Pedido creado ", 200);
 
         } catch (\Exception $e) {
-             dd($e);
+          //   dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
 
     // BODY
-    public static function addBody(Request $request){
+    public static function addBody(Request $request,$fk_idOrderHeader){
         try{
             foreach ($request->items as $item){
 
-            DB::connection('sqlsrv')->insert("  INSERT INTO DetalleEncabezadosVentas_APP 
+                $codeProdSys = $item["codeProdSys"];
+                $Cantidad_Producto = $item["Cantidad_Producto"];
+                $PrecioUnitario_Producto = $item["PrecioUnitario_Producto"];
+                $PorcentajeDescuento_Producto = $item["PorcentajeDescuento_Producto"];
+                $Devolucion_Producto = $item["Devolucion_Producto"];
+                $Numero_Pedido = $fk_idOrderHeader;
+                
+            DB::connection('sqlsrv')->insert("  INSERT INTO DetallesVentas_APP 
                 (   Codigo_Producto,
                     Cantidad_Producto,
                     PrecioUnitario_Producto,
                     PorcentajeDescuento_Producto,
                     Devolucion_Producto,
-                    Numero_Pedido,
+                    Numero_Pedido
                 ) VALUES(
-                    $item->codeProdSys,
-                    $item->Cantidad_Producto,
-                    $item->PrecioUnitario_Producto,
-                    $item->PorcentajeDescuento_Producto,
-                    $item->Devolucion_Producto,
-                    $item->Numero_Pedido
+                    '$codeProdSys',
+                    $Cantidad_Producto,
+                    $PrecioUnitario_Producto,
+                    '$PorcentajeDescuento_Producto',
+                    '$Devolucion_Producto',
+                    '$Numero_Pedido'
                 )");
             }
 
             return response()->json("Poductos Agregados ", 200);
 
         } catch (\Exception $e) {
-            // dd($e);
+             dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
