@@ -6,6 +6,12 @@ import { AlertsService } from 'src/app/services/alerts.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare var $:any;
+
+interface CarouselItem{
+  id: number;
+  products: Producto[];
+
+}
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
@@ -26,6 +32,8 @@ export class ProductosComponent implements OnInit {
   pages: number;
 
   tittleList: string;
+
+  carouselItems: CarouselItem[] = [];
 
   constructor(
     private productsBehavior: ProductsBehaviorService,
@@ -56,15 +64,49 @@ export class ProductosComponent implements OnInit {
     this.productosService.productosFilterTittle.subscribe(val => this.tittleList = val);
   }
 
+  generateCarousel(){
+    if(!this.productsList){
+      return;
+    }
+
+    this.carouselItems = [];
+    let index: number = 1;
+    this.productsList.forEach((val, i) => {
+      if(this.isACarruselItem(i)){
+        this.carouselItems.push({id: index++, products: this.getPartialItems(i,i+7)});
+      }
+    });
+
+    this.pages = this.carouselItems.length;
+
+  }
+
+  isACarruselItem($index): boolean {
+    if($index % 8){
+      return false;
+    }
+    return true;
+  }
+
+  getPartialItems(from, to): Producto[]{
+    let items: Producto[] = [];
+
+    this.productsList.forEach((item, i) => {
+      if(i >= from &&  i <= to){
+        items.push(item);
+      }
+    });
+
+    return items;
+  }
+
   setProducts(products: Producto[]): void{
     products.forEach( (product) => {
       product.cantidad = !product.cantidad ? 1 : product.cantidad;
     })
     this.productsList = products;
 
-    this.currentPage = 1;
-    this.pages = 0;
-    this.setTotalPages();
+    this.generateCarousel();
   }
 
   iniBehavior() : void{
@@ -112,25 +154,6 @@ export class ProductosComponent implements OnInit {
     })
   }
 
-  isACarruselItem($index): boolean {
-    if($index % 8){
-      return false;
-    }
-    return true;
-  }
-
-  getPartialItems(from, to): Producto[]{
-    let items: Producto[] = [];
-
-    this.productsList.forEach((item, i) => {
-      if(i >= from &&  i <= to){
-        items.push(item);
-      }
-    });
-
-    return items;
-  }
-
   filterProducts(){
     const rubros = this.filterForm.value;
 
@@ -170,14 +193,6 @@ export class ProductosComponent implements OnInit {
       && (values.subRubroB === '');
   }
 
-  setTotalPages(): void{
-    this.productsList.forEach((val,index) => {
-      if(index % 8 === 0){
-        this.pages++;
-      }
-    })
-  }
-
   clearFilter(){
     this.filterForm.patchValue({
       rubro: '',
@@ -188,7 +203,7 @@ export class ProductosComponent implements OnInit {
 
   setCurrent({current}){
     if(current)
-    this.currentPage = Number(current.substr(current.length - 1)) + 1;
+    this.currentPage = current
   }
 
   search(){
