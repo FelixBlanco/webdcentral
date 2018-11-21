@@ -33,18 +33,18 @@ class OrderHeaderController extends Controller {
         DB::beginTransaction();
 
         try {
-            $Numero_Pedido_max = orderHeader::max('Numero_Pedido');
-
-
-            $Numero_Pedido = '';
-
-
-            $Numero_Pedido = $Numero_Pedido_max + 1;
+            $Numero_Pedido_max = orderHeader::select('idOrderHeader')->orderby('idOrderHeader', 'desc')->first();
+            if (is_null($Numero_Pedido_max)) {
+                $Numero_Pedido = '1-'.Carbon::now()->format('Ymd');
+            } else {
+                $Numero_Pedido = ($Numero_Pedido_max->idOrderHeader + 1).'-'.Carbon::now()->format('Ymd');
+            }
 
             $OB = new orderHeader($request->all());
 
-            if (is_null($Numero_Pedido_max)) {
-                $Numero_Pedido = 1;
+
+            if (is_null($request->stars)) {
+                $OB->stars = 0;
             }
 
             $OB->Numero_Pedido   = $Numero_Pedido;
@@ -59,7 +59,7 @@ class OrderHeaderController extends Controller {
             $OB->save();
             $OB->user;
             $OB->state;
-
+            OrderDriverController::addHeader($OB);
             $response = [
                 'msj' => 'Pedido Creado',
                 'OB'  => $OB,

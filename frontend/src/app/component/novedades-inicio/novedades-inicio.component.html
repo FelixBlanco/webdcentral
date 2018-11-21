@@ -14,8 +14,9 @@
           <div class="col-md-12">
             <form [formGroup]="f_sus">
               <div class="form-inline">
-                <input type="text" class="form-control" placeholder="Ingrese su direccion email" style="width: 70%;" formControlName="novedad">
+                <input type="email" class="form-control" placeholder="Ingrese su direccion email" style="width: 70%;" formControlName="novedad">
                 <button class="btn bg-naranja txt-blanco" [disabled]="!f_sus.valid" (click)="addSus()"> REGISTRATE </button>							
+                <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner>
               </div>
             </form>            
           </div>

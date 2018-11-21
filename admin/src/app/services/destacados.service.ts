@@ -6,7 +6,7 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Accept':  'application/json',
     'Access-Control-Allow-Origin': '*',
-    'Authorization': 'Bearer '+localStorage.getItem('access_token')
+    'Authorization': 'Bearer '+ localStorage.getItem('access_token')
   })
 };
 
@@ -24,6 +24,10 @@ export class DestacadosService {
 
   _getDestacados(){
     return this.http.get(this._GB.API +'/api/v1/obtenerDestacados',httpOptions);
+  }
+
+  _getOrdenes(){
+    return this.http.get('http://127.0.0.1:8888/webdcentral/backend/public/api/v1/order/all/trafic',httpOptions);
   }
 
   _addDestacados(data:any){

@@ -71,7 +71,7 @@ export class GaleriaHomeComponent implements OnInit {
                 this.getSlideHome();
             },
             error => {
-                //console.log(error.error.errors);
+                console.log(error);
                 this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
 
                 if (error.error.errors.imagen != null) {

@@ -12,6 +12,8 @@ export class NovedadesInicioComponent implements OnInit {
 
   f_sus: FormGroup;
 
+  inPromise: boolean;
+
   constructor(
     private sus: SuscripcionService,
     private fb: FormBuilder,
@@ -26,14 +28,30 @@ export class NovedadesInicioComponent implements OnInit {
   }
 
   addSus(){
+    this.inPromise = true;
     const v = this.f_sus.value;
     const data: any = { email : v.novedad }
     this.sus._addSus(data).subscribe(
       (resp:any) => {
         this.ms.msg('OK',resp.msj)
+        this.inPromise = false;
       },
       error =>{
-        this.ms.msg("ERR", "Info", `Info: ${error.error.errors.email}`);
+        
+        console.log(error.error)
+
+        this.inPromise = false;
+
+        if(error.error.message != null){
+          this.ms.msg("ERR", "Error", `Error: ${error.error.message}`);  
+        }
+
+        if(error.error.errors.email != null){
+          this.ms.msg("ERR", "Error", `Error: ${error.error.errors.email}`);  
+        }        
+      
+        
+      
       }
     )
   }

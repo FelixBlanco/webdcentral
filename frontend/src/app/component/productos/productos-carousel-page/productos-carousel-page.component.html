@@ -3,37 +3,37 @@
   <div class="row justify-content-center">
 
     <ng-container *ngFor="let item of items">
-      <div class="col-md-3">
-        <div class="card" style="width: 16rem;">
-          <img class="card-img-top" height="230" width="130" [src]="item.urlImage" alt="Card image cap">
-          <div class="card-body" style="background: #DCF5F9">
-            <div class="text-center" style="color:#009BDD">{{item.marca}}</div>
-            <h5 class="card-title text-center" style="font-weight: bold; color: #009BDD">
-              {{item.nombre}}
-            </h5>
+      <div class="col-md-3 mt-2">
+        <div class="card m-auto">
+          <img *ngIf="item.urlImage" width="130" height="230" class="card-img-top" [src]="item.urlImage" alt="{{item.nombre}}">
+          <img *ngIf="!item.urlImage" width="130" height="230" class="card-img-top" src="assets/no_image_aviable.png" alt="{{item.nombre}}"/>
+          <div class="card-body">
             <div class="text-center">
-              <ul class="nav justify-content-center" id="kg-id">
-                <li class="nav-item">
-                  <span class="badge bg-azul text-white">
-                    <span class="nro">{{item.kiloProdcuto}}</span> <br>
-                    <span>kg</span>
-                  </span>
-                </li>
-              </ul>
-              <p class="text-center" style="font-size: 22px; font-weight: bold; color: #E97604">POR: {{item.precioL2 | currency: 'ARS': '$'}}</p>
-              <ul class="nav justify-content-center" id="count_list">
-                <li class="nav-item">
-                  <img src="../assets/recursos/mas.png" alt="" style="cursor: pointer;" (click)="incrase(item, true)" class="img-fluid">
-                </li>
-                <li class="nav-item" id="nro_count">
-                  <span class="badge"> {{item.cantidad}} </span>
-                </li>
-                <li class="nav-item">
-                  <img src="../assets/recursos/menos.png" alt="" style="cursor: pointer;" (click)="incrase(item, false)" class="img-fluid">
-                </li>
-              </ul>
+              <small class="text-center txt-azul">{{item.marca}}</small>
+              <h6 class="card-title text-center txt-azul font-bold">
+                {{item.nombre}}
+              </h6>
             </div>
-            <a class="btn btn-sm btn-comprar text-white" (click)="addItem(item)">COMPRAR</a>
+            <div class="text-center">
+              <div class="circle font-bold bg-azul text-white m-auto" style="font-size: .6rem;padding: .2rem;">
+                {{item.kiloProdcuto}} <br> kg
+              </div>
+              <h5 class="text-center txt-naranja font-bold mt-2">POR: {{item.precioL2 | currency: 'ARS': '$'}}</h5>
+              <div class="row justify-content-center mt-2 mb-2">
+                <div class="col-8 d-flex justify-content-center">
+                  <button mat-icon-button (click)="incrase(item, true)">
+                    <fa-icon class="txt-azul" [icon]="['fa','plus']" size="1x"></fa-icon>
+                  </button>
+                  <div class="circle font-bold bg-white text-black-50" style="font-size: 1.4rem;">
+                    {{item.cantidad}}
+                  </div>
+                  <button mat-icon-button (click)="incrase(item, false)">
+                    <fa-icon class="txt-azul" [icon]="['fa','minus']" size="1x"></fa-icon>
+                  </button>
+                </div>
+              </div>
+              <button mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)">COMPRAR</button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,20 @@
 <div class="row">
-    <div class="col-sm-2">
-      One of three columns
+    <div class="col-sm-2" style="
+    max-height: 700px;
+    overflow: auto;
+">
+    <div *ngFor="let order of list_order" style="background: white;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 13px;
+    box-shadow: 1px 1px 2px 2px;">
+      <label>Pedido: {{order.Pedido}}</label>
+      <label>Estado: <label style="color: brown">{{order.EstadoPedido}}</label></label>
+      <label>Direccion: {{order.Codigo_Provincia}} - {{order.Codigo_Localidad}}</label>
+      <label>Cliente: {{order.Nombre_Cliente}}</label>
+      <label>Chofer: {{order.Nombre_Transporte}}</label>
+
+    </div>
     </div>
     <div class="col-sm-10"  style="height:700px">
       <iframe src="http://127.0.0.1:3000" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe>
