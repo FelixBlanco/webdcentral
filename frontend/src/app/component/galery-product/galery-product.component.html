@@ -6,9 +6,9 @@
       </div>
       <div class="container-fluid">
         <div class="row mb-4">
-        
-      
-         
+
+
+
           <div class="col-3">
             <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Nuevo</button>
           </div>
@@ -21,6 +21,7 @@
               <ngx-datatable-column name="#" prop="idGaleriaHomeProducto"></ngx-datatable-column>
               <ngx-datatable-column name="Titulo" prop="titulo"></ngx-datatable-column>
               <ngx-datatable-column name="Imagen" prop="imagen"></ngx-datatable-column>
+              <ngx-datatable-column name="URL" prop="set_imagen"></ngx-datatable-column>
               <ngx-datatable-column name="Estatus" prop="fk_idStatusSistema">
                 <ng-template ngx-datatable-cell-template let-row="row">
                   <ng-container [ngSwitch]="row.fk_idStatusSistema">
@@ -32,7 +33,9 @@
 
               <ngx-datatable-column name="" prop="opts">
                 <ng-template ngx-datatable-cell-template let-row="row">
-            
+                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#show">
+                    <fa-icon [icon]="['far', 'image']"></fa-icon>
+                  </a>
                   <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar">
                     <fa-icon [icon]="['far', 'trash-alt']"></fa-icon>
                   </a>
@@ -89,23 +92,19 @@
 
             <label class="image-upload-container btn btn-success">
               <span>Select Image</span>
-              <input #imageInput formControlName="imgFile"
-                     type="file"
-                     accept="image/*"
-                     (change)="onFileChanged(imageInput)"
-                     class="form-control" id="imgFile1" aria-describedby="respDesc">
+              <input #imageInput formControlName="imgFile" type="file" accept="image/*" (change)="onFileChanged(imageInput)"
+                class="form-control" id="imgFile1" aria-describedby="respDesc">
             </label>
-          
+
             <div *ngIf="selectedImg" class="img-preview-container">
 
-              <div class="img-preview{{selectedImg.status === 'fail' ? '-error' : ''}}"
-                   [ngStyle]="{'background-image': 'url('+ selectedImg.src + ')'}">
+              <div class="img-preview{{selectedImg.status === 'fail' ? '-error' : ''}}" [ngStyle]="{'background-image': 'url('+ selectedImg.src + ')'}">
               </div>
-            
+
               <div *ngIf="selectedImg.pending" class="img-loading-overlay">
                 <div class="img-spinning-circle"></div>
               </div>
-            
+
               <div *ngIf="selectedImg.status === 'ok'" class="alert alert-success"> Imagen Subida con Exito!</div>
               <div *ngIf="selectedImg.status === 'fail'" class="alert alert-danger"> subida de Imagen Fallida!</div>
             </div>
@@ -142,11 +141,10 @@
 </div>
 
 <!-- Modal Ver Imagen -->
-<div class="modal fade" id="show" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
+<div class="modal fade" id="show" tabindex="-1" role="dialog" aria-labelledby="showModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-     Imagen
+      
     </div>
   </div>
 </div>
-

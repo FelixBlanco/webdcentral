@@ -67,7 +67,9 @@ export class GaleryProductComponent implements OnInit {
       { prop: 'id' },
       { prop: 'tittle' },
       { prop: 'imagen' },
-      { prop: 'fk_idStatusSistema' }
+      { prop: 'set_imagen' },
+      { prop: 'fk_idStatusSistema' },
+      { prop: 'opts'}
     ];
   }
 
