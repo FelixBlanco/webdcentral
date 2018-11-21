@@ -153,6 +153,7 @@ class OfertaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+
         $this->validate($request, [
             'titulo'     => 'required',
             'tiempoExpi' => 'required',
