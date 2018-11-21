@@ -142,12 +142,17 @@ class CouponsController extends Controller
     }
 
     public function listarPorIdUsuario($fk_idUser)
+
     {
 
         $Coupons = Coupons::select("*")
         ->leftjoin("tb_coupons_client", "tb_coupons_client.fk_idcoupons", "=", "tb_coupons.idCoupons")
         ->where('tb_coupons_client.fk_idSatate', 1)
         ->where('fk_idUser', $fk_idUser)->get();
+
+        $Coupons->each(function ($Coupons) {
+            $Coupons->set_imagen = asset('storage/coupons/'.$Coupons->imagen);
+        });
 
         $response = [
             'msj'   => 'Cupones del cliente ',
