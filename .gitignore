@@ -7140,3 +7140,4 @@ backend/vendor/zendframework/zend-diactoros/src/UploadedFile.php
 backend/vendor/zendframework/zend-diactoros/src/Uri.php
 frontend/package-lock.json
 backend/.rnd
+backend/.env
