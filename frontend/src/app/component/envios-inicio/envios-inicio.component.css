@@ -16,3 +16,34 @@ img{
     color: white;
     padding: 5%;
 }
+.cajon{
+    display: inline;
+}
+.capa{
+    background-color: #f2f6db;	
+    padding-top: 20%;
+    padding-bottom: 11%;		
+}
+.capa-uno{
+    background-color: white;
+    margin-top: -34%;
+    border-radius: 100%;			
+    margin-left: 25%;
+    padding: 5px;
+    position: absolute;
+    width: 60px
+}
+.capa-dos{
+    background-color: white;
+    border:1px solid orange;
+    border-radius: 100%;
+    margin: auto;
+    width: 53px;
+    padding: 6px;
+}
+.capa-tres{
+    background-color: #e97702;
+    border-radius: 100%;			
+    padding: 7px;
+    width: 40px;
+}
