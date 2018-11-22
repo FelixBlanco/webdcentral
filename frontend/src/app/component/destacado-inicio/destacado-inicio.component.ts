@@ -1,18 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductosService } from 'src/app/services/productos.service';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ProductosService, Producto, CarouselItem } from 'src/app/services/productos.service';
+import { NgbCarouselConfig, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from 'src/app/services/alerts.service';
 
-export interface DestacadoItem{
-  nombre: string;
-  urlImage: string;
-  codeProdSys: string;
-  kiloProdcuto: string;
-  precio: number;
-  marca: string;
-  descripcion?: string;
-  cantidad: number;
-}
 
 @Component({
   selector: 'app-destacado-inicio',
@@ -21,19 +11,25 @@ export interface DestacadoItem{
 })
 export class DestacadoInicioComponent implements OnInit {
 
-  destacados: DestacadoItem[];
+  destacadosList: Producto[];
   colorTres:any;
+
+  carouselItems: CarouselItem[] = [];
 
   constructor(
     private productosService: ProductosService, 
     private carouselConfig: NgbCarouselConfig, 
-    private ts: AlertsService) { 
+    private ts: AlertsService
+  ) { 
     this.carouselConfig.interval = 5000;
-    this.carouselConfig.pauseOnHover = true;
-    this.carouselConfig.showNavigationIndicators = false;
+    this.carouselConfig.showNavigationArrows = true;
   }
 
   ngOnInit() {
+    this.setDestacadosList();
+  }
+
+  setDestacadosList(){
     this.productosService.getDestacados().subscribe(resp => {
       if(resp.ok && resp.status === 200){
         this.mapAndSet(resp.body);
@@ -43,36 +39,41 @@ export class DestacadoInicioComponent implements OnInit {
     }, error => {
       this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
     });
-
-    
   }
 
   mapAndSet(data: any) : void {
     
     if(!data || !data.destacados){
-      this.destacados = [];
+      this.destacadosList = [];
       return;
     }
 
     const destacados: any[] = data.destacados;
 
-    let toSet: DestacadoItem[] = [];
+    let toSet: Producto[] = [];
 
     destacados.forEach((item) => {
-      const producto = item.producto;
-
-      toSet.push({
-        codeProdSys: producto.codeProdSys,
-        nombre: producto.nombre,
-        urlImage: producto.urlImage,
-        kiloProdcuto: producto.kiloProdcuto,
-        precio: producto.precioL2,
-        marca: producto.marca,
-        cantidad: 1
-      });
+      item.producto.cantidad = 1;
+      toSet.push(item.producto);
     });
 
-    this.destacados = toSet;
+    this.destacadosList = toSet;
+    this.generateCarousel();
+  }
+
+  generateCarousel(){
+    if(!this.destacadosList){
+      return;
+    }
+
+    this.carouselItems = [];
+    let index: number = 1;
+    this.destacadosList.forEach((val, i) => {
+      if(this.isACarruselItem(i)){
+        this.carouselItems.push({id: index++, products: this.getPartialItems(i,i+3)});
+      }
+    });
+
   }
 
   isACarruselItem($index): boolean {
@@ -83,10 +84,10 @@ export class DestacadoInicioComponent implements OnInit {
   }
 
 
-  getPartialItems(from, to): DestacadoItem[]{
-    let items: DestacadoItem[] = [];
+  getPartialItems(from, to): Producto[]{
+    let items: Producto[] = [];
 
-    this.destacados.forEach((item, i) => {
+    this.destacadosList.forEach((item, i) => {
       if(i >= from &&  i <= to){
         items.push(item);
       }
