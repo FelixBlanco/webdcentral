@@ -21,7 +21,7 @@ export class GaleryProductService {
     }
 
     getAll(body?: any): Observable<HttpResponse<any>> {
-       
+        // console.log(""+ localStorage.getItem('access_token'))
         return this.http.get<any>(`${environment.apiHost}/api/v1/getGaleria/producto`, this.httpOptions) as Observable<HttpResponse<any>>;
     }
 
@@ -35,6 +35,7 @@ export class GaleryProductService {
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
+        console.log("Delete ID:" + id)
         return this.http.delete<any>(`${environment.apiHost}/api/auth/borrraGaleriaHomeProd/${id}`, this.httpOptions) as Observable<HttpResponse<any>>;
     }
 

@@ -8,7 +8,7 @@ export interface GaleryProduct {
   idGaleriaHomeProducto;
   titulo;
   imagen;
-  set_imagen;
+  set_imagen:String;
   created_at;
   updated_at;
   deleted_at;
@@ -47,10 +47,14 @@ export class GaleryProductComponent implements OnInit {
   galeryProduct: GaleryProduct;
   selectedFile: File;
   selectedImg: ImageSnippet;
+  imgUrl: String;
+  imgTittle: String;
 
 
-  constructor(private galeryService: GaleryProductService,
-    private fb: FormBuilder, private ts: AlertsService) {
+  constructor
+    (private galeryService: GaleryProductService,
+    private fb: FormBuilder,
+    private ts: AlertsService) {
     this.galeryForm = this.fb.group({
       tittle: ['', Validators.required],//Agregar validators
       imgFile: ['', Validators.required]//Agregar Validators
@@ -69,12 +73,12 @@ export class GaleryProductComponent implements OnInit {
       { prop: 'imagen' },
       { prop: 'set_imagen' },
       { prop: 'fk_idStatusSistema' },
-      { prop: 'opts'}
+      { prop: 'opts' }
     ];
   }
 
   ngOnInit() {
-    
+
   }
 
   onFileChanged(ImageInput: any) {
@@ -103,9 +107,9 @@ export class GaleryProductComponent implements OnInit {
 
   list() {
     this.galeryService.getAll(null).subscribe((resp) => {
-     
+
       if (resp.ok && resp.status === 201) {
-        
+
         this.galeryList = resp.body.galeria as Array<GaleryProduct>;
         this.rows = [...this.galeryList];
       } else {
@@ -149,24 +153,25 @@ export class GaleryProductComponent implements OnInit {
       });
   }
 
-  set({ idGaleriaHomeProducto, tittle, imagen, set_imagen, statu, fk_idStatusSistema,
-    created_at,
-    updated_at,
-    deleted_at,
+  set({ idGaleriaHomeProducto, titulo, imagen, set_imagen, fk_idStatusSistema
   }) {
     this.galeryProduct = {
       idGaleriaHomeProducto: idGaleriaHomeProducto,
-      titulo: tittle,
+      titulo: titulo,
       imagen: imagen,
       set_imagen: set_imagen,
-      statu: statu,
-      created_at: created_at,
-      updated_at: updated_at,
-      deleted_at: deleted_at,
+      statu: null,
+      created_at: null,
+      updated_at:null,
+      deleted_at: null,
       fk_idStatusSistema: fk_idStatusSistema
     }
-
-    this.galeryUpdateForm.get('tittle').setValue(tittle);
+    
+    this.imgUrl = set_imagen;
+    this.imgTittle = titulo;
+    console.log("URL: " + this.imgUrl);
+    console.log("Tittle: " + this.imgTittle);
+    this.galeryUpdateForm.get('tittle').setValue(titulo);
     this.galeryUpdateForm.get('imgFile').setValue(imagen);
   }
 

@@ -34,7 +34,7 @@
               <ngx-datatable-column name="" prop="opts">
                 <ng-template ngx-datatable-cell-template let-row="row">
                   <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#show">
-                    <fa-icon [icon]="['far', 'image']"></fa-icon>
+                    <fa-icon [icon]="['fas', 'ban']"></fa-icon>
                   </a>
                   <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar">
                     <fa-icon [icon]="['far', 'trash-alt']"></fa-icon>
@@ -141,10 +141,16 @@
 </div>
 
 <!-- Modal Ver Imagen -->
-<div class="modal fade" id="show" tabindex="-1" role="dialog" aria-labelledby="showModal" aria-hidden="true">
+<div class="modal fade" id="show" tabindex="-1" role="dialog" aria-labelledby="nuevoModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      
+    <div class="modal-content" style="text-align:center;">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="nuevoModal">Imagen: {{imgTittle}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div style="margin-left:150px;height: 200px; width:200px; "><img src="{{imgUrl}}" /></div>
     </div>
   </div>
 </div>

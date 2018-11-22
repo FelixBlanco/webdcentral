@@ -11,6 +11,11 @@
     position: relative;
   
   }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+}
  
   .img-preview-container .img-preview {
     background: center center no-repeat;
