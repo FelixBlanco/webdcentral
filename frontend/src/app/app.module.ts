@@ -54,6 +54,7 @@ import { ProductosCarouselPageComponent } from './component/productos/productos-
 import { PerfilClienteComponent } from './component/perfil-cliente/perfil-cliente.component';
 import { DepositoGuard } from './services/auth-guard.service';
 import { RubrosFilterComponent } from './component/rubros-filter/rubros-filter.component';
+import { GaleryProductComponent } from './component/galery-product/galery-product.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -64,6 +65,8 @@ const appRoutes: Routes = [
   { path: 'recompra', component: RecomprarInicioComponent, canActivate: [DepositoGuard] },
   { path: 'servicios', component: ServiciosInicioComponent },
   { path: 'productos', component: ProductosComponent },
+  { path: 'perfil-cliente', component: PerfilClienteComponent },
+  { path: 'galery-product', component: GaleryProductComponent },
   
   { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
   
@@ -108,6 +111,7 @@ const appRoutes: Routes = [
     ProductosCarouselPageComponent,
     PerfilClienteComponent,
     RubrosFilterComponent,
+    GaleryProductComponent
   ],
   imports: [
     BrowserModule,
