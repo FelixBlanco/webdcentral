@@ -192,7 +192,11 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     Route::get('enviarCorreo', 'CorreoController@enviarCorreo');
 
-    Route::resource('user', 'UserController');    // User CRUD
+    Route::resource('user', 'UserController')->except([
+       'update'
+    ]);  // User CRUD
+
+    Route::post('user/{user}','UserController@update')->name('user.update');
     Route::post('listarUsers', 'UserController@listar');
     Route::put('user/update/tokenfb/{idUser}', 'UserController@updateTokenFirebase');
 
