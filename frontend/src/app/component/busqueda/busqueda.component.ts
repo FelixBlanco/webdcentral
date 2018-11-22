@@ -49,8 +49,8 @@ export class BusquedaComponent implements OnInit{
       if(resp.ok && resp.status === 200){
         this.productService.productosSearchSource.next(resp.body);
         this.setTittleProductsFilterList(search);
-        $('#busquedaModal').modal('toggle');
         this.searchForm.reset();
+        $('#busquedaModal').modal('toggle');
       }else{
         console.error(resp);
         this.as.msg('ERR', 'Ha ocurrido un error al buscar');

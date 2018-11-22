@@ -13,9 +13,15 @@ export class MarcaComponent implements OnInit {
   marcasList: any[] = [];
   charSelected: string;
   inPromise: boolean;
+
+  marcaSelected: string = "";
   constructor(private marcaService: MarcasService, private ts : AlertsService) { }
 
   ngOnInit() {
+  }
+
+  select(marca: string){
+    this.marcaSelected = marca;
   }
 
   find(i: string): void{

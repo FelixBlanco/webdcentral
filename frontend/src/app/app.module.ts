@@ -40,7 +40,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CarritoService } from './services/carrito.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
-import { CarouselItemComponent } from './component/destacado-inicio/carousel-item/carousel-item.component';
 import { MarcasService } from './services/marcas.service';
 import { AyudaComponent } from './component/ayuda/ayuda.component';
 import { PreguntasFrecuentesComponent } from './component/ayuda/preguntas-frecuentes/preguntas-frecuentes.component';
@@ -54,6 +53,7 @@ import { ServiciosInicioComponent } from './component/servicios-inicio/servicios
 import { ProductosCarouselPageComponent } from './component/productos/productos-carousel-page/productos-carousel-page.component';
 import { PerfilClienteComponent } from './component/perfil-cliente/perfil-cliente.component';
 import { DepositoGuard } from './services/auth-guard.service';
+import { RubrosFilterComponent } from './component/rubros-filter/rubros-filter.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -98,7 +98,6 @@ const appRoutes: Routes = [
     BajaAppInicioComponent,
     DestacadoInicioComponent,
     CarritoComponent,
-    CarouselItemComponent,
     AyudaComponent,
     PreguntasFrecuentesComponent,
     OfertasInicioComponent,
@@ -108,6 +107,7 @@ const appRoutes: Routes = [
     ServiciosInicioComponent,
     ProductosCarouselPageComponent,
     PerfilClienteComponent,
+    RubrosFilterComponent,
   ],
   imports: [
     BrowserModule,

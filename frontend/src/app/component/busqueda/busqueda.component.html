@@ -61,7 +61,7 @@
                     <ng-container *ngIf="searchList.nombre.length">
                       <div class="product-draw text-center">
                         <img *ngIf="!searchList.nombre[0].urlImage" src="assets/no_image_aviable.png" alt="nombre"/>
-                        <img [src]="searchList.nombre[0].urlImage" alt="nombre"/>
+                        <img *ngIf="searchList.nombre[0].urlImage" [src]="searchList.nombre[0].urlImage" alt="nombre"/>
                         <span  class="text-muted">{{searchList.nombre[0].titulo | titlecase}}</span>
                         <span class="text-uppercase font-bold">Resultados {{searchList.nombre.length}}</span>
                       </div>
