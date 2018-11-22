@@ -161,7 +161,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('getGaleria/producto','GaleriaHomeProductoController@listar');
     Route::get('getGaleria/{idGaleriaHomeProducto}','GaleriaHomeProductoController@listarPorId');
 
-
     /* con esta ruta se busca y retorna la imagen del slider Slides*/
     Route::get('getSlides/imagen/{imagen}', 'SlideController@getSlideImage');
 
