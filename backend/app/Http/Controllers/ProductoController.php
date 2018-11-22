@@ -382,11 +382,13 @@ class ProductoController extends Controller {
     }
 
     public function loMasVendido() {
-        $LMV = DB::select('SELECT tb_productos.* FROM tb_order_body')
+        /*$LMV = DB::select('SELECT tb_productos.* FROM tb_order_body')
             ->join('tb_order_header', 'tb_order_header.idOrderHeader', 'tb_order_body.fk_idOrderHeader')
             ->join('tb_productos', 'tb_productos.codeProdSys', 'tb_order_body.codeProdSy')
             ->where('tb_order_header.fk_idStateOrder', 2)
-            ->get();
+            ->get();*/
+
+        $LMV = DB::connection('mysql')->select("SELECT tb_productos .* FROM tb_order_body INNER JOIN tb_order_header ON tb_order_header.idOrderHeader = tb_order_body.fk_idOrderHeader INNER JOIN tb_productos ON tb_productos.codeProdSys = tb_order_body.codeProdSys WHERE tb_order_header.fk_idStateOrder = 2 GROUP BY tb_productos.urlImag, tb_productos.titulo, tb_productos.codeProdSys, tb_productos.idProducto,tb_productos.nombre");
 
         return response()->json($LMV, 201);
     }
@@ -442,5 +444,31 @@ class ProductoController extends Controller {
             return response()->json("Error conectando a el DC", 500);
         }
 
+    }
+
+    public static function searchProductosMarca($search = null) {
+
+
+        if (! is_null($search)) {
+            $busqueda = $search."%";
+            $response = Producto::where('marca', 'like', $busqueda)->orderBy("marca")->get();
+
+            if (is_null($response)) {
+                $response = [
+                    'msj' => 'Producto no encontrado',
+                ];
+
+                return response()->json($response, 404);
+            } else {
+                return response()->json($response, 202);
+            }
+        } else {
+
+            $response = [
+                'msj' => 'Debe enviar el criterio de búsqueda',
+            ];
+
+            return response()->json($response, 404);
+        }
     }
 }

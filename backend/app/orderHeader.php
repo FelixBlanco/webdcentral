@@ -24,7 +24,16 @@ class orderHeader extends Model {
         'Email_Cliente',
         'fk_idStateOrder',
         'fk_idUserClient',
-        'fk_idUserDriver'
+        'fk_idUserDriver',
+
+        /*'metodoEntrega',
+        'disponibilidadHr',
+        'tipoFacturacion',
+        'CUITrazonSocial',
+        'CUITDomicilioFidcal',
+        'metodoPago',
+        'comprobanteDepositoTransferencia',*/
+
     ];
 
     public function state() {

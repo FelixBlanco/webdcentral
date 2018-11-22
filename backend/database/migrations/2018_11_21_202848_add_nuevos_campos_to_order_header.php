@@ -8,9 +8,9 @@ class AddNuevosCamposToOrderHeader extends Migration
 {
     public function up()
     {
-        Schema::table('tb_order_header', function (Blueprint $table) {
+        /*Schema::table('tb_order_header', function (Blueprint $table) {
             $table->integer('listaPrecio')->nullable()->after('avenidas');
-        });
+        });*/
     }
     /**
      * Reverse the migrations.
@@ -19,8 +19,8 @@ class AddNuevosCamposToOrderHeader extends Migration
      */
     public function down()
     {
-        Schema::table('tb_order_header', function (Blueprint $table) {
+       /* Schema::table('tb_order_header', function (Blueprint $table) {
             $table->dropColumn('listaPrecio');
-        });
+        });*/
     }
 }
