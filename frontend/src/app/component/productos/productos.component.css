@@ -12,3 +12,7 @@ hr{
 ngb-carousel{
     outline: none;
 }
+html {
+    scroll-behavior: smooth;
+}
+  

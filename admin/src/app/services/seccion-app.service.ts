@@ -11,6 +11,6 @@ export class SeccionAppService {
     constructor(private http:HttpClient) {}
 
     getAll(): Observable<HttpResponse<any>> {
-        return this.http.get<void>(`${environment.API_URL}/api/v1/listarSeccionApp`, {observe:'response', headers: this.headers});
+        return this.http.get<void>(`${environment.apiHost}/api/v1/listarSeccionApp`, {observe:'response', headers: this.headers});
     }
 }

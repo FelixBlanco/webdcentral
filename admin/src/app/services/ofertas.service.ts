@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { GlobalD } from '../global';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,30 +16,30 @@ const httpOptions = {
 })
 export class OfertasService {
 
-  public _GB: GlobalD;
+  
 
   constructor(
     private http: HttpClient,
-    public GB: GlobalD
-    ) { this._GB = GB; }
+    
+    ) {  }
 
     _getOfertas(){
-      return this.http.get(this._GB.API +'/api/v1/ofertas',httpOptions);
+      return this.http.get(environment.apiHost + '/api/v1/ofertas',httpOptions);
     }
 
     _addOfertas(data:any){
-      return this.http.post(this._GB.API +'/api/v1/ofertas',data,httpOptions);
+      return this.http.post(environment.apiHost + '/api/v1/ofertas',data,httpOptions);
     }
 
     _showOferta(id:number){
-      return this.http.get(this._GB.API +'/api/v1/ofertas/'+ id,httpOptions);
+      return this.http.get(environment.apiHost + '/api/v1/ofertas/'+ id,httpOptions);
     }
 
     _upgradeOferta(id:number,data:any){
-      return this.http.put(this._GB.API +'/api/v1/ofertas/'+id,data,httpOptions);
+      return this.http.put(environment.apiHost + '/api/v1/ofertas/'+id,data,httpOptions);
     }
 
     _deleteOfertas(id:number){
-      return this.http.delete(this._GB.API +'/api/v1/ofertas/1',httpOptions);
+      return this.http.delete(environment.apiHost + '/api/v1/ofertas/1',httpOptions);
     }
 }

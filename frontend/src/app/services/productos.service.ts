@@ -123,5 +123,9 @@ export class ProductosService {
 
       return this.http.post<{ OB: PedidoHeader, msj: string}>(`${environment.apiHost}/api/auth/añadirOrderBody/${id}`, data , {headers: this.headers, observe: 'response'});      
     }
+
+    getByMarca(marca: string):Observable<HttpResponse<Producto[]>>{
+      return this.http.get<Producto[]>(`${environment.apiHost}/api/v1/buscar/prod/porMarcas/${marca}`, {observe: 'response'});      
+    }
   
 }
