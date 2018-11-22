@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Image;
 
 class UserController extends Controller {
+
     public function listar(Request $request) {
 
         if ($request->exists('offset') && $request->exists('limit')) {
@@ -42,6 +43,9 @@ class UserController extends Controller {
 
         $users->each(function($users) {
             $users->perfil;
+            if(!is_null($users->fotoPerfil)){
+                $users->ruta_imagen= asset('storage/perfil/'.$users->fotoPerfil);
+            }
 
             return $users;
         });
