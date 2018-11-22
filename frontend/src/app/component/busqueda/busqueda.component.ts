@@ -73,7 +73,7 @@ export class BusquedaComponent implements OnInit{
       what === 'mascotas' ? this.searchList.mascotas: what === 'productos' ? this.searchList.nombre: this.searchList.marcas
     );
     $('#busquedaModal').modal('toggle');
-    this.router.navigate(['productos']);
+    this.router.navigate(['/productos'],{queryParams: {scroll: true}});
   }
 
 

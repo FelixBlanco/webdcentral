@@ -7143,3 +7143,5 @@ backend/.rnd
 backend/.env
 frontend/src/environments/environment.prod.ts
 frontend/src/environments/environment.ts
+admin/src/environments/environment.prod.ts
+admin/src/environments/environment.ts

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { GlobalD } from '../global';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -13,15 +13,15 @@ const httpOptions = {
 })
 export class RegisterService {
 
-  public _GB: GlobalD;
+  
 
   constructor(
     private http: HttpClient,
-    public GB: GlobalD
-    ) { this._GB = GB; }
+    
+    ) {  }
 
   _addRegister(data:any){ 
-    return this.http.post(this._GB.API +'/api/v1/user',data,httpOptions);
+    return this.http.post(environment.apiHost + '/api/v1/user',data,httpOptions);
   }
 
 }

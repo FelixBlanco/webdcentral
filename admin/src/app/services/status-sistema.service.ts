@@ -21,6 +21,6 @@ export class StatusSistemaService {
   ) { }
 
   _getStatusSistema(){
-    return this.http.get(`${environment.API_URL}/api/v1/status-sistema`,httpOptions);
+    return this.http.get(`${environment.apiHost}/api/v1/status-sistema`,httpOptions);
   }
 }

@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { Producto, ProductosService, CarouselItem } from 'src/app/services/productos.service';
-import { RubrosService } from 'src/app/services/rubros.service';
-import { AlertsService } from 'src/app/services/alerts.service';
+import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.css']
 })
-export class ProductosComponent implements OnInit {
+export class ProductosComponent implements OnInit, AfterViewInit {
 
 
   productsList: Producto[];
@@ -25,17 +24,24 @@ export class ProductosComponent implements OnInit {
 
   constructor(
     private productsBehavior: ProductsBehaviorService,
-    private productosService: ProductosService
+    private productosService: ProductosService,
+    private route: ActivatedRoute
   ) { 
-
-    
     this.pages = 0;
-    
   }
 
   ngOnInit() {
     this.iniBehavior();
     this.iniTittleBehavior();
+  }
+
+  ngAfterViewInit(){
+    this.route.queryParams.subscribe(param => {
+      if(param && param.scroll){
+        setTimeout(()=> document.getElementById('productos').scrollIntoView({behavior: 'smooth'}),1000);
+        console.log('params',param);
+      }
+    })
   }
 
   iniTittleBehavior(){
