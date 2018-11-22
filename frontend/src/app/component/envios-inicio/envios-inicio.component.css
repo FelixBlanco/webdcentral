@@ -16,34 +16,63 @@ img{
     color: white;
     padding: 5%;
 }
-.cajon{
-    display: inline;
+
+/* Como comprar */
+.ul-capas{
+    margin-top: 7%;
+}
+.ul-capas p{
+    color: #b5b8a2;
+}
+.list-capas{
+    background: #f2f6db;
+    border-radius: 6px;
+    display: inline-grid;
+    list-style: none;
+    padding-top: 6%;
+    padding-bottom: 6%;
+    margin-left: 1%;
+    width: 145px;
+    height: 244px;
 }
 .capa{
-    background-color: #f2f6db;	
-    padding-top: 20%;
-    padding-bottom: 11%;		
+    background: white;
+    border-radius: 100%;
+    margin-left: 4%;
+    margin-top: -48px;
+    padding: 10px;
+    position: absolute;
+    width: 90px;
 }
 .capa-uno{
-    background-color: white;
-    margin-top: -34%;
-    border-radius: 100%;			
-    margin-left: 25%;
-    padding: 5px;
-    position: absolute;
-    width: 60px
+    background: white;
+    border-radius: 100%;
+    border: 1px solid #ed7600;
+    padding: 10px;
+    width: 71px;
 }
 .capa-dos{
-    background-color: white;
-    border:1px solid orange;
+    background: #ed7600;
     border-radius: 100%;
-    margin: auto;
-    width: 53px;
-    padding: 6px;
+    padding: 11px;
+    width: 50px;
 }
-.capa-tres{
-    background-color: #e97702;
-    border-radius: 100%;			
-    padding: 7px;
-    width: 40px;
+
+/* Forma de Pago */
+.cont{
+    border-radius: 6px;
+    padding-bottom: 30px;
+    padding: 20px;
+    height: 384px;
+}
+.cont h5{
+    background-color: #E97604;
+    color: white;
+    padding:10px;
+    font-weight: bold;
+}
+.btn{
+    font-size: 18px;
+    padding-left: 8%;
+    padding-right: 8%;
 }
