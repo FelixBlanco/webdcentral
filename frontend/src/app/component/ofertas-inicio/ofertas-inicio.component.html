@@ -1,10 +1,12 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
-      <img src="../../assets/banner/banner_principal_ofertas.jpg" class="img-fluid  d-block mx-auto">
+    <div class="col-md-12" id="landig" style="background-image: url(../../assets/banner/banner_principal_ofertas.jpg);">
+      
     </div>
   </div>
-  <div class="row" *ngFor="let listOferta of listOfertas">
-    <img src="{{ listOferta.set_imagen }}" class="img-fluid d-block mx-auto">
+  <div class="row" *ngFor="let listOferta of listOfertas" style="margin-bottom: 3%;">
+    <div class="col-md-12">
+      <img src="{{ listOferta.set_imagen }}" class="img-fluid d-block mx-auto rounded" style="width:100%; height:400px">
+    </div>
   </div>
 </div>

@@ -48,6 +48,8 @@ export class BusquedaComponent implements OnInit{
     this.productService.search(search).subscribe(resp => {
       if(resp.ok && resp.status === 200){
         this.productService.productosSearchSource.next(resp.body);
+        this.setTittleProductsFilterList(search);
+        this.searchForm.reset();
         $('#busquedaModal').modal('toggle');
       }else{
         console.error(resp);
@@ -60,6 +62,10 @@ export class BusquedaComponent implements OnInit{
       this.inPromise = false;
     });
   }
+
+  setTittleProductsFilterList(next: string){
+    this.productService.productosFilterTittleSource.next(next);
+  }
   
 
   seeMore(what: 'mascotas' | 'productos' | 'marcas'){
@@ -67,7 +73,8 @@ export class BusquedaComponent implements OnInit{
       what === 'mascotas' ? this.searchList.mascotas: what === 'productos' ? this.searchList.nombre: this.searchList.marcas
     );
     $('#busquedaModal').modal('toggle');
-    this.router.navigate(['productos']);
+    this.router.navigate(['/productos']);
+    setTimeout(()=> document.getElementById('productos').scrollIntoView({behavior: 'smooth'}),1000);
   }
 
 

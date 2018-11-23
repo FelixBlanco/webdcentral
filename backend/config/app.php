@@ -172,6 +172,7 @@ return [
 
         /*PERSONALIZADOS*/
         Barryvdh\Cors\ServiceProvider::class,
+        //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],
 

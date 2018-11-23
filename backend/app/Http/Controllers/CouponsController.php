@@ -96,10 +96,8 @@ class CouponsController extends Controller
 
         $this->validate($request, [
             'active' => 'required',
-            'search' => 'required',
         ], [
             'active.required' => 'El campo es requerido',
-            'search.required' => 'El campo es requerido',
 
         ]);
 
@@ -127,7 +125,7 @@ class CouponsController extends Controller
             'cupones' => $result,
         ];
 
-        return response()->json($response, 201);
+        return response()->json($response, 200);
     }
 
     public function listarPorId($idCoupons)
@@ -140,7 +138,28 @@ class CouponsController extends Controller
             'cupon' => $Coupons,
         ];
 
-        return response()->json($response, 201);
+        return response()->json($response, 200);
+    }
+
+    public function listarPorIdUsuario($fk_idUser)
+
+    {
+
+        $Coupons = Coupons::select("*")
+        ->leftjoin("tb_coupons_client", "tb_coupons_client.fk_idcoupons", "=", "tb_coupons.idCoupons")
+        ->where('tb_coupons_client.fk_idSatate', 1)
+        ->where('fk_idUser', $fk_idUser)->get();
+
+        $Coupons->each(function ($Coupons) {
+            $Coupons->set_imagen = asset('storage/coupons/'.$Coupons->imagen);
+        });
+
+        $response = [
+            'msj'   => 'Cupones del cliente ',
+            'cupon' => $Coupons,
+        ];
+
+        return response()->json($response, 200);
     }
 
     public function obtenerCupon(Request $request)
@@ -158,7 +177,7 @@ class CouponsController extends Controller
             $cupon = CouponsClient::where("fk_idUser", Auth::user()->id)->where("fk_idcoupons", $request->fk_idcoupons)->first();
 
             if ($cupon) {
-                return response()->json('Usted ya posee este cupon', 400);
+                return response()->json('Usted ya posee este cupon', 200);
             } else {
 
                 $Coupons = new CouponsClient();
@@ -173,7 +192,7 @@ class CouponsController extends Controller
                 ];
                 DB::commit();
 
-                return response()->json($response, 200);
+                return response()->json("Ya tienes el cupon, puedes verlo en tu perfil.", 200);
             }
         } catch (\Exception $e) {
             DB::rollback();

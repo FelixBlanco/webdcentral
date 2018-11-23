@@ -1,12 +1,12 @@
 .menu-icon li{ display: inline-block; margin-left: -2%;}
 
 .barra{
-    font-size: 24px;
-    margin-top: -53%;
+    font-size: 25px;
+    margin: 0px 10px 0px 10px;
+    font-weight: bold;
+    cursor: default;
 }
-.barra:hover{
-    color:white;
-}
+
 
 .mat-badge-medium.mat-badge-above .mat-badge-content {
     top: 0px;

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { GlobalD } from '../global';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
     'Access-Control-Allow-Origin': '*',
     'Authorization': 'Bearer ' + localStorage.getItem('access_token')
   })
@@ -15,26 +14,23 @@ const httpOptions = {
 })
 export class UsuariosService {
 
-  public _GB: GlobalD;
-
   constructor(
     private http: HttpClient,
-    public GB: GlobalD
-    ) { this._GB = GB; }
+  ) { }
 
   listaUsuarios(){
-    return this.http.post(this._GB.API +'/api/v1/listarUsers/',httpOptions);
+    return this.http.post(environment.apiHost + '/api/v1/listarUsers/',httpOptions);
   }
 
   _addUser(data){
-    return this.http.post(this._GB.API +'/api/v1/user/',data,httpOptions);
+    return this.http.post<any>(environment.apiHost + '/api/v1/user/',data,httpOptions);
   }
 
-  upgradeUsers(data){
-    return this.http.put(this._GB.API +'/api/v1/user/'+data.id,data,httpOptions);
+  upgradeUsers(data,id){
+    return this.http.post<any>(environment.apiHost + '/api/v1/user/'+id,data,httpOptions);
   }
 
   deleteUser(id:number){
-    return this.http.delete(this._GB.API +'/api/v1/user/'+id,httpOptions);
+    return this.http.delete(environment.apiHost + '/api/v1/user/'+id,httpOptions);
   }
 }

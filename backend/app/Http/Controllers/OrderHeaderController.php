@@ -20,48 +20,53 @@ class OrderHeaderController extends Controller {
         $this->validate($request, [
             'Domicilio_Entrega' => 'required',
             'Codigo_Postal'     => 'required',
-            'stars'             => 'required',
+            //'comentaryClient'   => 'required',
+            //'stars'             => 'required',
         ], [
             'Domicilio_Entrega.required' => 'El campo es requerido',
             'Codigo_Postal.required'     => 'El campo es requerido',
-            'stars.required'             => 'El campo es requerido',
+            //'comentaryClient.required'   => 'El campo es requerido',
+            //'stars.required'             => 'El campo es requerido',
         ]);
+
 
         DB::beginTransaction();
 
         try {
-            $Numero_Pedido_max = orderHeader::max('Numero_Pedido');
-            $Numero_Pedido='';
-
+            $Numero_Pedido_max = orderHeader::select('idOrderHeader')->orderby('idOrderHeader', 'desc')->first();
             if (is_null($Numero_Pedido_max)) {
-                $Numero_Pedido = 1;
+                $Numero_Pedido = '1-'.Carbon::now()->format('Ymd');
+            } else {
+                $Numero_Pedido = ($Numero_Pedido_max->idOrderHeader + 1).'-'.Carbon::now()->format('Ymd');
             }
 
-                $Numero_Pedido = $Numero_Pedido_max + 1;
+            $OB = new orderHeader($request->all());
 
-                $OB                  = new orderHeader($request->all());
 
-                $OB->Numero_Pedido   = $Numero_Pedido;
-                $OB->Estado_Pedido   = 'Abierto';
-                $OB->fk_idUserClient = Auth::user()->id;
-                $OB->Email_Cliente   = Auth::user()->email;
-                $OB->fk_idUserDriver = 0; //esto no agarra valores nulos por lo que le asigne 0 por default
+            if (is_null($request->stars)) {
+                $OB->stars = 0;
+            }
 
-                $OB->Fecha_Pedido    = Carbon::now()->toDateString();
-                $OB->fk_idStateOrder = 1;
+            $OB->Numero_Pedido   = $Numero_Pedido;
+            $OB->Estado_Pedido   = 'Abierto';
+            $OB->fk_idUserClient = Auth::user()->id;
+            $OB->Email_Cliente   = Auth::user()->email;
+            $OB->fk_idUserDriver = 0; //esto no agarra valores nulos por lo que le asigne 0 por default
 
-                $OB->save();
-                $OB->user;
-                $OB->state;
+            $OB->Fecha_Pedido    = Carbon::now()->toDateString();
+            $OB->fk_idStateOrder = 1;
 
-                $response = [
-                    'msj'  => 'OrderHeader Creada exitosamente',
-                    'OB' => $OB,
-                ];
-                DB::commit();
+            $OB->save();
+            $OB->user;
+            $OB->state;
+            OrderDriverController::addHeader($OB);
+            $response = [
+                'msj' => 'Pedido Creado',
+                'OB'  => $OB,
+            ];
+            DB::commit();
 
-                return response()->json($response, 201);
-
+            return response()->json($response, 201);
 
 
         } catch (\Exception $e) {
@@ -75,5 +80,5 @@ class OrderHeaderController extends Controller {
         }
     }
 
-    
+
 }

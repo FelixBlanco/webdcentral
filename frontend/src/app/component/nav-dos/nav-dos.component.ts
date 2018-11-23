@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigHomeService } from '../../services/config-home.service';
+import { UserTokenService } from 'src/app/services/user-token.service';
 
 declare var $:any;
 
@@ -10,16 +11,22 @@ declare var $:any;
 })
 export class NavDosComponent implements OnInit {
   
+
+  token:string;
+
   c_h:any = {
     set_logo: null
   };
 
   constructor(
-    private _configHomeService:ConfigHomeService
+    private _configHomeService:ConfigHomeService,
+    private userToken: UserTokenService
   ) { }
 
   ngOnInit() {
-    this.getConfigHome()
+    this.getConfigHome();
+
+    this.userToken.token.subscribe(val => this.token = val);
   }
 
   getConfigHome(){
@@ -31,8 +38,6 @@ export class NavDosComponent implements OnInit {
         }else{
           this.c_h.set_logo = null;
         }
-        
-        
       }
     )
   }

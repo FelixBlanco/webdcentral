@@ -16,13 +16,13 @@
             <label for="password">Contraseña</label>
             <input type="password" placeholder="Ingrese Contraseña" id="password" class="form-control" [(ngModel)]="password">
           </div>
-          <div class="form-group text-right">
-            <p class="font-bold" style="color:#20883a; cursor: pointer" (click)="ingresarLogin()">Ingresar</p>
+          <div class="p-2" *ngIf="!inPromise" >
+            <button class="btn btn-light btn-block font-bold text-uppercase" style="color: #0d8740;" [disabled]="inPromise" (click)="ingresarLogin()">Ingresar</button>
           </div>
-      
-          <!-- 
-            <p><a routerLink="forget" data-dismiss="modal" aria-label="Close">Olvide mi contraseña</a></p>
-          -->          
+          <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner>
+          <div class="p-1 text-center">
+            <a style="cursor: pointer;color: #009BDD;" class="font-bold btn btn-link txt-azul" (click)="routeToLogin()">¿Aún no posees usuario? Registrarse aquí</a>
+          </div>
           
       </div>
     </div>

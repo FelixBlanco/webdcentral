@@ -11,10 +11,10 @@ export class NotificacionesService {
     constructor(private http:HttpClient){}
 
     persist(data: {titleNotification: string, descriptionNotification: string, fk_idSecctionApp: number}): Observable<HttpResponse<any>>{
-        return  this.http.post<void>(`${environment.API_URL}/api/auth/notification`, data, {observe: 'response', headers: this.headers});
+        return  this.http.post<void>(`${environment.apiHost}/api/auth/notification`, data, {observe: 'response', headers: this.headers});
     }
 
     getAll(): Observable<HttpResponse<any>>{
-        return this.http.get<void>(`${environment.API_URL}/api/auth/listarNotificationes`, {observe: 'response', headers: this.headers} )
+        return this.http.get<void>(`${environment.apiHost}/api/auth/listarNotificationes`, {observe: 'response', headers: this.headers} )
     }
 }

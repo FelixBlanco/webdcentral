@@ -346,30 +346,27 @@ class ProductoController extends Controller {
 
             if (! is_null($busqueda_rubro)) {
                 $f1 = Producto::where('rubro', $busqueda_rubro)->get();
-                foreach ($f1 as $f)
-                {
-                    $result[]=$f;
+                foreach ($f1 as $f) {
+                    $result[] = $f;
                 }
             }
 
             if (! is_null($busqueda_SubRubro1)) {
                 $f2 = Producto::where('SubRubro1', $busqueda_SubRubro1)->get();
-                foreach ($f2 as $f)
-                {
-                    $result[]=$f;
+                foreach ($f2 as $f) {
+                    $result[] = $f;
                 }
 
             }
 
             if (! is_null($busqueda_SubRubro2)) {
                 $f3 = Producto::where('SubRubro2', $busqueda_SubRubro2)->get();
-                foreach ($f3 as $f)
-                {
-                    $result[]=$f;
+                foreach ($f3 as $f) {
+                    $result[] = $f;
                 }
             }
 
-           $result_unico=array_unique($result);
+            $result_unico = array_unique($result);
 
 
             $response = [
@@ -385,14 +382,108 @@ class ProductoController extends Controller {
     }
 
     public function loMasVendido() {
-        $LMV = DB::connection('mysql')->select('SELECT tb_productos .* FROM tb_order_body INNER JOIN tb_order_header ON tb_order_header.idOrderHeader = tb_order_body.fk_idOrderHeader INNER JOIN tb_productos ON tb_productos.codeProdSys = tb_order_body.codeProdSys WHERE tb_order_header.fk_idStateOrder = 2 GROUP BY tb_productos.codeProdSys, tb_productos.idProducto');
+        /*$LMV = DB::select('SELECT tb_productos.* FROM tb_order_body')
+            ->join('tb_order_header', 'tb_order_header.idOrderHeader', 'tb_order_body.fk_idOrderHeader')
+            ->join('tb_productos', 'tb_productos.codeProdSys', 'tb_order_body.codeProdSy')
+            ->where('tb_order_header.fk_idStateOrder', 2)
+            ->get();*/
+
+        $LMV = DB::connection('mysql')->select("SELECT tb_productos .*
+         FROM tb_order_body 
+         INNER JOIN tb_order_header ON tb_order_header.idOrderHeader = tb_order_body.fk_idOrderHeader 
+         INNER JOIN tb_productos ON tb_productos.codeProdSys = tb_order_body.codeProdSys 
+         WHERE tb_order_header.fk_idStateOrder = 2 
+         GROUP BY tb_productos.idProducto,tb_productos.nombre,tb_productos.titulo,
+         tb_productos.urlImage,tb_productos.promocion,
+         tb_productos.fk_idSatate,tb_productos.isOutstanding,
+         tb_productos.fechaIsOutstanding,tb_productos.codeProdSys,
+         tb_productos.kiloProdcuto,tb_productos.rubro,
+         tb_productos.marca,tb_productos.SubRubro1,
+         tb_productos.SubRubro2,tb_productos.precioL1,
+         tb_productos.precioL2,tb_productos.precioL3,
+         tb_productos.precioL4,tb_productos.precioL5,
+         tb_productos.precioL6,tb_productos.precioL7,
+         tb_productos.precioL8,tb_productos.precioL9");
 
         return response()->json($LMV, 201);
     }
 
-    public function listarPorid($idProducto){
+    public function listarPorid($idProducto) {
 
-        $productos=Producto::findOrFail($idProducto);
+        $productos = Producto::findOrFail($idProducto);
+
         return response()->json($productos, 200);
+    }
+
+
+    public function getProductByRubroTag(Request $request) {
+
+        try {
+            $rs = null;
+
+            $sql = "";
+
+            if (! empty($request->tag)) {
+                $sql = " where Descripcion_TablaGenerica in  ('".$request->tag."') ";
+            }
+
+            if (! empty($request->rubro) && ! empty($request->tag)) {
+                $sql = $sql." and Descripcion_Rubro = '".$request->rubro."' ";
+            }
+
+            if (! empty($request->rubro) && empty($request->tag)) {
+                $sql = $sql." where Descripcion_Rubro = '".$request->rubro."' ";
+            }
+
+            if ((empty($request->rubro) && empty($request->tag)) && ! empty($request->search)) {
+                $sql = $sql." where Descripcion_Producto = like '%".$request->search."%' ";
+            }
+
+            if ((! empty($request->rubro) || ! empty($request->tag)) && ! empty($request->search)) {
+                $sql = $sql." and   Descripcion_Producto = like '%".$request->search."%' ";
+            }
+
+
+            $rs = DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosTagsAPP  
+             ".$sql."  order by Descripcion_Producto  ");
+
+
+            if ($rs != null) {
+                return response()->json($rs, 200);
+            } else {
+                return response()->json("Sin resultados", 204);
+            }
+        } catch (\Exception $e) {
+            dd($e);
+
+            return response()->json("Error conectando a el DC", 500);
+        }
+
+    }
+
+    public static function searchProductosMarca($search = null) {
+
+
+        if (! is_null($search)) {
+            $busqueda = $search."%";
+            $response = Producto::where('marca', 'like', $busqueda)->orderBy("marca")->get();
+
+            if (is_null($response)) {
+                $response = [
+                    'msj' => 'Producto no encontrado',
+                ];
+
+                return response()->json($response, 404);
+            } else {
+                return response()->json($response, 202);
+            }
+        } else {
+
+            $response = [
+                'msj' => 'Debe enviar el criterio de búsqueda',
+            ];
+
+            return response()->json($response, 404);
+        }
     }
 }

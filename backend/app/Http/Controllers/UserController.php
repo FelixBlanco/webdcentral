@@ -44,6 +44,9 @@ class UserController extends Controller
 
         $users->each(function ($users) {
             $users->perfil;
+            if (! is_null($users->fotoPerfil)) {
+                $users->ruta_imagen = asset('storage/perfil/'.$users->fotoPerfil);
+            }
 
             return $users;
         });
@@ -76,20 +79,23 @@ class UserController extends Controller
         $password_default = 123456;
 
         $this->validate($request, [
-            'name'     => 'required|max:30|min:2',
-            'email'    => 'required|unique:tb_users,email,'.$request->id.',id',
-            'password' => 'min:8', /*ya no sera requerida, debido a que puede ser null*/
+            'name'                  => 'required|max:30|min:2',
+            'email'                 => 'required|unique:tb_users,email,'.$request->id.',id',
+            'password'              => 'min:8|confirmed', /*ya no sera requerida, debido a que puede ser null*/
+            'password_confirmation' => 'required|min:8',
             //'userName'    => 'required|unique:tb_users,userName,'.$request->id.',id',
             //'fk_idPerfil' => 'required',
             //'fotoPerfil'  => 'image|required|mimes:jpeg,png,jpg,gif,svg',
         ], [
-            'name.required'  => 'El Nombre es requerido',
-            'name.max'       => 'El Nombre no puede tener mas de 20 caracteres',
-            'name.min'       => 'El Nombre no puede tener menos de 2 caracteres',
-            'email.unique'   => 'Este Email ya se encuentra en uso',
-            'email.email'    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
-            'email.required' => 'El Email es requerido',
-            'password.min'   => 'La contraseña debe de tener minimo 8 caracteres',
+            'name.required'                  => 'El Nombre es requerido',
+            'name.max'                       => 'El Nombre no puede tener mas de 20 caracteres',
+            'name.min'                       => 'El Nombre no puede tener menos de 2 caracteres',
+            'email.unique'                   => 'Este Email ya se encuentra en uso',
+            'email.email'                    => 'El Email debe de tener un formato ejemplo@ejemplo.com',
+            'email.required'                 => 'El Email es requerido',
+            'password.min'                   => 'La contraseña debe de tener minimo 8 caracteres',
+            'password_confirmation.required' => 'Este campo es requerido',
+            'password.confirmed'             => 'Las contraseña no coinciden vuelva a intentar',
             //'userName'             => 'El User Name es requerido',
             //'userName.unique'      => 'El User Name ya esta en uso',
             //'fk_idPerfil.required' => 'Este campo es requerido',
@@ -209,7 +215,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
 
-        $this->validate($request, [
+        /*$this->validate($request, [
             'name'  => 'required|max:30|min:2',
             'email' => 'required|unique:tb_users,email,'.$request->id,
 
@@ -229,12 +235,15 @@ class UserController extends Controller
 
             'userName.unique'      => 'El User Name ya esta en uso',
             'fk_idPerfil.required' => 'Este campo es requerido',
-        ]);
+        ]);*/
 
         DB::beginTransaction();
 
         try {
             $user = User::findOrFail($id);
+
+            $pass_last = $user->password;
+            $user->fill($request->all());
 
             if (is_null($request->fotoPerfil)) {
             } else {
@@ -256,9 +265,6 @@ class UserController extends Controller
                 /*para la foto*/
             }
 
-            $pass_last = $user->password;
-            $user->fill($request->all());
-
             if ($request->password != null && ! empty($request->password)) {
                 $user->password = bcrypt($request->password);
             } else {
@@ -266,8 +272,9 @@ class UserController extends Controller
             }
 
             $response = [
-                'msj'  => 'Info del Usuario actulizada',
-                'user' => $user,
+                'msj'         => 'Info del Usuario actulizada',
+                'user'        => $user,
+                'ruta_imagen' => asset('storage/perfil/'.$user->fotoPerfil),
             ];
 
             $user->save();
@@ -386,31 +393,30 @@ class UserController extends Controller
 
         if ($usuario) {
 
-        /*para la foto*/
-        $originalImage = $request->fotoPerfil;
+            /*para la foto*/
+            $originalImage = $request->fotoPerfil;
 
-        $thumbnailImage = Image::make($originalImage);
-        $thumbnailImage->fit(2048, 2048, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $nombre_publico = $originalImage->getClientOriginalName();
-        $extension = $originalImage->getClientOriginalExtension();
-        $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
-        $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-        Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
-        /*para la foto*/
+            $thumbnailImage = Image::make($originalImage);
+            $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $nombre_publico = $originalImage->getClientOriginalName();
+            $extension = $originalImage->getClientOriginalExtension();
+            $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+            $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+            Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
+            /*para la foto*/
 
-        $usuario->fotoPerfil = $nombre_interno;
-        $usuario->save();
+            $usuario->fotoPerfil = $nombre_interno;
+            $usuario->save();
 
-        $response = [
-            'msj'         => 'Imagen de perfil creada exitosamente',
-            'user'        => $usuario,
-            'ruta_imagen' => asset('storage/perfil/'),
-        ];
+            $response = [
+                'msj'         => 'Imagen de perfil creada exitosamente',
+                'user'        => $usuario,
+                'ruta_imagen' => asset('storage/perfil/'),
+            ];
 
-        return response()->json($response, 201);
-
+            return response()->json($response, 201);
         } else {
             $response = [
                 'msj' => 'El usuario no existe',

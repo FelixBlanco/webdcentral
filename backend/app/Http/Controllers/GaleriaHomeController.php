@@ -47,6 +47,8 @@ class GaleriaHomeController extends Controller {
 
                 $this->validate($request, [
                     'filename' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
+                ], [
+                    'image.required'        => 'La imagen es requerida',
                 ]);
 
 
@@ -82,6 +84,7 @@ class GaleriaHomeController extends Controller {
                 ];
 
                 return response()->json($response, 201);
+
             } else {
                 response()->json('Su usuario no es administrador', 400);
             }

@@ -13,17 +13,12 @@ export class ProductosCarouselPageComponent implements OnInit {
   @Input('items') items: Producto[];
 
   colorTres: any;
-  constructor(private carritoService: CarritoService, private toastr: AlertsService, private c : ConfigColorService) { }
+  constructor(
+    private carritoService: CarritoService, 
+    private toastr: AlertsService
+  ) { }
 
-  ngOnInit() {
-    this.c._paletaColor().subscribe(
-      (resp:any) => {
-        if(resp){
-          this.colorTres = resp.colorClaro;
-        }        
-      }
-    );
-  }
+  ngOnInit() { }
 
   incrase(item: Producto, action): void{
     if(action){
@@ -36,7 +31,7 @@ export class ProductosCarouselPageComponent implements OnInit {
 
   addItem(item: Producto): void{
     this.carritoService.addItem(item.codeProdSys, item.nombre, item.marca, item.cantidad, item.precioL2);
-    this.toastr.msg("OK", "Éxito", `Se han agregado ${item.cantidad} '${item.nombre}' al carrito de compras`); //TODO wtf?
+    this.toastr.msg("OK", "Éxito", `Se han agregado ${item.cantidad} '${item.nombre}' al carrito de compras`); 
     item.cantidad = 1;
   }
 }

@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 
 Route::group([ 'prefix' => 'auth' ], function() {
 
-    Route::post('login', 'API\AuthController@login');//logear
+    Route::post('login', 'API\AuthController@login'); //logear
 
     Route::group([ 'middleware' => 'auth:api' ], function() {
 
@@ -58,12 +58,17 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::post('cupons', 'CouponsController@create'); // Crear un cupon
         Route::post('cupons/filter', 'CouponsController@listar'); // Obtener todos los cupones
         Route::get('cupons/{idCoupons}', 'CouponsController@listarPorId');// Obtener cupones por id
-        Route::put('cupons', 'CouponsController@obtenerCupon'); // Obtener cupon por parte del cliente
+        Route::post('cupons/obaint', 'CouponsController@obtenerCupon'); // Obtener cupon por parte del cliente
         Route::get('canjearCupons/{idCuponsClient?}', 'CouponsController@chague');// Canjear cupon por cliente
         Route::delete('borrarCupons/{idCuponsClient?}', 'CouponsController@deleteCuponCliente');// Eliminar cupon por cliente
         Route::get('listarTodosCupones','CouponsController@listarTodo'); //listar todo los cupones
         Route::post('updateCupon/{idCupons}','CouponsController@updateCupon'); //acutaliza cupones
         Route::delete('deleteCupon/{idCupons}','CouponsController@deleteCupon'); //eliminar el cupon
+        Route::get('cupons/listarPorIdUsuario/{fk_idUser}', 'CouponsController@listarPorIdUsuario');// Listar cupon por cliente
+
+        
+       
+
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
         Route::get('listarNotificationes', 'NotificationController@listar'); // Listar  Notification
@@ -71,7 +76,9 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('notification/confirm/{idNotification}', 'NotificationController@confirm'); // Listar  Notification
 
         
-
+        //LISTAR PRODUCTOS POR RUBRO,TAG
+        Route::post('pduct/by/tag','ProductoController@getProductByRubroTag');
+            
         
         /* PREGUNTA Y RESPUESTA */
         Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
@@ -91,11 +98,20 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         /*Clasificados*/
         Route::post('guardarClasificado','ClasificadoController@store');
-        Route::post('listarLocalAdheridos','ClasificadoController@listar');
-        Route::post('listarPorIdLocalAdheridos/{idLocalAdherido}','ClasificadoController@listarPorId');
-        Route::delete('borrarLocalAdheridos/{idLocalAdherido}','ClasificadoController@destroy');
-        Route::post('editarLocalAdheridos/{idLocalAdherido}','ClasificadoController@editar');
+        Route::post('listarClasificado','ClasificadoController@listar');
+        Route::get('listarPorIdClasificado/{idClasificado}','ClasificadoController@listarPorId');
+        Route::delete('borrarClasificado/{idClasificado}','ClasificadoController@destroy');
+        Route::post('editarClasificado/{idClasificado}','ClasificadoController@editar');
         /*Clasificados*/
+
+
+        /*LOCALES SERVICIOS DE TURNO*/
+        Route::post('crearServicioAdd','LocalesAdheridoController@crearServicioAdd');
+        Route::post('editarServicioAdd','LocalesAdheridoController@editarServicioAdd');
+        Route::delete('eliminarServicioAdd/{idServiciosAdd}','LocalesAdheridoController@eliminarServicioAdd');
+        Route::get('listarServiciosAdd','LocalesAdheridoController@listar');
+        /*LOCALES SERVICIOS DE TURNO*/
+
 
     });
 });
@@ -145,7 +161,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('getGaleria/producto','GaleriaHomeProductoController@listar');
     Route::get('getGaleria/{idGaleriaHomeProducto}','GaleriaHomeProductoController@listarPorId');
 
-
     /* con esta ruta se busca y retorna la imagen del slider Slides*/
     Route::get('getSlides/imagen/{imagen}', 'SlideController@getSlideImage');
 
@@ -176,7 +191,11 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     Route::get('enviarCorreo', 'CorreoController@enviarCorreo');
 
-    Route::resource('user', 'UserController');    // User CRUD
+    Route::resource('user', 'UserController')->except([
+       'update'
+    ]);  // User CRUD
+
+    Route::post('user/{user}','UserController@update')->name('user.update');
     Route::post('listarUsers', 'UserController@listar');
     Route::put('user/update/tokenfb/{idUser}', 'UserController@updateTokenFirebase');
 
@@ -225,6 +244,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // OBTENER SUBSUBROS1
     Route::get('rubro/listarSubrubro1', 'ProductoController@listarSubrubro1');
+    
     // OBTENER SUBSUBROS2
     Route::get('rubro/listarSubrubro2', 'ProductoController@listarSubrubro2');
 
@@ -234,12 +254,25 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // OBTENER MARCAS
     Route::get('marcas/filter', 'ProductoController@getAllMarcas');
 
+   
+
     // OBTENER MARCAS CON SEARCH
     Route::get('marcas/{search?}', 'ProductoController@searchMarca');
+
+    /*OBTENER TODOS LOS PRODUCTOS POR LA MARCA SOLICITADA (search)*/
+    Route::get('buscar/prod/porMarcas/{search?}','ProductoController@searchProductosMarca');
 
     // Obtener pedidos de un chofer
     Route::post('order/all/driver', 'OrderDriverController@getAllByCodeDriver');
 
+    // Obtener pedidos de un cliente
+    Route::post('order/all/client', 'OrderDriverController@getAllByCodeCliente');
+   
+    // Obtener pedidos de un cliente 
+    Route::get('order/all/trafic', 'OrderDriverController@getAllOrderMap');
+
+
+    
     // Obtener pedidos actuales de un chofer
     Route::post('order/active/driver', 'OrderDriverController@getByCodeDriver');
 
@@ -285,6 +318,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // Links de redes sociales
     Route::get('get-redes','RedSocialController@getRedes');
+
+    // Status Sistema 
+    Route::get('status-sistema','StatusSistemaController@index');
 });
 
 

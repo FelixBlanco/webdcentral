@@ -107,7 +107,7 @@ class GaleriaHomeProductoController extends Controller
                 ], 500);
             }
         } else {
-            response()->json('Su usuario no es administrador', 400);
+           return response()->json('Su usuario no es administrador', 400);
         }
 
     }
