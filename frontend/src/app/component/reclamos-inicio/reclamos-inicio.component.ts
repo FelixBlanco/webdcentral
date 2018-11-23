@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReclamosSugerenciasService } from '../../services/reclamos-sugerencias.service'
 import { AlertsService } from '../../services/alerts.service'
-
+import { Validators, FormBuilder, FormGroup } from '@angular/forms'
 declare var $;
 
 @Component({
@@ -10,15 +10,17 @@ declare var $;
   styleUrls: ['./reclamos-inicio.component.css']
 })
 export class ReclamosInicioComponent implements OnInit {
+  
+  myForm:FormGroup;
 
-  form:any = {titulo:null, descripcion:null, fk_idUser: null, fk_idStatusReclamo: 1 };
+  constructor(private _reclamosSugerenciasService: ReclamosSugerenciasService, private _alertService:AlertsService , private fb:FormBuilder) {
+    this.myForm = this.fb.group({
+      'titulo'      :['',Validators.required],
+      'descripcion' :['',Validators.required]
+    })
+   }
 
-  // isSession = localStorage.getItem('access_token')
-
-  constructor(private _reclamosSugerenciasService: ReclamosSugerenciasService, private _alertService:AlertsService ) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 
   clickModal(){
@@ -28,15 +30,24 @@ export class ReclamosInicioComponent implements OnInit {
   }
   
   addReclamos(){
-    if(localStorage.getItem('access_token') != null){}
-    this._reclamosSugerenciasService._addReclamos(this.form).subscribe(
-      resp => {
+    const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
+    const val = this.myForm.value;
+    const data: any = { titulo: val.titulo, descripcion: val.descripcion, fk_idUser: userId.id, fk_idStatusReclamo: 1 }
+    this._reclamosSugerenciasService._addReclamos(data).subscribe(
+      (resp:any) => {
         $("#reclamoModel").modal('hide');
-        this.form = {titulo:null, descripcion:null, fk_idUser: null, fk_idStatusReclamo: 1 };
-        this._alertService.msg('OK','Se envio exitosamente'); 
+        this._alertService.msg('OK',resp.msj); 
       },
       error => {
-        this._alertService.listError(error.error);
+        if(error.error.errors.titulo != null){
+          this._alertService.msg('ERR',error.error.errors.titulo); 
+        }
+        if(error.error.errors.descripcion != null){
+          this._alertService.msg('ERR',error.error.errors.descripcion); 
+        }        
+        if(error.message != null){
+          this._alertService.msg('ERR',error.message); 
+        }              
       }
     )
   }

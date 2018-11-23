@@ -60,8 +60,9 @@ export class PerfilClienteComponent implements OnInit {
 
         this.form.fk_idPerfilCliente = resp.id // agregamos el ID
         
+        const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
         // verificamos si ya tiene su informacio 
-        this.perfilService._getPerfilCliente(resp.id).subscribe(
+        this.perfilService._getPerfilCliente(userId.id).subscribe(
           (resp:any) => {
             // Como ya existe , vamos a editar
             if(resp){
@@ -80,12 +81,12 @@ export class PerfilClienteComponent implements OnInit {
   }
 
   crear(){    
-    
+    const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
     const data:any = { 
       nombreComercio: this.form.nombreComercio, nombre:  this.form.nombre, apellido:  this.form.apellido,
       documento_dni: this.form.documento_dni, documento_otro: this.form.documento_otro, correo:  this.form.correo, 
       telefono:  this.form.telefono_code +''+ this.form.telefono, celular:  this.form.celular_code +''+ this.form.celular,
-      fk_idPerfilCliente: this.form.fk_idPerfilCliente
+      fk_idPerfilCliente: userId.id
     } 
 
     this.perfilService._crear(data).subscribe(
@@ -101,7 +102,8 @@ export class PerfilClienteComponent implements OnInit {
   }
 
   update(){
-    this.perfilService._update(this.form, this.form.idPerfilCliente).subscribe(
+    const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
+    this.perfilService._update(this.form, userId.id).subscribe(
       resp => {
         this.as.msg('OK','Actualizacion completada')
         this.getPerfilCliente();

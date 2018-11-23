@@ -2554,6 +2554,7 @@ return array(
     'League\\OAuth2\\Server\\Entities\\Traits\\ClientTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/ClientTrait.php',
     'League\\OAuth2\\Server\\Entities\\Traits\\EntityTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/EntityTrait.php',
     'League\\OAuth2\\Server\\Entities\\Traits\\RefreshTokenTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/RefreshTokenTrait.php',
+    'League\\OAuth2\\Server\\Entities\\Traits\\ScopeTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/ScopeTrait.php',
     'League\\OAuth2\\Server\\Entities\\Traits\\TokenEntityTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/TokenEntityTrait.php',
     'League\\OAuth2\\Server\\Entities\\UserEntityInterface' => $vendorDir . '/league/oauth2-server/src/Entities/UserEntityInterface.php',
     'League\\OAuth2\\Server\\Exception\\OAuthServerException' => $vendorDir . '/league/oauth2-server/src/Exception/OAuthServerException.php',

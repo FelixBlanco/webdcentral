@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitfcea80d00b585ecc54c4638e7085a447
+class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -26,11 +26,11 @@ class ComposerStaticInitfcea80d00b585ecc54c4638e7085a447
         '40360c0b9b437e69bcbb7f1349ce029e' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
-        '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
+        '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -179,8 +179,8 @@ class ComposerStaticInitfcea80d00b585ecc54c4638e7085a447
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'Zend\\Diactoros\\' => 
         array (
@@ -3063,6 +3063,7 @@ class ComposerStaticInitfcea80d00b585ecc54c4638e7085a447
         'League\\OAuth2\\Server\\Entities\\Traits\\ClientTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/ClientTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\EntityTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/EntityTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\RefreshTokenTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/RefreshTokenTrait.php',
+        'League\\OAuth2\\Server\\Entities\\Traits\\ScopeTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/ScopeTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\TokenEntityTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/TokenEntityTrait.php',
         'League\\OAuth2\\Server\\Entities\\UserEntityInterface' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/UserEntityInterface.php',
         'League\\OAuth2\\Server\\Exception\\OAuthServerException' => __DIR__ . '/..' . '/league/oauth2-server/src/Exception/OAuthServerException.php',
@@ -5112,11 +5113,11 @@ class ComposerStaticInitfcea80d00b585ecc54c4638e7085a447
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitfcea80d00b585ecc54c4638e7085a447::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitfcea80d00b585ecc54c4638e7085a447::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInitfcea80d00b585ecc54c4638e7085a447::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitfcea80d00b585ecc54c4638e7085a447::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitfcea80d00b585ecc54c4638e7085a447::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite0134bff3079cab91b11a8a907a55c0c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite0134bff3079cab91b11a8a907a55c0c::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInite0134bff3079cab91b11a8a907a55c0c::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInite0134bff3079cab91b11a8a907a55c0c::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInite0134bff3079cab91b11a8a907a55c0c::$classMap;
 
         }, null, ClassLoader::class);
     }
