@@ -88,8 +88,8 @@ export class ProductosService {
       return this.http.get<any>(`${environment.apiHost}/api/v1/obtenerDestacados`, {observe: 'response'});          
     }
 
-    getMasVendido(): Observable<HttpResponse<any>>{
-      return this.http.get<any>(`${environment.apiHost}/api/v1/loMasVendido`, {observe: 'response'});          
+    getMasVendido(): Observable<HttpResponse<Producto[]>>{
+      return this.http.get<Producto[]>(`${environment.apiHost}/api/v1/loMasVendido`, {observe: 'response'});          
     }
 
 
@@ -120,7 +120,6 @@ export class ProductosService {
     orderBody(data: any, id: number):Observable<HttpResponse<{ OB: PedidoHeader, msj: string}>>{
       this.headers = new HttpHeaders()
         .append("Authorization", `Bearer ${localStorage.getItem('access_token')}`)
-
       return this.http.post<{ OB: PedidoHeader, msj: string}>(`${environment.apiHost}/api/auth/añadirOrderBody/${id}`, data , {headers: this.headers, observe: 'response'});      
     }
 

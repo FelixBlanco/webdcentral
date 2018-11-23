@@ -89,7 +89,8 @@ export class MarcaComponent implements OnInit {
         this.productsBehavior.updateSource(resp.body);
         this.productsService.productosFilterTittleSource.next(marca);
         this.inFetch = false;
-        this.router.navigate(['/productos'],{queryParams: {scroll: true}});
+        this.router.navigate(['/productos']);
+        setTimeout(()=> document.getElementById('productos').scrollIntoView({behavior: 'smooth'}),1000);
         this.marcaSelected = '';
         this.charSelected = '';
       }else{

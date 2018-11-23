@@ -26,12 +26,17 @@ export class UserTokenService {
 
 
     constructor(){
+
         if(!this.getUserToken()){
             this.tokenSourceBehavior.next(localStorage.getItem('access_token'));
         }
 
         if(!this.getUserData()){
             this.userDataSource.next(JSON.parse(localStorage.getItem('user_data')));
+        }
+
+        if(this.isNotLogged()){
+            this.clear();
         }
     }
 
@@ -65,7 +70,7 @@ export class UserTokenService {
     }
 
     isNotLogged(): boolean{
-        return (!this.getUserData() && !this.getUserToken());
+        return (!this.getUserData() || !this.getUserToken());
     }
 
 

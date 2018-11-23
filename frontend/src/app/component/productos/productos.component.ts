@@ -8,7 +8,7 @@ import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.css']
 })
-export class ProductosComponent implements OnInit, AfterViewInit {
+export class ProductosComponent implements OnInit {
 
 
   productsList: Producto[];
@@ -33,15 +33,6 @@ export class ProductosComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.iniBehavior();
     this.iniTittleBehavior();
-  }
-
-  ngAfterViewInit(){
-    this.route.queryParams.subscribe(param => {
-      if(param && param.scroll){
-        setTimeout(()=> document.getElementById('productos').scrollIntoView({behavior: 'smooth'}),1000);
-        console.log('params',param);
-      }
-    })
   }
 
   iniTittleBehavior(){
