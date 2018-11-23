@@ -15,9 +15,9 @@ export class GaleriaHomeComponent implements OnInit {
     @ViewChild('image') image: ElementRef;
 
     new_galeria: any = {
-        titulo: null,
-        fk_idProducto: null,
-        imagen: null
+        titulo: "",
+        fk_idProducto: "",
+        imagen: ""
     }
 
     list_galeria: any;
@@ -72,10 +72,18 @@ export class GaleriaHomeComponent implements OnInit {
             },
             error => {
                 console.log(error);
-                this._alertService.msg("ERR", "Error", `Error: ${error.error}`);
+                this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
 
-                if (error.error.errors.image[0] != null) {
-                    this._alertService.msg("INFO", "Info", `Info: ${error.error.errors.image[0]}`);
+                if (error.error.errors.imagen != null) {
+                    this._alertService.msg("INFO", "Info", `Info: ${error.error.errors.imagen}`);
+                }
+
+                if (error.error.errors.titulo != null) {
+                    this._alertService.msg("INFO", "Info", `Info: ${error.error.errors.titulo}`);
+                }
+
+                if (error.error.errors.fk_idProducto != null) {
+                    this._alertService.msg("INFO", "Info", 'Info: El producto es requerido');
                 }
 
             }

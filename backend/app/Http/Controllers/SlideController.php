@@ -45,7 +45,6 @@ class SlideController extends Controller {
     }
 
     public function createSlides(Request $request) {
-
         if (Auth::user()->fk_idPerfil == 1) {
 
             $this->validate($request, [
@@ -55,7 +54,9 @@ class SlideController extends Controller {
 
             ], [
                 'titulo.required'        => 'El titulo es requerido',
-                'imagen.required'        => 'La imagen es requerida',
+                'imagen.image'        => 'La Imagen es requerida',
+                'imagen.required'     => 'La Imagen es requerida',
+                'imagen.mimes'        => 'Solo jpeg, png, bmp,tiff son soportados',
                 'fk_idProducto.required' => 'El producto es requerido',
             ]);
 

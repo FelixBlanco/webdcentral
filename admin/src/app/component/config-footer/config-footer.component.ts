@@ -16,6 +16,8 @@ export class ConfigFooterComponent implements OnInit {
     mail1: null, mail2: null,
     latitud: null, longitud: null,
     whatsApp1: null, whatsApp2: null,
+    horarios:null , subtes: null, colectivos: null,
+    avenidas: null, listaPrecio: null
     };
 
 
@@ -42,7 +44,53 @@ export class ConfigFooterComponent implements OnInit {
   upgradeCondigFooter(){
     this._confgFooterService._upgradeConfigFooter(this.data).subscribe(
       resp => { this.getConfigFooter();  this._alertService.msg("OK","Éxito", "Actualizacion exitosa"); },
-      error => { this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`); }
+      error => { 
+
+        if(error.error.errors.direccion != null){
+          this._alertService.msg("ERR", error.error.errors.direccion);
+        }
+
+        if(error.error.errors.nroContacto != null){
+          this._alertService.msg("ERR", error.error.errors.nroContacto);
+        }
+       
+        if(error.error.errors.mail1 != null){
+          this._alertService.msg("ERR", error.error.errors.mail1);
+        }
+
+        if(error.error.errors.latitud != null){
+          this._alertService.msg("ERR", error.error.errors.latitud);
+        }
+
+        if(error.error.errors.longitud != null){
+          this._alertService.msg("ERR", error.error.errors.longitud);
+        }
+
+        if(error.error.errors.whatsApp1 != null){
+          this._alertService.msg("ERR", error.error.errors.whatsApp1);
+        }
+
+        if(error.error.errors.horarios != null){
+          this._alertService.msg("ERR", error.error.errors.horarios);
+        }        
+        
+        if(error.error.errors.subtes != null){
+          this._alertService.msg("ERR", error.error.errors.subtes);
+        }
+
+        if(error.error.errors.colectivos != null){
+          this._alertService.msg("ERR", error.error.errors.colectivos);
+        }   
+
+        if(error.error.errors.avenidas != null){
+          this._alertService.msg("ERR", error.error.errors.avenidas);
+        }
+
+        if(error.error.errors.listaPrecio != null){
+          this._alertService.msg("ERR", error.error.errors.listaPrecio);
+        }           
+                 
+      }
     );
   }
 }

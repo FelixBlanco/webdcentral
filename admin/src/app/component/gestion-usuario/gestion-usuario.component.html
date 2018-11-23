@@ -9,32 +9,38 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-          <label for="">Nombre</label>
-          <input type="text" class="form-control" required [(ngModel)]="newForm.name">
-        </div>
-        <div class="form-group">
-          <label for="">UserName</label>
-          <input type="text" class="form-control" required [(ngModel)]="newForm.userName">
-        </div>
-        <div class="form-group">
-          <label for="">Tipo de Perfil</label>
-          <select class="form-control" required [(ngModel)]="newForm.fk_idPerfil">
-            <option *ngFor="let l of list_rol" value="{{l.idPerfil}}">{{l.nombre}}</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="">Correo Electronico</label>
-          <input type="text" class="form-control" required [(ngModel)]="newForm.email">
-        </div>
-        <div class="form-group">
-          <label for="">Contraseña</label>
-          <input type="password" class="form-control" required [(ngModel)]="newForm.password">
-        </div>
+        <form [formGroup]="newUser">
+          <div class="form-group">
+              <label for="">Nombre</label>
+              <input type="text" class="form-control" formControlName="nombre" required [(ngModel)]="newForm.name">
+            </div>
+            <div class="form-group">
+              <label for="">UserName</label>
+              <input type="text" class="form-control" formControlName="userName" required [(ngModel)]="newForm.userName">
+            </div>
+            <div class="form-group">
+              <label for="">Tipo de Perfil</label>
+              <select class="form-control" formControlName="tipo_perfil" required [(ngModel)]="newForm.fk_idPerfil">
+                <option *ngFor="let l of list_rol" value="{{l.idPerfil}}">{{l.nombre}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="">Correo Electronico</label>
+              <input type="text" class="form-control" formControlName="email" required [(ngModel)]="newForm.email">
+            </div>
+            <div class="form-group">
+              <label for="">Contraseña</label>
+              <input type="password" class="form-control" formControlName="password" required [(ngModel)]="newForm.password">
+            </div>
+            <div class="form-group">
+              <label for="">Contraseña</label>
+              <input type="password" class="form-control" formControlName="password_confirmation" required [(ngModel)]="newForm.password_confirmation">
+            </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" (click)="addUser()">Guardar Cambios</button>
+        <button type="button" class="btn btn-success" (click)="addUser()" [disabled]="!newUser.valid">Guardar Cambios</button>
       </div>
     </div>
   </div>

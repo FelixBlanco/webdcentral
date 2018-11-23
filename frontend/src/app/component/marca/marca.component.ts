@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MarcasService } from 'src/app/services/marcas.service';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
+import { ProductosService, Producto } from 'src/app/services/productos.service';
+import { Router } from '@angular/router';
 
+declare var $:any;
 @Component({
   selector: 'app-marca',
   templateUrl: './marca.component.html',
@@ -13,9 +17,25 @@ export class MarcaComponent implements OnInit {
   marcasList: any[] = [];
   charSelected: string;
   inPromise: boolean;
-  constructor(private marcaService: MarcasService, private ts : AlertsService) { }
+  inFetch: boolean;
+
+  productsList: Producto[] = [];
+
+  marcaSelected: string = "";
+
+  constructor(
+    private marcaService: MarcasService, 
+    private ts : AlertsService,
+    private productsBehavior: ProductsBehaviorService,
+    private productsService: ProductosService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  select(marca: string){
+    this.marcaSelected = marca;
   }
 
   find(i: string): void{
@@ -53,6 +73,33 @@ export class MarcaComponent implements OnInit {
     })
 
     return partialItems;
+  }
+
+  filter(){
+    const marca = this.marcaSelected;
+
+    if(!marca){
+      return;
+    }
+
+    this.inFetch = true;
+    this.productsService.getByMarca(marca).subscribe((resp) => {
+      if(resp.ok && resp.status === 202){
+        $('#marcaModal').modal('toggle');
+        this.productsBehavior.updateSource(resp.body);
+        this.productsService.productosFilterTittleSource.next(marca);
+        this.inFetch = false;
+        this.router.navigate(['/productos'],{queryParams: {scroll: true}});
+        this.marcaSelected = '';
+        this.charSelected = '';
+      }else{
+        console.error(resp);
+        this.ts.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+      }
+    }, error => {
+      console.error(error);
+      this.ts.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+    })
   }
 
 }

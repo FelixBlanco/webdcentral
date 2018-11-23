@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GlobalD } from '../global';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosService {
 
-  public _GB: GlobalD;
+  
 
   constructor(
     private http: HttpClient,
-    public GB: GlobalD
-    ) { this._GB = GB; }
+    
+    ) {  }
 
     _getProductos(){
-      return this.http.get(this._GB.API + '/api/v1/getAllProductos')
+      return this.http.get(environment.apiHost +'/api/v1/getAllProductos')
     }
 }

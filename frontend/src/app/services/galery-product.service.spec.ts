@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ConfigRedesService } from './config-redes.service';
+import { GaleryProductService } from './galery-product.service';
 
-describe('ConfigRedesService', () => {
+describe('GaleryProductService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ConfigRedesService = TestBed.get(ConfigRedesService);
+    const service: GaleryProductService = TestBed.get(GaleryProductService);
     expect(service).toBeTruthy();
   });
 });

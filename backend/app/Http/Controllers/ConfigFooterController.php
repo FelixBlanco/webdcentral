@@ -29,11 +29,11 @@ class ConfigFooterController extends Controller {
                 'longitud'    => 'required',
                 'whatsApp1'   => 'required',
                 //'whatsApp2'   => 'required',
-                'horarios'    => 'required',
-                'subtes'      => 'required',
-                'colectivos'  => 'required',
-                'avenidas'    => 'required',
-                'listaPrecio' => 'required|integer|between:1,9',
+                //'horarios'    => 'required',
+                //'subtes'      => 'required',
+                //'colectivos'  => 'required',
+                //'avenidas'    => 'required',
+                //'listaPrecio' => 'required|integer|between:1,9',
             ], [
                 'direccion'            => 'El campo es requerido',
                 'nroContacto.required' => 'El campo es requerido',
@@ -43,11 +43,11 @@ class ConfigFooterController extends Controller {
                 'longitud.required'    => 'El campo es requerido',
                 'whatsApp1.required'   => 'El campo es requerido',
                 //'whatsApp2.required'   => 'El campo es requerido',
-                'horarios.required'    => 'El campo es requerido',
-                'subtes.required'      => 'El campo es requerido',
-                'colectivos.required'  => 'El campo es requerido',
-                'avenidas.required'    => 'El campo es requerido',
-                'listaPrecio.between'  => 'El rango para la lista de precios es :min - :max',
+                //'horarios.required'    => 'El campo es requerido',
+                //'subtes.required'      => 'El campo es requerido',
+                //'colectivos.required'  => 'El campo es requerido',
+                //'avenidas.required'    => 'El campo es requerido',
+                //'listaPrecio.between'  => 'El rango para la lista de precios es :min - :max',
             ]);
 
             $c = new ConfigFooter($request->all());

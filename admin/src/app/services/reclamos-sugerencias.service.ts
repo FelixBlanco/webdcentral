@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { GlobalD } from '../global';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,23 +15,23 @@ const httpOptions = {
 })
 export class ReclamosSugerenciasService {
 
-  public _GB: GlobalD;
+  
 
   constructor(
     private http: HttpClient,
-    public GB: GlobalD
-    ) { this._GB = GB; }
+    
+    ) {  }
 
   // Esperando por definicion de rutas
   _getReclamos(){
-    return this.http.get(this._GB.API +'/api/auth/sugerencias-reclamos',httpOptions);
+    return this.http.get(environment.apiHost + '/api/auth/sugerencias-reclamos',httpOptions);
   }
 
   _addReclamos(data:any){
-    return this.http.post(this._GB.API +'/api/auth/sugerencias-reclamos',data,httpOptions);
+    return this.http.post(environment.apiHost + '/api/auth/sugerencias-reclamos',data,httpOptions);
   }
 
   _upgradeEstatus(id,changeStatus){
-    return this.http.put(this._GB.API +'/api/auth/cambiarStatus-sugerencias-reclamos/'+id,{fk_idStatusReclamo:changeStatus},httpOptions);
+    return this.http.put(environment.apiHost + '/api/auth/cambiarStatus-sugerencias-reclamos/'+id,{fk_idStatusReclamo:changeStatus},httpOptions);
   }
 }

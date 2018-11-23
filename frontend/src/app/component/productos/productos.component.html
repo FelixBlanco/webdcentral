@@ -11,54 +11,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-9">
-                <mat-spinner *ngIf="!rubrosList && !subRubrosAList && !subRubrosBList" [diameter]="80" style="margin: 0 auto;"></mat-spinner>
-                <ng-container *ngIf="rubrosList && subRubrosAList && subRubrosBList">
-                    <p class="bg-naranja rounded text-white p-2">FILTROS</p>
-                    <form [formGroup]="filterForm">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="rubro" class="font-bold">RUBRO</label>
-                                    <select formControlName="rubro" class="form-control" id="rubro" aria-describedby="rubroHelp">
-                                        <option *ngFor="let rubro of rubrosList" value="{{rubro.rubro}}">{{rubro.rubro}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="subRubroA" class="font-bold">SUB-RUBRO A</label>
-                                    <select formControlName="subRubroA" class="form-control" id="subRubroA" aria-describedby="subRubroAHelp">
-                                        <option *ngFor="let rubro of subRubrosAList" value="{{rubro.SubRubro1}}">{{rubro.SubRubro1}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="subRubroB" class="font-bold">SUB-RUBRO B</label>
-                                    <select formControlName="subRubroB" class="form-control" id="subRubroB" aria-describedby="subRubroBHelp">
-                                        <option *ngFor="let rubro of subRubrosBList" value="{{rubro.SubRubro2}}">{{rubro.SubRubro2}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <mat-form-field style="width: 100%;" >
-                                    <input [readonly]="inPromise"  matInput type="search" placeholder="Buscar Alimentos, Marcas, Mascotas..." formControlName="searchValue" (keyup.enter)="search()">
-                                    <fa-icon *ngIf="!inPromise" matSuffix [icon]="['fa', 'search']" (click)="search()"></fa-icon>
-                                    <mat-spinner matSuffix *ngIf="inPromise" [diameter]="17" ></mat-spinner>
-                                    <mat-error *ngIf="!filterForm.get('searchValue').valid" >Escribe algo para poder buscar</mat-error>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                    </form>
-                </ng-container>
-                <button class="btn bg-naranja text-white btn-block font-bold" (click)="filterProducts()" [disabled]="someAreEmpty()">
-                    BUSCAR
-                </button>
-                <button class="btn btn-link btn-block font-bold" (click)="clearFilter()" [disabled]="someAreEmpty()">
-                    LIMPIAR
-                </button>
+                <app-rubros-filter></app-rubros-filter>
             </div>
         </div>
     </div>
@@ -67,7 +20,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <div class="text-center">
+                <div class="text-center"  id="productos">
                     <h2 class="txt-azul font-bold">PRODUCTOS</h2>
                 </div>
                 <div class="d-flex justify-content-between">
@@ -98,26 +51,22 @@
                     <ng-container *ngSwitchDefault>
                         <div class="mb-3">
                             <ngb-carousel #carousel="ngbCarousel" (slide)="setCurrent($event)" [showNavigationArrows]="false" [showNavigationIndicators]="false">
-                                <ng-container *ngFor="let item of productsList; let i=index">
-                                    <ng-container *ngIf="isACarruselItem(i)">
-                                        <ng-template ngbSlide> 
-                                            <app-productos-carousel-page [items]="getPartialItems(i, i+7)"></app-productos-carousel-page>
-                                        </ng-template>
-                                    </ng-container>
+                                <ng-container *ngFor="let item of carouselItems">
+                                    <ng-template ngbSlide [id]="item.id"> 
+                                        <app-productos-carousel-page [items]="item.products"></app-productos-carousel-page>
+                                    </ng-template>
                                 </ng-container>
                             </ngb-carousel>
                         </div>
                         <div class="row" *ngIf="pages > 1 && productsList">
-                            <div class="col">
-                                <div class="text-center">
-                                    <button class="btn btn-link txt-azul" (click)="carousel.prev()">
-                                        <fa-icon [icon]="['fas','angle-left']" size="4x" ></fa-icon>
-                                    </button>
-                                    
-                                    <button class="btn btn-link txt-azul" (click)="carousel.next()">
-                                        <fa-icon [icon]="['fas','angle-right']" size="4x" ></fa-icon>
-                                    </button>
-                                </div>
+                            <div class="col d-flex justify-content-center">
+                                <button class="btn btn-link txt-azul" (click)="carousel.prev()">
+                                    <fa-icon [icon]="['fas','angle-left']" size="4x" ></fa-icon>
+                                </button>
+                                <h4 class="font-italic txt-azul text-uppercase font-bold mt-4">{{!currentPage ? 1 : currentPage}}/{{pages}}</h4>
+                                <button class="btn btn-link txt-azul" (click)="carousel.next()">
+                                    <fa-icon [icon]="['fas','angle-right']" size="4x" ></fa-icon>
+                                </button>
                                 <div class="total txt-azul font-bold">
                                     <h3>TOTAL: {{productsList.length}} PRODUCTOS</h3>
                                 </div>

@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 
 Route::group([ 'prefix' => 'auth' ], function() {
 
-    Route::post('login', 'API\AuthController@login');//logear
+    Route::post('login', 'API\AuthController@login'); //logear
 
     Route::group([ 'middleware' => 'auth:api' ], function() {
 
@@ -64,7 +64,11 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('listarTodosCupones','CouponsController@listarTodo'); //listar todo los cupones
         Route::post('updateCupon/{idCupons}','CouponsController@updateCupon'); //acutaliza cupones
         Route::delete('deleteCupon/{idCupons}','CouponsController@deleteCupon'); //eliminar el cupon
+        Route::get('cupons/listarPorIdUsuario/{fk_idUser}', 'CouponsController@listarPorIdUsuario');// Listar cupon por cliente
+
+        
        
+
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
         Route::get('listarNotificationes', 'NotificationController@listar'); // Listar  Notification
@@ -157,7 +161,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('getGaleria/producto','GaleriaHomeProductoController@listar');
     Route::get('getGaleria/{idGaleriaHomeProducto}','GaleriaHomeProductoController@listarPorId');
 
-
     /* con esta ruta se busca y retorna la imagen del slider Slides*/
     Route::get('getSlides/imagen/{imagen}', 'SlideController@getSlideImage');
 
@@ -188,7 +191,11 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     Route::get('enviarCorreo', 'CorreoController@enviarCorreo');
 
-    Route::resource('user', 'UserController');    // User CRUD
+    Route::resource('user', 'UserController')->except([
+       'update'
+    ]);  // User CRUD
+
+    Route::post('user/{user}','UserController@update')->name('user.update');
     Route::post('listarUsers', 'UserController@listar');
     Route::put('user/update/tokenfb/{idUser}', 'UserController@updateTokenFirebase');
 
@@ -252,11 +259,18 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // OBTENER MARCAS CON SEARCH
     Route::get('marcas/{search?}', 'ProductoController@searchMarca');
 
+    /*OBTENER TODOS LOS PRODUCTOS POR LA MARCA SOLICITADA (search)*/
+    Route::get('buscar/prod/porMarcas/{search?}','ProductoController@searchProductosMarca');
+
     // Obtener pedidos de un chofer
     Route::post('order/all/driver', 'OrderDriverController@getAllByCodeDriver');
 
     // Obtener pedidos de un cliente
     Route::post('order/all/client', 'OrderDriverController@getAllByCodeCliente');
+   
+    // Obtener pedidos de un cliente 
+    Route::get('order/all/trafic', 'OrderDriverController@getAllOrderMap');
+
 
     
     // Obtener pedidos actuales de un chofer

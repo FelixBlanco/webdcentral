@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 
 export class GlobalD {
-    SERVER: any = 'http://localhost';
+    SERVER: any = 'http://127.0.0.1';
     HOST: any = '8000';
     API: any = this.SERVER + ':' + this.HOST;
 }

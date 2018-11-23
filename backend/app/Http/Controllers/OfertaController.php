@@ -41,6 +41,8 @@ class OfertaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+
+
         $this->validate($request, [
             'titulo'     => 'required',
             'tiempoExpi' => 'required',
@@ -51,6 +53,7 @@ class OfertaController extends Controller {
             'tiempoExpi.required' => 'El Tiempo de expiracion es requerido',
             'status.required'     => 'El Status es requerido',
             'imagen.image'        => 'La Imagen es requerida',
+            'imagen.required'     => 'La Imagen es requerida',
             'imagen.mimes'        => 'Solo jpeg, png, bmp,tiff son soportados',
 
         ]);
@@ -150,6 +153,7 @@ class OfertaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+
         $this->validate($request, [
             'titulo'     => 'required',
             'tiempoExpi' => 'required',
