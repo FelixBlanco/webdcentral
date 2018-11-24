@@ -1,0 +1,39 @@
+<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Nuevo</button>
+
+<!-- Modal Nuevo -->
+<div class="modal fade" id="nuevo" tabindex="-1" role="dialog" aria-labelledby="nuevoModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-success">
+          <h5 class="modal-title text-white" id="nuevoModal">Nuevo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="myForm" >
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" formControlName="nombre" class="form-control" id="nombre" aria-describedby="nombreDesc" placeholder="Ingrese el nombre " maxlength="255">
+            </div>
+            <div class="form-group">
+              <label for="descripcion">Descripcion:</label>
+              <textarea rows="4" formControlName="descripcion" class="form-control" id="descripcion" aria-describedby="respDesc" placeholder="Ingrese la descripcion" maxlength="255"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="foto_1">Foto 1</label>
+              <input type="file" formControlName="foto_1" class="form-control" id="foto_1" (change)='changeFoto($event,1)' aria-describedby="foto_1Desc">
+            </div>
+            <div class="form-group">
+                <label for="foto_2">Foto 2</label>
+                <input type="file" formControlName="foto_2" class="form-control" id="foto_2" (change)='changeFoto($event,2)' aria-describedby="foto_2Desc">
+              </div>              
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="myForm.invalid || inPromise" (click)="save()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -124,7 +124,7 @@ class ReclamoSugerenciaController extends Controller {
         try {
 
             $rs                     = new ReclamosYSugerencia($request->all());
-            $rs->fk_idUser          = Auth::user()->id;
+            $rs->fk_idUser          = $request->fk_idUser;
             $rs->fk_idStatusReclamo = 1; //para iniciar en estatus abierto
             $rs->save();
             $rs->status;
