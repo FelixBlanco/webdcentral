@@ -41,6 +41,7 @@ import { DestacadosComponent } from './component/destacados/destacados.component
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ConfigRedesComponent } from './component/config-redes/config-redes.component';
 import { SuscripcionComponent } from './component/suscripcion/suscripcion.component';
+import { GaleryProductComponent } from './component/galery-product/galery-product.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { SuscripcionComponent } from './component/suscripcion/suscripcion.compon
     ForgetComponent,
     DestacadosComponent,
     ConfigRedesComponent,
-    SuscripcionComponent
+    SuscripcionComponent,
+    GaleryProductComponent
   ],
   imports: [
     BrowserModule,
