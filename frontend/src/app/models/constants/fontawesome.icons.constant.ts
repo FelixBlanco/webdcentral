@@ -1,6 +1,7 @@
 import { 
     faTrashAlt as farTrashAlt,
-    faEdit as farEdit
+    faEdit as farEdit,
+    faCircle as farCircle
 }  from '@fortawesome/free-regular-svg-icons';
 import { 
     faBan as fasBan,
@@ -19,7 +20,10 @@ import {
     faFilePdf as fasFilePdf,
     faCartArrowDown as fasCartArrowDown,
     faPlus as fasPlus,
-    faMinus as fasMinus
+    faMinus as fasMinus,
+    faChevronLeft as fasChevronLeft,
+    faChevronRight as fasChevronRight,
+    faCircle as fasCricle
 } from '@fortawesome/free-solid-svg-icons';
 
 export const FA_ICONS: any = [
@@ -41,6 +45,10 @@ export const FA_ICONS: any = [
     fasFilePdf,
     fasCartArrowDown,
     fasPlus,
-    fasMinus
+    fasMinus,
+    fasChevronLeft,
+    fasChevronRight,
+    fasCricle,
+    farCircle
 ];
 

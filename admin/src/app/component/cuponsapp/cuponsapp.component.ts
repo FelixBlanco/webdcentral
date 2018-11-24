@@ -25,8 +25,8 @@ export class CuponsappComponent implements OnInit {
     { prop: 'set_imagen' },
     { prop: 'codeCoupns' },
     { prop: 'dateExpired' }
-
   ];
+
   rows: any;
   cuponsList: Cupon[];
   productsList: any[];
@@ -109,7 +109,7 @@ export class CuponsappComponent implements OnInit {
     toSend.set('title', value.titulo);
     toSend.set('description', value.descripcion);
     toSend.set('dateExpired', value.fechaExp);
-
+    
     this.inPromise = true;
     this.cuponsService.persist(toSend).subscribe(resp => {
       if(resp.ok && resp.status === 201){
@@ -242,7 +242,6 @@ export class CuponsappComponent implements OnInit {
       producto: row.fk_idProducto,
       fechaExp: row.dateExpired
     })
-    //this.image.nativeElement.value = row.imagen;
   }
 
   getProductName(id): string{

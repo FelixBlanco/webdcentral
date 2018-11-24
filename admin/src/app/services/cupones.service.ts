@@ -33,26 +33,26 @@ export class CuponesService {
     }
 
     getAllBy(filter?: any): Observable<HttpResponse<any>>{
-        return this.http.post<void>(`${environment.API_URL}/api/auth/cupons/filter`,filter, this.httpOptions) as Observable<HttpResponse<any>>;
+        return this.http.post<void>(`${environment.apiHost}/api/auth/cupons/filter`,filter, this.httpOptions) as Observable<HttpResponse<any>>;
     }
 
     getAll(): Observable<HttpResponse<{cupones: Cupon[]}>>{
-        return this.http.get<void>(`${environment.API_URL}/api/auth/listarTodosCupones`, this.httpOptions) as Observable<HttpResponse<any>>;
+        return this.http.get<void>(`${environment.apiHost}/api/auth/listarTodosCupones`, this.httpOptions) as Observable<HttpResponse<any>>;
     }
 
     getOne(id: number):  Observable<HttpResponse<any>>{
-        return this.http.get<void>(`${environment.API_URL}/api/auth/cupons/${id}`, this.httpOptions) as Observable<HttpResponse<any>>;
+        return this.http.get<void>(`${environment.apiHost}/api/auth/cupons/${id}`, this.httpOptions) as Observable<HttpResponse<any>>;
     }
 
     delete(id: number): Observable<HttpResponse<any>>{
-        return this.http.delete<void>(`${environment.API_URL}/api/auth/borrarCupons/${id}`, this.httpOptions) as Observable<HttpResponse<any>>;
+        return this.http.delete<void>(`${environment.apiHost}/api/auth/borrarCupons/${id}`, this.httpOptions) as Observable<HttpResponse<any>>;
     }
 
     persist(data: any): Observable<HttpResponse<any>>{//TODO
-        return this.http.post<void>(`${environment.API_URL}/api/auth/cupons`, data, this.httpOptions) as Observable<HttpResponse<any>>;
+        return this.http.post<void>(`${environment.apiHost}/api/auth/cupons`, data, this.httpOptions) as Observable<HttpResponse<any>>;
     }
 
     update(data:any, id: number): Observable<HttpResponse<any>>{
-        return this.http.post<void>(`${environment.API_URL}/api/auth/updateCupon/${id}`, data, this.httpOptions) as Observable<HttpResponse<any>>;
+        return this.http.post<void>(`${environment.apiHost}/api/auth/updateCupon/${id}`, data, this.httpOptions) as Observable<HttpResponse<any>>;
     }
 }

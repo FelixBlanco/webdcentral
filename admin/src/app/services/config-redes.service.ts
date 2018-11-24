@@ -23,15 +23,15 @@ export class ConfigRedesService {
 
 
   _getRed(){
-    return this.http.get(`${environment.API_URL}/api/v1/get-redes`);
+    return this.http.get(`${environment.apiHost}/api/v1/get-redes`);
   }
 
   _addRed(data:any){
-    return this.http.post(`${environment.API_URL}/api/auth/crearRedSocial`,data,this.httpOptions);
+    return this.http.post(`${environment.apiHost}/api/auth/crearRedSocial`,data,this.httpOptions);
   }
 
   _updateRed(data:any,id:number){
-    return this.http.put(`${environment.API_URL}/api/auth/updateRedesSociales/`+id,data,this.httpOptions);
+    return this.http.put(`${environment.apiHost}/api/auth/updateRedesSociales/`+id,data,this.httpOptions);
   }
 
 }

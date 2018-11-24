@@ -16,7 +16,7 @@ declare var $: any;
 })
 export class CarritoComponent implements OnInit {
 
-  section: 'shipping' | 'toPay' = 'shipping';
+  section: 'shipping' | 'toBuy' = 'shipping';
 
   items: any[] = [];
   total: number;
@@ -131,11 +131,14 @@ export class CarritoComponent implements OnInit {
     });
   }
 
-  routeTo(section: 'shipping' | 'toPay'){
+  routeTo(section: 'shipping' | 'toBuy'){
+    const isNotLogged = this.userToken.isNotLogged();
 
-    if(section === 'toPay' && !this.carritoService.getAll().length){
-      this.as.msg('INFO', 'Info', 'Debes agregar productos a la lista');
-      return
+    if(isNotLogged && section === 'toBuy'){
+      this.as.msg('INFO', 'Info', 'Debes iniciar sesión para continuar');
+      $('#carrito').modal('hide');
+      $('#loginModal').modal('show');
+      return;
     }
 
     this.section = section;
@@ -193,7 +196,6 @@ export class CarritoComponent implements OnInit {
         console.error(resp);
       }
     }, error => {
-      //TODO
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno')
       this.inPromise = false;
       console.error(error);

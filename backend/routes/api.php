@@ -161,7 +161,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('getGaleria/producto','GaleriaHomeProductoController@listar');
     Route::get('getGaleria/{idGaleriaHomeProducto}','GaleriaHomeProductoController@listarPorId');
 
-
     /* con esta ruta se busca y retorna la imagen del slider Slides*/
     Route::get('getSlides/imagen/{imagen}', 'SlideController@getSlideImage');
 
@@ -192,7 +191,11 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     Route::get('enviarCorreo', 'CorreoController@enviarCorreo');
 
-    Route::resource('user', 'UserController');    // User CRUD
+    Route::resource('user', 'UserController')->except([
+       'update'
+    ]);  // User CRUD
+
+    Route::post('user/{user}','UserController@update')->name('user.update');
     Route::post('listarUsers', 'UserController@listar');
     Route::put('user/update/tokenfb/{idUser}', 'UserController@updateTokenFirebase');
 
@@ -255,6 +258,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // OBTENER MARCAS CON SEARCH
     Route::get('marcas/{search?}', 'ProductoController@searchMarca');
+
+    /*OBTENER TODOS LOS PRODUCTOS POR LA MARCA SOLICITADA (search)*/
+    Route::get('buscar/prod/porMarcas/{search?}','ProductoController@searchProductosMarca');
 
     // Obtener pedidos de un chofer
     Route::post('order/all/driver', 'OrderDriverController@getAllByCodeDriver');
