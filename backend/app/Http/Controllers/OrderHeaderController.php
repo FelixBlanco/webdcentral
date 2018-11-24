@@ -18,15 +18,30 @@ class OrderHeaderController extends Controller {
         // opcional comentaryClient
 
         $this->validate($request, [
-            'Domicilio_Entrega' => 'required',
-            'Codigo_Postal'     => 'required',
-            //'comentaryClient'   => 'required',
-            //'stars'             => 'required',
+            'Domicilio_Entrega'                => 'required',
+            'Codigo_Postal'                    => 'required',
+            'metodoEntrega'                    => 'required',
+            'disponibilidadHr'                 => 'required',
+            'CUIT'                             => 'required',
+            'CUITrazonSocial'                  => 'required',
+            'CUITDomicilioFidcal'              => 'required',
+            'metodoPago'                       => 'required',
+            'comprobanteDepositoTransferencia' => 'required',
+            'fk_idTipoFactura'                 => 'required',
+            'localidad'                        => 'required',
+
         ], [
-            'Domicilio_Entrega.required' => 'El campo es requerido',
-            'Codigo_Postal.required'     => 'El campo es requerido',
-            //'comentaryClient.required'   => 'El campo es requerido',
-            //'stars.required'             => 'El campo es requerido',
+            'Domicilio_Entrega.required'                => 'El campo es requerido',
+            'Codigo_Postal.required'                    => 'El campo es requerido',
+            'metodoEntrega.required'                    => 'El campo es requerido',
+            'disponibilidadHr.required'                 => 'El campo es requerido',
+            'CUIT.required'                             => 'El campo es requerido',
+            'CUITrazonSocial.required'                  => 'El campo es requerido',
+            'CUITDomicilioFidcal.required'              => 'El campo es requerido',
+            'metodoPago.required'                       => 'El campo es requerido',
+            'comprobanteDepositoTransferencia.required' => 'El campo es requerido',
+            'fk_idTipoFactura.required'                 => 'El campo es requerido',
+            'localidad.required'                        => 'El campo es requerido',
         ]);
 
 
@@ -59,6 +74,7 @@ class OrderHeaderController extends Controller {
             $OB->save();
             $OB->user;
             $OB->state;
+            $OB->tipoFactura;
             OrderDriverController::addHeader($OB);
             $response = [
                 'msj' => 'Pedido Creado',

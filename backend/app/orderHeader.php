@@ -26,13 +26,15 @@ class orderHeader extends Model {
         'fk_idUserClient',
         'fk_idUserDriver',
 
-        /*'metodoEntrega',
+        'metodoEntrega',
         'disponibilidadHr',
-        'tipoFacturacion',
+        'CUIT',
         'CUITrazonSocial',
         'CUITDomicilioFidcal',
         'metodoPago',
-        'comprobanteDepositoTransferencia',*/
+        'comprobanteDepositoTransferencia',
+        'fk_idTipoFactura',
+        'localidad'
 
     ];
 
@@ -42,6 +44,10 @@ class orderHeader extends Model {
 
     public function user() {
         return $this->belongsTo('App\User', 'fk_idUser');
+    }
+
+    public function tipoFactura() {
+        return $this->belongsTo('App\TipoDeFactura', 'fk_idTipoFactura');
     }
 
     public function orderBody() {
