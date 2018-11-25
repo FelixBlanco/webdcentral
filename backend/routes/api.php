@@ -105,12 +105,20 @@ Route::group([ 'prefix' => 'auth' ], function() {
         /*Clasificados*/
 
 
-        /*LOCALES SERVICIOS DE TURNO*/
+        /*LOCALES SERVICIOS DE LOCAL ADHERIDO*/
         Route::post('crearServicioAdd','LocalesAdheridoController@crearServicioAdd');
         Route::post('editarServicioAdd','LocalesAdheridoController@editarServicioAdd');
         Route::delete('eliminarServicioAdd/{idServiciosAdd}','LocalesAdheridoController@eliminarServicioAdd');
         Route::get('listarServiciosAdd','LocalesAdheridoController@listar');
-        /*LOCALES SERVICIOS DE TURNO*/
+        /*LOCALES SERVICIOS DE LOCAL ADHERIDO*/
+
+
+        /*LOCALES SERVICIOS turnos*/
+        Route::post('addTurno','TurnoController@add');
+        Route::post('editarServicioAdd','LocalesAdheridoController@editarServicioAdd');
+        Route::delete('eliminarServicioAdd/{idServiciosAdd}','LocalesAdheridoController@eliminarServicioAdd');
+        Route::get('listarServiciosAdd','LocalesAdheridoController@listar');
+        /*LOCALES SERVICIOS turnos*/
 
 
     });

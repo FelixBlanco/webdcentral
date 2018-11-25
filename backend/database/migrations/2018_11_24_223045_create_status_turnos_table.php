@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoDeFacturasTable extends Migration
+class CreateStatusTurnosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateTipoDeFacturasTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_tipo_de_facturas', function (Blueprint $table) {
-            $table->increments('idTipoFactura');
+        Schema::create('tb_status_turnos', function (Blueprint $table) {
+            $table->increments('idStatusTurno');
             $table->string('descripcion');
             $table->timestamps();
             $table->softDeletes();
@@ -28,6 +28,6 @@ class CreateTipoDeFacturasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_tipo_de_facturas');
+        Schema::dropIfExists('tb_status_turnos');
     }
 }
