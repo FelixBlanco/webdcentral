@@ -25,6 +25,7 @@ class CreatePerfilClientesTable extends Migration
             $table->string('celular')->nullable();
 
             $table->integer('fk_idPerfilCliente')->unsigned()->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });

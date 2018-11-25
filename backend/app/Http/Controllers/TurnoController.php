@@ -52,7 +52,7 @@ class TurnoController extends Controller {
             ];
             DB::commit();
 
-                Mail::to(Auth::user()->email)->send(new TurnosMail($turno));
+            Mail::to(Auth::user()->email)->send(new TurnosMail($turno));
 
 
             return response()->json($response, 201);
@@ -67,7 +67,7 @@ class TurnoController extends Controller {
         }
     }
 
-    public function update(Request $request, $idTurnos){
+    public function update(Request $request, $idTurnos) {
         DB::beginTransaction();
 
         try {
@@ -76,8 +76,8 @@ class TurnoController extends Controller {
             $turno->fill($request->all());
 
             $response = [
-                'msj'         => 'Info del Turno actulizada',
-
+                'msj' => 'Info del Turno actulizada',
+            ];
             $turno->save();
 
             Mail::to(Auth::user()->email)->send(new TurnosMail($turno));
@@ -86,7 +86,7 @@ class TurnoController extends Controller {
             return response()->json($response, 200);
         } catch (\Exception $e) {
             DB::rollback();
-            Log::error('Ha ocurrido un error en UserController: '.$e->getMessage().', Linea: '.$e->getLine());
+            Log::error('Ha ocurrido un error en TurnoController: '.$e->getMessage().', Linea: '.$e->getLine());
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
