@@ -20,9 +20,19 @@ class turno extends Model
         'fk_idUser',
     ];
 
-    public function productos()
+    public function clasificado()
     {
-        return $this->hasMany('App\Prducto', 'fk_idProducto','idCarrito');
+        return $this->belongsTo('App\Clasificado', 'fk_idClasificado');
+    }
+
+    public function localAdherido()
+    {
+        return $this->belongsTo('App\LocalesAdherido', 'fk_idLocalAdherido');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'fk_idUser');
     }
 
 }
