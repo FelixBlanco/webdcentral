@@ -8,8 +8,10 @@
     </div>
     <div class="col-md-3" id="envio">
       <div data-toggle="modal" data-target="#enviosModal">
-        <img src="../assets/como_envio/enviar_1.png" width="130" class="d-block mx-auto img-fluid">
-        <h3 class="text-center hover-normal"> ENVIOS </h3>
+        <a routerLink="envios" style="color:black; text-decoration: none; ">
+            <img src="../assets/como_envio/enviar_1.png" width="130" class="d-block mx-auto img-fluid">
+            <h3 class="text-center hover-normal"> ENVIOS </h3>
+        </a>
       </div>
     </div>
     <div class="col-md-3" id="forma_pago">
@@ -40,43 +42,123 @@
           </button>
         </div>
         <div class="modal-body">  
-          <div class="row">
-            <div class="cajon">
-              <div class="capa">
-                <div class="capa-uno">
-                  <div class="capa-dos">
-                    <div class="capa-tres text-center">1</div>
-                  </div>	
-                </div>
-                <img src="../../assets/como-comprar/registrate.png" alt="" width="100px" class="d-block mx-auto img-fluid">
-                <p class="text-center">Regístrate</p>					
-              </div>                  
+          <div class="row" style="margin-top: 2%">
+            <div class="col-md-12">
+              <ul class="ul-capas">
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        1
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/como-comprar/registrate.png" class="img-fluid m-2 mx-auto d-block" width="55px" height='68px'>
+                  <p class="text-center m-2">Registrate</p>
+                </li>
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        2
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/como-comprar/logueate.png" class="img-fluid m-2 mx-auto d-block" width="58" height='68px'>
+                  <p class="text-center m-2">Logueate</p>
+                </li>
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        3
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/como-comprar/comprar.png" class="img-fluid m-2 mx-auto d-block" width="62" height='68px'>
+                  <p class="text-center m-2">Agrega al carrito de compra</p>
+                </li>	
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        4
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/como-comprar/confirmar.png" class="img-fluid m-2 mx-auto d-block" width="68" height='68px'>
+                  <p class="text-center m-2">confirmar la compra</p>
+                </li>
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        5
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/como-comprar/datos.png" class="img-fluid m-2 mx-auto d-block" width="47" height='47'>
+                  <p class="text-center m-2">Completa los datos para la entrega</p>
+                </li>															
+              </ul>
+              <ul class="ul-capas">
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        6
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/como-comprar/paga.png" class="img-fluid m-2 mx-auto d-block" width="40" height='68px'>
+                  <p class="text-center m-2">Paga tu compra</p>
+                </li>
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        7
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/como-comprar/email.png" class="img-fluid m-2 mx-auto d-block" width="78" height='68px'>
+                  <p class="text-center m-2">Recibiras un mail de confirmacion</p>
+                </li>
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        8
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/como-comprar/lupa.png" class="img-fluid m-2 mx-auto d-block" width="62" height='68px'>
+                  <p class="text-center m-2">Podras ver el estado de tu pedido en "Mis compras"</p>
+                </li>	
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        9
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/como-comprar/mis-compras.png" class="img-fluid m-2 mx-auto d-block" width="82" height='68px'>
+                  <p class="text-center m-2">Recibiras el producto o recibirlo en tienda</p>
+                </li>
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        10
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/como-comprar/check.png" class="img-fluid m-2 mx-auto d-block" width="72" height='68px'>
+                  <p class="text-center m-2">Califica la experiencia</p>
+                </li>															
+              </ul>
             </div>
-
-            <div class="cajon">
-              <div class="capa">
-                <div class="capa-uno">
-                  <div class="capa-dos">
-                    <div class="capa-tres text-center">1</div>
-                  </div>	
-                </div>
-                <img src="../../assets/como-comprar/registrate.png" alt="" width="100px" class="d-block mx-auto img-fluid">
-                <p class="text-center">Regístrate</p>					
-              </div>                  
-            </div>
-
-            <div class="cajon">
-              <div class="capa">
-                <div class="capa-uno">
-                  <div class="capa-dos">
-                    <div class="capa-tres text-center">1</div>
-                  </div>	
-                </div>
-                <img src="../../assets/como-comprar/registrate.png" alt="" width="100px" class="d-block mx-auto img-fluid">
-                <p class="text-center">Regístrate</p>					
-              </div>                  
-            </div>
-
           </div>
         </div>
       </div>
@@ -102,16 +184,70 @@
 
   <!-- Formas de Pagos -->
   <div class="modal fade" id="formasDePagoModal" tabindex="-1" role="dialog" aria-labelledby="formasDePagoModalTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-naranja">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="width: 1200px; margin-left: -22%;">
+        <div class="modal-header bg-azul">
           <h5 class="modal-title txt-blanco" id="formasDePagoModalTitle">Formas de Pago</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true" class="txt-blanco">&times;</span>
           </button>
         </div>
         <div class="modal-body">  
-
+          <div class="row" style="margin-top: 2%">
+            <div class="col-md-6">
+              <div class="cont border">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h5>MERCADO PAGO</h5>
+                  </div>
+                </div>
+                <div class="row justify-content-center mt-3">
+                  <div class="col-md-4">
+                    <img src="../../assets/forma-pago/card-one.png" class="mx-auto d-block p-2" width="100">
+                    <p class="text-center">Tarjeta de Debito</p>
+                  </div>						
+                  <div class="col-md-4">
+                    <img src="../../assets/forma-pago/card-two.png" class="mx-auto d-block p-2" width="87">
+                    <p class="text-center">Tarjeta de Credito</p>
+                  </div>													
+                </div>
+                <div class="row">
+                  <div class="col-md-12 text-center">
+                    <p>Promociones disponibles en:</p>
+                    <button class="btn btn-primary btn-small" style="background: #009bde; margin-top: 10%;"> Promociones de <b>MERCADOPAGO</b></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="cont border">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h5>EFECTIVO</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <img src="../../assets/forma-pago/tienda.png" class="img-fluid mx-auto d-block p-2" style="width: 120">
+                  </div>
+                </div>
+                <div class="row justify-content-center mt-3">
+                  <div class="col-md-4">
+                    <img src="../../assets/forma-pago/banco.png" class="mx-auto d-block p-2" width="79">
+                    <p class="text-center">Transferencia</p>
+                  </div>						
+                  <div class="col-md-4">
+                    <img src="../../assets/forma-pago/efectivo.png" class="img-fluid mx-auto d-block p-2" width="79">
+                    <p class="text-center">Efectivo</p>
+                  </div>		
+                  <div class="col-md-4">
+                    <img src="../../assets/forma-pago/deposito.png" class="img-fluid mx-auto d-block p-2" width="78">
+                    <p class="text-center">Deposito bancario</p>
+                  </div>													
+                </div>
+              </div>				
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -119,16 +255,69 @@
 
   <!-- Retirar en la tienda -->
   <div class="modal fade" id="retirarEnTiendaModal" tabindex="-1" role="dialog" aria-labelledby="retirarEnTiendaModalTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-naranja">
-          <h5 class="modal-title txt-blanco" id="retirarEnTiendaModalTitle">Retirar en la tienda</h5>
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="width: 1000px; margin-left: -11%;">
+        <div class="modal-header bg-azul">
+          <h5 class="modal-title txt-blanco" id="retirarEnTiendaModalTitle">¿Donde Estamos?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true" class="txt-blanco">&times;</span>
           </button>
         </div>
         <div class="modal-body">  
-
+          <div class="row" style="margin-top: 2%">
+            <div class="col-md-12">
+              <p class="text-center">
+                <b>
+                  HORARIO DE ATENCION DEL LOCAL: <br>
+                  LUNES A VIERNES: DE 9 HS A 20 HS / SABADO: 9 HS A 14 HS
+                </b>
+              </p>
+              <div class="row justify-content-center">
+                <div class="col-md-8">
+                  <button class="btn btn-sm btn-success text-center btn-block">Ir</button>
+                </div>
+              </div>
+              <ul class="ul-capas-comprar" style="margin-top:13%">
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        1
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/donde-estamos/bus.png" class="p-1 img-fluid m-1 mx-auto d-block" width="80">
+                  <h5 class="text-center font-bold">COLETIVOS</h5><p class="text-center" style="font-size: 13px; padding: 10px;">Linea 24, 57, 76,96, 99, 105, 106, 110, 124, 135,v 146</p>
+                </li>
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        2
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/donde-estamos/metro.png" class="p-1 img-fluid m-2 mx-auto d-block" width="62">
+                  <h5 class="text-center font-bold">SUBTES</h5>
+                  <p class="text-center" style="font-size: 13px; padding: 10px;">A 15 cuadras de la Linea B Estacion Malabia</p>
+                </li>
+                <li class="list-capas">
+                  <div class="capa">
+                    <div class="capa-uno">
+                      <div class="capa-dos text-center">
+                        3
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../assets/donde-estamos/carro.png" class="p-1 img-fluid m-2 mx-auto d-block" width="85">
+                  <h5 class="text-center font-bold">AVENIDAS CERCANAS</h5>
+                  <p class="text-center" style="font-size: 13px; padding: 10px;">
+                    Av. San Martinm Av. Diaz Velez, Av. Garona, Av. Juan B Justo 
+                  </p>
+                </li>																
+              </ul>				
+            </div>
+          </div>
         </div>
       </div>
     </div>

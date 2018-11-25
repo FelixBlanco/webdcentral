@@ -69,4 +69,9 @@ export class LoginComponent implements OnInit {
 
 
     }
+
+    routeToLogin(){
+        $("#loginModal").modal('hide');
+        setTimeout(() =>  $("#registraseModal").modal('show'), 500);
+    }
 }

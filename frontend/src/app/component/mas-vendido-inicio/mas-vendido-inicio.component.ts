@@ -32,33 +32,14 @@ export class MasVendidoInicioComponent implements OnInit {
     this.productosService.getMasVendido().subscribe(resp => {
       console.log('mas vendido', resp);
       if(resp.ok && resp.status === 200){
-        //this.mapAndSet(resp.body);
+        this.masVendidoList = resp.body;
+        this.generateCarousel();
       }else{
         this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
       }
     }, error => {
       this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
     });
-  }
-
-  mapAndSet(data: any) : void {
-    
-    if(!data || !data.destacados){
-      this.masVendidoList = [];
-      return;
-    }
-
-    const destacados: any[] = data.destacados;
-
-    let toSet: Producto[] = [];
-
-    destacados.forEach((item) => {
-      item.producto.cantidad = 1;
-      toSet.push(item.producto);
-    });
-
-    this.masVendidoList = toSet;
-    this.generateCarousel();
   }
 
   generateCarousel(){

@@ -23,6 +23,6 @@ export class ForgetService {
     ) {  }
 
   _newForget(data:any){
-    return this.http.post(environment.apiHost + '/api/v1/reestablecerClave',data);
+    return this.http.post(environment.apiHost +'/api/v1/reestablecerClave',data);
   }
 }

@@ -19,13 +19,15 @@
                 </div>
                 <div class="modal-body">
                   <div class="form-group">
+                    <label for="">Titulo Oferta</label>
                     <input type="text" [(ngModel)]="form_ofertas.titulo" class="form-control" placeholder="titulo">
                   </div>
                   <div class="form-group">
+                    <label for="">Tiempo de Expiración</label>
                     <input type="date" [(ngModel)]="form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempo de expiracion">
                   </div>
                   <div class="form-group">
-                    <label for="">Imagen</label>
+                    <label for="">Subir Imagen</label>
                     <input type="file" (change)="upImagen($event)">
                   </div>
                 </div>

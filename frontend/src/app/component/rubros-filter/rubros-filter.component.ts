@@ -94,7 +94,8 @@ export class RubrosFilterComponent implements OnInit {
     this.productosService.filter3Pack(rubros).subscribe((resp) => {
       if(resp.ok && resp.status === 201){
         this.productsBehavior.updateSource(resp.body.productos);
-        this.router.navigate(['/productos'],{queryParams: {scroll: true}});
+        this.router.navigate(['/productos']);
+        setTimeout(()=> document.getElementById('productos').scrollIntoView({behavior: 'smooth'}),1000);
         $('#mascotasModal').modal('hide');
         this.setTittleByRubros(rubros);
       }else{

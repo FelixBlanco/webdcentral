@@ -55,6 +55,7 @@ import { PerfilClienteComponent } from './component/perfil-cliente/perfil-client
 import { DepositoGuard } from './services/auth-guard.service';
 import { RubrosFilterComponent } from './component/rubros-filter/rubros-filter.component';
 import { GaleryProductComponent } from './component/galery-product/galery-product.component';
+import { EnviosPageComponent } from './component/envios-page/envios-page.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -67,6 +68,7 @@ const appRoutes: Routes = [
   { path: 'productos', component: ProductosComponent },
   { path: 'perfil-cliente', component: PerfilClienteComponent },
   { path: 'galery-product', component: GaleryProductComponent },
+  { path: 'envios', component: EnviosPageComponent },
   
   { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
   
@@ -111,7 +113,8 @@ const appRoutes: Routes = [
     ProductosCarouselPageComponent,
     PerfilClienteComponent,
     RubrosFilterComponent,
-    GaleryProductComponent
+    GaleryProductComponent,
+    EnviosPageComponent
   ],
   imports: [
     BrowserModule,

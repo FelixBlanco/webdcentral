@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ForgetService } from '../../services/forget.service';
 import { AlertsService } from '../../services/alerts.service';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms'
 
 declare var $;
 
@@ -11,31 +12,31 @@ declare var $;
 })
 export class ForgetComponent implements OnInit {
 
-  email: any; 
+  myForm: FormGroup;  
 
   constructor(
     private _forgetService:ForgetService,
-    private _alertsService:AlertsService
-  ) { }
+    private _alertsService:AlertsService,
+    private fb:FormBuilder
+  ) { 
+    this.myForm = this.fb.group({
+      'email' : ['',Validators.required]
+    })
+  }
 
   ngOnInit() {
   }
 
-  newForget(){
-    if(this.email){
-      this._forgetService._newForget({email:this.email}).subscribe(
-        (resp:any) => {
-          $('#forgetModal').modal('hide');
-          this._alertsService.msg('OK',resp.msj);
-        },
-        error => {
-          this._alertsService.msg('ERR','algo salio mal');
-        }
-      )      
-    }else{
-      this._alertsService.msg('ERR','Todos los campos son requeridos');
-    }
-
+  newForget(){    
+    this._forgetService._newForget({email:this.myForm.value.email}).subscribe(
+      (resp:any) => {
+        $('#forgetModal').modal('hide');
+        this._alertsService.msg('OK',resp.msj);
+      },
+      error => {
+        this._alertsService.msg('ERR','algo salio mal');
+      }
+    )      
   }
 
 }

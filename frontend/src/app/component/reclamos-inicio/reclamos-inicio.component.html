@@ -9,18 +9,20 @@
           </button>
         </div>
         <div class="modal-body">
-          <div class="form-group">
-            <label for="">Titulo</label>
-            <input type="text" class="form-control" [(ngModel)]="form.titulo" placeholder="Titulo del reclarmo o sugerencia">
-          </div>
-          <div class="form-group">
-            <label for="">Descripción</label>
-            <textarea class="form-control" [(ngModel)]="form.descripcion" placeholder="descripcion"></textarea>
-          </div>      
+          <form [formGroup]="myForm">
+            <div class="form-group">
+              <label for="">Titulo</label>
+              <input type="text" formControlName='titulo' class="form-control" placeholder="Titulo del reclarmo o sugerencia">
+            </div>
+            <div class="form-group">
+              <label for="">Descripción</label>
+              <textarea formControlName='descripcion' class="form-control" placeholder="descripcion"></textarea>
+            </div> 
+          </form>     
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" (click)="addReclamos()">Guardar Cambios</button>
+          <button type="button" class="btn btn-primary" (click)="addReclamos()" [disabled]='!myForm.valid'>Guardar Cambios</button>
         </div>
       </div>
     </div>
