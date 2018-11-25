@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfgFooterService } from '../../services/confg-footer.service';
 
 declare var $; 
 
@@ -9,10 +10,20 @@ declare var $;
 })
 export class EnviosInicioComponent implements OnInit {
 
-  constructor() { }
+  configData:any = {
+    horarios:null, colectivos: null, subtes: null, avenidas: null,
+    latitud:null, longitud: null
+  };
+
+
+  lat: number;
+  lng: number;
+
+  constructor(private footerConfigService: ConfgFooterService) { }
 
   ngOnInit() {
-
+    
+    this.getData();
 
     $("#compra").hover(function(){
       console.log('hover')
@@ -57,5 +68,14 @@ export class EnviosInicioComponent implements OnInit {
 
   }
 
+  getData(){
+    this.footerConfigService._getConfigFooter().subscribe(
+      (resp:any) => {        
+        this.configData = resp;
+        this.lat = Number(this.configData.latitud);
+        this.lng = Number(this.configData.longitud);
+      }
+    )      
+  }
 
 }

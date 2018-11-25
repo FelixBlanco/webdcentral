@@ -1,39 +1,146 @@
-<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Nuevo</button>
+
+
+<div class="row">
+  <div class="col-md-2">
+      <select class="form-control" [(ngModel)]="limit">
+        <option>5</option>
+        <option>10</option>
+        <option>20</option>
+        <option *ngIf="lista_localAdheridos" value="{{lista_localAdheridos.length}}">Todos ({{lista_localAdheridos.length}})</option>
+      </select>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <input class="form-control" type="text" placeholder="Buscar" (keyup)='updateFilter($event)'>
+    </div>
+  </div>
+  <div class='col-md-4'>
+    <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Nuevo</button>
+  </div>
+</div>
+
+<ngx-datatable
+class="bootstrap"
+[rows]="rows"
+[columns]="columns"
+[columnMode]="'force'"
+[headerHeight]="50"
+[footerHeight]="50"
+[rowHeight]="'auto'"
+[limit]="10">
+
+<ngx-datatable-column name="Nombre" prop="nombre"></ngx-datatable-column>
+<ngx-datatable-column name="Descripcion" prop="descripcion"></ngx-datatable-column>
+
+<ngx-datatable-column name="Foto 1" prop="set_imagen_uno">
+  <ng-template ngx-datatable-cell-template let-row="row">
+      <img [src]="row.set_imagen_uno" width="100">
+  </ng-template>                    
+</ngx-datatable-column>
+
+<ngx-datatable-column name="Foto 2" prop="set_imagen_dos">
+  <ng-template ngx-datatable-cell-template let-row="row">
+      <img [src]="row.set_imagen_dos" width="100">
+  </ng-template>                    
+</ngx-datatable-column>
+
+<ngx-datatable-column name="" prop="opciones">
+    <ng-template ngx-datatable-cell-template let-row="row">
+        <button class="btn btn-primary" (click)="edit(row)"><span class="glyphicon glyphicon-pencil"></span></button>
+        <button class="btn btn-danger" (click)="eliminar(row.idLocalAdherido)"><span class="glyphicon glyphicon-trash"></span> </button>
+        <!-- <button class="btn btn-primary"  (click)="editDestacado(row)"></button>
+        <button class="btn btn-danger" (click)="modalEliminar(row.id_Destacado)"></button> -->
+    </ng-template>                    
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
 
 <!-- Modal Nuevo -->
 <div class="modal fade" id="nuevo" tabindex="-1" role="dialog" aria-labelledby="nuevoModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-success">
-          <h5 class="modal-title text-white" id="nuevoModal">Nuevo</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form [formGroup]="myForm" >
-            <div class="form-group">
-              <label for="nombre">Nombre</label>
-              <input type="text" formControlName="nombre" class="form-control" id="nombre" aria-describedby="nombreDesc" placeholder="Ingrese el nombre " maxlength="255">
-            </div>
-            <div class="form-group">
-              <label for="descripcion">Descripcion:</label>
-              <textarea rows="4" formControlName="descripcion" class="form-control" id="descripcion" aria-describedby="respDesc" placeholder="Ingrese la descripcion" maxlength="255"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="foto_1">Foto 1</label>
-              <input type="file" formControlName="foto_1" class="form-control" id="foto_1" (change)='changeFoto($event,1)' aria-describedby="foto_1Desc">
-            </div>
-            <div class="form-group">
-                <label for="foto_2">Foto 2</label>
-                <input type="file" formControlName="foto_2" class="form-control" id="foto_2" (change)='changeFoto($event,2)' aria-describedby="foto_2Desc">
-              </div>              
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="myForm.invalid || inPromise" (click)="save()">Guardar</button>
-        </div>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="nuevoModal">Nuevo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="myForm" >
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control" id="nombre" aria-describedby="nombreDesc" placeholder="Ingrese el nombre " maxlength="255">
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Descripcion:</label>
+            <textarea rows="4" formControlName="descripcion" class="form-control" id="descripcion" aria-describedby="respDesc" placeholder="Ingrese la descripcion" maxlength="255"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="">Clasificado </label>
+            <select class="form-control" formControlName='fk_idClasificado'>
+              <option *ngFor="let lista_clasificado of lista_clasificados" [value]="lista_clasificado.idClasificado"  >{{lista_clasificado.titulo}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="foto_1">Foto 1</label>
+            <input type="file" formControlName="foto_1" class="form-control" id="foto_1" (change)='changeFoto($event,1,"new")' aria-describedby="foto_1Desc">
+          </div>
+          <div class="form-group">
+              <label for="foto_2">Foto 2</label>
+              <input type="file" formControlName="foto_2" class="form-control" id="foto_2" (change)='changeFoto($event,2,"new")' aria-describedby="foto_2Desc">
+            </div>              
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success" [disabled]="myForm.invalid || inPromise" (click)="save()">Guardar</button>
       </div>
     </div>
   </div>
+</div>
+
+
+<!-- Modal Editar -->
+<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="editarModal">Editar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="myFormEdit" >
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control" id="nombre" aria-describedby="nombreDesc" placeholder="Ingrese el nombre " maxlength="255">
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Descripcion:</label>
+            <textarea rows="4" formControlName="descripcion" class="form-control" id="descripcion" aria-describedby="respDesc" placeholder="Ingrese la descripcion" maxlength="255"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="">Clasificado </label>
+            <select class="form-control" formControlName='fk_idClasificado'>
+              <option *ngFor="let lista_clasificado of lista_clasificados" [value]="lista_clasificado.idClasificado">{{lista_clasificado.titulo}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="foto_1">Foto 1</label>
+            <input type="file" class="form-control" (change)='changeFoto($event,1,"edit")'>
+          </div>
+          <div class="form-group">
+              <label for="foto_2">Foto 2</label>
+              <input type="file"  class="form-control" (change)='changeFoto($event,2,"edit")'>
+            </div>              
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success" [disabled]="myFormEdit.invalid || inPromise" (click)="upgrade()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
