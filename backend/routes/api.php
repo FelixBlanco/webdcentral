@@ -77,7 +77,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         
         //LISTAR PRODUCTOS POR RUBRO,TAG
-        Route::post('pduct/by/tag','ProductoController@getProductByRubroTag');
+        Route::post('producto/by/fiter','ProductoController@getProductByRubro');
             
         
         /* PREGUNTA Y RESPUESTA */
@@ -237,16 +237,16 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('sincronize/product', 'ProductSincronizeController@sicronizeProduct');
 
     // OBTENER TAGS
-    Route::get('tags/filter', 'ProductoController@getAllTags');
+    //Route::get('tags/filter', 'ProductoController@getAllTags');
 
     // OBTENER RUBROS
     Route::get('rubro/filter', 'ProductoController@getAllRubros');
 
     // OBTENER SUBSUBROS1
-    Route::get('rubro/listarSubrubro1', 'ProductoController@listarSubrubro1');
+    Route::get('rubro/listarSubrubro1/{rubro}', 'ProductoController@listarSubrubro1');
     
     // OBTENER SUBSUBROS2
-    Route::get('rubro/listarSubrubro2', 'ProductoController@listarSubrubro2');
+    Route::get('rubro/listarSubrubro2/{Subrubro1}', 'ProductoController@listarSubrubro2');
 
     //LISTAR POR RUBRO, SURUBRO1 O SUBRUBRO2
     Route::post('filtro3pack','ProductoController@filtro3pack');

@@ -269,12 +269,12 @@ class ProductoController extends Controller {
         }
     }
 
-    public static function getAllTags() {
+  /*  public static function getAllTags() {
 
         $response = TagProduct::select("tag")->distinct('tag')->orderBy("tag")->get();
 
         return response()->json($response, 202);
-    }
+    }*/
 
     public static function getAllRubros() {
 
@@ -314,14 +314,22 @@ class ProductoController extends Controller {
         }
     }
 
-    public function listarSubrubro1() {
-        $response = Producto::select("SubRubro1")->distinct('SubRubro1')->orderBy("SubRubro1")->get();
+    public function listarSubrubro1($rubro) {
+        $response = Producto::select("SubRubro1")
+        ->distinct('SubRubro1')
+        ->orderBy("SubRubro1")
+        ->where("rubro","=",$rubro)
+        ->get();
 
         return response()->json($response, 202);
     }
 
-    public function listarSubrubro2() {
-        $response = Producto::select("SubRubro2")->distinct('SubRubro2')->orderBy("SubRubro2")->get();
+    public function listarSubrubro2($SubRubro1) {
+        $response = Producto::select("SubRubro2")
+        ->distinct('SubRubro2')
+        ->orderBy("SubRubro2")
+        ->where("SubRubro1","=",$SubRubro1)
+        ->get();
 
         return response()->json($response, 202);
     }
@@ -413,35 +421,45 @@ class ProductoController extends Controller {
     }
 
 
-    public function getProductByRubroTag(Request $request) {
+    public function getProductByRubro(Request $request) {
 
+
+        return response()->json("paso", 200);
+
+        /*
         try {
             $rs = null;
 
             $sql = "";
+            $isWherActive = "where";
 
-            if (! empty($request->tag)) {
-                $sql = " where Descripcion_TablaGenerica in  ('".$request->tag."') ";
+            //                $sql = $isWherActive."  Descripcion_Rubro in  ('".$request->rubro."') ";
+
+
+            if (! empty($request->rubro)) {
+                $sql = $isWherActive."  Descripcion_Rubro = '".$request->rubro."' ";
+                $isWherActive = " and ";
             }
 
-            if (! empty($request->rubro) && ! empty($request->tag)) {
-                $sql = $sql." and Descripcion_Rubro = '".$request->rubro."' ";
+            if (!empty($request->SubRubro1)) {
+                $sql = $sql." ".$isWherActive."  Descripcion_SubRubro1 = '".$request->SubRubro1."' ";
+                if($isWherActive == "where"){$isWherActive = " and ";}
             }
 
-            if (! empty($request->rubro) && empty($request->tag)) {
-                $sql = $sql." where Descripcion_Rubro = '".$request->rubro."' ";
+            if (!empty($request->SubRubro2)) {
+                $sql = $sql." ".$isWherActive."  Descripcion_SubRubro2 = '".$request->SubRubro2."' ";
+                if($isWherActive == "where"){$isWherActive = " and ";}
+
             }
 
-            if ((empty($request->rubro) && empty($request->tag)) && ! empty($request->search)) {
-                $sql = $sql." where Descripcion_Producto = like '%".$request->search."%' ";
+            if (!empty($request->search)) {
+                $sql = $sql." ".$isWherActive."  Descripcion_Producto = like '%".$request->search."%' ";
+                if($isWherActive == "where"){$isWherActive = " and ";}
+
             }
 
-            if ((! empty($request->rubro) || ! empty($request->tag)) && ! empty($request->search)) {
-                $sql = $sql." and   Descripcion_Producto = like '%".$request->search."%' ";
-            }
 
-
-            $rs = DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosTagsAPP  
+            $rs = DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
              ".$sql."  order by Descripcion_Producto  ");
 
 
@@ -455,6 +473,7 @@ class ProductoController extends Controller {
 
             return response()->json("Error conectando a el DC", 500);
         }
+        */
 
     }
 
