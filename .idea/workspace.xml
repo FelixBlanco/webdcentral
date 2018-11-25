@@ -21,8 +21,8 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="104" column="24" lean-forward="true" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
+            <state relative-caret-position="273">
+              <caret line="107" column="21" lean-forward="true" selection-start-line="107" selection-start-column="21" selection-end-line="107" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -45,8 +45,8 @@
       <file leaf-file-name="LocalesAdheridoController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="217" column="26" lean-forward="false" selection-start-line="217" selection-start-column="20" selection-end-line="217" selection-end-column="26" />
+            <state relative-caret-position="119">
+              <caret line="218" column="5" lean-forward="false" selection-start-line="218" selection-start-column="5" selection-end-line="218" selection-end-column="5" />
               <folding>
                 <element signature="e#311#3959#0#PHP" expanded="false" />
                 <element signature="e#3965#5442#0#PHP" expanded="false" />
@@ -99,7 +99,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>apimarcas</find>
       <find>api/marcas</find>
       <find>api/vmarcas</find>
       <find>api/v1marcas</find>
@@ -129,6 +128,7 @@
       <find>turno</find>
       <find>local</find>
       <find>LocalesAdheridoController</find>
+      <find>editarLocalAdheridos</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -167,7 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/backend/app/Clasificado.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php" />
         <option value="$PROJECT_DIR$/frontend/src/app/component/register/register.component.ts" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_11_18_183145_add_lista_precio_to_footer.php" />
@@ -218,6 +217,7 @@
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_11_25_080741_add_nuevos_campos_perfil_cliente.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/PerfilClientesController.php" />
         <option value="$PROJECT_DIR$/backend/routes/api.php" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php" />
       </list>
     </option>
   </component>
@@ -474,7 +474,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127496000" />
+    <option name="totallyTimeSpent" value="127905000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
@@ -984,19 +984,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="217" column="26" lean-forward="false" selection-start-line="217" selection-start-column="20" selection-end-line="217" selection-end-column="26" />
-          <folding>
-            <element signature="e#311#3959#0#PHP" expanded="false" />
-            <element signature="e#3965#5442#0#PHP" expanded="false" />
-            <element signature="e#5448#7083#0#PHP" expanded="false" />
-            <element signature="e#7089#7814#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ServiciosAddController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -1009,10 +996,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="218" column="5" lean-forward="false" selection-start-line="218" selection-start-column="5" selection-end-line="218" selection-end-column="5" />
+          <folding>
+            <element signature="e#311#3959#0#PHP" expanded="false" />
+            <element signature="e#3965#5442#0#PHP" expanded="false" />
+            <element signature="e#5448#7083#0#PHP" expanded="false" />
+            <element signature="e#7089#7814#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="104" column="24" lean-forward="true" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
+        <state relative-caret-position="273">
+          <caret line="107" column="21" lean-forward="true" selection-start-line="107" selection-start-column="21" selection-end-line="107" selection-end-column="21" />
           <folding />
         </state>
       </provider>
