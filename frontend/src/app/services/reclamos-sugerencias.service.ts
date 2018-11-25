@@ -22,7 +22,13 @@ export class ReclamosSugerenciasService {
   }
 
   _addReclamos(data:any){
-    return this.http.post(`${environment.apiHost}/api/auth/sugerencias-reclamos`,data,httpOptions);
+    return this.http.post(`${environment.apiHost}/api/auth/sugerencias-reclamos`,data,{
+      headers: new HttpHeaders({
+        'Accept':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer '+localStorage.getItem('access_token')
+      })
+    });
   }
 
   _upgradeEstatus(id,changeStatus){

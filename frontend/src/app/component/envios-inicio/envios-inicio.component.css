@@ -76,3 +76,33 @@ img{
     padding-left: 8%;
     padding-right: 8%;
 }
+
+
+/* donde estamos */
+
+.ul-capas-comprar .ul-capas{
+    margin-top: 7%;
+}
+.ul-capas-comprar .ul-capas p{
+    color: #b5b8a2;
+}
+.ul-capas-comprar .capa{
+    background: white;
+    border-radius: 100%;
+    margin-left: 9%;
+    margin-top: -48px;
+    padding: 10px;
+    position: absolute;
+    width: 90px;
+}
+.ul-capas-comprar .list-capas{
+    background: #f2f6db;
+    border-radius: 6px;
+    display: inline-grid;
+    list-style: none;
+    padding-top: 6%;
+    padding-bottom: 6%;
+    margin-left: 3%;
+    width: 283px;
+    height: 257px;
+}
