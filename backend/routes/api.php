@@ -115,9 +115,9 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         /*LOCALES SERVICIOS turnos*/
         Route::post('addTurno','TurnoController@add');
-        Route::post('editarServicioAdd','LocalesAdheridoController@editarServicioAdd');
+        /*Route::post('editarServicioAdd','LocalesAdheridoController@editarServicioAdd');
         Route::delete('eliminarServicioAdd/{idServiciosAdd}','LocalesAdheridoController@eliminarServicioAdd');
-        Route::get('listarServiciosAdd','LocalesAdheridoController@listar');
+        Route::get('listarServiciosAdd','LocalesAdheridoController@listar');*/
         /*LOCALES SERVICIOS turnos*/
 
 
