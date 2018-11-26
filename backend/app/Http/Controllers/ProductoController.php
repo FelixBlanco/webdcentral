@@ -423,10 +423,6 @@ class ProductoController extends Controller {
 
     public function getProductByRubro(Request $request) {
 
-
-        return response()->json("paso", 200);
-
-        /*
         try {
             $rs = null;
 
@@ -473,7 +469,6 @@ class ProductoController extends Controller {
 
             return response()->json("Error conectando a el DC", 500);
         }
-        */
 
     }
 
@@ -500,6 +495,22 @@ class ProductoController extends Controller {
             ];
 
             return response()->json($response, 404);
+        }
+    }
+
+
+    public function getCostos() {
+
+        $rs = DB::connection('sqlsrv')->select(" SELECT * FROM  VistaLocalidades ");
+
+        if (is_null($rs)) {
+            $response = [
+                'msj' => 'Producto no encontrado',
+            ];
+
+            return response()->json($response, 404);
+        } else {
+            return response()->json($rs, 200);
         }
     }
 }

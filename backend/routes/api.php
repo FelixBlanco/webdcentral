@@ -254,6 +254,10 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // OBTENER MARCAS
     Route::get('marcas/filter', 'ProductoController@getAllMarcas');
 
+    // COSTOS DE ENVIO //
+    Route::get('cost/delivery', 'ProductoController@getCostos');
+
+
    
 
     // OBTENER MARCAS CON SEARCH
