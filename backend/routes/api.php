@@ -324,6 +324,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // Status Sistema 
     Route::get('status-sistema', 'StatusSistemaController@index');
+
+    // Tipos de Facturas 
+    Route::get('tipo-facturas','tipoDeFacturaController@getTipoFacturas');
 });
 
 
