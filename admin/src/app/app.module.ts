@@ -29,9 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeModule } from './component/home/home.module';
 import { AppRoutingModule } from './app-routing.module';
-import { TestComponent } from './component/test/test.component';
 import { MapaComponent } from './component/mapa/mapa.component';
-import { ComponentComponent } from './component/component.component';
 import { CuponsappComponent } from './component/cuponsapp/cuponsapp.component';
 import { NotificationappComponent } from './component/notificationapp/notificationapp.component';
 import { AuthbackendComponent } from './component/authbackend/authbackend.component';
@@ -68,9 +66,7 @@ import { LocalesAdheridosComponent } from './component/locales-adheridos/locales
     ImgInicioComponent,
     BajaAppInicioComponent,
     DestacadoInicioComponent,
-    TestComponent,
     MapaComponent,
-    ComponentComponent,
     CuponsappComponent,
     NotificationappComponent,
     AuthbackendComponent,

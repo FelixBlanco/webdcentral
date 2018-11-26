@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
         const data: any = {email: this.email, password: this.password};
         this._loginService.ingresarLogin(data).subscribe(
             (resp: any) => {
+                console.log(resp);
                 const token = resp.access_token
                 localStorage.setItem('access_token', token);
             
