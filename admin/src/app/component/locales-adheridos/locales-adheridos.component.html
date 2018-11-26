@@ -45,13 +45,11 @@ class="bootstrap"
 </ngx-datatable-column>
 
 <ngx-datatable-column name="" prop="opciones">
-    <ng-template ngx-datatable-cell-template let-row="row">
-        <button class="btn btn-primary" (click)="edit(row)"><span class="glyphicon glyphicon-pencil"></span></button>
-        <button class="btn btn-danger" (click)="eliminar(row.idLocalAdherido)"><span class="glyphicon glyphicon-trash"></span> </button>
-        <!-- <button class="btn btn-primary"  (click)="editDestacado(row)"></button>
-        <button class="btn btn-danger" (click)="modalEliminar(row.id_Destacado)"></button> -->
-    </ng-template>                    
-  </ngx-datatable-column>
+  <ng-template ngx-datatable-cell-template let-row="row">
+      <button class="btn btn-primary" (click)="edit(row)"><span class="glyphicon glyphicon-pencil"></span></button>
+      <button class="btn btn-danger" (click)="eliminar(row.idLocalAdherido)"><span class="glyphicon glyphicon-trash"></span> </button>
+  </ng-template>                    
+</ngx-datatable-column>
 
 </ngx-datatable>
 

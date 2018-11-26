@@ -96,7 +96,6 @@ export class LocalesAdheridosComponent implements OnInit {
 
     if(es == 'new'){
       if(q_foto == 1){
-        console.log(event.target.files[0])
         this.foto_1 = event.target.files[0];
       }
   
@@ -128,7 +127,7 @@ export class LocalesAdheridosComponent implements OnInit {
 
     this.localesAdheridosServices.saveLocalAdherido(formData).subscribe(
       (resp:any) => {
-        $("#nuevo").model('hide');
+        $("#nuevo").modal('hide');
         this.getLocalesAdheridos();
         this.alert.msg('OK',resp.msj)
       },
