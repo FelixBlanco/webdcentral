@@ -19,6 +19,7 @@ import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/p
 import {  ConfigRedesComponent } from './component/config-redes/config-redes.component'
 import { SuscripcionComponent } from './component/suscripcion/suscripcion.component';
 import { LocalesAdheridosComponent } from './component/locales-adheridos/locales-adheridos.component';
+import { GaleryProductComponent } from './component/galery-product/galery-product.component';
 
 const routes: Routes = [
   { path: 'Galeria', component: GaleriaHomeComponent },
@@ -35,8 +36,7 @@ const routes: Routes = [
   { path: 'destacados', component: DestacadosComponent},
   { path: 'preguntas-frecuentes', component: PreguntasFrecuentesComponent},
   { path: 'config-redes', component: ConfigRedesComponent },
-  { path: 'suscriptores', component: SuscripcionComponent },
-  { path: 'locales-adheridos', component: LocalesAdheridosComponent }
+  { path: 'suscriptores', component: SuscripcionComponent }
 ];
 
 @NgModule({
