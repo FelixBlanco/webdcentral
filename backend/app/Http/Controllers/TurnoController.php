@@ -45,7 +45,6 @@ class TurnoController extends Controller {
 
             $turno->clasificado;
             $turno->localAdherido;
-
             $response = [
                 'msj'   => 'Turno Creado',
                 'turno' => $turno,

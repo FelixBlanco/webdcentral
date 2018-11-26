@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ServiciosAddController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ServiciosAddController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/TurnoController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/TurnoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/turno.php" afterPath="$PROJECT_DIR$/backend/app/turno.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/database/migrations/2018_11_22_225049_create_turnos_table.php" afterPath="$PROJECT_DIR$/backend/database/migrations/2018_11_22_225049_create_turnos_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/resources/views/correos/formato-email.blade.php" afterPath="$PROJECT_DIR$/backend/resources/views/correos/formato-email.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/resources/views/correos/turnos/add_turno.blade.php" afterPath="$PROJECT_DIR$/backend/resources/views/correos/turnos/add_turno.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/resources/views/correos/turnos/editar_turno.blade.php" afterPath="$PROJECT_DIR$/backend/resources/views/correos/turnos/editar_turno.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/routes/api.php" afterPath="$PROJECT_DIR$/backend/routes/api.php" />
     </list>
     <list id="afaff616-419a-4d29-a8a1-8a7ab1d61868" name="Revert: migracion de n uevos campos perfil cliente" comment="" />
     <ignored path="$PROJECT_DIR$/admin/node_modules/" />
@@ -34,20 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="laravel-2018-11-25.log" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-25.log">
-          <provider selected="true" editor-type-id="LogFileEditorProvider">
-            <state relative-caret-position="-3504">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="turno.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/turno.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="10" column="35" lean-forward="true" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+            <state relative-caret-position="136">
+              <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
               <folding>
                 <element signature="e#23#62#0#PHP" expanded="true" />
               </folding>
@@ -55,50 +42,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TurnoController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/TurnoController.php">
+      <file leaf-file-name="add_turno.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/resources/views/correos/turnos/add_turno.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-42">
-              <caret line="21" column="65" lean-forward="true" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
+            <state relative-caret-position="266">
+              <caret line="48" column="58" lean-forward="true" selection-start-line="48" selection-start-column="58" selection-end-line="48" selection-end-column="58" />
               <folding>
-                <element signature="e#40#64#0#PHP" expanded="true" />
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1543196353435" expanded="true" signature="418:451" ph="..." />
+                <marker date="1543196353435" expanded="true" signature="901:936" ph="..." />
+                <marker date="1543196353435" expanded="true" signature="1072:1110" ph="..." />
+                <marker date="1543196353435" expanded="true" signature="1369:1411" ph="..." />
+                <marker date="1543196353435" expanded="true" signature="1507:1543" ph="..." />
+                <marker date="1543196353435" expanded="true" signature="1571:1606" ph="..." />
+                <marker date="1543196353435" expanded="true" signature="1689:1733" ph="..." />
+                <marker date="1543196353435" expanded="true" signature="1841:1890" ph="..." />
+                <marker date="1543196353435" expanded="true" signature="2063:2101" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2018_11_22_225049_create_turnos_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_11_22_225049_create_turnos_table.php">
+      <file leaf-file-name="formato-email.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/resources/views/correos/formato-email.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="19" column="39" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServiciosAddController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ServiciosAddController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="95" column="13" lean-forward="false" selection-start-line="95" selection-start-column="13" selection-end-line="95" selection-end-column="13" />
+            <state relative-caret-position="224">
+              <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
-                <element signature="e#3401#3652#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocalesAdheridoController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="225" column="9" lean-forward="true" selection-start-line="219" selection-start-column="7" selection-end-line="225" selection-end-column="9" />
-              <folding>
-                <element signature="e#311#3959#0#PHP" expanded="false" />
-                <element signature="e#3965#5442#0#PHP" expanded="false" />
-                <element signature="e#5448#7083#0#PHP" expanded="false" />
-                <element signature="e#7089#7814#0#PHP" expanded="false" />
+                <marker date="1543194160300" expanded="true" signature="419:452" ph="..." />
+                <marker date="1543194160300" expanded="true" signature="855:1698" ph="..." />
+                <marker date="1543194160300" expanded="true" signature="1765:1800" ph="..." />
+                <marker date="1543194160300" expanded="true" signature="1936:1974" ph="..." />
+                <marker date="1543194160300" expanded="true" signature="2233:2242" ph="..." />
+                <marker date="1543194160300" expanded="true" signature="2334:2348" ph="..." />
+                <marker date="1543194160300" expanded="true" signature="2494:2532" ph="..." />
               </folding>
             </state>
           </provider>
@@ -107,19 +87,30 @@
       <file leaf-file-name="LocalesAdherido.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/LocalesAdherido.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="10" column="44" lean-forward="false" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+            <state relative-caret-position="182">
+              <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PerfilClientesController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/PerfilClientesController.php">
+      <file leaf-file-name="TurnoController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/TurnoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="52" column="22" lean-forward="false" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
-              <folding />
+            <state relative-caret-position="182">
+              <caret line="46" column="34" lean-forward="false" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+              <folding>
+                <element signature="e#40#64#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="laravel-2018-11-25.log" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-25.log">
+          <provider selected="true" editor-type-id="LogFileEditorProvider">
+            <state relative-caret-position="-3630">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
             </state>
           </provider>
         </entry>
@@ -189,6 +180,7 @@
     <setting file="file://$PROJECT_DIR$/admin/src/app/component/ofertas/ofertas.component.ts" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderDriverController.php" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
+    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/backend/routes/api.php" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
@@ -196,8 +188,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php" />
-        <option value="$PROJECT_DIR$/frontend/src/app/component/register/register.component.ts" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_11_18_183145_add_lista_precio_to_footer.php" />
         <option value="$PROJECT_DIR$/backend/app/ConfigFooter.php" />
         <option value="$PROJECT_DIR$/admin/src/app/component/config-footer/config-footer.component.ts" />
@@ -243,9 +233,11 @@
         <option value="$PROJECT_DIR$/backend/resources/views/correos/turnos/editar_turno.blade.php" />
         <option value="$PROJECT_DIR$/backend/routes/api.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ServiciosAddController.php" />
-        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/TurnoController.php" />
         <option value="$PROJECT_DIR$/backend/app/turno.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_11_22_225049_create_turnos_table.php" />
+        <option value="$PROJECT_DIR$/backend/resources/views/correos/formato-email.blade.php" />
+        <option value="$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-25.log" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/TurnoController.php" />
         <option value="$PROJECT_DIR$/backend/resources/views/correos/turnos/add_turno.blade.php" />
       </list>
     </option>
@@ -344,28 +336,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="storage" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webdcentral" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webdcentral" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storage" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logs" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -669,7 +639,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130960000" />
+    <option name="totallyTimeSpent" value="133881000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="7" />
@@ -678,6 +648,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924694" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19964974" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924694" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="NativeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13309982" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -690,7 +661,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32924694" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924694" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19964974" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
@@ -808,14 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="390" column="524" lean-forward="true" selection-start-line="390" selection-start-column="524" selection-end-line="390" selection-end-column="524" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Clasificado.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="10" column="42" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -975,26 +938,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="57" column="5" lean-forward="true" selection-start-line="54" selection-start-column="3" selection-end-line="57" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/StatusSistema.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/LocalesAdherido.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="44" lean-forward="false" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -1156,61 +1103,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="101" column="24" lean-forward="true" selection-start-line="101" selection-start-column="24" selection-end-line="101" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/TurnoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="21" column="65" lean-forward="true" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
-          <folding>
-            <element signature="e#40#64#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/turno.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="10" column="35" lean-forward="true" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-          <folding>
-            <element signature="e#23#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/resources/views/correos/formato-email.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-          <folding>
-            <marker date="1542671758322" expanded="true" signature="370:403" ph="..." />
-            <marker date="1542671758322" expanded="true" signature="675:1502" ph="..." />
-            <marker date="1542671758322" expanded="true" signature="1565:1600" ph="..." />
-            <marker date="1542671758322" expanded="true" signature="1723:1761" ph="..." />
-            <marker date="1542671758322" expanded="true" signature="1979:1988" ph="..." />
-            <marker date="1542671758322" expanded="true" signature="2051:2065" ph="..." />
-            <marker date="1542671758322" expanded="true" signature="2191:2229" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/resources/views/correos/turnos/add_turno.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-          <folding>
-            <marker date="1543193219149" expanded="true" signature="275:291" ph="..." />
-            <marker date="1543193219149" expanded="true" signature="328:345" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_11_22_225049_create_turnos_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -1219,10 +1111,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="101" column="24" lean-forward="true" selection-start-line="101" selection-start-column="24" selection-end-line="101" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Clasificado.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/turno.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+          <folding>
+            <element signature="e#23#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/storage/logs/laravel-2018-11-25.log">
       <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="-3504">
+        <state relative-caret-position="-3630">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/TurnoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="46" column="34" lean-forward="false" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+          <folding>
+            <element signature="e#40#64#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/LocalesAdherido.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/resources/views/correos/formato-email.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <marker date="1543194160300" expanded="true" signature="419:452" ph="..." />
+            <marker date="1543194160300" expanded="true" signature="855:1698" ph="..." />
+            <marker date="1543194160300" expanded="true" signature="1765:1800" ph="..." />
+            <marker date="1543194160300" expanded="true" signature="1936:1974" ph="..." />
+            <marker date="1543194160300" expanded="true" signature="2233:2242" ph="..." />
+            <marker date="1543194160300" expanded="true" signature="2334:2348" ph="..." />
+            <marker date="1543194160300" expanded="true" signature="2494:2532" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/resources/views/correos/turnos/add_turno.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="48" column="58" lean-forward="true" selection-start-line="48" selection-start-column="58" selection-end-line="48" selection-end-column="58" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1543196353435" expanded="true" signature="418:451" ph="..." />
+            <marker date="1543196353435" expanded="true" signature="901:936" ph="..." />
+            <marker date="1543196353435" expanded="true" signature="1072:1110" ph="..." />
+            <marker date="1543196353435" expanded="true" signature="1369:1411" ph="..." />
+            <marker date="1543196353435" expanded="true" signature="1507:1543" ph="..." />
+            <marker date="1543196353435" expanded="true" signature="1571:1606" ph="..." />
+            <marker date="1543196353435" expanded="true" signature="1689:1733" ph="..." />
+            <marker date="1543196353435" expanded="true" signature="1841:1890" ph="..." />
+            <marker date="1543196353435" expanded="true" signature="2063:2101" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
