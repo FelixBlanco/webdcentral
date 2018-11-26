@@ -3,40 +3,48 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+
+export interface GaleryProduct {
+    idGaleriaHomeProducto;
+    titulo;
+    imagen;
+    set_imagen:String;
+    created_at;
+    updated_at;
+    deleted_at;
+    fk_idStatusSistema;
+    statu: Status;
+  }
+  
+  export interface Status {
+    idStatusSistema;
+    descripcion;
+    created_a;
+    updated_at;
+    deleted_at;
+  }
 @Injectable({
     providedIn: 'root'
 })
 export class GaleryProductService {
 
-    httpOptions;
-    constructor(private http: HttpClient) {
-        this.httpOptions = {
-            headers: new HttpHeaders({
-                'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
-            }),
-            observe: 'response'
-        };
-    }
+    httpOptions: HttpHeaders = new HttpHeaders({
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+    });
+    constructor(private http: HttpClient) {}
 
-    getAll(body?: any): Observable<HttpResponse<any>> {
-        // console.log(""+ localStorage.getItem('access_token'))
-        return this.http.get<any>(`${environment.apiHost}/api/v1/getGaleria/producto`, this.httpOptions) as Observable<HttpResponse<any>>;
+    getAll(): Observable<HttpResponse<{galeria: GaleryProduct[]}>> {
+        return this.http.get<{galeria: GaleryProduct[]}>(`${environment.apiHost}/api/v1/getGaleria/producto`, {headers: this.httpOptions, observe: 'response'});
     }
-
-    getById(id: number): Observable<HttpResponse<any>> {
-        return this.http.post<any>(`${environment.apiHost}/api/v1/getGaleria/${id}`, this.httpOptions) as Observable<HttpResponse<any>>;
-    }
-
+    
     persist(body: any): Observable<HttpResponse<any>> {
-        console.log(body);
-        return this.http.post<any>(`${environment.apiHost}/api/auth/crearGaleriaHomeProd`, body, this.httpOptions) as Observable<HttpResponse<any>>;
+        return this.http.post<any>(`${environment.apiHost}/api/auth/crearGaleriaHomeProd`, body, {headers: this.httpOptions, observe: 'response'});
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
-        console.log("Delete ID:" + id)
-        return this.http.delete<any>(`${environment.apiHost}/api/auth/borrraGaleriaHomeProd/${id}`, this.httpOptions) as Observable<HttpResponse<any>>;
+        return this.http.delete<any>(`${environment.apiHost}/api/auth/borrraGaleriaHomeProd/${id}`, {headers: this.httpOptions, observe: 'response'});
     }
 
 }

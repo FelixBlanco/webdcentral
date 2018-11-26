@@ -171,7 +171,7 @@ export class GaleriaHomeComponent implements OnInit {
         const val = event.target.value.toLowerCase();
     
         const temp = this.galeriaList.filter(function(d) {
-          return (d.titlulo.toLowerCase().indexOf(val) !== -1 || !val) 
+          return (d.titulo.toLowerCase().indexOf(val) !== -1 || !val) 
           || (d.nameProducto.toLowerCase().indexOf(val) !== -1 || !val);
         });
     

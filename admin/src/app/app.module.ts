@@ -76,7 +76,7 @@ import { LocalesAdheridosComponent } from './component/locales-adheridos/locales
     DestacadosComponent,
     ConfigRedesComponent,
     SuscripcionComponent,
-    LocalesAdheridosComponent
+    LocalesAdheridosComponent,
     SuscripcionComponent,
     GaleryProductComponent
   ],

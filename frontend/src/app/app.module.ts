@@ -54,7 +54,6 @@ import { ProductosCarouselPageComponent } from './component/productos/productos-
 import { PerfilClienteComponent } from './component/perfil-cliente/perfil-cliente.component';
 import { DepositoGuard } from './services/auth-guard.service';
 import { RubrosFilterComponent } from './component/rubros-filter/rubros-filter.component';
-import { GaleryProductComponent } from './component/galery-product/galery-product.component';
 import { EnviosPageComponent } from './component/envios-page/envios-page.component';
 
 const appRoutes: Routes = [
@@ -67,7 +66,6 @@ const appRoutes: Routes = [
   { path: 'servicios', component: ServiciosInicioComponent },
   { path: 'productos', component: ProductosComponent },
   { path: 'perfil-cliente', component: PerfilClienteComponent },
-  { path: 'galery-product', component: GaleryProductComponent },
   { path: 'envios', component: EnviosPageComponent },
   
   { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
@@ -113,7 +111,6 @@ const appRoutes: Routes = [
     ProductosCarouselPageComponent,
     PerfilClienteComponent,
     RubrosFilterComponent,
-    GaleryProductComponent,
     EnviosPageComponent
   ],
   imports: [

@@ -36,7 +36,8 @@ const routes: Routes = [
   { path: 'destacados', component: DestacadosComponent},
   { path: 'preguntas-frecuentes', component: PreguntasFrecuentesComponent},
   { path: 'config-redes', component: ConfigRedesComponent },
-  { path: 'suscriptores', component: SuscripcionComponent }
+  { path: 'suscriptores', component: SuscripcionComponent },
+  { path: 'galery-product', component: GaleryProductComponent }
 ];
 
 @NgModule({

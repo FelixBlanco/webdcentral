@@ -1,35 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { GaleryProductService } from 'src/app/services/galery-product.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { GaleryProductService, GaleryProduct } from 'src/app/services/galery-product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alerts.service';
 
+declare var $:any;
 
-export interface GaleryProduct {
-  idGaleriaHomeProducto;
-  titulo;
-  imagen;
-  set_imagen:String;
-  created_at;
-  updated_at;
-  deleted_at;
-  fk_idStatusSistema;
-  statu: Status;
-}
-
-export interface Status {
-  idStatusSistema;
-  descripcion;
-  created_a;
-  updated_at;
-  deleted_at;
-}
-
-class ImageSnippet {
-  pending: boolean = false;
-  status: string = 'init';
-
-  constructor(public src: string, public file: File) { }
-}
 
 @Component({
   selector: 'app-galery-product',
@@ -37,146 +12,164 @@ class ImageSnippet {
   styleUrls: ['./galery-product.component.css']
 })
 export class GaleryProductComponent implements OnInit {
-  @ViewChild('table') table;
-  galeryList: Array<GaleryProduct>;
-  rows: Array<GaleryProduct>;
-  columns: any;
-  galeryForm: FormGroup;
-  galeryUpdateForm: FormGroup;
+  
+  @ViewChild('table') table: any;
+  @ViewChild('image') image: ElementRef;
+
   limit: number = 5;
-  galeryProduct: GaleryProduct;
-  selectedFile: File;
-  selectedImg: ImageSnippet;
-  imgUrl: String;
-  imgTittle: String;
 
+  columns: any = [
+    { prop: 'titulo' },
+    { prop: 'set_imagen'},
+    { prop: 'fk_idStatusSistema'},
+    { prop: 'opts'}
+  ];
 
-  constructor
-    (private galeryService: GaleryProductService,
-    private fb: FormBuilder,
-    private ts: AlertsService) {
-    this.galeryForm = this.fb.group({
-      tittle: ['', Validators.required],//Agregar validators
-      imgFile: ['', Validators.required]//Agregar Validators
-    });
+  rows: any;
 
-    this.galeryUpdateForm = this.fb.group({
-      tittle: ['', Validators.required],//Agregar validators
-      imgFile: ['', Validators.required]//Agregar Validators
-    });
+  newForm: FormGroup;
+  galeriaSet: GaleryProduct;
 
-    this.list();
+  inPromise: boolean;
+  imgLoaded: File;
 
-    this.columns = [
-      { prop: 'id' },
-      { prop: 'tittle' },
-      { prop: 'imagen' },
-      { prop: 'set_imagen' },
-      { prop: 'fk_idStatusSistema' },
-      { prop: 'opts' }
-    ];
-  }
+  galeriaList: GaleryProduct[] = [];
+
+  constructor(
+      private galeriaProductoService: GaleryProductService,
+      private as: AlertsService,
+      private fb: FormBuilder
+  ) { }
 
   ngOnInit() {
+      this.getAll();
 
-  }
-
-  onFileChanged(ImageInput: any) {
-    this.selectedFile = ImageInput.files[0];
-    var reader = new FileReader();
-    reader.addEventListener('load', (event: any) => {
-
-      this.selectedImg = new ImageSnippet(event.target.result, this.selectedFile);
-
-      this.selectedImg.pending = false;
-      this.selectedImg.status = 'ok';
-    });
-    reader.readAsDataURL(this.selectedFile);
-  }
-
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
-
-    const temp = this.galeryList.filter(function (d) {
-      return (d.titulo.toLowerCase().indexOf(val) !== -1 || !val);
-    });
-
-    this.rows = temp;
-    this.table.offset = 0;//Requerido
-  }
-
-  list() {
-    this.galeryService.getAll(null).subscribe((resp) => {
-
-      if (resp.ok && resp.status === 201) {
-
-        this.galeryList = resp.body.galeria as Array<GaleryProduct>;
-        this.rows = [...this.galeryList];
-      } else {
-        this.ts.listError("Ha ocurrido un error interno");
-      }
-    }, (error) => {
-      this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
-    });
-  }
-  save() {
-    if (this.galeryForm.invalid) {
-      return;
-    }
-
-    const val = this.galeryForm.value;
-    this.galeryService.persist({ titulo: val.tittle, imagen: this.selectedFile }).subscribe((resp) => {
-      if (resp.ok && resp.status === 201) {
-        this.galeryForm.get('tittle').setValue('');
-        this.galeryForm.get('imgFile').setValue('');
-        this.list();
-        this.ts.Success("El registro se ha guardado con éxito");
-      } else {
-        this.ts.listError(`Ha ocurrido un error interno`);
-      }
-    }, (error) => {
-      this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
-    })
-  }
-
-  delete() {
-    this.galeryService.delete(this.galeryProduct.idGaleriaHomeProducto)
-      .subscribe((resp) => {
-        if (resp.ok && resp.status === 200) {
-          this.ts.Success("Se ha eliminado el registro");
-          this.list();
-        } else {
-          this.ts.listError(`Ha ocurrido un error interno`);
-        }
-      }, (error) => {
-        this.ts.listError(`Error: ${error.status} - ${error.statusText}`);
+      this.newForm = this.fb.group({
+          titulo: ['', Validators.required],
+          imagen: ['', Validators.required]
       });
   }
 
-  set({ idGaleriaHomeProducto, titulo, imagen, set_imagen, fk_idStatusSistema
-  }) {
-    this.galeryProduct = {
-      idGaleriaHomeProducto: idGaleriaHomeProducto,
-      titulo: titulo,
-      imagen: imagen,
-      set_imagen: set_imagen,
-      statu: null,
-      created_at: null,
-      updated_at:null,
-      deleted_at: null,
-      fk_idStatusSistema: fk_idStatusSistema
-    }
-    
-    this.imgUrl = set_imagen;
-    this.imgTittle = titulo;
-    console.log("URL: " + this.imgUrl);
-    console.log("Tittle: " + this.imgTittle);
-    this.galeryUpdateForm.get('tittle').setValue(titulo);
-    this.galeryUpdateForm.get('imgFile').setValue(imagen);
+
+  getAll() {
+      this.galeriaProductoService.getAll().subscribe((resp) => {
+            if(resp.ok){
+              this.galeriaList = resp.body.galeria;
+              this.rows = [...this.galeriaList];
+            }              
+          }
+      )
   }
 
-  rowClass() {
-    return 'text-capitalize';
+
+
+  save() {
+      const values = this.newForm.value;
+
+      let toSend: FormData = new FormData(); 
+      toSend.append('titulo', values.titulo);
+      toSend.append('imagen', this.imgLoaded, new Date().toJSON());
+
+      this.inPromise = true;
+      this.galeriaProductoService.persist(toSend).subscribe(
+          (resp) => {
+            if(resp.ok && resp.status === 201){
+              this.as.msg("OK", "Éxito", "Se ha guardado el registro");
+              this.newForm.reset();
+              this.image.nativeElement.value = '';
+              $('#nuevo').modal('hide');
+            }else{
+              console.error(resp);
+              this.as.msg("OK", "Error", "Ha ocurrido un error interno");
+            }
+            this.getAll();
+            this.inPromise = false;
+          },
+          error => {
+            this.getAll();
+            this.inPromise = false;
+            console.log(error);
+            this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
+          }
+      )
+  }
+
+  delete() {
+      this.inPromise = true;
+      this.galeriaProductoService.delete(this.galeriaSet.idGaleriaHomeProducto).subscribe(
+          resp => {
+            console.log(resp);
+            if(resp.ok && resp.status === 200){
+              $('#eliminar').modal('hide');
+              this.as.msg('OK','Éxito' ,'Se elimino correctamente');
+              
+            }else{
+              console.error(resp);
+              this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+            }
+            this.getAll();
+            this.inPromise = false;
+          },
+          error => {
+              console.error(error);
+              this.inPromise = false;
+              this.getAll();
+              this.as.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+          }
+      )
+  }
+
+  updateStatus(){
+    //TODO
+  }
+
+  onFileChange(event) {
+      if(event.target.files && event.target.files.length) {
+        const fileTo: File = event.target.files[0];
+  
+        if(!fileTo.type.includes('image/png') 
+          && !fileTo.type.includes('image/jpg') 
+          && !fileTo.type.includes('image/jpeg') ){
+            this.as.msg('ERR','Error:', 'El archivo no es admitido o no es una imagen');
+            this.newForm.patchValue({
+              imagen: null
+            });
+            return;
+        }
+  
+        if(fileTo.size > 5000000){
+          this.as.msg('ERR','Error:', 'El archivo es muy pesado');
+            this.newForm.patchValue({
+              imagen: null
+            });
+            return;
+        }
+  
+        this.imgLoaded = fileTo;
+        this.newForm.patchValue({
+          imagen: fileTo
+        });
+      }
+  }
+
+  updateFilter(event){
+      const val = event.target.value.toLowerCase();
+  
+      const temp = this.galeriaList.filter(function(d) {
+        return (d.titulo.toLowerCase().indexOf(val) !== -1 || !val)
+      });
+  
+      this.rows = temp;
+      this.table.offset = 0;//Requerido*/
+  }
+
+  showImage(row: any){
+      this.galeriaSet = row;
+      $('#imagen').modal('toggle');
+  }
+
+  set(row: any){
+      this.galeriaSet = row;
   }
 
 }
