@@ -164,6 +164,8 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('getGaleria/producto', 'GaleriaHomeProductoController@listar');
     Route::get('getGaleria/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@listarPorId');
 
+    Route::put('cambiarStatusGaleria/idGaleriaHomeProducto','GaleriaHomeProductoController@cambiarStatus');
+
     /* con esta ruta se busca y retorna la imagen del slider Slides*/
     Route::get('getSlides/imagen/{imagen}', 'SlideController@getSlideImage');
 
@@ -327,6 +329,15 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // Tipos de Facturas 
     Route::get('tipo-facturas','tipoDeFacturaController@getTipoFacturas');
+
+
+    /*PARA LAS CATEGORIAS DEL BLOG*/
+
+    Route::post('addCatBlog','BlogCategoriaController@add');
+    Route::post('editCatBlog/{idBlogCategoria}','BlogCategoriaController@edit');
+    Route::delete('borrarCatBlog/{idBlogCategoria}','BlogCategoriaController@borrar');
+    Route::get('listarCatBlog','BlogCategoriaController@listar');
+    Route::get('listarPorIdCatBlog/{idBlogCategoria}','BlogCategoriaController@listar');
 });
 
 

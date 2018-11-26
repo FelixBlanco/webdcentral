@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Blog' => $baseDir . '/app/Blog.php',
+    'App\\BlogCategoria' => $baseDir . '/app/BlogCategoria.php',
     'App\\CarritoCompra' => $baseDir . '/app/CarritoCompra.php',
     'App\\Chage_user' => $baseDir . '/app/Chage_user.php',
     'App\\Clasificado' => $baseDir . '/app/Clasificado.php',
@@ -26,6 +28,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
+    'App\\Http\\Controllers\\BlogController' => $baseDir . '/app/Http/Controllers/BlogController.php',
     'App\\Http\\Controllers\\CarritoCompraController' => $baseDir . '/app/Http/Controllers/CarritoCompraController.php',
     'App\\Http\\Controllers\\ClasificadoController' => $baseDir . '/app/Http/Controllers/ClasificadoController.php',
     'App\\Http\\Controllers\\ColorController' => $baseDir . '/app/Http/Controllers/ColorController.php',
@@ -2057,6 +2060,7 @@ return array(
     'Intervention\\Image\\Size' => $vendorDir . '/intervention/image/src/Intervention/Image/Size.php',
     'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => $vendorDir . '/jakub-onderka/php-console-color/src/ConsoleColor.php',
     'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => $vendorDir . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
+    'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => $vendorDir . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
     'JsonSerializable' => $vendorDir . '/nesbot/carbon/src/JsonSerializable.php',
     'Laravel\\Passport\\ApiTokenCookieFactory' => $vendorDir . '/laravel/passport/src/ApiTokenCookieFactory.php',
     'Laravel\\Passport\\AuthCode' => $vendorDir . '/laravel/passport/src/AuthCode.php',
@@ -3218,6 +3222,7 @@ return array(
     'Psr\\Log\\NullLogger' => $vendorDir . '/psr/log/Psr/Log/NullLogger.php',
     'Psr\\Log\\Test\\DummyTest' => $vendorDir . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
     'Psr\\Log\\Test\\LoggerInterfaceTest' => $vendorDir . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+    'Psr\\Log\\Test\\TestLogger' => $vendorDir . '/psr/log/Psr/Log/Test/TestLogger.php',
     'Psr\\SimpleCache\\CacheException' => $vendorDir . '/psr/simple-cache/src/CacheException.php',
     'Psr\\SimpleCache\\CacheInterface' => $vendorDir . '/psr/simple-cache/src/CacheInterface.php',
     'Psr\\SimpleCache\\InvalidArgumentException' => $vendorDir . '/psr/simple-cache/src/InvalidArgumentException.php',
