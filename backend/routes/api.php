@@ -142,6 +142,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     /*Listar suscriciones canceladas*/
     Route::get('listarSuscripcionesCanceladas', 'SuscripcionController@listarSuscripcionesCanceladas');
 
+    /* buscar si un email esta suscrito*/
+    Route::get('buscarSuscripcionPorEmail/{email}','SuscripcionController@buscarSuscripcionPorEmail');
+
     /*para las ofertas*/
     Route::resource('ofertas', 'OfertaController');
 
