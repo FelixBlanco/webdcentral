@@ -70,10 +70,12 @@ export class EnviosInicioComponent implements OnInit {
 
   getData(){
     this.footerConfigService._getConfigFooter().subscribe(
-      (resp:any) => {        
-        this.configData = resp;
-        this.lat = Number(this.configData.latitud);
-        this.lng = Number(this.configData.longitud);
+      (resp:any) => {   
+        if(resp){
+          this.configData = resp;
+          this.lat = Number(this.configData.latitud);
+          this.lng = Number(this.configData.longitud);
+        }     
       }
     )      
   }
