@@ -41,6 +41,7 @@ import { DestacadosComponent } from './component/destacados/destacados.component
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ConfigRedesComponent } from './component/config-redes/config-redes.component';
 import { SuscripcionComponent } from './component/suscripcion/suscripcion.component';
+import { GaleryProductComponent } from './component/galery-product/galery-product.component';
 import { LocalesAdheridosComponent } from './component/locales-adheridos/locales-adheridos.component';
 
 
@@ -80,6 +81,8 @@ import { LocalesAdheridosComponent } from './component/locales-adheridos/locales
     ConfigRedesComponent,
     SuscripcionComponent,
     LocalesAdheridosComponent
+    SuscripcionComponent,
+    GaleryProductComponent
   ],
   imports: [
     BrowserModule,
