@@ -105,6 +105,8 @@ Route::group(['prefix' => 'auth'], function () {
         Route::post('addTurno', 'TurnoController@add');
         Route::post('editTurno/{idTurnos}', 'TurnoController@update');
         /*TURNOS*/
+
+        Route::put('cambiarStatusGaleria/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@cambiarStatus');
     });
 });
 
@@ -140,6 +142,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     /*Listar suscriciones canceladas*/
     Route::get('listarSuscripcionesCanceladas', 'SuscripcionController@listarSuscripcionesCanceladas');
 
+    /* buscar si un email esta suscrito*/
+    Route::get('buscarSuscripcionPorEmail/{email}','SuscripcionController@buscarSuscripcionPorEmail');
+
     /*para las ofertas*/
     Route::resource('ofertas', 'OfertaController');
 
@@ -149,7 +154,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     Route::get('getGaleria/producto', 'GaleriaHomeProductoController@listar');
     Route::get('getGaleria/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@listarPorId');
 
-    Route::put('cambiarStatusGaleria/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@cambiarStatus');
 
     /* con esta ruta se busca y retorna la imagen del slider Slides*/
     Route::get('getSlides/imagen/{imagen}', 'SlideController@getSlideImage');
