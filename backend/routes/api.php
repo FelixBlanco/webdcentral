@@ -319,6 +319,15 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // Status Sistema 
     Route::get('status-sistema', 'StatusSistemaController@index');
+
+
+    /*PARA LAS CATEGORIAS DEL BLOG*/
+
+    Route::post('addCatBlog','BlogCategoriaController@add');
+    Route::post('editCatBlog/{idBlogCategoria}','BlogCategoriaController@edit');
+    Route::delete('borrarCatBlog/{idBlogCategoria}','BlogCategoriaController@borrar');
+    Route::get('listarCatBlog','BlogCategoriaController@listar');
+    Route::get('listarPorIdCatBlog/{idBlogCategoria}','BlogCategoriaController@listar');
 });
 
 
