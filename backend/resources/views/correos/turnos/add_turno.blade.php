@@ -6,6 +6,7 @@
     <title>Añadió un turno</title>
 </head>
 <body>
+<p>Creación de turno exitosamente</p>
 <p>Id del turno: {{$turno->idTurnos}} </p>
 <p>Fecha y hora del turno: {{$turno->fechaHora}} </p>
 

@@ -16,7 +16,7 @@ class turno extends Model
         'fk_idClasificado',
         'fk_idLocalAdherido',
         'fechaHora',
-        'status',
+        'fk_idStatusTurnos',
         'fk_idUser',
     ];
 
@@ -28,6 +28,11 @@ class turno extends Model
     public function localAdherido()
     {
         return $this->belongsTo('App\LocalesAdherido', 'fk_idLocalAdherido');
+    }
+
+    public function statusTurno()
+    {
+        return $this->belongsTo('App\StatusTurno', 'fk_idStatusTurnos');
     }
 
     public function user()

@@ -17,7 +17,7 @@ class CreateTurnosTable extends Migration
             $table->increments('idTurnos');
             $table->integer('fk_idClasificado')->unsigned()->nullable();
             $table->integer('fk_idLocalAdherido')->unsigned()->nullable();
-            $table->dateTime('fecha')->nullable();
+            $table->dateTime('fechaHora')->nullable();
             $table->integer('fk_idStatusTurnos')->nullable();
             $table->integer('fk_idUser')->unsigned()->nullable();
 

@@ -50,10 +50,10 @@ class TurnoController extends Controller {
                 'msj'   => 'Turno Creado',
                 'turno' => $turno,
             ];
-            DB::commit();
+
 
             Mail::to(Auth::user()->email)->send(new TurnosMail($turno));
-
+            DB::commit();
 
             return response()->json($response, 201);
         } catch (\Exception $e) {
@@ -68,6 +68,14 @@ class TurnoController extends Controller {
     }
 
     public function update(Request $request, $idTurnos) {
+
+        if ($request->all() == []) {
+            $response = [
+                'msj' => 'debe enviar algún parametro para actualizar',
+            ];
+
+            return response()->json($response, 404);
+        }
         DB::beginTransaction();
 
         try {

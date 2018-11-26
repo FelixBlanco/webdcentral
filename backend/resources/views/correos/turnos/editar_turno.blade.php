@@ -6,6 +6,7 @@
     <title>Edito un turno</title>
 </head>
 <body>
+<p>Edito un turno</p>
 <p>Id del turno: {{$turno->idTurnos}} </p>
 <p>Fecha y hora del turno: {{$turno->fechaHora}} </p>
 
