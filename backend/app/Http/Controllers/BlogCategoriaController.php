@@ -13,10 +13,8 @@ class BlogCategoriaController extends Controller {
 
         $this->validate($request, [
             'titulo' => 'required',
-
         ], [
             'titulo.required' => 'El título es requerido',
-
         ]);
 
         DB::beginTransaction();
@@ -32,7 +30,6 @@ class BlogCategoriaController extends Controller {
                 'categoria' => $CategoriaBlog,
             ];
             DB::commit();
-
 
             return response()->json($response, 201);
         } catch (\Exception $e) {
