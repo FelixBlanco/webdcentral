@@ -2,7 +2,7 @@
 <html lang = "en">
 <head>
     <meta charset = "UTF-8">
-    <title>Email</title>
+    <title>Info</title>
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity = "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin = "anonymous">
     <style>
         @font-face {
@@ -31,17 +31,6 @@
     </style>
 </head>
 
-@php
-
-    $titulo = "TITULO DEL EMAIL _____________________________________ ";
-    $descripcion = "
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis distinctio omnis reprehenderit hic, quaerat ducimus temporibus sint molestiae veniam quam, repudiandae perferendis modi eveniet nesciunt doloremque quos libero qui fugit.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis distinctio omnis reprehenderit hic, quaerat ducimus temporibus sint molestiae veniam quam, repudiandae perferendis modi eveniet nesciunt doloremque quos libero qui fugit.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis distinctio omnis reprehenderit hic, quaerat ducimus temporibus sint molestiae veniam quam, repudiandae perferendis modi eveniet nesciunt doloremque quos libero qui fugit.</p>";
-@endphp
-
 <body class = "cuerpo" style = "background-image: url( {{asset('img/cuerpo-email/FONDO.png')}} )">
 <div class = "container-fluid">
     <div class = "row">
@@ -53,10 +42,18 @@
     <div class = "row justify-content-center" style = "padding-bottom: 2%">
         <div class = "col-md-10">
             <div class = "titulo">
-                <h2 class = "pb-5" style = "color:#E97604; "> {{ $titulo }}</h2>
+                <h2 class = "pb-5" style = "color:#E97604; "> {{ "Creación de turno nº: ".$turno->idTurnos}}</h2>
             </div>
             <div class = "cuerpo-descripcion">
-                {{ $descripcion }}
+
+                <p>{{ 'fecha y hora: '.$turno->fechaHora }}</p>
+                <p>{{ 'usuario: '.$turno->user->userName}}</p>
+                @if(!is_null($turno->clasificado))
+                    <p>{{ 'clasificado: '.$turno->clasificado->titulo}}</p>
+                @endif
+                @if(!is_null($turno->localAdherido))
+                    <p>{{ 'Local Adherido: '.$turno->localAdherido->nombre}}</p>
+                @endif
             </div>
         </div>
     </div>

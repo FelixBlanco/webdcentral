@@ -95,7 +95,6 @@ class ServiciosAddController extends Controller {
 
         try {
 
-
             $o = serviciosAdd::findOrFail($idServiciosAdd);
             $o->delete();
 

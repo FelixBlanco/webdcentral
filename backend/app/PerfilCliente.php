@@ -23,6 +23,12 @@ class PerfilCliente extends Model
         'telefono',
         'celular',
         'fk_idPerfilCliente',
+
+        'domicilio_entrega',
+        'fk_idTipoFactura', //opcional
+        'CUIT',             //opcional
+        'CUITrazonSocial',  //opcional
+        'CUITDomicilioFidcal', //opcional
     ];
 
     public function user()

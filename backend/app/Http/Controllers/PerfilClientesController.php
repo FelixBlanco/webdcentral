@@ -8,10 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class PerfilClientesController extends Controller
-{
-    public function store(Request $request)
-    {
+class PerfilClientesController extends Controller {
+    public function store(Request $request) {
 
         $this->validate($request, [
             'nombreComercio'     => 'required',
@@ -24,6 +22,13 @@ class PerfilClientesController extends Controller
             'celular'            => 'required',
             'fk_idPerfilCliente' => 'required',
 
+            'domicilio_entrega'   => 'required',
+            'fk_idTipoFactura'    => 'required',
+            'CUIT'                => 'required',
+            'CUITrazonSocial'     => 'required',
+            'CUITDomicilioFidcal' => 'required',
+
+
         ], [
             'nombreComercio.required'     => 'El campo es requerido',
             'nombre.required'             => 'El campo es requerido',
@@ -34,6 +39,14 @@ class PerfilClientesController extends Controller
             'telefono.required'           => 'El campo es requerido',
             'celular.required'            => 'El campo es requerido',
             'fk_idPerfilCliente.required' => 'El campo es requerido',
+
+            'domicilio_entrega.required'   => 'El campo es requerido',
+            'fk_idTipoFactura.required'    => 'El campo es requerido',
+            'CUIT.required'                => 'El campo es requerido',
+            'CUITrazonSocial.required'     => 'El campo es requerido',
+            'CUITDomicilioFidcal.required' => 'El campo es requerido',
+
+
         ]);
 
         DB::beginTransaction();
@@ -72,8 +85,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function update(Request $request, $idPerfilCliente)
-    {
+    public function update(Request $request, $idPerfilCliente) {
 
         DB::beginTransaction();
 
@@ -110,8 +122,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function destroy($idPerfilCliente)
-    {
+    public function destroy($idPerfilCliente) {
 
         DB::beginTransaction();
 
@@ -145,8 +156,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function listar()
-    {
+    public function listar() {
         $perfil_cliente = PerfilCliente::with('user')->get();
 
         $response = [
@@ -157,20 +167,19 @@ class PerfilClientesController extends Controller
         return response()->json($response, 201);
     }
 
-    public function getPerfil($id)
-    {
-        $perfil_cliente = PerfilCliente::where('fk_idPerfilCliente',$id)->first();
-       
-       if (is_null($perfil_cliente)) {               
-            return null; 
-       }else{
+    public function getPerfil($id) {
+        $perfil_cliente = PerfilCliente::where('fk_idPerfilCliente', $id)->first();
+
+        if (is_null($perfil_cliente)) {
+            return null;
+        } else {
             $response = [
-                'msj'      => 'Perfiles',
+                'msj'    => 'Perfiles',
                 'perfil' => $perfil_cliente,
             ];
 
-            return response()->json($response, 201);        
-       }
+            return response()->json($response, 201);
+        }
 
     }
 }

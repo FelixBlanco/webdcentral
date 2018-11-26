@@ -32,13 +32,13 @@ export class LocalesAdheridosService {
     return this.http.post(environment.apiHost + '/api/auth/guardarLocalAdherido',data,httpOptions);
   }
 
-  _upgradeLocal(id:number,data:any){
-    return this.http.post(environment.apiHost + '/api/auth/editarLocalAdheridos/'+id,data,httpOptions);
+  _upgradeLocal(id:number,data:any){ console.log(data)
+    return this.http.put(environment.apiHost + '/api/auth/editarLocalAdheridos/'+id,data,httpOptions);
   }
 
   
   _deleteLocal(id:number){
-    return this.http.delete(environment.apiHost + '/api/auth/editarLocalAdheridos/'+id,httpOptions);
+    return this.http.delete(environment.apiHost + '/api/auth/borrarLocalAdheridos/'+id,httpOptions);
   }
 
 }
