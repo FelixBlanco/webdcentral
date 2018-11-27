@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Clasificado;
+use App\StatusSistema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -104,7 +105,9 @@ class ClasificadoController extends Controller
         }
 
         $clasificados->each(function ($clasificados) {
+            $status = StatusSistema::find($clasificados->fk_idStatusSistema);
             $clasificados->foto = asset('storage/Clasificados/'.$clasificados->foto);
+            $clasificados->status_sistema = $status->descripcion;
         });
 
         $response = [
@@ -125,6 +128,9 @@ class ClasificadoController extends Controller
                 $clasificados->set_imagen = asset('storage/Clasificados/'.$clasificados->foto);
             });
         }
+
+        $status = StatusSistema::find($clasificados->fk_idStatusSistema);
+        $clasificados->nameStatusSistema = $status->descripcion;
 
         $response = [
             'msj'         => 'Lista clasificados',

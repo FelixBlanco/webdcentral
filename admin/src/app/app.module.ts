@@ -41,6 +41,7 @@ import { ConfigRedesComponent } from './component/config-redes/config-redes.comp
 import { SuscripcionComponent } from './component/suscripcion/suscripcion.component';
 import { GaleryProductComponent } from './component/galery-product/galery-product.component';
 import { LocalesAdheridosComponent } from './component/locales-adheridos/locales-adheridos.component';
+import { ClasificadosComponent } from './component/clasificados/clasificados.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { LocalesAdheridosComponent } from './component/locales-adheridos/locales
     SuscripcionComponent,
     LocalesAdheridosComponent,
     SuscripcionComponent,
-    GaleryProductComponent
+    GaleryProductComponent,
+    ClasificadosComponent
   ],
   imports: [
     BrowserModule,
