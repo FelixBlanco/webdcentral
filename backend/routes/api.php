@@ -107,6 +107,13 @@ Route::group(['prefix' => 'auth'], function () {
         /*TURNOS*/
 
         Route::put('cambiarStatusGaleria/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@cambiarStatus');
+
+        /*BLOG */
+        Route::post('addBlog', 'BlogController@add');
+        Route::post('editBlog/{idBlogCategoria}', 'BlogController@edit');
+        Route::delete('borrarBlog/{idBlogCategoria}', 'BlogController@borrar');
+        Route::get('listarBlog', 'BlogController@listar');
+        Route::get('listarPorIdBlog/{idBlogCategoria}', 'BlogController@buscarIdBlogCategoria');
     });
 });
 
@@ -317,7 +324,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     Route::post('editCatBlog/{idBlogCategoria}', 'BlogCategoriaController@edit');
     Route::delete('borrarCatBlog/{idBlogCategoria}', 'BlogCategoriaController@borrar');
     Route::get('listarCatBlog', 'BlogCategoriaController@listar');
-    Route::get('listarPorIdCatBlog/{idBlogCategoria}', 'BlogCategoriaController@listar');
+    Route::get('listarPorIdCatBlog/{idBlogCategoria}', 'BlogCategoriaController@buscarIdBlogCategoria');
+
+
 
 });
 
