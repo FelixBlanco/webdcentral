@@ -74,6 +74,10 @@ class ConfigFooterController extends Controller {
             $d->colectivos = $request->colectivos;
             $d->avenidas   = $request->avenidas;
 
+            $d->desde             = $request->desde;
+            $d->hasta             = $request->hasta;
+            $d->url_mercado_libre = $request->url_mercado_libre;
+
 
             if (! is_null($request->listaPrecio)) {
 
