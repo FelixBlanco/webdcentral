@@ -15,3 +15,7 @@ button{
     height: 20px;
     line-height: 0;
 }
+
+.card{
+    background-color: #f1f1f1;
+}

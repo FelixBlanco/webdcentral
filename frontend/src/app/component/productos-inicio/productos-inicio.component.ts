@@ -48,6 +48,17 @@ export class ProductosInicioComponent implements OnInit {
       return;
     }
 
+    let aux: GaleryProduct[] = [];
+
+    //Para tener solo los items que tienen estatus activo
+    this.galeryList.forEach(val => {
+      if(val.fk_idStatusSistema === 1){
+        aux.push(val);
+      }
+    });
+
+    this.galeryList =  [...aux];
+
     this.carouselItems = [];
     let index: number = 1;
     this.galeryList.forEach((val, i) => {

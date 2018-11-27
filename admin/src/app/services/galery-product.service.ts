@@ -43,6 +43,10 @@ export class GaleryProductService {
         return this.http.post<any>(`${environment.apiHost}/api/auth/crearGaleriaHomeProd`, body, {headers: this.httpOptions, observe: 'response'});
     }
 
+    updateStatus(id: number,status: number): Observable<HttpResponse<any>> {
+        return this.http.put<any>(`${environment.apiHost}/api/auth/cambiarStatusGaleria/${id}`, { fk_idStatusSistema:status}, {headers: this.httpOptions, observe: 'response'});
+    }
+
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${environment.apiHost}/api/auth/borrraGaleriaHomeProd/${id}`, {headers: this.httpOptions, observe: 'response'});
     }

@@ -9,7 +9,7 @@
 						<div class="container">
 							<div class="row m-3">
 								<div class="col">
-									<div class="car}d">
+									<div class="card">
 										<p class="card-body font-italic text-center text-muted">No existen slides para mostrar...</p>
 									</div>
 								</div>
@@ -22,7 +22,7 @@
 								<ng-template ngbSlide [id]="item.id">
                   <div class="container-fluid">
                     <div class="row justify-content-center">
-                      <div class="col-3" *ngFor="let _ of item.items">
+                      <div class="col-3 text-center" *ngFor="let _ of item.items">
                         <img [src]="_.set_imagen" alt="_.titulo" height="200" width="200">
                       </div>
                     </div>

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import {AlertsService} from '../../services/alerts.service';
 import {Router, ActivatedRoute} from '@angular/router';
-import { UserTokenService } from 'src/app/services/user-token.service';
+import { UserTokenService, UserData } from 'src/app/services/user-token.service';
 
 declare var $: any;
 
@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private _loginService: LoginService,
         private _alertService: AlertsService,
-        private userToken: UserTokenService
+        private userToken: UserTokenService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -34,12 +35,14 @@ export class LoginComponent implements OnInit {
         const data: any = {email: this.email, password: this.password};
         this._loginService.ingresarLogin(data).subscribe(
             (resp: any) => {
-                console.log(resp);
                 const token = resp.access_token
                 localStorage.setItem('access_token', token);
             
-                this._loginService._getAuthUser().subscribe((resp: any) => {
+                this._loginService._getAuthUser().subscribe((resp: UserData) => {
+                    console.log(resp);
                     localStorage.setItem('user_data', JSON.stringify(resp));
+
+                    this.validateSuscription(resp.email);
 
                     this.userToken.updateUserToken(token);
                     this.userToken.updateUserData(resp);
@@ -67,7 +70,25 @@ export class LoginComponent implements OnInit {
                 }
             }
         );
+    }
 
+    validateSuscription(email: string){
+        this._loginService.buscarSuscripcionBy(email).subscribe((resp) => {
+            if(resp.ok && resp.status === 200){
+                if(!resp.body.count){
+                    this.router.navigate(['/']);
+                    this._alertService.msg('INFO', 'Info', 'Te recomendamos que te suscribas a nuestras novedades');
+                    setTimeout(()=> document.getElementById('novedades').scrollIntoView({behavior: 'smooth'}),1000);
+                }
+            }else{
+                console.error(resp);
+                this._alertService.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+
+            }
+        },error => {
+            console.error(error);
+            this._alertService.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+        })
 
     }
 

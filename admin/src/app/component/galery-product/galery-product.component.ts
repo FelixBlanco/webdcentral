@@ -120,7 +120,26 @@ export class GaleryProductComponent implements OnInit {
   }
 
   updateStatus(){
-    //TODO
+    this.inPromise = true;
+
+    const status: number =  this.galeriaSet.fk_idStatusSistema === 1 ? 0: 1;
+
+    this.galeriaProductoService.updateStatus(this.galeriaSet.idGaleriaHomeProducto, status).subscribe(
+      resp => {
+        if(resp.ok && resp.status === 201){
+          $('#estatus').modal('hide');
+          this.as.msg('OK', 'Éxito', 'Se ha actualizado el estatus');
+        }else{
+          console.error(resp);
+          this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+        }
+        this.getAll();
+        this.inPromise = false;
+      },error => {
+        this.inPromise = false;
+        console.error(error);
+        this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+      });
   }
 
   onFileChange(event) {
