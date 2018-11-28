@@ -456,6 +456,8 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
     );
 
     public static $classMap = array (
+        'App\\Blog' => __DIR__ . '/../..' . '/app/Blog.php',
+        'App\\BlogCategoria' => __DIR__ . '/../..' . '/app/BlogCategoria.php',
         'App\\CarritoCompra' => __DIR__ . '/../..' . '/app/CarritoCompra.php',
         'App\\Chage_user' => __DIR__ . '/../..' . '/app/Chage_user.php',
         'App\\Clasificado' => __DIR__ . '/../..' . '/app/Clasificado.php',
@@ -476,6 +478,8 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\BlogCategoriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/BlogCategoriaController.php',
+        'App\\Http\\Controllers\\BlogController' => __DIR__ . '/../..' . '/app/Http/Controllers/BlogController.php',
         'App\\Http\\Controllers\\CarritoCompraController' => __DIR__ . '/../..' . '/app/Http/Controllers/CarritoCompraController.php',
         'App\\Http\\Controllers\\ClasificadoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClasificadoController.php',
         'App\\Http\\Controllers\\ColorController' => __DIR__ . '/../..' . '/app/Http/Controllers/ColorController.php',
@@ -510,6 +514,7 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
         'App\\Http\\Controllers\\SuscripcionController' => __DIR__ . '/../..' . '/app/Http/Controllers/SuscripcionController.php',
         'App\\Http\\Controllers\\TurnoController' => __DIR__ . '/../..' . '/app/Http/Controllers/TurnoController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
+        'App\\Http\\Controllers\\tipoDeFacturaController' => __DIR__ . '/../..' . '/app/Http/Controllers/tipoDeFacturaController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -2597,6 +2602,7 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
         'Lcobucci\\JWT\\ValidationData' => __DIR__ . '/..' . '/lcobucci/jwt/src/ValidationData.php',
         'League\\Event\\AbstractEvent' => __DIR__ . '/..' . '/league/event/src/AbstractEvent.php',
         'League\\Event\\AbstractListener' => __DIR__ . '/..' . '/league/event/src/AbstractListener.php',
+        'League\\Event\\BufferedEmitter' => __DIR__ . '/..' . '/league/event/src/BufferedEmitter.php',
         'League\\Event\\CallbackListener' => __DIR__ . '/..' . '/league/event/src/CallbackListener.php',
         'League\\Event\\Emitter' => __DIR__ . '/..' . '/league/event/src/Emitter.php',
         'League\\Event\\EmitterAwareInterface' => __DIR__ . '/..' . '/league/event/src/EmitterAwareInterface.php',
@@ -2675,7 +2681,6 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
         'League\\OAuth2\\Server\\Entities\\Traits\\ClientTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/ClientTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\EntityTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/EntityTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\RefreshTokenTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/RefreshTokenTrait.php',
-        'League\\OAuth2\\Server\\Entities\\Traits\\ScopeTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/ScopeTrait.php',
         'League\\OAuth2\\Server\\Entities\\Traits\\TokenEntityTrait' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/Traits/TokenEntityTrait.php',
         'League\\OAuth2\\Server\\Entities\\UserEntityInterface' => __DIR__ . '/..' . '/league/oauth2-server/src/Entities/UserEntityInterface.php',
         'League\\OAuth2\\Server\\Exception\\OAuthServerException' => __DIR__ . '/..' . '/league/oauth2-server/src/Exception/OAuthServerException.php',

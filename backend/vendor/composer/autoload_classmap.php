@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Blog' => $baseDir . '/app/Blog.php',
+    'App\\BlogCategoria' => $baseDir . '/app/BlogCategoria.php',
     'App\\CarritoCompra' => $baseDir . '/app/CarritoCompra.php',
     'App\\Chage_user' => $baseDir . '/app/Chage_user.php',
     'App\\Clasificado' => $baseDir . '/app/Clasificado.php',
@@ -26,6 +28,8 @@ return array(
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
+    'App\\Http\\Controllers\\BlogCategoriaController' => $baseDir . '/app/Http/Controllers/BlogCategoriaController.php',
+    'App\\Http\\Controllers\\BlogController' => $baseDir . '/app/Http/Controllers/BlogController.php',
     'App\\Http\\Controllers\\CarritoCompraController' => $baseDir . '/app/Http/Controllers/CarritoCompraController.php',
     'App\\Http\\Controllers\\ClasificadoController' => $baseDir . '/app/Http/Controllers/ClasificadoController.php',
     'App\\Http\\Controllers\\ColorController' => $baseDir . '/app/Http/Controllers/ColorController.php',
@@ -60,6 +64,7 @@ return array(
     'App\\Http\\Controllers\\SuscripcionController' => $baseDir . '/app/Http/Controllers/SuscripcionController.php',
     'App\\Http\\Controllers\\TurnoController' => $baseDir . '/app/Http/Controllers/TurnoController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
+    'App\\Http\\Controllers\\tipoDeFacturaController' => $baseDir . '/app/Http/Controllers/tipoDeFacturaController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\CheckForMaintenanceMode' => $baseDir . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -2147,6 +2152,7 @@ return array(
     'Lcobucci\\JWT\\ValidationData' => $vendorDir . '/lcobucci/jwt/src/ValidationData.php',
     'League\\Event\\AbstractEvent' => $vendorDir . '/league/event/src/AbstractEvent.php',
     'League\\Event\\AbstractListener' => $vendorDir . '/league/event/src/AbstractListener.php',
+    'League\\Event\\BufferedEmitter' => $vendorDir . '/league/event/src/BufferedEmitter.php',
     'League\\Event\\CallbackListener' => $vendorDir . '/league/event/src/CallbackListener.php',
     'League\\Event\\Emitter' => $vendorDir . '/league/event/src/Emitter.php',
     'League\\Event\\EmitterAwareInterface' => $vendorDir . '/league/event/src/EmitterAwareInterface.php',
@@ -2225,7 +2231,6 @@ return array(
     'League\\OAuth2\\Server\\Entities\\Traits\\ClientTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/ClientTrait.php',
     'League\\OAuth2\\Server\\Entities\\Traits\\EntityTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/EntityTrait.php',
     'League\\OAuth2\\Server\\Entities\\Traits\\RefreshTokenTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/RefreshTokenTrait.php',
-    'League\\OAuth2\\Server\\Entities\\Traits\\ScopeTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/ScopeTrait.php',
     'League\\OAuth2\\Server\\Entities\\Traits\\TokenEntityTrait' => $vendorDir . '/league/oauth2-server/src/Entities/Traits/TokenEntityTrait.php',
     'League\\OAuth2\\Server\\Entities\\UserEntityInterface' => $vendorDir . '/league/oauth2-server/src/Entities/UserEntityInterface.php',
     'League\\OAuth2\\Server\\Exception\\OAuthServerException' => $vendorDir . '/league/oauth2-server/src/Exception/OAuthServerException.php',

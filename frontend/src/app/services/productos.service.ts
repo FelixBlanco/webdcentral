@@ -60,8 +60,8 @@ export interface PedidoHeader{
 
 export interface CarouselItem{
   id: number;
-  products: Producto[];
-
+  products?: Producto[];
+  items?: any;
 }
 @Injectable({
   providedIn: 'root'

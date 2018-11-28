@@ -73,13 +73,12 @@ export class NavUnoComponent implements OnInit {
   salirLogin(){
     this.inPromise = true;
     this._loginService._salirLogin().subscribe(
-      (resp:any) => {       
+      (resp:any) => {
         this.userToken.clear();
         $('#salirModal').modal('hide');
         this._alertsService.msg('INFO', 'Info', `Has cerrado tu sesión`);
         this.inPromise = false;
-        this.router.navigate(['/'])
-
+        this.router.navigate(['/']);
       },
       error => {
         console.error(error);

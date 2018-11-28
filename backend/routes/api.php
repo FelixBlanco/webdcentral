@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,12 +11,11 @@ use Illuminate\Http\Request;
 |
 */
 
-
-Route::group([ 'prefix' => 'auth' ], function() {
+Route::group(['prefix' => 'auth'], function () {
 
     Route::post('login', 'API\AuthController@login'); //logear
 
-    Route::group([ 'middleware' => 'auth:api' ], function() {
+    Route::group(['middleware' => 'auth:api'], function () {
 
         Route::post('crearGaleriaHomeProd', 'GaleriaHomeProductoController@createGaleria');
         Route::delete('borrraGaleriaHomeProd/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@destroy');
@@ -38,7 +35,6 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::put('cambiarStatus-sugerencias-reclamos/{idReclamosSugerencia}', 'ReclamoSugerenciaController@cambiarStatus');  //para cambiar el estatus del reclamo debe enviar en data fk_idStatusReclamo que correponda con el id del status_reclamo, y el id del reclamo a actualizar
 
         Route::resource('colores', 'ColorController');   //Colores de la web
-
 
         /*REDES SOCIALES*/
         Route::post('crearRedSocial', 'RedSocialController@store');
@@ -65,18 +61,15 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::delete('deleteCupon/{idCupons}', 'CouponsController@deleteCupon'); //eliminar el cupon
         Route::get('cupons/listarPorIdUsuario/{fk_idUser}', 'CouponsController@listarPorIdUsuario');// Listar cupon por cliente
 
-
         // Notification
         Route::post('notification', 'NotificationController@add'); // Crear  Notification
         Route::get('listarNotificationes', 'NotificationController@listar'); // Listar  Notification
         Route::get('notification/byUser/{idUser}', 'NotificationController@getByIdUser');// Obtener Notificaciones  por id usuario
         Route::get('notification/confirm/{idNotification}', 'NotificationController@confirm'); // Listar  Notification
 
-
         //LISTAR PRODUCTOS POR RUBRO,TAG
-        Route::post('producto/by/fiter','ProductoController@getProductByRubro');
-            
-        
+        Route::post('producto/by/fiter', 'ProductoController@getProductByRubro');
+
         /* PREGUNTA Y RESPUESTA */
         Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
         Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
@@ -101,7 +94,6 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::post('editarClasificado/{idClasificado}', 'ClasificadoController@editar');
         /*Clasificados*/
 
-
         /*SERVICIOS*/
         Route::post('crearServicioAdd', 'ServiciosAddController@crearServicioAdd');
         Route::post('editarServicioAdd', 'ServiciosAddController@editarServicioAdd');
@@ -109,21 +101,25 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('listarServiciosAdd', 'ServiciosAddController@listar');
         /*SERVICIOS*/
 
-
         /*TURNOS*/
         Route::post('addTurno', 'TurnoController@add');
         Route::post('editTurno/{idTurnos}', 'TurnoController@update');
         /*TURNOS*/
 
+        Route::put('cambiarStatusGaleria/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@cambiarStatus');
 
+        /*BLOG */
+        Route::post('addBlog', 'BlogController@add');
+        Route::post('editBlog/{idBlogCategoria}', 'BlogController@edit');
+        Route::delete('borrarBlog/{idBlogCategoria}', 'BlogController@borrar');
+        Route::get('listarBlog', 'BlogController@listar');
+        Route::get('listarPorIdBlog/{idBlogCategoria}', 'BlogController@buscarIdBlogCategoria');
     });
 });
 
-
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
-Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
-
+Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
 
     Route::post('listar', 'PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
 
@@ -135,7 +131,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('obtenerDestacados', 'DestacadoController@listar');
 
     /*PARA LOS DESTACADOS*/
-
 
     Route::post('crer-serviciosWeb', 'ServiciosWebController@crer');
 
@@ -154,15 +149,18 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     /*Listar suscriciones canceladas*/
     Route::get('listarSuscripcionesCanceladas', 'SuscripcionController@listarSuscripcionesCanceladas');
 
+    /* buscar si un email esta suscrito*/
+    Route::get('buscarSuscripcionPorEmail/{email}','SuscripcionController@buscarSuscripcionPorEmail');
+
     /*para las ofertas*/
     Route::resource('ofertas', 'OfertaController');
 
     Route::get('ofertas/getImagenOferta/{imagenOferta}', 'OfertaController@getImagenOferta');
 
-
     Route::get('getGaleria/producto/{imagen}', 'GaleriaHomeProductoController@getGaleriaImage');
     Route::get('getGaleria/producto', 'GaleriaHomeProductoController@listar');
     Route::get('getGaleria/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@listarPorId');
+
 
     /* con esta ruta se busca y retorna la imagen del slider Slides*/
     Route::get('getSlides/imagen/{imagen}', 'SlideController@getSlideImage');
@@ -188,7 +186,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     /* con esta ruta se listo los productos por isOutstanding*/
     Route::get('listarPorIsOutstanding', 'ProductoController@listarPorIsOutstanding');
 
-
     /* con esta ruta se busca y envian todos los productos que correspondan con la inicial del producto*/
     Route::get('getProductos/{nombre}', 'ProductoController@listarPorNombre');
 
@@ -201,7 +198,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::post('user/{user}', 'UserController@update')->name('user.update');
     Route::post('listarUsers', 'UserController@listar');
     Route::put('user/update/tokenfb/{idUser}', 'UserController@updateTokenFirebase');
-
 
     Route::put('setClave/{api_token}', 'UserController@setClave'); // Cambio de clave
 
@@ -230,8 +226,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // Conexion External SYS //
     Route::post('get/order/bydriver', 'OrderDriverController@getAllByEmailDriver');
 
-
-    // Paleta de color para el landing 
+    // Paleta de color para el landing
     Route::get('paleta-color', 'ColorController@ultimaPaletaColores');
 
     // Sincronizador de productos
@@ -245,7 +240,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // OBTENER SUBSUBROS1
     Route::get('rubro/listarSubrubro1/{rubro}', 'ProductoController@listarSubrubro1');
-    
+
     // OBTENER SUBSUBROS2
     Route::get('rubro/listarSubrubro2/{Subrubro1}', 'ProductoController@listarSubrubro2');
 
@@ -257,9 +252,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // COSTOS DE ENVIO //
     Route::get('cost/delivery', 'ProductoController@getCostos');
-
-
-   
 
     // OBTENER MARCAS CON SEARCH
     Route::get('marcas/{search?}', 'ProductoController@searchMarca');
@@ -276,7 +268,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // Obtener pedidos de un cliente 
     Route::get('order/all/trafic', 'OrderDriverController@getAllOrderMap');
 
-
     // Obtener pedidos actuales de un chofer
     Route::post('order/active/driver', 'OrderDriverController@getByCodeDriver');
 
@@ -288,7 +279,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     //  FINALIZAMOS UN PEDIDO ESTADAO DE UN PEDIDO
     Route::post('order/finish', 'OrderDriverController@finishPedido');
-
 
     // DEVOLVER  DE UN PEDIDO
     Route::post('order/devolution/product', 'OrderDriverController@devolutionProduct');
@@ -326,7 +316,18 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('status-sistema', 'StatusSistemaController@index');
 
     // Tipos de Facturas 
-    Route::get('tipo-facturas','tipoDeFacturaController@getTipoFacturas');
+    Route::get('tipo-facturas', 'tipoDeFacturaController@getTipoFacturas');
+
+    /*PARA LAS CATEGORIAS DEL BLOG*/
+
+    Route::post('addCatBlog', 'BlogCategoriaController@add');
+    Route::post('editCatBlog/{idBlogCategoria}', 'BlogCategoriaController@edit');
+    Route::delete('borrarCatBlog/{idBlogCategoria}', 'BlogCategoriaController@borrar');
+    Route::get('listarCatBlog', 'BlogCategoriaController@listar');
+    Route::get('listarPorIdCatBlog/{idBlogCategoria}', 'BlogCategoriaController@buscarIdBlogCategoria');
+
+
+
 });
 
 

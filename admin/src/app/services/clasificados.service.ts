@@ -23,5 +23,20 @@ export class ClasificadosService {
     return this.http.post(environment.apiHost + '/api/auth/listarClasificado',data,httpOptions);
   }
 
+  _getPorIdClasificados(id:number){
+    return this.http.get(environment.apiHost + '/api/auth/listarPorIdClasificado/'+ id,httpOptions);
+  }  
+
+  _addClasificados(data:any){
+    return this.http.post(environment.apiHost + '/api/auth/guardarClasificado',data,httpOptions);
+  }  
+
+  _editClasificados(id:number,data:any){
+    return this.http.post(environment.apiHost + '/api/auth/editarClasificado/'+id,data,httpOptions);
+  }
+  
+  _deleteClasificados(id:number){
+    return this.http.delete(environment.apiHost + '/api/auth/borrarClasificado/'+id,httpOptions);
+  }  
   
 }
