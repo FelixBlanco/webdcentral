@@ -12,7 +12,7 @@ class clasificado_reclamo extends Model
 
     protected $fillable = [
         'nombre',
-        'status',
+        'fk_idStatusReclamo',
     ];
 
 }
