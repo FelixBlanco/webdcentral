@@ -21,4 +21,8 @@ class Clasificado extends Model
         return $this->belongsTo('App\User', 'fk_idUser');
     }
 
+    public function statusSistema() {
+        return $this->belongsTo('App\StatusSistema', 'fk_idStatusSistema');
+    }    
+
 }

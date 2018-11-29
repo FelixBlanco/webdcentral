@@ -1,5 +1,5 @@
 <div class="busqueda" >
-    <form [formGroup]="searchForm">
+    <form [formGroup]="searchForm"> 
       <mat-form-field style="width: 100%; padding-right: 20%;" >
         <input [readonly]="inPromise"  matInput type="search" placeholder="Buscar Alimentos, Marcas, Mascotas..." formControlName="searchValue" (keyup.enter)="search()">
         <fa-icon *ngIf="!inPromise" matSuffix [icon]="['fa', 'search']" (click)="search()"></fa-icon>

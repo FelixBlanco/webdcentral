@@ -37,5 +37,5 @@ body{
 .txt-naranja a {  color: #E97604 }
 .txt-verde a {  color: #90BB1E }
 
-html, body { height: 100%; }
+html, body { height: 100%; scroll-behavior: smooth; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

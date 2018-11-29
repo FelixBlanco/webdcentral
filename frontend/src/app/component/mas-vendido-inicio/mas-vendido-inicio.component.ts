@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductosService, Producto, CarouselItem } from 'src/app/services/productos.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 
 @Component({
   selector: 'app-mas-vendido-inicio',
@@ -15,10 +16,13 @@ export class MasVendidoInicioComponent implements OnInit {
 
   carouselItems: CarouselItem[] = [];
 
+  aTimeOutFix: boolean = false;
+  
   constructor(
     private productosService: ProductosService, 
     private carouselConfig: NgbCarouselConfig, 
-    private ts: AlertsService
+    private ts: AlertsService,
+    private productsBehavior: ProductsBehaviorService
   ) { 
     this.carouselConfig.interval = 5000;
     this.carouselConfig.showNavigationArrows = true;
@@ -32,7 +36,9 @@ export class MasVendidoInicioComponent implements OnInit {
     this.productosService.getMasVendido().subscribe(resp => {
       console.log('mas vendido', resp);
       if(resp.ok && resp.status === 200){
-        this.masVendidoList = resp.body;
+        this.productsBehavior.parseDefaultPrice(resp.body).then(val => {
+          this.masVendidoList = val;
+        })
         this.generateCarousel();
       }else{
         this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
@@ -55,6 +61,8 @@ export class MasVendidoInicioComponent implements OnInit {
       }
     });
 
+    //Fix ExpressionChangedAfterItHasBeenCheckedError
+    setTimeout(()=> this.aTimeOutFix = true,1000); // :(
   }
 
   isACarruselItem($index): boolean {
