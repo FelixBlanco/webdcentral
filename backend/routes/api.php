@@ -120,7 +120,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::post('editClasificadoReclamo/{idClasificadoReclamo}', 'ClasificadoReclamoController@edit');
         Route::delete('borrarClasificadoReclamo/{idClasificadoReclamo}', 'ClasificadoReclamoController@borrar');
         Route::get('listarClasificadoReclamo', 'ClasificadoReclamoController@listar');
-        Route::get('listarPorIdClasificadoReclamo/{idClasificadoReclamo}', 'ClasificadoReclamoController@buscarIdBlogCategoria');
+        Route::get('listarPorIdClasificadoReclamo/{idClasificadoReclamo}', 'ClasificadoReclamoController@buscarIdClasificadoReclamo');
     });
 });
 

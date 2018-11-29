@@ -16,6 +16,7 @@ class CreateClasificadoReclamosTable extends Migration {
             $table->string('nombre')->nullable();
             $table->string('fk_idStatusReclamo')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -89,7 +89,7 @@ class ClasificadoReclamoController extends Controller {
                 return response()->json($response, 200);
             } else {
                 $response = [
-                    'msj' => 'El blog no existe',
+                    'msj' => 'El Clasificado no existe',
                 ];
 
                 return response()->json($response, 404);
@@ -109,7 +109,7 @@ class ClasificadoReclamoController extends Controller {
         DB::beginTransaction();
 
         try {
-            $cla = ClasificadoReclamoController::findOrFail($idClasificadoReclamo);
+            $cla = clasificado_reclamo::findOrFail($idClasificadoReclamo);
             $cla->delete();
 
             $response = [
@@ -139,7 +139,7 @@ class ClasificadoReclamoController extends Controller {
         return response()->json($response, 200);
     }
 
-    public function buscarIdBlogCategoria($idClasificadoReclamo) {
+    public function buscarIdClasificadoReclamo($idClasificadoReclamo) {
 
         $cla = clasificado_reclamo::find($idClasificadoReclamo);
         if (! is_null($cla)) {
