@@ -108,7 +108,6 @@ export class RubrosFilterComponent implements OnInit {
 
   filterProducts(){
     const rubros = this.filterForm.value;
-    console.log(rubros);
 
     if(!rubros.rubro && !rubros.subRubroA && !rubros.subRubroB){
       this.as.msg('INFO', 'Info', 'Debe seleccionar al menos Rubro, Sub Rubro A ó Sub Rubro B');

@@ -6,6 +6,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { HttpResponse, HttpParams } from '@angular/common/http';
 import { UserTokenService } from 'src/app/services/user-token.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 
 declare var $: any;
 
@@ -37,9 +38,9 @@ export class CarritoComponent implements OnInit {
     private productosService: ProductosService,
     private as: AlertsService,
     private userToken: UserTokenService,
-    private fb: FormBuilder
-  ) { 
-  }
+    private fb: FormBuilder,
+    private productsBehavior: ProductsBehaviorService
+  ) { }
 
   ngOnInit() {
 
@@ -99,32 +100,63 @@ export class CarritoComponent implements OnInit {
     this.productsByOrder = val;
     $('#carrito').modal('toggle');
 
+    //iteramos la lista para cachear la información de la cantidad por id de item
     this.productsByOrder.forEach(byOrder => {
-      if(this.itemPerCuantity.filter(val => val.id === byOrder.fk_idProducto)[0]){
+      if(this.itemPerCuantity.filter(val => val.id === byOrder.fk_idProducto)[0]){//Si ya existe en el arreglo se acumula
         this.itemPerCuantity.filter(val => val.id === byOrder.fk_idProducto)[0].cantidad += Number(byOrder.Cantidad_Producto);
       }else{
         this.itemPerCuantity.push({id: byOrder.fk_idProducto, cantidad: Number(byOrder.Cantidad_Producto)});
       }
     });
 
+    //por la items x cantidad iteramos de manera mas optima y agregamos los requests
     this.itemPerCuantity.forEach(val => {
       this.requests.push(this.productosService.getById(val.id));
-    })
+    });
     
     this.inPromise = true;
-    forkJoin(this.requests).subscribe(resps => {
-      this.inPromise = false;
-      resps.forEach( (resp) => {
+
+    //Para setear el precio por default
+    let productsToParse: Producto[] = [];
+
+    forkJoin(this.requests).subscribe(resps => {//cuando se cumplan las promesas
+      resps.forEach( (resp) => { //Iteramos todas las respuestas
         if(resp.ok && resp.status === 200){
-          const actual: Producto = resp.body
-          this.carritoService.addItem(actual.codeProdSys, actual.nombre, actual.marca, this.itemPerCuantity.filter((val) => val.id === actual.idProducto)[0].cantidad, actual.precioL2);
+          productsToParse.push(resp.body);//agregamos a la lista para parsear
         }else if(resp.status === 404){
-          this.aBadResponse.push(val);
+          this.aBadResponse.push(val);// estas son respuestas de productos no encontrados
         }else{
           console.error(resp);
           this.as.msg('ERR', 'Error', 'Ha ocurrido un error al encontrar un producto');
         }
       });
+
+
+      //parseamos los productos e iteramos para asigar finalmente al carrito de compras
+      this.productsBehavior.parseDefaultPrice(productsToParse).then(
+        data => {
+          productsToParse = data;
+
+          productsToParse.forEach(
+            (val) =>{
+              this.carritoService.addItem(
+                val.codeProdSys,
+                val.nombre,
+                val.marca,
+                this.itemPerCuantity.filter(ipc => ipc.id === val.idProducto)[0].cantidad, //retorna el valor de la cantidad almacenada en caché
+                val.defaultPrice // Important
+              );
+            }
+          );
+
+          this.inPromise = false;
+
+          if(this.aBadResponse.length){
+            this.as.msg('INFO', 'Info', `Hubo problemas y por lo tanto no se pudo obtener información de ${this.aBadResponse.length} productos, al parecer no existen en nuestra base de datos.`)
+          }
+        }
+      );
+
     },error => {
       console.error(error);
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error al encontrar un producto');

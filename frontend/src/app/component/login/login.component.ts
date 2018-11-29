@@ -76,9 +76,26 @@ export class LoginComponent implements OnInit {
         this._loginService.buscarSuscripcionBy(email).subscribe((resp) => {
             if(resp.ok && resp.status === 200){
                 if(!resp.body.count){
-                    this.router.navigate(['/']);
-                    this._alertService.msg('INFO', 'Info', 'Te recomendamos que te suscribas a nuestras novedades');
-                    setTimeout(()=> document.getElementById('novedades').scrollIntoView({behavior: 'smooth'}),1000);
+                    this._alertService.msg(
+                        'INFO', 
+                        'Info', 
+                        'Te recomendamos que te suscribas a nuestras novedades, puedes hacer click acá para comenzar',
+                        { timeOut:10000, progressBar: true }
+                        ).onTap.subscribe(
+                            () => {
+                                this.router.navigate(['/']);
+                                setTimeout(()=> {
+                                    let novedades = document.getElementById('novedades');
+                                    novedades.scrollIntoView({behavior: 'smooth'})
+                                    document.getElementById('novedadInput').focus();
+                                    novedades.style.border = "5px #e8a719 solid";
+                                    setTimeout(()=> {
+                                        novedades.style.border = "none";
+                                    }, 3000);
+
+                                },1000);
+                            }
+                        );
                 }
             }else{
                 console.error(resp);

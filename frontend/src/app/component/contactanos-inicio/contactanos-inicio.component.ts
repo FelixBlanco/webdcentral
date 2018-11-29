@@ -30,8 +30,10 @@ export class ContactanosInicioComponent implements OnInit {
     this.footerConfigService._getConfigFooter().subscribe( (resp) => {
       if(resp){
         this.footerConfig = resp;
-        this.lat = Number(this.footerConfig.latitud);
-        this.lng = Number(this.footerConfig.longitud);
+        if(!isNaN(this.footerConfig.latitud) && !isNaN(this.footerConfig.longitud)){
+          this.lat = Number(this.footerConfig.latitud);
+          this.lng = Number(this.footerConfig.longitud);
+        }
       }
     })
   }

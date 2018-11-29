@@ -18,17 +18,17 @@
               <div class="circle font-bold bg-azul text-white m-auto" style="font-size: .6rem;padding: .2rem;">
                 {{item.kiloProdcuto}} <br> kg
               </div>
-              <h5 class="text-center txt-naranja font-bold mt-2">POR: {{item.precioL2 | currency: 'ARS': '$'}}</h5>
+              <h5 class="text-center txt-naranja font-bold mt-2">POR: {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
               <div class="row justify-content-center mt-2 mb-2">
                 <div class="col-8 d-flex justify-content-center">
-                  <button mat-icon-button (click)="incrase(item, true)">
-                    <fa-icon class="txt-azul" [icon]="['fa','plus']" size="1x"></fa-icon>
+                  <button mat-icon-button (click)="incrase(item, false)">
+                    <fa-icon class="txt-azul" [icon]="['fa','minus']" size="1x"></fa-icon>
                   </button>
                   <div class="circle font-bold bg-white text-black-50" style="font-size: 1.4rem;">
                     {{item.cantidad}}
                   </div>
-                  <button mat-icon-button (click)="incrase(item, false)">
-                    <fa-icon class="txt-azul" [icon]="['fa','minus']" size="1x"></fa-icon>
+                  <button mat-icon-button (click)="incrase(item, true)">
+                    <fa-icon class="txt-azul" [icon]="['fa','plus']" size="1x"></fa-icon>
                   </button>
                 </div>
               </div>
