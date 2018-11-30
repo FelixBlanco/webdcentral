@@ -49,7 +49,7 @@ export class GestionUsuarioComponent implements OnInit {
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.pattern(new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))]],
         userName: ['', [Validators.required,  Validators.minLength(4), Validators.maxLength(32), Validators.pattern(new RegExp(/(^[a-zA-Z0-9._-]*$)/))]],
-        fk_idPerfil: ['', Validators.required],
+        fk_idPerfil:['', Validators.required]
       })
     }
 
@@ -137,6 +137,7 @@ export class GestionUsuarioComponent implements OnInit {
       userName: user.userName,
       fk_idPerfil: user.fk_idPerfil,
     });
+    console.log('user',user, 'form', this.editUser.value, 'form invalid?', this.editUser.invalid);
   }
 
 
