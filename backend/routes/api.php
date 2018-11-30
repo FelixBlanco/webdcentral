@@ -109,12 +109,6 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         Route::put('cambiarStatusGaleria/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@cambiarStatus');
 
-        /*BLOG */
-        Route::post('addBlog', 'BlogController@add');
-        Route::post('editBlog/{idBlogCategoria}', 'BlogController@edit');
-        Route::delete('borrarBlog/{idBlogCategoria}', 'BlogController@borrar');
-        Route::get('listarBlog', 'BlogController@listar');
-        Route::get('listarPorIdBlog/{idBlogCategoria}', 'BlogController@buscarIdBlogCategoria');
 
         /*CLASIFICADO DE RECLAMO */
         Route::post('addClasificadoReclamo', 'ClasificadoReclamoController@add');
@@ -122,6 +116,16 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::delete('borrarClasificadoReclamo/{idClasificadoReclamo}', 'ClasificadoReclamoController@borrar');
         Route::get('listarClasificadoReclamo', 'ClasificadoReclamoController@listar');
         Route::get('listarPorIdClasificadoReclamo/{idClasificadoReclamo}', 'ClasificadoReclamoController@buscarIdClasificadoReclamo');
+
+        /*BLOG */
+        Route::post('addBlog', 'BlogController@add');
+        Route::post('editBlog/{idBlogCategoria}', 'BlogController@edit');
+        Route::delete('borrarBlog/{idBlogCategoria}', 'BlogController@borrar');
+
+        /*CATEGORIA DEL BLOG */
+        Route::post('addCatBlog', 'BlogCategoriaController@add');
+        Route::post('editCatBlog/{idBlogCategoria}', 'BlogCategoriaController@edit');
+        Route::delete('borrarCatBlog/{idBlogCategoria}', 'BlogCategoriaController@borrar');
     });
 });
 
@@ -328,12 +332,12 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     /*PARA LAS CATEGORIAS DEL BLOG*/
 
-    Route::post('addCatBlog', 'BlogCategoriaController@add');
-    Route::post('editCatBlog/{idBlogCategoria}', 'BlogCategoriaController@edit');
-    Route::delete('borrarCatBlog/{idBlogCategoria}', 'BlogCategoriaController@borrar');
     Route::get('listarCatBlog', 'BlogCategoriaController@listar');
     Route::get('listarPorIdCatBlog/{idBlogCategoria}', 'BlogCategoriaController@buscarIdBlogCategoria');
 
+    /*PARA el BLOG*/
+    Route::get('listarBlog', 'BlogController@listar');
+    Route::get('listarPorIdBlog/{idBlogCategoria}', 'BlogController@buscarIdBlogCategoria');
 
 });
 
