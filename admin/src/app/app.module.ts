@@ -42,6 +42,7 @@ import { SuscripcionComponent } from './component/suscripcion/suscripcion.compon
 import { GaleryProductComponent } from './component/galery-product/galery-product.component';
 import { LocalesAdheridosComponent } from './component/locales-adheridos/locales-adheridos.component';
 import { ClasificadosComponent } from './component/clasificados/clasificados.component';
+import { TurnoComponent } from './component/turno/turno.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { ClasificadosComponent } from './component/clasificados/clasificados.com
     LocalesAdheridosComponent,
     SuscripcionComponent,
     GaleryProductComponent,
-    ClasificadosComponent
+    ClasificadosComponent,
+    TurnoComponent
   ],
   imports: [
     BrowserModule,
