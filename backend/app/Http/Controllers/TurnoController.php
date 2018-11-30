@@ -101,4 +101,15 @@ class TurnoController extends Controller {
         }
     }
 
+    public function listar() {
+
+        $turno    = turno::with([ 'clasificado', 'localAdherido', 'statusTurno' ])->get();
+        $response = [
+            'msj'    => 'Lista de Turnos',
+            'turnos' => $turno,
+        ];
+
+        return response()->json($response, 201);
+    }
+
 }
