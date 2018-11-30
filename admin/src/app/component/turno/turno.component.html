@@ -26,17 +26,17 @@
             <ngx-datatable #table class="bootstrap" [rowHeight]="'auto'" [rows]="rows" [columns]="columns" [columnMode]="'force'"
               [footerHeight]="'40'" [limit]="limit">
 
-              <ngx-datatable-column name="Título" prop="titulo">
+              <ngx-datatable-column name="Estatus" prop="fk_idStatusTurnos">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                  {{row.titulo | titlecase}}
+                  {{row.status_turno.descripcion | titlecase}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Imagen" prop="set_imagen">
+              <ngx-datatable-column name="Fecha / Hora" prop="fechaHora">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                  <img class="clickeable" [src]="row.set_imagen" alt="{{row.title}}" width="70" (click)="showImage(row)">
+                  {{row.fechaHora | titlecase}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Estatus" prop="fk_idStatusSistema">
+              <ngx-datatable-column name="Estatus Sistema" prop="fk_idStatusSistema">
                 <ng-template ngx-datatable-cell-template let-row="row">
                   <ng-container [ngSwitch]="row.fk_idStatusSistema">
                     <span class="text-success" *ngSwitchCase="1">ACTIVO</span>
@@ -97,9 +97,9 @@
         <form [formGroup]="newForm">
           <div class="form-group">
             <label for="titulo">Estatus:</label>
-            <select formControlName="estatus" class="form-control" id="estatus">
-              <option selected value="1">Cancelado</option>
-              <option value="2">Solicitado</option>
+            <select formControlName="status_turno" class="form-control" id="status_turno">
+              <option selected value="1">Solicitado </option>
+              <option value="2">Cancelado</option>
               <option value="3">Rechazado</option>
             </select>
           </div>

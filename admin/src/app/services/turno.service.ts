@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 export interface Turno {
     idGaleriaHomeProducto;
     titulo;
-    estatus;
+    // estatus;
     set_imagen: String;
     created_at;
     updated_at;
@@ -33,8 +33,8 @@ export class TurnoService {
     });
     constructor(private http: HttpClient) { }
 
-    getAll(): Observable<HttpResponse<{ galeria: Turno[] }>> {       
-        return this.http.get<{ galeria: Turno[] }>(`${environment.apiHost}/api/v1/getGaleria/producto`, { headers: this.httpOptions, observe: 'response' });
+    getAll(): Observable<HttpResponse<{ turnos: Turno[] }>> {       
+        return this.http.get<{ turnos: Turno[] }>(`${environment.apiHost}/api/auth/listarTodoslosTurnos`, { headers: this.httpOptions, observe: 'response' });
     }
 
     persist(body: any): Observable<HttpResponse<any>> {

@@ -17,7 +17,7 @@ export class TurnoComponent implements OnInit {
   limit: number = 5;
 
   columns: any = [
-    { prop: 'estatus' },
+    { prop: 'status_turno' },
     { prop: 'set_imagen' },
     { prop: 'fk_idStatusSistema' },
     { prop: 'opts' }
@@ -43,7 +43,7 @@ export class TurnoComponent implements OnInit {
     this.getAll();
 
     this.newForm = this.fb.group({
-      estatus: ['2', Validators.required],
+      status_turno: ['1', Validators.required],
       fechaHora: ['', Validators.required]
     });
   }
@@ -54,8 +54,8 @@ export class TurnoComponent implements OnInit {
       if (resp.ok) {
         console.log("datos varios");
         console.log(resp.body);
-        console.log(resp.body.galeria);
-        this.turnoList = resp.body.galeria;
+        console.log(resp.body.turnos);
+        this.turnoList = resp.body.turnos;
         this.rows = [...this.turnoList];
       }
     }
@@ -66,10 +66,9 @@ export class TurnoComponent implements OnInit {
     const values = this.newForm.value;
     console.log(values);
     let toSend: FormData = new FormData();
-    toSend.append('estatus', values.estatus);
-    toSend.append('fechaHora', values.fechaHora);
-    toSend.append('fk_idLocalAdherido', "1");
-    toSend.append('fk_idStatusTurnos', "1");
+    toSend.append('fk_idStatusTurnos', values.status_turno);
+    toSend.append('fechaHora',"2000-01-30 00:00:00");
+    toSend.append('fk_idLocalAdherido', "1");    
     toSend.append('fk_idClasificado', "1");
     
     this.inPromise = true;
