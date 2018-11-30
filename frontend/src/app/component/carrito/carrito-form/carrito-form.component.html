@@ -1,0 +1,114 @@
+<ng-container [ngSwitch]="section">
+  <ng-container *ngSwitchDefault>
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <button mat-fab (click)="checkDeliveryMethod('inMarket')">
+            <ng-container [ngSwitch]="check">
+              <fa-icon *ngSwitchCase="'inMarket'" class="txt-naranja" [icon]="['fas','check-circle']" size="3x"></fa-icon>
+              <fa-icon *ngSwitchDefault class="txt-naranja" [icon]="['far','circle']" size="3x"></fa-icon>
+            </ng-container>
+          </button>
+          <h2 class="mt-1">Retiro en Tienda</h2>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col text-center">
+          <button mat-fab (click)="checkDeliveryMethod('delivery')">
+            <ng-container [ngSwitch]="check">
+              <fa-icon *ngSwitchCase="'delivery'" class="txt-naranja" [icon]="['fas','check-circle']" size="3x"></fa-icon>
+              <fa-icon *ngSwitchDefault class="txt-naranja" [icon]="['far','circle']" size="3x"></fa-icon>
+            </ng-container>
+          </button>
+          <h2 class="mt-1">Despachos al Interior</h2>
+          <p class="text-danger"> <strong>ATENCIÓN</strong> <br> Solo trabajamos VÍA CARGO. </p>
+        </div>
+      </div>
+      <button class="btn btn-block bg-verde font-bold text-white" (click)="routeTo(check)">SIGUIENTE</button>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'inMarket'">
+    <div class="m-3">
+      <div class="jumbotron" style="background-color: #f3f6db">
+        <div class="text-center">
+          <h4 class="txt-verde font-bold">Atención</h4>
+          <p class="lead mt-2">La mercadería permanecerá reservada con un plazo de 48hs, 
+            pasado ese tiempo el pedido se anulará automáticamente</p>
+        </div>
+      </div>
+      <button class="btn btn-block bg-verde font-bold text-white">ACEPTAR</button>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'delivery'">
+      <div class="m-2">
+        <form [formGroup]="orderForm">
+          <div class="form-group">
+            <label for="localidad" class="text-uppercase font-bold">Localidad</label>
+            <select class="form-control" id="localidad" formControlName="localidad">
+              <option value="">Seleccionar</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="direccion" class="text-uppercase font-bold">Dirección de envío</label>
+            <input type="text" class="form-control" id="direccion" formControlName="direccionEnvio" placeholder= "Ingrese Dirección">
+          </div>
+          <div class="form-group">
+            <label for="disponibilidadEnHs" class="text-uppercase font-bold">disponibilidad en hs</label>
+            <select class="form-control" id="disponibilidadEnHs" formControlName="disponibilidad">
+              <option value="">Seleccionar</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="tiposDeFacturacion" class="text-uppercase font-bold">tipos de facturación</label>
+            <select class="form-control" id="tiposDeFacturacion" formControlName="tiposFacturacion">
+              <option value="">Seleccionar</option>
+              <option value="RI">RI</option>
+            </select>
+          </div>
+          <div class="card" *ngIf="orderForm.get('tiposFacturacion').value === 'RI'">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="cuit">CUIT</label>
+                <input type="text" class="form-control" id="cuit" placeholder="0000000">
+              </div>
+              <div class="form-group">
+                <label for="razonSocial">Razón Social</label>
+                <input type="text" class="form-control" id="razonSocial" placeholder="0000000">
+              </div>
+              <div class="form-group">
+                <label for="domicilioFiscal">Domicilio Fiscal</label>
+                <input type="text" class="form-control" id="domicilioFiscal" placeholder="Av, Sucursal, Calle">
+              </div>
+            </div>
+          </div>
+          <div class="m-2">
+            <h6 class="text-uppercase font-bold">método de pago</h6>
+            <mat-radio-group formControlName="metodoDePago">
+              <mat-radio-button value="1">Efectivo</mat-radio-button>
+              <mat-radio-button value="2">Deposito</mat-radio-button>
+              <mat-radio-button value="3">Transferencia</mat-radio-button>
+              <mat-radio-button value="4">Mercadopago</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="card" *ngIf="orderForm.get('metodoDePago').value !== '1' && orderForm.get('metodoDePago').value !== '4'">
+            <div class="card-header">
+              Adjunte Comprobante de Pago
+            </div>
+            <div class="card-body">
+              <div class="input-group">
+                <div class="custom-file">
+                  <label class="custom-file-label" for="adjunto">Seleccione un archivo</label>
+                  <input type="file" class="custom-file-input" id="adjunto">
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="text-right" *ngIf="!inPromise">
+        <button class="btn btn-light txt-verde font-bold" [disabled]="orderForm.invalid" (click)="createOrder()">ENVIAR</button>
+      </div>
+      <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto;"></mat-spinner>
+  </ng-container>
+</ng-container>
