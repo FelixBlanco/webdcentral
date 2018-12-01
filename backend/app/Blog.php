@@ -16,8 +16,8 @@ class Blog extends Model
         'fk_idusuario',
         'titulo',
         'foto',
-        'descripción',
-        'fk_idCategoría',
+        'descripcion',
+        'fk_idCategoria',
     ];
 
     public function categoriaBlog()
