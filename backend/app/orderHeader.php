@@ -25,7 +25,6 @@ class orderHeader extends Model {
         'fk_idStateOrder',
         'fk_idUserClient',
         'fk_idUserDriver',
-
         'metodoEntrega',
         'disponibilidadHr',
         'CUIT',

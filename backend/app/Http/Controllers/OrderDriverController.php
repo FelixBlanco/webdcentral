@@ -328,10 +328,10 @@ class OrderDriverController extends Controller {
                 $order->save();
             }
 
-            DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP
+            /*DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP
              set Estado_Pedido = '".$request->Estado_Pedido."'
              , stars = ".$request->stars."
-              where Numero_Pedido = '".$request->Numero_Pedido."' ");
+              where Numero_Pedido = '".$request->Numero_Pedido."' ");*/
 
             return response()->json("Pedido actualizado ", 200);
 

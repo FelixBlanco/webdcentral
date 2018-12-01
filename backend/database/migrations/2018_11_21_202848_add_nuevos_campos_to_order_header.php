@@ -15,7 +15,7 @@ class AddNuevosCamposToOrderHeader extends Migration {
             $table->string('metodoPago')->nullable();
             $table->string('comprobanteDepositoTransferencia')->nullable();
             $table->string('fk_idTipoFactura')->nullable();
-            $table->string('localidad')->nullable();
+
         });
     }
 
@@ -34,7 +34,7 @@ class AddNuevosCamposToOrderHeader extends Migration {
             $table->dropColumn('metodoPago');
             $table->dropColumn('comprobanteDepositoTransferencia');
             $table->dropColumn('fk_idTipoFactura');
-            $table->dropColumn('localidad');
+
         });
     }
 }
