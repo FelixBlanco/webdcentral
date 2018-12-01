@@ -97,4 +97,22 @@ class OrderHeaderController extends Controller {
     }
 
 
+    public function listarPorIdUsuario($fk_idUser)
+    {
+
+        $orders = orderHeader::select("*")
+        ->where('fk_idStateOrder','=','5')
+        ->where('fk_idUserClient', $fk_idUser)->get();
+
+     
+
+        $response = [
+            'msj'   => 'Pedidos que faltan calificar por cliente ',
+            'orders' => $orders,
+        ];
+
+        return response()->json($response, 200);
+    }
+
+
 }
