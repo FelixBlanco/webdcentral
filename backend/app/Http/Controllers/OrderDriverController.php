@@ -219,6 +219,28 @@ class OrderDriverController extends Controller {
         }
     }
 
+
+     // cambio esta de un pedido //
+     public function chaguePhoneAndAdrresClinet(Request $request) {
+
+        try {
+
+
+            DB::connection('sqlsrv')->update("  UPDATE Clientes
+             set isUpdatePhoneAndAdressApp = 1, 
+             Telefonos_Cliente = '".$request->Telefonos_Cliente."' ,
+             Domicilio_Cliente = '".$request->Domicilio_Cliente."' 
+             where Codigo_Cliente = '".$request->Codigo_Cliente."' ");
+
+            return response()->json("Datos actualizados ", 200);
+
+        } catch (\Exception $e) {
+            dd($e);
+
+            return response()->json("Error conectando a el DC", 500);
+        }
+    }
+
     // Finalizar Pedido
     public function finishPedido(Request $request) {
         try {
