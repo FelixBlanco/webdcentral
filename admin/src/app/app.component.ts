@@ -11,13 +11,18 @@ export class AppComponent {
   isLoged = localStorage.getItem('sesion_login'); // variable para mostrar login
   url = window.location.pathname;
   constructor( private loginS:LoginService){
-    // this.loginS._getAuthUser(localStorage.getItem('access_token')).subscribe(
-    //   (resp:any) => {
-        
-    //   },
-    //   error => {
-
-    //   }
-    // )
+    this.loginS._getAuthUser(localStorage.getItem('access_token')).subscribe(
+      (resp:any) => {
+        // Session activa
+      },
+      error => {
+        if(error.status == 401){ // Unauthorized 401
+          localStorage.removeItem('access_token')
+          localStorage.removeItem('imgPerfil')
+          localStorage.setItem('sesion_login','false');
+          localStorage.removeItem('userName')
+        }
+      }
+    )
   }
 }
