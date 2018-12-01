@@ -38,13 +38,13 @@
                     {{row.titulo | titlecase}}
                   </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Descripción" prop="descripción"></ngx-datatable-column>    
-                <ngx-datatable-column name="Categoría" prop="fk_idCategoría">
+                <ngx-datatable-column name="descripcion" prop="descripcion"></ngx-datatable-column>    
+                <ngx-datatable-column name="Categoría" prop="fk_idCategoria">
                   <ng-template ngx-datatable-cell-template let-row="row"> 
                     {{getCategoriaName(row) | titlecase}}
                   </ng-template>
                 </ngx-datatable-column>            
-                <ngx-datatable-column name="Imagen" prop="foto" *ngIf="false"> <!--TODO-->
+                <ngx-datatable-column name="Imagen" prop="set_imagen">
                   <ng-template ngx-datatable-cell-template let-row="row">
                       <img class="clickeable" [src]="row.set_imagen" alt="{{row.title}}" width="70" (click)="showImage(row)">
                   </ng-template>
@@ -110,11 +110,11 @@
             </div>
             <div class="form-group">
               <label for="descripcion">Descripción:</label>
-              <textarea type="text" rows="6" formControlName="descripción" class="form-control" id="descripcion" placeholder="Escriba una descripción" maxlength="255"></textarea>
+              <textarea type="text" rows="6" formControlName="descripcion" class="form-control" id="descripcion" placeholder="Escriba una descripcion"></textarea>
             </div>
             <div class="form-group">
               <label for="categoria">Categoría:</label>
-              <select class="form-control" formControlName="fk_idCategoría">
+              <select class="form-control" formControlName="fk_idCategoria">
                 <option value="">Seleccione...</option>
                 <option *ngFor="let categoria of categoriaList" value="{{categoria.idBlogCategoria}}">{{categoria.titulo}}</option>
               </select>
@@ -138,7 +138,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header bg-info">
-          <h5 class="modal-title text-white" id="modificarModal">Modificar <span class="text-capitalize" *ngIf="updateForm">'{{updateForm.get('titulo').value}}'</span></h5>
+          <h5 class="modal-title text-white" id="modificarModal">Modificar <span class="text-capitalize" *ngIf="updateForm.get('titulo').value">'{{updateForm.get('titulo').value}}'</span></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -151,11 +151,11 @@
               </div>
               <div class="form-group">
                 <label for="descripcion">Descripción:</label>
-                <textarea type="text" formControlName="descripción" class="form-control" id="descripcion" placeholder="Escriba una descripción" maxlength="255"></textarea>
+                <textarea type="text" formControlName="descripcion" class="form-control" id="descripcion" placeholder="Escriba una descripcion"></textarea>
               </div>
               <div class="form-group">
                 <label for="categoria">Categoría:</label>
-                <select class="form-control" formControlName="fk_idCategoría">
+                <select class="form-control" formControlName="fk_idCategoria">
                   <option value="">Seleccione...</option>
                   <option *ngFor="let categoria of categoriaList" value="{{categoria.idBlogCategoria}}">{{categoria.titulo}}</option>
                 </select>
@@ -179,7 +179,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-danger">
-        <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="updateForm">'{{updateForm.get('titulo').value}}'</span></h5>
+        <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="updateForm.get('titulo').value">'{{updateForm.get('titulo').value}}'</span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -195,19 +195,19 @@
   </div>
 </div>
 
-<!-- Modal imagen TODO
+<!-- Modal imagen TODO -->
 <div class="modal fade" id="imagen" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-white" id="eliminarModal">Cupón <span class="text-capitalize" *ngIf="cuponToUpdate">'{{cuponToUpdate.title}}'</span></h5>
+        <h5 class="modal-title text-white" id="eliminarModal">Blog <span class="text-capitalize" *ngIf="updateForm.get('titulo').value">'{{updateForm.get('titulo').value}}'</span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div style="width: 100%; text-align: center">
-          <img *ngIf="cuponToUpdate" [src]="cuponToUpdate.set_imagen" width="300" alt="">
+          <img *ngIf="updateForm.get('imagen').value" [src]="updateForm.get('imagen').value" width="300" alt="">
         </div>
       </div>
       <div class="modal-footer">
@@ -215,4 +215,4 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>

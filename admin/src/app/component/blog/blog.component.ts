@@ -18,9 +18,9 @@ export class BlogComponent implements OnInit {
   limit: number = 5;
   columns: any = [
     { prop: 'titulo' },
-    { prop: 'descripción'},
-    { prop: 'fk_idCategoría'},
-    { prop: 'foto' },
+    { prop: 'descripcion'},
+    { prop: 'fk_idCategoria'},
+    { prop: 'set_imagen' },
   ];
 
   rows: any;
@@ -41,16 +41,16 @@ export class BlogComponent implements OnInit {
   ) { 
     this.newForm = this.fb.group({
       titulo: ['', Validators.required],
-      descripción: ['', Validators.required],
-      fk_idCategoría: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      fk_idCategoria: ['', Validators.required],
       imagen: ['', Validators.required]
     });
 
     this.updateForm = this.fb.group({
       id: [''],
       titulo: ['', Validators.required],
-      descripción: ['', Validators.required],
-      fk_idCategoría: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      fk_idCategoria: ['', Validators.required],
       imagen: ['', Validators.required]
     })
   }
@@ -63,18 +63,23 @@ export class BlogComponent implements OnInit {
     this.updateForm.patchValue({
       id: row.idBlog,
       titulo: row.titulo,
-      descripción: row.descripción,
-      fk_idCategoría: row.fk_idCategoría,
+      descripcion: row.descripcion,
+      fk_idCategoria: row.fk_idCategoria,
       imagen: row.foto//TODO
     })
   }
 
   getCategoriaName(row): string{
-    return this.categoriaList.filter((val) => val.idBlogCategoria === row.fk_idCategoría)[0].titulo;
+    const cat = this.categoriaList.filter((val) => val.idBlogCategoria === row.fk_idCategoria)[0]
+    if(cat)
+      return cat.titulo;
   }
 
   showImage(row){
-    //TODO
+    this.updateForm.patchValue({
+      titulo: row.titulo,
+      imagen: row.set_imagen
+    });
     $('#imagen').modal('toggle');
   }
 
@@ -112,7 +117,7 @@ export class BlogComponent implements OnInit {
 
     const temp = this.blogList.filter(function(d) {
       return (d.titulo.toLowerCase().indexOf(val) !== -1 || !val) ||
-      (d.descripción.toLowerCase().indexOf(val) !== -1 || !val) 
+      (d.descripcion.toLowerCase().indexOf(val) !== -1 || !val) 
     });
 
     this.rows = temp;
@@ -156,8 +161,8 @@ export class BlogComponent implements OnInit {
     let toSend = new FormData();
 
     toSend.set('titulo', value.titulo);
-    toSend.set('descripción', value.descripción);
-    toSend.set('fk_idCategoría', value.fk_idCategoría);
+    toSend.set('descripcion', value.descripcion);
+    toSend.set('fk_idCategoria', value.fk_idCategoria);
 
     if(this.imgLoaded){
       toSend.set('foto', this.imgLoaded);
@@ -190,8 +195,8 @@ export class BlogComponent implements OnInit {
 
     toSend.set('titulo', value.titulo);
     toSend.set('foto', this.imgLoaded);
-    toSend.set('descripción', value.descripción);
-    toSend.set('fk_idCategoría', value.fk_idCategoría);
+    toSend.set('descripcion', value.descripcion);
+    toSend.set('fk_idCategoria', value.fk_idCategoria);
 
     this.inPromise = true;
     this.blogService.update(toSend, value.id).subscribe(resp => {

@@ -23,24 +23,24 @@ export class BlogService {
     }
     
     persistCategory(body: any): Observable<HttpResponse<any>> {
-        return this.http.post<any>(`${environment.apiHost}/api/v1/addCatBlog`, body, {headers: this.httpOptions, observe: 'response'});
+        return this.http.post<any>(`${environment.apiHost}/api/auth/addCatBlog`, body, {headers: this.httpOptions, observe: 'response'});
     }
 
     updateCategory(data: any, id: number): Observable<HttpResponse<any>> {
-        return this.http.post<any>(`${environment.apiHost}/api/v1/editCatBlog/${id}`, data , {headers: this.httpOptions, observe: 'response'});
+        return this.http.post<any>(`${environment.apiHost}/api/auth/editCatBlog/${id}`, data , {headers: this.httpOptions, observe: 'response'});
     }
 
     deleteCategory(id: number): Observable<HttpResponse<any>> {
-        return this.http.delete<any>(`${environment.apiHost}/api/v1/borrarCatBlog/${id}`, {headers: this.httpOptions, observe: 'response'});
+        return this.http.delete<any>(`${environment.apiHost}/api/auth/borrarCatBlog/${id}`, {headers: this.httpOptions, observe: 'response'});
     }
 
     /** Blog */
     getAll(): Observable<HttpResponse<any>> {
-        return this.http.get<any>(`${environment.apiHost}/api/auth/listarBlog`, {headers: this.httpOptions, observe: 'response'});
+        return this.http.get<any>(`${environment.apiHost}/api/v1/listarBlog`, {headers: this.httpOptions, observe: 'response'});
     }
 
     getOne(id:number): Observable<HttpResponse<any>> {
-        return this.http.get<any>(`${environment.apiHost}/api/auth/listarPorIdBlog/${id}`, {headers: this.httpOptions, observe: 'response'});
+        return this.http.get<any>(`${environment.apiHost}/api/v1/listarPorIdBlog/${id}`, {headers: this.httpOptions, observe: 'response'});
     }
     
     persist(body: any): Observable<HttpResponse<any>> {
