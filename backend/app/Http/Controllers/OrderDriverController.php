@@ -161,7 +161,7 @@ class OrderDriverController extends Controller {
                 return response()->json("No existe contenido ", 204);
             }
         } catch (\Exception $e) {
-            //dd($e);
+            dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
@@ -374,12 +374,47 @@ class OrderDriverController extends Controller {
              and Codigo_Producto = '".$request->Codigo_Producto."'
               ");
 
+
+          /*  DB::connection('sqlsrv')->update("  UPDATE DetallesVentas
+            set Devolucion_Producto = '".$request->Devolucion_Producto."' 
+            where Numero_DetalleVenta = '".$request->Numero_Pedido."'
+            and Codigo_Producto = '".$request->Codigo_Producto."'
+            ");*/
+              
+
             $request->Pedido = $request->Numero_Pedido;
 
             return response()->json($this->getProductByPedido($request)->original, 200);
 
         } catch (\Exception $e) {
             //  dd($e);
+            return response()->json("Error conectando a el DC", 500);
+        }
+    }
+
+
+      // devolucion  de un prodcto pedido //
+      public function existProduct(Request $request) {
+
+        try {
+            DB::connection('sqlsrv')->update("  UPDATE DetallesVentas_APP
+             set exist = '".$request->exist."' 
+             where Numero_Pedido = '".$request->Numero_Pedido."'
+             and Codigo_Producto = '".$request->Codigo_Producto."'
+              ");
+
+            DB::connection('sqlsrv')->update("  UPDATE DetallesVentas
+            set exist = '".$request->exist."' 
+            where Numero_DetalleVenta = '".$request->Numero_Pedido."'
+            and Codigo_Producto = '".$request->Codigo_Producto."'
+            ");
+
+            $request->Pedido = $request->Numero_Pedido;
+
+            return response()->json($this->getProductByPedido($request)->original, 200);
+
+        } catch (\Exception $e) {
+            // dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }

@@ -309,6 +309,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // DEVOLVER  DE UN PEDIDO
     Route::post('order/devolution/product', 'OrderDriverController@devolutionProduct');
 
+    // DEVOLVER  DE UN PEDIDO
+    Route::post('order/exist/product', 'OrderDriverController@existProduct');
+
     // para el buscador general
     Route::get('buscarGeneral/{search?}', 'ProductoController@buscarGeneral');
 
