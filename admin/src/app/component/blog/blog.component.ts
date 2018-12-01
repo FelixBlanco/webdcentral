@@ -20,7 +20,7 @@ export class BlogComponent implements OnInit {
     { prop: 'titulo' },
     { prop: 'descripcion'},
     { prop: 'fk_idCategoria'},
-    { prop: 'set_imagen' },
+    { prop: 'set_image' },
   ];
 
   rows: any;
@@ -83,7 +83,7 @@ export class BlogComponent implements OnInit {
     $('#imagen').modal('toggle');
   }
 
-  onFileChange(event) {
+  onFileChange(event) {//Fix
     if(event.target.files && event.target.files.length) {
       const fileTo: File = event.target.files[0];
 
@@ -157,6 +157,7 @@ export class BlogComponent implements OnInit {
 
   save(){
     const value = this.newForm.value;
+    debugger;
 
     let toSend = new FormData();
 
@@ -174,7 +175,8 @@ export class BlogComponent implements OnInit {
         this.newForm.reset();
         this.image.nativeElement.value = "";
         $('#nuevo').modal('hide');
-        this.as.msg('OK', 'Éxito', 'Se ha almacenado el registro');        
+        this.as.msg('OK', 'Éxito', 'Se ha almacenado el registro');
+        this.imgLoaded = null;        
       }else{
         console.error(resp);
         this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
@@ -194,9 +196,13 @@ export class BlogComponent implements OnInit {
     let toSend = new FormData();
 
     toSend.set('titulo', value.titulo);
-    toSend.set('foto', this.imgLoaded);
     toSend.set('descripcion', value.descripcion);
     toSend.set('fk_idCategoria', value.fk_idCategoria);
+
+    if(this.imgLoaded){
+      toSend.set('foto', this.imgLoaded);
+    }
+    
 
     this.inPromise = true;
     this.blogService.update(toSend, value.id).subscribe(resp => {
@@ -204,6 +210,7 @@ export class BlogComponent implements OnInit {
         this.image.nativeElement.value = "";
         $('#modificar').modal('hide');
         this.as.msg('OK', 'Éxito', 'El registro ha sido actualizado');
+        this.imgLoaded = null;
       }else{
         console.error(resp);
         this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
