@@ -18,30 +18,32 @@ class OrderHeaderController extends Controller {
         // opcional comentaryClient
 
         $this->validate($request, [
-            'Domicilio_Entrega'                => 'required',
-            'Codigo_Postal'                    => 'required',
-            'metodoEntrega'                    => 'required',
-            'disponibilidadHr'                 => 'required',
-            'CUIT'                             => 'required',
+            'Domicilio_Entrega' => 'required',
+            'Codigo_Postal'     => 'required',
+            'comentarioFinal'   => 'required',
+            //'metodoEntrega'                    => 'required',
+            //'disponibilidadHr'                 => 'required',
+            /*'CUIT'                             => 'required',
             'CUITrazonSocial'                  => 'required',
             'CUITDomicilioFidcal'              => 'required',
             'metodoPago'                       => 'required',
-            'comprobanteDepositoTransferencia' => 'required',
-            'fk_idTipoFactura'                 => 'required',
-            'localidad'                        => 'required',
+            'comprobanteDepositoTransferencia' => 'required',*/
+            //'fk_idTipoFactura'                 => 'required',
+            //'localidad'                        => 'required',
 
         ], [
-            'Domicilio_Entrega.required'                => 'El campo es requerido',
-            'Codigo_Postal.required'                    => 'El campo es requerido',
-            'metodoEntrega.required'                    => 'El campo es requerido',
-            'disponibilidadHr.required'                 => 'El campo es requerido',
-            'CUIT.required'                             => 'El campo es requerido',
+            'Domicilio_Entrega.required' => 'El campo es requerido',
+            'Codigo_Postal.required'     => 'El campo es requerido',
+            'comentarioFinal.required'   => 'El campo es requerido',
+            //'metodoEntrega.required'                    => 'El campo es requerido',
+            //'disponibilidadHr.required'                 => 'El campo es requerido',
+            /*'CUIT.required'                             => 'El campo es requerido',
             'CUITrazonSocial.required'                  => 'El campo es requerido',
             'CUITDomicilioFidcal.required'              => 'El campo es requerido',
             'metodoPago.required'                       => 'El campo es requerido',
-            'comprobanteDepositoTransferencia.required' => 'El campo es requerido',
-            'fk_idTipoFactura.required'                 => 'El campo es requerido',
-            'localidad.required'                        => 'El campo es requerido',
+            'comprobanteDepositoTransferencia.required' => 'El campo es requerido',/*
+            //'fk_idTipoFactura.required'                 => 'El campo es requerido',
+            //'localidad.required'                        => 'El campo es requerido',*/
         ]);
 
 
@@ -74,7 +76,12 @@ class OrderHeaderController extends Controller {
             $OB->save();
             $OB->user;
             $OB->state;
-            $OB->tipoFactura;
+
+            if (! is_null($OB->fk_idTipoFactura)) {
+
+                $OB->tipoFactura;
+            }
+
             OrderDriverController::addHeader($OB);
             $response = [
                 'msj' => 'Pedido Creado',
@@ -97,17 +104,15 @@ class OrderHeaderController extends Controller {
     }
 
 
-    public function listarPorIdUsuario($fk_idUser)
-    {
+    public function listarPorIdUsuario($fk_idUser) {
 
         $orders = orderHeader::select("*")
-        ->where('fk_idStateOrder','=','5')
-        ->where('fk_idUserClient', $fk_idUser)->get();
+            ->where('fk_idStateOrder', '=', '5')
+            ->where('fk_idUserClient', $fk_idUser)->get();
 
-     
 
         $response = [
-            'msj'   => 'Pedidos que faltan calificar por cliente ',
+            'msj'    => 'Pedidos que faltan calificar por cliente ',
             'orders' => $orders,
         ];
 
