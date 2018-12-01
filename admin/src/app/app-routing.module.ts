@@ -43,9 +43,8 @@ const routes: Routes = [
   { path: 'galery-product', component: GaleryProductComponent },
   { path: 'clasificados', component: ClasificadosComponent },
   { path: 'categoria-blog', component: CategoriaBlogComponent },
-  { path: 'blog', component: BlogComponent }
-
-
+  { path: 'blog', component: BlogComponent },
+  { path: 'locales-adheridos', component: LocalesAdheridosComponent }
 ];
 
 @NgModule({

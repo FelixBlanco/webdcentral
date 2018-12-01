@@ -117,7 +117,6 @@ class BlogController extends Controller {
 
                     Storage::disk('local')->put('/blog/'.$nombre_interno, (string) $thumbnailImage->encode());
 
-                    $Blog               = new Blog($request->all());
                     $Blog->fk_idusuario = Auth::user()->fk_idPerfil;
                     $Blog->foto         = $nombre_interno;
                 }

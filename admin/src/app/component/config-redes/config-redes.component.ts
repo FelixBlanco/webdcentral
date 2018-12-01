@@ -13,6 +13,7 @@ export class ConfigRedesComponent implements OnInit {
   myRedes : FormGroup;
   formRedes:any = { id_redSocial:null, facebook: null, instagram:null, twitter:null, whatsapp:null }
   isNew:boolean = true;
+  inPromise: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -36,8 +37,7 @@ export class ConfigRedesComponent implements OnInit {
   getRedes(){
     this.configRedesService._getRed().subscribe(
       (resp:any) => {
-        if(resp != null){
-          console.log('estamos en redes')
+        if(resp != null){          
           this.isNew = false; // no es nuevo
           this.formRedes.id_redSocial = resp.id_redSocial
           this.formRedes.facebook = resp.url_face
@@ -52,30 +52,35 @@ export class ConfigRedesComponent implements OnInit {
   }
 
   addRedes(){
+    this.inPromise=true;
     const val: any = this.myRedes.value
     const data:any = {url_face: val.facebook, url_twit: val.twitter, url_inst: val.instagram, url_what: val.twitter} 
     this.configRedesService._addRed(data).subscribe(
       resp => {
+        this.inPromise=false;
         this.alert.msg('OK','Se agrego correctamente');
         this.getRedes();
+        this.isNew = false; // le decimos que ya esta creada
       },
       error => {
+        this.inPromise=false;
         this.alert.msg('ERR','Algo salio mal');
       }
     )
   }
 
   updateRedes(){
+    this.inPromise=true;
     const val: any = this.myRedes.value
     const data:any = {url_face: val.facebook, url_twit: val.twitter, url_inst: val.instagram, url_what: val.twitter} 
     this.configRedesService._updateRed(data,this.formRedes.id_redSocial).subscribe(
       resp => {
-        console.log(resp)
+        this.inPromise=false;
         this.alert.msg('OK','Se modifico correctamente');
         this.getRedes();        
       },
       error => {
-        console.log(error)
+        this.inPromise=false;
         this.alert.msg('ERR','Algo salio mal');
       }
     )

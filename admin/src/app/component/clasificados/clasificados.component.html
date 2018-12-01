@@ -22,7 +22,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button class="btn btn-success" data-dismiss="modal" (click)="addClasificado()" [disabled]="!myForm.invalid">Guardar</button>
+        <button class="btn btn-success" data-dismiss="modal" (click)="addClasificado()" [disabled]="!myForm.invalid">
+          Guardar
+          <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise">
+        </button>
       </div>
     </div>
   </div>
@@ -62,7 +65,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button class="btn btn-success" data-dismiss="modal" (click)="editClasificado()">Guardar</button>
+        <button class="btn btn-success" data-dismiss="modal" (click)="editClasificado()">
+          Guardar
+          <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise">
+        </button>
       </div>
     </div>
   </div>
@@ -71,15 +77,26 @@
 
 
 
-
-
-<div class="row" style="margin-top:2%;">
-  <div class="col-md-4 offset-md-8 p-2">
-      <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Agregar</button>
+<div class="row">
+  <div class="col-md-2">
+      <select class="form-control" [(ngModel)]="limit">
+        <option>5</option>
+        <option>10</option>
+        <option>20</option>
+        <option *ngIf="listaClasificados" value="{{listaClasificados.length}}">Todos ({{listaClasificados.length}})</option>
+      </select>
+  </div>
+  <div class="col-md-7">
+      <input class="form-control" type="text" placeholder="Buscar" (keyup)='updateFilter($event)'>
+  </div>
+  <div class="col-md-3">
+      <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Nuevo</button>
   </div>
 </div>
 
+
 <ngx-datatable
+  #table
   class="bootstrap"
   [rows]="rows"
   [columns]="columns"
@@ -87,12 +104,12 @@
   [headerHeight]="50"
   [footerHeight]="50"
   [rowHeight]="'auto'"
-  [limit]="10">
+  [limit]="limit">
 
   <ngx-datatable-column name="Titulo" prop="titulo"></ngx-datatable-column>
   <ngx-datatable-column name="Foto" prop="foto">
     <ng-template ngx-datatable-cell-template let-row="row">
-      <img [src]="row.foto" width="100">
+      <img [src]="row.foto" width="70" height="70">
     </ng-template>
   </ngx-datatable-column>
   <ngx-datatable-column name="Estado" prop="status_sistema"></ngx-datatable-column>

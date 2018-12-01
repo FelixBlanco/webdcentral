@@ -1,10 +1,14 @@
 <div class="container">
   <div class="row justify-content-center">
+    <div class="col-md-12">
+        <h3 class="p-2">Configuracion de Footer</h3>
+    </div>
+  </div>
+  <div class="row justify-content-center">
     <div class="col-md-6">
-      <h3>Configuracion de Footer</h3>
       <div class="form-group">
         <label>Dirección</label>
-        <textarea name="" cols="10" rows="5" placeholder="Dirección" class="form-control" [(ngModel)]="data.direccion"></textarea>
+        <textarea cols="10" rows="5" placeholder="Dirección" class="form-control" [(ngModel)]="data.direccion"></textarea>
       </div>
       <div class="form-group">
         <label>Numero de Contactos</label>
@@ -22,12 +26,12 @@
 
       <div class="form-group">
         <label>Latitud</label>
-        <input type="text"  placeholder="Ingrese su latitud" class="form-control" [(ngModel)]="data.latitud">
+        <input type="number"  placeholder="Ingrese su latitud" class="form-control" [(ngModel)]="data.latitud">
       </div>
 
       <div class="form-group">
         <label>Longitud</label>
-        <input type="text"  placeholder="Ingrese la longitud" class="form-control" [(ngModel)]="data.longitud">
+        <input type="number"  placeholder="Ingrese la longitud" class="form-control" [(ngModel)]="data.longitud">
       </div>
 
       <div class="form-group">
@@ -40,34 +44,55 @@
         <input type="text"  placeholder="Ingrese su WhatsApp 2 " class="form-control" [(ngModel)]="data.whatsApp2">
       </div>
 
-      <div class="form-group">
-        <label>Horarios</label>
-        <input type="text"  placeholder="Ingrese el Horario" class="form-control" [(ngModel)]="data.horarios">
-      </div>
-      
-      <div class="form-group">
-        <label>SubTes</label>
-        <input type="text"  placeholder="Ingrese SubTes" class="form-control" [(ngModel)]="data.subtes">
-      </div>
-      
-      <div class="form-group">
-        <label>Colectivos</label>
-        <input type="text"  placeholder="Ingrese  el Colectivos" class="form-control" [(ngModel)]="data.colectivos">
-      </div>
-      
-      <div class="form-group">
-        <label>Avenidas</label>
-        <input type="text"  placeholder="Ingrese la Avenidas" class="form-control" [(ngModel)]="data.avenidas">
-      </div>
-      
-      <div class="form-group">
-        <label>Lista de Precio</label>
-        <input type="text"  placeholder="Lista de Precio" class="form-control" [(ngModel)]="data.listaPrecio">
-      </div>
+    </div>
+    <div class="col-md-6">
 
       <div class="form-group">
-        <button class="btn btn-success" (click)="upgradeCondigFooter()">Actualizar</button> 
-      </div>
+          <label>Horarios</label>
+          <input type="text"  placeholder="Ingrese el Horario" class="form-control" [(ngModel)]="data.horarios">
+        </div>
+        
+        <div class="form-group">
+          <label>SubTes</label>
+          <input type="text"  placeholder="Ingrese SubTes" class="form-control" [(ngModel)]="data.subtes">
+        </div>
+        
+        <div class="form-group">
+          <label>Colectivos</label>
+          <input type="text"  placeholder="Ingrese  el Colectivos" class="form-control" [(ngModel)]="data.colectivos">
+        </div>
+        
+        <div class="form-group">
+          <label>Avenidas</label>
+          <input type="text"  placeholder="Ingrese la Avenidas" class="form-control" [(ngModel)]="data.avenidas">
+        </div>
+        
+        <div class="form-group">
+          <label>Lista de Precio</label>
+          <input type="number"  placeholder="Lista de Precio" class="form-control" [(ngModel)]="data.listaPrecio">
+        </div>   
+                  
+        <div class="form-group">
+          <label>Desde</label>
+          <input type="text"  placeholder="Ingrese desde" class="form-control" [(ngModel)]="data.desde">
+        </div>   
+                  
+        <div class="form-group">
+          <label>Ingrese Hasta</label>
+          <input type="text"  placeholder="Ingrese Hasta" class="form-control" [(ngModel)]="data.hasta">
+        </div>   
+                  
+        <div class="form-group">
+          <label>URL de Mercado libre</label>
+          <input type="url"  placeholder="Ingrese URL de Mercado libre" class="form-control" [(ngModel)]="data.url_mercado_libre">
+        </div>                 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+        <div class="form-group text-right">
+          <button class="btn btn-success" (click)="upgradeCondigFooter()">Actualizar</button> 
+        </div>
     </div>
   </div>
 </div>

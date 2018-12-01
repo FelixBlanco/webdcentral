@@ -15,7 +15,8 @@ declare var $;
 export class ClasificadosComponent implements OnInit {
   
   @ViewChild('table') table;
-
+  
+  listaClasificados:any;
   newFoto:File; editFoto:File;
   idUser:any;
   lista_sSistemas: any;
@@ -27,6 +28,8 @@ export class ClasificadosComponent implements OnInit {
   myForm: FormGroup;
   myFormEdit: FormGroup;
 
+  inPromise: boolean;
+
   columns = [
     { prop: 'titulo' },
     { prop: 'foto' },
@@ -35,6 +38,7 @@ export class ClasificadosComponent implements OnInit {
   ];
 
   rows: any;
+  limit: number = 10;
 
   constructor(
     private alertService: AlertsService,
@@ -94,12 +98,14 @@ export class ClasificadosComponent implements OnInit {
   getClasificacidos(){
     this.clasificadoServices._getClasificados(null).subscribe(
       (resp:any) => {
-        this.rows = [...resp.Clasificado];
+        this.listaClasificados = resp.Clasificado;
+        this.rows = [...this.listaClasificados];
       }
     )
   }
 
   addClasificado(){
+    this.inPromise = true;
     const val = this.myForm.value;
     const formData = new FormData();
     formData.append('titulo', val.titulo);
@@ -108,11 +114,13 @@ export class ClasificadosComponent implements OnInit {
     formData.append('fk_idStatusSistema','1');
     this.clasificadoServices._addClasificados(formData).subscribe(
       (resp:any) => {
+        this.inPromise = false;
         $("#nuevo").modal('hide');
         this.getClasificacidos();
         this.alertService.msg('OK',resp.msj);
       },
       error => {
+        this.inPromise = false;
         if(error.message != null){
           this.alertService.msg('ERR',error.message);
         }
@@ -148,8 +156,8 @@ export class ClasificadosComponent implements OnInit {
   }
   
   editClasificado(){
+    this.inPromise = true;
     const val = this.myFormEdit.value;
-    console.log(val)
     const formData = new FormData();
     formData.append('titulo', val.titulo);
     formData.append('foto', this.editFoto);
@@ -159,9 +167,12 @@ export class ClasificadosComponent implements OnInit {
       (resp:any) =>{
         $("#editar").modal('hide');
         this.getClasificacidos();
-        this.alertService.msg('OK',resp.msj);        
+        this.alertService.msg('OK',resp.msj);
+        this.inPromise = false;        
       },
       error => {
+        this.inPromise = false;
+        
         if(error.msj != null){
           this.alertService.msg('ERR',error.msj);
         }
@@ -197,5 +208,16 @@ export class ClasificadosComponent implements OnInit {
   }
 
 
+  updateFilter(event){
+    const val = event.target.value.toLowerCase();
+
+    const temp = this.listaClasificados.filter(function(d) {
+      return (d.titulo.toLowerCase().indexOf(val) !== -1 || !val) 
+      || (d.titulo.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+
+    this.rows = temp;
+    this.table.offset = 0;//Requerido
+  }
 
 }
