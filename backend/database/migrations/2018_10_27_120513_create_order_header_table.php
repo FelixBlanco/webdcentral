@@ -27,10 +27,10 @@ class CreateOrderHeaderTable extends Migration
             $table->integer('fk_idUserDriver');
             $table->integer('fk_idUserClient');
             $table->integer('fk_idStateOrder');
-            $table->string('localidad');
-            $table->string('firma1');
-            $table->string('firma2');
-            $table->string('comentarioFinal');
+            $table->string('localidad')->nullable();
+            $table->string('firma1')->nullable();
+            $table->string('firma2')->nullable();
+            $table->string('comentarioFinal')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

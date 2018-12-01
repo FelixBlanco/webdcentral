@@ -243,28 +243,25 @@ class OrderDriverController extends Controller {
 
     // Finalizar Pedido
     public function finishPedido(Request $request) {
-          try {
+        try {
 
-            // CARGAMOS LA IMAGEN 
-
-           
+            // CARGAMOS LA IMAGEN
 
             $originalImage = $request->filename;
 
             $thumbnailImage = Image::make($originalImage);
 
-            $thumbnailImage->fit(2048, 2048, function ($constraint) {
+            $thumbnailImage->fit(2048, 2048, function($constraint) {
                 $constraint->aspectRatio();
             });
 
             $nombre_publico = $originalImage->getClientOriginalName();
-            $extension = $originalImage->getClientOriginalExtension();
+            $extension      = $originalImage->getClientOriginalExtension();
 
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
             Storage::disk('local')->put('/firmas/'.$nombre_interno, (string) $thumbnailImage->encode());
-
 
             $order = orderHeader::where("Numero_Pedido", "=", $request->Numero_Pedido)->first();
 
@@ -272,7 +269,7 @@ class OrderDriverController extends Controller {
                 $order->Estado_Pedido   = $request->Estado_Pedido;
                 $order->fk_idStateOrder = $request->fk_idStateOrder;
                 $order->stars           = $request->stars;
-                $order->firma1 = $nombre_interno;
+                $order->firma1          = $nombre_interno;
                 $order->comentarioFinal = $request->comentarioFinal;
                 $order->save();
             }
@@ -329,12 +326,12 @@ class OrderDriverController extends Controller {
 
             $thumbnailImage = Image::make($originalImage);
 
-            $thumbnailImage->fit(2048, 2048, function ($constraint) {
+            $thumbnailImage->fit(2048, 2048, function($constraint) {
                 $constraint->aspectRatio();
             });
 
             $nombre_publico = $originalImage->getClientOriginalName();
-            $extension = $originalImage->getClientOriginalExtension();
+            $extension      = $originalImage->getClientOriginalExtension();
 
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
@@ -349,14 +346,14 @@ class OrderDriverController extends Controller {
             if ($order) {
                 $order->Estado_Pedido   = $request->Estado_Pedido;
                 $order->fk_idStateOrder = $request->fk_idStateOrder;
-                $order->firma = $nombre_interno;
+                $order->firma           = $nombre_interno;
                 $order->save();
             }
 
-            DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP
+            /*DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP
              set Estado_Pedido = '".$request->Estado_Pedido."'
              , stars = ".$request->stars."
-              where Numero_Pedido = '".$request->Numero_Pedido."' ");
+              where Numero_Pedido = '".$request->Numero_Pedido."' ");*/
 
             return response()->json("Pedido actualizado ", 200);
 
@@ -418,24 +415,24 @@ class OrderDriverController extends Controller {
             return response()->json("Pedido creado ", 200);
 
         } catch (\Exception $e) {
-          //   dd($e);
+            //   dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
 
     // BODY
-    public static function addBody(Request $request,$fk_idOrderHeader){
-        try{
-            foreach ($request->items as $item){
+    public static function addBody(Request $request, $fk_idOrderHeader) {
+        try {
+            foreach ($request->items as $item) {
 
-                $codeProdSys = $item["codeProdSys"];
-                $Cantidad_Producto = $item["Cantidad_Producto"];
-                $PrecioUnitario_Producto = $item["PrecioUnitario_Producto"];
+                $codeProdSys                  = $item["codeProdSys"];
+                $Cantidad_Producto            = $item["Cantidad_Producto"];
+                $PrecioUnitario_Producto      = $item["PrecioUnitario_Producto"];
                 $PorcentajeDescuento_Producto = $item["PorcentajeDescuento_Producto"];
-                $Devolucion_Producto = $item["Devolucion_Producto"];
-                $Numero_Pedido = $fk_idOrderHeader;
-                
-            DB::connection('sqlsrv')->insert("  INSERT INTO DetallesVentas_APP 
+                $Devolucion_Producto          = $item["Devolucion_Producto"];
+                $Numero_Pedido                = $fk_idOrderHeader;
+
+                DB::connection('sqlsrv')->insert("  INSERT INTO DetallesVentas_APP 
                 (   Codigo_Producto,
                     Cantidad_Producto,
                     PrecioUnitario_Producto,
@@ -455,7 +452,8 @@ class OrderDriverController extends Controller {
             return response()->json("Poductos Agregados ", 200);
 
         } catch (\Exception $e) {
-             dd($e);
+            dd($e);
+
             return response()->json("Error conectando a el DC", 500);
         }
     }
@@ -496,14 +494,14 @@ class OrderDriverController extends Controller {
 
     }
 
-     // OBTENEMOS TODOS LOS PEDIDOS EN TRAFICO
-     public function getAllOrderMap() {
-        
+    // OBTENEMOS TODOS LOS PEDIDOS EN TRAFICO
+    public function getAllOrderMap() {
+
         try {
             $rs = null;
 
             $sql = "";
-            
+
 
             $rs = DB::connection('sqlsrv')->select(" SELECT TOP 20 * FROM   VentasporComprobantes  
             where   EstadoPedido != 'En Transito' ".$sql."  order by Fecha_EncabezadoVenta  ");
