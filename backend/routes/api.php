@@ -284,6 +284,12 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // Obtener pedidos actuales de un chofer
     Route::post('order/active/driver', 'OrderDriverController@getByCodeDriver');
 
+    //
+    Route::post('update/info/client', 'OrderDriverController@chaguePhoneAndAdrresClinet');
+
+    
+
+
     // Obtener productos de  un pedido
     Route::post('order/all/products', 'OrderDriverController@getProductByPedido');
 
