@@ -22,8 +22,8 @@
           <input type="text" class="form-control" formControlName="whatsapp" [(ngModel)]="formRedes.whatsapp" placeholder="Ingrese la URl de Whatsapp">
         </div>  
         <div class="form-group">
-          <button class="btn btn-success btn-block" (click)="addRedes()" [disabled]="myRedes.invalid || inPromise" *ngIf="isNew">Agregar</button>
-          <button class="btn btn-primary btn-block" (click)="updateRedes()" [disabled]="myRedes.invalid || inPromise" *ngIf="!isNew">Editar</button>
+          <button class="btn btn-success btn-block" (click)="addRedes()" [disabled]="myRedes.invalid || inPromise" *ngIf="isNew">Agregar redes <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"></button>
+          <button class="btn btn-primary btn-block" (click)="updateRedes()" [disabled]="myRedes.invalid || inPromise" *ngIf="!isNew">Editar redes <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"></button>
         </div>   
       </form>                                                     
     </div>

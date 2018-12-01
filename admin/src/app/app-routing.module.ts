@@ -39,7 +39,8 @@ const routes: Routes = [
   { path: 'config-redes', component: ConfigRedesComponent },
   { path: 'suscriptores', component: SuscripcionComponent },
   { path: 'galery-product', component: GaleryProductComponent },
-  { path: 'clasificados', component: ClasificadosComponent }
+  { path: 'clasificados', component: ClasificadosComponent },
+  { path: 'locales-adheridos', component: LocalesAdheridosComponent }
 ];
 
 @NgModule({

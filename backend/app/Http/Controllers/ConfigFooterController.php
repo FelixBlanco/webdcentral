@@ -15,7 +15,7 @@ class ConfigFooterController extends Controller {
         // Como se supone que estamos editanto,
         // vamos a dejar el unico registro
         // para editar
-
+        
         $d = ConfigFooter::first();
 
         if (empty($d)) { // Caso de estar vacio

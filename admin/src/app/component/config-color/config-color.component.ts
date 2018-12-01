@@ -11,6 +11,7 @@ export class ConfigColorComponent implements OnInit {
 
     colores: any;
     form: any = {colorOscuro: null, colorMedio: null, colorClaro: null}
+    inPromise: boolean;
 
     constructor(private _coloresServices: ConfigColorService,
                 private _alertServicices: AlertsService) {
@@ -29,16 +30,19 @@ export class ConfigColorComponent implements OnInit {
     }
 
     addColores() {
+        this.inPromise = true;
         if (!this.form.colorOscuro || !this.form.colorMedio || !this.form.colorClaro) {
             this._alertServicices.msg('ERR', 'Error', 'Todos los campos son requeridos');
         } else {
             this._coloresServices.addColores(this.form).subscribe(
                 resp => {
+                    this.inPromise = false;
                     this.getColores();
                     this.form = {colorOscuro: null, colorMedio: null, colorClaro: null}
                     this._alertServicices.msg('OK', 'Éxito', 'Se guardo correctamente');
                 },
                 error => {
+                    this.inPromise = false;
                     this._alertServicices.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
                 }
             )
@@ -47,12 +51,15 @@ export class ConfigColorComponent implements OnInit {
     }
 
     eliminarColor(id) {
+        this.inPromise = true;
         this._coloresServices.deleteColores(id).subscribe(
             resp => {
+                this.inPromise = false;
                 this._alertServicices.msg('OK', 'Éxito', 'Se actualizo correctamente');
                 this.getColores();
             },
             error => {
+                this.inPromise = false;
                 this._alertServicices.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
             }
         )

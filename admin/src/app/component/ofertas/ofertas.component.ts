@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {OfertasService} from "../../services/ofertas.service";
 import {AlertsService} from "../../services/alerts.service";
 
@@ -11,11 +11,24 @@ declare var $;
 })
 export class OfertasComponent implements OnInit {
 
+    @ViewChild('table') table;
+
     listOfertas: any;
 
     form_ofertas: any = {idOferta: "", titulo: "", tiempoExpi: "", imagen: "", status: true}
 
     edit_form_ofertas: any = {idOferta: "", titulo: "", tiempoExpi: "", imagen: "", status: true}
+    inPromise: boolean;
+
+    columns = [
+        { prop: 'titulo' },
+        { prop: 'set_imagen' },
+        { prop: 'tiempoExpi' },
+        { prop: 'opts'}
+      ];
+    
+      rows: any;
+      limit: number = 10;
 
     constructor(private ofertaServices: OfertasService,
                 private _alertService: AlertsService) {
@@ -28,7 +41,9 @@ export class OfertasComponent implements OnInit {
     getOfertas() {
         this.ofertaServices._getOfertas().subscribe(
             resp => {
-                this.listOfertas = resp
+                console.log(resp)
+                this.listOfertas = resp;
+                this.rows = [...this.listOfertas];
             }
         )
     }
@@ -44,6 +59,7 @@ export class OfertasComponent implements OnInit {
     }
 
     add_updateOferta(x) {
+        this.inPromise = true;
         var formData: FormData = new FormData();
         formData.append('imagen', this.form_ofertas.imagen);
         formData.append('titulo', this.form_ofertas.titulo);
@@ -57,9 +73,11 @@ export class OfertasComponent implements OnInit {
                     this.form_ofertas = {idOferta: null, titulo: null, tiempoExpi: null, imagen: null, status: true}
                     this._alertService.msg("OK", "Éxito", "Se guardó correctamente");
                     $("#agregarOfertaModal").modal('hide');
+                    this.inPromise = false;
                 },
                 error => {
-                    console.log(error.error.errors);
+                    this.inPromise = false;
+                    
                     this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
 
                     if (error.error.errors.titulo != null) {
@@ -86,16 +104,14 @@ export class OfertasComponent implements OnInit {
         this.ofertaServices._showOferta(data.idOferta).subscribe(
             (resp: any) => {
                 this.edit_form_ofertas = resp.oferta
-                console.log(resp.oferta)
                 $("#editarOfertaModal").modal('show');
             }
         )
     }
 
     upgrade() {
-
+        this.inPromise = true;
         var formData: FormData = new FormData();
-
         formData.append('imagen', this.edit_form_ofertas.imagen);
         formData.append('titulo', this.edit_form_ofertas.titulo);
         formData.append('tiempoExpi', this.edit_form_ofertas.tiempoExpi);
@@ -109,9 +125,10 @@ export class OfertasComponent implements OnInit {
                 $("#editarOfertaModal").modal('hide');
                 this.edit_form_ofertas = {idOferta: null, titulo: null, tiempoExpi: null, imagen: null}
                 this._alertService.msg("OK", "Éxito", "Se editó correctamente");
+                this.inPromise = false;
             },
             error => {
-                console.log(error);
+                this.inPromise = false;
                 this._alertService.msg("ERR", "Error", `Error: ${error.error}`);
 
                 if (error.error.errors.image[0] != null) {
@@ -129,12 +146,25 @@ export class OfertasComponent implements OnInit {
             resp => {
                 this.getOfertas();
                 this._alertService.msg('OK', 'Se elimino correctamente');
-                console.log(resp)
             },
             error => {
                 this._alertService.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
             }
         )
     }
+
+
+    updateFilter(event){
+        const val = event.target.value.toLowerCase();
+    
+        const temp = this.listOfertas.filter(function(d) {
+          return (d.titulo.toLowerCase().indexOf(val) !== -1 || !val) 
+          || (d.tiempoExpi.toLowerCase().indexOf(val) !== -1 || !val);
+        });
+    
+        this.rows = temp;
+        this.table.offset = 0;//Requerido
+      }
+    
 
 }
