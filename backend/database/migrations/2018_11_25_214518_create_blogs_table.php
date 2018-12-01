@@ -16,8 +16,8 @@ class CreateBlogsTable extends Migration {
             $table->integer('fk_idusuario')->unsigned()->nullable();
             $table->string('titulo')->nullable();
             $table->string('foto')->nullable();
-            $table->text('descripción')->nullable();
-            $table->integer('fk_idCategoría')->unsigned()->nullable();
+            $table->text('descripcion')->nullable();
+            $table->integer('fk_idCategoria')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
