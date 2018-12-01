@@ -15,7 +15,7 @@ class ConfigFooterController extends Controller {
         // Como se supone que estamos editanto,
         // vamos a dejar el unico registro
         // para editar
-
+        
         $d = ConfigFooter::first();
 
         if (empty($d)) { // Caso de estar vacio
@@ -23,7 +23,7 @@ class ConfigFooterController extends Controller {
             $this->validate($request, [
                 'direccion'   => 'required',
                 'nroContacto' => 'required',
-                'mail1'       => 'required',
+                'mail1'       => 'required|email',
                 //'mail2'       => 'required',
                 'latitud'     => 'required',
                 'longitud'    => 'required',
@@ -38,6 +38,7 @@ class ConfigFooterController extends Controller {
                 'direccion'            => 'El campo es requerido',
                 'nroContacto.required' => 'El campo es requerido',
                 'mail1.required'       => 'El campo es requerido',
+                'mail1.email'          => 'El campo no tiene el formado de correo valido',
                 //'mail2.required'       => 'El campo es requerido',
                 'latitud.required'     => 'El campo es requerido',
                 'longitud.required'    => 'El campo es requerido',

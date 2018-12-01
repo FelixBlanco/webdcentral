@@ -31,8 +31,8 @@ class ConfigFooter extends Model {
         'colectivos',
         'avenidas',
         'listaPrecio',
-        'desde ',
-        'hasta ',
+        'desde',
+        'hasta',
         'url_mercado_libre',
     ];
 

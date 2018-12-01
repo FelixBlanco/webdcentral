@@ -32,6 +32,7 @@ export interface Producto{
   updated_at: Date;
   deleted_at: Date;
   cantidad?: number;
+  defaultPrice: string;
 }
 
 export interface SearchBody{

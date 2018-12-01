@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductosService, Producto, CarouselItem } from 'src/app/services/productos.service';
 import { NgbCarouselConfig, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 
 
 @Component({
@@ -16,10 +17,13 @@ export class DestacadoInicioComponent implements OnInit {
 
   carouselItems: CarouselItem[] = [];
 
+  aTimeOutFix: boolean = false;
+
   constructor(
     private productosService: ProductosService, 
     private carouselConfig: NgbCarouselConfig, 
-    private ts: AlertsService
+    private ts: AlertsService,
+    private productsBehavior: ProductsBehaviorService
   ) { 
     this.carouselConfig.interval = 5000;
     this.carouselConfig.showNavigationArrows = true;
@@ -41,7 +45,7 @@ export class DestacadoInicioComponent implements OnInit {
     });
   }
 
-  mapAndSet(data: any) : void {
+  mapAndSet(data: any) {
     
     if(!data || !data.destacados){
       this.destacadosList = [];
@@ -57,8 +61,11 @@ export class DestacadoInicioComponent implements OnInit {
       toSet.push(item.producto);
     });
 
-    this.destacadosList = toSet;
-    this.generateCarousel();
+    this.productsBehavior.parseDefaultPrice(toSet).then(value => {
+      this.destacadosList = value
+      this.generateCarousel();
+     })
+    
   }
 
   generateCarousel(){
@@ -73,7 +80,9 @@ export class DestacadoInicioComponent implements OnInit {
         this.carouselItems.push({id: index++, products: this.getPartialItems(i,i+3)});
       }
     });
-
+    
+    //Fix ExpressionChangedAfterItHasBeenCheckedError
+    setTimeout(()=> this.aTimeOutFix = true,1000); // :(
   }
 
   isACarruselItem($index): boolean {

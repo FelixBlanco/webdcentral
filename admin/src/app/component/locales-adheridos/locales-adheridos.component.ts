@@ -23,6 +23,7 @@ export class LocalesAdheridosComponent implements OnInit {
   foto_edit_1:File; foto_edit_2:File;
   
   idEdit:any;
+  inPromise: boolean;
 
   columns = [
     { prop: 'nombre' },
@@ -117,6 +118,7 @@ export class LocalesAdheridosComponent implements OnInit {
   }
 
   save(){
+    this.inPromise = true;
     const val = this.myForm.value;
     const formData = new FormData();
     formData.append('nombre', val.nombre)
@@ -130,8 +132,11 @@ export class LocalesAdheridosComponent implements OnInit {
         $("#nuevo").modal('hide');
         this.getLocalesAdheridos();
         this.alert.msg('OK',resp.msj)
+        this.inPromise = false;
       },
       error => {
+        
+        this.inPromise = false;
 
         if(error.error.errors.nombre != null){
           this.alert.msg('ERR',error.error.errors.nombre)
@@ -165,6 +170,7 @@ export class LocalesAdheridosComponent implements OnInit {
   }
 
   upgrade(){
+    this.inPromise = true;
     const val = this.myFormEdit.value;
     const formData = new FormData();
     formData.append('nombre', val.nombre)
@@ -175,23 +181,28 @@ export class LocalesAdheridosComponent implements OnInit {
     
     this.localesAdheridosServices._upgradeLocal(this.idEdit,formData).subscribe(
       (resp:any) => {
+        this.inPromise = false;
         this.getLocalesAdheridos();
         $("#editar").modal('hide');
         this.alert.msg('OK',resp.msj)
       },
       error => {
+        this.inPromise = false;
         this.alert.msg('ERR',error.message)
       }
     )
   }
 
   eliminar(id:number){
+    this.inPromise = true;
     this.localesAdheridosServices._deleteLocal(id).subscribe(
       (resp:any) => {
+        this.inPromise = false;
         this.getLocalesAdheridos();
         this.alert.msg('OK',resp.msj)
       },
       error => {
+        this.inPromise = false;
         this.alert.msg('ERR',error.error.message)
       }
     )

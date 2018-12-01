@@ -42,6 +42,8 @@ import { SuscripcionComponent } from './component/suscripcion/suscripcion.compon
 import { GaleryProductComponent } from './component/galery-product/galery-product.component';
 import { LocalesAdheridosComponent } from './component/locales-adheridos/locales-adheridos.component';
 import { ClasificadosComponent } from './component/clasificados/clasificados.component';
+import { CategoriaBlogComponent } from './component/categoria-blog/categoria-blog.component';
+import { BlogComponent } from './component/blog/blog.component';
 
 
 @NgModule({
@@ -80,7 +82,9 @@ import { ClasificadosComponent } from './component/clasificados/clasificados.com
     LocalesAdheridosComponent,
     SuscripcionComponent,
     GaleryProductComponent,
-    ClasificadosComponent
+    ClasificadosComponent,
+    CategoriaBlogComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,

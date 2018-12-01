@@ -1,106 +1,111 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="form-group">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarOfertaModal">
-            Agregar Oferta
-          </button>
-          
-          <!-- Modal new -->
-          <div class="modal fade" id="agregarOfertaModal" tabindex="-1" role="dialog" aria-labelledby="agregarOfertaModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="agregarOfertaModalLabel">Agregar Oferta</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <div class="form-group">
-                    <label for="">Titulo Oferta</label>
-                    <input type="text" [(ngModel)]="form_ofertas.titulo" class="form-control" placeholder="titulo">
-                  </div>
-                  <div class="form-group">
-                    <label for="">Tiempo de Expiración</label>
-                    <input type="date" [(ngModel)]="form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempo de expiracion">
-                  </div>
-                  <div class="form-group">
-                    <label for="">Subir Imagen</label>
-                    <input type="file" (change)="upImagen($event)">
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-primary" (click)="add_updateOferta('add')">Guardar Cambios</button>
-                </div>
-              </div>
-            </div>
-          </div>
+<div class="row">
+  <div class="col-md-2">
+      <select class="form-control" [(ngModel)]="limit">
+        <option>5</option>
+        <option>10</option>
+        <option>20</option>
+        <option *ngIf="listOfertas" value="{{listOfertas.length}}">Todos ({{listOfertas.length}})</option>
+      </select>
+  </div>
+  <div class="col-md-7">
+      <input class="form-control" type="text" placeholder="Buscar" (keyup)='updateFilter($event)'>
+  </div>
+  <div class="col-md-3">
+      <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#agregarOfertaModal">Nuevo</button>
+  </div>
+</div>
+    
+<ngx-datatable
+#table
+class="bootstrap"
+[rows]="rows"
+[columns]="columns"
+[columnMode]="'force'"
+[headerHeight]="50"
+[footerHeight]="50"
+[rowHeight]="'auto'"
+[limit]="limit">
 
-          <!-- Modal edit-->
-          <div class="modal fade" id="editarOfertaModal" tabindex="-1" role="dialog" aria-labelledby="editarOfertaModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="editarOfertaModalLabel">Editar Oferta</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label for="">Titulo de la Oferta</label>
-                      <input type="text" [(ngModel)]="edit_form_ofertas.titulo" class="form-control" placeholder="titulo">
-                    </div>
-                    <div class="form-group">
-                      <label for="">Tiempo de Expiración</label>
-                      <input type="text" [(ngModel)]="edit_form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempo de expiracion">
-                    </div>
-                    <div class="form-group">
-                      <label for="">Subir Imagen</label>
-                      <label for="">Imagen</label>
-                      <input type="file" (change)="upImagenEdit($event)">
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" (click)="upgrade()">Guardar Cambios</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+<ngx-datatable-column name="Titulo" prop="titulo"></ngx-datatable-column>
+<ngx-datatable-column name="Tiempo de Expiración" prop="tiempoExpi">
+  <ng-template ngx-datatable-cell-template let-row="row">
+    <img [src]="row.set_imagen" width="70" height="70">
+  </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column name="Estado" prop="status_sistema"></ngx-datatable-column>
+
+<ngx-datatable-column name="" prop="opts">
+    <ng-template ngx-datatable-cell-template let-row="row">
+        <button class="btn btn-primary" (click)="editOferta(row)"><span class="glyphicon glyphicon-pencil"></span></button>
+        <button class="btn btn-danger" (click)="eliminarOferta(row.id)" ><span class="glyphicon glyphicon-trash"></span> </button>
+    </ng-template>                    
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
+
+
+<!-- Modal new -->
+<div class="modal fade" id="agregarOfertaModal" tabindex="-1" role="dialog" aria-labelledby="agregarOfertaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="agregarOfertaModalLabel">Agregar Oferta</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="">Titulo Oferta</label>
+            <input type="text" [(ngModel)]="form_ofertas.titulo" class="form-control" placeholder="titulo">
+          </div>
+          <div class="form-group">
+            <label for="">Tiempo de Expiración</label>
+            <input type="date" [(ngModel)]="form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempo de expiracion">
+          </div>
+          <div class="form-group">
+            <label for="">Subir Imagen</label>
+            <input type="file" (change)="upImagen($event)">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="add_updateOferta('add')">Guardar Cambios <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"></button>
+        </div>
       </div>
     </div>
   </div>
-  
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table">
-        <tr>
-          <th>
-            Titulo
-          </th>
-          <th>
-            Tiempo de Expiración
-          </th>
-          <th>
-              imagen
-          </th>
-          <th></th>
-        </tr>
 
-        <tr *ngFor="let o of listOfertas">
-            <td>{{o.titulo}}</td>
-            <td>{{o.tiempoExpi}}</td>
-            <td><img class="card-img-top"  src="{{o.set_imagen}}" width="100px"></td>
-            <td>
-              <div href="#" class="btn btn-primary btn-sm" (click)="editOferta(o)"> Editar</div>
-              <button class="btn btn-danger btn-sm" (click)="eliminarOferta(o.id)">Eliminar</button>
-            </td>
-          </tr>
-      </table>
-    </div>
+  <!-- Modal edit-->
+  <div class="modal fade" id="editarOfertaModal" tabindex="-1" role="dialog" aria-labelledby="editarOfertaModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editarOfertaModalLabel">Editar Oferta</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="">Titulo de la Oferta</label>
+              <input type="text" [(ngModel)]="edit_form_ofertas.titulo" class="form-control" placeholder="titulo">
+            </div>
+            <div class="form-group">
+              <label for="">Tiempo de Expiración</label>
+              <input type="text" [(ngModel)]="edit_form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempo de expiracion">
+            </div>
+            <div class="form-group">
+              <label for="">Subir Imagen</label>
+              <label for="">Imagen</label>
+              <input type="file" (change)="upImagenEdit($event)">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" (click)="upgrade()">Guardar Cambios <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"></button>
+          </div>
+        </div>
+      </div>
   </div>
-</div>

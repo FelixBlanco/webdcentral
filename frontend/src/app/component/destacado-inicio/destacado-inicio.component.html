@@ -34,7 +34,7 @@
 								<span class="sr-only">Next</span>
 							</a>
 						</ng-container>
-						<div class="d-flex justify-content-center paginator-bubbles mt-2" >
+						<div *ngIf="aTimeOutFix" class="d-flex justify-content-center paginator-bubbles mt-2" >
 							<button mat-icon-button class="txt-azul" *ngFor="let item of carouselItems" [id]="item.id" (click)="carousel.select(item.id)">
 								<ng-container [ngSwitch]="carousel.activeId">
 									<fa-icon *ngSwitchCase="item.id.toString()" class="txt-azul" [icon]="['fas','circle']" size="1x"></fa-icon>

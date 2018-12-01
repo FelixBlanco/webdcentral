@@ -19,8 +19,8 @@ class BlogController extends Controller {
             //'fk_idusuario'   => 'required',
             'titulo'         => 'required',
             'foto'           => 'image|required|mimes:jpeg,png,jpg,gif,svg',
-            'descripción'    => 'required',
-            'fk_idCategoría' => 'required',
+            'descripcion'    => 'required',
+            'fk_idCategoria' => 'required',
         ], [
             //'fk_idusuario.required'   => 'El campo es requerido',
             'titulo.required' => 'El campo es requerido',
@@ -29,8 +29,8 @@ class BlogController extends Controller {
             'foto.required' => 'La Imagen es requerida',
             'foto.mimes'    => 'Solo jpeg, png, bmp,tiff son soportados',
 
-            'descripción.required'    => 'El campo es requerido',
-            'fk_idCategoría.required' => 'El campo es requerido',
+            'descripcion.required'    => 'El campo es requerido',
+            'fk_idCategoria.required' => 'El campo es requerido',
         ]);
 
         DB::beginTransaction();
@@ -62,8 +62,9 @@ class BlogController extends Controller {
             $Blog->save();
 
             $response = [
-                'msj'  => 'Blog Creado Exitosamente',
-                'blog' => $Blog,
+                'msj'        => 'Blog Creado Exitosamente',
+                'blog'       => $Blog,
+                'set_imagen' => asset('storage/blog/'.$Blog->foto),
             ];
             DB::commit();
 
@@ -116,7 +117,6 @@ class BlogController extends Controller {
 
                     Storage::disk('local')->put('/blog/'.$nombre_interno, (string) $thumbnailImage->encode());
 
-                    $Blog               = new Blog($request->all());
                     $Blog->fk_idusuario = Auth::user()->fk_idPerfil;
                     $Blog->foto         = $nombre_interno;
                 }
@@ -173,9 +173,14 @@ class BlogController extends Controller {
     }
 
     public function listar() {
-        $Blog     = Blog::get();
+        $Blog = Blog::get();
+
+        $Blog->each(function($Blog) {
+            $Blog->set_imagen = asset('storage/blog/'.$Blog->foto);
+        });
+
         $response = [
-            'msj' => 'Lista de Blogs',
+            'msj'   => 'Lista de Blogs',
             'blogs' => $Blog,
         ];
 
@@ -185,10 +190,15 @@ class BlogController extends Controller {
     public function buscarIdBlogCategoria($idBlog) {
 
         $Blog = Blog::find($idBlog);
+
+        $Blog->each(function($Blog) {
+            $Blog->set_imagen = asset('storage/blog/'.$Blog->foto);
+        });
+
         if (! is_null($Blog)) {
 
             $response = [
-                'msj' => 'Lista de Blogs',
+                'msj'   => 'Lista de Blogs',
                 'blogs' => $Blog,
             ];
 

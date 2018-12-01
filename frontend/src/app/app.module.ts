@@ -55,6 +55,7 @@ import { PerfilClienteComponent } from './component/perfil-cliente/perfil-client
 import { DepositoGuard } from './services/auth-guard.service';
 import { RubrosFilterComponent } from './component/rubros-filter/rubros-filter.component';
 import { EnviosPageComponent } from './component/envios-page/envios-page.component';
+import { CarritoFormComponent } from './component/carrito/carrito-form/carrito-form.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -111,7 +112,8 @@ const appRoutes: Routes = [
     ProductosCarouselPageComponent,
     PerfilClienteComponent,
     RubrosFilterComponent,
-    EnviosPageComponent
+    EnviosPageComponent,
+    CarritoFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,6 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { Producto, ProductosService, CarouselItem } from 'src/app/services/productos.service';
-import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-productos',
@@ -24,8 +23,7 @@ export class ProductosComponent implements OnInit {
 
   constructor(
     private productsBehavior: ProductsBehaviorService,
-    private productosService: ProductosService,
-    private route: ActivatedRoute
+    private productosService: ProductosService
   ) { 
     this.pages = 0;
   }

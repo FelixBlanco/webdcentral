@@ -17,6 +17,9 @@ export class ProductosInicioComponent implements OnInit {
 
   carouselItems: CarouselItem[] = [];
 
+  aTimeOutFix: boolean = false;
+
+
   constructor(
     private galeryProductService: GaleryProductService, 
     private carouselConfig: NgbCarouselConfig, 
@@ -67,6 +70,8 @@ export class ProductosInicioComponent implements OnInit {
       }
     });
 
+    //Fix ExpressionChangedAfterItHasBeenCheckedError
+    setTimeout(()=> this.aTimeOutFix = true,1000); // :(
   }
 
   isACarruselItem($index): boolean {

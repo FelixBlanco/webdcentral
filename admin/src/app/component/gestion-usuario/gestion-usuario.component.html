@@ -46,7 +46,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" (click)="addUser()" [disabled]="newUser.invalid || inPromise">Guardar</button>
+        <button type="button" class="btn btn-success" (click)="addUser()" [disabled]="newUser.invalid || inPromise">
+          Guardar
+          <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise">
+        </button>
       </div>
     </div>
   </div>
@@ -92,7 +95,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" (click)="upgradeUser()" [disabled]="editUser.invalid || inPromise" >Guardar Cambios</button>
+        <button type="button" class="btn btn-success" (click)="upgradeUser()" [disabled]="editUser.invalid || inPromise" >
+          Guardar Cambios
+          <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise">
+        </button>
       </div>
     </div>
   </div>

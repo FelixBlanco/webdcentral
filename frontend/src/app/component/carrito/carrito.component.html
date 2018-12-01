@@ -3,14 +3,27 @@
   <div class="modal-dialog modal-dialog-centered" [ngClass]=" (section === 'shipping') ? 'modal-lg' : ''"  role="document">
     <div class="modal-content">
       <div class="modal-header bg-azul">
-        <ng-container *ngIf="section === 'toBuy'"> 
+        <ng-container [ngSwitch]="section">
+          <h5 *ngSwitchCase="'shipping'" class="modal-title text-white  text-uppercase" id="carritoTittle"><img src="assets/social/carrito.png" alt="Carrito de compras"> Carrito de Compras</h5>
+          <ng-container *ngSwitchCase="'inMarket'">
+              <button class="btn btn-link text-white" (click)="routeTo('deliveryMethod')">
+                  <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
+              </button>
+              <h5 class="modal-title text-white text-uppercase mt-1">retiro en tienda</h5>
+          </ng-container>
+          <ng-container  *ngSwitchCase="'delivery'">
+            <button class="btn btn-link text-white" (click)="routeTo('deliveryMethod')">
+              <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
+            </button>
+            <h5 class="modal-title text-white text-uppercase mt-1">delivery</h5>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
             <button class="btn btn-link text-white" (click)="routeTo('shipping')">
                 <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
             </button>
-            <h5 class="modal-title text-white text-uppercase mt-1">datos de compra</h5>
+            <h5 class="modal-title text-white text-uppercase mt-1" >método de entrega</h5>
+          </ng-container>
         </ng-container>
-        
-        <h5 *ngIf="section === 'shipping'" class="modal-title text-white  text-uppercase" id="carritoTittle"><img src="assets/social/carrito.png" alt="Carrito de compras"> Carrito de Compras</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span class="text-white" aria-hidden="true">&times;</span>
         </button>
@@ -72,39 +85,14 @@
             </div>
           </ng-container>
           <ng-container *ngSwitchDefault>
-            <div class="m-2">
-              <form [formGroup]="orderForm">
-                <div class="form-group">
-                  <label for="direccion">Dirección</label>
-                  <input type="text" class="form-control" id="direccion" formControlName="direccion" placeholder="Ingrese Dirección">
-                </div>
-                <div class="form-group">
-                  <label for="codigoPostal">Código Postal</label>
-                  <input type="text" class="form-control" id="codigoPostal" formControlName="codPostal"  placeholder="0000">
-                  <small class="form-text text-danger" *ngIf="orderForm.get('codPostal').hasError('pattern')">
-                    El código postal suministrado es inválido, este campo es sensible a mayúsculas y minúsculas.
-                  </small>
-                  <small class="form-text text-success" *ngIf="orderForm.get('codPostal').valid">
-                    Correcto
-                  </small>
-                </div>
-                <div class="form-group">
-                  <label for="comentario">Comentario</label>
-                  <textarea rows="4" class="form-control" id="comentario" formControlName="comentario"  placeholder="Ingrese Comentario"></textarea>
-                </div>
-              </form>
-            </div>
-            <div class="text-right" *ngIf="!inPromise">
-              <button class="btn btn-light txt-verde font-bold" [disabled]="orderForm.invalid" (click)="createOrder()">ENVIAR</button>
-            </div>
-            <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto;"></mat-spinner>
+            <app-carrito-form (onSectionChange)="routeTo($event);" [section]="section"></app-carrito-form>
           </ng-container>
         </ng-container>
       </div>
       <div class="modal-footer" *ngIf="section === 'shipping'">
         <button type="button" *ngIf="token" [routerLink]="[ '/recompra']" class="btn btn-light text-uppercase txt-azul font-bold" data-dismiss="modal">historial de compras</button>
         <button type="button" [routerLink]="[ '/productos']" class="btn btn-light text-uppercase txt-naranja font-bold" data-dismiss="modal">continuar comprando</button>
-        <button type="button" class="btn btn-light text-uppercase txt-verde font-bold" [disabled]="!items.length" (click)="routeTo('toBuy')" >enviar pedido</button>
+        <button type="button" class="btn btn-light text-uppercase txt-verde font-bold" (click)="routeTo('toBuy')" >enviar pedido</button>
       </div>
     </div>
   </div>
