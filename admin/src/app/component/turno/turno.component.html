@@ -25,10 +25,19 @@
           <div class="col-md-12">
             <ngx-datatable #table class="bootstrap" [rowHeight]="'auto'" [rows]="rows" [columns]="columns" [columnMode]="'force'"
               [footerHeight]="'40'" [limit]="limit">
-
               <ngx-datatable-column name="Estatus" prop="fk_idStatusTurnos">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                  {{row.status_turno.descripcion | titlecase}}
+                  {{row.status_turno.descripcion}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Clasificado" prop="fk_idClasificado">
+                <ng-template ngx-datatable-cell-template let-row="row">
+                  {{row.clasificado.titulo}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Local Adherido" prop="fk_idLocalAdherido">
+                <ng-template ngx-datatable-cell-template let-row="row">
+                  {{row.local_adherido}}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Fecha / Hora" prop="fechaHora">
@@ -95,12 +104,22 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="newForm">
+          <!-- <div class="form-group">
+            <label for="titulo">Local Adherido:</label>
+            <select formControlName="fk_idLocalAdherido" class="form-control" id="fk_idLocalAdherido">
+              <option [value]="l" selected>Ingrese Clasificado</option>
+              <option *ngFor="let localAdherido of rowsLocalAdheridos" [value]="localAdherido.idlocalAdherido">
+                {{ localAdherido.nombre }}
+              </option>
+            </select>
+          </div> -->
           <div class="form-group">
-            <label for="titulo">Estatus:</label>
-            <select formControlName="status_turno" class="form-control" id="status_turno">
-              <option selected value="1">Solicitado </option>
-              <option value="2">Cancelado</option>
-              <option value="3">Rechazado</option>
+            <label for="titulo">Clasificado:</label>
+            <select formControlName="fk_idClasificado" class="form-control" id="fk_idClasificado">
+              <!-- <option [value]="null" selected>Ingrese Clasificado</option> -->
+              <option *ngFor="let clasificado of rowsClasificados" [value]="clasificado.idClasificado">
+                {{ clasificado.titulo }}
+              </option>
             </select>
           </div>
           <div class="form-group">
@@ -124,7 +143,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-danger">
-        <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="turnoSet">'{{turnoSet.titulo}}'</span></h5>
+        <!-- <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="turnoSet">'{{turnoSet.idTurnos}}'</span></h5> -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

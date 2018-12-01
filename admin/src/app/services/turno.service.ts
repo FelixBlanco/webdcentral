@@ -4,10 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export interface Turno {
-    idGaleriaHomeProducto;
-    titulo;
-    // estatus;
-    set_imagen: String;
+    idTurnos;
+    clasificado;
     created_at;
     updated_at;
     deleted_at;
@@ -52,7 +50,7 @@ export class TurnoService {
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
+        console.log("id desde servicio",id);
         return this.http.delete<any>(`${environment.apiHost}/api/auth/borrraGaleriaHomeProd/${id}`, { headers: this.httpOptions, observe: 'response' });
     }
-
 }

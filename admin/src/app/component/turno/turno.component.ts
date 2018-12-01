@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TurnoService, Turno } from 'src/app/services/turno.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { ClasificadosService } from '../../services/clasificados.service';
+import { LocalesAdheridosService } from '../../services/locales-adheridos.service';
 
 declare var $: any;
 
@@ -17,13 +19,16 @@ export class TurnoComponent implements OnInit {
   limit: number = 5;
 
   columns: any = [
-    { prop: 'status_turno' },
-    { prop: 'set_imagen' },
-    { prop: 'fk_idStatusSistema' },
-    { prop: 'opts' }
+    { prop: 'idTurnos' },
+    { prop: 'clasificado' },
+    { prop: 'fk_idLocalAdherido' },
+    { prop: 'fk_idClasificado' },
+    { prop: 'fechaHora' }
   ];
 
   rows: any;
+  rowsClasificados: any;
+  rowsLocalAdheridos:any;
 
   newForm: FormGroup;
   turnoSet: Turno;
@@ -35,15 +40,20 @@ export class TurnoComponent implements OnInit {
 
   constructor(
     private turnoService: TurnoService,
-    private as: AlertsService,
+    private clasificadoService: ClasificadosService,
+    private localesAdheridosServices: LocalesAdheridosService,
+    private as: AlertsService,    
     private fb: FormBuilder
   ) { }
 
   ngOnInit() {
     this.getAll();
+    this.getClasificacidos();
+    this.getLocalesAdheridos();
 
     this.newForm = this.fb.group({
-      status_turno: ['1', Validators.required],
+      // fk_idLocalAdherido: ['1', Validators.required],
+      fk_idClasificado: ['', Validators.required],
       fechaHora: ['', Validators.required]
     });
   }
@@ -52,13 +62,38 @@ export class TurnoComponent implements OnInit {
   getAll() {
     this.turnoService.getAll().subscribe((resp) => {
       if (resp.ok) {
-        console.log("datos varios");
-        console.log(resp.body);
-        console.log(resp.body.turnos);
         this.turnoList = resp.body.turnos;
         this.rows = [...this.turnoList];
+        console.log("this.rows");
+        console.log(this.rows);
       }
     }
+    )
+  }
+
+  getClasificacidos(){
+    this.clasificadoService._getClasificados(null).subscribe(
+      (resp:any) => {
+        this.rowsClasificados = [...resp.Clasificado];
+        console.log("this.rowsClasificados");
+        console.log(this.rowsClasificados);
+      }
+    )
+  }
+
+  
+  getLocalesAdheridos(){
+    this.localesAdheridosServices._listarLocales(1).subscribe(
+      (resp:any) => {   
+
+        this.rowsLocalAdheridos = [...resp.LocalAdh];             
+        console.log("resp");
+        console.log(resp);
+        console.log("resp.LocalAdh");
+        console.log(resp.LocalAdh);
+        console.log("this.rowsLocalAdheridos");
+        console.log(this.rowsLocalAdheridos);
+      }
     )
   }
 
@@ -66,10 +101,11 @@ export class TurnoComponent implements OnInit {
     const values = this.newForm.value;
     console.log(values);
     let toSend: FormData = new FormData();
-    toSend.append('fk_idStatusTurnos', values.status_turno);
-    toSend.append('fechaHora',"2000-01-30 00:00:00");
-    toSend.append('fk_idLocalAdherido', "1");    
-    toSend.append('fk_idClasificado', "1");
+    
+    toSend.append('fechaHora',values.fechaHora);
+    toSend.append('fk_idLocalAdherido', '1');    
+    toSend.append('fk_idClasificado', values.fk_idClasificado);
+    toSend.append('fk_idStatusTurnos', '1');
     
     this.inPromise = true;
     this.turnoService.persist(toSend).subscribe(
@@ -96,7 +132,8 @@ export class TurnoComponent implements OnInit {
 
   delete() {
     this.inPromise = true;
-    this.turnoService.delete(this.turnoSet.idGaleriaHomeProducto).subscribe(
+    console.log(this.turnoSet)
+    this.turnoService.delete(this.turnoSet.idTurnos).subscribe(
       resp => {
         console.log(resp);
         if (resp.ok && resp.status === 200) {
@@ -120,64 +157,69 @@ export class TurnoComponent implements OnInit {
   }
 
   updateStatus() {
-    this.inPromise = true;
+    console.log("updateStatus()");
+  //   this.inPromise = true;
 
-    const status: number = this.turnoSet.fk_idStatusSistema === 1 ? 0 : 1;
+  //   const status: number = this.turnoSet.fk_idStatusSistema === 1 ? 0 : 1;
 
-    this.turnoService.updateStatus(this.turnoSet.idGaleriaHomeProducto, status).subscribe(
-      resp => {
-        if (resp.ok && resp.status === 201) {
-          $('#estatus').modal('hide');
-          this.as.msg('OK', 'Éxito', 'Se ha actualizado el estatus');
-        } else {
-          console.error(resp);
-          this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
-        }
-        this.getAll();
-        this.inPromise = false;
-      }, error => {
-        this.inPromise = false;
-        console.error(error);
-        this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
-      });
+  //   this.turnoService.updateStatus(this.turnoSet.idGaleriaHomeProducto, status).subscribe(
+  //     resp => {
+  //       if (resp.ok && resp.status === 201) {
+  //         $('#estatus').modal('hide');
+  //         this.as.msg('OK', 'Éxito', 'Se ha actualizado el estatus');
+  //       } else {
+  //         console.error(resp);
+  //         this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+  //       }
+  //       this.getAll();
+  //       this.inPromise = false;
+  //     }, error => {
+  //       this.inPromise = false;
+  //       console.error(error);
+  //       this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+  //     });
   }
 
-  onFileChange(event) {
-    if (event.target.files && event.target.files.length) {
-      const fileTo: File = event.target.files[0];
+  // onFileChange(event) {
+  //   if (event.target.files && event.target.files.length) {
+  //     const fileTo: File = event.target.files[0];
 
-      if (!fileTo.type.includes('image/png')
-        && !fileTo.type.includes('image/jpg')
-        && !fileTo.type.includes('image/jpeg')) {
-        this.as.msg('ERR', 'Error:', 'El archivo no es admitido o no es una imagen');
-        this.newForm.patchValue({
-          imagen: null
-        });
-        return;
-      }
+  //     if (!fileTo.type.includes('image/png')
+  //       && !fileTo.type.includes('image/jpg')
+  //       && !fileTo.type.includes('image/jpeg')) {
+  //       this.as.msg('ERR', 'Error:', 'El archivo no es admitido o no es una imagen');
+  //       this.newForm.patchValue({
+  //         imagen: null
+  //       });
+  //       return;
+  //     }
 
-      if (fileTo.size > 5000000) {
-        this.as.msg('ERR', 'Error:', 'El archivo es muy pesado');
-        this.newForm.patchValue({
-          imagen: null
-        });
-        return;
-      }
+  //     if (fileTo.size > 5000000) {
+  //       this.as.msg('ERR', 'Error:', 'El archivo es muy pesado');
+  //       this.newForm.patchValue({
+  //         imagen: null
+  //       });
+  //       return;
+  //     }
 
-      this.imgLoaded = fileTo;
-      this.newForm.patchValue({
-        imagen: fileTo
-      });
-    }
-  }
+  //     this.imgLoaded = fileTo;
+  //     this.newForm.patchValue({
+  //       imagen: fileTo
+  //     });
+  //   }
+  // }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-
+    console.log(val);
+    console.log(this.turnoList);
     const temp = this.turnoList.filter(function (d) {
-      return (d.titulo.toLowerCase().indexOf(val) !== -1 || !val)
+      console.log("d",d);
+      console.log("d",d.clasificado.titulo);      
+      return (d.clasificado.titulo.toLowerCase().indexOf(val) !== -1 || !val);
+      
     });
-
+    console.log(temp);
     this.rows = temp;
     this.table.offset = 0;//Requerido*/
   }
