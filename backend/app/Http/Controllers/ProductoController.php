@@ -423,7 +423,13 @@ class ProductoController extends Controller {
 
     public function getProductByRubro(Request $request) {
 
+       // $response = Producto::select("rubro")->distinct('rubro')->orderBy("rubro")->get();
+
+       // return response()->json($response, 202);
+
+
         try {
+           
             $rs = null;
 
             $sql = "";
@@ -449,11 +455,12 @@ class ProductoController extends Controller {
             }
 
             if (!empty($request->search)) {
-                $sql = $sql." ".$isWherActive."  Descripcion_Producto = like '%".$request->search."%' ";
-                if($isWherActive == "where"){$isWherActive = " and ";}
+                $sql = $sql." ".$isWherActive."  Descripcion_Producto  like '%".$request->search."%' ";
 
             }
 
+
+           
 
             $rs = DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
              ".$sql."  order by Descripcion_Producto  ");
@@ -469,6 +476,7 @@ class ProductoController extends Controller {
 
             return response()->json("Error conectando a el DC", 500);
         }
+        
 
     }
 
@@ -501,7 +509,7 @@ class ProductoController extends Controller {
 
     public function getCostos() {
 
-        $rs = DB::connection('sqlsrv')->select(" SELECT * FROM  VistaLocalidades ");
+        $rs = DB::connection('sqlsrv')->select(" SELECT * FROM  VistaZonasLocalidadesAPP ");
 
         if (is_null($rs)) {
             $response = [

@@ -34,7 +34,11 @@ class orderHeader extends Model {
         'metodoPago',
         'comprobanteDepositoTransferencia',
         'fk_idTipoFactura',
-        'localidad'
+        'localidad',
+        'firma1',
+        'firma2',
+        'comentarioFinal'
+
 
     ];
 

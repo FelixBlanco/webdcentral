@@ -84,7 +84,6 @@ export class ProductosComponent implements OnInit {
 
   iniBehavior() : void{
     this.productsBehavior.productsItems.subscribe( (products: Producto[]) => {
-      console.log(products);
       this.productsList = [];
       this.setProducts(products);
     });
