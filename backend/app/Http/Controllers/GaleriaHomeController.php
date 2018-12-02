@@ -68,7 +68,7 @@ class GaleriaHomeController extends Controller {
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
 
-                Storage::disk('local')->put('/galeri/'.$nombre_interno, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\galeri\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
 
                 $imagemodel         = new GaleriaHome();
@@ -79,7 +79,7 @@ class GaleriaHomeController extends Controller {
                     'msj'         => 'Imagen guardada exitosamente',
                     'id_dataBase' => $imagemodel->idGaleriaHome,
                     'calidad'     => '2048*2048',
-                    'size'        => $size = (Storage::size('/galeri/'.$nombre_interno) / 1000000).' Mb',
+                    'size'        => $size = (Storage::size('\\galeri\\'.$nombre_interno) / 1000000).' Mb',
                     'name'        => '/galeri/'.$nombre_interno,
                 ];
 
@@ -112,10 +112,10 @@ class GaleriaHomeController extends Controller {
 
     public function getgaleriaHome($archivo) {
 
-        if (Storage::exists('/galeri/'.$archivo)) {
+        if (Storage::exists('\\galeri\\'.$archivo)) {
 
             /* habilitar si quieres recibir la imagen en streaming  */
-            return Storage::response("galeri/".$archivo);
+            return Storage::response("galeri\\".$archivo);
 
             //return response()->json(Storage::url('galeri/'.$archivo), 201);
         } else {
@@ -154,8 +154,8 @@ class GaleriaHomeController extends Controller {
      */
     public function destroy($archivo) {
 
-        if (Storage::exists('/galeri/'.$archivo)) {
-            Storage::delete('/galeri/'.$archivo);
+        if (Storage::exists('\\galeri\\'.$archivo)) {
+            Storage::delete('\\galeri\\'.$archivo);
 
             $ima = GaleriaHome::where('titulo', $archivo)->delete();
 

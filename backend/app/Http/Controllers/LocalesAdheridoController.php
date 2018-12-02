@@ -53,7 +53,7 @@ class LocalesAdheridoController extends Controller
                 $extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno1 = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno1 = str_slug($nombre_interno1, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-                Storage::disk('local')->put('/localesAdheridos/'.$nombre_interno1, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\localesAdheridos\\'.$nombre_interno1, (string) $thumbnailImage->encode());
                 /*para la foto*/
 
                 $LAH->foto_1 = $nombre_interno1;
@@ -69,7 +69,7 @@ class LocalesAdheridoController extends Controller
                 $extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno2 = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno2 = str_slug($nombre_interno2, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-                Storage::disk('local')->put('/localesAdheridos/'.$nombre_interno2, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\localesAdheridos\\'.$nombre_interno2, (string) $thumbnailImage->encode());
                 /*para la foto*/
 
                 $LAH->foto_2 = $nombre_interno2;
@@ -126,9 +126,9 @@ class LocalesAdheridoController extends Controller
         }
 
         $LAH->each(function ($LAH) {
-            $LAH->set_imagen = asset('storage/localesAdheridos/'.$LAH->imagen);
-            $LAH->set_imagen_uno = asset('storage/localesAdheridos/'.$LAH->foto_1);
-            $LAH->set_imagen_dos = asset('storage/localesAdheridos/'.$LAH->foto_2);
+            $LAH->set_imagen = asset('storage\\localesAdheridos\\'.$LAH->imagen);
+            $LAH->set_imagen_uno = asset('storage\\localesAdheridos\\'.$LAH->foto_1);
+            $LAH->set_imagen_dos = asset('storage\\localesAdheridos\\'.$LAH->foto_2);
         });
 
         $response = [
@@ -168,7 +168,7 @@ class LocalesAdheridoController extends Controller
         }
         if (! is_null($LAH)) {
             $LAH->each(function ($LAH) {
-                $LAH->set_imagen = asset('storage/localesAdheridos/'.$LAH->imagen);
+                $LAH->set_imagen = asset('storage\\localesAdheridos\\'.$LAH->imagen);
             });
         }
 
@@ -246,7 +246,7 @@ class LocalesAdheridoController extends Controller
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
-                Storage::disk('local')->put('/localesAdheridos/'.$nombre_interno, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\localesAdheridos\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
                 $LAH->foto_1 = $nombre_interno;
             }
@@ -266,7 +266,7 @@ class LocalesAdheridoController extends Controller
                 $nombre_interno2 = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno2 = str_slug($nombre_interno2, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
-                Storage::disk('local')->put('/localesAdheridos/'.$nombre_interno2, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\localesAdheridos\\'.$nombre_interno2, (string) $thumbnailImage->encode());
 
                 $LAH->foto_2 = $nombre_interno2;
             }
@@ -276,7 +276,7 @@ class LocalesAdheridoController extends Controller
             $response = [
                 'msj'   => 'Info de los locales actulizada',
                 'LocalAdh' => $LAH,
-                'ruta_imagen'  => asset('storage/localesAdheridos/'),
+                'ruta_imagen'  => asset('storage\\localesAdheridos\\'),
             ];
 
             DB::commit();

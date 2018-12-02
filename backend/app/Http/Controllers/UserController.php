@@ -45,7 +45,7 @@ class UserController extends Controller
         $users->each(function ($users) {
             $users->perfil;
             if (! is_null($users->fotoPerfil)) {
-                $users->ruta_imagen = asset('storage/perfil/'.$users->fotoPerfil);
+                $users->ruta_imagen = asset('storage\\perfil\\'.$users->fotoPerfil);
             }
 
             return $users;
@@ -123,7 +123,7 @@ class UserController extends Controller
                 $extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-                Storage::disk('local')->put('"\"."perfil"."\"'.$nombre_interno, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\perfil\\'.$nombre_interno, (string) $thumbnailImage->encode());
                 /*para la foto*/
 
                 $usuario->fotoPerfil = $nombre_interno;
@@ -259,7 +259,7 @@ class UserController extends Controller
                 $extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-                Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\perfil\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
                 $user->fotoPerfil = $nombre_interno;
                 /*para la foto*/
@@ -274,7 +274,7 @@ class UserController extends Controller
             $response = [
                 'msj'         => 'Info del Usuario actulizada',
                 'user'        => $user,
-                'ruta_imagen' => asset('storage/perfil/'.$user->fotoPerfil),
+                'ruta_imagen' => asset('storage\\perfil\\'.$user->fotoPerfil),
             ];
 
             $user->save();
@@ -321,10 +321,10 @@ class UserController extends Controller
     public function getFotoPerfil($archivo)
     {
 
-        if (Storage::exists('/perfil/'.$archivo)) {
+        if (Storage::exists('\\perfil\\'.$archivo)) {
 
             /* -habilitar si quieres recibir la imagen en streaming  */
-            return Storage::response("perfil/".$archivo);
+            return Storage::response("perfil\\".$archivo);
             //-return response()->json(Storage::url('galeri/'.$archivo), 201);
         } else {
             return response()->json('Archivo no encontrado', 404);
@@ -404,7 +404,7 @@ class UserController extends Controller
             $extension = $originalImage->getClientOriginalExtension();
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-            Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
+            Storage::disk('local')->put('\\perfil\\'.$nombre_interno, (string) $thumbnailImage->encode());
             /*para la foto*/
 
             $usuario->fotoPerfil = $nombre_interno;
@@ -413,7 +413,7 @@ class UserController extends Controller
             $response = [
                 'msj'         => 'Imagen de perfil creada exitosamente',
                 'user'        => $usuario,
-                'ruta_imagen' => asset('storage/perfil/'),
+                'ruta_imagen' => asset('storage\\perfil\\'),
             ];
 
             return response()->json($response, 201);
@@ -492,7 +492,7 @@ class UserController extends Controller
             $extension = $originalImage->getClientOriginalExtension();
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-            Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
+            Storage::disk('local')->put('\\perfil\\'.$nombre_interno, (string) $thumbnailImage->encode());
             /*para la foto*/
 
             $usuario->fotoPerfil = $nombre_interno;
@@ -501,7 +501,7 @@ class UserController extends Controller
             $response = [
                 'msj'         => 'Imagen de perfil creada exitosamente',
                 'user'        => $usuario,
-                'ruta_imagen' => asset('storage/perfil/'),
+                'ruta_imagen' => asset('storage\\perfil\\'),
             ];
 
             return response()->json($response, 201);

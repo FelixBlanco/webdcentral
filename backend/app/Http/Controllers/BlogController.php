@@ -52,7 +52,7 @@ class BlogController extends Controller {
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
 
-            Storage::disk('local')->put('/blog/'.$nombre_interno, (string) $thumbnailImage->encode());
+            Storage::disk('local')->put('\\blog\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
             $Blog               = new Blog($request->all());
             $Blog->fk_idusuario = Auth::user()->fk_idPerfil;
@@ -64,7 +64,7 @@ class BlogController extends Controller {
             $response = [
                 'msj'        => 'Blog Creado Exitosamente',
                 'blog'       => $Blog,
-                'set_imagen' => asset('storage/blog/'.$Blog->foto),
+                'set_imagen' => asset('storage\\blog\\'.$Blog->foto),
             ];
             DB::commit();
 
@@ -115,7 +115,7 @@ class BlogController extends Controller {
                     $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
 
-                    Storage::disk('local')->put('/blog/'.$nombre_interno, (string) $thumbnailImage->encode());
+                    Storage::disk('local')->put('\\blog\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
                     $Blog->fk_idusuario = Auth::user()->fk_idPerfil;
                     $Blog->foto         = $nombre_interno;
@@ -124,7 +124,7 @@ class BlogController extends Controller {
                 $response = [
                     'msj'         => 'Información actulizada',
                     'blog'        => $Blog,
-                    'ruta_imagen' => asset('storage/blog/'.$Blog->foto),
+                    'ruta_imagen' => asset('storage\\blog\\'.$Blog->foto),
                 ];
 
                 $Blog->save();
@@ -176,7 +176,7 @@ class BlogController extends Controller {
         $Blog = Blog::get();
 
         $Blog->each(function($Blog) {
-            $Blog->set_imagen = asset('storage/blog/'.$Blog->foto);
+            $Blog->set_imagen = asset('storage\\blog\\'.$Blog->foto);
         });
 
         $response = [
@@ -192,7 +192,7 @@ class BlogController extends Controller {
         $Blog = Blog::find($idBlog);
 
         $Blog->each(function($Blog) {
-            $Blog->set_imagen = asset('storage/blog/'.$Blog->foto);
+            $Blog->set_imagen = asset('storage\\blog\\'.$Blog->foto);
         });
 
         if (! is_null($Blog)) {

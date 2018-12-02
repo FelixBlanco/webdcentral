@@ -123,10 +123,10 @@ class SlideController extends Controller {
 
     public function getSlideImage($archivo) {
 
-        if (Storage::exists('/slide/'.$archivo)) {
+        if (Storage::exists('\\slide\\'.$archivo)) {
 
             /* habilitar si quieres recibir la imagen en streaming  */
-            return Storage::response("slide/".$archivo);
+            return Storage::response("slide\\".$archivo);
 
             //return response()->json(Storage::url('galeri/'.$archivo), 201);
         } else {

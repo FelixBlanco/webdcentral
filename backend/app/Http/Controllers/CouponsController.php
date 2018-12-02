@@ -47,7 +47,7 @@ class CouponsController extends Controller
         $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
         $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
-        Storage::disk('local')->put('/coupons/'.$nombre_interno, (string) $thumbnailImage->encode());
+        Storage::disk('local')->put('\\coupons\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
         try {
             DB::beginTransaction();
@@ -117,7 +117,7 @@ class CouponsController extends Controller
         $result = $Coupons->get();
 
         $result->each(function ($result) {
-            $result->set_imagen = asset('storage/coupons/'.$result->imagen);
+            $result->set_imagen = asset('storage\\coupons\\'.$result->imagen);
         });
 
         $response = [
@@ -151,7 +151,7 @@ class CouponsController extends Controller
         ->where('fk_idUser', $fk_idUser)->get();
 
         $Coupons->each(function ($Coupons) {
-            $Coupons->set_imagen = asset('storage/coupons/'.$Coupons->imagen);
+            $Coupons->set_imagen = asset('storage\\coupons\\'.$Coupons->imagen);
         });
 
         $response = [
@@ -285,7 +285,7 @@ class CouponsController extends Controller
             if (is_null($todo->imagen)) {
                 $todo->set_imagen = null;
             } else {
-                $todo->set_imagen = asset('storage/coupons/'.$todo->imagen);
+                $todo->set_imagen = asset('storage\\coupons\\'.$todo->imagen);
             }
         });
 
@@ -327,7 +327,7 @@ class CouponsController extends Controller
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
-                Storage::disk('local')->put('/coupons/'.$nombre_interno, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\coupons\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
                 $cupon->imagen = $nombre_interno;
             }

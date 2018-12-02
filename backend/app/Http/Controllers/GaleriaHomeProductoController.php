@@ -18,7 +18,7 @@ class GaleriaHomeProductoController extends Controller
         $galeriaHomeProd = GaleriaHomeProductos::get();
 
         $galeriaHomeProd->each(function ($galeriaHomeProd) {
-            $galeriaHomeProd->set_imagen = asset('storage/galeriaProductos/'.$galeriaHomeProd->imagen);
+            $galeriaHomeProd->set_imagen = asset('storage\\galeriaProductos\\'.$galeriaHomeProd->imagen);
             $galeriaHomeProd->statu;
         });
 
@@ -75,7 +75,7 @@ class GaleriaHomeProductoController extends Controller
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
-                Storage::disk('local')->put('/galeriaProductos/'.$nombre_interno, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\galeriaProductos\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
                 $imagemodel = new GaleriaHomeProductos();
                 $imagemodel->titulo = $request->titulo;
@@ -90,8 +90,8 @@ class GaleriaHomeProductoController extends Controller
                     'msj'         => 'Galeria guardada exitosamente',
                     'id_dataBase' => $imagemodel->idGaleriaHomeProducto,
                     'calidad'     => '2048*2048',
-                    'size'        => $size = (Storage::size('/galeriaProductos/'.$nombre_interno) / 1000000).' Mb',
-                    'name'        => 'storage/galeriaProductos/'.$nombre_interno,
+                    'size'        => $size = (Storage::size('\\galeriaProductos\\'.$nombre_interno) / 1000000).' Mb',
+                    'name'        => 'storage\\galeriaProductos\\'.$nombre_interno,
                 ];
 
                 return response()->json($response, 201);
@@ -112,11 +112,11 @@ class GaleriaHomeProductoController extends Controller
     public function getGaleriaImage($archivo)
     {
 
-        if (Storage::exists('/galeriaProductos/'.$archivo)) {
+        if (Storage::exists('\\galeriaProductos\\'.$archivo)) {
 
             /* habilitar si quieres recibir la imagen en streaming  */
-            return Storage::response("galeriaProductos/".$archivo);
-            //return response()->json(Storage::url('galeri/'.$archivo), 201);
+            return Storage::response("galeriaProductos\\".$archivo);
+            //return response()->json(Storage::url('galeri\\'.$archivo), 201);
         } else {
             return response()->json('Archivo no encontrado', 404);
         }
