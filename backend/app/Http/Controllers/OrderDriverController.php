@@ -220,8 +220,8 @@ class OrderDriverController extends Controller {
     }
 
 
-     // cambio esta de un pedido //
-     public function chaguePhoneAndAdrresClinet(Request $request) {
+    // cambio esta de un pedido //
+    public function chaguePhoneAndAdrresClinet(Request $request) {
 
         try {
 
@@ -269,15 +269,13 @@ class OrderDriverController extends Controller {
                 $order->Estado_Pedido   = $request->Estado_Pedido;
                 $order->fk_idStateOrder = $request->fk_idStateOrder;
                 $order->stars           = $request->stars;
-                $order->firma1          = $nombre_interno;
+                $order->firma2          = $nombre_interno;
                 $order->comentarioFinal = $request->comentarioFinal;
                 $order->save();
             }
 
-            DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP
-             set Estado_Pedido = '".$request->Estado_Pedido."'
-             , stars = ".$request->stars."
-              where Numero_Pedido = '".$request->Numero_Pedido."' ");
+            DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP set Estado_Pedido = '".$request->Estado_Pedido."'
+            , stars = ".$request->stars."where Numero_Pedido = '".$request->Numero_Pedido."' ");
 
 
             // ENVIO DE NOTIFICACION A LOS CLIENTE DE FIREBASE //
@@ -346,14 +344,14 @@ class OrderDriverController extends Controller {
             if ($order) {
                 $order->Estado_Pedido   = $request->Estado_Pedido;
                 $order->fk_idStateOrder = $request->fk_idStateOrder;
-                $order->firma           = $nombre_interno;
+                $order->firma1          = $nombre_interno;
                 $order->save();
             }
 
-            /*DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP
+            DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP
              set Estado_Pedido = '".$request->Estado_Pedido."'
              , stars = ".$request->stars."
-              where Numero_Pedido = '".$request->Numero_Pedido."' ");*/
+              where Numero_Pedido = '".$request->Numero_Pedido."' ");
 
             return response()->json("Pedido actualizado ", 200);
 

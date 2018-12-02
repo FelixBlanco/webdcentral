@@ -7,7 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="add parametros de email">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/routes/api.php" afterPath="$PROJECT_DIR$/backend/routes/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/OrderDriverController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/OrderDriverController.php" />
     </list>
     <list id="afaff616-419a-4d29-a8a1-8a7ab1d61868" name="Revert: migracion de n uevos campos perfil cliente" comment="" />
     <ignored path="$PROJECT_DIR$/admin/node_modules/" />
@@ -22,11 +22,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="108" column="26" lean-forward="true" selection-start-line="108" selection-start-column="26" selection-end-line="108" selection-end-column="26" />
+            <state relative-caret-position="200">
+              <caret line="303" column="65" lean-forward="true" selection-start-line="303" selection-start-column="65" selection-end-line="303" selection-end-column="65" />
               <folding>
                 <element signature="e#7#389#0#PHP" expanded="true" />
               </folding>
@@ -34,51 +34,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TurnoController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/TurnoController.php">
+      <file leaf-file-name="OrderDriverController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderDriverController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="114" column="26" lean-forward="false" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="26" />
+            <state relative-caret-position="326">
+              <caret line="353" column="69" lean-forward="true" selection-start-line="353" selection-start-column="69" selection-end-line="353" selection-end-column="69" />
               <folding>
-                <element signature="e#322#2016#0#PHP" expanded="false" />
-                <element signature="e#2022#3045#0#PHP" expanded="false" />
-                <element signature="e#3051#3333#0#PHP" expanded="false" />
+                <marker date="1543709773005" expanded="true" signature="1059:1220" ph="SELECT TOP 2... VentasporComprobantes" />
+                <marker date="1543709773005" expanded="true" signature="2962:3078" ph="SELECT TOP 2... VentasporComprobantes" />
+                <marker date="1543709773005" expanded="true" signature="4510:4572" ph="SELECT * FRO... VentasporProductos" />
+                <marker date="1543709773005" expanded="true" signature="5388:5531" ph="UPDATE Encab... " />
+                <marker date="1543709773005" expanded="true" signature="7182:7450" ph="UPDATE Clien... " />
+                <marker date="1543709773005" expanded="true" signature="9023:9194" ph="UPDATE Encab... " />
+                <marker date="1543709773005" expanded="true" signature="11932:12132" ph="UPDATE Encab... " />
+                <marker date="1543709773005" expanded="true" signature="12510:12743" ph="UPDATE Detal... " />
+                <marker date="1543709773005" expanded="true" signature="13263:13827" ph="INSERT INTO EncabezadosVentas_APP... " />
+                <marker date="1543709773005" expanded="true" signature="14702:15281" ph="INSERT INTO DetallesVentas_APP... " />
+                <marker date="1543709773005" expanded="true" signature="16042:16289" ph="SELECT TOP 2... VentasporComprobantes" />
+                <marker date="1543709773005" expanded="true" signature="16821:16958" ph="SELECT TOP 2... VentasporComprobantes" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrderHeaderController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="24" column="27" lean-forward="true" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocalesAdheridoController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="98" column="26" lean-forward="false" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="26" />
-              <folding>
-                <element signature="e#311#3959#0#PHP" expanded="false" />
-                <element signature="e#3965#5442#0#PHP" expanded="false" />
-                <element signature="e#5448#7083#0#PHP" expanded="false" />
-                <element signature="e#7089#7814#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="26" column="37" lean-forward="false" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -86,8 +60,8 @@
       <file leaf-file-name="orderHeader.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/orderHeader.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="24" />
+            <state relative-caret-position="158">
+              <caret line="36" column="14" lean-forward="false" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -97,10 +71,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addTurno</find>
-      <find>StatusTurnoSeeder</find>
-      <find>t</find>
-      <find>tur</find>
       <find>turn</find>
       <find>turno</find>
       <find>footer</find>
@@ -116,7 +86,6 @@
       <find>borrar</find>
       <find>order</find>
       <find>ord</find>
-      <find>fk_idStateOrder</find>
       <find>firmas</find>
       <find>order/fin</find>
       <find>order/finish</find>
@@ -127,6 +96,11 @@
       <find>disponibilidadHr</find>
       <find>$Numero_Pedido_max</find>
       <find>locales</find>
+      <find>finis</find>
+      <find>$request</find>
+      <find>Estado_Pedido</find>
+      <find>fk_idStateOrder</find>
+      <find>firma</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -219,10 +193,10 @@
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_11_21_202848_add_nuevos_campos_to_order_header.php" />
         <option value="$PROJECT_DIR$/backend/app/orderHeader.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_10_27_120513_create_order_header_table.php" />
-        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/OrderDriverController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/TurnoController.php" />
         <option value="$PROJECT_DIR$/backend/routes/api.php" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/OrderDriverController.php" />
       </list>
     </option>
   </component>
@@ -340,7 +314,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="seeds" />
+              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -1624,7 +1598,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166890000" />
+    <option name="totallyTimeSpent" value="171587000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
@@ -1637,7 +1611,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35551664" sideWeight="0.496875" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25390625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.221875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2049,14 +2023,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_11_21_202848_add_nuevos_campos_to_order_header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="36" column="12" lean-forward="false" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/database/seeds/OrderSeed.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
@@ -2100,16 +2066,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderDriverController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="333" column="71" lean-forward="false" selection-start-line="333" selection-start-column="71" selection-end-line="333" selection-end-column="71" />
-          <folding>
-            <element signature="e#40#58#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/database/seeds/SatateOrderSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -2122,22 +2078,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="333" column="20" lean-forward="false" selection-start-line="333" selection-start-column="20" selection-end-line="333" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/orderHeader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="24" column="27" lean-forward="true" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2182,12 +2122,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderHeaderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="15" column="46" lean-forward="false" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+          <folding>
+            <element signature="e#327#3902#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="108" column="26" lean-forward="true" selection-start-line="108" selection-start-column="26" selection-end-line="108" selection-end-column="26" />
+        <state relative-caret-position="200">
+          <caret line="303" column="65" lean-forward="true" selection-start-line="303" selection-start-column="65" selection-end-line="303" selection-end-column="65" />
           <folding>
             <element signature="e#7#389#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2018_11_21_202848_add_nuevos_campos_to_order_header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/orderHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="36" column="14" lean-forward="false" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/OrderDriverController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="353" column="69" lean-forward="true" selection-start-line="353" selection-start-column="69" selection-end-line="353" selection-end-column="69" />
+          <folding>
+            <marker date="1543709773005" expanded="true" signature="1059:1220" ph="SELECT TOP 2... VentasporComprobantes" />
+            <marker date="1543709773005" expanded="true" signature="2962:3078" ph="SELECT TOP 2... VentasporComprobantes" />
+            <marker date="1543709773005" expanded="true" signature="4510:4572" ph="SELECT * FRO... VentasporProductos" />
+            <marker date="1543709773005" expanded="true" signature="5388:5531" ph="UPDATE Encab... " />
+            <marker date="1543709773005" expanded="true" signature="7182:7450" ph="UPDATE Clien... " />
+            <marker date="1543709773005" expanded="true" signature="9023:9194" ph="UPDATE Encab... " />
+            <marker date="1543709773005" expanded="true" signature="11932:12132" ph="UPDATE Encab... " />
+            <marker date="1543709773005" expanded="true" signature="12510:12743" ph="UPDATE Detal... " />
+            <marker date="1543709773005" expanded="true" signature="13263:13827" ph="INSERT INTO EncabezadosVentas_APP... " />
+            <marker date="1543709773005" expanded="true" signature="14702:15281" ph="INSERT INTO DetallesVentas_APP... " />
+            <marker date="1543709773005" expanded="true" signature="16042:16289" ph="SELECT TOP 2... VentasporComprobantes" />
+            <marker date="1543709773005" expanded="true" signature="16821:16958" ph="SELECT TOP 2... VentasporComprobantes" />
           </folding>
         </state>
       </provider>
