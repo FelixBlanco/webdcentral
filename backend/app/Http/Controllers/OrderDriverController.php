@@ -320,9 +320,11 @@ class OrderDriverController extends Controller {
 
             // CARGAMOS LA IMAGEN
 
-            $path_imagenes = storage_path().'/firmas/';
+            $path_imagenes = storage_path().'\\app\\public\\firmas\\';
+            //dd($path_imagenes);
 
             $binary_data = base64_decode($request->filename);
+            
 
             $nombre = 'firma_'.time().random_int(1,100).'.jpg';
 
@@ -330,8 +332,8 @@ class OrderDriverController extends Controller {
 
             // save to server (beware of permissions)
 
-            $result = file_put_contents($path_imagenes.$nombreFoto_perfil, $binary_data);
-            dd($result);
+            $result = file_put_contents($path_imagenes.$nombre, $binary_data);
+           
 
             if (! $result) {
 
@@ -363,13 +365,12 @@ class OrderDriverController extends Controller {
             if ($order) {
                 $order->Estado_Pedido   = $request->Estado_Pedido;
                 $order->fk_idStateOrder = $request->fk_idStateOrder;
-                $order->firma1          = $nombre_interno;
+                $order->firma1          = $nombre;
                 $order->save();
             }
 
             DB::connection('sqlsrv')->update("UPDATE EncabezadosVentas_APP
              set Estado_Pedido = '".$request->Estado_Pedido."'
-             , stars = ".$request->stars."
               where Numero_Pedido = '".$request->Numero_Pedido."' ");
 
             return response()->json("Pedido actualizado ", 200);
