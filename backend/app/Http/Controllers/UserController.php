@@ -123,7 +123,7 @@ class UserController extends Controller
                 $extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-                Storage::disk('local')->put('/perfil/'.$nombre_interno, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('"\"."perfil"."\"'.$nombre_interno, (string) $thumbnailImage->encode());
                 /*para la foto*/
 
                 $usuario->fotoPerfil = $nombre_interno;

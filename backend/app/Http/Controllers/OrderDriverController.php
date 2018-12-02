@@ -318,25 +318,44 @@ class OrderDriverController extends Controller {
 
         try {
 
-            // CARGAMOS LA IMAGEN 
+            // CARGAMOS LA IMAGEN
 
-            $originalImage = $request->filename;
+            $path_imagenes = storage_path().'/firmas/';
 
-            $thumbnailImage = Image::make($originalImage);
+            $binary_data = base64_decode($request->filename);
 
-            $thumbnailImage->fit(2048, 2048, function($constraint) {
-                $constraint->aspectRatio();
-            });
+            $nombre = 'firma_'.time().random_int(1,100).'.jpg';
 
-            $nombre_publico = $originalImage->getClientOriginalName();
-            $extension      = $originalImage->getClientOriginalExtension();
+            //dd($binary_data);
 
-            $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
-            $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+            // save to server (beware of permissions)
 
-            Storage::disk('local')->put('/firmas/'.$nombre_interno, (string) $thumbnailImage->encode());
+            $result = file_put_contents($path_imagenes.$nombreFoto_perfil, $binary_data);
+            dd($result);
 
-            // 
+            if (! $result) {
+
+                die("No se puede guardar la foto perfil!  Check file permissions.");
+            }
+
+            /*
+                        $originalImage = $request->filename;
+
+                        $thumbnailImage = Image::make($originalImage);
+
+                        $thumbnailImage->fit(2048, 2048, function($constraint) {
+                            $constraint->aspectRatio();
+                        });
+
+                        $nombre_publico = $originalImage->getclientoriginalname();
+                        $extension      = $originalImage->getClientOriginalExtension();
+
+                        $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                        $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                        Storage::disk('local')->put('/firmas/'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                        */
 
 
             $order = orderHeader::where("Numero_Pedido", "=", $request->Numero_Pedido)->first();
@@ -348,7 +367,7 @@ class OrderDriverController extends Controller {
                 $order->save();
             }
 
-            DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP
+            DB::connection('sqlsrv')->update("UPDATE EncabezadosVentas_APP
              set Estado_Pedido = '".$request->Estado_Pedido."'
              , stars = ".$request->stars."
               where Numero_Pedido = '".$request->Numero_Pedido."' ");
