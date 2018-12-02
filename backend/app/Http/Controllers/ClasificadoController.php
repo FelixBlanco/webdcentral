@@ -42,7 +42,8 @@ class ClasificadoController extends Controller
                     $constraint->aspectRatio();
                 });
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension = $originalImage->getClientOriginalExtension();
+                $extension='png';
+                //$extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno1 = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno1 = str_slug($nombre_interno1, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
                 Storage::disk('local')->put('\\Clasificados\\'.$nombre_interno1, (string) $thumbnailImage->encode());
@@ -202,7 +203,8 @@ class ClasificadoController extends Controller
                 });
 
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension = $originalImage->getClientOriginalExtension();
+                $extension='png';
+                //$extension = $originalImage->getClientOriginalExtension();
 
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;

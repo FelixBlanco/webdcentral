@@ -120,7 +120,8 @@ class UserController extends Controller
                     $constraint->aspectRatio();
                 });
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension = $originalImage->getClientOriginalExtension();
+                $extension='png';
+                //$extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
                 Storage::disk('local')->put('\\perfil\\'.$nombre_interno, (string) $thumbnailImage->encode());
@@ -256,7 +257,8 @@ class UserController extends Controller
                     $constraint->aspectRatio();
                 });
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension = $originalImage->getClientOriginalExtension();
+                $extension='png';
+                //$extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
                 Storage::disk('local')->put('\\perfil\\'.$nombre_interno, (string) $thumbnailImage->encode());
@@ -401,7 +403,8 @@ class UserController extends Controller
                 $constraint->aspectRatio();
             });
             $nombre_publico = $originalImage->getClientOriginalName();
-            $extension = $originalImage->getClientOriginalExtension();
+            $extension='png';
+            //$extension = $originalImage->getClientOriginalExtension();
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
             Storage::disk('local')->put('\\perfil\\'.$nombre_interno, (string) $thumbnailImage->encode());
@@ -489,7 +492,8 @@ class UserController extends Controller
                 $constraint->aspectRatio();
             });
             $nombre_publico = $originalImage->getClientOriginalName();
-            $extension = $originalImage->getClientOriginalExtension();
+            $extension='png';
+           // $extension = $originalImage->getClientOriginalExtension();
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
             Storage::disk('local')->put('\\perfil\\'.$nombre_interno, (string) $thumbnailImage->encode());
