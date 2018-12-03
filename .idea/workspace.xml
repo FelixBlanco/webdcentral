@@ -7,7 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="add parametros de email">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/.env" afterPath="$PROJECT_DIR$/backend/.env" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/.gitignore" afterPath="$PROJECT_DIR$/backend/.gitignore" />
     </list>
     <list id="afaff616-419a-4d29-a8a1-8a7ab1d61868" name="Revert: migracion de n uevos campos perfil cliente" comment="" />
     <ignored path="$PROJECT_DIR$/admin/node_modules/" />
@@ -68,7 +68,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/.env">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -78,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="168">
+              <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -216,8 +216,8 @@
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/OfertaController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" />
-        <option value="$PROJECT_DIR$/backend/.gitignore" />
         <option value="$PROJECT_DIR$/backend/.env" />
+        <option value="$PROJECT_DIR$/backend/.gitignore" />
       </list>
     </option>
   </component>
@@ -543,12 +543,12 @@
       <workItem from="1543720131292" duration="157000" />
       <workItem from="1543720644905" duration="207000" />
       <workItem from="1543720867592" duration="59000" />
-      <workItem from="1543835135525" duration="567000" />
+      <workItem from="1543835135525" duration="666000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179954000" />
+    <option name="totallyTimeSpent" value="180053000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
@@ -1044,18 +1044,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
           <folding />
         </state>
       </provider>
