@@ -33,7 +33,8 @@ class Producto extends Model {
         'precioL6',
         'precioL7',
         'precioL8',
-        'precioL9'
+        'precioL9',
+        'WebLink_Rubro'
 
     ];
 }
