@@ -78,6 +78,7 @@ class ConfigFooterController extends Controller {
             $d->desde             = $request->desde;
             $d->hasta             = $request->hasta;
             $d->url_mercado_libre = $request->url_mercado_libre;
+            $d->link_otra_pagina = $request->link_otra_pagina;
 
 
             if (! is_null($request->listaPrecio)) {
