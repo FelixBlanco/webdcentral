@@ -52,7 +52,7 @@ export class TurnoComponent implements OnInit {
     this.getLocalesAdheridos();
 
     this.newForm = this.fb.group({
-      // fk_idLocalAdherido: ['1', Validators.required],
+      fk_idLocalAdherido: ['', Validators.required],
       fk_idClasificado: ['', Validators.required],
       fechaHora: ['', Validators.required]
     });
@@ -99,11 +99,11 @@ export class TurnoComponent implements OnInit {
 
   save() {
     const values = this.newForm.value;
-    console.log(values);
+    console.log("values",values);
     let toSend: FormData = new FormData();
     
     toSend.append('fechaHora',values.fechaHora);
-    toSend.append('fk_idLocalAdherido', '1');    
+    toSend.append('fk_idLocalAdherido', values.fk_idLocalAdherido);    
     toSend.append('fk_idClasificado', values.fk_idClasificado);
     toSend.append('fk_idStatusTurnos', '1');
     
@@ -132,7 +132,7 @@ export class TurnoComponent implements OnInit {
 
   delete() {
     this.inPromise = true;
-    console.log(this.turnoSet)
+    console.log("this.idTurnos",this.turnoSet)
     this.turnoService.delete(this.turnoSet.idTurnos).subscribe(
       resp => {
         console.log(resp);

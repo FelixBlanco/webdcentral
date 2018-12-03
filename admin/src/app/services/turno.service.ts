@@ -51,6 +51,6 @@ export class TurnoService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         console.log("id desde servicio",id);
-        return this.http.delete<any>(`${environment.apiHost}/api/auth/borrraGaleriaHomeProd/${id}`, { headers: this.httpOptions, observe: 'response' });
+        return this.http.delete<any>(`${environment.apiHost}/api/auth/borrarTurno/${id}`, { headers: this.httpOptions, observe: 'response' });
     }
 }
