@@ -33,6 +33,7 @@ export class ConfigFooterComponent implements OnInit {
       desde         : [''],
       hasta         : [''],
       url_mercado_libre: [''],
+      link_otra_pagina: [''],      
     })
   }
 
@@ -62,6 +63,7 @@ export class ConfigFooterComponent implements OnInit {
             desde : resp.desde,
             hasta : resp.hasta,
             url_mercado_libre : resp.url_mercado_libre,
+            link_otra_pagina : resp.link_otra_pagina,
           })          
         }
       }
@@ -73,7 +75,7 @@ export class ConfigFooterComponent implements OnInit {
     this._confgFooterService._upgradeConfigFooter(val).subscribe(
       (resp:any) => { this.getConfigFooter();  this._alertService.msg("OK",resp.msj); },
       error => { 
-        console.log( error );
+                
         if(error.error.errors.direccion != null){
           this._alertService.msg("ERR", error.error.errors.direccion);
         }

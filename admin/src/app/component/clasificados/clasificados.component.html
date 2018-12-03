@@ -76,8 +76,14 @@
 
 
 
-
 <div class="row">
+  <div class="col-md-12">
+    <h3 class="p-4">Clasificados</h3>
+    <hr>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:2%">
   <div class="col-md-2">
       <select class="form-control" [(ngModel)]="limit">
         <option>5</option>
@@ -104,7 +110,8 @@
   [headerHeight]="50"
   [footerHeight]="50"
   [rowHeight]="'auto'"
-  [limit]="limit">
+  [limit]="limit"
+  style="background:white">
 
   <ngx-datatable-column name="Titulo" prop="titulo"></ngx-datatable-column>
   <ngx-datatable-column name="Foto" prop="foto">
