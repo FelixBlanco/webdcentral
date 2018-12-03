@@ -103,6 +103,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::post('addTurno', 'TurnoController@add');
         Route::post('editTurno/{idTurnos}', 'TurnoController@update');
         Route::get('listarTodoslosTurnos', 'TurnoController@listar');
+        Route::delete('borrarTurno/{idTurnos}', 'TurnoController@borrar');
         /*TURNOS*/
 
         Route::put('cambiarStatusGaleria/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@cambiarStatus');
