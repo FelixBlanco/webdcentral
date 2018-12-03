@@ -51,7 +51,7 @@ class TurnoController extends Controller {
             ];
 
 
-            Mail::to(Auth::user()->email)->send(new TurnosMail($turno));
+            //Mail::to(Auth::user()->email)->send(new TurnosMail($turno));
             DB::commit();
 
             return response()->json($response, 201);
