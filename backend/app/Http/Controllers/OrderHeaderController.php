@@ -19,7 +19,7 @@ class OrderHeaderController extends Controller
         $this->validate($request, [
             'Domicilio_Entrega' => 'required',
             'Codigo_Postal'     => 'required',
-            'monto_total'       => 'required',
+            //'monto_total'       => 'required',
             //'comentarioFinal'   => 'required',
             //'metodoEntrega'                    => 'required',
             //'disponibilidadHr'                 => 'required',
@@ -34,7 +34,7 @@ class OrderHeaderController extends Controller
         ], [
             'Domicilio_Entrega.required' => 'El campo es requerido',
             'Codigo_Postal.required'     => 'El campo es requerido',
-            'monto_total.required'       => 'El campo es requerido',
+            //'monto_total.required'       => 'El campo es requerido',
             //'comentarioFinal.required'   => 'El campo es requerido',
             //'metodoEntrega.required'                    => 'El campo es requerido',
             //'disponibilidadHr.required'                 => 'El campo es requerido',
@@ -63,6 +63,11 @@ class OrderHeaderController extends Controller
             if (is_null($request->stars)) {
                 $OB->stars = 0;
             }
+
+            if (is_null($request->monto_total)) {
+                $OB->monto_total = 0;
+            }
+
 
             $OB->Numero_Pedido = $Numero_Pedido;
             $OB->Estado_Pedido = 'Abierto';
