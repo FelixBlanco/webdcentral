@@ -37,7 +37,7 @@ class CouponsController extends Controller
 
         $thumbnailImage = Image::make($originalImage);
 
-        $thumbnailImage->fit(2048, 2048, function ($constraint) {
+        $thumbnailImage->fit(750, 880, function ($constraint) {
             $constraint->aspectRatio();
         });
 
@@ -318,7 +318,7 @@ class CouponsController extends Controller
 
                 $thumbnailImage = Image::make($originalImage);
 
-                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                $thumbnailImage->fit(750, 880, function ($constraint) {
                     $constraint->aspectRatio();
                 });
 

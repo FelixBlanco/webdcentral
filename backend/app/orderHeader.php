@@ -5,9 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class orderHeader extends Model {
+class orderHeader extends Model
+{
     //
     use SoftDeletes;
+
     protected $table = 'tb_order_header';
 
     protected $primaryKey = 'idOrderHeader';
@@ -36,24 +38,28 @@ class orderHeader extends Model {
         'localidad',
         'firma1',
         'firma2',
-        'comentarioFinal'
-
+        'comentarioFinal',
+        'monto_total',
 
     ];
 
-    public function state() {
+    public function state()
+    {
         return $this->belongsTo('App\StateOrder', 'fk_idStateOrder');
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\User', 'fk_idUser');
     }
 
-    public function tipoFactura() {
+    public function tipoFactura()
+    {
         return $this->belongsTo('App\TipoDeFactura', 'fk_idTipoFactura');
     }
 
-    public function orderBody() {
-        return $this->hasMany('App\orderBody', 'fk_idOrderHeader','idOrderHeader');
+    public function orderBody()
+    {
+        return $this->hasMany('App\orderBody', 'fk_idOrderHeader', 'idOrderHeader');
     }
 }
