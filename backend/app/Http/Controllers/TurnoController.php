@@ -125,4 +125,40 @@ class TurnoController extends Controller {
 
     }
 
+    public function editar(Request $request,$idTurnos){
+
+        DB::beginTransaction();
+        if (is_null($request->all())) {
+
+            $response = [
+                'msj' => 'Debe pasar algun parámetro que desee actualizar',
+            ];
+
+            return response()->json($response, 404);
+        } else {
+            try {
+                $turno = turno::findOrFail($idTurnos);
+
+                $turno->fill($request->all());
+
+                $response = [
+                    'msj' => 'Info actulizada',
+                    'turno' => $turno,
+                ];
+
+                $turno->save();
+                DB::commit();
+
+                return response()->json($response, 200);
+            } catch (\Exception $e) {
+                DB::rollback();
+                Log::error('Ha ocurrido un error en TurnoController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+                return response()->json([
+                    'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+                ], 500);
+            }
+        }
+    }
+
 }
