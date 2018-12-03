@@ -1,4 +1,4 @@
-<div style=" background-color: #90BB1E;">
+<div style=" background-color: #90BB1E;" id="novedades" >
   <div class="container">
     <div class="row">
       <div class="col-md-4">
@@ -14,7 +14,7 @@
           <div class="col-md-12">
             <form [formGroup]="f_sus">
               <div class="form-inline">
-                <input type="email" class="form-control" placeholder="Ingrese su direccion email" style="width: 70%;" formControlName="novedad">
+                <input type="email" class="form-control" placeholder="Ingrese su direccion email" style="width: 70%;" formControlName="novedad" id="novedadInput">
                 <button class="btn bg-naranja txt-blanco" [disabled]="!f_sus.valid" (click)="addSus()"> REGISTRATE </button>							
                 <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner>
               </div>

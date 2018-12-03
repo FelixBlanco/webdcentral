@@ -1,0 +1,50 @@
+.txt-naranja{  color: #E97604 }
+.txt-verde{  color: #018d36 }
+.txt-azul{  color: #009bde }
+.bg-verde{
+    background-color: #018d36;
+}
+.mat-fab.mat-accent{
+    background-color: #ffffff;
+    border: 2px solid #ff7e00;
+    outline: none;
+}
+
+.mat-fab.mat-accent >>> .mat-button-wrapper {
+    padding: 5px 0 !important;
+}
+
+.mat-radio-button >>> .mat-radio-label{
+    font-size: .9rem;
+}
+
+.mat-radio-button {
+    margin: 3px;
+}
+
+.mat-radio-button.mat-accent >>> .mat-radio-inner-circle{
+    background-color: #c37d26;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked  >>> .mat-radio-outer-circle {
+    border-color: #ff7e00;
+}
+.mat-radio-button.mat-accent >>> .mat-radio-ripple .mat-ripple-element{
+    background-color: rgb(195, 125, .26);    
+}
+.card{
+    border-color: #ff7e00;
+}
+.card-body{
+    padding: .8rem;
+}
+
+select.form-control {
+    background-color: #f2f6db;
+    border: 1px solid #e97604;
+}
+
+.custom-file-label::after{
+    content: "Examinar";
+}
+

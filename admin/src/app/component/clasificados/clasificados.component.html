@@ -1,0 +1,124 @@
+<!-- Modal Nuevo -->
+<div class="modal fade" id="nuevo" tabindex="-1" role="dialog" aria-labelledby="nuevoModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="nuevoModal">Agregar Clasificados</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="myForm">
+          <div class="form-group">
+            <label>Titulo</label>
+            <input type="text" formControlName="titulo" class="form-control" placeholder="Ingrege el titulo">
+          </div>
+          <div class="form-group">
+            <label>Foto</label>
+            <input type="file" (change)="upFoto($event,'new')" formControlName='foto'>
+          </div>
+        </form>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button class="btn btn-success" data-dismiss="modal" (click)="addClasificado()" [disabled]="!myForm.invalid">
+          Guardar
+          <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+<!-- Editar Destacado -->
+<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="editarModal">Editar Clasificados</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="myFormEdit">
+          <div class="form-group">
+            <label>Titulo</label>
+            <input type="text" formControlName="titulo" class="form-control" placeholder="Ingrege el titulo">
+          </div>
+          <div class="form-group">
+            <label>Foto</label>
+            <input type="file" (change)="upFoto($event,'edit')">
+          </div>
+          <div class="form-group">
+            <label>Estatus del Sistema</label>
+            <select formControlName="fk_idStatusSistema" class="form-control">
+              <option [value]="editIdStatusSistema" selected>{{editNameStatusSistema}}</option>
+              <option *ngFor="let lista_sSistema of lista_sSistemas" [value]="lista_sSistema.idStatusSistema">
+                {{ lista_sSistema.descripcion }}
+              </option>
+            </select>
+          </div>          
+        </form>                 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button class="btn btn-success" data-dismiss="modal" (click)="editClasificado()">
+          Guardar
+          <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="row">
+  <div class="col-md-2">
+      <select class="form-control" [(ngModel)]="limit">
+        <option>5</option>
+        <option>10</option>
+        <option>20</option>
+        <option *ngIf="listaClasificados" value="{{listaClasificados.length}}">Todos ({{listaClasificados.length}})</option>
+      </select>
+  </div>
+  <div class="col-md-7">
+      <input class="form-control" type="text" placeholder="Buscar" (keyup)='updateFilter($event)'>
+  </div>
+  <div class="col-md-3">
+      <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo">Nuevo</button>
+  </div>
+</div>
+
+
+<ngx-datatable
+  #table
+  class="bootstrap"
+  [rows]="rows"
+  [columns]="columns"
+  [columnMode]="'force'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [rowHeight]="'auto'"
+  [limit]="limit">
+
+  <ngx-datatable-column name="Titulo" prop="titulo"></ngx-datatable-column>
+  <ngx-datatable-column name="Foto" prop="foto">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <img [src]="row.foto" width="70" height="70">
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Estado" prop="status_sistema"></ngx-datatable-column>
+
+  <ngx-datatable-column name="" prop="opts">
+      <ng-template ngx-datatable-cell-template let-row="row">
+          <button class="btn btn-primary"  (click)="showClasificado(row.idClasificado)"><span class="glyphicon glyphicon-pencil"></span></button>
+          <button class="btn btn-danger" (click)="deleteClasificado(row.idClasificado)"><span class="glyphicon glyphicon-trash"></span> </button>
+      </ng-template>                    
+    </ngx-datatable-column>
+
+</ngx-datatable>

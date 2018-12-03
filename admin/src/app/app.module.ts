@@ -29,9 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeModule } from './component/home/home.module';
 import { AppRoutingModule } from './app-routing.module';
-import { TestComponent } from './component/test/test.component';
 import { MapaComponent } from './component/mapa/mapa.component';
-import { ComponentComponent } from './component/component.component';
 import { CuponsappComponent } from './component/cuponsapp/cuponsapp.component';
 import { NotificationappComponent } from './component/notificationapp/notificationapp.component';
 import { AuthbackendComponent } from './component/authbackend/authbackend.component';
@@ -41,7 +39,11 @@ import { DestacadosComponent } from './component/destacados/destacados.component
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ConfigRedesComponent } from './component/config-redes/config-redes.component';
 import { SuscripcionComponent } from './component/suscripcion/suscripcion.component';
+import { GaleryProductComponent } from './component/galery-product/galery-product.component';
 import { LocalesAdheridosComponent } from './component/locales-adheridos/locales-adheridos.component';
+import { ClasificadosComponent } from './component/clasificados/clasificados.component';
+import { CategoriaBlogComponent } from './component/categoria-blog/categoria-blog.component';
+import { BlogComponent } from './component/blog/blog.component';
 
 
 @NgModule({
@@ -68,9 +70,7 @@ import { LocalesAdheridosComponent } from './component/locales-adheridos/locales
     ImgInicioComponent,
     BajaAppInicioComponent,
     DestacadoInicioComponent,
-    TestComponent,
     MapaComponent,
-    ComponentComponent,
     CuponsappComponent,
     NotificationappComponent,
     AuthbackendComponent,
@@ -79,7 +79,12 @@ import { LocalesAdheridosComponent } from './component/locales-adheridos/locales
     DestacadosComponent,
     ConfigRedesComponent,
     SuscripcionComponent,
-    LocalesAdheridosComponent
+    LocalesAdheridosComponent,
+    SuscripcionComponent,
+    GaleryProductComponent,
+    ClasificadosComponent,
+    CategoriaBlogComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,

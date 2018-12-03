@@ -27,7 +27,6 @@ export class LocalesAdheridosService {
     return this.http.post(environment.apiHost + '/api/auth/listarPorIdLocalAdheridos',data,httpOptions);
   }
   
-  
   saveLocalAdherido(data:any){
     return this.http.post(environment.apiHost + '/api/auth/guardarLocalAdherido',data,httpOptions);
   }
@@ -36,9 +35,8 @@ export class LocalesAdheridosService {
     return this.http.post(environment.apiHost + '/api/auth/editarLocalAdheridos/'+id,data,httpOptions);
   }
 
-  
   _deleteLocal(id:number){
-    return this.http.delete(environment.apiHost + '/api/auth/editarLocalAdheridos/'+id,httpOptions);
+    return this.http.delete(environment.apiHost + '/api/auth/borrarLocalAdheridos/'+id,httpOptions);
   }
 
 }

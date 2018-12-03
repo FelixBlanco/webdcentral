@@ -1,0 +1,21 @@
+ngb-carousel{
+    outline: none;
+}
+
+.carousel-control-next, .carousel-control-prev{
+    width: 7%;
+}
+
+button{
+    outline: none;
+}
+
+.paginator-bubbles .mat-icon-button{
+    width: 20px;
+    height: 20px;
+    line-height: 0;
+}
+
+.card{
+    background-color: #f1f1f1;
+}

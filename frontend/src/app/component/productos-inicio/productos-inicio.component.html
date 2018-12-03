@@ -1,42 +1,56 @@
-<div class="container" style="margin-top:2%;">
-  <div class="row">
-    <div class="col-md-12">
-      <h3 class="text-center txt-naranja font-bold">PRODUCTOS</h3>
-    </div>
-  </div>
-  <div class="row" style="padding-top:6%; padding-bottom:6%;">
-    <!-- <div class="col-md-4" *ngFor="let listProducto of listProductos">
-      <img src="{{listProducto.urlImage}}" class="img-fluid">
-    </div> -->
-    <div id="productosCarousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="row">
-            <div class="col-3"><img class="img-fluid" src="../assets/productos/logo_1.jpg" style=" width:300px; display: inline-block;"></div>
-            <div class="col-3"><img class="img-fluid" src="../assets/productos/logo_2.jpg" style=" margin-left:5%; width:300px; display: inline-block;"></div>
-            <div class="col-3"><img class="img-fluid" src="../assets/productos/logo_3.jpg" style=" margin-left:5%; width:300px; display: inline-block;"></div>
-            <div class="col-3"><img class="img-fluid" src="../assets/productos/logo_4.png" style=" margin-left:5%; width:300px; display: inline-block;"></div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col-3"><img class="img-fluid" src="../assets/productos/logo_1.jpg" style=" width:300px; display: inline-block;"></div>
-            <div class="col-3"><img class="img-fluid" src="../assets/productos/logo_2.jpg" style=" margin-left:5%; width:300px; display: inline-block;"></div>
-            <div class="col-3"><img class="img-fluid" src="../assets/productos/logo_3.jpg" style=" margin-left:5%; width:300px; display: inline-block;"></div>
-            <div class="col-3"><img class="img-fluid" src="../assets/productos/logo_4.png" style=" margin-left:5%; width:300px; display: inline-block;"></div>
-          </div>
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#productosCarousel" role="button" data-slide="prev" style="margin-left: -16%;">
-          <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span> -->
-          <img src="../assets/flecha_celeste_izquierda.png">
-        </a>
-        <a class="carousel-control-next" href="#productosCarousel" role="button" data-slide="next" style="right:-15%;">
-          <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span> -->
-          <img src="../assets/flecha_celeste_derecha.png">
-        </a>
-    </div>
-  </div>
-</div>
+<section class="mt-2 mb-5">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="text-center p-3 txt-naranja font-bold">PRODUCTOS</h2>
+				<mat-spinner *ngIf="!galeryList" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
+				<ng-container *ngIf="galeryList" [ngSwitch]="galeryList.length">
+					<ng-container *ngSwitchCase="0">
+						<div class="container">
+							<div class="row m-3">
+								<div class="col">
+									<div class="card">
+										<p class="card-body font-italic text-center text-muted">No existen slides para mostrar...</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</ng-container>
+					<ng-container *ngSwitchDefault>
+						<ngb-carousel #carousel="ngbCarousel" [showNavigationArrows]="false" [showNavigationIndicators]="false">
+							<ng-container *ngFor="let item of carouselItems">
+								<ng-template ngbSlide [id]="item.id">
+                  <div class="container-fluid">
+                    <div class="row justify-content-center">
+                      <div class="col-3 text-center" *ngFor="let _ of item.items">
+                        <img [src]="_.set_imagen" alt="_.titulo" height="200" width="200">
+                      </div>
+                    </div>
+                  </div>
+								</ng-template>
+							</ng-container>
+						</ngb-carousel>
+						<ng-container *ngIf="carouselItems.length > 1">
+							<a class="carousel-control-prev" (click)="carousel.prev()" role="button">
+								<fa-icon class="txt-azul" [icon]="['fas','chevron-left']" size="4x" ></fa-icon>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" (click)="carousel.next()" role="button">
+								<fa-icon class="txt-azul" [icon]="['fas','chevron-right']" size="4x" ></fa-icon>
+								<span class="sr-only">Next</span>
+							</a>
+						</ng-container>
+						<div *ngIf="aTimeOutFix" class="d-flex justify-content-center paginator-bubbles mt-2" >
+							<button mat-icon-button *ngFor="let item of carouselItems" [id]="item.id" (click)="carousel.select(item.id)">
+								<ng-container [ngSwitch]="carousel.activeId">
+									<fa-icon *ngSwitchCase="item.id.toString()" class="txt-naranja" [icon]="['fas','circle']" size="1x"></fa-icon>
+									<fa-icon *ngSwitchDefault class="txt-naranja" [icon]="['far','circle']" size="1x"></fa-icon>
+								</ng-container>
+							</button>
+						</div>
+					</ng-container>
+				</ng-container>
+			</div>
+		</div>
+	</div>
+</section>

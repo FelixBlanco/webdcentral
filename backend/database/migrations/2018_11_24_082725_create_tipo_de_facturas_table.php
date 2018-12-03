@@ -17,6 +17,7 @@ class CreateTipoDeFacturasTable extends Migration
             $table->increments('idTipoFactura');
             $table->string('descripcion');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

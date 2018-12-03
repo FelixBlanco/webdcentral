@@ -37,9 +37,6 @@ export class NovedadesInicioComponent implements OnInit {
         this.inPromise = false;
       },
       error =>{
-        
-        console.log(error.error)
-
         this.inPromise = false;
 
         if(error.error.message != null){

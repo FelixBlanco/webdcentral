@@ -32,6 +32,7 @@ export interface Producto{
   updated_at: Date;
   deleted_at: Date;
   cantidad?: number;
+  defaultPrice: string;
 }
 
 export interface SearchBody{
@@ -60,8 +61,8 @@ export interface PedidoHeader{
 
 export interface CarouselItem{
   id: number;
-  products: Producto[];
-
+  products?: Producto[];
+  items?: any;
 }
 @Injectable({
   providedIn: 'root'

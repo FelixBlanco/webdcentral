@@ -269,12 +269,12 @@ class ProductoController extends Controller {
         }
     }
 
-    public static function getAllTags() {
+  /*  public static function getAllTags() {
 
         $response = TagProduct::select("tag")->distinct('tag')->orderBy("tag")->get();
 
         return response()->json($response, 202);
-    }
+    }*/
 
     public static function getAllRubros() {
 
@@ -314,14 +314,22 @@ class ProductoController extends Controller {
         }
     }
 
-    public function listarSubrubro1() {
-        $response = Producto::select("SubRubro1")->distinct('SubRubro1')->orderBy("SubRubro1")->get();
+    public function listarSubrubro1($rubro) {
+        $response = Producto::select("SubRubro1")
+        ->distinct('SubRubro1')
+        ->orderBy("SubRubro1")
+        ->where("rubro","=",$rubro)
+        ->get();
 
         return response()->json($response, 202);
     }
 
-    public function listarSubrubro2() {
-        $response = Producto::select("SubRubro2")->distinct('SubRubro2')->orderBy("SubRubro2")->get();
+    public function listarSubrubro2($SubRubro1) {
+        $response = Producto::select("SubRubro2")
+        ->distinct('SubRubro2')
+        ->orderBy("SubRubro2")
+        ->where("SubRubro1","=",$SubRubro1)
+        ->get();
 
         return response()->json($response, 202);
     }
@@ -388,24 +396,21 @@ class ProductoController extends Controller {
             ->where('tb_order_header.fk_idStateOrder', 2)
             ->get();*/
 
-        $LMV = DB::connection('mysql')->select("SELECT tb_productos .*
-         FROM tb_order_body 
-         INNER JOIN tb_order_header ON tb_order_header.idOrderHeader = tb_order_body.fk_idOrderHeader 
-         INNER JOIN tb_productos ON tb_productos.codeProdSys = tb_order_body.codeProdSys 
-         WHERE tb_order_header.fk_idStateOrder = 2 
-         GROUP BY tb_productos.idProducto,tb_productos.nombre,tb_productos.titulo,
-         tb_productos.urlImage,tb_productos.promocion,
-         tb_productos.fk_idSatate,tb_productos.isOutstanding,
-         tb_productos.fechaIsOutstanding,tb_productos.codeProdSys,
-         tb_productos.kiloProdcuto,tb_productos.rubro,
-         tb_productos.marca,tb_productos.SubRubro1,
-         tb_productos.SubRubro2,tb_productos.precioL1,
-         tb_productos.precioL2,tb_productos.precioL3,
-         tb_productos.precioL4,tb_productos.precioL5,
-         tb_productos.precioL6,tb_productos.precioL7,
-         tb_productos.precioL8,tb_productos.precioL9");
+        $LMV = DB::connection('mysql')->select("SELECT tb_productos.idProducto,tb_productos.nombre,tb_productos.urlImage,
+        tb_productos.fk_idSatate,tb_productos.SubRubro2,tb_productos.precioL1,
+        tb_productos.precioL2,tb_productos.precioL3,
+        tb_productos.precioL4,tb_productos.precioL5,
+        tb_productos.precioL6,tb_productos.precioL7,
+        tb_productos.precioL8,tb_productos.precioL9,
+        tb_productos.codeProdSys, tb_productos.kiloProdcuto
+        FROM tb_order_body 
+        INNER JOIN tb_order_header ON tb_order_header.idOrderHeader = tb_order_body.fk_idOrderHeader 
+        INNER JOIN tb_productos ON tb_productos.codeProdSys = tb_order_body.codeProdSys 
+        WHERE tb_order_header.fk_idStateOrder = 2  and tb_productos.fk_idSatate = 1
+        group  by   tb_productos.idProducto
+        LIMIT 10");
 
-        return response()->json($LMV, 201);
+        return response()->json($LMV, 200);
     }
 
     public function listarPorid($idProducto) {
@@ -416,35 +421,48 @@ class ProductoController extends Controller {
     }
 
 
-    public function getProductByRubroTag(Request $request) {
+    public function getProductByRubro(Request $request) {
+
+       // $response = Producto::select("rubro")->distinct('rubro')->orderBy("rubro")->get();
+
+       // return response()->json($response, 202);
+
 
         try {
+           
             $rs = null;
 
             $sql = "";
+            $isWherActive = "where";
 
-            if (! empty($request->tag)) {
-                $sql = " where Descripcion_TablaGenerica in  ('".$request->tag."') ";
+            //                $sql = $isWherActive."  Descripcion_Rubro in  ('".$request->rubro."') ";
+
+
+            if (! empty($request->rubro)) {
+                $sql = $isWherActive."  Descripcion_Rubro = '".$request->rubro."' ";
+                $isWherActive = " and ";
             }
 
-            if (! empty($request->rubro) && ! empty($request->tag)) {
-                $sql = $sql." and Descripcion_Rubro = '".$request->rubro."' ";
+            if (!empty($request->SubRubro1)) {
+                $sql = $sql." ".$isWherActive."  Descripcion_SubRubro1 = '".$request->SubRubro1."' ";
+                if($isWherActive == "where"){$isWherActive = " and ";}
             }
 
-            if (! empty($request->rubro) && empty($request->tag)) {
-                $sql = $sql." where Descripcion_Rubro = '".$request->rubro."' ";
+            if (!empty($request->SubRubro2)) {
+                $sql = $sql." ".$isWherActive."  Descripcion_SubRubro2 = '".$request->SubRubro2."' ";
+                if($isWherActive == "where"){$isWherActive = " and ";}
+
             }
 
-            if ((empty($request->rubro) && empty($request->tag)) && ! empty($request->search)) {
-                $sql = $sql." where Descripcion_Producto = like '%".$request->search."%' ";
-            }
+            if (!empty($request->search)) {
+                $sql = $sql." ".$isWherActive."  Descripcion_Producto  like '%".$request->search."%' ";
 
-            if ((! empty($request->rubro) || ! empty($request->tag)) && ! empty($request->search)) {
-                $sql = $sql." and   Descripcion_Producto = like '%".$request->search."%' ";
             }
 
 
-            $rs = DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosTagsAPP  
+           
+
+            $rs = DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
              ".$sql."  order by Descripcion_Producto  ");
 
 
@@ -458,6 +476,7 @@ class ProductoController extends Controller {
 
             return response()->json("Error conectando a el DC", 500);
         }
+        
 
     }
 
@@ -484,6 +503,22 @@ class ProductoController extends Controller {
             ];
 
             return response()->json($response, 404);
+        }
+    }
+
+
+    public function getCostos() {
+
+        $rs = DB::connection('sqlsrv')->select(" SELECT * FROM  VistaZonasLocalidadesAPP ");
+
+        if (is_null($rs)) {
+            $response = [
+                'msj' => 'Producto no encontrado',
+            ];
+
+            return response()->json($response, 404);
+        } else {
+            return response()->json($rs, 200);
         }
     }
 }

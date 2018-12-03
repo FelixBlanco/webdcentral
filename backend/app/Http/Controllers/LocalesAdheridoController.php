@@ -127,6 +127,8 @@ class LocalesAdheridoController extends Controller
 
         $LAH->each(function ($LAH) {
             $LAH->set_imagen = asset('storage/localesAdheridos/'.$LAH->imagen);
+            $LAH->set_imagen_uno = asset('storage/localesAdheridos/'.$LAH->foto_1);
+            $LAH->set_imagen_dos = asset('storage/localesAdheridos/'.$LAH->foto_2);
         });
 
         $response = [
@@ -215,7 +217,6 @@ class LocalesAdheridoController extends Controller
 
     public function editar(Request $request, $idLocalAdherido)
     {
-
         if ($request->all() == "[]") {
             $response = [
                 'msj' => 'debe enviar algún parametro para actualizar',
@@ -274,7 +275,7 @@ class LocalesAdheridoController extends Controller
 
             $response = [
                 'msj'   => 'Info de los locales actulizada',
-                'cupon' => $LAH,
+                'LocalAdh' => $LAH,
                 'ruta_imagen'  => asset('storage/localesAdheridos/'),
             ];
 

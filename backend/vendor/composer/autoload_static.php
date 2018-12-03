@@ -26,11 +26,11 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
         '40360c0b9b437e69bcbb7f1349ce029e' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -170,8 +170,8 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Zend\\Diactoros\\' => 
         array (
@@ -456,6 +456,8 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
     );
 
     public static $classMap = array (
+        'App\\Blog' => __DIR__ . '/../..' . '/app/Blog.php',
+        'App\\BlogCategoria' => __DIR__ . '/../..' . '/app/BlogCategoria.php',
         'App\\CarritoCompra' => __DIR__ . '/../..' . '/app/CarritoCompra.php',
         'App\\Chage_user' => __DIR__ . '/../..' . '/app/Chage_user.php',
         'App\\Clasificado' => __DIR__ . '/../..' . '/app/Clasificado.php',
@@ -476,6 +478,8 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\BlogCategoriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/BlogCategoriaController.php',
+        'App\\Http\\Controllers\\BlogController' => __DIR__ . '/../..' . '/app/Http/Controllers/BlogController.php',
         'App\\Http\\Controllers\\CarritoCompraController' => __DIR__ . '/../..' . '/app/Http/Controllers/CarritoCompraController.php',
         'App\\Http\\Controllers\\ClasificadoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClasificadoController.php',
         'App\\Http\\Controllers\\ColorController' => __DIR__ . '/../..' . '/app/Http/Controllers/ColorController.php',
@@ -510,6 +514,7 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
         'App\\Http\\Controllers\\SuscripcionController' => __DIR__ . '/../..' . '/app/Http/Controllers/SuscripcionController.php',
         'App\\Http\\Controllers\\TurnoController' => __DIR__ . '/../..' . '/app/Http/Controllers/TurnoController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
+        'App\\Http\\Controllers\\tipoDeFacturaController' => __DIR__ . '/../..' . '/app/Http/Controllers/tipoDeFacturaController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -520,8 +525,11 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\cors' => __DIR__ . '/../..' . '/app/Http/Middleware/Cors.php',
         'App\\LocalesAdherido' => __DIR__ . '/../..' . '/app/LocalesAdherido.php',
+        'App\\Mail\\BorrarTurnosMail' => __DIR__ . '/../..' . '/app/Mail/BorrarTurnosMail.php',
+        'App\\Mail\\EditarTurnosMail' => __DIR__ . '/../..' . '/app/Mail/EditarTurnosMail.php',
         'App\\Mail\\Prueba' => __DIR__ . '/../..' . '/app/Mail/Prueba.php',
         'App\\Mail\\SuscripcionMail' => __DIR__ . '/../..' . '/app/Mail/SuscripcionMail.php',
+        'App\\Mail\\TurnosMail' => __DIR__ . '/../..' . '/app/Mail/TurnosMail.php',
         'App\\Notification' => __DIR__ . '/../..' . '/app/Notification.php',
         'App\\OauthAccessToken' => __DIR__ . '/../..' . '/app/OauthAccessToken.php',
         'App\\Oferta' => __DIR__ . '/../..' . '/app/Oferta.php',
@@ -544,10 +552,12 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
         'App\\StateOrder' => __DIR__ . '/../..' . '/app/StateOrder.php',
         'App\\StatusReclamo' => __DIR__ . '/../..' . '/app/StatusReclamo.php',
         'App\\StatusSistema' => __DIR__ . '/../..' . '/app/StatusSistema.php',
+        'App\\StatusTurno' => __DIR__ . '/../..' . '/app/StatusTurno.php',
         'App\\Suscripcion' => __DIR__ . '/../..' . '/app/Suscripcion.php',
         'App\\TagProduct' => __DIR__ . '/../..' . '/app/TagProduct.php',
         'App\\TipoDeFactura' => __DIR__ . '/../..' . '/app/TipoDeFactura.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\clasificado_reclamo' => __DIR__ . '/../..' . '/app/clasificado_reclamo.php',
         'App\\orderBody' => __DIR__ . '/../..' . '/app/orderBody.php',
         'App\\orderHeader' => __DIR__ . '/../..' . '/app/orderHeader.php',
         'App\\serviciosAdd' => __DIR__ . '/../..' . '/app/serviciosAdd.php',
@@ -3956,6 +3966,7 @@ class ComposerStaticInite0134bff3079cab91b11a8a907a55c0c
         'SectionAppSeeder' => __DIR__ . '/../..' . '/database/seeds/SectionAppSeeder.php',
         'StatusReclamo' => __DIR__ . '/../..' . '/database/seeds/StatusReclamo.php',
         'StatusSistemaSeeder' => __DIR__ . '/../..' . '/database/seeds/StatusSistemaSeeder.php',
+        'StatusTurnoSeeder' => __DIR__ . '/../..' . '/database/seeds/StatusTurnoSeeder.php',
         'Symfony\\Bridge\\PsrHttpMessage\\Factory\\DiactorosFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/DiactorosFactory.php',
         'Symfony\\Bridge\\PsrHttpMessage\\Factory\\HttpFoundationFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/HttpFoundationFactory.php',
         'Symfony\\Bridge\\PsrHttpMessage\\Factory\\PsrHttpFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/PsrHttpFactory.php',

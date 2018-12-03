@@ -17,9 +17,9 @@ export class RubrosFilterComponent implements OnInit {
 
   filterForm: FormGroup;
 
-  rubrosList: any[];
-  subRubrosAList: any[];
-  subRubrosBList: any[];
+  rubrosList: any[] = [];
+  subRubrosAList: any[] = [];
+  subRubrosBList: any[] = [];
 
   inPromise: boolean;
 
@@ -33,7 +33,7 @@ export class RubrosFilterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.setRubros();
+    this.setRubro();
 
     this.filterForm = this.fb.group({
       rubro: [''],
@@ -44,7 +44,7 @@ export class RubrosFilterComponent implements OnInit {
 
   }
 
-  setRubros(){
+  setRubro(){
     this.rubrosService.getRubros().subscribe((resp) => {
       if(resp.status === 202){
         this.rubrosList = resp.body;
@@ -56,20 +56,44 @@ export class RubrosFilterComponent implements OnInit {
       console.error(error);
       this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Rubros');
     });
+  }
 
-    this.rubrosService.getSubrubroA().subscribe((resp) => {
-      if(resp.status === 202){
-        this.subRubrosAList = resp.body;
-      }else{
-        console.error(resp);
-        this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Sub Rubros A');
+  onChange(filter: string, criteria?: string){
+
+    if(!filter){
+      if(criteria){
+        this.subRubrosAList = [];
       }
-    }, error => {
-      console.error(error);
-      this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Sub Rubros A');
-    })
+      this.subRubrosBList = [];
+      return;
+    }
 
-    this.rubrosService.getSubrubroB().subscribe((resp) => {
+    if(filter && criteria){
+      this.filterForm.patchValue({
+        subRubroA: '',
+        subRubroB: ''
+      });
+    }
+
+
+    if(criteria === 'subrubro1'){
+      this.rubrosService.getSubrubroA(filter).subscribe((resp) => {
+        if(resp.status === 202){
+          this.subRubrosAList = resp.body;
+        }else{
+          console.error(resp);
+          this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Sub Rubros A');
+        }
+      }, error => {
+        console.error(error);
+        this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Sub Rubros A');
+      });
+
+      this.subRubrosBList = [];
+      return;
+    }
+
+    this.rubrosService.getSubrubroB(filter).subscribe((resp) => {
       if(resp.status === 202){
         this.subRubrosBList = resp.body;
       }else{
@@ -160,7 +184,12 @@ export class RubrosFilterComponent implements OnInit {
   }
 
   clearFilters(){
-    this.filterForm.reset();
+    this.filterForm.patchValue({
+      rubro: '',
+      subRubroA: '',
+      subRubroB: '',
+      searchValue: ''
+    });
     this.someAreEmpty();
   }
 

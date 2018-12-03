@@ -25,7 +25,7 @@ export class ConfgFooterService {
     return this.http.get(`${environment.apiHost}/api/v1/config-footer`,httpOptions);
   }
 
-  _upgradeConfigFooter(data:ConfigFooter){
+  _upgradeConfigFooter(data:any){
     return this.http.post(`${environment.apiHost}/api/v1/update-config-footer`,data,httpOptions);
   }
 }

@@ -1,3 +1,5 @@
+<app-contactanos-inicio></app-contactanos-inicio>
+
 <div class="container">
   <div class="row" style="padding-top: 3%; padding-bottom: 3%;">
     <div class="col-md-3" id="compra">
@@ -21,7 +23,7 @@
       </div>
     </div>
     <div class="col-md-3" id="retiro_tienda">
-      <div data-toggle="modal" data-target="#retirarEnTiendaModal">
+      <div data-toggle="modal" data-target="#contactanosModal">
         <img src="../assets/como_envio/retirar_en_tienda_1.png" width="130" class="d-block mx-auto img-fluid">
         <h3 class="text-center hover-normal"> RETIRAR EN <br> <b> LA TIENDA</b> </h3>
       </div>
@@ -254,7 +256,7 @@
   </div>
 
   <!-- Retirar en la tienda -->
-  <div class="modal fade" id="retirarEnTiendaModal" tabindex="-1" role="dialog" aria-labelledby="retirarEnTiendaModalTitle" aria-hidden="true">
+  <!-- <div class="modal fade" id="retirarEnTiendaModal" tabindex="-1" role="dialog" aria-labelledby="retirarEnTiendaModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content" style="width: 1000px; margin-left: -11%;">
         <div class="modal-header bg-azul">
@@ -269,9 +271,13 @@
               <p class="text-center">
                 <b>
                   HORARIO DE ATENCION DEL LOCAL: <br>
-                  LUNES A VIERNES: DE 9 HS A 20 HS / SABADO: 9 HS A 14 HS
+                  <div *ngIf="configData.horarios" >{{configData.horarios}}</div>
+                  <div *ngIf="!configData.horarios" >{{configData.horarios}}</div>
                 </b>
               </p>
+              <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+              </agm-map>
               <div class="row justify-content-center">
                 <div class="col-md-8">
                   <button class="btn btn-sm btn-success text-center btn-block">Ir</button>
@@ -287,7 +293,9 @@
                     </div>
                   </div>
                   <img src="../../assets/donde-estamos/bus.png" class="p-1 img-fluid m-1 mx-auto d-block" width="80">
-                  <h5 class="text-center font-bold">COLETIVOS</h5><p class="text-center" style="font-size: 13px; padding: 10px;">Linea 24, 57, 76,96, 99, 105, 106, 110, 124, 135,v 146</p>
+                  <h5 class="text-center font-bold">COLETIVOS</h5>
+                  <p *ngIf="configData.colectivos" class="text-center" style="font-size: 13px; padding: 10px;">{{configData.colectivos}}</p>
+                  <p *ngIf="!configData.colectivos" class="text-muted font-italic m-0">No hay informacion disponible</p>
                 </li>
                 <li class="list-capas">
                   <div class="capa">
@@ -299,7 +307,8 @@
                   </div>
                   <img src="../../assets/donde-estamos/metro.png" class="p-1 img-fluid m-2 mx-auto d-block" width="62">
                   <h5 class="text-center font-bold">SUBTES</h5>
-                  <p class="text-center" style="font-size: 13px; padding: 10px;">A 15 cuadras de la Linea B Estacion Malabia</p>
+                  <p *ngIf="configData.subtes" class="text-center" style="font-size: 13px; padding: 10px;">{{configData.subtes}}</p>
+                  <p *ngIf="!configData.subtes" class="text-muted font-italic m-0">No hay informacion disponible</p>
                 </li>
                 <li class="list-capas">
                   <div class="capa">
@@ -311,9 +320,8 @@
                   </div>
                   <img src="../../assets/donde-estamos/carro.png" class="p-1 img-fluid m-2 mx-auto d-block" width="85">
                   <h5 class="text-center font-bold">AVENIDAS CERCANAS</h5>
-                  <p class="text-center" style="font-size: 13px; padding: 10px;">
-                    Av. San Martinm Av. Diaz Velez, Av. Garona, Av. Juan B Justo 
-                  </p>
+                  <p *ngIf="configData.avenidas" class="text-center" style="font-size: 13px; padding: 10px;">{{configData.avenidas}}</p>
+                  <p *ngIf="!configData.avenidas" class="text-muted font-italic m-0">No hay informacion disponible</p>
                 </li>																
               </ul>				
             </div>
@@ -321,4 +329,4 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->

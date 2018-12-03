@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ProductosService, SearchBody } from 'src/app/services/productos.service';
+import { ProductosService, SearchBody, Producto } from 'src/app/services/productos.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { Router } from '@angular/router';
+import { parse } from 'url';
 declare var $: any;
 @Component({
   selector: 'app-busqueda',
@@ -44,13 +45,32 @@ export class BusquedaComponent implements OnInit{
     }
 
     const search = this.searchForm.value.searchValue;
+    let behaviorPromises: Promise<Producto[]>[] = [];
     this.inPromise = true;
     this.productService.search(search).subscribe(resp => {
       if(resp.ok && resp.status === 200){
-        this.productService.productosSearchSource.next(resp.body);
-        this.setTittleProductsFilterList(search);
-        this.searchForm.reset();
-        $('#busquedaModal').modal('toggle');
+
+        behaviorPromises.push(
+          this.productsBehavior.parseDefaultPrice(resp.body.marcas), 
+          this.productsBehavior.parseDefaultPrice(resp.body.nombre),
+          this.productsBehavior.parseDefaultPrice(resp.body.mascotas)
+        );
+
+        Promise.all(behaviorPromises).then(values => {
+          let parsed: any = {};
+
+          parsed.marcas = values[0];
+          parsed.nombre = values[1];
+          parsed.mascotas = values[2];
+
+          this.productService.productosSearchSource.next(parsed);
+          this.setTittleProductsFilterList(search);
+          $('#busquedaModal').modal('toggle');
+          this.searchForm.reset();
+          Object.keys(this.searchForm.controls).forEach(key => {
+            this.searchForm.controls[key].setErrors(null);
+          });
+        });
       }else{
         console.error(resp);
         this.as.msg('ERR', 'Ha ocurrido un error al buscar');
@@ -76,7 +96,5 @@ export class BusquedaComponent implements OnInit{
     this.router.navigate(['/productos']);
     setTimeout(()=> document.getElementById('productos').scrollIntoView({behavior: 'smooth'}),1000);
   }
-
-
 
 }

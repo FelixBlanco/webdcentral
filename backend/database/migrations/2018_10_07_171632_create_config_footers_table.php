@@ -27,6 +27,10 @@ class CreateConfigFootersTable extends Migration {
             $table->string('colectivos')->nullable();
             $table->string('avenidas')->nullable();
 
+            $table->string('desde')->nullable();
+            $table->string('hasta')->nullable();
+            $table->string('url_mercado_libre')->nullable();
+
 
             $table->timestamps();
 

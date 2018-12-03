@@ -98,6 +98,7 @@ class AuthController extends Controller {
                 $u->Codigo_Cliente = @$userDc->Codigo_Cliente;
                 $u->update();// Actualizamos el codigo de cliente
 
+                $u->phone = @$userDc->Telefonos_Cliente;
                 $u->addres = @$userDc->Domicilio_Cliente;
                 $u->totalOrder = @$userDc->totalImport;
                 $u->totslCupons = CouponsClient::where("fk_idUser","=",$u->id)

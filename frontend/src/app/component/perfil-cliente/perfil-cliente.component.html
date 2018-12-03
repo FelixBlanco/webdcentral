@@ -57,7 +57,34 @@
               <input type="phone" class="form-control" formControlName="celular" [(ngModel)]="form.celular" placeholder="Ingrese Celular">
             </div>
           </div>
-        
+                 
+          <div class="form-group">
+            <label for="">Domicilio entrega</label>
+            <input type="email" class="form-control" formControlName="domicilio_entrega" [(ngModel)]="form.domicilio_entrega" placeholder="Ingrese Domiciolio entrega">
+          </div>
+          
+          <div class="form-group">
+            <label for="">CUIT</label>
+            <input type="email" class="form-control" formControlName="CUIT" [(ngModel)]="form.CUIT" placeholder="Ingrese CUIT">
+          </div>
+          
+          <div class="form-group">
+            <label for="">Tipos de Facturas</label>
+            <select [(ngModel)]="form.fk_idTipoFactura" formControlName="fk_idTipoFactura" class="form-control">
+              <option *ngFor='let tf of tiposFacturas' [value]="tf.idTipoFactura">{{tf.descripcion}}</option>
+            </select>
+          </div>
+                    
+          <div class="form-group">
+            <label for="">CUIT Razon Social</label>
+            <input type="email" class="form-control" formControlName="CUITrazonSocial" [(ngModel)]="form.CUITrazonSocial" placeholder="Ingrese CUIT Razon Social">
+          </div>
+          
+          <div class="form-group">
+            <label for="">CUIT Domicilio Fiscal</label>
+            <input type="email" class="form-control" formControlName="CUITDomicilioFidcal" [(ngModel)]="form.CUITDomicilioFidcal" placeholder="Ingrese CUIT Domicilio Fiscal">
+          </div>
+                   
         </form>   
 
       </div>

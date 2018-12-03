@@ -19,6 +19,10 @@ import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/p
 import {  ConfigRedesComponent } from './component/config-redes/config-redes.component'
 import { SuscripcionComponent } from './component/suscripcion/suscripcion.component';
 import { LocalesAdheridosComponent } from './component/locales-adheridos/locales-adheridos.component';
+import { GaleryProductComponent } from './component/galery-product/galery-product.component';
+import { ClasificadosComponent } from './component/clasificados/clasificados.component';
+import { CategoriaBlogComponent } from './component/categoria-blog/categoria-blog.component';
+import { BlogComponent } from './component/blog/blog.component';
 
 const routes: Routes = [
   { path: 'Galeria', component: GaleriaHomeComponent },
@@ -36,6 +40,10 @@ const routes: Routes = [
   { path: 'preguntas-frecuentes', component: PreguntasFrecuentesComponent},
   { path: 'config-redes', component: ConfigRedesComponent },
   { path: 'suscriptores', component: SuscripcionComponent },
+  { path: 'galery-product', component: GaleryProductComponent },
+  { path: 'clasificados', component: ClasificadosComponent },
+  { path: 'categoria-blog', component: CategoriaBlogComponent },
+  { path: 'blog', component: BlogComponent },
   { path: 'locales-adheridos', component: LocalesAdheridosComponent }
 ];
 

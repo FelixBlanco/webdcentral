@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\orderHeader;
 use App\Notification;
 use App\User;
+use Illuminate\Support\Facades\Storage;
+use Image;
 
 
 use Illuminate\Support\Facades\DB;
@@ -217,11 +219,49 @@ class OrderDriverController extends Controller {
         }
     }
 
-    // Finalizar Pedido
-    public function finishPedido(Request $request) {
+
+     // cambio esta de un pedido //
+     public function chaguePhoneAndAdrresClinet(Request $request) {
 
         try {
 
+
+            DB::connection('sqlsrv')->update("  UPDATE Clientes
+             set isUpdatePhoneAndAdressApp = 1, 
+             Telefonos_Cliente = '".$request->Telefonos_Cliente."' ,
+             Domicilio_Cliente = '".$request->Domicilio_Cliente."' 
+             where Codigo_Cliente = '".$request->Codigo_Cliente."' ");
+
+            return response()->json("Datos actualizados ", 200);
+
+        } catch (\Exception $e) {
+            dd($e);
+
+            return response()->json("Error conectando a el DC", 500);
+        }
+    }
+
+    // Finalizar Pedido
+    public function finishPedido(Request $request) {
+        try {
+
+            // CARGAMOS LA IMAGEN
+
+            $originalImage = $request->filename;
+
+            $thumbnailImage = Image::make($originalImage);
+
+            $thumbnailImage->fit(2048, 2048, function($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $nombre_publico = $originalImage->getClientOriginalName();
+            $extension      = $originalImage->getClientOriginalExtension();
+
+            $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+            $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+            Storage::disk('local')->put('/firmas/'.$nombre_interno, (string) $thumbnailImage->encode());
 
             $order = orderHeader::where("Numero_Pedido", "=", $request->Numero_Pedido)->first();
 
@@ -229,6 +269,8 @@ class OrderDriverController extends Controller {
                 $order->Estado_Pedido   = $request->Estado_Pedido;
                 $order->fk_idStateOrder = $request->fk_idStateOrder;
                 $order->stars           = $request->stars;
+                $order->firma1          = $nombre_interno;
+                $order->comentarioFinal = $request->comentarioFinal;
                 $order->save();
             }
 
@@ -236,6 +278,82 @@ class OrderDriverController extends Controller {
              set Estado_Pedido = '".$request->Estado_Pedido."'
              , stars = ".$request->stars."
               where Numero_Pedido = '".$request->Numero_Pedido."' ");
+
+
+            // ENVIO DE NOTIFICACION A LOS CLIENTE DE FIREBASE //
+            if ($order) {
+                if ($order->fk_idStateOrder == 5) {
+                    if ($order->fk_idUserClient > 0) {
+
+                        $user = User::select("tokenFirebase")->findOrFail($order->fk_idUserClient);
+
+                        $data = [
+                            'descriptionNotification' => 'Confirme la recepcion de su pedido #'.$order->Numero_Pedido,
+                            'idSecctionApp'           => 4 // Pedidos
+                        ];
+
+                        NotificationController::sendNotificationFb('Su pedido fue entregado', $data, $user->tokenFirebase);
+
+                        $notifications                          = new Notification();
+                        $notifications->titleNotification       = 'Su pedido fue entregado';
+                        $notifications->descriptionNotification = 'Confirme la recepcion de su pedido #'.$order->Numero_Pedido;
+                        $notifications->fk_idSecctionApp        = 4;// Pedidos
+                        $notifications->fk_idUser               = $order->fk_idUserClient;// Pedidos
+
+                        $notifications->save();
+                    }
+                }
+            }
+
+            return response()->json("Pedido actualizado ", 200);
+
+        } catch (\Exception $e) {
+            dd($e);
+
+            return response()->json("Error conectando a el DC", 500);
+        }
+    }
+
+
+    // Finalizar Pedido
+    public function prefinishPedido(Request $request) {
+
+        try {
+
+            // CARGAMOS LA IMAGEN 
+
+            $originalImage = $request->filename;
+
+            $thumbnailImage = Image::make($originalImage);
+
+            $thumbnailImage->fit(2048, 2048, function($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $nombre_publico = $originalImage->getClientOriginalName();
+            $extension      = $originalImage->getClientOriginalExtension();
+
+            $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+            $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+            Storage::disk('local')->put('/firmas/'.$nombre_interno, (string) $thumbnailImage->encode());
+
+            // 
+
+
+            $order = orderHeader::where("Numero_Pedido", "=", $request->Numero_Pedido)->first();
+
+            if ($order) {
+                $order->Estado_Pedido   = $request->Estado_Pedido;
+                $order->fk_idStateOrder = $request->fk_idStateOrder;
+                $order->firma           = $nombre_interno;
+                $order->save();
+            }
+
+            /*DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP
+             set Estado_Pedido = '".$request->Estado_Pedido."'
+             , stars = ".$request->stars."
+              where Numero_Pedido = '".$request->Numero_Pedido."' ");*/
 
             return response()->json("Pedido actualizado ", 200);
 
@@ -297,24 +415,24 @@ class OrderDriverController extends Controller {
             return response()->json("Pedido creado ", 200);
 
         } catch (\Exception $e) {
-          //   dd($e);
+            //   dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
 
     // BODY
-    public static function addBody(Request $request,$fk_idOrderHeader){
-        try{
-            foreach ($request->items as $item){
+    public static function addBody(Request $request, $fk_idOrderHeader) {
+        try {
+            foreach ($request->items as $item) {
 
-                $codeProdSys = $item["codeProdSys"];
-                $Cantidad_Producto = $item["Cantidad_Producto"];
-                $PrecioUnitario_Producto = $item["PrecioUnitario_Producto"];
+                $codeProdSys                  = $item["codeProdSys"];
+                $Cantidad_Producto            = $item["Cantidad_Producto"];
+                $PrecioUnitario_Producto      = $item["PrecioUnitario_Producto"];
                 $PorcentajeDescuento_Producto = $item["PorcentajeDescuento_Producto"];
-                $Devolucion_Producto = $item["Devolucion_Producto"];
-                $Numero_Pedido = $fk_idOrderHeader;
-                
-            DB::connection('sqlsrv')->insert("  INSERT INTO DetallesVentas_APP 
+                $Devolucion_Producto          = $item["Devolucion_Producto"];
+                $Numero_Pedido                = $fk_idOrderHeader;
+
+                DB::connection('sqlsrv')->insert("  INSERT INTO DetallesVentas_APP 
                 (   Codigo_Producto,
                     Cantidad_Producto,
                     PrecioUnitario_Producto,
@@ -334,7 +452,8 @@ class OrderDriverController extends Controller {
             return response()->json("Poductos Agregados ", 200);
 
         } catch (\Exception $e) {
-             dd($e);
+            dd($e);
+
             return response()->json("Error conectando a el DC", 500);
         }
     }
@@ -375,14 +494,14 @@ class OrderDriverController extends Controller {
 
     }
 
-     // OBTENEMOS TODOS LOS PEDIDOS EN TRAFICO
-     public function getAllOrderMap() {
-        
+    // OBTENEMOS TODOS LOS PEDIDOS EN TRAFICO
+    public function getAllOrderMap() {
+
         try {
             $rs = null;
 
             $sql = "";
-            
+
 
             $rs = DB::connection('sqlsrv')->select(" SELECT TOP 20 * FROM   VentasporComprobantes  
             where   EstadoPedido != 'En Transito' ".$sql."  order by Fecha_EncabezadoVenta  ");
