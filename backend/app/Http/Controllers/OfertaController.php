@@ -19,7 +19,7 @@ class OfertaController extends Controller {
     public function index() {
         $o = Oferta::orderby('idOferta', 'desc')->get();
         $o->each(function($o) {
-            $o->set_imagen = asset('storage/oferta/'.$o->imagen);
+            $o->set_imagen = asset('storage\\oferta\\'.$o->imagen);
         });
 
         return $o;
@@ -77,7 +77,7 @@ class OfertaController extends Controller {
             $extension      = $originalImage->getClientOriginalExtension();
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-            Storage::disk('local')->put('/oferta/'.$nombre_interno, (string) $thumbnailImage->encode());
+            Storage::disk('local')->put('\\oferta\\'.$nombre_interno, (string) $thumbnailImage->encode());
             /*para la foto*/
 
 
@@ -88,7 +88,7 @@ class OfertaController extends Controller {
 
             $response = [
                 'msj'         => 'Oferta Creada',
-                'ruta_imagen' => asset('storage/oferta/'.$oferta->imagen),
+                'ruta_imagen' => asset('storage\\oferta\\'.$oferta->imagen),
                 'oferta'      => $oferta,
             ];
             DB::commit();
@@ -188,7 +188,7 @@ class OfertaController extends Controller {
                 $extension      = $originalImage->getClientOriginalExtension();
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-                Storage::disk('local')->put('/oferta/'.$nombre_interno, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\oferta\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
                 $oferta->imagen = $nombre_interno;
                 /*para la foto*/
@@ -252,10 +252,10 @@ class OfertaController extends Controller {
 
     public function getImagenOferta($archivo) {
 
-        if (Storage::exists('/oferta/'.$archivo)) {
+        if (Storage::exists('\\oferta\\'.$archivo)) {
 
             /* habilitar si quieres recibir la imagen en streaming  */
-            return Storage::response("oferta/".$archivo);
+            return Storage::response("oferta\\".$archivo);
 
             //return response()->json(Storage::url('galeri/'.$archivo), 201);
         } else {

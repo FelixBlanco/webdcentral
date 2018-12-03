@@ -17,7 +17,7 @@ class SlideController extends Controller {
 
         $slides = Slide::get();
         $slides->each(function($slides) {
-            $slides->set_imagen = asset('storage/slide/'.$slides->imagen);
+            $slides->set_imagen = asset('storage\\slide\\'.$slides->imagen);
             $slides->producto;
             if (! empty($slides->fk_idProducto)) {
                 $slides->nameProducto = $slides->producto->nombre;
@@ -45,6 +45,7 @@ class SlideController extends Controller {
     }
 
     public function createSlides(Request $request) {
+      
         if (Auth::user()->fk_idPerfil == 1) {
 
             $this->validate($request, [
@@ -73,13 +74,13 @@ class SlideController extends Controller {
 
 
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension      = $originalImage->getClientOriginalExtension();
+                $extension      = 'png';
 
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
 
-                Storage::disk('local')->put('/slide/'.$nombre_interno, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\slide\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
 
                 $imagemodel         = new Slide();
@@ -99,8 +100,8 @@ class SlideController extends Controller {
                     'msj'         => 'Slides guardada exitosamente',
                     'id_dataBase' => $imagemodel->idSlide,
                     'calidad'     => '2048*2048',
-                    'size'        => $size = (Storage::size('/slide/'.$nombre_interno) / 1000000).' Mb',
-                    'name'        => 'storage/slide/'.$nombre_interno,
+                    'size'        => $size = (Storage::size('\\slide\\'.$nombre_interno) / 1000000).' Mb',
+                    'name'        => 'storage\\slide\\'.$nombre_interno,
                 ];
 
                 return response()->json($response, 201);
@@ -122,10 +123,10 @@ class SlideController extends Controller {
 
     public function getSlideImage($archivo) {
 
-        if (Storage::exists('/slide/'.$archivo)) {
+        if (Storage::exists('\\slide\\'.$archivo)) {
 
             /* habilitar si quieres recibir la imagen en streaming  */
-            return Storage::response("slide/".$archivo);
+            return Storage::response("slide\\".$archivo);
 
             //return response()->json(Storage::url('galeri/'.$archivo), 201);
         } else {

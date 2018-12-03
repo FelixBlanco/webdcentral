@@ -11,7 +11,7 @@ class ConfigHomeController extends Controller
     public function getConfigHome(){
 	   	$c =  ConfigHome::first();
         if (!empty($c)) {
-            $c->set_logo = asset('storage/'.$c->logo); // Rutal del logo
+            $c->set_logo = asset('storage\\'.$c->logo); // Rutal del logo
         }
 	   	return $c;
     }
