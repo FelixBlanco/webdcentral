@@ -112,4 +112,17 @@ class TurnoController extends Controller {
         return response()->json($response, 201);
     }
 
+    public function borrar($idTurnos){
+
+        $turno=turno::findOrFail($idTurnos);
+        $turno->delete();
+
+        $response = [
+            'msj'   => 'Turno Borrado',
+        ];
+
+        return response()->json($response, 201);
+
+    }
+
 }

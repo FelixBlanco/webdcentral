@@ -25,7 +25,6 @@ class orderHeader extends Model {
         'fk_idStateOrder',
         'fk_idUserClient',
         'fk_idUserDriver',
-
         'metodoEntrega',
         'disponibilidadHr',
         'CUIT',
@@ -34,7 +33,11 @@ class orderHeader extends Model {
         'metodoPago',
         'comprobanteDepositoTransferencia',
         'fk_idTipoFactura',
-        'localidad'
+        'localidad',
+        'firma1',
+        'firma2',
+        'comentarioFinal'
+
 
     ];
 

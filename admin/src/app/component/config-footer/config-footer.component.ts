@@ -10,14 +10,14 @@ import { AlertsService } from '../../services/alerts.service'
 export class ConfigFooterComponent implements OnInit {
   
   data:any = {
-    id:null,
-    direccio: null, 
+    idConfigFooter:null,
+    direccion: null, 
     mail: null, nroContacto: null,
     mail1: null, mail2: null,
     latitud: null, longitud: null,
     whatsApp1: null, whatsApp2: null,
     horarios:null , subtes: null, colectivos: null,
-    avenidas: null, listaPrecio: null
+    avenidas: null, listaPrecio: null, desde: null, hasta: null, url_mercado_libre: null
     };
 
 
@@ -41,11 +41,11 @@ export class ConfigFooterComponent implements OnInit {
     )
   }
 
-  upgradeCondigFooter(){
+  upgradeCondigFooter(){ console.log(this.data)
     this._confgFooterService._upgradeConfigFooter(this.data).subscribe(
-      resp => { this.getConfigFooter();  this._alertService.msg("OK","Éxito", "Actualizacion exitosa"); },
+      (resp:any) => { this.getConfigFooter();  this._alertService.msg("OK",resp.msj); },
       error => { 
-
+        console.log( error );
         if(error.error.errors.direccion != null){
           this._alertService.msg("ERR", error.error.errors.direccion);
         }
@@ -88,7 +88,19 @@ export class ConfigFooterComponent implements OnInit {
 
         if(error.error.errors.listaPrecio != null){
           this._alertService.msg("ERR", error.error.errors.listaPrecio);
-        }           
+        }    
+        
+        if(error.error.errors.desde != null){
+          this._alertService.msg("ERR", error.error.errors.desde);
+        }    
+        
+        if(error.error.errors.hasta != null){
+          this._alertService.msg("ERR", error.error.errors.listaPrecio);
+        }    
+        
+        if(error.error.errors.url_mercado_libre != null){
+          this._alertService.msg("ERR", error.error.errors.url_mercado_libre);
+        }            
                  
       }
     );

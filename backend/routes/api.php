@@ -67,9 +67,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('notification/byUser/{idUser}', 'NotificationController@getByIdUser');// Obtener Notificaciones  por id usuario
         Route::get('notification/confirm/{idNotification}', 'NotificationController@confirm'); // Listar  Notification
 
-        //LISTAR PRODUCTOS POR RUBRO,TAG
-        Route::post('producto/by/fiter', 'ProductoController@getProductByRubro');
-
+   
         /* PREGUNTA Y RESPUESTA */
         Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
         Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
@@ -105,16 +103,11 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::post('addTurno', 'TurnoController@add');
         Route::post('editTurno/{idTurnos}', 'TurnoController@update');
         Route::get('listarTodoslosTurnos', 'TurnoController@listar');
+        Route::delete('borrarTurno/{idTurnos}', 'TurnoController@borrar');
         /*TURNOS*/
 
         Route::put('cambiarStatusGaleria/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@cambiarStatus');
 
-        /*BLOG */
-        Route::post('addBlog', 'BlogController@add');
-        Route::post('editBlog/{idBlogCategoria}', 'BlogController@edit');
-        Route::delete('borrarBlog/{idBlogCategoria}', 'BlogController@borrar');
-        Route::get('listarBlog', 'BlogController@listar');
-        Route::get('listarPorIdBlog/{idBlogCategoria}', 'BlogController@buscarIdBlogCategoria');
 
         /*CLASIFICADO DE RECLAMO */
         Route::post('addClasificadoReclamo', 'ClasificadoReclamoController@add');
@@ -122,6 +115,16 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::delete('borrarClasificadoReclamo/{idClasificadoReclamo}', 'ClasificadoReclamoController@borrar');
         Route::get('listarClasificadoReclamo', 'ClasificadoReclamoController@listar');
         Route::get('listarPorIdClasificadoReclamo/{idClasificadoReclamo}', 'ClasificadoReclamoController@buscarIdClasificadoReclamo');
+
+        /*BLOG */
+        Route::post('addBlog', 'BlogController@add');
+        Route::post('editBlog/{idBlogCategoria}', 'BlogController@edit');
+        Route::delete('borrarBlog/{idBlogCategoria}', 'BlogController@borrar');
+
+        /*CATEGORIA DEL BLOG */
+        Route::post('addCatBlog', 'BlogCategoriaController@add');
+        Route::post('editCatBlog/{idBlogCategoria}', 'BlogCategoriaController@edit');
+        Route::delete('borrarCatBlog/{idBlogCategoria}', 'BlogCategoriaController@borrar');
     });
 });
 
@@ -252,6 +255,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // OBTENER SUBSUBROS2
     Route::get('rubro/listarSubrubro2/{Subrubro1}', 'ProductoController@listarSubrubro2');
 
+    //LISTAR PRODUCTOS POR RUBRO,TAG
+    Route::post('producto/by/fiter', 'ProductoController@getProductByRubro');
+
     //LISTAR POR RUBRO, SURUBRO1 O SUBRUBRO2
     Route::post('filtro3pack', 'ProductoController@filtro3pack');
 
@@ -279,6 +285,12 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     // Obtener pedidos actuales de un chofer
     Route::post('order/active/driver', 'OrderDriverController@getByCodeDriver');
 
+    //
+    Route::post('update/info/client', 'OrderDriverController@chaguePhoneAndAdrresClinet');
+
+    
+
+
     // Obtener productos de  un pedido
     Route::post('order/all/products', 'OrderDriverController@getProductByPedido');
 
@@ -287,6 +299,13 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     //  FINALIZAMOS UN PEDIDO ESTADAO DE UN PEDIDO
     Route::post('order/finish', 'OrderDriverController@finishPedido');
+
+    // PREFINALIZAMOS   UN PEDIDO ESTADAO DE UN PEDIDO
+    Route::post('order/pre/finish', 'OrderDriverController@prefinishPedido');
+
+    // ORDENES PRE FINALIZADAS DE UN CLIENTE
+    Route::get('orders/prefiish/{fk_idUser}', 'OrderHeaderController@listarPorIdUsuario');// Listar cupon por cliente
+
 
     // DEVOLVER  DE UN PEDIDO
     Route::post('order/devolution/product', 'OrderDriverController@devolutionProduct');
@@ -328,12 +347,12 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     /*PARA LAS CATEGORIAS DEL BLOG*/
 
-    Route::post('addCatBlog', 'BlogCategoriaController@add');
-    Route::post('editCatBlog/{idBlogCategoria}', 'BlogCategoriaController@edit');
-    Route::delete('borrarCatBlog/{idBlogCategoria}', 'BlogCategoriaController@borrar');
     Route::get('listarCatBlog', 'BlogCategoriaController@listar');
     Route::get('listarPorIdCatBlog/{idBlogCategoria}', 'BlogCategoriaController@buscarIdBlogCategoria');
 
+    /*PARA el BLOG*/
+    Route::get('listarBlog', 'BlogController@listar');
+    Route::get('listarPorIdBlog/{idBlogCategoria}', 'BlogController@buscarIdBlogCategoria');
 
 });
 

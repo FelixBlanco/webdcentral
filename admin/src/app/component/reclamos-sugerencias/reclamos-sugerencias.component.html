@@ -27,78 +27,109 @@
 </div>
 
 <div class="container">
-  <!-- <div class="row">
-    <div class="col-md-12">
-      <div class="form-group text-right">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reclamoModel">
-            Nuevo Reclamo
-          </button>
-      </div>
-    </div>
-  </div> -->
   <div class="row justify-content-center">
     <div class="col-md-12">
       <ul class="nav nav-tabs nav-justified">
-        <li role="presentation" class="active" id="nav-abierto"><a>Abierto</a></li>
-        <li role="presentation" id="nav-recibida"><a>Recibida</a></li>
-        <li role="presentation" id="nav-cerrada"><a>Cerrada</a></li>
+        <li (click)="clickUpdate()" role="presentation" class="active" id="nav-abierto"><a>Abierto</a></li>
+        <li (click)="clickUpdate()" role="presentation" id="nav-recibida"><a>Recibida</a></li>
+        <li (click)="clickUpdate()" role="presentation" id="nav-cerrada"><a>Cerrada</a></li>
       </ul>
 
       <!-- Abierto -->
       <div id="list-abierto" >
-        <ul class="list-group">
-          <li class="list-group-item" *ngFor="let r of listReclamosAbiertos">                
-            <p>{{r.titulo}} <br>
-              <small>Status: {{r.statusReclamoSugerencia}}</small>
-            </p>
-            <p><b>Descripcion: </b> {{r.descripcion}}</p>
-            <div class="form-inline">
-              <select class="form-control" [(ngModel)]="changeStatus">
-                <option value="2">Cerrar</option>
-                <option value="3">Recibida</option>
-              </select>
-              <button class="btn btn-info btn-sm" (click)="upgradeStatus(r.idReclamosSugerencia)">Actualizar</button>
-            </div>              
-          </li>
-        </ul>
+
+        <div class="form-group">
+            <input type="search" class="form-control" (keyup)='updateFilter($event,"abierto")' placeholder="Busqueda en Abierto">
+        </div>
+        
+        <ngx-datatable
+          #tableAbierto
+          class="bootstrap"
+          [rows]="abierto"
+          [columns]="columns"
+          [columnMode]="'force'"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [rowHeight]="'auto'"
+          [limit]="10">
+        
+          <ngx-datatable-column name="Titulo" prop="titulo"></ngx-datatable-column>
+          <ngx-datatable-column name="Descripcion" prop="descripcion"></ngx-datatable-column>
+          
+          <ngx-datatable-column name="Cambio de Estado" prop="statusReclamoSugerencia">
+              <ng-template ngx-datatable-cell-template let-row="row">
+                  <select class="form-control" (change)="upgradeStatus($event,row.idReclamosSugerencia)">
+                    <option value="2">Cerrar</option>
+                    <option value="3">Recibida</option>
+                  </select>
+              </ng-template>                    
+            </ngx-datatable-column>
+        </ngx-datatable>
       </div>
       
       <!-- Recibido -->
       <div id="list-recibida">
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let r of listReclamosRecibido">               
-                <p>{{r.titulo}} <br>
-                  <small>Status: {{r.statusReclamoSugerencia}}</small>
-                </p>
-                <p><b>Descripcion: </b> {{r.descripcion}}</p>
-                <div class="form-inline">
-                  <select class="form-control" [(ngModel)]="changeStatus">
-                    <option value="2">Cerrar</option>
-                    <option value="3">Recibida</option>
-                  </select>
-                  <button class="btn btn-info btn-sm" (click)="upgradeStatus(r.idReclamosSugerencia)">Actualizar</button>
-                </div>            
-            </li>
-          </ul>
+
+          <div class="form-group">
+              <input type="search" class="form-control" (keyup)='updateFilter($event, "recibido")' placeholder="Busqueda en Recibido">
+          </div>
+          
+          <ngx-datatable
+            #tableRecibido
+            class="bootstrap"
+            [rows]="recibido"
+            [columns]="columns"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="10">
+          
+            <ngx-datatable-column name="Titulo" prop="titulo"></ngx-datatable-column>
+            <ngx-datatable-column name="Descripcion" prop="descripcion"></ngx-datatable-column>
+            
+            <ngx-datatable-column name="Cambio de Estado" prop="statusReclamoSugerencia">
+                <ng-template ngx-datatable-cell-template let-row="row">
+                    <select class="form-control" (change)="upgradeStatus($event,row.idReclamosSugerencia)">
+                        <option value="1">Abierto</option>
+                      <option value="2">Cerrar</option>                      
+                    </select>
+                </ng-template>                    
+              </ngx-datatable-column>
+          </ngx-datatable>
+
         </div>
 
       <!-- Cerrados -->
       <div id="list-cerrada">
-        <ul class="list-group">
-          <li class="list-group-item" *ngFor="let r of listReclamosCerrado">              
-            <p>{{r.titulo}} <br>
-              <small>Status: {{r.statusReclamoSugerencia}}</small>
-            </p>
-            <p><b>Descripcion: </b> {{r.descripcion}}</p>
-            <div class="form-inline">
-              <select class="form-control" [(ngModel)]="changeStatus">
-                <option value="2">Cerrar</option>
-                <option value="3">Recibida</option>
-              </select>
-              <button class="btn btn-info btn-sm" (click)="upgradeStatus(r.idReclamosSugerencia)">Actualizar</button>
-            </div>
-          </li>
-        </ul>
+
+          <div class="form-group">
+              <input type="search" class="form-control" (keyup)='updateFilter($event, "cerrado")' placeholder="Busqueda en Cerrado">
+          </div>
+          
+          <ngx-datatable
+            #tableCerrado
+            class="bootstrap"
+            [rows]="cerrado"
+            [columns]="columns"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="10">
+          
+            <ngx-datatable-column name="Titulo" prop="titulo"></ngx-datatable-column>
+            <ngx-datatable-column name="Descripcion" prop="descripcion"></ngx-datatable-column>
+            
+            <ngx-datatable-column name="Cambio de Estado" prop="statusReclamoSugerencia">
+                <ng-template ngx-datatable-cell-template let-row="row">
+                    <select class="form-control" (change)="upgradeStatus($event,row.idReclamosSugerencia)">
+                      <option value="2">Cerrar</option>
+                      <option value="3">Recibida</option>               
+                    </select>
+                </ng-template>                    
+              </ngx-datatable-column>
+          </ngx-datatable>        
       </div>
 
 

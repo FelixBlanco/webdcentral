@@ -43,6 +43,8 @@ import { GaleryProductComponent } from './component/galery-product/galery-produc
 import { LocalesAdheridosComponent } from './component/locales-adheridos/locales-adheridos.component';
 import { ClasificadosComponent } from './component/clasificados/clasificados.component';
 import { TurnoComponent } from './component/turno/turno.component';
+import { CategoriaBlogComponent } from './component/categoria-blog/categoria-blog.component';
+import { BlogComponent } from './component/blog/blog.component';
 
 
 @NgModule({
@@ -82,7 +84,9 @@ import { TurnoComponent } from './component/turno/turno.component';
     SuscripcionComponent,
     GaleryProductComponent,
     ClasificadosComponent,
-    TurnoComponent
+    TurnoComponent,
+    CategoriaBlogComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,

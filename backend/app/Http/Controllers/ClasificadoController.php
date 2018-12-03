@@ -42,10 +42,11 @@ class ClasificadoController extends Controller
                     $constraint->aspectRatio();
                 });
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension = $originalImage->getClientOriginalExtension();
+                $extension='png';
+                //$extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno1 = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno1 = str_slug($nombre_interno1, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-                Storage::disk('local')->put('/Clasificados/'.$nombre_interno1, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\Clasificados\\'.$nombre_interno1, (string) $thumbnailImage->encode());
                 /*para la foto*/
 
                 $clasificados->foto = $nombre_interno1;
@@ -59,7 +60,7 @@ class ClasificadoController extends Controller
             $response = [
                 'msj'         => 'Clasificado Creado exitosamente',
                 'Clasificado' => $clasificados,
-                'ruta_imagen'  => asset('storage/Clasificados/'.$clasificados->foto),
+                'ruta_imagen'  => asset('storage\\Clasificados\\'.$clasificados->foto),
             ];
             DB::commit();
 
@@ -106,7 +107,7 @@ class ClasificadoController extends Controller
 
         $clasificados->each(function ($clasificados) {
             $status = StatusSistema::find($clasificados->fk_idStatusSistema);
-            $clasificados->foto = asset('storage/Clasificados/'.$clasificados->foto);
+            $clasificados->foto = asset('storage\\Clasificados\\'.$clasificados->foto);
             $clasificados->status_sistema = $status->descripcion;
         });
 
@@ -125,7 +126,7 @@ class ClasificadoController extends Controller
 
         if (! is_null($clasificados)) {
             $clasificados->each(function ($clasificados) {
-                $clasificados->set_imagen = asset('storage/Clasificados/'.$clasificados->foto);
+                $clasificados->set_imagen = asset('storage\\Clasificados\\'.$clasificados->foto);
             });
         }
 
@@ -202,12 +203,13 @@ class ClasificadoController extends Controller
                 });
 
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension = $originalImage->getClientOriginalExtension();
+                $extension='png';
+                //$extension = $originalImage->getClientOriginalExtension();
 
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
-                Storage::disk('local')->put('/Clasificados/'.$nombre_interno, (string) $thumbnailImage->encode());
+                Storage::disk('local')->put('\\Clasificados\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
                 $clasificados->foto = $nombre_interno;
             }
@@ -217,7 +219,7 @@ class ClasificadoController extends Controller
             $response = [
                 'msj'          => 'Info actulizada',
                 'Clasificados' => $clasificados,
-                'ruta_imagen'  => asset('storage/Clasificados/'.$clasificados->foto),
+                'ruta_imagen'  => asset('storage\\Clasificados\\'.$clasificados->foto),
             ];
 
             DB::commit();

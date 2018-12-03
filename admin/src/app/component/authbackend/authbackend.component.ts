@@ -10,6 +10,7 @@ import { LoginService } from "../../services/login.service";
 export class AuthbackendComponent implements OnInit {
 
   form:any = { email:null, password:null }
+  inPromise: boolean;
 
   constructor(
     private alerService:AlertsService,
@@ -20,6 +21,7 @@ export class AuthbackendComponent implements OnInit {
   }
 
   ingresarLogin(){
+    this.inPromise = true;
     this.loginService.ingresarLogin(this.form).subscribe(
       (resp:any) =>{
 
@@ -39,7 +41,7 @@ export class AuthbackendComponent implements OnInit {
             if(resp.img_perfil){
               localStorage.setItem('imgPerfil',resp.img_perfil);
             }
-            
+            this.inPromise = false;
             location.reload(); // Actualizamos para iniciar
           }
         )

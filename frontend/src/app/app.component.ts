@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ConfigHomeService } from './services/config-home.service';
+import { LoginService } from './services/login.service'
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,22 @@ import { ConfigHomeService } from './services/config-home.service';
 
 export class AppComponent {
 
-  constructor(    private _configHomeService:ConfigHomeService
+  constructor(    
+    private loginS: LoginService,
+    private _configHomeService:ConfigHomeService
     ){
+
+      this.loginS._getAuthUser().subscribe(
+        resp => {
+          //  SI todo esta bien lo vamos a dejar 
+        },
+        error =>{
+          // Si manda error borramos todos los datos del localStorage
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('user_data');
+        }
+      )
+
       this._configHomeService._getConfigHome().subscribe(
         (resp:any) => {
           if(resp){

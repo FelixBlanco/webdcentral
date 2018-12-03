@@ -47,7 +47,7 @@ class="bootstrap"
 <ngx-datatable-column name="" prop="opciones">
   <ng-template ngx-datatable-cell-template let-row="row">
       <button class="btn btn-primary" (click)="edit(row)"><span class="glyphicon glyphicon-pencil"></span></button>
-      <button class="btn btn-danger" (click)="eliminar(row.idLocalAdherido)"><span class="glyphicon glyphicon-trash"></span> </button>
+      <button class="btn btn-danger" (click)="eliminar(row.idLocalAdherido)"><span class="glyphicon glyphicon-trash"></span> <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"> </button>
   </ng-template>                    
 </ngx-datatable-column>
 
@@ -92,7 +92,7 @@ class="bootstrap"
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-success" [disabled]="myForm.invalid || inPromise" (click)="save()">Guardar</button>
+        <button type="submit" class="btn btn-success" [disabled]="myForm.invalid || inPromise" (click)="save()">Guardar <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"></button>
       </div>
     </div>
   </div>
@@ -137,7 +137,7 @@ class="bootstrap"
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-success" [disabled]="myFormEdit.invalid || inPromise" (click)="upgrade()">Guardar</button>
+        <button type="submit" class="btn btn-success" [disabled]="myFormEdit.invalid || inPromise" (click)="upgrade()">Guardar Eliminar <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"> </button>
       </div>
     </div>
   </div>
