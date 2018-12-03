@@ -15,7 +15,7 @@ class ConfigFooterController extends Controller {
         // Como se supone que estamos editanto,
         // vamos a dejar el unico registro
         // para editar
-        
+
         $d = ConfigFooter::first();
 
         if (empty($d)) { // Caso de estar vacio
@@ -64,7 +64,6 @@ class ConfigFooterController extends Controller {
             $d->nroContacto = $request->nroContacto;
             $d->mail1       = $request->mail1;
             $d->mail2       = $request->mail2;
-            $d->direccion   = $request->direccion;
             $d->latitud     = $request->latitud;
             $d->longitud    = $request->longitud;
             $d->whatsApp1   = $request->whatsApp1;
@@ -78,7 +77,7 @@ class ConfigFooterController extends Controller {
             $d->desde             = $request->desde;
             $d->hasta             = $request->hasta;
             $d->url_mercado_libre = $request->url_mercado_libre;
-            $d->link_otra_pagina = $request->link_otra_pagina;
+            $d->link_otra_pagina  = $request->link_otra_pagina;
 
 
             if (! is_null($request->listaPrecio)) {
