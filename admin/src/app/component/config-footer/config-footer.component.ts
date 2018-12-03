@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfgFooterService } from '../../services/confg-footer.service';
 import { AlertsService } from '../../services/alerts.service'
+import { FormGroup, FormBuilder, Validators} from '@angular/forms'
 
 @Component({
   selector: 'app-config-footer',
@@ -8,23 +9,32 @@ import { AlertsService } from '../../services/alerts.service'
   styleUrls: ['./config-footer.component.css']
 })
 export class ConfigFooterComponent implements OnInit {
-  
-  data:any = {
-    idConfigFooter:null,
-    direccion: null, 
-    mail: null, nroContacto: null,
-    mail1: null, mail2: null,
-    latitud: null, longitud: null,
-    whatsApp1: null, whatsApp2: null,
-    horarios:null , subtes: null, colectivos: null,
-    avenidas: null, listaPrecio: null, desde: null, hasta: null, url_mercado_libre: null
-    };
-
+  myForm: FormGroup;
 
   constructor(
     private _confgFooterService:ConfgFooterService,
-    private _alertService: AlertsService
-  ) { }
+    private _alertService: AlertsService,
+    private fb: FormBuilder
+  ) { 
+    this.myForm = this.fb.group({
+      direccion     : ['',Validators.required],
+      nroContacto   : ['',Validators.required],
+      mail1         : ['',Validators.required],
+      mail2         : ['',Validators.email],
+      latitud       : ['',Validators.required],
+      longitud      : ['',Validators.required],
+      whatsApp1     : ['',Validators.required],
+      whatsApp2     : [''],
+      horarios      : [''],
+      subtes        : [''],
+      colectivos    : [''],
+      avenidas      : [''],
+      listaPrecio   : [Validators.min(1),Validators.max(9)],
+      desde         : [''],
+      hasta         : [''],
+      url_mercado_libre: [''],
+    })
+  }
 
   ngOnInit() {
     this.getConfigFooter();
@@ -33,16 +43,34 @@ export class ConfigFooterComponent implements OnInit {
 
   getConfigFooter(){
     this._confgFooterService._getConfigFooter().subscribe(
-      resp => { 
+      (resp:any) => { 
         if(resp){
-          this.data = resp;
+          this.myForm.setValue({
+            direccion : resp.direccion,
+            nroContacto : resp.nroContacto,
+            mail1 : resp.mail1,
+            mail2 : resp.mail2,
+            latitud : resp.latitud,
+            longitud  : resp.longitud,
+            whatsApp1 : resp.whatsApp1,
+            whatsApp2 : resp.whatsApp2,
+            horarios  : resp.horarios,
+            subtes  : resp.subtes,
+            colectivos  : resp.colectivos,
+            avenidas  : resp.avenidas,
+            listaPrecio : resp.listaPrecio,
+            desde : resp.desde,
+            hasta : resp.hasta,
+            url_mercado_libre : resp.url_mercado_libre,
+          })          
         }
       }
     )
   }
 
-  upgradeCondigFooter(){ console.log(this.data)
-    this._confgFooterService._upgradeConfigFooter(this.data).subscribe(
+  upgradeCondigFooter(){
+    const val = this.myForm.value; 
+    this._confgFooterService._upgradeConfigFooter(val).subscribe(
       (resp:any) => { this.getConfigFooter();  this._alertService.msg("OK",resp.msj); },
       error => { 
         console.log( error );
