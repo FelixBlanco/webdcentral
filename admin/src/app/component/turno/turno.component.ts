@@ -28,7 +28,7 @@ export class TurnoComponent implements OnInit {
 
   rows: any;
   rowsClasificados: any;
-  rowsLocalAdheridos:any;
+  rowsLocalAdheridos: any;
 
   newForm: FormGroup;
   turnoSet: Turno;
@@ -42,7 +42,7 @@ export class TurnoComponent implements OnInit {
     private turnoService: TurnoService,
     private clasificadoService: ClasificadosService,
     private localesAdheridosServices: LocalesAdheridosService,
-    private as: AlertsService,    
+    private as: AlertsService,
     private fb: FormBuilder
   ) { }
 
@@ -71,9 +71,9 @@ export class TurnoComponent implements OnInit {
     )
   }
 
-  getClasificacidos(){
+  getClasificacidos() {
     this.clasificadoService._getClasificados(null).subscribe(
-      (resp:any) => {
+      (resp: any) => {
         this.rowsClasificados = [...resp.Clasificado];
         console.log("this.rowsClasificados");
         console.log(this.rowsClasificados);
@@ -81,12 +81,12 @@ export class TurnoComponent implements OnInit {
     )
   }
 
-  
-  getLocalesAdheridos(){
-    this.localesAdheridosServices._listarLocales(1).subscribe(
-      (resp:any) => {   
 
-        this.rowsLocalAdheridos = [...resp.LocalAdh];             
+  getLocalesAdheridos() {
+    this.localesAdheridosServices._listarLocales(1).subscribe(
+      (resp: any) => {
+
+        this.rowsLocalAdheridos = [...resp.LocalAdh];
         console.log("resp");
         console.log(resp);
         console.log("resp.LocalAdh");
@@ -99,14 +99,14 @@ export class TurnoComponent implements OnInit {
 
   save() {
     const values = this.newForm.value;
-    console.log("values",values);
+    console.log("values", values);
     let toSend: FormData = new FormData();
-    
-    toSend.append('fechaHora',values.fechaHora);
-    toSend.append('fk_idLocalAdherido', values.fk_idLocalAdherido);    
+
+    toSend.append('fechaHora', values.fechaHora);
+    toSend.append('fk_idLocalAdherido', values.fk_idLocalAdherido);
     toSend.append('fk_idClasificado', values.fk_idClasificado);
     toSend.append('fk_idStatusTurnos', '1');
-    
+
     this.inPromise = true;
     this.turnoService.persist(toSend).subscribe(
       (resp) => {
@@ -130,9 +130,19 @@ export class TurnoComponent implements OnInit {
     )
   }
 
+  editTurno(data: any) {
+    console.log("editTurno");
+    // this.turnoService._showOferta(data.idOferta).subscribe(
+    //   (resp: any) => {
+    //     this.edit_form_ofertas = resp.oferta
+    //     $("#editarOfertaModal").modal('show');
+    //   }
+    // )
+  }
+
   delete() {
     this.inPromise = true;
-    console.log("this.idTurnos",this.turnoSet)
+    console.log("this.idTurnos", this.turnoSet)
     this.turnoService.delete(this.turnoSet.idTurnos).subscribe(
       resp => {
         console.log(resp);
@@ -158,26 +168,26 @@ export class TurnoComponent implements OnInit {
 
   updateStatus() {
     console.log("updateStatus()");
-  //   this.inPromise = true;
+    //   this.inPromise = true;
 
-  //   const status: number = this.turnoSet.fk_idStatusSistema === 1 ? 0 : 1;
+    //   const status: number = this.turnoSet.fk_idStatusSistema === 1 ? 0 : 1;
 
-  //   this.turnoService.updateStatus(this.turnoSet.idGaleriaHomeProducto, status).subscribe(
-  //     resp => {
-  //       if (resp.ok && resp.status === 201) {
-  //         $('#estatus').modal('hide');
-  //         this.as.msg('OK', 'Éxito', 'Se ha actualizado el estatus');
-  //       } else {
-  //         console.error(resp);
-  //         this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
-  //       }
-  //       this.getAll();
-  //       this.inPromise = false;
-  //     }, error => {
-  //       this.inPromise = false;
-  //       console.error(error);
-  //       this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
-  //     });
+    //   this.turnoService.updateStatus(this.turnoSet.idGaleriaHomeProducto, status).subscribe(
+    //     resp => {
+    //       if (resp.ok && resp.status === 201) {
+    //         $('#estatus').modal('hide');
+    //         this.as.msg('OK', 'Éxito', 'Se ha actualizado el estatus');
+    //       } else {
+    //         console.error(resp);
+    //         this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+    //       }
+    //       this.getAll();
+    //       this.inPromise = false;
+    //     }, error => {
+    //       this.inPromise = false;
+    //       console.error(error);
+    //       this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+    //     });
   }
 
   // onFileChange(event) {
@@ -214,10 +224,10 @@ export class TurnoComponent implements OnInit {
     console.log(val);
     console.log(this.turnoList);
     const temp = this.turnoList.filter(function (d) {
-      console.log("d",d);
-      console.log("d",d.clasificado.titulo);      
+      console.log("d", d);
+      console.log("d", d.clasificado.titulo);
       return (d.clasificado.titulo.toLowerCase().indexOf(val) !== -1 || !val);
-      
+
     });
     console.log(temp);
     this.rows = temp;

@@ -54,18 +54,28 @@
                 </ng-template>
               </ngx-datatable-column>
 
+
               <ngx-datatable-column name="" prop="opts">
-                <ng-template ngx-datatable-cell-template let-row="row">
-                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
+                <ng-template ngx-datatable-cell-template let-row="row">                                 
                   <!--TODO: Actualizar estatus-->
                   <ng-container [ngSwitch]="row.fk_idStatusSistema">
-                    <a class="btn btn-default" *ngSwitchCase="1" (click)="set(row)" data-toggle="modal" data-target="#estatus"><i
+                    <a class="btn btn-primary" *ngSwitchCase="1" (click)="set(row)" data-toggle="modal" data-target="#estatus"><i
                         class="fa fa-ban"></i></a>
-                    <a class="btn btn-default" *ngSwitchDefault (click)="set(row)" data-toggle="modal" data-target="#estatus"><i
+                    <a class="btn btn-primary" *ngSwitchDefault (click)="set(row)" data-toggle="modal" data-target="#estatus"><i
                         class="fa fa-check"></i></a>
                   </ng-container>
+                  <a class="btn btn-success" (click)="set(row)" data-toggle="modal" data-target="#editar"><i class="glyphicon glyphicon-pencil"></i></a>
+                  <a class="btn btn-danger" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
                 </ng-template>
               </ngx-datatable-column>
+
+              <!-- <ngx-datatable-column name="" prop="opts">
+                <ng-template ngx-datatable-cell-template let-row="row">
+                  <button class="btn btn-primary" (click)="editOferta(row)"><span class="glyphicon glyphicon-pencil"></span></button>
+                  <button class="btn btn-danger" (click)="eliminarOferta(row.id)"><span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </ng-template>
+              </ngx-datatable-column> -->
 
               <ngx-datatable-footer>
                 <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize" let-curPage="curPage">
@@ -106,7 +116,7 @@
         <form [formGroup]="newForm">
           <div class="form-group">
             <label for="titulo">Local Adherido:</label>
-            <select formControlName="fk_idLocalAdherido" class="form-control" id="fk_idLocalAdherido">              
+            <select formControlName="fk_idLocalAdherido" class="form-control" id="fk_idLocalAdherido">
               <option *ngFor="let localAdherido of rowsLocalAdheridos" [value]="localAdherido.idLocalAdherido">
                 {{ localAdherido.nombre }}
               </option>
@@ -158,28 +168,6 @@
   </div>
 </div>
 
-<!-- Modal imagen -->
-<!-- <div class="modal fade" id="imagen" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-white" id="eliminarModal">Slide <span class="text-capitalize" *ngIf="turnoSet">'{{turnoSet.titulo}}'</span></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div style="width: 100%; text-align: center">
-          <img *ngIf="turnoSet" [src]="turnoSet.set_imagen" width="300" alt="">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <!-- Modal Activar/Inactivar -->
 <div class="modal fade" id="estatus" tabindex="-1" role="dialog" aria-labelledby="estatusModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -206,3 +194,77 @@
     </div>
   </div>
 </div>
+
+ <!-- Modal edit-->
+ <!-- <div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarTurnoModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarOfertaModalLabel">Editar Oferta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="">Titulo de la Oferta</label>
+          <input type="text" [(ngModel)]="edit_form_ofertas.titulo" class="form-control" placeholder="titulo">
+        </div>
+        <div class="form-group">
+          <label for="">Tiempo de Expiración</label>
+          <input type="text" [(ngModel)]="edit_form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempo de expiracion">
+        </div>
+        <div class="form-group">
+          <label for="">Subir Imagen</label>
+          <label for="">Imagen</label>
+          <input type="file" (change)="upImagenEdit($event)">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="upgrade()">Guardar Cambios <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"></button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarTurnoModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-success">
+          <h5 class="modal-title text-white" id="editarTurnoModal">Editar Turno</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="newForm">
+            <div class="form-group">
+              <label for="titulo">Local Adherido:</label>
+              <select formControlName="fk_idLocalAdherido" class="form-control" id="fk_idLocalAdherido">
+                <option *ngFor="let localAdherido of rowsLocalAdheridos" [value]="localAdherido.idLocalAdherido">
+                  {{ localAdherido.nombre }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="titulo">Clasificado:</label>
+              <select formControlName="fk_idClasificado" class="form-control" id="fk_idClasificado">
+                <option *ngFor="let clasificado of rowsClasificados" [value]="clasificado.idClasificado">
+                  {{ clasificado.titulo }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="titulo">Fecha y Hora:</label>
+              <input type="datetime-local" formControlName="fechaHora" class="form-control" id="fechaHora">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="newForm.invalid || inPromise" (click)="save()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
