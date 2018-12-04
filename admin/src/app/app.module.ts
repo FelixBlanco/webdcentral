@@ -47,6 +47,13 @@ import { ClasificadosComponent } from './component/clasificados/clasificados.com
 import { CategoriaBlogComponent } from './component/categoria-blog/categoria-blog.component';
 import { BlogComponent } from './component/blog/blog.component';
 import { MaterialUiModule } from './material-ui.module';
+import { ConfigFooterComponent } from './component/config-footer/config-footer.component';
+import { GaleriaHomeComponent } from './component/galeria-home/galeria-home.component';
+import { PerfilComponent } from './component/perfil/perfil.component';
+import { OfertasComponent } from './component/ofertas/ofertas.component';
+import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/reclamos-sugerencias.component';
+import { ConfigColorComponent } from './component/config-color/config-color.component';
+import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
 
 
 @NgModule({
@@ -87,7 +94,14 @@ import { MaterialUiModule } from './material-ui.module';
     GaleryProductComponent,
     ClasificadosComponent,
     CategoriaBlogComponent,
-    BlogComponent
+    BlogComponent,
+    ConfigFooterComponent,
+    GaleriaHomeComponent,
+    PerfilComponent,
+    OfertasComponent,
+    ReclamosSugerenciasComponent,
+    ConfigColorComponent,
+    PreguntasFrecuentesComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +109,6 @@ import { MaterialUiModule } from './material-ui.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HomeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxDatatableModule,

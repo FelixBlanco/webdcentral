@@ -35,11 +35,10 @@ export class LoginComponent implements OnInit {
         const data: any = {email: this.email, password: this.password};
         this._loginService.ingresarLogin(data).subscribe(
             (resp: any) => {
-                const token = resp.access_token
-                localStorage.setItem('access_token', token);
+                const token = resp.access_token;
+                localStorage.setItem('token', token);
             
                 this._loginService._getAuthUser().subscribe((resp: UserData) => {
-                    console.log(resp);
                     localStorage.setItem('user_data', JSON.stringify(resp));
 
                     this.validateSuscription(resp.email);
@@ -81,21 +80,21 @@ export class LoginComponent implements OnInit {
                         'Info', 
                         'Te recomendamos que te suscribas a nuestras novedades, puedes hacer click acá para comenzar',
                         { timeOut:10000, progressBar: true }
-                        ).onTap.subscribe(
-                            () => {
-                                this.router.navigate(['/']);
+                    ).onTap.subscribe(
+                        () => {
+                            this.router.navigate(['/']);
+                            setTimeout(()=> {
+                                let novedades = document.getElementById('novedades');
+                                novedades.scrollIntoView({behavior: 'smooth'});
+                                document.getElementById('novedadInput').focus();
+                                novedades.style.border = "5px #e8a719 solid";
                                 setTimeout(()=> {
-                                    let novedades = document.getElementById('novedades');
-                                    novedades.scrollIntoView({behavior: 'smooth'})
-                                    document.getElementById('novedadInput').focus();
-                                    novedades.style.border = "5px #e8a719 solid";
-                                    setTimeout(()=> {
-                                        novedades.style.border = "none";
-                                    }, 3000);
+                                    novedades.style.border = "none";
+                                }, 3000);
 
-                                },1000);
-                            }
-                        );
+                            },1000);
+                        }
+                    );
                 }
             }else{
                 console.error(resp);

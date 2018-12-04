@@ -112,22 +112,31 @@ class TurnoController extends Controller {
         return response()->json($response, 201);
     }
 
-    public function borrar($idTurnos){
+    public function borrar($idTurnos) {
 
-        $turno=turno::findOrFail($idTurnos);
+        $turno = turno::findOrFail($idTurnos);
         $turno->delete();
 
         $response = [
-            'msj'   => 'Turno Borrado',
+            'msj' => 'Turno Borrado',
         ];
 
         return response()->json($response, 201);
 
     }
 
-    public function listarPorId($idTurnos){
+    public function listarPorId($idTurnos) {
 
-        $turno    = turno::findOrFail($idTurnos);
+        $turno    = turno::find($idTurnos);
+
+        if(is_null($turno)){
+            $response = [
+                'msj'    => 'El turno no existe',
+            ];
+
+            return response()->json($response, 404);
+        }
+
         $response = [
             'msj'    => 'Lista de Turnos',
             'turnos' => $turno,

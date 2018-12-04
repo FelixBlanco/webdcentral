@@ -48,7 +48,7 @@ export class NavAdminComponent implements OnInit {
     this._loginService._salirLogin().subscribe(
       (resp:any) => { 
         this._alerts.Success('Saliendo...')
-        localStorage.removeItem('access_token')
+        localStorage.removeItem('token')
         this.router.navigate(['']); 
       },
       error => { console.log('algo salio mal'); console.log(error) }

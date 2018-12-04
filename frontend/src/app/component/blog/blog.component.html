@@ -1,0 +1,45 @@
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <img src="assets/blog/banner_principal.jpg" id="banner-principal" alt="banner principal">
+      </div>
+    </div>
+    <div class="row" style="background-color: #f2f2f2;">
+      <div class="col mt-4 mb-4">
+        <div class="text-center">
+            <h2 class="txt-azul font-bold">CATEGORÍAS</h2>
+        </div>
+        <div class="d-flex justify-content-between">
+          <h4 class="txt-azul font-italic">TOTAL: {{categoriesList.length}}</h4>
+        </div>
+        <hr>
+        <div class="container">
+          <div class="row justify-content-center deposito-cards">
+            <ng-container [ngSwitch]="section">
+              <ng-container *ngSwitchDefault>
+                <div class="col-3 text-center m-2" *ngFor="let cat of categoriesList">
+                  <div class="card sm" (click)="routeTo('blogs', cat.idBlogCategoria)" [ngStyle]="{ 'background-image': 'url(' + image + ')'}">
+                    <div class="card-body">
+                      <h5 class="card-title text-uppercase font-bold">{{cat.titulo}}</h5>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchCase="'blogs'">
+                <div class="col-4 text-center m-2" *ngFor="let blog of blogsList">
+                  <div class="card lg" [ngStyle]="{ 'background-image': 'url(' + blog.set_imagen + ')'}">
+                    <div class="card-body">
+                      <h5 class="card-title text-uppercase font-bold">{{blog.titulo}}</h5>
+                      <p class="card-text">{{blog.descripcion}}</p>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

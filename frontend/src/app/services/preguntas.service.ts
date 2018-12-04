@@ -12,7 +12,7 @@ export class PreguntasService {
             headers: new HttpHeaders({
                 'Accept':  'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'Authorization': 'Bearer '+ localStorage.getItem('access_token'),
+                'Authorization': 'Bearer '+ localStorage.getItem('token'),
             }),
             observe: 'response'  
         };
