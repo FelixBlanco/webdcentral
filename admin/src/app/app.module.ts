@@ -45,6 +45,7 @@ import { ClasificadosComponent } from './component/clasificados/clasificados.com
 import { TurnoComponent } from './component/turno/turno.component';
 import { CategoriaBlogComponent } from './component/categoria-blog/categoria-blog.component';
 import { BlogComponent } from './component/blog/blog.component';
+import { MaterialUiModule } from './material-ui.module';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { BlogComponent } from './component/blog/blog.component';
     HomeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgxDatatableModule
+    NgxDatatableModule,
+    MaterialUiModule
   ],
   providers: [],
   bootstrap: [AppComponent]
