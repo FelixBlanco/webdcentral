@@ -125,4 +125,15 @@ class TurnoController extends Controller {
 
     }
 
+    public function listarPorId($idTurnos){
+
+        $turno    = turno::findOrFail($idTurnos);
+        $response = [
+            'msj'    => 'Lista de Turnos',
+            'turnos' => $turno,
+        ];
+
+        return response()->json($response, 201);
+    }
+
 }
