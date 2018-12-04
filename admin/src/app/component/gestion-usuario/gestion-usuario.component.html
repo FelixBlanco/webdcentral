@@ -45,11 +45,13 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" (click)="addUser()" [disabled]="newUser.invalid || inPromise">
-          Guardar
-          <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise">
-        </button>
+        <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='isPromise'>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-success" (click)="addUser()" [disabled]="newUser.invalid || inPromise">
+              Guardar          
+            </button>          
+        </div>
       </div>
     </div>
   </div>
@@ -94,11 +96,13 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" (click)="upgradeUser()" [disabled]="editUser.invalid || inPromise" >
-          Guardar Cambios
-          <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise">
-        </button>
+        <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='isPromise'>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-success" (click)="upgradeUser()" [disabled]="editUser.invalid || inPromise" >
+            Guardar Cambios            
+          </button>
+        </div>        
       </div>
     </div>
   </div>

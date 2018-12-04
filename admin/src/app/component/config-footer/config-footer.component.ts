@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder, Validators} from '@angular/forms'
 })
 export class ConfigFooterComponent implements OnInit {
   myForm: FormGroup;
+  isPromise:boolean;
 
   constructor(
     private _confgFooterService:ConfgFooterService,
@@ -71,11 +72,14 @@ export class ConfigFooterComponent implements OnInit {
   }
 
   upgradeCondigFooter(){
+    this.isPromise=true;
     const val = this.myForm.value; 
     this._confgFooterService._upgradeConfigFooter(val).subscribe(
-      (resp:any) => { this.getConfigFooter();  this._alertService.msg("OK",resp.msj); },
+      (resp:any) => { this.isPromise=false; this.getConfigFooter();  this._alertService.msg("OK",resp.msj); },
       error => { 
                 
+        this.isPromise = false;
+        
         if(error.error.errors.direccion != null){
           this._alertService.msg("ERR", error.error.errors.direccion);
         }

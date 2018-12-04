@@ -23,8 +23,11 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button class="btn btn-success" data-dismiss="modal" (click)="addDestacados()">Guardar  <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"></button>
+        <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='isPromise'>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="addDestacados()">Guardar </button>
+        </div>
       </div>
     </div>
   </div>
@@ -55,8 +58,11 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button class="btn btn-success" data-dismiss="modal" (click)="upgradeDestacado()">Guardar  <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"></button>
+        <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='isPromise'>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="upgradeDestacado()">Guardar </button>
+        </div>
       </div>
     </div>
   </div>
@@ -77,7 +83,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button class="btn btn-success" data-dismiss="modal" (click)="deleteDestacados()">Si, Eliminar  <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"></button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="deleteDestacados()">Si, Eliminar </button>
         </div>
       </div>
     </div>
