@@ -2155,7 +2155,6 @@ return array(
     'Lcobucci\\JWT\\ValidationData' => $vendorDir . '/lcobucci/jwt/src/ValidationData.php',
     'League\\Event\\AbstractEvent' => $vendorDir . '/league/event/src/AbstractEvent.php',
     'League\\Event\\AbstractListener' => $vendorDir . '/league/event/src/AbstractListener.php',
-    'League\\Event\\BufferedEmitter' => $vendorDir . '/league/event/src/BufferedEmitter.php',
     'League\\Event\\CallbackListener' => $vendorDir . '/league/event/src/CallbackListener.php',
     'League\\Event\\Emitter' => $vendorDir . '/league/event/src/Emitter.php',
     'League\\Event\\EmitterAwareInterface' => $vendorDir . '/league/event/src/EmitterAwareInterface.php',
