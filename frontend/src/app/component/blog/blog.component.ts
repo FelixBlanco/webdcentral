@@ -9,6 +9,8 @@ import { AlertsService } from 'src/app/services/alerts.service';
 })
 export class BlogComponent implements OnInit {
 
+  section: string;
+
   categoriesList: any[] = [];
   blogsList: any[] = [];
 
@@ -23,17 +25,38 @@ export class BlogComponent implements OnInit {
     this.getAllCategories();
   }
 
+  routeTo(what, id){
+    console.log('what', what, 'id', id);
+    this.getAllBlogsBy(id).then((list) =>{
+      console.log(list);
+      this.blogsList = list;
+      this.section = what;
+    });
+  }
+
 
   getAllCategories(){
     this.blogService.getAllCategories().subscribe(
       (resp) => {
-        console.log(resp);
-        if(resp.ok){
+        if(resp.ok && resp.status === 200){
           this.categoriesList = resp.body.cat;
+        }else{
+          console.error(resp);
         }
       },error => {
+        //TODO err
+      }
+    );
+  }
 
-      });
+  async getAllBlogsBy(categoryId){
+    const resp  = await this.blogService.getAll().toPromise();
+    if(resp.ok && resp.status === 200){
+      return resp.body.blogs;
+    }else{
+      console.error(resp);
+      return [];
+    }
   }
 
 }

@@ -29,5 +29,16 @@ hr{
     border-top-right-radius: 50%;
     text-align: center;
     color: white;
-    text-overflow: ellipsis
+}
+
+.deposito-cards .card-body h5{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.deposito-cards .card-body p{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }

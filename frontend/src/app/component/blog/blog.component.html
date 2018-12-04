@@ -18,19 +18,19 @@
           <div class="row justify-content-center deposito-cards">
             <ng-container [ngSwitch]="section">
               <ng-container *ngSwitchDefault>
-                <div class="col-3 text-center" *ngFor="let cat of categoriesList">
-                  <div class="card sm" [ngStyle]="{ 'background-image': 'url(' + image + ')'}">
+                <div class="col-3 text-center m-2" *ngFor="let cat of categoriesList">
+                  <div class="card sm" (click)="routeTo('blogs', cat.idBlogCategoria)" [ngStyle]="{ 'background-image': 'url(' + image + ')'}">
                     <div class="card-body">
-                      <h3 class="card-title text-uppercase font-bold" (click)="routeTo('blogs', cat.idBlogCategoria)" >{{cat.titulo}}</h3>
+                      <h5 class="card-title text-uppercase font-bold">{{cat.titulo}}</h5>
                     </div>
                   </div>
                 </div>
               </ng-container>
               <ng-container *ngSwitchCase="'blogs'">
-                <div class="col-4 text-center" *ngFor="let blog of blogsList">
-                  <div class="card sm" [ngStyle]="{ 'background-image': 'url(' + blog.set_image + ')'}">
+                <div class="col-4 text-center m-2" *ngFor="let blog of blogsList">
+                  <div class="card lg" [ngStyle]="{ 'background-image': 'url(' + blog.set_imagen + ')'}">
                     <div class="card-body">
-                      <h3 class="card-title text-uppercase font-bold"  >{{blog.titulo}}</h3>
+                      <h5 class="card-title text-uppercase font-bold">{{blog.titulo}}</h5>
                       <p class="card-text">{{blog.descripcion}}</p>
                     </div>
                   </div>
