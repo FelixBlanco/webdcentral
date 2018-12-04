@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+.modal-lg{
+    max-width: 1300px;
+}
+
 hr{
     background-color: #009bdd;
     height: 2px;
@@ -13,32 +17,54 @@ hr{
     background-repeat: no-repeat;
     background-size: 100%;
 }
-
-.deposito-cards .card.lg{
-    height: 300px;
+.deposito-cards .card-img-top{
+    border-top-left-radius: calc(.55rem - 1px);
+    border-top-right-radius: calc(.55rem - 1px);
 }
 
-.deposito-cards .card.sm{
+.deposito-cards .lg{
+    height: 425px;
+}
+
+.deposito-cards .sm{
     height: 240px;
 }
 
 .deposito-cards .card-body{
     background-color: #e97705;
-    margin-top: 10em;
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
+    border-bottom-right-radius: .50em;
+    border-bottom-left-radius: .50em;
     text-align: center;
     color: white;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
 }
 
 .deposito-cards .card-body h5{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    width: 80%;
+    margin: 10px auto;
 }
 
 .deposito-cards .card-body p{
-    text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;
+    width: 100%;
+    word-break: break-word;
+    margin: 0 auto;
+    height: 95px;
+}
+
+button{
+    outline: none;
+}
+
+.spinner-inbatch{
+    position: absolute;
+    top: 20%;
+    right: 35%;
 }
