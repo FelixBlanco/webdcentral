@@ -19,7 +19,7 @@ export class AppComponent {
         if(error.status == 401){ // Unauthorized 401
           localStorage.removeItem('access_token')
           localStorage.removeItem('imgPerfil')
-          localStorage.setItem('sesion_login','false');
+          localStorage.removeItem('sesion_login');
           localStorage.removeItem('userName')
         }
       }

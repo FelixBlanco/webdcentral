@@ -53,7 +53,7 @@ class ValidationException extends Exception
      */
     public function __construct($validator, $response = null, $errorBag = 'default')
     {
-        parent::__construct('Faltan Datos Requeridos');
+        parent::__construct('The given data was invalid.');
 
         $this->response = $response;
         $this->errorBag = $errorBag;

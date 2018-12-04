@@ -11,9 +11,9 @@ import { AlertsService } from '../../services/alerts.service';
 export class ConfigRedesComponent implements OnInit {
 
   myRedes : FormGroup;
-  formRedes:any = { id_redSocial:null, facebook: null, instagram:null, twitter:null, whatsapp:null }
   isNew:boolean = true;
   inPromise: boolean;
+  r_edit:number;
 
   constructor(
     private fb: FormBuilder,
@@ -22,12 +22,11 @@ export class ConfigRedesComponent implements OnInit {
   ) { 
 
     this.myRedes = this.fb.group({
-      facebook: ['',Validators.required],
-      instagram: ['',Validators.required],
-      twitter: ['',Validators.required],
-      whatsapp: ['',Validators.required],
-    })
-
+      facebook  : ['',Validators.required],
+      instagram : ['',Validators.required],
+      twitter   : ['',Validators.required],
+      whatsapp  : ['',Validators.required],
+    })    
   }
 
   ngOnInit() {
@@ -36,16 +35,16 @@ export class ConfigRedesComponent implements OnInit {
 
   getRedes(){
     this.configRedesService._getRed().subscribe(
-      (resp:any) => {
-        if(resp != null){          
+      (resp:any) => {        
+        if(resp){                                  
           this.isNew = false; // no es nuevo
-          this.formRedes.id_redSocial = resp.id_redSocial
-          this.formRedes.facebook = resp.url_face
-          this.formRedes.twitter = resp.url_twit;
-          this.formRedes.instagram = resp.url_inst;
-          this.formRedes.whatsapp = resp.url_what;                  
-        }else{          
-          this.formRedes;
+          this.r_edit = resp.id_redSocial,
+          this.myRedes.setValue({            
+            facebook      : resp.url_face,
+            twitter       : resp.url_twit,
+            instagram     : resp.url_inst,
+            whatsapp      : resp.url_what
+          })
         }
       }
     )
@@ -73,15 +72,23 @@ export class ConfigRedesComponent implements OnInit {
     this.inPromise=true;
     const val: any = this.myRedes.value
     const data:any = {url_face: val.facebook, url_twit: val.twitter, url_inst: val.instagram, url_what: val.twitter} 
-    this.configRedesService._updateRed(data,this.formRedes.id_redSocial).subscribe(
-      resp => {
+    this.configRedesService._updateRed(data,this.r_edit).subscribe(
+      (resp:any) => {
         this.inPromise=false;
-        this.alert.msg('OK','Se modifico correctamente');
+        this.alert.msg('OK','Se actualizo correctamente');
         this.getRedes();        
       },
       error => {
         this.inPromise=false;
-        this.alert.msg('ERR','Algo salio mal');
+       
+        if(error.msj != null){
+          this.alert.msg('ERR',error.msj);
+        }
+
+        if(error.message != null){
+          this.alert.msg('ERR',error.message);
+        }
+         
       }
     )
   }
