@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -95,7 +97,8 @@ import { BlogComponent } from './component/blog/blog.component';
     HomeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgxDatatableModule
+    NgxDatatableModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
