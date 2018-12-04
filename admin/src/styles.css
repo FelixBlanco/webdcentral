@@ -3,3 +3,4 @@
 @import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 @import '~ngx-toastr/toastr.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
