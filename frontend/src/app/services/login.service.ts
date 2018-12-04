@@ -16,7 +16,7 @@ const httpOptions = {
 })
 export class LoginService {
   
-  token:any =  localStorage.getItem('access_token');
+  token:any =  localStorage.getItem('token');
   dataUser:any;
   constructor(private http: HttpClient) {}
 
@@ -28,7 +28,7 @@ export class LoginService {
     return this.http.get(`${environment.apiHost}/api/auth/getUser/`,{
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
       })
     });
   }
@@ -37,7 +37,7 @@ export class LoginService {
     return this.http.get(`${environment.apiHost}/api/auth/logout`,{
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
       })
     });
   }

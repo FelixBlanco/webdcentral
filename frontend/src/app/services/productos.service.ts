@@ -112,7 +112,7 @@ export class ProductosService {
 
     orderHeader(data: any):Observable<HttpResponse<any>>{
       this.headers = new HttpHeaders()
-        .append("Authorization", `Bearer ${localStorage.getItem('access_token')}`)
+        .append("Authorization", `Bearer ${localStorage.getItem('token')}`)
         .append("Content-Type", `application/x-www-form-urlencoded`)
 
       return this.http.post<any>(`${environment.apiHost}/api/auth/añadirOrderHeader`, data , {headers: this.headers, observe: 'response'});      
@@ -120,7 +120,7 @@ export class ProductosService {
 
     orderBody(data: any, id: number):Observable<HttpResponse<{ OB: PedidoHeader, msj: string}>>{
       this.headers = new HttpHeaders()
-        .append("Authorization", `Bearer ${localStorage.getItem('access_token')}`)
+        .append("Authorization", `Bearer ${localStorage.getItem('token')}`)
       return this.http.post<{ OB: PedidoHeader, msj: string}>(`${environment.apiHost}/api/auth/añadirOrderBody/${id}`, data , {headers: this.headers, observe: 'response'});      
     }
 

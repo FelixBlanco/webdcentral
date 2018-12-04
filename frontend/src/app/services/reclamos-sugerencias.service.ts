@@ -6,7 +6,7 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Accept':  'application/json',
     'Access-Control-Allow-Origin': '*',
-    'Authorization': 'Bearer '+localStorage.getItem('access_token')
+    'Authorization': 'Bearer '+localStorage.getItem('token')
   })
 };
 
@@ -26,7 +26,7 @@ export class ReclamosSugerenciasService {
       headers: new HttpHeaders({
         'Accept':  'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Authorization': 'Bearer '+localStorage.getItem('access_token')
+        'Authorization': 'Bearer '+localStorage.getItem('token')
       })
     });
   }

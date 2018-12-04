@@ -65,7 +65,7 @@ export class PerfilClienteComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('access_token') != null){ // Verificamos si esta logueado
+    if(localStorage.getItem('token') != null){ // Verificamos si esta logueado
       this.isNuevo = true; // Cuando llamemos la informacion, consultamos si existe en perfil-cliente
 
       this.getPerfilCliente();

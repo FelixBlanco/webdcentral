@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <label for="rubro" class="font-bold">RUBRO</label>
-                    <select  formControlName="rubro" [value]="filterForm.get('rubro').value" class="form-control" id="rubro" aria-describedby="rubroHelp"  (change)="onChange(filterForm.get('rubro').value , 'subrubro1')">
+                    <label class="font-bold">RUBRO</label>
+                    <select  formControlName="rubro" [value]="filterForm.get('rubro').value" class="form-control" aria-describedby="rubroHelp"  (change)="onChange(filterForm.get('rubro').value , 'subrubro1')">
                         <option *ngIf="!rubrosList.length" value="">No existen rubros</option>                        
                         <option *ngIf="rubrosList.length" value="">Seleccione</option>
                         <option *ngFor="let rubro of rubrosList" value="{{rubro.rubro}}">{{rubro.rubro}}</option>
@@ -16,8 +16,8 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                    <label for="subRubroA" class="font-bold">SUB-RUBRO A</label>
-                    <select formControlName="subRubroA" [value]="filterForm.get('subRubroA').value" class="form-control" id="subRubroA" aria-describedby="subRubroAHelp" (change)="onChange(filterForm.get('subRubroA').value)">
+                    <label class="font-bold">SUB-RUBRO A</label>
+                    <select formControlName="subRubroA" [value]="filterForm.get('subRubroA').value" class="form-control"  aria-describedby="subRubroAHelp" (change)="onChange(filterForm.get('subRubroA').value)">
                         <option *ngIf="!subRubrosAList.length" value="">No existen asociados</option>
                         <option *ngIf="subRubrosAList.length" value="">Seleccione</option>
                         <option *ngFor="let rubro of subRubrosAList" value="{{rubro.SubRubro1}}">{{rubro.SubRubro1}}</option>
@@ -26,8 +26,8 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                    <label for="subRubroB" class="font-bold">SUB-RUBRO B</label>
-                    <select formControlName="subRubroB" [value]="filterForm.get('subRubroB').value" class="form-control" id="subRubroB" aria-describedby="subRubroBHelp">
+                    <label class="font-bold">SUB-RUBRO B</label>
+                    <select formControlName="subRubroB" [value]="filterForm.get('subRubroB').value" class="form-control" aria-describedby="subRubroBHelp">
                         <option *ngIf="!subRubrosBList.length" value="">No existen asociados</option>
                         <option *ngIf="subRubrosBList.length" value="">Seleccione</option>
                         <option *ngFor="let rubro of subRubrosBList" value="{{rubro.SubRubro2}}">{{rubro.SubRubro2}}</option>
