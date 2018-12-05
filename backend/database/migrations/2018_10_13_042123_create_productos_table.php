@@ -34,6 +34,7 @@ class CreateProductosTable extends Migration
             $table->string('precioL9')->nullable();
             $table->string('rubro')->nullable();
             $table->string('marca')->nullable();
+            $table->string('WebLink_Rubro')->nullable();
             $table->integer('fk_idSatate')->unsigned();
             $table->timestamps();
 

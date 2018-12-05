@@ -45,7 +45,9 @@ class ProductSincronizeController extends Controller {
                 'fk_idSatate'        => 1,
                 'destacado'          => 0,
                 'isOutstanding'      => 0,
-                'fechaIsOutstanding' => "" ];
+                'fechaIsOutstanding' => "",
+                'WebLink_Rubro' => $item->WebLink_Rubro
+             ];
             ProductoController::create($product);
         }
 
