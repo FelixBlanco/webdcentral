@@ -51,14 +51,14 @@ class SlideController extends Controller {
             $this->validate($request, [
                 'titulo'        => 'required',
                 'imagen'        => 'image|required|mimes:jpeg,png,jpg,gif,svg',
-                'fk_idProducto' => 'required',
+                // 'fk_idProducto' => 'required', no es obligatorio
 
             ], [
                 'titulo.required'        => 'El titulo es requerido',
                 'imagen.image'        => 'La Imagen es requerida',
                 'imagen.required'     => 'La Imagen es requerida',
                 'imagen.mimes'        => 'Solo jpeg, png, bmp,tiff son soportados',
-                'fk_idProducto.required' => 'El producto es requerido',
+                // 'fk_idProducto.required' => 'El producto es requerido',
             ]);
 
             try {
