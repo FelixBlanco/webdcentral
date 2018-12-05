@@ -11,11 +11,11 @@
 |
 */
 
-Route::group([ 'prefix' => 'auth' ], function() {
+Route::group(['prefix' => 'auth'], function () {
 
     Route::post('login', 'API\AuthController@login'); //logear
 
-    Route::group([ 'middleware' => 'auth:api' ], function() {
+    Route::group(['middleware' => 'auth:api'], function () {
 
         Route::post('crearGaleriaHomeProd', 'GaleriaHomeProductoController@createGaleria');
         Route::delete('borrraGaleriaHomeProd/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@destroy');
@@ -67,7 +67,6 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::get('notification/byUser/{idUser}', 'NotificationController@getByIdUser');// Obtener Notificaciones  por id usuario
         Route::get('notification/confirm/{idNotification}', 'NotificationController@confirm'); // Listar  Notification
 
-   
         /* PREGUNTA Y RESPUESTA */
         Route::post('crearPreguntaYRespuesta', 'PreguntasFrecuenteController@crearPreguntaYRespuesta'); //para crear una pregunta y respuesta
         Route::get('verPreguntaORespuesta/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@verPreguntaORespuesta'); //para ver la data de la pregunta y respuesta por su id
@@ -109,7 +108,6 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
         Route::put('cambiarStatusGaleria/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@cambiarStatus');
 
-
         /*CLASIFICADO DE RECLAMO */
         Route::post('addClasificadoReclamo', 'ClasificadoReclamoController@add');
         Route::post('editClasificadoReclamo/{idClasificadoReclamo}', 'ClasificadoReclamoController@edit');
@@ -131,7 +129,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
-Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
+Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
 
     Route::post('listar', 'PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
 
@@ -172,7 +170,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('getGaleria/producto/{imagen}', 'GaleriaHomeProductoController@getGaleriaImage');
     Route::get('getGaleria/producto', 'GaleriaHomeProductoController@listar');
     Route::get('getGaleria/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@listarPorId');
-
 
     /* con esta ruta se busca y retorna la imagen del slider Slides*/
     Route::get('getSlides/imagen/{imagen}', 'SlideController@getSlideImage');
@@ -289,9 +286,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     //
     Route::post('update/info/client', 'OrderDriverController@chaguePhoneAndAdrresClinet');
 
-    
-
-
     // Obtener productos de  un pedido
     Route::post('order/all/products', 'OrderDriverController@getProductByPedido');
 
@@ -306,7 +300,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // ORDENES PRE FINALIZADAS DE UN CLIENTE
     Route::get('orders/prefiish/{fk_idUser}', 'OrderHeaderController@listarPorIdUsuario');// Listar cupon por cliente
-
 
     // DEVOLVER  DE UN PEDIDO
     Route::post('order/devolution/product', 'OrderDriverController@devolutionProduct');
@@ -358,6 +351,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('listarBlog', 'BlogController@listar');
     Route::get('listarPorIdBlog/{idBlogCategoria}', 'BlogController@buscarIdBlogCategoria');
 
+    /*PARA LISTAR LOS ESTATUS DE LOS TURNOS*/
+
+    Route::get('listarTodoslosEstatusTurnos', 'TurnoController@listarTodoslosEstatusTurnos');
 });
 
 
