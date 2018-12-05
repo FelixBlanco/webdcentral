@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Chage_user;
 use App\Coupons;
 use App\CouponsClient;
+use App\TipoDescuento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -24,8 +25,6 @@ class CouponsController extends Controller {
             'dateExpired'   => 'required',
 
             'tipo_descuento' => 'required',
-            'monto'          => 'required',
-            'promo'          => 'required',
         ], [
             'filename.required'      => 'El campo es requerido',
             'fk_idProducto.required' => 'El campo es requerido',
@@ -34,10 +33,36 @@ class CouponsController extends Controller {
             'dateExpired.required'   => 'El campo es requerido',
 
             'tipo_descuento.required' => 'El campo es requerido',
-            'monto.required'          => 'El campo es requerido',
-            'promo.required'          => 'El campo es requerido',
-
         ]);
+
+        if ($request->tipo_descuento == 0) { //porcentual
+
+            $this->validate($request, [
+                'monto' => 'required',
+            ], [
+                'monto.required' => 'El campo es requerido',
+            ]);
+
+        }
+
+        if ($request->tipo_descuento == 1) { //promocional
+
+            $this->validate($request, [
+                'promo' => 'required',
+            ], [
+                'promo.required' => 'El campo es requerido',
+            ]);
+
+        }
+
+        if ($request->tipo_descuento != 1 && $request->tipo_descuento != 2) {
+            $response = [
+                'msj'                => 'El Estatus no existe',
+                'estatusDisponibles' => TipoDescuento::select([ 'idTipoDescuento', 'descripcion' ])->get(),
+            ];
+
+            return response()->json($response, 404);
+        }
 
         $originalImage = $request->filename;
 
@@ -76,6 +101,7 @@ class CouponsController extends Controller {
             ];
 
             return response()->json($response, 201);
+
         } catch (\Exception $e) {
 
             DB::rollback();
@@ -84,10 +110,12 @@ class CouponsController extends Controller {
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
             ], 500);
+
         }
     }
 
     public function _getCodeSys() {
+
         $oldCode = 0;
         $rs      = Coupons::orderBy('idCoupons', 'DESC')->first();
         if ($rs) {
@@ -108,7 +136,7 @@ class CouponsController extends Controller {
         $Coupons = Coupons::leftjoin("tb_productos", "tb_productos.idProducto", "=", "tb_coupons.fk_idProducto");
 
         $date = date('Y-m-d');
-        if ($request->active) {// Solo no expiradas
+        if ($request->active) { // Solo no expiradas
             $Coupons->where('dateExpired', '>=', $date);
         }
 

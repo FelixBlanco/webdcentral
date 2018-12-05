@@ -9,7 +9,6 @@ import { LoginService } from './services/login.service'
 export class AppComponent {
 
   isLoged = localStorage.getItem('sesion_login'); // variable para mostrar login
-  url = window.location.pathname;
   constructor( private loginS:LoginService){
     this.loginS._getAuthUser(localStorage.getItem('access_token')).subscribe(
       (resp:any) => {
@@ -17,10 +16,11 @@ export class AppComponent {
       },
       error => {
         if(error.status == 401){ // Unauthorized 401
-          localStorage.removeItem('access_token')
+          /*localStorage.removeItem('access_token')
           localStorage.removeItem('imgPerfil')
-          localStorage.removeItem('sesion_login');
-          localStorage.removeItem('userName')
+          localStorage.setItem('sesion_login','false');
+          localStorage.removeItem('userName')*/
+          localStorage.clear();
         }
       }
     )
