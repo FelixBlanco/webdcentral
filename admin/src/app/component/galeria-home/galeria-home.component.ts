@@ -49,7 +49,7 @@ export class GaleriaHomeComponent implements OnInit {
 
         this.newForm = this.fb.group({
             titulo: ['', Validators.required],
-            fk_idProducto: ['', Validators.required],
+            fk_idProducto: [''],
             imagen: ['', Validators.required]
         });
     }

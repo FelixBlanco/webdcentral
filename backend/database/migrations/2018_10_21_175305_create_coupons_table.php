@@ -22,6 +22,7 @@ class CreateCouponsTable extends Migration
             $table->string('imagen');
             $table->date('dateExpired');
             $table->integer('fk_idSatate')->unsigned();
+
             $table->timestamps();
 
             $table->softDeletes();

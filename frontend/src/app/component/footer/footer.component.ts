@@ -14,7 +14,7 @@ export class FooterComponent implements OnInit {
   
   colorUno:any; 
   
-  linksR:any = { facebook:null, instagram: null, twitter: null, whatsapp:null};
+  linksR:any = { facebook:'#', instagram: '#', twitter: '#', whatsapp:'#'};
 
   constructor( 
     private _configFooterService:ConfgFooterService,

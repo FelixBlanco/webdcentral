@@ -4,3 +4,21 @@
   background-repeat: no-repeat;
   height: 660px;
 }
+
+.banner-secundario{
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 450px;
+}
+
+hr{
+  background: #009BDD;
+  left: 4%;
+  margin-top: 11%;
+  position: absolute;
+  width: 92%;
+}
+h2{
+  font-weight: bold;
+}
