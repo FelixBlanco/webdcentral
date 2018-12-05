@@ -16,6 +16,7 @@ class CreateBlogCategoriasTable extends Migration
         Schema::create('tb_blog_categorias', function (Blueprint $table) {
             $table->increments('idBlogCategoria');
             $table->string('titulo')->nullable();
+            $table->string('imagen')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

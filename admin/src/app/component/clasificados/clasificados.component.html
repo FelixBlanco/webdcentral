@@ -21,11 +21,13 @@
         </form>        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button class="btn btn-success" data-dismiss="modal" (click)="addClasificado()" [disabled]="!myForm.invalid">
-          Guardar
-          <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise">
-        </button>
+        <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='!inPromise'>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="addClasificado()" [disabled]="!myForm.invalid">
+            Guardar          
+          </button>
+        </div>  
       </div>
     </div>
   </div>
@@ -64,11 +66,13 @@
         </form>                 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button class="btn btn-success" data-dismiss="modal" (click)="editClasificado()">
-          Guardar
-          <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise">
-        </button>
+        <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='!inPromise'>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="editClasificado()">
+            Guardar          
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -76,8 +80,14 @@
 
 
 
-
 <div class="row">
+  <div class="col-md-12">
+    <h3 class="p-5 text-center">Clasificados</h3>
+    <hr>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:2%">
   <div class="col-md-2">
       <select class="form-control" [(ngModel)]="limit">
         <option>5</option>
@@ -104,7 +114,8 @@
   [headerHeight]="50"
   [footerHeight]="50"
   [rowHeight]="'auto'"
-  [limit]="limit">
+  [limit]="limit"
+  style="background:white">
 
   <ngx-datatable-column name="Titulo" prop="titulo"></ngx-datatable-column>
   <ngx-datatable-column name="Foto" prop="foto">

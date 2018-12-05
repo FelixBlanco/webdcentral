@@ -5,14 +5,14 @@
     <div class="content-wrapper">
             <!-- Main content -->
           <section class="content">
-              <router-outlet></router-outlet>
+              <!-- <mat-spinner diameter="30" style="margin: 0 auto"></mat-spinner> -->
+            <router-outlet></router-outlet>
           </section>
       </div>
   <app-footer></app-footer>
   <app-seting></app-seting>
 </div>
-<div *ngIf="!isLoged">
-  
+<div *ngIf="!isLoged">  
   <app-forget></app-forget>
   <app-authbackend></app-authbackend>
 

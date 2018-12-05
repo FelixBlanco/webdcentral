@@ -56,6 +56,8 @@ import { DepositoGuard } from './services/auth-guard.service';
 import { RubrosFilterComponent } from './component/rubros-filter/rubros-filter.component';
 import { EnviosPageComponent } from './component/envios-page/envios-page.component';
 import { CarritoFormComponent } from './component/carrito/carrito-form/carrito-form.component';
+import { BlogComponent } from './component/blog/blog.component';
+import { MinoristaComponent } from './component/minorista/minorista.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -68,8 +70,8 @@ const appRoutes: Routes = [
   { path: 'productos', component: ProductosComponent },
   { path: 'perfil-cliente', component: PerfilClienteComponent },
   { path: 'envios', component: EnviosPageComponent },
-  
-  { path: 'home', loadChildren: './component/home/home.module#HomeModule' },
+  { path: 'blog', component: BlogComponent },
+
   
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -113,7 +115,9 @@ const appRoutes: Routes = [
     PerfilClienteComponent,
     RubrosFilterComponent,
     EnviosPageComponent,
-    CarritoFormComponent
+    CarritoFormComponent,
+    BlogComponent,
+    MinoristaComponent
   ],
   imports: [
     BrowserModule,

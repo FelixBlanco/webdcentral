@@ -1,4 +1,10 @@
 <div class="row">
+  <div class="col-md-12">
+    <h3 class="p-4">Ofertas</h3>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-md-2">
       <select class="form-control" [(ngModel)]="limit">
         <option>5</option>
@@ -27,13 +33,12 @@ class="bootstrap"
 [limit]="limit">
 
 <ngx-datatable-column name="Titulo" prop="titulo"></ngx-datatable-column>
-<ngx-datatable-column name="Tiempo de Expiración" prop="tiempoExpi">
+<ngx-datatable-column name="Tiempo de Expiración" prop="tiempoExpi"></ngx-datatable-column>
+<ngx-datatable-column name="Foto" prop="foto">
   <ng-template ngx-datatable-cell-template let-row="row">
     <img [src]="row.set_imagen" width="70" height="70">
   </ng-template>
 </ngx-datatable-column>
-<ngx-datatable-column name="Estado" prop="status_sistema"></ngx-datatable-column>
-
 <ngx-datatable-column name="" prop="opts">
     <ng-template ngx-datatable-cell-template let-row="row">
         <button class="btn btn-primary" (click)="editOferta(row)"><span class="glyphicon glyphicon-pencil"></span></button>
@@ -70,8 +75,11 @@ class="bootstrap"
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" (click)="add_updateOferta('add')">Guardar Cambios <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"></button>
+          <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+          <div *ngIf='!inPromise'>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" (click)="add_updateOferta('add')">Guardar Cambios</button>
+          </div>
         </div>
       </div>
     </div>
@@ -103,8 +111,11 @@ class="bootstrap"
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" (click)="upgrade()">Guardar Cambios <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"></button>
+            <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+            <div *ngIf='!inPromise'>            
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" (click)="upgrade()">Guardar Cambios</button>
+            </div>  
           </div>
         </div>
       </div>

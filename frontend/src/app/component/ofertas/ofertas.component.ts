@@ -27,6 +27,7 @@ export class OfertasComponent implements OnInit {
   getOfertas(){
     this.ofertaServices._getOfertas().subscribe(
       resp => {
+        console.log(resp)
         this.listOfertas = resp 
       }
     )
