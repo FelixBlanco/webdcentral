@@ -47,6 +47,14 @@ import { ClasificadosComponent } from './component/clasificados/clasificados.com
 import { TurnoComponent } from './component/turno/turno.component';
 import { CategoriaBlogComponent } from './component/categoria-blog/categoria-blog.component';
 import { BlogComponent } from './component/blog/blog.component';
+import { GaleriaHomeComponent } from './component/galeria-home/galeria-home.component';
+import { PerfilComponent } from './component/perfil/perfil.component';
+import { ConfigFooterComponent } from './component/config-footer/config-footer.component';
+import { OfertasComponent } from './component/ofertas/ofertas.component';
+import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/reclamos-sugerencias.component';
+import { ConfigColorComponent } from './component/config-color/config-color.component';
+import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
+
 // import { MaterialUiModule } from './material-ui.module';
 
 
@@ -90,6 +98,13 @@ import { BlogComponent } from './component/blog/blog.component';
     TurnoComponent,
     CategoriaBlogComponent,
     BlogComponent,
+    GaleriaHomeComponent,
+    PerfilComponent,
+    ConfigFooterComponent,
+    OfertasComponent,
+    ReclamosSugerenciasComponent,
+    ConfigColorComponent,
+    PreguntasFrecuentesComponent  
   ],
   imports: [
     BrowserModule,

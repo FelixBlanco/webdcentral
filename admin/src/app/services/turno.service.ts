@@ -51,7 +51,9 @@ export class TurnoService {
         console.log("id desde servicio", id);
         return this.http.delete<any>(`${environment.apiHost}/api/auth/borrarTurno/${id}`, { headers: this.httpOptions, observe: 'response' });
     }
+    
     update(body: any): Observable<HttpResponse<any>> {
+        console.log("body.idTurnos desde el servicio",body.idTurnos);
         return this.http.post<any>(`${environment.apiHost}/api/auth/editTurno/${body.idTurnos}`, body, { headers: this.httpOptions, observe: 'response' });
     }
     // update(question: any):  Observable<HttpResponse<any>>{

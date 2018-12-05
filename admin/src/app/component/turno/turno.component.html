@@ -27,17 +27,17 @@
               [footerHeight]="'40'" [limit]="limit">
               <ngx-datatable-column name="Estatus" prop="fk_idStatusTurnos">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                  {{row.status_turno.descripcion}}
+                  {{row.status_turno?.descripcion}}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Clasificado" prop="fk_idClasificado">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                  {{row.clasificado.titulo}}
+                  {{row.clasificado?.titulo}}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Local Adherido" prop="fk_idLocalAdherido">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                  {{row.local_adherido.nombre}}
+                  {{row.local_adherido?.nombre}}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Fecha / Hora" prop="fechaHora">
@@ -225,8 +225,8 @@
           <div class="form-group">
             <label for="titulo">Estatus:</label>
             <select formControlName="fk_idStatusTurnos" class="form-control" id="fk_idStatusTurnos">
-              <option *ngFor="let clasificado of rowsClasificados" [value]="clasificado.fk_idStatusTurnos">
-                {{ clasificado.titulo }}
+              <option *ngFor="let estatusTurno of rowsEstatusTurno; let i = index" [value]="i+1">
+                {{ estatusTurno }}
               </option>
             </select>
           </div>
@@ -238,7 +238,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-success" [disabled]="newForm.invalid || inPromise" (click)="update()">Guardar</button>
+        <button type="submit" class="btn btn-success" [disabled]="updateForm.invalid || inPromise" (click)="update()">Guardar</button>
       </div>
     </div>
   </div>

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { ClasificadosService } from '../../services/clasificados.service';
 import { LocalesAdheridosService } from '../../services/locales-adheridos.service';
+import { EstatusTurnoService } from '../../services/estatus-turno.service';
 
 declare var $: any;
 
@@ -29,6 +30,7 @@ export class TurnoComponent implements OnInit {
   rows: any;
   rowsClasificados: any;
   rowsLocalAdheridos: any;
+  rowsEstatusTurno: any;
 
   newForm: FormGroup;
   updateForm: FormGroup;
@@ -43,6 +45,7 @@ export class TurnoComponent implements OnInit {
     private turnoService: TurnoService,
     private clasificadoService: ClasificadosService,
     private localesAdheridosServices: LocalesAdheridosService,
+    private estatusTurno: EstatusTurnoService,
     private as: AlertsService,
     private fb: FormBuilder
   ) { }
@@ -51,6 +54,7 @@ export class TurnoComponent implements OnInit {
     this.getAll();
     this.getClasificacidos();
     this.getLocalesAdheridos();
+    this.getEstatusTurno();
 
     this.newForm = this.fb.group({
       fk_idLocalAdherido: ['', Validators.required],
@@ -59,13 +63,13 @@ export class TurnoComponent implements OnInit {
     });
 
     this.updateForm = this.fb.group({
-      fk_idLocalAdherido: ['', Validators.required],
-      fk_idClasificado: ['', Validators.required],
-      fk_idStatusTurnos: ['', Validators.required],
-      fechaHora: ['', Validators.required]
+      fk_idLocalAdherido: [''],
+      fk_idClasificado: [''],
+      fk_idStatusTurnos: [''],
+      fechaHora: [''],
+      idTurnos: [''],
     });
   }
-
 
   getAll() {
     this.turnoService.getAll().subscribe((resp) => {
@@ -96,6 +100,16 @@ export class TurnoComponent implements OnInit {
         this.rowsLocalAdheridos = [...resp.LocalAdh];
         console.log("this.rowsLocalAdheridos");
         console.log(this.rowsLocalAdheridos);
+      }
+    )
+  }
+
+  getEstatusTurno() {
+    this.estatusTurno.getAll().subscribe(
+      (resp: any) => {
+        this.rowsEstatusTurno = Object.values(resp.body.lista);        
+        console.log("this.rowsEstatusTurno");
+        console.log(this.rowsEstatusTurno);
       }
     )
   }
@@ -144,6 +158,7 @@ export class TurnoComponent implements OnInit {
           fk_idClasificado: resp.body.turnos.fk_idClasificado,
           fk_idStatusTurnos: resp.body.turnos.fk_idStatusTurnos,
           fechaHora: new Date(resp.body.turnos.fechaHora),
+          idTurnos: resp.body.turnos.idTurnos,
           //MM-dd-yyyy HH:mm
         })
         $("#editarTurnoModal").modal('show');
@@ -179,14 +194,18 @@ export class TurnoComponent implements OnInit {
 
   update() {
     console.log("update");
-    const val = this.newForm.value;
+    const val = this.updateForm.value;
+    console.log("val",val);
+    delete val['fechaHora'];
+    console.log("val",val);
+    
     this.inPromise = true;
     this.turnoService.update(val).subscribe((resp) => {
       if (resp.ok && resp.status === 200) {
         this.as.msg("OK", "Éxito", "Se ha actualizado el registro");
-        $('#modificar').modal('hide');
-        this.newForm.reset();
-        // this.list();
+        $('#editar').modal('hide');
+        this.updateForm.reset();
+        this.getAll();
       } else {
         console.error(resp);
         this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
