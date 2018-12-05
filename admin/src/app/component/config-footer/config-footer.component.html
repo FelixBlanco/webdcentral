@@ -1,98 +1,107 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-12">
-        <h3 class="p-2">Configuracion de Footer</h3>
+        <h3 class="p-2">Configuracion de Footer</h3>        
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label>Dirección</label>
-        <textarea cols="10" rows="5" placeholder="Dirección" class="form-control" [(ngModel)]="data.direccion"></textarea>
-      </div>
-      <div class="form-group">
-        <label>Numero de Contactos</label>
-        <input type="phone"  placeholder="Numero de Contactos" class="form-control" [(ngModel)]="data.nroContacto">
-      </div>
-      <div class="form-group">
-        <label>Mails de Ventas 1</label>
-        <input type="email"  placeholder="Ingrese Mails de Ventas 1" class="form-control" [(ngModel)]="data.mail1">
-      </div>
+  <form [formGroup]="myForm">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Dirección</label>
+          <textarea cols="10" rows="5" placeholder="Dirección" class="form-control" formControlName="direccion"></textarea>        
+        </div>
+        <div class="form-group">
+          <label>Numero de Contactos</label>
+          <input type="phone"  placeholder="Numero de Contactos" class="form-control" formControlName="nroContacto">
+        </div>
+        <div class="form-group">
+          <label>Mails de Ventas 1</label>
+          <input type="email"  placeholder="Ingrese Mails de Ventas 1" class="form-control" formControlName="mail1">
+          <p *ngIf="!myForm.get('mail1').valid" class="text-danger">Debe ser email</p>
+        </div>
 
-      <div class="form-group">
-        <label>Mails de Ventas 2</label>
-        <input type="email"  placeholder="Ingrese Mails de Ventas 2" class="form-control" [(ngModel)]="data.mail2">
-      </div>
+        <div class="form-group">
+          <label>Mails de Ventas 2</label>
+          <input type="email"  placeholder="Ingrese Mails de Ventas 2" class="form-control" formControlName="mail2">
+        </div>
 
-      <div class="form-group">
-        <label>Latitud</label>
-        <input type="number"  placeholder="Ingrese su latitud" class="form-control" [(ngModel)]="data.latitud">
-      </div>
+        <div class="form-group">
+          <label>Latitud</label>
+          <input type="number"  placeholder="Ingrese su latitud" class="form-control" formControlName="latitud">
+        </div>
 
-      <div class="form-group">
-        <label>Longitud</label>
-        <input type="number"  placeholder="Ingrese la longitud" class="form-control" [(ngModel)]="data.longitud">
-      </div>
+        <div class="form-group">
+          <label>Longitud</label>
+          <input type="number"  placeholder="Ingrese la longitud" class="form-control" formControlName="longitud">
+        </div>
 
-      <div class="form-group">
-        <label>WhatsApp 1</label>
-        <input type="text"  placeholder="Ingrese su WhatsApp 1" class="form-control" [(ngModel)]="data.whatsApp1">
-      </div>
+        <div class="form-group">
+          <label>WhatsApp 1</label>
+          <input type="text"  placeholder="Ingrese su WhatsApp 1" class="form-control" formControlName="whatsApp1">
+        </div>
 
-      <div class="form-group">
-        <label>WhatsApp 2</label>
-        <input type="text"  placeholder="Ingrese su WhatsApp 2 " class="form-control" [(ngModel)]="data.whatsApp2">
-      </div>
+        <div class="form-group">
+          <label>WhatsApp 2</label>
+          <input type="text"  placeholder="Ingrese su WhatsApp 2 " class="form-control" formControlName="whatsApp2">
+        </div>
 
+      </div>
+      <div class="col-md-6">
+
+        <div class="form-group">
+            <label>Horarios</label>
+            <input type="text"  placeholder="Ingrese el Horario" class="form-control" formControlName="horarios">
+          </div>
+          
+          <div class="form-group">
+            <label>Subtes</label>
+            <input type="text"  placeholder="Ingrese Subtes" class="form-control" formControlName="subtes">
+          </div>
+          
+          <div class="form-group">
+            <label>Colectivos</label>
+            <input type="text"  placeholder="Ingrese  el Colectivos" class="form-control" formControlName="colectivos">
+          </div>
+          
+          <div class="form-group">
+            <label>Avenidas</label>
+            <input type="text"  placeholder="Ingrese la Avenidas" class="form-control" formControlName="avenidas">
+          </div>
+          
+          <div class="form-group">
+            <label>Lista de Precio</label>
+            <input type="number"  placeholder="Lista de Precio" class="form-control" formControlName="listaPrecio">
+          </div>   
+                    
+          <div class="form-group">
+            <label>Horario Inicio Atencion</label>
+            <input type="text"  placeholder="Horario Inicio Atencion" class="form-control" formControlName="desde">
+          </div>   
+                    
+          <div class="form-group">
+            <label>Horario Cierre Atencion</label>
+            <input type="text"  placeholder="Horario Inicio Atencion" class="form-control" formControlName="hasta">
+          </div>   
+                    
+          <div class="form-group">
+            <label>URL de Mercado libre</label>
+            <input type="url"  placeholder="Ingrese URL de Mercado libre" class="form-control" formControlName="url_mercado_libre">
+          </div>   
+          
+          <div class="form-group">
+            <label>URL de otra pagina</label>
+            <input type="url"  placeholder="Ingrese URL de otra pagina" class="form-control" formControlName="link_otra_pagina">
+          </div>             
+      </div>
     </div>
-    <div class="col-md-6">
-
-      <div class="form-group">
-          <label>Horarios</label>
-          <input type="text"  placeholder="Ingrese el Horario" class="form-control" [(ngModel)]="data.horarios">
-        </div>
-        
-        <div class="form-group">
-          <label>SubTes</label>
-          <input type="text"  placeholder="Ingrese SubTes" class="form-control" [(ngModel)]="data.subtes">
-        </div>
-        
-        <div class="form-group">
-          <label>Colectivos</label>
-          <input type="text"  placeholder="Ingrese  el Colectivos" class="form-control" [(ngModel)]="data.colectivos">
-        </div>
-        
-        <div class="form-group">
-          <label>Avenidas</label>
-          <input type="text"  placeholder="Ingrese la Avenidas" class="form-control" [(ngModel)]="data.avenidas">
-        </div>
-        
-        <div class="form-group">
-          <label>Lista de Precio</label>
-          <input type="number"  placeholder="Lista de Precio" class="form-control" [(ngModel)]="data.listaPrecio">
-        </div>   
-                  
-        <div class="form-group">
-          <label>Desde</label>
-          <input type="text"  placeholder="Ingrese desde" class="form-control" [(ngModel)]="data.desde">
-        </div>   
-                  
-        <div class="form-group">
-          <label>Ingrese Hasta</label>
-          <input type="text"  placeholder="Ingrese Hasta" class="form-control" [(ngModel)]="data.hasta">
-        </div>   
-                  
-        <div class="form-group">
-          <label>URL de Mercado libre</label>
-          <input type="url"  placeholder="Ingrese URL de Mercado libre" class="form-control" [(ngModel)]="data.url_mercado_libre">
-        </div>                 
+    <div class="row">
+      <div class="col-md-12">
+          <div class="form-group text-right">   
+            <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+            <button class="btn btn-success" *ngIf='!isPromise' (click)="upgradeCondigFooter()" [disabled]="myForm.invalid || inPromise">Actualizar</button>             
+          </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-        <div class="form-group text-right">
-          <button class="btn btn-success" (click)="upgradeCondigFooter()">Actualizar</button> 
-        </div>
-    </div>
-  </div>
+  </form>
 </div>

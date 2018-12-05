@@ -21,7 +21,7 @@ export class AppComponent {
         },
         error =>{
           // Si manda error borramos todos los datos del localStorage
-          localStorage.removeItem('access_token');
+          localStorage.removeItem('token');
           localStorage.removeItem('user_data');
         }
       )

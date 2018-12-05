@@ -7,3 +7,7 @@
 #nav-dos .nav-link{
   color: #767676;
 }
+
+.nav-link .active{
+  color: #007bff;
+}

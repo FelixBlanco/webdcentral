@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 export interface UserData{
     id?: number;
@@ -24,11 +25,12 @@ export class UserTokenService {
     tokenSourceBehavior: BehaviorSubject<string> = new BehaviorSubject(null);
     token: Observable<string> = this.tokenSourceBehavior.asObservable();
 
+    tokenHelper = new JwtHelperService();
 
     constructor(){
 
         if(!this.getUserToken()){
-            this.tokenSourceBehavior.next(localStorage.getItem('access_token'));
+            this.tokenSourceBehavior.next(localStorage.getItem('token'));
         }
 
         if(!this.getUserData()){
@@ -70,7 +72,16 @@ export class UserTokenService {
     }
 
     isNotLogged(): boolean{
-        return (!this.getUserData() || !this.getUserToken());
+        return (!this.getUserData() || !this.getUserToken() || this.isTokenExpired());
+    }
+
+    isTokenExpired(): boolean{
+        console.log('is token expired', this.tokenHelper.isTokenExpired(localStorage.getItem('token')));
+        return this.tokenHelper.isTokenExpired(localStorage.getItem('token'));
+    }
+
+    getExpirationDate(): Date{
+        return this.tokenHelper.getTokenExpirationDate(localStorage.getItem('token'));
     }
 
 
