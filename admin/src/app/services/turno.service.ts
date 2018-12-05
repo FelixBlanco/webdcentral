@@ -31,17 +31,15 @@ export class TurnoService {
     });
     constructor(private http: HttpClient) { }
 
-    getAll(): Observable<HttpResponse<{ turnos: Turno[] }>> {       
+    getAll(): Observable<HttpResponse<{ turnos: Turno[] }>> {
         return this.http.get<{ turnos: Turno[] }>(`${environment.apiHost}/api/auth/listarTodoslosTurnos`, { headers: this.httpOptions, observe: 'response' });
     }
 
+    getTurno(id: number) {
+        return this.http.get<{ turnos: Turno }>(`${environment.apiHost}/api/auth/listarPorIdTurno/${id}`, { headers: this.httpOptions, observe: 'response' });
+    }
+
     persist(body: any): Observable<HttpResponse<any>> {
-        console.log("httpOptions");
-        console.log(this.httpOptions);
-        console.log("environment");
-        console.log(environment.apiHost);
-        console.log("body");
-        console.log(body);
         return this.http.post<any>(`${environment.apiHost}/api/auth/addTurno`, body, { headers: this.httpOptions, observe: 'response' });
     }
 
@@ -50,7 +48,14 @@ export class TurnoService {
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
-        console.log("id desde servicio",id);
+        console.log("id desde servicio", id);
         return this.http.delete<any>(`${environment.apiHost}/api/auth/borrarTurno/${id}`, { headers: this.httpOptions, observe: 'response' });
     }
+    update(body: any): Observable<HttpResponse<any>> {
+        return this.http.post<any>(`${environment.apiHost}/api/auth/editTurno/${body.idTurnos}`, body, { headers: this.httpOptions, observe: 'response' });
+    }
+    // update(question: any):  Observable<HttpResponse<any>>{
+    //     return this.http.put<any>(environment.apiHost+ `/api/auth/editarPreguntaORespuesta/${question.idPreguntaFrecuente}`,question,this.httpOptions) as Observable<HttpResponse<any>>;        
+    // }
+
 }

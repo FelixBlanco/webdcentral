@@ -31,11 +31,12 @@ export class TurnoComponent implements OnInit {
   rowsLocalAdheridos: any;
 
   newForm: FormGroup;
+  updateForm: FormGroup;
   turnoSet: Turno;
 
   inPromise: boolean;
   imgLoaded: File;
-
+  fechaHora: string;
   turnoList: Turno[] = [];
 
   constructor(
@@ -54,6 +55,13 @@ export class TurnoComponent implements OnInit {
     this.newForm = this.fb.group({
       fk_idLocalAdherido: ['', Validators.required],
       fk_idClasificado: ['', Validators.required],
+      fechaHora: ['', Validators.required]
+    });
+
+    this.updateForm = this.fb.group({
+      fk_idLocalAdherido: ['', Validators.required],
+      fk_idClasificado: ['', Validators.required],
+      fk_idStatusTurnos: ['', Validators.required],
       fechaHora: ['', Validators.required]
     });
   }
@@ -85,12 +93,7 @@ export class TurnoComponent implements OnInit {
   getLocalesAdheridos() {
     this.localesAdheridosServices._listarLocales(1).subscribe(
       (resp: any) => {
-
         this.rowsLocalAdheridos = [...resp.LocalAdh];
-        console.log("resp");
-        console.log(resp);
-        console.log("resp.LocalAdh");
-        console.log(resp.LocalAdh);
         console.log("this.rowsLocalAdheridos");
         console.log(this.rowsLocalAdheridos);
       }
@@ -130,14 +133,22 @@ export class TurnoComponent implements OnInit {
     )
   }
 
-  editTurno(data: any) {
-    console.log("editTurno");
-    // this.turnoService._showOferta(data.idOferta).subscribe(
-    //   (resp: any) => {
-    //     this.edit_form_ofertas = resp.oferta
-    //     $("#editarOfertaModal").modal('show');
-    //   }
-    // )
+  getTurno(data: any) {
+    console.log("editTurno", data);
+    this.turnoService.getTurno(data.idTurnos).subscribe(
+      (resp: any) => {
+        console.log("resp desde el componente", resp.body.turnos);
+        this.fechaHora = resp.body.turnos.fechaHora;
+        this.updateForm.patchValue({
+          fk_idLocalAdherido: resp.body.turnos.fk_idLocalAdherido,
+          fk_idClasificado: resp.body.turnos.fk_idClasificado,
+          fk_idStatusTurnos: resp.body.turnos.fk_idStatusTurnos,
+          fechaHora: new Date(resp.body.turnos.fechaHora),
+          //MM-dd-yyyy HH:mm
+        })
+        $("#editarTurnoModal").modal('show');
+      }
+    )
   }
 
   delete() {
@@ -166,58 +177,27 @@ export class TurnoComponent implements OnInit {
     )
   }
 
-  updateStatus() {
-    console.log("updateStatus()");
-    //   this.inPromise = true;
-
-    //   const status: number = this.turnoSet.fk_idStatusSistema === 1 ? 0 : 1;
-
-    //   this.turnoService.updateStatus(this.turnoSet.idGaleriaHomeProducto, status).subscribe(
-    //     resp => {
-    //       if (resp.ok && resp.status === 201) {
-    //         $('#estatus').modal('hide');
-    //         this.as.msg('OK', 'Éxito', 'Se ha actualizado el estatus');
-    //       } else {
-    //         console.error(resp);
-    //         this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
-    //       }
-    //       this.getAll();
-    //       this.inPromise = false;
-    //     }, error => {
-    //       this.inPromise = false;
-    //       console.error(error);
-    //       this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
-    //     });
+  update() {
+    console.log("update");
+    const val = this.newForm.value;
+    this.inPromise = true;
+    this.turnoService.update(val).subscribe((resp) => {
+      if (resp.ok && resp.status === 200) {
+        this.as.msg("OK", "Éxito", "Se ha actualizado el registro");
+        $('#modificar').modal('hide');
+        this.newForm.reset();
+        // this.list();
+      } else {
+        console.error(resp);
+        this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
+      }
+      this.inPromise = false;
+    }, (error) => {
+      console.error(error);
+      this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
+      this.inPromise = false;
+    })
   }
-
-  // onFileChange(event) {
-  //   if (event.target.files && event.target.files.length) {
-  //     const fileTo: File = event.target.files[0];
-
-  //     if (!fileTo.type.includes('image/png')
-  //       && !fileTo.type.includes('image/jpg')
-  //       && !fileTo.type.includes('image/jpeg')) {
-  //       this.as.msg('ERR', 'Error:', 'El archivo no es admitido o no es una imagen');
-  //       this.newForm.patchValue({
-  //         imagen: null
-  //       });
-  //       return;
-  //     }
-
-  //     if (fileTo.size > 5000000) {
-  //       this.as.msg('ERR', 'Error:', 'El archivo es muy pesado');
-  //       this.newForm.patchValue({
-  //         imagen: null
-  //       });
-  //       return;
-  //     }
-
-  //     this.imgLoaded = fileTo;
-  //     this.newForm.patchValue({
-  //       imagen: fileTo
-  //     });
-  //   }
-  // }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();

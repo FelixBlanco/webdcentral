@@ -64,7 +64,8 @@
                     <a class="btn btn-primary" *ngSwitchDefault (click)="set(row)" data-toggle="modal" data-target="#estatus"><i
                         class="fa fa-check"></i></a>
                   </ng-container>
-                  <a class="btn btn-success" (click)="set(row)" data-toggle="modal" data-target="#editar"><i class="glyphicon glyphicon-pencil"></i></a>
+                  <a class="btn btn-success" (click)="getTurno(row)" data-toggle="modal" data-target="#editar"><i class="glyphicon glyphicon-pencil"></i></a>
+                  <!-- <button class="btn btn-primary" (click)="editTurno(row)"><span class="glyphicon glyphicon-pencil"></span></button> -->
                   <a class="btn btn-danger" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
                 </ng-template>
               </ngx-datatable-column>
@@ -145,8 +146,6 @@
   </div>
 </div>
 
-
-
 <!-- Modal Eliminar -->
 <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -169,7 +168,7 @@
 </div>
 
 <!-- Modal Activar/Inactivar -->
-<div class="modal fade" id="estatus" tabindex="-1" role="dialog" aria-labelledby="estatusModal" aria-hidden="true">
+<!-- <div class="modal fade" id="estatus" tabindex="-1" role="dialog" aria-labelledby="estatusModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-warning">
@@ -193,78 +192,83 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
- <!-- Modal edit-->
- <!-- <div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarTurnoModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<!-- Modal Editar -->
+<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editarOfertaModalLabel">Editar Oferta</h5>
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="editarModal">Editar Turno</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-          <label for="">Titulo de la Oferta</label>
-          <input type="text" [(ngModel)]="edit_form_ofertas.titulo" class="form-control" placeholder="titulo">
-        </div>
-        <div class="form-group">
-          <label for="">Tiempo de Expiración</label>
-          <input type="text" [(ngModel)]="edit_form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempo de expiracion">
-        </div>
-        <div class="form-group">
-          <label for="">Subir Imagen</label>
-          <label for="">Imagen</label>
-          <input type="file" (change)="upImagenEdit($event)">
-        </div>
+        <form [formGroup]="updateForm">
+          <div class="form-group">
+            <label for="titulo">Local Adherido:</label>
+            <select formControlName="fk_idLocalAdherido" class="form-control" id="fk_idLocalAdherido">
+              <option *ngFor="let localAdherido of rowsLocalAdheridos" [value]="localAdherido.idLocalAdherido">
+                {{ localAdherido.nombre }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="titulo">Clasificado:</label>
+            <select formControlName="fk_idClasificado" class="form-control" id="fk_idClasificado">
+              <option *ngFor="let clasificado of rowsClasificados" [value]="clasificado.idClasificado">
+                {{ clasificado.titulo }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="titulo">Estatus:</label>
+            <select formControlName="fk_idStatusTurnos" class="form-control" id="fk_idStatusTurnos">
+              <option *ngFor="let clasificado of rowsClasificados" [value]="clasificado.fk_idStatusTurnos">
+                {{ clasificado.titulo }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="titulo">Fecha y Hora: {{fechaHora}}</label>
+            <input type="datetime-local" formControlName="fechaHora" class="form-control" id="fechaHora" >
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="upgrade()">Guardar Cambios <img src="../../assets/cargando.gif" width="50" *ngIf="inPromise"></button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success" [disabled]="newForm.invalid || inPromise" (click)="update()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="modal fade" id="modificar" tabindex="-1" role="dialog" aria-labelledby="modificarModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info">
+        <h5 class="modal-title text-white" id="modificarModal">Modificar <span class="text-capitalize" *ngIf="questionToUpdate">'{{questionToUpdate.pregunta}}'</span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="questionUpdateForm">
+          <div class="form-group">
+            <label for="pregunta">Pregunta:</label>
+            <input type="text" formControlName="pregunta" class="form-control" id="pregunta" aria-describedby="preguntaDesc" placeholder="Escriba una pregunta">
+          </div>
+          <div class="form-group">
+            <label for="respuesta">Respuesta:</label>
+            <textarea  rows="4" formControlName="respuesta" class="form-control" id="respuesta" aria-describedby="respDesc" placeholder="Escribe una respuesta" maxlength="255"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-info" [disabled]="questionUpdateForm.invalid || inPromise" (click)="update()">Guardar</button>
       </div>
     </div>
   </div>
 </div> -->
-
-<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarTurnoModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-success">
-          <h5 class="modal-title text-white" id="editarTurnoModal">Editar Turno</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form [formGroup]="newForm">
-            <div class="form-group">
-              <label for="titulo">Local Adherido:</label>
-              <select formControlName="fk_idLocalAdherido" class="form-control" id="fk_idLocalAdherido">
-                <option *ngFor="let localAdherido of rowsLocalAdheridos" [value]="localAdherido.idLocalAdherido">
-                  {{ localAdherido.nombre }}
-                </option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="titulo">Clasificado:</label>
-              <select formControlName="fk_idClasificado" class="form-control" id="fk_idClasificado">
-                <option *ngFor="let clasificado of rowsClasificados" [value]="clasificado.idClasificado">
-                  {{ clasificado.titulo }}
-                </option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="titulo">Fecha y Hora:</label>
-              <input type="datetime-local" formControlName="fechaHora" class="form-control" id="fechaHora">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="newForm.invalid || inPromise" (click)="save()">Guardar</button>
-        </div>
-      </div>
-    </div>
-  </div>
