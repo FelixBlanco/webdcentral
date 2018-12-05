@@ -55,7 +55,7 @@ class CouponsController extends Controller {
 
         }
 
-        if ($request->tipo_descuento != 0 || $request->tipo_descuento != 1) {
+        if ($request->tipo_descuento != 1 && $request->tipo_descuento != 2) {
             $response = [
                 'msj'                => 'El Estatus no existe',
                 'estatusDisponibles' => TipoDescuento::select([ 'idTipoDescuento', 'descripcion' ])->get(),
