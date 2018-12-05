@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <h3 class="p-4">Locales Adheridos</h3>
+    <h3 class="p-5 text-center">Locales Adheridos</h3>
     <hr>
   </div>
 </div>
@@ -97,8 +97,8 @@ style="background:white; margin-top:2%">
         </form>
       </div>
       <div class="modal-footer">
-        <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
-        <div *ngIf='isPromise'>
+        <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='!inPromise'>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-success" [disabled]="myForm.invalid || inPromise" (click)="save()">Guardar</button>
         </div>
@@ -145,8 +145,8 @@ style="background:white; margin-top:2%">
         </form>
       </div>
       <div class="modal-footer">
-        <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
-        <div *ngIf='isPromise'>
+        <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='!inPromise'>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-success" [disabled]="myFormEdit.invalid || inPromise" (click)="upgrade()">Guardar Eliminar </button>
         </div>

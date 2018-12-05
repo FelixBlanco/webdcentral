@@ -75,8 +75,8 @@ class="bootstrap"
           </div>
         </div>
         <div class="modal-footer">
-          <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
-          <div *ngIf='isPromise'>
+          <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+          <div *ngIf='!inPromise'>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             <button type="button" class="btn btn-primary" (click)="add_updateOferta('add')">Guardar Cambios</button>
           </div>
@@ -111,8 +111,8 @@ class="bootstrap"
             </div>
           </div>
           <div class="modal-footer">
-            <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
-            <div *ngIf='isPromise'>            
+            <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+            <div *ngIf='!inPromise'>            
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
               <button type="button" class="btn btn-primary" (click)="upgrade()">Guardar Cambios</button>
             </div>  
