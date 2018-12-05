@@ -23,7 +23,7 @@ export class OfertasComponent implements OnInit {
     columns = [
         { prop: 'titulo' },
         { prop: 'set_imagen' },
-        { prop: 'tiempoExpi' },
+        { prop: 'tiempoExpi' },        
         { prop: 'opts'}
       ];
     
@@ -40,8 +40,7 @@ export class OfertasComponent implements OnInit {
 
     getOfertas() {
         this.ofertaServices._getOfertas().subscribe(
-            resp => {
-                console.log(resp)
+            resp => {                
                 this.listOfertas = resp;
                 this.rows = [...this.listOfertas];
             }
