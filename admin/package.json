@@ -25,6 +25,7 @@
     "@auth0/angular-jwt": "^2.0.0",
     "@swimlane/ngx-datatable": "^14.0.0",
     "@types/jquery": "^3.3.22",
+    "angular-user-idle": "^2.0.0",
     "core-js": "^2.5.4",
     "moment": "^2.22.2",
     "ngx-toastr": "^9.1.1",

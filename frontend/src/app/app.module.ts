@@ -57,6 +57,7 @@ import { RubrosFilterComponent } from './component/rubros-filter/rubros-filter.c
 import { EnviosPageComponent } from './component/envios-page/envios-page.component';
 import { CarritoFormComponent } from './component/carrito/carrito-form/carrito-form.component';
 import { BlogComponent } from './component/blog/blog.component';
+import { ClasificadosInicioComponent } from './component/clasificados-inicio/clasificados-inicio.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -115,7 +116,8 @@ const appRoutes: Routes = [
     RubrosFilterComponent,
     EnviosPageComponent,
     CarritoFormComponent,
-    BlogComponent
+    BlogComponent,
+    ClasificadosInicioComponent
   ],
   imports: [
     BrowserModule,

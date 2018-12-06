@@ -1,0 +1,18 @@
+button, ngb-carousel{
+    outline: none;
+}
+
+.card{
+    height: 150px;
+    border: 2px solid rgba(0,0,0,.125)
+}
+
+.card-body{
+    padding: 0;
+}
+
+hr{
+    background-color: #009bdd;
+    height: 2px;
+    margin-top: 0;
+}

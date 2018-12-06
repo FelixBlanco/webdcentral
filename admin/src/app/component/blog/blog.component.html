@@ -126,8 +126,11 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="newForm.invalid || inPromise" (click)="save()">Guardar</button>
+          <mat-spinner *ngIf="inPromise" style="margin:0 auto;" diameter="40"></mat-spinner>
+          <ng-container *ngIf="!inPromise">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-success" [disabled]="newForm.invalid || inPromise" (click)="save()">Guardar</button>
+          </ng-container>
         </div>
       </div>
     </div>
@@ -167,8 +170,11 @@
             </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-info" [disabled]="updateForm.invalid || inPromise" (click)="update()">Actualizar</button>
+          <mat-spinner *ngIf="inPromise" style="margin:0 auto;" diameter="40"></mat-spinner>
+          <ng-container *ngIf="!inPromise">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-info" [disabled]="updateForm.invalid || inPromise" (click)="update()">Actualizar</button>
+          </ng-container>
         </div>
       </div>
     </div>
@@ -188,8 +194,11 @@
         <p class="text-muted">¿Desea elíminar el registro?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-danger" [disabled]="inPromise" (click)="delete()">Eliminar</button>
+        <mat-spinner *ngIf="inPromise" style="margin:0 auto;" diameter="40"></mat-spinner>
+        <ng-container *ngIf="!inPromise">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-danger" [disabled]="inPromise" (click)="delete()">Eliminar</button>
+        </ng-container>
       </div>
     </div>
   </div>
