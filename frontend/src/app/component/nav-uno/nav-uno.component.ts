@@ -22,7 +22,7 @@ export class NavUnoComponent implements OnInit {
 
   badgeContent: number = 0;
 
-  linksR:any = { facebook:null, instagram: null, twitter: null, whatsapp:null};
+  linksR:any = { facebook:'#', instagram: '#', twitter: '#', whatsapp:'#'};
 
   token: string;
 
@@ -56,15 +56,13 @@ export class NavUnoComponent implements OnInit {
 
     //Links Redes
     this.configRedes._getRed().subscribe(
-      (resp:any) => {
-        if(resp != null){
-          this.linksR.facebook = resp.url_face
-          this.linksR.twitter = resp.url_twit;
+      (resp:any) => {        
+        if(!resp){
+          this.linksR.facebook  = resp.url_face
+          this.linksR.twitter   = resp.url_twit;
           this.linksR.instagram = resp.url_inst;
-          this.linksR.whatsapp = resp.url_what;                  
-        }else{          
-          this.linksR;
-        }
+          this.linksR.whatsapp  = resp.url_what;                  
+        }    
       }
     )
 
@@ -81,7 +79,6 @@ export class NavUnoComponent implements OnInit {
         this.router.navigate(['/']);
       },
       error => {
-        console.error(error);
         this._alertsService.msg('ERR','Algo salio mal.');
         this.inPromise = false;
       }
@@ -95,7 +92,6 @@ export class NavUnoComponent implements OnInit {
   }
 
   initUserToken(){
-
     this.userToken.token.subscribe(val => this.token = val);
   }
 }

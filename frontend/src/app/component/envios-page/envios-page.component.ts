@@ -10,14 +10,15 @@ export class EnviosPageComponent implements OnInit {
   lista_a:any =[];
   lista_b:any = [];
   lista_c:any = [];
+  inPromise:boolean;
 
   constructor(private deliveryService: DeliveryService) { }
 
   ngOnInit() {
-
+    this.inPromise = true;
     this.deliveryService._getDelivery().subscribe(
       (resp:any) => {  
-
+        this.inPromise = false;
         const nroDivido:any =  parseInt(resp.length) / parseInt('3') // dividimos en las 3 columnas
 
         // Motamos en cada una de las columnas
@@ -44,9 +45,6 @@ export class EnviosPageComponent implements OnInit {
           }
 
         }
-      },
-      error => {
-        console.log(error)
       }
     )
     
