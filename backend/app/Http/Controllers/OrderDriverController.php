@@ -572,4 +572,91 @@ class OrderDriverController extends Controller {
 
     }
 
+
+     // AGREGAR CLEINTES DE MERCADO LIBRE 
+     public static function addClientMl(Request $request) {
+        try {
+
+            DB::connection('sqlsrv')->insert("  INSERT INTO tb_clientes_ml
+                    (nameUser
+                    ,nombreApellidoCliente
+                    ,numeroDocumento
+                    ,domicilio
+                    ,codigoPostal
+                    ,localidad
+                    ,provincia
+                    ,email
+                    ,telefono
+                    ,isConfirm
+                    )
+                VALUES (
+                 '$request->nameUser',
+                '$request->nombreApellidoCliente',
+                '$request->numeroDocumento',
+                '$request->domicilio',
+                '$request->codigoPostal',
+                '$request->localidad',
+                '$request->provincia',
+                '$request->email',
+                '$request->telefono',
+                '1'
+              )");
+
+            return response()->json("Cliente creado ", 200);
+
+        } catch (\Exception $e) {
+               //dd($e);
+            return response()->json("Error conectando a el DC", 500);
+        }
+    }
+
+
+     // AGREGAR CLEINTES DE MERCADO LIBRE 
+     public static function getClientMlByUser($nameUser) {
+        try {
+
+
+            $rs = DB::connection('sqlsrv')->select(" SELECT * FROM tb_clientes_ml
+                   WHERE nameUser = '".$nameUser."' ");
+
+            if ($rs) {
+                //dd($rs);
+                return response()->json($rs, 200);
+            } else {
+                return response()->json("No existe contenido ", 204);
+            }
+
+        } catch (\Exception $e) {
+              dd($e);
+            return response()->json("Error conectando a el DC", 500);
+        }
+    }
+
+
+    public function updateClienteMl(Request $request) {
+
+        try {
+            DB::connection('sqlsrv')->update("  UPDATE tb_clientes_ml
+             set 
+                   nameUser = '$request->nameUser',
+                   nombreApellidoCliente = '$request->nombreApellidoCliente',
+                   numeroDocumento = '$request->numeroDocumento',
+                   domicilio = '$request->domicilio',
+                   codigoPostal = '$request->codigoPostal',
+                   localidad = '$request->localidad',
+                   provincia = '$request->provincia',
+                   email = '$request->email',
+                   telefono = '$request->telefono'
+             where idCliente = $request->idCliente
+              ");
+
+            return response()->json("Confrimado", 200);
+
+        } catch (\Exception $e) {
+            // dd($e);
+            return response()->json("Error conectando a el DC", 500);
+        }
+    }
+
+
 }

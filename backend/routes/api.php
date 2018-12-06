@@ -358,6 +358,14 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('listarBlog', 'BlogController@listar');
     Route::get('listarPorIdBlog/{idBlogCategoria}', 'BlogController@buscarIdBlogCategoria');
 
+
+    Route::get('client/ml/byid/{user}', 'OrderDriverController@getClientMlByUser');
+    Route::post('client/ml/add', 'OrderDriverController@addClientMl');
+    Route::post('client/ml/update', 'OrderDriverController@updateClienteMl');
+
 });
+
+
+
 
 
