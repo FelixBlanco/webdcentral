@@ -23,8 +23,8 @@
         
       </div>
       <div class="modal-footer">
-        <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
-        <div *ngIf='isPromise'>
+        <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='!inPromise'>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button class="btn btn-success" data-dismiss="modal" (click)="addDestacados()">Guardar </button>
         </div>
@@ -58,8 +58,8 @@
         
       </div>
       <div class="modal-footer">
-        <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
-        <div *ngIf='isPromise'>
+        <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='!inPromise'>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button class="btn btn-success" data-dismiss="modal" (click)="upgradeDestacado()">Guardar </button>
         </div>
@@ -91,7 +91,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h3 class="p-4">Destacados</h3>
+      <h3 class="p-5 text-center">Destacados</h3>
     </div>
   </div>
 
