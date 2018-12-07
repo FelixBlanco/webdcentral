@@ -12,6 +12,10 @@ export class BlogService {
     getAllCategories(): Observable<HttpResponse<any>> {
         return this.http.get<any>(`${environment.apiHost}/api/v1/listarCatBlog`, {observe: 'response'});
     }
+    
+    getAllByCategoryId(id:number){
+        return this.http.get<any>(`${environment.apiHost}/api/v1/listarBlogPorIdDeCategoria/${id}`, {observe: 'response'});
+    }
 
     getOneCategory(id:number): Observable<HttpResponse<any>> {
         return this.http.get<any>(`${environment.apiHost}/api/v1/listarPorIdCatBlog/${id}`, {observe: 'response'});
