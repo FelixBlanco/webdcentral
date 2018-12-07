@@ -357,6 +357,14 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
 
     /*PARA LISTAR LOS ESTATUS DE LOS TURNOS*/
     Route::get('listarTodoslosEstatusTurnos', 'TurnoController@listarTodoslosEstatusTurnos');
+
+    Route::get('client/ml/byid/{user}', 'OrderDriverController@getClientMlByUser');
+    Route::post('client/ml/add', 'OrderDriverController@addClientMl');
+    Route::post('client/ml/update', 'OrderDriverController@updateClienteMl');
+
 });
+
+
+
 
 
