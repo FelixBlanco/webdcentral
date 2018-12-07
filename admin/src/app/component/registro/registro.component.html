@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="login-box">
+    <div class="login-logo">
+      <a><b>Datos del Pedido </b></a>
+    </div>
+    <div class="login-box-body">
+      <p class="login-box-msg">Complete los datos para el pedido</p>
+      <form action="../../index2.html" method="post">
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="form.nameUser" [ngModelOptions]="{standalone: true}">
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="Nombre y Apellido del Cliente" [(ngModel)]="form.nombreApellidoCliente"
+            [ngModelOptions]="{standalone: true}">
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="Documento" [(ngModel)]="form.numeroDocumento"
+            [ngModelOptions]="{standalone: true}">
+          <span class="glyphicon glyphicon-folder-open form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="Domicilio" [(ngModel)]="form.domicilio" [ngModelOptions]="{standalone: true}">
+          <span class="glyphicon glyphicon-home form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="Codigo Postal" [(ngModel)]="form.codigoPostal" [ngModelOptions]="{standalone: true}">
+          <span class="glyphicon glyphicon-folder-open form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="Localidad" [(ngModel)]="form.localidad" [ngModelOptions]="{standalone: true}">
+          <span class="glyphicon glyphicon-globe form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="Provincia" [(ngModel)]="form.provincia" [ngModelOptions]="{standalone: true}">
+          <span class="glyphicon glyphicon-home form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="email" class="form-control" placeholder="Email" [(ngModel)]="form.email" [ngModelOptions]="{standalone: true}">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="email" class="form-control" placeholder="Email del Cliente" [(ngModel)]="form.Email_Cliente" [ngModelOptions]="{standalone: true}">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="Telefono" [(ngModel)]="form.telefono" [ngModelOptions]="{standalone: true}">
+          <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+        </div>
+
+
+        <div class="row">
+          <div class="col-xs-4">
+            <!-- <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner> -->
+            <div *ngIf='!inPromise'>
+              <button type="submit" class="btn btn-primary btn-block btn-flat" (click)="ingresarRegistro()">Acceder</button>
+            </div>
+          </div>
+        </div>
+      </form>      
+    </div>
+  </div>
+</div>
