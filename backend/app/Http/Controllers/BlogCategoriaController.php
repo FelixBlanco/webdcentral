@@ -85,7 +85,7 @@ class BlogCategoriaController extends Controller {
 
                 $CatBlog->fill($request->all());
 
-                if(!is_null($request->imagen)) {
+                if (! is_null($request->imagen)) {
 
                     $originalImage = $request->imagen;
 
@@ -132,19 +132,43 @@ class BlogCategoriaController extends Controller {
     }
 
     public function borrar($idBlogCategoria) {
+
         DB::beginTransaction();
 
         try {
-            $CatBlog = BlogCategoria::findOrFail($idBlogCategoria);
-            $CatBlog->delete();
+            $blogDeEsaCategoria = Blog::where('fk_idCategoria', $idBlogCategoria)->pluck('idBlog');
 
-            $response = [
-                'msj' => 'Categoria eliminada Correctamente',
-            ];
+            if (count($blogDeEsaCategoria) >= 1) {
+                $response = [
+                    'msj'                => 'No se puede eliminar la categoria pues hay blog que dependen de esta',
+                    'idBlogDependientes' => $blogDeEsaCategoria,
+                ];
 
-            DB::commit();
+                return response()->json($response, 200);
 
-            return response()->json($response, 200);
+            } else {
+                $CatBlog = BlogCategoria::find($idBlogCategoria);
+
+                if (! is_null($CatBlog)) {
+                    $CatBlog->delete();
+
+                    $response = [
+                        'msj' => 'Categoria eliminada Correctamente',
+                    ];
+
+                    DB::commit();
+
+                    return response()->json($response, 200);
+                } else {
+
+                    $response = [
+                        'msj' => 'No existe la categoria',
+                    ];
+
+                    return response()->json($response, 200);
+                }
+            }
+
         } catch (\Exception $e) {
             DB::rollback();
             Log::error('Ha ocurrido un error en BlogCategoriaController: '.$e->getMessage().', Linea: '.$e->getLine());
