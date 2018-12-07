@@ -3,8 +3,8 @@
 		<div class="row">
 			<div class="col-12">
 				<h2 class="text-center p-3 txt-naranja font-bold">LO MÁS VENDIDO</h2>
-				<mat-spinner *ngIf="!masVendidoList" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
-				<ng-container *ngIf="masVendidoList" [ngSwitch]="masVendidoList.length">
+				<mat-spinner *ngIf="inPromise" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
+				<ng-container *ngIf="!inPromise" [ngSwitch]="masVendidoList.length">
 					<ng-container *ngSwitchCase="0">
 						<div class="container">
 							<div class="row m-3">

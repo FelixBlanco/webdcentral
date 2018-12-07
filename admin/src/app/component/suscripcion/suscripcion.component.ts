@@ -13,7 +13,8 @@ declare var $;
 })
 export class SuscripcionComponent implements OnInit {
 
-  list_suscrito:any; list_suscrito_canceladas:any;
+  list_suscrito:any[] = []; 
+  list_suscrito_canceladas:any[] = [];
   
   idDelete:number;
 
@@ -55,7 +56,6 @@ export class SuscripcionComponent implements OnInit {
   getStatusSistema(){
     this.statusSistemaService._getStatusSistema().subscribe(
       resp => {
-        console.log(resp)
         this.list_status = resp
       }
     )

@@ -17,15 +17,10 @@ export class MinoristaComponent implements OnInit {
     this.c_f._getConfigFooter().subscribe(
       (resp:any) =>{
         if(resp){
-          console.log(resp)
           this.url = resp.link_otra_pagina;
         }        
       }
     )
-
-    if(!this.url){
-      this.url = '#';
-    }
   }
 
 }
