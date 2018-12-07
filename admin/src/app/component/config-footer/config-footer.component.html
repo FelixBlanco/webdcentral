@@ -10,10 +10,12 @@
         <div class="form-group">
           <label>Dirección</label>
           <textarea cols="10" rows="5" placeholder="Dirección" class="form-control" formControlName="direccion"></textarea>        
+          <p *ngIf="!myForm.get('direccion').valid" class="text-danger">Direccion es requerida</p>
         </div>
         <div class="form-group">
           <label>Numero de Contactos</label>
           <input type="phone"  placeholder="Numero de Contactos" class="form-control" formControlName="nroContacto">
+          <p *ngIf="!myForm.get('nroContacto').valid" class="text-danger">Numero de Contactos es requerido</p>
         </div>
         <div class="form-group">
           <label>Mails de Ventas 1</label>
@@ -24,21 +26,25 @@
         <div class="form-group">
           <label>Mails de Ventas 2</label>
           <input type="email"  placeholder="Ingrese Mails de Ventas 2" class="form-control" formControlName="mail2">
+          <p *ngIf="!myForm.get('mail2').valid" class="text-danger">Debe ser email</p>
         </div>
 
         <div class="form-group">
           <label>Latitud</label>
           <input type="number"  placeholder="Ingrese su latitud" class="form-control" formControlName="latitud">
+          <p *ngIf="!myForm.get('latitud').valid" class="text-danger">Latitud es requerida</p>
         </div>
 
         <div class="form-group">
           <label>Longitud</label>
           <input type="number"  placeholder="Ingrese la longitud" class="form-control" formControlName="longitud">
+          <p *ngIf="!myForm.get('longitud').valid" class="text-danger">Longitud es requerida</p>
         </div>
 
         <div class="form-group">
           <label>WhatsApp 1</label>
           <input type="text"  placeholder="Ingrese su WhatsApp 1" class="form-control" formControlName="whatsApp1">
+          <p *ngIf="!myForm.get('whatsApp1').valid" class="text-danger">WhatsApp es requerida</p>
         </div>
 
         <div class="form-group">
@@ -72,6 +78,7 @@
           <div class="form-group">
             <label>Lista de Precio</label>
             <input type="number"  placeholder="Lista de Precio" class="form-control" formControlName="listaPrecio">
+            <p *ngIf="!myForm.get('listaPrecio').valid" class="text-danger">Lista de Precios debe ser menor 1 y mayor de 9</p>
           </div>   
                     
           <div class="form-group">

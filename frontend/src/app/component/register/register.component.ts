@@ -52,8 +52,10 @@ export class RegisterComponent implements OnInit {
                 $("#registraseModal").modal('hide');
             },
             (error: any) => {
-                this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
-
+                
+                if(error.error.message != null){
+                    this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
+                }
                 if (error.error.errors.email != null) {
                     this._alertService.msg("ERR", "Info", `Info: ${error.error.errors.email}`);
                 }
@@ -63,6 +65,9 @@ export class RegisterComponent implements OnInit {
                 if (error.error.errors.password != null) {
                     this._alertService.msg("ERR", "Info", `Info: ${error.error.errors.password[0]}`);
                 }
+                if (error.error.errors.password_confirmation != null) {
+                    this._alertService.msg("ERR", "Info", `Info: ${error.error.errors.password_confirmation[0]}`);
+                }                
             }
         );
 

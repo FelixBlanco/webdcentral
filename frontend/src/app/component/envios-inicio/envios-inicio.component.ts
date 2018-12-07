@@ -25,8 +25,7 @@ export class EnviosInicioComponent implements OnInit {
     
     this.getData();
 
-    $("#compra").hover(function(){
-      console.log('hover')
+    $("#compra").hover(function(){      
       $("#compra img").attr('src',"../assets/como_envio/como_comprar_2.png")
       $("#compra h3").removeClass('hover-normal')
       $("#compra h3").addClass('hover-blue')

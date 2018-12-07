@@ -46,6 +46,7 @@ export class AuthbackendComponent implements OnInit {
         )
       },
       error => {
+        this.inPromise = false;
         this.alerService.msg("ERR", 'El email o la contraseña son incorrecto.');
       }
     )
