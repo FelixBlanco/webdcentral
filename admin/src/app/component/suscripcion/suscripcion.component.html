@@ -1,7 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <ul class="list-group"> <h3>Suscriptores</h3>
+      <ul class="list-group"> 
+        <h3>Suscriptores</h3>
+        <hr>
+        <li class="list-group-item" *ngIf="!list_suscrito.length">
+          Nada que mostrar
+        </li>
         <li class="list-group-item" *ngFor="let ls of list_suscrito">
           {{ls.email}} - 
           <select name="" id="" (change)="changeStatus($event,ls.idSuscripcion)">
@@ -12,12 +17,17 @@
       </ul>
     </div>
     <div class="col-md-6">
-      <ul class="list-group"> <h3>Suscriptores Cancelados</h3>
+      <ul class="list-group"> 
+        <h3>Suscriptores Cancelados</h3>
+        <hr>
+        <li class="list-group-item" *ngIf="!list_suscrito_canceladas.length">
+          Nada que mostrar
+        </li>
         <li class="list-group-item" *ngFor="let lsc of list_suscrito_canceladas">
           {{lsc.email}} <br>
           Razón: {{lsc.motivoDeCancelacion}}
         </li>
-      </ul>
+      </ul>      
     </div>
   </div>
 </div>

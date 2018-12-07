@@ -12,10 +12,12 @@ import { ProductsBehaviorService } from 'src/app/services/products-behavior.serv
 })
 export class DestacadoInicioComponent implements OnInit {
 
-  destacadosList: Producto[];
+  destacadosList: Producto[] = [];
   colorTres:any;
 
   carouselItems: CarouselItem[] = [];
+
+  inPromise: boolean;
 
   aTimeOutFix: boolean = false;
 
@@ -34,20 +36,24 @@ export class DestacadoInicioComponent implements OnInit {
   }
 
   setDestacadosList(){
+    this.inPromise = true;
     this.productosService.getDestacados().subscribe(resp => {
       if(resp.ok && resp.status === 200){
         this.mapAndSet(resp.body);
       }else{
         this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
+        this.inPromise = false;
       }
     }, error => {
       this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+      this.inPromise = false;
     });
   }
 
   mapAndSet(data: any) {
     
     if(!data || !data.destacados){
+     this.inPromise = false;
       this.destacadosList = [];
       return;
     }
@@ -64,7 +70,8 @@ export class DestacadoInicioComponent implements OnInit {
     this.productsBehavior.parseDefaultPrice(toSet).then(value => {
       this.destacadosList = value
       this.generateCarousel();
-     })
+      this.inPromise = false;
+     });
     
   }
 

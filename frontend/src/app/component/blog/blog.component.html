@@ -29,7 +29,7 @@
               <ng-container *ngSwitchDefault>
                 <div class="col-3 text-center" *ngFor="let cat of categoriesList">
                   <div class="card sm m-2" (click)="routeTo('blogs', cat)">
-                    <img class="card-img-top" [src]="image" alt="Card image cap">                    
+                    <img class="card-img-top" [src]="cat.set_imagen" alt="{{cat.titulo}}">                    
                     <div class="card-body">
                       <h5 class="card-title text-capitalize font-bold">{{cat.titulo}}</h5>
                     </div>
@@ -40,7 +40,7 @@
                 <div class="col-4 text-center" *ngFor="let blog of blogsList">
                   <div class="card lg m-2" (click)="getBlogById(blog.idBlog)">
                     <mat-spinner *ngIf="inBatch === blog.idBlog" class="spinner-inbatch"></mat-spinner>
-                    <img class="card-img-top" [src]="blog.set_imagen" alt="Card image cap">
+                    <img class="card-img-top" [src]="blog.set_imagen" alt="{{blog.titulo}}">
                     <div class="card-body">
                       <h5 class="card-title text-capitalize font-bold">{{blog.titulo}}</h5>
                       <p class="text-center">{{blog.descripcion}}</p>
@@ -68,12 +68,12 @@
       <div class="modal-body" *ngIf="actualBlog">
         <div class="row">
           <div class="col-4">
-            <img width="100%" src="http://127.0.0.1:8000/storage\blog\1366x768-star-wars-battlefront-2-desktop-pc-and-mac-wallpaper-1543625483-793.jpg" alt="">
+            <img width="100%" [src]="actualBlog.set_imagen" alt="" style="border-radius: .7em;">
           </div>
           <div class="col-8">
             <div class="p-3">
-              <h4 class="text-capitalize txt-naranja font-bold">{{actualBlog.titulo}}</h4>
-              <p class="text-justify">{{actualBlog.descripcion}}</p>
+              <h4 class="text-capitalize txt-naranja font-bold">{{actualBlog.blogs.titulo}}</h4>
+              <p class="text-justify">{{actualBlog.blogs.descripcion}}</p>
             </div>
           </div>
         </div>

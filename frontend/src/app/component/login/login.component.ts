@@ -51,16 +51,15 @@ export class LoginComponent implements OnInit {
                     
                 },error => {
                     this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
-                    this.inPromise = false;
-                    console.error(error);
+                    this.inPromise = false;                    
                 })
                 
             },
             (error: any) => {
                 this.inPromise = false;
-                console.log(error);
-                this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
-
+                if (error.error.message != null) {
+                    this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
+                }
                 if (error.error.errors.email != null) {
                     this._alertService.msg("INFO", "Info", `Info: ${error.error.errors.email}`);
                 }

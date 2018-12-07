@@ -21,8 +21,6 @@ export class BlogComponent implements OnInit {
   inPromise: boolean;
   inBatch: number;
 
-  image = 'https://http2.mlstatic.com/montable-electrico-mercedes-benz-injusa-6v-auto-carro-nino-D_NQ_NP_839208-MLM26835805673_022018-F.webp';
-
   constructor(
     private blogService: BlogService,
     private as: AlertsService
@@ -35,8 +33,14 @@ export class BlogComponent implements OnInit {
   routeTo(what, cat?){
     if(what === 'blogs'){
       this.inPromise = true;
-      this.getAllBlogsBy(cat.idBlogCategoria).then((list) =>{
+      this.getAllBlogsBy(cat.idBlogCategoria).then((list: any[]) =>{
+        
         this.inPromise = false;
+        if(!list.length){
+          this.as.msg('INFO', 'Info', 'No existen blogs de esta categoría');
+          return;
+        }
+
         this.catSelected = cat.titulo;
         this.blogsList = list;
         this.section = what;
@@ -85,11 +89,11 @@ export class BlogComponent implements OnInit {
     }
 
     this.inBatch = id;
-    this.blogService.getOne(1).subscribe(
+    this.blogService.getOne(id).subscribe(
       (resp) => {
         if(resp.ok && resp.status === 200){
           setTimeout(() => {
-            this.actualBlog = resp.body.blogs;
+            this.actualBlog = resp.body;
             $('#modalBlog').modal('show');
             this.inBatch = null;
           },1000)

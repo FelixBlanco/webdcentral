@@ -13,7 +13,8 @@ declare var $;
 })
 export class SuscripcionComponent implements OnInit {
 
-  list_suscrito:any; list_suscrito_canceladas:any;
+  list_suscrito:any[] = []; 
+  list_suscrito_canceladas:any[] = [];
   
   idDelete:number;
 
@@ -34,6 +35,23 @@ export class SuscripcionComponent implements OnInit {
     this.getS();
     this.getSC();
     this.getStatusSistema();
+
+    $("#nav-sus").click(function(){        
+      $("#nav-sus-ca").removeClass('active');      
+      $("#nav-sus").addClass('active');
+      
+      $("#list-sus-ca").css('display','none')
+      $("#list-sus").css('display','block')
+    })
+
+    $("#nav-sus-ca").click(function(){
+      $("#nav-sus").removeClass('active');      
+      $("#nav-sus-ca").addClass('active');
+      
+      $("#list-sus").css('display','none')
+      $("#list-sus-ca").css('display','block')
+    })
+
   }
 
   getS(){
@@ -55,23 +73,18 @@ export class SuscripcionComponent implements OnInit {
   getStatusSistema(){
     this.statusSistemaService._getStatusSistema().subscribe(
       resp => {
-        console.log(resp)
         this.list_status = resp
       }
     )
   }
 
   changeStatus(event,idSuscr){
-    console.log('id sus'+ idSuscr)
-    console.log(event.target.value)
     this.sus._changeStatus(idSuscr,event.target.value).subscribe(
       (resp:any) =>{
-        this.al.msg('OK',resp.msj)
-        console.log(resp)
+        this.al.msg('OK',resp.msj)        
       },
       error => {
-        this.al.msg('ERR','Algo salio mal')
-        console.log(error)
+        this.al.msg('ERR','Algo salio mal')    
       }
     )
   }

@@ -1,0 +1,27 @@
+.card-image-wrapper .tittle{
+    position: absolute;
+    top: 50%;
+    width: 91%;
+}
+
+.card-image-wrapper{
+    cursor: pointer;
+    height: 230px;
+    margin: 10px auto;
+}
+
+.card-image-wrapper:hover{
+    border: 2px solid orange;
+    border-radius: 1.2em;
+}
+
+
+.card-image-wrapper img{
+    width: 100%;
+    height: 100%;
+    border-radius: 1em;
+}
+
+button, ngb-carousel{
+    outline: none;
+}

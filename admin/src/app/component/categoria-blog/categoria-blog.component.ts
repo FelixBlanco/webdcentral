@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BlogService } from 'src/app/services/blog.service';
 import { AlertsService } from 'src/app/services/alerts.service';
@@ -13,6 +13,7 @@ declare var $: any;
 export class CategoriaBlogComponent implements OnInit {
 
   @ViewChild('table') table: any;
+  @ViewChild('image') imagen: ElementRef;
 
   limit: number = 5;
 
@@ -29,6 +30,8 @@ export class CategoriaBlogComponent implements OnInit {
 
   inPromise: boolean;
 
+  imgLoaded: File;
+
   constructor(
     private fb: FormBuilder,
     private blogService: BlogService,
@@ -37,12 +40,14 @@ export class CategoriaBlogComponent implements OnInit {
 
   ngOnInit() {
     this.newForm = this.fb.group({
-      titulo: ['', Validators.required]
+      titulo: ['', Validators.required],
+      imagen: ['', Validators.required]
     });
 
     this.updateForm = this.fb.group({
       idBlogCategoria:['', Validators.required],
-      titulo: ['', Validators.required]
+      titulo: ['', Validators.required],
+      imagen: ['']
     });
 
     this.getAll();
@@ -81,23 +86,64 @@ export class CategoriaBlogComponent implements OnInit {
     });
   }
 
+  showImage(row){
+    this.updateForm.patchValue({
+      titulo: row.titulo,
+      imagen: row.set_imagen
+    });
+    $('#imagen').modal('toggle');
+  }
+
+  onFileChange(event) {//Fix
+    if(event.target.files && event.target.files.length) {
+      const fileTo: File = event.target.files[0];
+
+      if(!fileTo.type.includes('image/png') 
+        && !fileTo.type.includes('image/jpg') 
+        && !fileTo.type.includes('image/jpeg') ){
+          this.as.msg('ERR','Error:', 'El archivo no es admitido o no es una imagen');
+          this.newForm.patchValue({
+            imagen: null
+          });
+          return;
+      }
+
+      if(fileTo.size > 5000000){
+        this.as.msg('ERR','Error:', 'El archivo es muy pesado');
+          this.newForm.patchValue({
+            imagen: null
+          });
+          return;
+      }
+
+      this.imgLoaded = fileTo;
+      this.newForm.patchValue({
+        imagen: fileTo
+      });
+    }
+  }
+
   save(){
     const values = this.newForm.value;
 
     this.inPromise = true;
 
-    this.blogService.persistCategory(values).subscribe(resp => {
+    let toSend = new FormData();
+    toSend.append("titulo", values.titulo);
+    toSend.append("imagen", this.imgLoaded);
+
+    this.blogService.persistCategory(toSend).subscribe(resp => {
       if(resp.ok && resp.status === 201){
-        this.inPromise = false;
         this.newForm.reset();
         $('#nuevo').modal('hide');
         this.as.msg('OK', 'Éxito', 'Se ha almacenado el registro');
-        this.getAll();
+        this.imgLoaded = null;
+        this.imagen.nativeElement.value = ''
       }else{
         console.error(resp);
-        this.inPromise = false;
         this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
       }
+      this.inPromise = false;
       this.getAll();
     }, error => {
       console.log(error);
@@ -109,11 +155,16 @@ export class CategoriaBlogComponent implements OnInit {
   update(){
     const values = this.updateForm.value;
 
+    let toSend = new FormData();
+    toSend.append("titulo", values.titulo);
+    toSend.append("imagen", this.imgLoaded);
+
     this.inPromise = true;
-    this.blogService.updateCategory(values, values.idBlogCategoria).subscribe(resp => {
+    this.blogService.updateCategory(toSend, values.idBlogCategoria).subscribe(resp => {
       if(resp.ok && resp.status === 200){
         $('#modificar').modal('hide');
         this.as.msg('OK', 'Éxito', 'El registro ha sido actualizado');
+        this.imgLoaded = null;
       }else{
         console.error(resp);
         this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');

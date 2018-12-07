@@ -10,10 +10,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
-class BlogController extends Controller
-{
-    public function add(Request $request)
-    {
+class BlogController extends Controller {
+    public function add(Request $request) {
 
         $this->validate($request, [
             //'fk_idusuario'   => 'required',
@@ -41,21 +39,21 @@ class BlogController extends Controller
 
             $thumbnailImage = Image::make($originalImage);
 
-            $thumbnailImage->fit(2048, 2048, function ($constraint) {
+            $thumbnailImage->fit(2048, 2048, function($constraint) {
                 $constraint->aspectRatio();
             });
 
             $nombre_publico = $originalImage->getClientOriginalName();
-            $extension = $originalImage->getClientOriginalExtension();
+            $extension      = $originalImage->getClientOriginalExtension();
 
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
 
             Storage::disk('local')->put('\\blog\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
-            $Blog = new Blog($request->all());
+            $Blog               = new Blog($request->all());
             $Blog->fk_idusuario = Auth::user()->fk_idPerfil;
-            $Blog->foto = $nombre_interno;
+            $Blog->foto         = $nombre_interno;
 
             $Blog->save();
 
@@ -78,8 +76,7 @@ class BlogController extends Controller
         }
     }
 
-    public function edit(Request $request, $idBlog)
-    {
+    public function edit(Request $request, $idBlog) {
 
         if ($request->all() == []) {
             $response = [
@@ -103,12 +100,12 @@ class BlogController extends Controller
 
                     $thumbnailImage = Image::make($originalImage);
 
-                    $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $thumbnailImage->fit(2048, 2048, function($constraint) {
                         $constraint->aspectRatio();
                     });
 
                     $nombre_publico = $originalImage->getClientOriginalName();
-                    $extension = $originalImage->getClientOriginalExtension();
+                    $extension      = $originalImage->getClientOriginalExtension();
 
                     $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                     $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
@@ -116,12 +113,12 @@ class BlogController extends Controller
                     Storage::disk('local')->put('\\blog\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
                     $Blog->fk_idusuario = Auth::user()->fk_idPerfil;
-                    $Blog->foto = $nombre_interno;
+                    $Blog->foto         = $nombre_interno;
                 }
 
                 $response = [
-                    'msj'         => 'Información actulizada',
-                    'blog'        => $Blog,
+                    'msj'        => 'Información actulizada',
+                    'blog'       => $Blog,
                     'set_imagen' => asset('storage\\blog\\'.$Blog->foto),
                 ];
 
@@ -146,8 +143,7 @@ class BlogController extends Controller
         }
     }
 
-    public function borrar($idBlog)
-    {
+    public function borrar($idBlog) {
         DB::beginTransaction();
 
         try {
@@ -171,11 +167,10 @@ class BlogController extends Controller
         }
     }
 
-    public function listar()
-    {
+    public function listar() {
         $Blog = Blog::get();
 
-        $Blog->each(function ($Blog) {
+        $Blog->each(function($Blog) {
             $Blog->set_imagen = asset('storage\\blog\\'.$Blog->foto);
         });
 
@@ -187,8 +182,7 @@ class BlogController extends Controller
         return response()->json($response, 200);
     }
 
-    public function buscarIdBlogCategoria($idBlog)
-    {
+    public function buscarIdBlogCategoria($idBlog) {
 
         $Blog = Blog::find($idBlog);
 
@@ -209,4 +203,21 @@ class BlogController extends Controller
             return response()->json($response, 404);
         }
     }
+
+    public function listarBlogPorIdDeCategoria($idBlogCategoria) {
+
+        $blog = Blog::with([ 'categoriaBlog' ])->where('fk_idCategoria', $idBlogCategoria)->get();
+        $blog->each(function($blog) {
+            $blog->set_imagen = asset('storage\\blog\\'.$blog->foto);
+        });
+
+        $response = [
+            'msj'   => 'lista de blogs por categoria',
+            'blgos' => $blog,
+        ];
+
+        return response()->json($response, 201);
+    }
 }
+
+

@@ -2,7 +2,7 @@
 <div class="modal fade" id="perfilClienteModal" tabindex="-1" role="dialog" aria-labelledby="perfilClienteModalTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-naranja">
+      <div class="modal-header bg-azul">
         <h5 class="modal-title txt-blanco" id="perfilClienteModalTitle">Perfil Cliente</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true" class="txt-blanco">&times;</span>
@@ -11,6 +11,13 @@
       <div class="modal-body">  
 
         <form [formGroup]="formData">
+
+          <div class="form-group">
+              <div class="bg-naranja txt-blanco font-bold" id=nro-style>1</div>            
+            <div class="bg-naranja txt-blanco font-bold" id='titulo-style'>
+                DATOS PERSONALES
+            </div>
+          </div>
 
           <div class="form-group">
             <label for="">Nombre del Comercio</label>

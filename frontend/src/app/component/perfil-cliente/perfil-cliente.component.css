@@ -2,3 +2,26 @@
   padding-top: 2%;
   padding-bottom: 2%;
 }
+
+#nro-style{
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+  font-size: 30px;
+  border-radius: 28px;
+  text-align: center;
+  display: inline-grid;  
+}
+#titulo-style{
+  display: inline-grid;
+  font-size: 19px;
+  background: #e97504;
+  color: white;
+  padding: 6px;
+  padding-left: 25px;
+  margin-left: -4%;
+  z-index: 1;
+  position: relative;
+  width: 91%;
+  border-radius: 6px;    
+}

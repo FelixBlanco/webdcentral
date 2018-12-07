@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { LoginService } from './services/login.service'
+import { LoginService } from './services/login.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
+import { UserIdleService } from 'angular-user-idle';
 
 @Component({
   selector: 'app-root',
@@ -8,21 +11,15 @@ import { LoginService } from './services/login.service'
 })
 export class AppComponent {
 
-  isLoged = localStorage.getItem('sesion_login'); // variable para mostrar login
-  constructor( private loginS:LoginService){
-    this.loginS._getAuthUser(localStorage.getItem('access_token')).subscribe(
-      (resp:any) => {
-        // Session activa
-      },
-      error => {
-        if(error.status == 401){ // Unauthorized 401
-          /*localStorage.removeItem('access_token')
-          localStorage.removeItem('imgPerfil')
-          localStorage.setItem('sesion_login','false');
-          localStorage.removeItem('userName')*/
-          localStorage.clear();
-        }
-      }
-    )
+  tokenHelper = new JwtHelperService();
+
+  isLoged = localStorage.getItem('access_token'); // variable para mostrar login
+  constructor(){
+    if(this.tokenHelper.isTokenExpired(this.isLoged)){
+      localStorage.clear();
+      this.isLoged = null;
+      return;
+    }
+
   }
 }

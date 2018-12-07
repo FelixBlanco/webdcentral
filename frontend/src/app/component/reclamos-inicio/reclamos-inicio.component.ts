@@ -26,6 +26,8 @@ export class ReclamosInicioComponent implements OnInit {
   clickModal(){
     if(localStorage.getItem('token') != null){
       $("#reclamoModel").modal('show');
+    }else{
+      $("#reclamoMSJModel").modal('show');
     }
   }
   
