@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RegistroService } from '../../services/registro.service';
 import { AlertsService } from '../../services/alerts.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,6 +11,7 @@ declare var $: any;
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+  @Output() cambio: EventEmitter<any>= new EventEmitter();
 
   public form: any = {
     Email_Cliente: "",
@@ -39,23 +40,29 @@ export class RegistroComponent implements OnInit {
     console.log(this.form);
     this._registroService.verificarRegistro(this.form).subscribe(
       (resp: any) => {
-        console.log(resp)
+        console.log("respuesta del verifica",resp);
         if (resp) {
+          console.log("entro en el primer if",resp);
           this.form.idCliente = resp.idCliente;
           this._registroService.modificarRegistro(this.form).subscribe(
             () => {
-              this._alertService.Success("Registro Modificado Exitosamente");
+              this._alertService.msg("OK", 'Registro Moddificado Exitosamente');
             },
             (error: any) => {
-              this._alertService.Erros(error.error.msj) // no autorizado | cuando hay error 
+              // this._alertService.Erros(error.error.msj) // no autorizado | cuando hay error 
+              // console.log("Hubo un error");
+              this._alertService.msg("ERR", 'Hubo un Error 1');
             });
         } else {
+          console.log("entro en el else");
           this._registroService.ingresarRegistro(this.form).subscribe(
             () => {
-              this._alertService.Success("Registro Agregado Exitosamente");
+              // this._alertService.Success("Registro Agregado Exitosamente");
+              this._alertService.msg("OK", 'Registro Agregado Exitosamente');
             },
             (error: any) => {
-              this._alertService.Erros(error.error.msj) // no autorizado | cuando hay error 
+              this._alertService.msg("ERR", 'Hubo un Error 2');
+              // this._alertService.Erros(error.error.msj) // no autorizado | cuando hay error 
             });
         }
       },
@@ -69,7 +76,14 @@ export class RegistroComponent implements OnInit {
           this._alertService.Erros(error.error.msj) // no autorizado | cuando hay error 
         }
 
+        if (error.status == '500') {
+          this._alertService.Erros(error.error.msj) // no autorizado | cuando hay error 
+        }
       }
     );
+  }
+
+  change() {
+    this.cambio.emit()
   }
 }

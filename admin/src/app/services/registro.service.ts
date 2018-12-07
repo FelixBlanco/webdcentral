@@ -15,33 +15,19 @@ export class RegistroService {
     });
     constructor(private http: HttpClient) { }
 
-    persist(body: any): Observable<HttpResponse<any>> {
-        return this.http.post<any>(`${environment.apiHost}/api/auth/addTurno`, body, { headers: this.httpOptions, observe: 'response' });
-    }
-
-    updateStatus(id: number, status: number): Observable<HttpResponse<any>> {
-        return this.http.put<any>(`${environment.apiHost}/api/auth/cambiarStatusGaleria/${id}`, { fk_idStatusSistema: status }, { headers: this.httpOptions, observe: 'response' });
-    }
-
-    delete(id: number): Observable<HttpResponse<any>> {
-        console.log("id desde servicio", id);
-        return this.http.delete<any>(`${environment.apiHost}/api/auth/borrarTurno/${id}`, { headers: this.httpOptions, observe: 'response' });
-    }
-    
-    update(body: any): Observable<HttpResponse<any>> {
-        console.log("body.idTurnos desde el servicio",body.idTurnos);
-        return this.http.post<any>(`${environment.apiHost}/api/auth/editTurno/${body.idTurnos}`, body, { headers: this.httpOptions, observe: 'response' });
-    }
-
     verificarRegistro(body: any): Observable<HttpResponse<any>> {
-        return this.http.get<any>(`${environment.apiHost}/api/v1/client/ml/byid/${body.nameUser}`, { headers: this.httpOptions, observe: 'response' });
+        // console.log("verificarRegistro(body: any)",body.nameUser);
+        return this.http.get<any>(`http://depocentral.dyndns.org:8753/api/v1/client/ml/byid/${body.nameUser}`, { headers: this.httpOptions, observe: 'response' });
     }
 
     ingresarRegistro(body: any): Observable<HttpResponse<any>> {
-        return this.http.post<any>(`${environment.apiHost}/api/v1/client/ml/add`, body, { headers: this.httpOptions, observe: 'response' });
+        // console.log("ingresarRegistro(body: any):",body.nameUser);
+        return this.http.post<any>(`http://depocentral.dyndns.org:8753/api/v1/client/ml/add`, body, { headers: this.httpOptions, observe: 'response' });
     }
 
     modificarRegistro(body: any): Observable<HttpResponse<any>> {
-        return this.http.post<any>(`${environment.apiHost}/api/v1/client/ml/update`, body, { headers: this.httpOptions, observe: 'response' });
+        // console.log("modificarRegistro(body: any):",body.nameUser);
+        // http://depocentral.dyndns.org:8753/api/v1/client/ml/update
+        return this.http.post<any>(`http://depocentral.dyndns.org:8753/api/v1/client/ml/update`, body, { headers: this.httpOptions, observe: 'response' });
     }
 }

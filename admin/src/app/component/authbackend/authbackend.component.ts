@@ -11,6 +11,7 @@ export class AuthbackendComponent implements OnInit {
 
   form:any = { email:null, password:null }
   inPromise: boolean;
+  bandera: boolean = true;  
 
   constructor(
     private alerService:AlertsService,
@@ -50,5 +51,14 @@ export class AuthbackendComponent implements OnInit {
         this.alerService.msg("ERR", 'El email o la contraseña son incorrecto.');
       }
     )
+  }
+
+  change() {
+    this.bandera = !this.bandera;
+  }
+  
+  changevalue() {
+    console.log("me han dado click");
+    this.bandera = !this.bandera;
   }
 }
