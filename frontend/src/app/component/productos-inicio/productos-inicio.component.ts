@@ -12,12 +12,14 @@ import { AlertsService } from 'src/app/services/alerts.service';
 
 export class ProductosInicioComponent implements OnInit {
   
-  galeryList: GaleryProduct[];
+  galeryList: GaleryProduct[] = [];
   colorTres:any;
 
   carouselItems: CarouselItem[] = [];
 
   aTimeOutFix: boolean = false;
+  
+  inPromise: boolean;
 
 
   constructor(
@@ -34,20 +36,25 @@ export class ProductosInicioComponent implements OnInit {
   }
 
   setProductosHomeList(){
+    this.inPromise = true;
     this.galeryProductService.getAll().subscribe(resp => {
       if(resp.ok && resp.status === 201){
         this.galeryList = resp.body.galeria;
         this.generateCarousel();
       }else{
+        this.inPromise = false;
         this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
       }
-    }, error => {
-      this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+    }, (error) => {
+      this.inPromise = false;
+      console.error(error);
+      this.ts.msg("ERR", "Error", `Ha ocurrido un error interno`);
     });
   }
 
   generateCarousel(){
-    if(!this.galeryList){
+    if(!this.galeryList.length){
+      this.inPromise = false;
       return;
     }
 
@@ -69,7 +76,7 @@ export class ProductosInicioComponent implements OnInit {
         this.carouselItems.push({id: index++, items: this.getPartialItems(i,i+3)});
       }
     });
-
+    this.inPromise = false;
     //Fix ExpressionChangedAfterItHasBeenCheckedError
     setTimeout(()=> this.aTimeOutFix = true,1000); // :(
   }

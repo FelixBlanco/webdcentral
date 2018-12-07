@@ -345,14 +345,17 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     /*PARA LAS CATEGORIAS DEL BLOG*/
 
     Route::get('listarCatBlog', 'BlogCategoriaController@listar');
+    
     Route::get('listarPorIdCatBlog/{idBlogCategoria}', 'BlogCategoriaController@buscarIdBlogCategoria');
 
     /*PARA el BLOG*/
     Route::get('listarBlog', 'BlogController@listar');
     Route::get('listarPorIdBlog/{idBlogCategoria}', 'BlogController@buscarIdBlogCategoria');
 
-    /*PARA LISTAR LOS ESTATUS DE LOS TURNOS*/
+    /*PARA LISTAR LOS BLOGS POR ID DE CATEGORIA DE BLOG*/
+    Route::get('listarBlogPorIdDeCategoria/{idBlogCategoria}','BlogController@listarBlogPorIdDeCategoria');
 
+    /*PARA LISTAR LOS ESTATUS DE LOS TURNOS*/
     Route::get('listarTodoslosEstatusTurnos', 'TurnoController@listarTodoslosEstatusTurnos');
 
     Route::get('client/ml/byid/{user}', 'OrderDriverController@getClientMlByUser');

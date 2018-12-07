@@ -22,7 +22,7 @@ class Blog extends Model
 
     public function categoriaBlog()
     {
-        return $this->belongsTo('App\BlogCategoria', 'fk_idCategoría');
+        return $this->belongsTo('App\BlogCategoria', 'fk_idCategoria');
     }
 
     public function user()

@@ -13,6 +13,7 @@ declare var $;
 export class ForgetComponent implements OnInit {
 
   myForm: FormGroup;  
+  inPromise: boolean;
 
   constructor(
     private _forgetService:ForgetService,
@@ -20,20 +21,26 @@ export class ForgetComponent implements OnInit {
     private fb:FormBuilder
   ) { 
     this.myForm = this.fb.group({
-      'email' : ['',Validators.required]
+      'email' : ['',Validators.email]
     })
   }
 
   ngOnInit() {
   }
 
-  newForget(){    
+  newForget(){  
+    this.inPromise = true;  
     this._forgetService._newForget({email:this.myForm.value.email}).subscribe(
       (resp:any) => {
+        this.inPromise = false;
         $('#forgetModal').modal('hide');
         this._alertsService.msg('OK',resp.msj);
       },
-      error => {
+      error => {      
+        this.inPromise = false;
+        if(error.error.errors.email != null){
+          this._alertsService.msg('ERR',error.error.errors.email);  
+        }
         this._alertsService.msg('ERR','algo salio mal');
       }
     )      

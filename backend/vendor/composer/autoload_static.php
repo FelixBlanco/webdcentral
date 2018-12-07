@@ -4,19 +4,17 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
+class ComposerStaticInitf6f6e6ef2a50689ca0f2fa6705d94da2
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'cf97c57bfe0f23854afd2f3818abb7a0' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/create_uploaded_file.php',
         '9bf37a3d0dad93e29cb4e1b1bfab04e9' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_headers_from_sapi.php',
         'ce70dccb4bcc2efc6e94d2ee526e6972' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_method_from_sapi.php',
@@ -25,13 +23,15 @@ class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
         '0b0974a5566a1077e4f2e111341112c1' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_server.php',
         '1ca3bc274755662169f9629d5412a1da' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_uploaded_files.php',
         '40360c0b9b437e69bcbb7f1349ce029e' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -97,6 +97,7 @@ class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
         'N' => 
         array (
             'NunoMaduro\\Collision\\' => 21,
+            'Nexmo\\' => 6,
         ),
         'M' => 
         array (
@@ -119,7 +120,14 @@ class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
         'I' => 
         array (
             'Intervention\\Image\\' => 19,
+            'Illuminate\\Notifications\\' => 25,
             'Illuminate\\' => 11,
+        ),
+        'H' => 
+        array (
+            'Http\\Promise\\' => 13,
+            'Http\\Client\\' => 12,
+            'Http\\Adapter\\Guzzle6\\' => 21,
         ),
         'G' => 
         array (
@@ -173,8 +181,8 @@ class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Zend\\Diactoros\\' => 
         array (
@@ -300,6 +308,10 @@ class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
         array (
             0 => __DIR__ . '/..' . '/nunomaduro/collision/src',
         ),
+        'Nexmo\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nexmo/client/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -340,9 +352,26 @@ class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
         ),
+        'Illuminate\\Notifications\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/nexmo-notification-channel/src',
+            1 => __DIR__ . '/..' . '/laravel/slack-notification-channel/src',
+        ),
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
+        ),
+        'Http\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/promise/src',
+        ),
+        'Http\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/httplug/src',
+        ),
+        'Http\\Adapter\\Guzzle6\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/guzzle6-adapter/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -1590,6 +1619,20 @@ class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'Http\\Adapter\\Guzzle6\\Client' => __DIR__ . '/..' . '/php-http/guzzle6-adapter/src/Client.php',
+        'Http\\Adapter\\Guzzle6\\Promise' => __DIR__ . '/..' . '/php-http/guzzle6-adapter/src/Promise.php',
+        'Http\\Client\\Exception' => __DIR__ . '/..' . '/php-http/httplug/src/Exception.php',
+        'Http\\Client\\Exception\\HttpException' => __DIR__ . '/..' . '/php-http/httplug/src/Exception/HttpException.php',
+        'Http\\Client\\Exception\\NetworkException' => __DIR__ . '/..' . '/php-http/httplug/src/Exception/NetworkException.php',
+        'Http\\Client\\Exception\\RequestException' => __DIR__ . '/..' . '/php-http/httplug/src/Exception/RequestException.php',
+        'Http\\Client\\Exception\\TransferException' => __DIR__ . '/..' . '/php-http/httplug/src/Exception/TransferException.php',
+        'Http\\Client\\HttpAsyncClient' => __DIR__ . '/..' . '/php-http/httplug/src/HttpAsyncClient.php',
+        'Http\\Client\\HttpClient' => __DIR__ . '/..' . '/php-http/httplug/src/HttpClient.php',
+        'Http\\Client\\Promise\\HttpFulfilledPromise' => __DIR__ . '/..' . '/php-http/httplug/src/Promise/HttpFulfilledPromise.php',
+        'Http\\Client\\Promise\\HttpRejectedPromise' => __DIR__ . '/..' . '/php-http/httplug/src/Promise/HttpRejectedPromise.php',
+        'Http\\Promise\\FulfilledPromise' => __DIR__ . '/..' . '/php-http/promise/src/FulfilledPromise.php',
+        'Http\\Promise\\Promise' => __DIR__ . '/..' . '/php-http/promise/src/Promise.php',
+        'Http\\Promise\\RejectedPromise' => __DIR__ . '/..' . '/php-http/promise/src/RejectedPromise.php',
         'Illuminate\\Auth\\Access\\AuthorizationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
         'Illuminate\\Auth\\Access\\HandlesAuthorization' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/HandlesAuthorization.php',
@@ -2111,8 +2154,8 @@ class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
         'Illuminate\\Notifications\\Channels\\BroadcastChannel' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Channels/BroadcastChannel.php',
         'Illuminate\\Notifications\\Channels\\DatabaseChannel' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Channels/DatabaseChannel.php',
         'Illuminate\\Notifications\\Channels\\MailChannel' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Channels/MailChannel.php',
-        'Illuminate\\Notifications\\Channels\\NexmoSmsChannel' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Channels/NexmoSmsChannel.php',
-        'Illuminate\\Notifications\\Channels\\SlackWebhookChannel' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Channels/SlackWebhookChannel.php',
+        'Illuminate\\Notifications\\Channels\\NexmoSmsChannel' => __DIR__ . '/..' . '/laravel/nexmo-notification-channel/src/Channels/NexmoSmsChannel.php',
+        'Illuminate\\Notifications\\Channels\\SlackWebhookChannel' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/Channels/SlackWebhookChannel.php',
         'Illuminate\\Notifications\\Console\\NotificationTableCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Console/NotificationTableCommand.php',
         'Illuminate\\Notifications\\DatabaseNotification' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/DatabaseNotification.php',
         'Illuminate\\Notifications\\DatabaseNotificationCollection' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/DatabaseNotificationCollection.php',
@@ -2124,17 +2167,19 @@ class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
         'Illuminate\\Notifications\\Messages\\BroadcastMessage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/BroadcastMessage.php',
         'Illuminate\\Notifications\\Messages\\DatabaseMessage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/DatabaseMessage.php',
         'Illuminate\\Notifications\\Messages\\MailMessage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/MailMessage.php',
-        'Illuminate\\Notifications\\Messages\\NexmoMessage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/NexmoMessage.php',
+        'Illuminate\\Notifications\\Messages\\NexmoMessage' => __DIR__ . '/..' . '/laravel/nexmo-notification-channel/src/Messages/NexmoMessage.php',
         'Illuminate\\Notifications\\Messages\\SimpleMessage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/SimpleMessage.php',
-        'Illuminate\\Notifications\\Messages\\SlackAttachment' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/SlackAttachment.php',
-        'Illuminate\\Notifications\\Messages\\SlackAttachmentField' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/SlackAttachmentField.php',
-        'Illuminate\\Notifications\\Messages\\SlackMessage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Messages/SlackMessage.php',
+        'Illuminate\\Notifications\\Messages\\SlackAttachment' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/Messages/SlackAttachment.php',
+        'Illuminate\\Notifications\\Messages\\SlackAttachmentField' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/Messages/SlackAttachmentField.php',
+        'Illuminate\\Notifications\\Messages\\SlackMessage' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/Messages/SlackMessage.php',
+        'Illuminate\\Notifications\\NexmoChannelServiceProvider' => __DIR__ . '/..' . '/laravel/nexmo-notification-channel/src/NexmoChannelServiceProvider.php',
         'Illuminate\\Notifications\\Notifiable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Notifiable.php',
         'Illuminate\\Notifications\\Notification' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/Notification.php',
         'Illuminate\\Notifications\\NotificationSender' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/NotificationSender.php',
         'Illuminate\\Notifications\\NotificationServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/NotificationServiceProvider.php',
         'Illuminate\\Notifications\\RoutesNotifications' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/RoutesNotifications.php',
         'Illuminate\\Notifications\\SendQueuedNotifications' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/SendQueuedNotifications.php',
+        'Illuminate\\Notifications\\SlackChannelServiceProvider' => __DIR__ . '/..' . '/laravel/slack-notification-channel/src/SlackChannelServiceProvider.php',
         'Illuminate\\Pagination\\AbstractPaginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/AbstractPaginator.php',
         'Illuminate\\Pagination\\LengthAwarePaginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/LengthAwarePaginator.php',
         'Illuminate\\Pagination\\PaginationServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/PaginationServiceProvider.php',
@@ -2900,6 +2945,125 @@ class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
         'Monolog\\ResettableInterface' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ResettableInterface.php',
         'Monolog\\SignalHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/SignalHandler.php',
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
+        'Nexmo\\Account\\Balance' => __DIR__ . '/..' . '/nexmo/client/src/Account/Balance.php',
+        'Nexmo\\Account\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Account/Client.php',
+        'Nexmo\\Account\\Price' => __DIR__ . '/..' . '/nexmo/client/src/Account/Price.php',
+        'Nexmo\\Account\\Secret' => __DIR__ . '/..' . '/nexmo/client/src/Account/Secret.php',
+        'Nexmo\\Account\\SecretCollection' => __DIR__ . '/..' . '/nexmo/client/src/Account/SecretCollection.php',
+        'Nexmo\\Account\\SmsPrice' => __DIR__ . '/..' . '/nexmo/client/src/Account/SmsPrice.php',
+        'Nexmo\\Account\\VoicePrice' => __DIR__ . '/..' . '/nexmo/client/src/Account/VoicePrice.php',
+        'Nexmo\\ApiErrorHandler' => __DIR__ . '/..' . '/nexmo/client/src/ApiErrorHandler.php',
+        'Nexmo\\Application\\Application' => __DIR__ . '/..' . '/nexmo/client/src/Application/Application.php',
+        'Nexmo\\Application\\ApplicationInterface' => __DIR__ . '/..' . '/nexmo/client/src/Application/ApplicationInterface.php',
+        'Nexmo\\Application\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Application/Client.php',
+        'Nexmo\\Application\\Filter' => __DIR__ . '/..' . '/nexmo/client/src/Application/Filter.php',
+        'Nexmo\\Application\\VoiceConfig' => __DIR__ . '/..' . '/nexmo/client/src/Application/VoiceConfig.php',
+        'Nexmo\\Application\\Webhook' => __DIR__ . '/..' . '/nexmo/client/src/Application/Webhook.php',
+        'Nexmo\\Call\\Call' => __DIR__ . '/..' . '/nexmo/client/src/Call/Call.php',
+        'Nexmo\\Call\\Collection' => __DIR__ . '/..' . '/nexmo/client/src/Call/Collection.php',
+        'Nexmo\\Call\\Dtmf' => __DIR__ . '/..' . '/nexmo/client/src/Call/Dtmf.php',
+        'Nexmo\\Call\\Earmuff' => __DIR__ . '/..' . '/nexmo/client/src/Call/Earmuff.php',
+        'Nexmo\\Call\\Endpoint' => __DIR__ . '/..' . '/nexmo/client/src/Call/Endpoint.php',
+        'Nexmo\\Call\\Event' => __DIR__ . '/..' . '/nexmo/client/src/Call/Event.php',
+        'Nexmo\\Call\\Filter' => __DIR__ . '/..' . '/nexmo/client/src/Call/Filter.php',
+        'Nexmo\\Call\\Hangup' => __DIR__ . '/..' . '/nexmo/client/src/Call/Hangup.php',
+        'Nexmo\\Call\\Mute' => __DIR__ . '/..' . '/nexmo/client/src/Call/Mute.php',
+        'Nexmo\\Call\\Stream' => __DIR__ . '/..' . '/nexmo/client/src/Call/Stream.php',
+        'Nexmo\\Call\\Talk' => __DIR__ . '/..' . '/nexmo/client/src/Call/Talk.php',
+        'Nexmo\\Call\\Transfer' => __DIR__ . '/..' . '/nexmo/client/src/Call/Transfer.php',
+        'Nexmo\\Call\\Unearmuff' => __DIR__ . '/..' . '/nexmo/client/src/Call/Unearmuff.php',
+        'Nexmo\\Call\\Unmute' => __DIR__ . '/..' . '/nexmo/client/src/Call/Unmute.php',
+        'Nexmo\\Call\\Webhook' => __DIR__ . '/..' . '/nexmo/client/src/Call/Webhook.php',
+        'Nexmo\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Client.php',
+        'Nexmo\\Client\\Callback\\Callback' => __DIR__ . '/..' . '/nexmo/client/src/Client/Callback/Callback.php',
+        'Nexmo\\Client\\Callback\\CallbackInterface' => __DIR__ . '/..' . '/nexmo/client/src/Client/Callback/CallbackInterface.php',
+        'Nexmo\\Client\\ClientAwareInterface' => __DIR__ . '/..' . '/nexmo/client/src/Client/ClientAwareInterface.php',
+        'Nexmo\\Client\\ClientAwareTrait' => __DIR__ . '/..' . '/nexmo/client/src/Client/ClientAwareTrait.php',
+        'Nexmo\\Client\\Credentials\\AbstractCredentials' => __DIR__ . '/..' . '/nexmo/client/src/Client/Credentials/AbstractCredentials.php',
+        'Nexmo\\Client\\Credentials\\Basic' => __DIR__ . '/..' . '/nexmo/client/src/Client/Credentials/Basic.php',
+        'Nexmo\\Client\\Credentials\\Container' => __DIR__ . '/..' . '/nexmo/client/src/Client/Credentials/Container.php',
+        'Nexmo\\Client\\Credentials\\CredentialsInterface' => __DIR__ . '/..' . '/nexmo/client/src/Client/Credentials/CredentialsInterface.php',
+        'Nexmo\\Client\\Credentials\\Keypair' => __DIR__ . '/..' . '/nexmo/client/src/Client/Credentials/Keypair.php',
+        'Nexmo\\Client\\Credentials\\OAuth' => __DIR__ . '/..' . '/nexmo/client/src/Client/Credentials/OAuth.php',
+        'Nexmo\\Client\\Credentials\\SignatureSecret' => __DIR__ . '/..' . '/nexmo/client/src/Client/Credentials/SignatureSecret.php',
+        'Nexmo\\Client\\Exception\\Exception' => __DIR__ . '/..' . '/nexmo/client/src/Client/Exception/Exception.php',
+        'Nexmo\\Client\\Exception\\Request' => __DIR__ . '/..' . '/nexmo/client/src/Client/Exception/Request.php',
+        'Nexmo\\Client\\Exception\\Server' => __DIR__ . '/..' . '/nexmo/client/src/Client/Exception/Server.php',
+        'Nexmo\\Client\\Exception\\Transport' => __DIR__ . '/..' . '/nexmo/client/src/Client/Exception/Transport.php',
+        'Nexmo\\Client\\Exception\\Validation' => __DIR__ . '/..' . '/nexmo/client/src/Client/Exception/Validation.php',
+        'Nexmo\\Client\\Factory\\FactoryInterface' => __DIR__ . '/..' . '/nexmo/client/src/Client/Factory/FactoryInterface.php',
+        'Nexmo\\Client\\Factory\\MapFactory' => __DIR__ . '/..' . '/nexmo/client/src/Client/Factory/MapFactory.php',
+        'Nexmo\\Client\\Request\\AbstractRequest' => __DIR__ . '/..' . '/nexmo/client/src/Client/Request/AbstractRequest.php',
+        'Nexmo\\Client\\Request\\RequestInterface' => __DIR__ . '/..' . '/nexmo/client/src/Client/Request/RequestInterface.php',
+        'Nexmo\\Client\\Request\\WrapResponseInterface' => __DIR__ . '/..' . '/nexmo/client/src/Client/Request/WrapResponseInterface.php',
+        'Nexmo\\Client\\Response\\AbstractResponse' => __DIR__ . '/..' . '/nexmo/client/src/Client/Response/AbstractResponse.php',
+        'Nexmo\\Client\\Response\\Error' => __DIR__ . '/..' . '/nexmo/client/src/Client/Response/Error.php',
+        'Nexmo\\Client\\Response\\Response' => __DIR__ . '/..' . '/nexmo/client/src/Client/Response/Response.php',
+        'Nexmo\\Client\\Response\\ResponseInterface' => __DIR__ . '/..' . '/nexmo/client/src/Client/Response/ResponseInterface.php',
+        'Nexmo\\Client\\Signature' => __DIR__ . '/..' . '/nexmo/client/src/Client/Signature.php',
+        'Nexmo\\Conversations\\Collection' => __DIR__ . '/..' . '/nexmo/client/src/Conversations/Collection.php',
+        'Nexmo\\Conversations\\Conversation' => __DIR__ . '/..' . '/nexmo/client/src/Conversations/Conversation.php',
+        'Nexmo\\Conversion\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Conversion/Client.php',
+        'Nexmo\\Entity\\ArrayAccessTrait' => __DIR__ . '/..' . '/nexmo/client/src/Entity/ArrayAccessTrait.php',
+        'Nexmo\\Entity\\CollectionAwareInterface' => __DIR__ . '/..' . '/nexmo/client/src/Entity/CollectionAwareInterface.php',
+        'Nexmo\\Entity\\CollectionAwareTrait' => __DIR__ . '/..' . '/nexmo/client/src/Entity/CollectionAwareTrait.php',
+        'Nexmo\\Entity\\CollectionInterface' => __DIR__ . '/..' . '/nexmo/client/src/Entity/CollectionInterface.php',
+        'Nexmo\\Entity\\CollectionTrait' => __DIR__ . '/..' . '/nexmo/client/src/Entity/CollectionTrait.php',
+        'Nexmo\\Entity\\EmptyFilter' => __DIR__ . '/..' . '/nexmo/client/src/Entity/EmptyFilter.php',
+        'Nexmo\\Entity\\EntityInterface' => __DIR__ . '/..' . '/nexmo/client/src/Entity/EntityInterface.php',
+        'Nexmo\\Entity\\FilterInterface' => __DIR__ . '/..' . '/nexmo/client/src/Entity/FilterInterface.php',
+        'Nexmo\\Entity\\HasEntityTrait' => __DIR__ . '/..' . '/nexmo/client/src/Entity/HasEntityTrait.php',
+        'Nexmo\\Entity\\JsonResponseTrait' => __DIR__ . '/..' . '/nexmo/client/src/Entity/JsonResponseTrait.php',
+        'Nexmo\\Entity\\JsonSerializableInterface' => __DIR__ . '/..' . '/nexmo/client/src/Entity/JsonSerializableInterface.php',
+        'Nexmo\\Entity\\JsonSerializableTrait' => __DIR__ . '/..' . '/nexmo/client/src/Entity/JsonSerializableTrait.php',
+        'Nexmo\\Entity\\JsonUnserializableInterface' => __DIR__ . '/..' . '/nexmo/client/src/Entity/JsonUnserializableInterface.php',
+        'Nexmo\\Entity\\NoRequestResponseTrait' => __DIR__ . '/..' . '/nexmo/client/src/Entity/NoRequestResponseTrait.php',
+        'Nexmo\\Entity\\Psr7Trait' => __DIR__ . '/..' . '/nexmo/client/src/Entity/Psr7Trait.php',
+        'Nexmo\\Entity\\RequestArrayTrait' => __DIR__ . '/..' . '/nexmo/client/src/Entity/RequestArrayTrait.php',
+        'Nexmo\\Insights\\Advanced' => __DIR__ . '/..' . '/nexmo/client/src/Insights/Advanced.php',
+        'Nexmo\\Insights\\AdvancedCnam' => __DIR__ . '/..' . '/nexmo/client/src/Insights/AdvancedCnam.php',
+        'Nexmo\\Insights\\Basic' => __DIR__ . '/..' . '/nexmo/client/src/Insights/Basic.php',
+        'Nexmo\\Insights\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Insights/Client.php',
+        'Nexmo\\Insights\\CnamTrait' => __DIR__ . '/..' . '/nexmo/client/src/Insights/CnamTrait.php',
+        'Nexmo\\Insights\\Standard' => __DIR__ . '/..' . '/nexmo/client/src/Insights/Standard.php',
+        'Nexmo\\Insights\\StandardCnam' => __DIR__ . '/..' . '/nexmo/client/src/Insights/StandardCnam.php',
+        'Nexmo\\InvalidResponseException' => __DIR__ . '/..' . '/nexmo/client/src/InvalidResponseException.php',
+        'Nexmo\\Message\\AutoDetect' => __DIR__ . '/..' . '/nexmo/client/src/Message/AutoDetect.php',
+        'Nexmo\\Message\\Binary' => __DIR__ . '/..' . '/nexmo/client/src/Message/Binary.php',
+        'Nexmo\\Message\\Callback\\Receipt' => __DIR__ . '/..' . '/nexmo/client/src/Message/Callback/Receipt.php',
+        'Nexmo\\Message\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Message/Client.php',
+        'Nexmo\\Message\\CollectionTrait' => __DIR__ . '/..' . '/nexmo/client/src/Message/CollectionTrait.php',
+        'Nexmo\\Message\\EncodingDetector' => __DIR__ . '/..' . '/nexmo/client/src/Message/EncodingDetector.php',
+        'Nexmo\\Message\\InboundMessage' => __DIR__ . '/..' . '/nexmo/client/src/Message/InboundMessage.php',
+        'Nexmo\\Message\\Message' => __DIR__ . '/..' . '/nexmo/client/src/Message/Message.php',
+        'Nexmo\\Message\\MessageInterface' => __DIR__ . '/..' . '/nexmo/client/src/Message/MessageInterface.php',
+        'Nexmo\\Message\\Query' => __DIR__ . '/..' . '/nexmo/client/src/Message/Query.php',
+        'Nexmo\\Message\\Response\\Collection' => __DIR__ . '/..' . '/nexmo/client/src/Message/Response/Collection.php',
+        'Nexmo\\Message\\Response\\Message' => __DIR__ . '/..' . '/nexmo/client/src/Message/Response/Message.php',
+        'Nexmo\\Message\\Text' => __DIR__ . '/..' . '/nexmo/client/src/Message/Text.php',
+        'Nexmo\\Message\\Unicode' => __DIR__ . '/..' . '/nexmo/client/src/Message/Unicode.php',
+        'Nexmo\\Message\\Vcal' => __DIR__ . '/..' . '/nexmo/client/src/Message/Vcal.php',
+        'Nexmo\\Message\\Vcard' => __DIR__ . '/..' . '/nexmo/client/src/Message/Vcard.php',
+        'Nexmo\\Message\\Wap' => __DIR__ . '/..' . '/nexmo/client/src/Message/Wap.php',
+        'Nexmo\\Network' => __DIR__ . '/..' . '/nexmo/client/src/Network.php',
+        'Nexmo\\Network\\Number\\Callback' => __DIR__ . '/..' . '/nexmo/client/src/Network/Number/Callback.php',
+        'Nexmo\\Network\\Number\\Request' => __DIR__ . '/..' . '/nexmo/client/src/Network/Number/Request.php',
+        'Nexmo\\Network\\Number\\Response' => __DIR__ . '/..' . '/nexmo/client/src/Network/Number/Response.php',
+        'Nexmo\\Numbers\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Numbers/Client.php',
+        'Nexmo\\Numbers\\Number' => __DIR__ . '/..' . '/nexmo/client/src/Numbers/Number.php',
+        'Nexmo\\Redact\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Redact/Client.php',
+        'Nexmo\\Response' => __DIR__ . '/..' . '/nexmo/client/src/Response.php',
+        'Nexmo\\Response\\Message' => __DIR__ . '/..' . '/nexmo/client/src/Response/Message.php',
+        'Nexmo\\User\\Collection' => __DIR__ . '/..' . '/nexmo/client/src/User/Collection.php',
+        'Nexmo\\User\\User' => __DIR__ . '/..' . '/nexmo/client/src/User/User.php',
+        'Nexmo\\Verify\\Check' => __DIR__ . '/..' . '/nexmo/client/src/Verify/Check.php',
+        'Nexmo\\Verify\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Verify/Client.php',
+        'Nexmo\\Verify\\Verification' => __DIR__ . '/..' . '/nexmo/client/src/Verify/Verification.php',
+        'Nexmo\\Verify\\VerificationInterface' => __DIR__ . '/..' . '/nexmo/client/src/Verify/VerificationInterface.php',
+        'Nexmo\\Voice\\Call\\Call' => __DIR__ . '/..' . '/nexmo/client/src/Voice/Call/Call.php',
+        'Nexmo\\Voice\\Call\\Inbound' => __DIR__ . '/..' . '/nexmo/client/src/Voice/Call/Inbound.php',
+        'Nexmo\\Voice\\Message\\Callback' => __DIR__ . '/..' . '/nexmo/client/src/Voice/Message/Callback.php',
+        'Nexmo\\Voice\\Message\\Message' => __DIR__ . '/..' . '/nexmo/client/src/Voice/Message/Message.php',
         'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Laravel/CollisionServiceProvider.php',
         'NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php',
         'NunoMaduro\\Collision\\Adapters\\Laravel\\Inspector' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Laravel/Inspector.php',
@@ -4589,6 +4753,7 @@ class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
         'Symfony\\Contracts\\Tests\\Service\\ServiceSubscriberTraitTest' => __DIR__ . '/..' . '/symfony/contracts/Tests/Service/ServiceSubscriberTraitTest.php',
         'Symfony\\Contracts\\Tests\\Service\\TestService' => __DIR__ . '/..' . '/symfony/contracts/Tests/Service/ServiceSubscriberTraitTest.php',
         'Symfony\\Contracts\\Tests\\Translation\\TranslatorTest' => __DIR__ . '/..' . '/symfony/contracts/Tests/Translation/TranslatorTest.php',
+        'Symfony\\Contracts\\Translation\\LocaleAwareInterface' => __DIR__ . '/..' . '/symfony/contracts/Translation/LocaleAwareInterface.php',
         'Symfony\\Contracts\\Translation\\TranslatorInterface' => __DIR__ . '/..' . '/symfony/contracts/Translation/TranslatorInterface.php',
         'Symfony\\Contracts\\Translation\\TranslatorTrait' => __DIR__ . '/..' . '/symfony/contracts/Translation/TranslatorTrait.php',
         'Symfony\\Polyfill\\Ctype\\Ctype' => __DIR__ . '/..' . '/symfony/polyfill-ctype/Ctype.php',
@@ -4765,11 +4930,11 @@ class ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit5f5284352ad7e0d4c8576aaba89dcac9::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitf6f6e6ef2a50689ca0f2fa6705d94da2::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitf6f6e6ef2a50689ca0f2fa6705d94da2::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitf6f6e6ef2a50689ca0f2fa6705d94da2::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitf6f6e6ef2a50689ca0f2fa6705d94da2::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitf6f6e6ef2a50689ca0f2fa6705d94da2::$classMap;
 
         }, null, ClassLoader::class);
     }
