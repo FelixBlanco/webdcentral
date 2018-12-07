@@ -36,7 +36,7 @@ export class ConfigRedesComponent implements OnInit {
   getRedes(){
     this.configRedesService._getRed().subscribe(
       (resp:any) => {        
-        if(resp){                                  
+        if(!resp){                                  
           this.isNew = false; // no es nuevo
           this.r_edit = resp.id_redSocial,
           this.myRedes.setValue({            

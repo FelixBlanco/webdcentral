@@ -20,7 +20,7 @@ export class ConfigFooterComponent implements OnInit {
     this.myForm = this.fb.group({
       direccion     : ['',Validators.required],
       nroContacto   : ['',Validators.required],
-      mail1         : ['',Validators.required],
+      mail1         : ['',Validators.email],
       mail2         : ['',Validators.email],
       latitud       : ['',Validators.required],
       longitud      : ['',Validators.required],
