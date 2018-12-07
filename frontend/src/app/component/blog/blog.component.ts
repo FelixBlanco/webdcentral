@@ -73,9 +73,9 @@ export class BlogComponent implements OnInit {
 
   async getAllBlogsBy(categoryId){
 
-    const resp  = await this.blogService.getAll().toPromise();
-    if(resp.ok && resp.status === 200){
-      return resp.body.blogs;
+    const resp  = await this.blogService.getAllByCategoryId(categoryId).toPromise();
+    if(resp.ok && resp.status === 201){
+      return resp.body.blgos;
     }else{
       console.error(resp);
       return [];
