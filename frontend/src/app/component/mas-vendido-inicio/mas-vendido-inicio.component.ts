@@ -11,12 +11,14 @@ import { ProductsBehaviorService } from 'src/app/services/products-behavior.serv
 })
 export class MasVendidoInicioComponent implements OnInit {
 
-  masVendidoList: Producto[];
+  masVendidoList: Producto[] = [];
   colorTres:any;
 
   carouselItems: CarouselItem[] = [];
 
   aTimeOutFix: boolean = false;
+
+  inPromise: boolean;
   
   constructor(
     private productosService: ProductosService, 
@@ -33,17 +35,22 @@ export class MasVendidoInicioComponent implements OnInit {
   }
 
   setDestacadosList(){
+    this.inPromise = true;
+
     this.productosService.getMasVendido().subscribe(resp => {
       console.log('mas vendido', resp);
       if(resp.ok && resp.status === 200){
         this.productsBehavior.parseDefaultPrice(resp.body).then(val => {
+          this.inPromise = false;
           this.masVendidoList = val;
         })
         this.generateCarousel();
       }else{
+        this.inPromise = false;
         this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
       }
     }, error => {
+      this.inPromise = false;
       this.ts.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
     });
   }
