@@ -7,21 +7,49 @@ import { DeliveryService } from '../../services/delivery.service'
 })
 export class EnviosPageComponent implements OnInit {
 
+  lista_a:any =[];
+  lista_b:any = [];
+  lista_c:any = [];
+
   constructor(private deliveryService: DeliveryService) { }
 
   ngOnInit() {
 
     this.deliveryService._getDelivery().subscribe(
-      (resp:any) => {
-        if(resp){
-          console.log(resp)
-        }        
+      (resp:any) => {  
+
+        const nroDivido:any =  parseInt(resp.length) / parseInt('3') // dividimos en las 3 columnas
+
+        // Motamos en cada una de las columnas
+        const stop_uno:any  =  nroDivido;
+        const stop_dos:any  =  parseInt(nroDivido) * 2;
+        const stop_tres:any = parseInt(nroDivido) * 3; 
+
+        for(let i in resp){
+
+          if(i < stop_uno){ 
+            this.lista_a.push(resp[i]);
+          }
+
+          if(i > stop_uno){ 
+            if(i <= stop_dos){ 
+              this.lista_b.push(resp[i]);
+            }
+          }
+ 
+          if(i > stop_dos){ 
+            if(i <= stop_tres){
+              this.lista_c.push(resp[i]);
+            }
+          }
+
+        }
       },
       error => {
         console.log(error)
       }
     )
-
+    
   }
 
 }

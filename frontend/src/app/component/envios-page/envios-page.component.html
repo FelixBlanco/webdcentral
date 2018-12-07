@@ -2,5 +2,74 @@
   <!-- Aqui esta todo el banner -->
 </div>
 
+<div class="banner-secundario" style="background-image: url('../../assets/banner_principal_delivery-secundario.jpg'); margin-top: 2%">
+  <!-- Aqui esta todo el banner -->
+</div>
+
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="text-center txt-azul font-bold p-5">COSTO Y ZONA DE ENTREGA</h2>
+    </div>
+  </div>
+
+  <!--  Lista A -->
+  <div class="row txt-azul font-bold">    
+    <div class="col-md-4">
+      <div class="cont" *ngFor="let l_a of lista_a">				
+          <div class="row" >
+            <div class="col-md-8">
+              <h6 style="margin-top: 7%;"><i>{{l_a.Descripcion_Localidad}}</i></h6>
+            </div>
+            <div class="col-md-4">
+              <h2 class="text-right">$ {{l_a.Comision1_Zona}}</h2>
+            </div>
+            <hr>            
+          </div>				
+          <p class="text-justify">
+            {{l_a.Descripcion_Zona}}            
+          </p>
+        </div>
+    </div>
+
+    <!-- Lista B -->
+    <div class="col-md-4">
+      <div class="cont" *ngFor="let l_b of lista_b">				
+          <div class="row txt-azul font-bold" >
+            <div class="col-md-8">
+              <h6 style="margin-top: 7%;"><i>{{l_b.Descripcion_Localidad}}</i></h6>
+            </div>
+            <div class="col-md-4">
+              <h2 class="text-right">$ {{l_b.Comision1_Zona}}</h2>
+            </div>
+            <hr>            
+          </div>				
+          <p class="text-justify">
+            {{l_b.Descripcion_Zona}}            
+          </p>
+        </div>
+      </div>
+
+    <!-- Lista C -->
+    <div class="col-md-4">
+      <div class="cont" *ngFor="let l_a of lista_a">				
+          <div class="row txt-azul font-bold" >
+            <div class="col-md-8">
+              <h6 style="margin-top: 7%;"><i>{{l_a.Descripcion_Localidad}}</i></h6>
+            </div>
+            <div class="col-md-4">
+              <h2 class="text-right">$ {{l_a.Comision1_Zona}}</h2>
+            </div>
+            <hr>            
+          </div>				
+          <p class="text-justify">
+            {{l_a.Descripcion_Zona}}            
+          </p>
+        </div>
+      </div>    
+  </div>
+</div>
 
 

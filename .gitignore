@@ -1,6 +1,5 @@
 backend/.env
-backend/vendor/
-vendor/
+vendor
 backend/vendor
 backend/vendor/composer/autoload_static.php
 backend/vendor/composer/autoload_real.php

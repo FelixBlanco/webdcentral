@@ -16,10 +16,14 @@ hr{
     cursor: pointer;
     background-repeat: no-repeat;
     background-size: 100%;
+    border-bottom-left-radius: .7rem;
+    border-bottom-right-radius: .7rem;
 }
 .deposito-cards .card-img-top{
     border-top-left-radius: calc(.55rem - 1px);
     border-top-right-radius: calc(.55rem - 1px);
+    border-bottom-left-radius: .7rem;
+    border-bottom-right-radius: .7rem;
 }
 
 .deposito-cards .lg{
@@ -47,8 +51,8 @@ hr{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    width: 80%;
-    margin: 10px auto;
+    width: 100%;
+    margin: 0px auto;
 }
 
 .deposito-cards .card-body p{

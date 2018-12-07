@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\TurnosMail;
+use App\StatusTurno;
 use App\turno;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -11,9 +12,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
-class TurnoController extends Controller {
-
-    public function add(Request $request) {
+class TurnoController extends Controller
+{
+    public function add(Request $request)
+    {
 
         $this->validate($request, [
             'fk_idClasificado'   => 'required',
@@ -35,9 +37,10 @@ class TurnoController extends Controller {
 
         try {
 
-            $turno            = new turno($request->all());
+            $turno = new turno($request->all());
             $turno->fk_idUser = Auth::user()->fk_idPerfil;
             $turno->fechaHora = Carbon::now();
+            $turno->statusTurno;
 
             $turno->save();
 
@@ -49,7 +52,6 @@ class TurnoController extends Controller {
                 'msj'   => 'Turno Creado',
                 'turno' => $turno,
             ];
-
 
             //Mail::to(Auth::user()->email)->send(new TurnosMail($turno));
             DB::commit();
@@ -66,7 +68,8 @@ class TurnoController extends Controller {
         }
     }
 
-    public function update(Request $request, $idTurnos) {
+    public function update(Request $request, $idTurnos)
+    {
 
         if ($request->all() == []) {
             $response = [
@@ -81,13 +84,14 @@ class TurnoController extends Controller {
             $turno = turno::findOrFail($idTurnos);
 
             $turno->fill($request->all());
+            $turno->statusTurno;
 
             $response = [
                 'msj' => 'Info del Turno actulizada',
             ];
             $turno->save();
 
-            Mail::to(Auth::user()->email)->send(new TurnosMail($turno));
+            //Mail::to(Auth::user()->email)->send(new TurnosMail($turno));
             DB::commit();
 
             return response()->json($response, 200);
@@ -101,9 +105,10 @@ class TurnoController extends Controller {
         }
     }
 
-    public function listar() {
+    public function listar()
+    {
 
-        $turno    = turno::with([ 'clasificado', 'localAdherido', 'statusTurno' ])->get();
+        $turno = turno::with(['clasificado', 'localAdherido', 'statusTurno'])->get();
         $response = [
             'msj'    => 'Lista de Turnos',
             'turnos' => $turno,
@@ -112,7 +117,8 @@ class TurnoController extends Controller {
         return response()->json($response, 201);
     }
 
-    public function borrar($idTurnos) {
+    public function borrar($idTurnos)
+    {
 
         $turno = turno::findOrFail($idTurnos);
         $turno->delete();
@@ -122,16 +128,16 @@ class TurnoController extends Controller {
         ];
 
         return response()->json($response, 201);
-
     }
 
-    public function listarPorId($idTurnos) {
+    public function listarPorId($idTurnos)
+    {
 
-        $turno    = turno::find($idTurnos);
+        $turno = turno::find($idTurnos);
 
-        if(is_null($turno)){
+        if (is_null($turno)) {
             $response = [
-                'msj'    => 'El turno no existe',
+                'msj' => 'El turno no existe',
             ];
 
             return response()->json($response, 404);
@@ -145,4 +151,16 @@ class TurnoController extends Controller {
         return response()->json($response, 201);
     }
 
+    public function listarTodoslosEstatusTurnos()
+    {
+
+        $estatus_turno = StatusTurno::pluck('descripcion', 'idStatusTurno');
+
+        $response = [
+            'msj'   => 'Lista de estatus de Turnos',
+            'lista' => $estatus_turno,
+        ];
+
+        return response()->json($response, 201);
+    }
 }

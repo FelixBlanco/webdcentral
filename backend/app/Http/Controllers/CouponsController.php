@@ -186,6 +186,7 @@ class CouponsController extends Controller {
         $response = [
             'msj'   => 'Cupones del cliente ',
             'cupon' => $Coupons,
+
         ];
 
         return response()->json($response, 200);

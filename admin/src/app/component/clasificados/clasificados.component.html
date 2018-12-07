@@ -21,8 +21,8 @@
         </form>        
       </div>
       <div class="modal-footer">
-        <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
-        <div *ngIf='isPromise'>
+        <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='!inPromise'>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button class="btn btn-success" data-dismiss="modal" (click)="addClasificado()" [disabled]="!myForm.invalid">
             Guardar          
@@ -66,8 +66,8 @@
         </form>                 
       </div>
       <div class="modal-footer">
-        <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
-        <div *ngIf='isPromise'>
+        <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='!inPromise'>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button class="btn btn-success" data-dismiss="modal" (click)="editClasificado()">
             Guardar          
@@ -82,7 +82,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <h3 class="p-4">Clasificados</h3>
+    <h3 class="p-5 text-center">Clasificados</h3>
     <hr>
   </div>
 </div>

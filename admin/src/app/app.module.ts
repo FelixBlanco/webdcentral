@@ -3,7 +3,7 @@ import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatProgressSpinnerModule} from '@angular/material';
+import { UserIdleModule } from 'angular-user-idle';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -112,9 +112,9 @@ import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/p
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxDatatableModule,
-    MaterialUiModule
+    MaterialUiModule,
+    UserIdleModule.forRoot({idle: 0, timeout: 0, ping: 30})
   ],
-  exports:[MatProgressSpinnerModule],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [

@@ -3,19 +3,19 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="">Color Oscuro</label>
-        <input type="color" [(ngModel)]="form.colorOscuro" class="form-control" placeholder="Color Oscuro">
+        <input type="input" [(ngModel)]="form.colorOscuro" class="form-control" placeholder="Color Oscuro">
       </div>
       <div class="form-group">
         <label for="">Color Medio</label>
-        <input type="color" [(ngModel)]="form.colorMedio" class="form-control" placeholder="Color Medio">
+        <input type="input" [(ngModel)]="form.colorMedio" class="form-control" placeholder="Color Medio">
       </div>
       <div class="form-group">
         <label for="">Color Claro</label>
-        <input type="color" [(ngModel)]="form.colorClaro" class="form-control" placeholder="Color Claro">
+        <input type="input" [(ngModel)]="form.colorClaro" class="form-control" placeholder="Color Claro">
       </div>
       <div class="form-group">
-        <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
-        <div *ngIf='isPromise'>
+        <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='!inPromise'>
           <button class="btn btn-primary" (click)="addColores()"> Guardar </button>
         </div>
       </div>

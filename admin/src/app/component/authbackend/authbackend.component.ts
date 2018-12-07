@@ -28,7 +28,6 @@ export class AuthbackendComponent implements OnInit {
         // Activamos la sesion
         // this.alerService.Success('Iniciando...')
         localStorage.setItem('access_token',resp.access_token)
-        localStorage.setItem('sesion_login','true')
         
         // Buscamos la informacion del usuario
         this.loginService._getAuthUser(resp.access_token).subscribe(
