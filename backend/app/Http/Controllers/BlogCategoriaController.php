@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Blog;
 use App\BlogCategoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,10 +10,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
-class BlogCategoriaController extends Controller
-{
-    public function add(Request $request)
-    {
+class BlogCategoriaController extends Controller {
+    public function add(Request $request) {
 
         $this->validate($request, [
             'titulo' => 'required',
@@ -31,25 +30,25 @@ class BlogCategoriaController extends Controller
             $originalImage = $request->imagen;
 
             $thumbnailImage = Image::make($originalImage);
-            $thumbnailImage->fit(2048, 2048, function ($constraint) {
+            $thumbnailImage->fit(2048, 2048, function($constraint) {
                 $constraint->aspectRatio();
             });
             $nombre_publico = $originalImage->getClientOriginalName();
-            $extension = 'png';
+            $extension      = 'png';
             //$extension = $originalImage->getClientOriginalExtension();
             $nombre_interno1 = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno1 = str_slug($nombre_interno1, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
             Storage::disk('local')->put('\\Categoria_blog\\'.$nombre_interno1, (string) $thumbnailImage->encode());
             /*para la imagen*/
 
-            $CategoriaBlog = new BlogCategoria($request->all());
+            $CategoriaBlog         = new BlogCategoria($request->all());
             $CategoriaBlog->imagen = $nombre_interno1;
 
             $CategoriaBlog->save();
 
             $response = [
-                'msj'         => 'Categoria de blog Creado',
-                'categoria'   => $CategoriaBlog,
+                'msj'        => 'Categoria de blog Creado',
+                'categoria'  => $CategoriaBlog,
                 'set_imagen' => asset('storage\\Categoria_blog\\'.$CategoriaBlog->imagen),
             ];
             DB::commit();
@@ -66,8 +65,8 @@ class BlogCategoriaController extends Controller
         }
     }
 
-    public function edit(Request $request, $idBlogCategoria)
-    {
+    public function edit(Request $request, $idBlogCategoria) {
+
 
         if ($request->all() == []) {
             $response = [
@@ -83,11 +82,32 @@ class BlogCategoriaController extends Controller
             $CatBlog = BlogCategoria::find($idBlogCategoria);
 
             if (! is_null($CatBlog)) {
+
                 $CatBlog->fill($request->all());
 
+                if(!is_null($request->imagen)) {
+
+                    $originalImage = $request->imagen;
+
+                    $thumbnailImage = Image::make($originalImage);
+                    $thumbnailImage->fit(2048, 2048, function($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $nombre_publico = $originalImage->getClientOriginalName();
+                    $extension      = 'png';
+                    //$extension = $originalImage->getClientOriginalExtension();
+                    $nombre_interno1 = str_replace('.'.$extension, '', $nombre_publico);
+                    $nombre_interno1 = str_slug($nombre_interno1, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+                    Storage::disk('local')->put('\\Categoria_blog\\'.$nombre_interno1, (string) $thumbnailImage->encode());
+                    /*para la imagen*/
+
+                    $CatBlog->imagen = $nombre_interno1;
+                }
+
                 $response = [
-                    'msj'       => 'Información actulizada',
-                    'categoria' => $CatBlog,
+                    'msj'        => 'Información actulizada',
+                    'categoria'  => $CatBlog,
+                    'set_imagen' => asset('storage\\Categoria_blog\\'.$CatBlog->imagen),
                 ];
 
                 $CatBlog->save();
@@ -111,8 +131,7 @@ class BlogCategoriaController extends Controller
         }
     }
 
-    public function borrar($idBlogCategoria)
-    {
+    public function borrar($idBlogCategoria) {
         DB::beginTransaction();
 
         try {
@@ -136,11 +155,10 @@ class BlogCategoriaController extends Controller
         }
     }
 
-    public function listar()
-    {
+    public function listar() {
         $CatBlog = BlogCategoria::get();
 
-        $CatBlog->each(function ($CatBlog) {
+        $CatBlog->each(function($CatBlog) {
             $CatBlog->set_imagen = asset('storage\\Categoria_blog\\'.$CatBlog->imagen);
         });
 
@@ -152,15 +170,14 @@ class BlogCategoriaController extends Controller
         return response()->json($response, 200);
     }
 
-    public function buscarIdBlogCategoria($idBlogCategoria)
-    {
+    public function buscarIdBlogCategoria($idBlogCategoria) {
 
         $CatBlog = BlogCategoria::find($idBlogCategoria);
         if (! is_null($CatBlog)) {
 
             $response = [
-                'msj'         => 'Lista de Categorias',
-                'cat'         => $CatBlog,
+                'msj'        => 'Lista de Categorias',
+                'cat'        => $CatBlog,
                 'set_imagen' => asset('storage\\Categoria_blog\\'.$CatBlog->imagen),
             ];
 
@@ -173,4 +190,5 @@ class BlogCategoriaController extends Controller
             return response()->json($response, 404);
         }
     }
+
 }
