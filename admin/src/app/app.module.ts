@@ -54,6 +54,7 @@ import { OfertasComponent } from './component/ofertas/ofertas.component';
 import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/reclamos-sugerencias.component';
 import { ConfigColorComponent } from './component/config-color/config-color.component';
 import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
+import { ClasificadoReclamoComponent } from './component/clasificado-reclamo/clasificado-reclamo.component';
 
 
 @NgModule({
@@ -101,7 +102,8 @@ import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/p
     OfertasComponent,
     ReclamosSugerenciasComponent,
     ConfigColorComponent,
-    PreguntasFrecuentesComponent
+    PreguntasFrecuentesComponent,
+    ClasificadoReclamoComponent
   ],
   imports: [
     BrowserModule,

@@ -12,24 +12,51 @@
         <form [formGroup]="myForm">
           <div class="form-group">
             <label>Nombre</label>
-            <input type="text" formControlName="nombre" class="form-control" placeholder="Ingrege el nombre">
+            <input type="text" formControlName="nombre" class="form-control" placeholder="Ingrese el nombre">
           </div>
-        </form>        
+        </form>
       </div>
       <div class="modal-footer">
-        <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <mat-spinner *ngIf='inPromise' diameter="30" style="margin: 0 auto"></mat-spinner>
         <div *ngIf='!inPromise'>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button class="btn btn-success" data-dismiss="modal" (click)="addClasificadoReclamo()" [disabled]="!myForm.invalid">
-            Guardar          
+            Guardar
           </button>
-        </div>  
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-
+<!-- Modal Modificar -->
+<div class="modal fade" id="modificar" tabindex="-1" role="dialog" aria-labelledby="modificarModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info">
+        <h5 class="modal-title text-white" id="modificarModal">Modificar <span class="text-capitalize" *ngIf="questionToUpdate">'{{questionToUpdate.pregunta}}'</span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="myFormUpdate">
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" formControlName="nombre" class="form-control" id="nombre" placeholder="Ingrese el nombre">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <mat-spinner *ngIf='inPromise' diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='!inPromise'>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-info" [disabled]="!myFormUpdate.invalid" (click)="updateClasificadoReclamo()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- cabecera -->
 <div class="row">
@@ -41,66 +68,101 @@
 
 <div class="row" style="margin-bottom:2%">
   <div class="col-md-2">
-      <select class="form-control" [(ngModel)]="limit">
-        <option>5</option>
-        <option>10</option>
-        <option>20</option>
-        <option >Todos </option>
-      </select>
+    <select class="form-control" [(ngModel)]="limit">
+      <option>5</option>
+      <option>10</option>
+      <option>20</option>
+      <option *ngIf="listaClasificadoReclamo" value="{{listaClasificadoReclamo.length}}">Todos ({{listaClasificadoReclamo.length}})</option>
+    </select>
   </div>
   <div class="col-md-7">
-      <input class="form-control" type="text" placeholder="Buscar" (keyup)='updateFilter($event)'>
+    <input class="form-control" type="text" placeholder="Buscar" (keyup)='updateFilter($event)'>
   </div>
   <div class="col-md-3">
-      <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo" (click)="click()">Nuevo</button>
+    <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#nuevo" (click)="click()">Nuevo</button>
   </div>
 </div>
 
-  <!-- Modal Eliminar -->
-  <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
+<!-- Modal Eliminar -->
+<div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="questionToUpdate">'{{questionToUpdate.pregunta}}'</span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted">¿Desea elíminar el registro?</p>
+        <div *ngIf="inPromise">
+          <mat-spinner  diameter="30" style="margin: 0 auto;"></mat-spinner>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-danger" [disabled]="inPromise" (click)="deleteClasificadoReclamo()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Activar/Inactivar estado-->
+<div class="modal fade" id="estado" tabindex="-1" role="dialog" aria-labelledby="estatusModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header bg-danger">
-          <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="questionToUpdate">'{{questionToUpdate.pregunta}}'</span></h5>
+        <div class="modal-header bg-warning">
+          <h5 class="modal-title text-white" id="estatusModal">Cambiar estado</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p class="text-muted">¿Desea elíminar el registro?</p>
+          <p *ngIf="!inPromise" class="text-muted">
+            El siguiente regtistro pasará a estar en estatus 
+            <ng-container *ngIf="clasificadoReclamoToUpdate" [ngSwitch]="clasificadoReclamoToUpdate.fk_idStatusReclamo">
+              <span class="text-danger" *ngSwitchCase="1">INACTIVO</span>
+              <span class="text-success" *ngSwitchDefault>ACTIVO</span>
+            </ng-container>
+          </p>
+          <div *ngIf="inPromise">
+            <mat-spinner  diameter="30" style="margin: 0 auto;"></mat-spinner>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-danger" [disabled]="inPromise" (click)="deleteClasificadoReclamo()">Eliminar</button>
+          <button type="submit" class="btn btn-warning text-white" [disabled]="inPromise" (click)="changeStatus()">Aceptar</button>
         </div>
       </div>
     </div>
   </div>
-  
+
+
+
+
 <!-- Tabla -->
-<ngx-datatable
-  #table
-  class="bootstrap"
-  [rows]="rows"
-  [columns]="columns"
-  [columnMode]="'force'"
-  [headerHeight]="50"
-  [footerHeight]="50"
-  [rowHeight]="'auto'"
-  [limit]="limit"
-  style="background:white">
+<ngx-datatable #table class="bootstrap" [rows]="rows" [columns]="columns" [columnMode]="'force'" [headerHeight]="50"
+  [footerHeight]="50" [rowHeight]="'auto'" [limit]="limit" style="background:white">
   <ngx-datatable-column name="ID" prop="idClasificadoReclamo"></ngx-datatable-column>
   <ngx-datatable-column name="Nombre" prop="nombre"></ngx-datatable-column>
-  <ngx-datatable-column name="Estado" prop="fk_idStatusReclamo"></ngx-datatable-column>
+  <ngx-datatable-column name="Estado" prop="fk_idStatusReclamo">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <ng-container [ngSwitch]="row.fk_idStatusReclamo">
+        <span class="text-danger" *ngSwitchCase="2">INACTIVO</span>
+        <span class="text-success" *ngSwitchDefault>ACTIVO</span>
+      </ng-container>
+    </ng-template>
+  </ngx-datatable-column>
   <ngx-datatable-column name="" prop="opts" [width]="100">
     <ng-template ngx-datatable-cell-template let-row="row">
       <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#modificar"><i class="fa fa-edit"></i></a>
       <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
-    </ng-template>                    
+      <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#estado"><i class="fa fa-ban"></i></a>
+
+    </ng-template>
   </ngx-datatable-column>
 
 
 </ngx-datatable>
 <div class="spinner-cont">
-  <mat-spinner *ngIf='inPromise2'  diameter="50" style="margin: 0 auto;"></mat-spinner>
+  <mat-spinner *ngIf='inPromise2' diameter="50" style="margin: 0 auto;"></mat-spinner>
 </div>

@@ -23,6 +23,7 @@ import { GaleryProductComponent } from './component/galery-product/galery-produc
 import { ClasificadosComponent } from './component/clasificados/clasificados.component';
 import { CategoriaBlogComponent } from './component/categoria-blog/categoria-blog.component';
 import { BlogComponent } from './component/blog/blog.component';
+import { ClasificadoReclamoComponent } from './component/clasificado-reclamo/clasificado-reclamo.component';
 
 const routes: Routes = [
   { path: 'Galeria', component: GaleriaHomeComponent },
@@ -44,7 +45,8 @@ const routes: Routes = [
   { path: 'clasificados', component: ClasificadosComponent },
   { path: 'categoria-blog', component: CategoriaBlogComponent },
   { path: 'blog', component: BlogComponent },
-  { path: 'locales-adheridos', component: LocalesAdheridosComponent }
+  { path: 'locales-adheridos', component: LocalesAdheridosComponent },
+  { path: 'clasificadoReclamo', component: ClasificadoReclamoComponent}
 ];
 
 @NgModule({
