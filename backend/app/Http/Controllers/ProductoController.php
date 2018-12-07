@@ -407,7 +407,13 @@ class ProductoController extends Controller {
         INNER JOIN tb_order_header ON tb_order_header.idOrderHeader = tb_order_body.fk_idOrderHeader 
         INNER JOIN tb_productos ON tb_productos.codeProdSys = tb_order_body.codeProdSys 
         WHERE tb_order_header.fk_idStateOrder = 2  and tb_productos.fk_idSatate = 1
-        group  by   tb_productos.idProducto
+        group  by   tb_productos.idProducto, tb_productos.nombre,tb_productos.urlImage,
+        tb_productos.fk_idSatate,tb_productos.SubRubro2,tb_productos.precioL1,
+        tb_productos.precioL2,tb_productos.precioL3,
+        tb_productos.precioL4,tb_productos.precioL5,
+        tb_productos.precioL6,tb_productos.precioL7,
+        tb_productos.precioL8,tb_productos.precioL9,
+        tb_productos.codeProdSys, tb_productos.kiloProdcuto
         LIMIT 10");
 
         return response()->json($LMV, 200);
