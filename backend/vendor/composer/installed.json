@@ -5157,7 +5157,7 @@
                 "dev-master": "4.2-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Symfony\\Component\\HttpFoundation\\": ""
