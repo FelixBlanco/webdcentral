@@ -17,7 +17,12 @@ export class RegistroService {
 
     verificarRegistro(body: any): Observable<HttpResponse<any>> {
         // console.log("verificarRegistro(body: any)",body.nameUser);
-        return this.http.get<any>(`http://depocentral.dyndns.org:8753/api/v1/client/ml/byid/${body.nameUser}`, { headers: this.httpOptions, observe: 'response' });
+        console.log("desde el servicio body.nameUser",body);
+        console.log("desde el servicio body.nameUser",body.nameUser);
+        if (body.nameUser) {
+            return this.http.get<any>(`http://depocentral.dyndns.org:8753/api/v1/client/ml/byid/${body.nameUser}`, { headers: this.httpOptions, observe: 'response' });
+        } else return;
+        
     }
 
     ingresarRegistro(body: any): Observable<HttpResponse<any>> {
