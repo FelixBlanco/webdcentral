@@ -362,6 +362,11 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     Route::post('client/ml/add', 'OrderDriverController@addClientMl');
     Route::post('client/ml/update', 'OrderDriverController@updateClienteMl');
 
+    /*** CLASIFICADOS ****/
+    Route::get('lista-por-nro/{id}','ClasificadoController@listaPorNro');
+
+    /*** LOCALES ADHERIDOS ****/
+    Route::get('lista-locales-por-nro/{id}','LocalesAdheridoController@listaLocalesPorNro');
 });
 
 

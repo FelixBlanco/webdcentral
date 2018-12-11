@@ -52,23 +52,17 @@
       </div>
       <div class="col-md-4">
         <h4 class="font-bold txt-blanco">SERVICIOS</h4>
-        <p class="txt-blanco font-light">
-          Envios y Entregas <br>
-          Atencion al Cliente <br>
-          Adopcion Responsable <br>
-          Pedidos y Encontrados <br>
-          Otros <br>
-        </p>        
+        
+        <div *ngFor="let lista_clasificado of lista_clasificados" class="txt-blanco font-light">
+          {{lista_clasificado.titulo}}
+        </div>
+          
       </div>
       <div class="col-md-4">
         <h4 class="font-bold txt-blanco">LOCALES ADHERIDOS</h4>
-        <p class="txt-blanco font-light">
-          Veterinarias <br>
-          Guardias 24 Hs <br>
-          Paseadores <br>
-          Baño y Peluqueria <br>
-          Criaderos <br>
-        </p>        
+        <div *ngFor="let l_l of lista_locales" class="txt-blanco font-light">
+            {{l_l.nombre}}
+          </div>                  
         </div>
     </div>
   </div>
