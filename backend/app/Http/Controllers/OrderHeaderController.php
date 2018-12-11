@@ -118,5 +118,44 @@ class OrderHeaderController extends Controller
         return response()->json($response, 200);
     }
 
+    public function add(Request $request) {
+
+      
+        DB::beginTransaction();
+        try {
+
+          
+            DB::connection('mysql')->insert("  INSERT INTO EncabezadosVentas_APP 
+            (   Email_Cliente,
+                Fecha_Pedido,
+                Numero_Pedido,
+                Estado_Pedido,
+                Domicilio_Entrega,
+                Codigo_Postal,
+                comentaryClient) VALUES(
+                 '$request->Email_Cliente',  
+                 '$mytime',
+                 $request->Numero_Pedido,
+                 'Solicitado',
+                 '$request->Domicilio_Entrega',
+                 '$request->Codigo_Postal',
+                 '$request->comentaryClient'
+              )");
+
+            return response()->json("Registro creado", 200);
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            Log::error('Ha ocurrido un error en NotificationController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+            ], 500);
+        }
+
+
+    }
+
 
 }
