@@ -295,4 +295,15 @@ class LocalesAdheridoController extends Controller
             ], 500);
         }
     }
+
+    public function listaLocalesPorNro($nro){
+        $locales_adheridos = LocalesAdherido::limit($nro)->get();
+
+        $response = [
+            'msj'         => 'Lista Locales Adheridos',
+            'locales_adheridos' => $locales_adheridos,
+        ];
+
+        return response()->json($response, 201);        
+    }
 }
