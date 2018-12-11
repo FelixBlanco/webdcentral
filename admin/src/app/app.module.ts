@@ -3,7 +3,8 @@ import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { UserIdleModule } from 'angular-user-idle';
+// import {MatProgressSpinnerModule} from '@angular/material';
+// import { UserIdleModule } from 'angular-user-idle';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -44,16 +45,22 @@ import { SuscripcionComponent } from './component/suscripcion/suscripcion.compon
 import { GaleryProductComponent } from './component/galery-product/galery-product.component';
 import { LocalesAdheridosComponent } from './component/locales-adheridos/locales-adheridos.component';
 import { ClasificadosComponent } from './component/clasificados/clasificados.component';
+import { TurnoComponent } from './component/turno/turno.component';
 import { CategoriaBlogComponent } from './component/categoria-blog/categoria-blog.component';
 import { BlogComponent } from './component/blog/blog.component';
-import { MaterialUiModule } from './material-ui.module';
-import { ConfigFooterComponent } from './component/config-footer/config-footer.component';
 import { GaleriaHomeComponent } from './component/galeria-home/galeria-home.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
+import { ConfigFooterComponent } from './component/config-footer/config-footer.component';
 import { OfertasComponent } from './component/ofertas/ofertas.component';
 import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/reclamos-sugerencias.component';
 import { ConfigColorComponent } from './component/config-color/config-color.component';
 import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
+import { RegistroComponent } from './component/registro/registro.component';
+import { PageComponent } from './component/layout/page/page.component';
+import { PrincipalComponent } from './component/layout/principal/principal.component';
+import { AuthGuard } from './services/auth.guard';
+
+// import { MaterialUiModule } from './material-ui.module';
 
 
 @NgModule({
@@ -93,15 +100,19 @@ import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/p
     SuscripcionComponent,
     GaleryProductComponent,
     ClasificadosComponent,
+    TurnoComponent,
     CategoriaBlogComponent,
     BlogComponent,
-    ConfigFooterComponent,
     GaleriaHomeComponent,
     PerfilComponent,
+    ConfigFooterComponent,
     OfertasComponent,
     ReclamosSugerenciasComponent,
     ConfigColorComponent,
-    PreguntasFrecuentesComponent
+    PreguntasFrecuentesComponent,
+    RegistroComponent,
+    PageComponent,
+    PrincipalComponent  
   ],
   imports: [
     BrowserModule,
@@ -112,10 +123,10 @@ import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/p
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxDatatableModule,
-    MaterialUiModule,
-    UserIdleModule.forRoot({idle: 0, timeout: 0, ping: 30})
+    // MaterialUiModule,
+    // UserIdleModule.forRoot({idle: 0, timeout: 0, ping: 30})
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

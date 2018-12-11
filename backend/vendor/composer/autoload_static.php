@@ -4,7 +4,11 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit572c374f84d48b4a04ea6a4c0e6eec52
+<<<<<<< HEAD
+class ComposerStaticInit3f87f3faf4906405215493e94772f82b
+=======
+class ComposerStaticInitfefd66ce41d51020379f81382d719fb3
+>>>>>>> williamBranch
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -4930,11 +4934,19 @@ class ComposerStaticInit572c374f84d48b4a04ea6a4c0e6eec52
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit572c374f84d48b4a04ea6a4c0e6eec52::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit572c374f84d48b4a04ea6a4c0e6eec52::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit572c374f84d48b4a04ea6a4c0e6eec52::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit572c374f84d48b4a04ea6a4c0e6eec52::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit572c374f84d48b4a04ea6a4c0e6eec52::$classMap;
+<<<<<<< HEAD
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3f87f3faf4906405215493e94772f82b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3f87f3faf4906405215493e94772f82b::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit3f87f3faf4906405215493e94772f82b::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3f87f3faf4906405215493e94772f82b::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit3f87f3faf4906405215493e94772f82b::$classMap;
+=======
+            $loader->prefixLengthsPsr4 = ComposerStaticInitfefd66ce41d51020379f81382d719fb3::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitfefd66ce41d51020379f81382d719fb3::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitfefd66ce41d51020379f81382d719fb3::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitfefd66ce41d51020379f81382d719fb3::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitfefd66ce41d51020379f81382d719fb3::$classMap;
+>>>>>>> williamBranch
 
         }, null, ClassLoader::class);
     }
