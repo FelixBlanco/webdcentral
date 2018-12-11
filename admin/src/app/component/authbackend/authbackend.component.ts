@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertsService } from '../../services/alerts.service';
 import { LoginService } from "../../services/login.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authbackend',
@@ -15,7 +16,8 @@ export class AuthbackendComponent implements OnInit {
 
   constructor(
     private alerService:AlertsService,
-    private loginService:LoginService
+    private loginService:LoginService,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -42,7 +44,10 @@ export class AuthbackendComponent implements OnInit {
               localStorage.setItem('imgPerfil',resp.img_perfil);
             }
             this.inPromise = false;
-            location.reload(); // Actualizamos para iniciar
+            this.router.navigate(['/perfil']);
+            // location.reload(); 
+            // Actualizamos para iniciar
+            
           }
         )
       },
