@@ -56,6 +56,9 @@ import { ReclamosSugerenciasComponent } from './component/reclamos-sugerencias/r
 import { ConfigColorComponent } from './component/config-color/config-color.component';
 import { PreguntasFrecuentesComponent } from './component/preguntas-frecuentes/preguntas-frecuentes.component';
 import { RegistroComponent } from './component/registro/registro.component';
+import { PageComponent } from './component/layout/page/page.component';
+import { PrincipalComponent } from './component/layout/principal/principal.component';
+import { AuthGuard } from './services/auth.guard';
 
 // import { MaterialUiModule } from './material-ui.module';
 
@@ -107,7 +110,9 @@ import { RegistroComponent } from './component/registro/registro.component';
     ReclamosSugerenciasComponent,
     ConfigColorComponent,
     PreguntasFrecuentesComponent,
-    RegistroComponent  
+    RegistroComponent,
+    PageComponent,
+    PrincipalComponent  
   ],
   imports: [
     BrowserModule,
@@ -121,7 +126,7 @@ import { RegistroComponent } from './component/registro/registro.component';
     // MaterialUiModule,
     // UserIdleModule.forRoot({idle: 0, timeout: 0, ping: 30})
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
