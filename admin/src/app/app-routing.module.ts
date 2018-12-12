@@ -23,6 +23,7 @@ import { ClasificadosComponent } from './component/clasificados/clasificados.com
 import { TurnoComponent } from './component/turno/turno.component';
 import { CategoriaBlogComponent } from './component/categoria-blog/categoria-blog.component';
 import { BlogComponent } from './component/blog/blog.component';
+import { ClasificadoReclamoComponent } from './component/clasificado-reclamo/clasificado-reclamo.component';
 import { RegistroComponent } from './component/registro/registro.component';
 import { PageComponent } from './component/layout/page/page.component';
 import { PrincipalComponent } from './component/layout/principal/principal.component';
@@ -55,6 +56,8 @@ const routes: Routes = [
       { path: 'categoria-blog', component: CategoriaBlogComponent, canActivate: [AuthGuard] },
       { path: 'blog', component: BlogComponent, canActivate: [AuthGuard] },
       { path: 'locales-adheridos', component: LocalesAdheridosComponent, canActivate: [AuthGuard] },
+      { path: 'clasificadoReclamo', component: ClasificadoReclamoComponent}
+
     ]
   }, {
     path: '',

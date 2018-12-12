@@ -59,8 +59,10 @@ import { RegistroComponent } from './component/registro/registro.component';
 import { PageComponent } from './component/layout/page/page.component';
 import { PrincipalComponent } from './component/layout/principal/principal.component';
 import { AuthGuard } from './services/auth.guard';
+import { MaterialUiModule } from './material-ui.module';
 
-// import { MaterialUiModule } from './material-ui.module';
+import { ClasificadoReclamoComponent } from './component/clasificado-reclamo/clasificado-reclamo.component';
+
 
 
 @NgModule({
@@ -112,7 +114,8 @@ import { AuthGuard } from './services/auth.guard';
     PreguntasFrecuentesComponent,
     RegistroComponent,
     PageComponent,
-    PrincipalComponent  
+    PrincipalComponent,  
+    ClasificadoReclamoComponent
   ],
   imports: [
     BrowserModule,
@@ -123,7 +126,7 @@ import { AuthGuard } from './services/auth.guard';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxDatatableModule,
-    // MaterialUiModule,
+    MaterialUiModule,
     // UserIdleModule.forRoot({idle: 0, timeout: 0, ping: 30})
   ],
   providers: [AuthGuard],
