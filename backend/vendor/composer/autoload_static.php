@@ -4,11 +4,7 @@
 
 namespace Composer\Autoload;
 
-<<<<<<< HEAD
-class ComposerStaticInit3f87f3faf4906405215493e94772f82b
-=======
-class ComposerStaticInitfefd66ce41d51020379f81382d719fb3
->>>>>>> williamBranch
+class ComposerStaticInita1e383784977ad5a03365191875e2755
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -512,6 +508,7 @@ class ComposerStaticInitfefd66ce41d51020379f81382d719fb3
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\GaleriaHome' => __DIR__ . '/../..' . '/app/GaleriaHome.php',
         'App\\GaleriaHomeProductos' => __DIR__ . '/../..' . '/app/GaleriaHomeProductos.php',
+        'App\\HistoryMp' => __DIR__ . '/../..' . '/app/HistoryMp.php',
         'App\\Http\\Controllers\\API\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/AuthController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -4934,19 +4931,11 @@ class ComposerStaticInitfefd66ce41d51020379f81382d719fb3
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-<<<<<<< HEAD
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3f87f3faf4906405215493e94772f82b::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3f87f3faf4906405215493e94772f82b::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit3f87f3faf4906405215493e94772f82b::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit3f87f3faf4906405215493e94772f82b::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit3f87f3faf4906405215493e94772f82b::$classMap;
-=======
-            $loader->prefixLengthsPsr4 = ComposerStaticInitfefd66ce41d51020379f81382d719fb3::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitfefd66ce41d51020379f81382d719fb3::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInitfefd66ce41d51020379f81382d719fb3::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitfefd66ce41d51020379f81382d719fb3::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitfefd66ce41d51020379f81382d719fb3::$classMap;
->>>>>>> williamBranch
+            $loader->prefixLengthsPsr4 = ComposerStaticInita1e383784977ad5a03365191875e2755::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInita1e383784977ad5a03365191875e2755::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInita1e383784977ad5a03365191875e2755::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInita1e383784977ad5a03365191875e2755::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInita1e383784977ad5a03365191875e2755::$classMap;
 
         }, null, ClassLoader::class);
     }

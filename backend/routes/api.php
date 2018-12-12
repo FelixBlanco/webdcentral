@@ -47,6 +47,10 @@ Route::group(['prefix' => 'auth'], function () {
 
         /*ORDER HEADER (Orden de compra)*/
         Route::post('añadirOrderHeader', 'OrderHeaderController@añadir');
+
+         /*ORDER HEADER (Orden de compra)*/
+         Route::post('get/data/pago', 'OrderHeaderController@getDataPay');
+
         /*ORDER HEADER (Orden de compra)*/
 
         // Cupones
@@ -130,6 +134,10 @@ Route::group(['prefix' => 'auth'], function () {
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
+
+
+    Route::post('add/pago', 'OrderHeaderController@safePago');
+
 
     Route::post('listar', 'PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
 

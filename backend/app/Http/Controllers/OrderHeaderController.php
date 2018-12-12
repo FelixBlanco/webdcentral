@@ -118,31 +118,53 @@ class OrderHeaderController extends Controller
         return response()->json($response, 200);
     }
 
-    public function add(Request $request) {
+    public function safePago(Request $request) {
 
       
         DB::beginTransaction();
         try {
 
           
-            DB::connection('mysql')->insert("  INSERT INTO EncabezadosVentas_APP 
-            (   Email_Cliente,
-                Fecha_Pedido,
-                Numero_Pedido,
-                Estado_Pedido,
-                Domicilio_Entrega,
-                Codigo_Postal,
-                comentaryClient) VALUES(
-                 '$request->Email_Cliente',  
-                 '$mytime',
-                 $request->Numero_Pedido,
-                 'Solicitado',
-                 '$request->Domicilio_Entrega',
-                 '$request->Codigo_Postal',
-                 '$request->comentaryClient'
+            DB::connection('mysql')->insert("  INSERT INTO tb_history_mp 
+            (   data,
+            fk_idOrderHeader) VALUES(
+                 '$request->data',  
+                 $request->id
               )");
 
             return response()->json("Registro creado", 200);
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            Log::error('Ha ocurrido un error en NotificationController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+            ], 500);
+        }
+
+
+    }
+
+    public function getDataPay(Request $request) {
+
+      
+        DB::beginTransaction();
+        try {
+
+            $obj = array(
+                "clienteid"=>env('MP_clienteid', ''),
+                "clientesecret"=>env('MP_clientesecret', ''),
+                "currency_id"=>env('MP_currency_id', ''),
+                "unit_price"=>$request->unit_price,
+                "id"=>$request->idOrderHeader,
+                "title"=>"Compra Pedido ".$request->Numero_Pedido,
+                "uri"=>env('MP_URI', '')
+            );
+             
+
+            return response()->json($obj, 200);
 
         } catch (\Exception $e) {
 
