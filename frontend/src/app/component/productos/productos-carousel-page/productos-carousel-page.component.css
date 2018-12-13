@@ -2,6 +2,7 @@
     box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
     border-radius: 5px;
     width: 90%;
+    height: 500px;
  }
 .card:hover{
     background-color: rgba(0, 155, 221, 0.308);
@@ -18,10 +19,19 @@
  .card .card-body{
     border-radius: 30% 30% 0 0;
     background: #DCF5F9;
+    max-height: 50%;
+    padding-bottom: 5px;
+    
  }
 
 .card-img-top{
-    padding: 25px;
+    display: block;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    max-height: 50%;
+    width: auto;
+   
 }
 
 button{
@@ -33,4 +43,7 @@ button{
     height: 35px;
     border-radius: 50%;
     text-align: center;
+}
+h5{
+    font-size: auto;
 }
