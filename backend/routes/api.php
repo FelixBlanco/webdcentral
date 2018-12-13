@@ -128,6 +128,11 @@ Route::group(['prefix' => 'auth'], function () {
         Route::post('addCatBlog', 'BlogCategoriaController@add');
         Route::post('editCatBlog/{idBlogCategoria}', 'BlogCategoriaController@edit');
         Route::delete('borrarCatBlog/{idBlogCategoria}', 'BlogCategoriaController@borrar');
+
+        /* HORARIO DE ATENCION */
+        Route::resource('horario-atencion','HorarioAtencionController');
+        Route::get('delete-horario-atencion/{id}','HorarioAtencionController@destroy');
+        
     });
 });
 

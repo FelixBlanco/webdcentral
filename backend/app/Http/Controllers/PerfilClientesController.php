@@ -27,6 +27,7 @@ class PerfilClientesController extends Controller {
             'CUIT'                => 'required',
             'CUITrazonSocial'     => 'required',
             'CUITDomicilioFidcal' => 'required',
+            'domicilio_1'         => 'required',
 
 
         ], [
@@ -45,6 +46,7 @@ class PerfilClientesController extends Controller {
             'CUIT.required'                => 'El campo es requerido',
             'CUITrazonSocial.required'     => 'El campo es requerido',
             'CUITDomicilioFidcal.required' => 'El campo es requerido',
+            'domicilio_1.required'         => 'Un campo domicilio es requerido',
 
 
         ]);

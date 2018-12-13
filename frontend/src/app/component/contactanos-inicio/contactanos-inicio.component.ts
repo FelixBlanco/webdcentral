@@ -14,6 +14,15 @@ export class ContactanosInicioComponent implements OnInit {
 
   lat: number;
   lng: number;
+  
+  // enlaces HREF
+  nroTelefono:any='#';
+  email1:any='#';
+  email2:any='#';
+  nroWhatsapp:any='#';
+  nroWhatsapp2:any='#';
+  urlMaps:any;
+
   constructor(private footerConfigService: ConfgFooterService) {
     this.getConfigFooter();
   }
@@ -27,12 +36,22 @@ export class ContactanosInicioComponent implements OnInit {
   }
 
   getConfigFooter(){
-    this.footerConfigService._getConfigFooter().subscribe( (resp) => {
+    this.footerConfigService._getConfigFooter().subscribe( (resp:any) => {
       if(resp){
         this.footerConfig = resp;
+        
+        // Set
+        this.nroTelefono = 'tel:'+resp.nroContacto
+        this.email1 = 'mailto:'+resp.mail1
+        this.email2 = 'mailto:'+resp.mail2        
+        this.nroWhatsapp = 'whatsapp://send'
+        // this.nroWhatsapp = 'whatsapp:'+resp.whatsApp1
+        this.nroWhatsapp2 = 'whatsapp:'+resp.whatsApp2
+
         if(!isNaN(this.footerConfig.latitud) && !isNaN(this.footerConfig.longitud)){
           this.lat = Number(this.footerConfig.latitud);
           this.lng = Number(this.footerConfig.longitud);
+          this.urlMaps = 'https://maps.google.com/?ll='+this.lat+','+this.lng
         }
       }
     })

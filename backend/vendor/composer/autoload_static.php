@@ -4,15 +4,15 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita1e383784977ad5a03365191875e2755
+class ComposerStaticInit7b93d73be6d3a682e7a933867a9aee68
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'cf97c57bfe0f23854afd2f3818abb7a0' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/create_uploaded_file.php',
@@ -27,11 +27,11 @@ class ComposerStaticInita1e383784977ad5a03365191875e2755
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -181,8 +181,8 @@ class ComposerStaticInita1e383784977ad5a03365191875e2755
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Zend\\Diactoros\\' => 
         array (
@@ -354,8 +354,8 @@ class ComposerStaticInita1e383784977ad5a03365191875e2755
         ),
         'Illuminate\\Notifications\\' => 
         array (
-            0 => __DIR__ . '/..' . '/laravel/slack-notification-channel/src',
-            1 => __DIR__ . '/..' . '/laravel/nexmo-notification-channel/src',
+            0 => __DIR__ . '/..' . '/laravel/nexmo-notification-channel/src',
+            1 => __DIR__ . '/..' . '/laravel/slack-notification-channel/src',
         ),
         'Illuminate\\' => 
         array (
@@ -509,6 +509,7 @@ class ComposerStaticInita1e383784977ad5a03365191875e2755
         'App\\GaleriaHome' => __DIR__ . '/../..' . '/app/GaleriaHome.php',
         'App\\GaleriaHomeProductos' => __DIR__ . '/../..' . '/app/GaleriaHomeProductos.php',
         'App\\HistoryMp' => __DIR__ . '/../..' . '/app/HistoryMp.php',
+        'App\\HorarioAtencion' => __DIR__ . '/../..' . '/app/HorarioAtencion.php',
         'App\\Http\\Controllers\\API\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/AuthController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -530,6 +531,7 @@ class ComposerStaticInita1e383784977ad5a03365191875e2755
         'App\\Http\\Controllers\\GaleriaHomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/GaleriaHomeController.php',
         'App\\Http\\Controllers\\GaleriaHomeProductoController' => __DIR__ . '/../..' . '/app/Http/Controllers/GaleriaHomeProductoController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\HorarioAtencionController' => __DIR__ . '/../..' . '/app/Http/Controllers/HorarioAtencionController.php',
         'App\\Http\\Controllers\\LocalesAdheridoController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocalesAdheridoController.php',
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\OfertaController' => __DIR__ . '/../..' . '/app/Http/Controllers/OfertaController.php',
@@ -4931,11 +4933,11 @@ class ComposerStaticInita1e383784977ad5a03365191875e2755
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita1e383784977ad5a03365191875e2755::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita1e383784977ad5a03365191875e2755::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInita1e383784977ad5a03365191875e2755::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInita1e383784977ad5a03365191875e2755::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInita1e383784977ad5a03365191875e2755::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit7b93d73be6d3a682e7a933867a9aee68::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit7b93d73be6d3a682e7a933867a9aee68::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit7b93d73be6d3a682e7a933867a9aee68::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit7b93d73be6d3a682e7a933867a9aee68::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit7b93d73be6d3a682e7a933867a9aee68::$classMap;
 
         }, null, ClassLoader::class);
     }
