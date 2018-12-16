@@ -12,10 +12,11 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
 
   inPromise: boolean
   localesBehaviorSuscription: Subscription;
+  idClasificadoBehaviorSuscription: Subscription;
 
   carouselItems: CarouselItem[] = [];
   localesList: any[];
-
+  idClasificado:number;
   aTimeOutFix: boolean = false;
   constructor(
     private localesService: LocalesAdheridosService
@@ -26,13 +27,15 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   }
 
   initializeBehavior(){
-    this.localesBehaviorSuscription = this.localesService.localesItems.subscribe((val) => {
-      this.localesList = val;
-      this.generateCarousel();
-      console.log(val);
-    });
-  }
+  
+    this.localesBehaviorSuscription = this.localesService.localesItems.subscribe((val) => {  
+      this.localesList= val;
+      this.generateCarousel(); 
 
+    });
+    
+  }
+ 
   generateCarousel(){
     if(!this.localesList.length){
       return;

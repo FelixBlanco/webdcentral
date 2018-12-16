@@ -37,11 +37,11 @@ export class ClasificadosInicioComponent implements OnInit {
           this.generateCarousel();
         }else{
           this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
-          console.error(resp);
+
         }
         this.inPromise = false;
       },(error) => {
-        console.error(error);
+
         this.inPromise = false;
         this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
       }
@@ -58,20 +58,29 @@ export class ClasificadosInicioComponent implements OnInit {
     this.localesService.getAll().subscribe(
       (resp) => {
         if(resp.ok && resp.status === 201){
-          this.localesService.updateSource(resp.body.LocalAdh);
-          this.router.navigate(['/servicios']);
+          let arr: Array<any> =[];
+          resp.body.LocalAdh.map((val,i) =>{ 
+
+            if(clasificadoId == val.fk_idClasificado){
+              arr = [...arr,val];
+            }
+           })
+
+        
+          this.localesService.updateSource(arr);
+          this.router.navigate(['/servicios']); 
           //TODO scroll
         }else{
-          console.error(resp);
+
           this.as.msg('ERR', 'Error', 'Ha ocurrido un error al obtener los locales');
         }
         this.inBatch = null;
       },(error) => {
         this.as.msg('ERR', 'Error', 'Ha ocurrido un error al obtener los locales');
-        console.error(error);
+
         this.inBatch = null;
       }
-    )
+    ) 
   }
 
   generateCarousel(){
