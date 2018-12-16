@@ -44,14 +44,13 @@ export class ContactanosInicioComponent implements OnInit {
         this.nroTelefono = 'tel:'+resp.nroContacto
         this.email1 = 'mailto:'+resp.mail1
         this.email2 = 'mailto:'+resp.mail2        
-        this.nroWhatsapp = 'whatsapp://send'
-        // this.nroWhatsapp = 'whatsapp:'+resp.whatsApp1
-        this.nroWhatsapp2 = 'whatsapp:'+resp.whatsApp2
-
+        this.nroWhatsapp = 'whatsapp://send/'+resp.whatsApp1;      
+        this.nroWhatsapp2 = 'whatsapp://send/'+resp.whatsApp2;
+        
         if(!isNaN(this.footerConfig.latitud) && !isNaN(this.footerConfig.longitud)){
           this.lat = Number(this.footerConfig.latitud);
           this.lng = Number(this.footerConfig.longitud);
-          this.urlMaps = 'https://maps.google.com/?ll='+this.lat+','+this.lng
+          this.urlMaps = 'https://maps.google.com/?q='+this.lat+','+this.lng
         }
       }
     })

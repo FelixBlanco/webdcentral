@@ -380,6 +380,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
 
     /*** LOCALES ADHERIDOS ****/
     Route::get('lista-locales-por-nro/{id}','LocalesAdheridoController@listaLocalesPorNro');
+
+    // Tipos de descuentos 
+    Route::get('tipo-descuentos','TipoDescuentoController@index');
 });
 
 

@@ -35,7 +35,7 @@ class CouponsController extends Controller {
             'tipo_descuento.required' => 'El campo es requerido',
         ]);
 
-        if ($request->tipo_descuento == 0) { //porcentual
+        if ($request->tipo_descuento == 1) { //porcentual
 
             $this->validate($request, [
                 'monto' => 'required',
@@ -45,7 +45,7 @@ class CouponsController extends Controller {
 
         }
 
-        if ($request->tipo_descuento == 1) { //promocional
+        if ($request->tipo_descuento == 2) { //promocional
 
             $this->validate($request, [
                 'promo' => 'required',

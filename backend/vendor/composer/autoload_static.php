@@ -4,7 +4,10 @@
 
 namespace Composer\Autoload;
 
+
 class ComposerStaticInit5c16bcf1293314e98d0f4498cdcf7501
+
+
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -552,6 +555,7 @@ class ComposerStaticInit5c16bcf1293314e98d0f4498cdcf7501
         'App\\Http\\Controllers\\SlideController' => __DIR__ . '/../..' . '/app/Http/Controllers/SlideController.php',
         'App\\Http\\Controllers\\StatusSistemaController' => __DIR__ . '/../..' . '/app/Http/Controllers/StatusSistemaController.php',
         'App\\Http\\Controllers\\SuscripcionController' => __DIR__ . '/../..' . '/app/Http/Controllers/SuscripcionController.php',
+        'App\\Http\\Controllers\\TipoDescuentoController' => __DIR__ . '/../..' . '/app/Http/Controllers/TipoDescuentoController.php',
         'App\\Http\\Controllers\\TurnoController' => __DIR__ . '/../..' . '/app/Http/Controllers/TurnoController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\tipoDeFacturaController' => __DIR__ . '/../..' . '/app/Http/Controllers/tipoDeFacturaController.php',
@@ -4933,11 +4937,13 @@ class ComposerStaticInit5c16bcf1293314e98d0f4498cdcf7501
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+
             $loader->prefixLengthsPsr4 = ComposerStaticInit5c16bcf1293314e98d0f4498cdcf7501::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit5c16bcf1293314e98d0f4498cdcf7501::$prefixDirsPsr4;
             $loader->fallbackDirsPsr4 = ComposerStaticInit5c16bcf1293314e98d0f4498cdcf7501::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit5c16bcf1293314e98d0f4498cdcf7501::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit5c16bcf1293314e98d0f4498cdcf7501::$classMap;
+
 
         }, null, ClassLoader::class);
     }
