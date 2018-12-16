@@ -7584,7 +7584,6 @@ backend/vendor/symfony/var-dumper/Tests/Fixtures/dumb-var.php
 backend/vendor/symfony/var-dumper/Tests/Fixtures/FooInterface.php
 backend/vendor/symfony/var-dumper/VarDumper.php
 backend/vendor/autoload.php
-<<<<<<< HEAD
 backend/vendor/symfony/translation/TranslatorInterface.php
 backend/vendor/symfony/translation/LoggingTranslator.php
 backend/vendor/symfony/translation/Formatter/MessageFormatter.php
@@ -7672,12 +7671,3 @@ backend/vendor/composer/autoload_files.php
 backend/vendor/composer/autoload_classmap.php
 backend/vendor/autoload.php
 backend/composer.lock
-=======
-backend/vendor/composer/autoload_real.php
-backend/vendor/composer/autoload_static.php
-backend/vendor/composer/autoload_real.php
-backend/vendor/autoload.php
-admin/package-lock.json
-.idea/workspace.xml
-.idea/webdcentral.iml
->>>>>>> master
