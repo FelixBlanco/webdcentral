@@ -29,6 +29,13 @@ class PerfilCliente extends Model
         'CUIT',             //opcional
         'CUITrazonSocial',  //opcional
         'CUITDomicilioFidcal', //opcional
+
+        'domicilio_1', // requerido
+        'domicilio_2',
+        'domicilio_3',
+        'domicilio_4',
+        'domicilio_5',
+        'domicilio_6',        
     ];
 
     public function user()

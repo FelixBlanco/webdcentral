@@ -27,4 +27,8 @@ export class LocalesAdheridosService {
         this.localesBehaviorSource.next(data);
     }
 
+    getListaPorNro(nro:number){
+        return this.http.get(environment.apiHost + '/api/v1/lista-locales-por-nro/'+ nro);
+    }
+    
 }

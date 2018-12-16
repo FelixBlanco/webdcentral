@@ -118,5 +118,66 @@ class OrderHeaderController extends Controller
         return response()->json($response, 200);
     }
 
+    public function safePago(Request $request) {
+
+      
+        DB::beginTransaction();
+        try {
+
+          
+            DB::connection('mysql')->insert("  INSERT INTO tb_history_mp 
+            (   data,
+            fk_idOrderHeader) VALUES(
+                 '$request->data',  
+                 $request->id
+              )");
+
+            return response()->json("Registro creado", 200);
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            Log::error('Ha ocurrido un error en NotificationController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+            ], 500);
+        }
+
+
+    }
+
+    public function getDataPay(Request $request) {
+
+      
+        DB::beginTransaction();
+        try {
+
+            $obj = array(
+                "clienteid"=>env('MP_clienteid', ''),
+                "clientesecret"=>env('MP_clientesecret', ''),
+                "currency_id"=>env('MP_currency_id', ''),
+                "unit_price"=>$request->unit_price,
+                "id"=>$request->idOrderHeader,
+                "title"=>"Compra Pedido ".$request->Numero_Pedido,
+                "uri"=>env('MP_URI', '')
+            );
+             
+
+            return response()->json($obj, 200);
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            Log::error('Ha ocurrido un error en NotificationController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+            ], 500);
+        }
+
+
+    }
+
 
 }

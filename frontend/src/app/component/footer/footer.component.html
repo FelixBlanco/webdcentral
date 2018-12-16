@@ -16,22 +16,22 @@
     <ul class="nav justify-content-end">
 
         <li class="nav-item txt-blanco" style="margin-left:-3%">
-            <a [href]="linksR.facebook" class="nav-link">
+            <a [href]="linksR.facebook" target="_blank" class="nav-link">
               <img src="../assets/social/facebook.png" alt="">
             </a>
           </li>
           <li class="nav-item txt-blanco" style="margin-left:-3%">
-            <a [href]="linksR.twitter" class="nav-link">
+            <a [href]="linksR.twitter" target="_blank" class="nav-link">
               <img src="../assets/social/twitter.png" alt="">
             </a>
           </li>
           <li class="nav-item txt-blanco" style="margin-left:-3%">
-            <a [href]="linksR.instagram" class="nav-link">
+            <a [href]="linksR.instagram" target="_blank" class="nav-link">
               <img src="../assets/social/instagram.png" alt="">
             </a>
           </li>
           <li class="nav-item txt-blanco" style="margin-left:-3%">
-            <a [href]="linksR.whatsapp" class="nav-link">
+            <a [href]="linksR.whatsapp" target="_blank" class="nav-link">
               <img src="../assets/social/wp.png" alt="">
             </a>
           </li>  
@@ -43,32 +43,26 @@
       <div class="col-md-4">
         <h4 class="font-bold txt-blanco">NOSOTROS </h4>
         <p class="txt-blanco font-light" *ngIf="footer_data">
-            Contacto {{footer_data.nroContacto}} <br>
-            Donde Estamos {{footer_data.direccion}} <br>   
-            Email {{footer_data.mail1}} / {{footer_data.mail2}} <br>
+            {{footer_data.nroContacto}} <br>
+            {{footer_data.direccion}} <br>   
+            {{footer_data.mail1}} / {{footer_data.mail2}} <br>
             Sobre Deposito Central <br>
             Trabaja con Nosotros
         </p>
       </div>
       <div class="col-md-4">
         <h4 class="font-bold txt-blanco">SERVICIOS</h4>
-        <p class="txt-blanco font-light">
-          Envios y Entregas <br>
-          Atencion al Cliente <br>
-          Adopcion Responsable <br>
-          Pedidos y Encontrados <br>
-          Otros <br>
-        </p>        
+        
+        <div *ngFor="let lista_clasificado of lista_clasificados" class="txt-blanco font-light">
+          {{lista_clasificado.titulo}}
+        </div>
+          
       </div>
       <div class="col-md-4">
         <h4 class="font-bold txt-blanco">LOCALES ADHERIDOS</h4>
-        <p class="txt-blanco font-light">
-          Veterinarias <br>
-          Guardias 24 Hs <br>
-          Paseadores <br>
-          Baño y Peluqueria <br>
-          Criaderos <br>
-        </p>        
+        <div *ngFor="let l_l of lista_locales" class="txt-blanco font-light">
+            {{l_l.nombre}}
+          </div>                  
         </div>
     </div>
   </div>
