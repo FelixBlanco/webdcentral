@@ -96,7 +96,7 @@
 
 
 
-      </div>
+      </div> 
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -151,12 +151,12 @@
         <form [formGroup]="myFormHorarios">
           <div class="form-group">
             <label>Horario Inicio Atencion</label>
-            <input type="date" placeholder="Horario Inicio Atencion" class="form-control" formControlName="desde">
+            <input type="datetime-local" placeholder="Horario Inicio Atencion" class="form-control" formControlName="desde">
           </div>
 
           <div class="form-group">
             <label>Horario Cierre Atencion</label>
-            <input type="date" placeholder="Horario Inicio Atencion" class="form-control" formControlName="hasta">
+            <input type="datetime-local" placeholder="Horario Inicio Atencion" class="form-control" formControlName="hasta">
           </div>
           <div class="justify-content-center">
             <button type="button" class="btn btn-success " style="margin: 0 auto" (click)="addHorarios()" [disabled]="inPromiseHorario">Agregar</button>

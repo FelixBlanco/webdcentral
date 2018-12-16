@@ -30,12 +30,13 @@ import { PrincipalComponent } from './component/layout/principal/principal.compo
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  
   {
     path: '',
     component: PrincipalComponent,
     canLoad: [],
     children: [
+      {path: '', redirectTo: 'config-footer', pathMatch: 'full' },
       { path: 'Galeria', component: GaleriaHomeComponent, canActivate: [AuthGuard] },
       { path: 'Mapa', component: MapaComponent, canActivate: [AuthGuard] },
       { path: 'Cupones', component: CuponsappComponent, canActivate: [AuthGuard] },
@@ -59,7 +60,9 @@ const routes: Routes = [
       { path: 'clasificadoReclamo', component: ClasificadoReclamoComponent}
 
     ]
-  }, {
+  }, 
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
     path: '',
     component: PageComponent,
     children: [
