@@ -7583,3 +7583,11 @@ backend/vendor/symfony/var-dumper/Tests/Dumper/HtmlDumperTest.php
 backend/vendor/symfony/var-dumper/Tests/Fixtures/dumb-var.php
 backend/vendor/symfony/var-dumper/Tests/Fixtures/FooInterface.php
 backend/vendor/symfony/var-dumper/VarDumper.php
+backend/vendor/autoload.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/composer/autoload_static.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/autoload.php
+admin/package-lock.json
+.idea/workspace.xml
+.idea/webdcentral.iml
