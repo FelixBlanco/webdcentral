@@ -155,7 +155,6 @@ export class CarritoComponent implements OnInit {
   }
 
   routeTo(section: 'shipping' | 'toBuy' | 'deliveryMethod' | 'inMarket' | 'delivery'){
-    console.log('section',section)
     const isNotLogged = this.userToken.isNotLogged();
 
     if(isNotLogged && section === 'toBuy'){
@@ -164,6 +163,11 @@ export class CarritoComponent implements OnInit {
       $('#loginModal').modal('show');
       return;
     }
+    /*
+    if(!this.carritoService.getAll().length){
+      this.as.msg('INFO', 'Info', 'Debes agregar productos al carrito de compras');
+      return
+    }*/
 
     this.section = section;
   }

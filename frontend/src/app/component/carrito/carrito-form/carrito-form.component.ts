@@ -4,6 +4,8 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CarritoService, Item } from 'src/app/services/carrito.service';
 import { ProductosService, PedidoHeader } from 'src/app/services/productos.service';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { LocalidadService } from 'src/app/services/localidad.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-carrito-form',
@@ -13,46 +15,175 @@ import { AlertsService } from 'src/app/services/alerts.service';
 export class CarritoFormComponent implements OnInit {
 
   @Output('onSectionChange') onSectionChange = new EventEmitter();
-  @Input('section') section: 'shipping' | 'deliveryMethod' | 'inMarket' | 'delivery' = 'deliveryMethod';
+  @Input('section') section: 'shipping' | 'deliveryMethod' | 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm' = 'deliveryMethod';
 
   inPromise: boolean;
 
   orderForm: FormGroup;
+  interiorForm: FormGroup;
+  inMarketForm: FormGroup;
 
-  check: 'inMarket' | 'delivery' = 'inMarket';
+  check: 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm' = 'inMarket';
+
+  actualDate: string;
+  twoDaysAfter: string;
+
+  disponibilidadEnHrsList: string[] = [];
+
+  imgLoaded: File;
     
   constructor(
     private fb: FormBuilder,
     private carritoService: CarritoService,
     private productosService: ProductosService,
+    private localidadService: LocalidadService,
     private as: AlertsService,
   ) { }
 
   ngOnInit() {
     this.orderForm = this.fb.group({
       localidad: ['', Validators.required],
-      direccionEnvio: ['', Validators.required],
+      fecha: ['', Validators.required],
       disponibilidad:['', Validators.required],
-      tiposFacturacion:['', Validators.required],
-      cuit: [''],
-      razonSocial: [''],
-      domicilioFiscal: [''],
-      metodoDePago:['1', Validators.required]
+      domicilioEntrega:['', Validators.required],
+      authorizedPerson: ['', Validators.required],
+      metodoDePago: ['1', Validators.required],
+      imagen: [''],
+      observations: [''],
       //codPostal: ['', [Validators.required, Validators.pattern(new RegExp(/^([A-Z]{1}\d{4}[A-Z]{3}|[A-Z]{1}\d{4}|\d{4})$/))]]
     });
 
-    this.orderForm.valueChanges.subscribe((values) => {
-      console.log('form', values);
-    })
+    this.interiorForm = this.fb.group({
+      domicilioEntrega: ['', Validators.required],
+      localidad: ['', Validators.required],
+      direccion: ['', Validators.required],
+      codigoPostal: ['', [Validators.required, Validators.pattern(new RegExp(/^([A-Z]{1}\d{4}[A-Z]{3}|[A-Z]{1}\d{4}|\d{4})$/))]]
+    });
+
+    this.inMarketForm = this.fb.group({
+      fechaRetiro: ['', Validators.required],
+      metodoDePago: ['1', Validators.required],
+      imagen: [''],
+    });
+
+    //this.getAllLocalidades();
+    this.setMommentDates();
   }
 
-  routeTo(section: 'shipping' | 'deliveryMethod' | 'inMarket' | 'delivery'){
+  setMommentDates(){
+    this.actualDate = moment().toJSON().split('T')[0];
+    this.twoDaysAfter = moment().add(1, 'days').toJSON().split('T')[0];
+
+    this.inMarketForm.valueChanges.subscribe(values =>  {
+      //Validación del la fecha de retiro
+      if(values.fechaRetiro < this.actualDate || values.fechaRetiro > this.twoDaysAfter){
+        this.inMarketForm.controls['fechaRetiro'].setErrors({'error': true});
+      }else{
+        this.inMarketForm.controls['fechaRetiro'].setErrors(null);
+      }
+
+      //Por acá se maneja el método de pago y la imagen que se carga
+      if(values.metodoDePago === "2" || values.metodoDePago === '3'){
+        if(!this.imgLoaded){
+          this.inMarketForm.controls['imagen'].setErrors({'error': true});
+        }else{
+          this.inMarketForm.controls['imagen'].setErrors(null);          
+        }
+      }else{
+        this.inMarketForm.controls['imagen'].setErrors(null);
+        this.imgLoaded = null;
+      }
+    });
+    
+    this.orderForm.valueChanges.subscribe(values => {
+      //Validación del la fecha de entrega
+      if(values.fecha < this.twoDaysAfter){
+        this.orderForm.controls['fecha'].setErrors({'error': true});
+      }else{
+        this.orderForm.controls['fecha'].setErrors(null);
+      }
+
+      //Por acá se maneja el método de pago y la imagen que se carga
+      if(values.metodoDePago === "2" || values.metodoDePago === '3'){
+        if(!this.imgLoaded){
+          this.orderForm.controls['imagen'].setErrors({'error': true});
+        }else{
+          this.orderForm.controls['imagen'].setErrors(null);
+        }
+      }else{
+        this.orderForm.controls['imagen'].setErrors(null);
+        this.imgLoaded = null;
+      }
+
+    });
+
+    //Para setear la disponibilidad e hrs
+    let startDate = moment(this.twoDaysAfter);
+    for(let i=0; i<24; i++){
+      this.disponibilidadEnHrsList.push(startDate.add(i, 'hours').format('LT'));
+      startDate = moment(this.twoDaysAfter);
+    }
+  }
+
+  routeTo(section: 'shipping' | 'deliveryMethod' | 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm'){
     this.onSectionChange.emit(section);
     this.section = section;
   }
 
-  checkDeliveryMethod(check: 'inMarket' | 'delivery'){
+  checkDeliveryMethod(check: 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm'){
     this.check = check;
+  }
+
+  onFileChange(event, section) {
+    if(event.target.files && event.target.files.length) {
+      const fileTo: File = event.target.files[0];
+
+      if(!fileTo.type.includes('image/png') 
+        && !fileTo.type.includes('image/jpg') 
+        && !fileTo.type.includes('image/jpeg') ){
+          this.as.msg('ERR','Error:', 'El archivo no es admitido o no es una imagen');
+          this.setFormImageValue(section, null);
+
+          return;
+      }
+
+      if(fileTo.size > 5000000){
+          this.as.msg('ERR','Error:', 'El archivo es muy pesado');
+          this.setFormImageValue(section, null);
+          return;
+      }
+
+      this.imgLoaded = fileTo;
+      this.setFormImageValue(section, fileTo);
+    }
+  }
+
+  setFormImageValue(section, value){
+    if(!value){
+      this.imgLoaded = null;
+    }
+
+    if(section === 'inMarketForm'){
+      this.inMarketForm.patchValue({image: value});
+    }else if(section === 'delivery'){
+      this.orderForm.patchValue({image: value});
+    }
+  }
+
+  getAllLocalidades(){
+    this.localidadService.getAll().subscribe(
+      (resp) => {
+        if(resp.ok){
+          console.log(resp.body);
+        }else{
+          console.error(resp);
+          this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+        }
+      }, (error) => {
+        console.error(error);
+        this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+      }
+    )
   }
 
   createOrder(){

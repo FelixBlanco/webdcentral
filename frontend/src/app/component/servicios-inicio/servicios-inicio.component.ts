@@ -29,7 +29,6 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
     this.localesBehaviorSuscription = this.localesService.localesItems.subscribe((val) => {
       this.localesList = val;
       this.generateCarousel();
-      console.log(val);
     });
   }
 
