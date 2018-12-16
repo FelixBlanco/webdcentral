@@ -14893,3 +14893,7 @@ backend/vendor/zendframework/zend-diactoros/src/ServerRequestFactory.php
 backend/vendor/zendframework/zend-diactoros/src/Stream.php
 backend/vendor/zendframework/zend-diactoros/src/UploadedFile.php
 backend/vendor/zendframework/zend-diactoros/src/Uri.php
+backend/composer.lock
+backend/vendor/autoload.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/composer/autoload_static.php
