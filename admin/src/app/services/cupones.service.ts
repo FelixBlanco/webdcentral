@@ -12,6 +12,7 @@ export interface Cupon {
     codeCoupns: string;
     dateExpired: string;
     set_imagen: string;
+    tipo_descuento: string;
 }
 
 @Injectable({

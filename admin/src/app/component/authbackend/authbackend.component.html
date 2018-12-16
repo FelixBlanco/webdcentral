@@ -1,41 +1,35 @@
 <body class="hold-transition login-page">
-  <div class="login-box">
+  <div *ngIf="bandera" class="login-box">
     <div class="login-logo">
-      <a ><b>Deposito central </b>Admin</a>
+      <a><b>Deposito central </b>Admin</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
       <p class="login-box-msg">Sign in to start your session</p>
-  
+
       <form action="../../index2.html" method="post">
         <div class="form-group has-feedback">
           <input type="email" class="form-control" placeholder="Email" [(ngModel)]="form.email" [ngModelOptions]="{standalone: true}">
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="password" class="form-control" placeholder="Password" [(ngModel)]="form.password" [ngModelOptions]="{standalone: true}">
+          <input type="password" class="form-control" placeholder="Password" [(ngModel)]="form.password"
+            [ngModelOptions]="{standalone: true}">
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="row">
-          
-          <!-- /.col -->
-          <div class="col-xs-4">
+          <div class="col-xs-12">
             <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner>
             <div *ngIf='!inPromise'>
-                <button type="submit" class="btn btn-primary btn-block btn-flat" (click)="ingresarLogin()">Acceder</button>            
-            </div>            
+              <button type="submit" class="btn btn-primary btn-block btn-flat" (click)="ingresarLogin()">Acceder</button>
+              <!-- <button class="btn btn-block btn-flat" (click)="change()" routerLinkActive="active">Registrate</button> -->
+              <a data-toggle="modal" data-target="#forgetModal">Olvide mi clave!</a><br>
+            </div>
           </div>
-          <!-- /.col -->
         </div>
       </form>
-  
-     
-      <a data-toggle="modal" data-target="#forgetModal">Olvide mi clave!</a><br>
-  
+
     </div>
-    <!-- /.login-box-body -->
   </div>
-  <!-- /.login-box -->
-  
-  
-  </body>
+  <app-registro (cambio)="changevalue()" *ngIf="!bandera"></app-registro>
+</body>

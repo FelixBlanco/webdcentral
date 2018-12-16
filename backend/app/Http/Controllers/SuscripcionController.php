@@ -12,8 +12,7 @@ use Illuminate\Support\Facades\Mail;
 class SuscripcionController extends Controller
 {
     public function nuevaSus(Request $request)
-    {
-
+    {        
         $this->validate($request, [
             'email' => 'required|unique:tb_suscripcions,email,'.$request->idSuscripcion.',idSuscripcion',
         ], [
@@ -24,8 +23,8 @@ class SuscripcionController extends Controller
 
         DB::beginTransaction();
 
-        try {
-
+        try {       
+             
             $sus = new Suscripcion($request->all());
             $sus->fk_idStatusSistema = 1;
 
