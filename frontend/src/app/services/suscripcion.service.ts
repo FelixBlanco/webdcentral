@@ -9,7 +9,7 @@ export class SuscripcionService {
 
   constructor(private http:HttpClient) { }
 
-  _addSus(email:any){ 
-    return this.http.post(`${environment.apiHost}/api/v1/nuevaSus`,{email:email});
+  _addSus(data:any){
+    return this.http.post(`${environment.apiHost}/api/v1/nuevaSus`,data);
   }
 }

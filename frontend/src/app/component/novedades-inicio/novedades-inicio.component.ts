@@ -20,7 +20,7 @@ export class NovedadesInicioComponent implements OnInit {
     private ms: AlertsService
     ) { 
       this.f_sus = this.fb.group({
-        'novedad' : ['', Validators.email]
+        'novedad' : ['', Validators.required]
       })
     }
 
@@ -29,13 +29,14 @@ export class NovedadesInicioComponent implements OnInit {
 
   addSus(){
     this.inPromise = true;
-    const email = this.f_sus.value.novedad
-    this.sus._addSus( email ).subscribe(
+    const v = this.f_sus.value;
+    const data: any = { email : v.novedad }
+    this.sus._addSus(data).subscribe(
       (resp:any) => {
         this.ms.msg('OK',resp.msj)
         this.inPromise = false;
       },
-      error =>{ console.log(error)
+      error =>{
         this.inPromise = false;
 
         if(error.error.message != null){

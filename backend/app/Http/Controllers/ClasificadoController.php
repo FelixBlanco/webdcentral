@@ -234,19 +234,4 @@ class ClasificadoController extends Controller
             ], 500);
         }
     }
-
-    public function listaPorNro($nro)
-    {
- 
-        $clasificados = Clasificado::limit($nro)->get();
-
-        $response = [
-            'msj'         => 'Lista clasificados',
-            'Clasificado' => $clasificados,
-        ];
-
-        return response()->json($response, 201);
-
-    }
-
 }

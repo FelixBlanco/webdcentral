@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service'
 import { AlertsService } from '../services/alerts.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +13,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private loginService:LoginService,
-    private _alerts:AlertsService,
-    private router:Router
+    private _alerts:AlertsService
   ) { }
 
   ngOnInit() {
@@ -31,12 +29,8 @@ export class HeaderComponent implements OnInit {
         localStorage.removeItem('userName');
         localStorage.removeItem('imgPerfil');
         location.reload(); // reiniciamos la pagina
-        this.router.navigate(['/login']);
-        console.log("cerrando sesion desde el servicio");
       },
-      error => { console.log('algo salio mal'); console.log(error) 
-      this.router.navigate(['/login']);
-    }
+      error => { console.log('algo salio mal'); console.log(error) }
     )
   }
 

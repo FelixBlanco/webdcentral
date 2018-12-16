@@ -64,99 +64,10 @@
               <input type="phone" class="form-control" formControlName="celular" [(ngModel)]="form.celular" placeholder="Ingrese Celular">
             </div>
           </div>
-
-        </form>   
-
-      </div>
-      <div class="modal-footer text-right">
-        <button class='font-bold' style="color:red; background: none; border:none;" data-dismiss="modal" >Cerrar</button>
-        <button class='font-bold' style="color:#038b36; background: none;  border:none;" data-dismiss="modal" data-toggle="modal" data-target="#perfilClienteModalDomicilio" [disabled]="!formData.valid">Siguiente</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- DOMICILIO -->
-<div class="modal fade" id="perfilClienteModalDomicilio" tabindex="-1" role="dialog" aria-labelledby="perfilClienteModalDomicilioTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-azul">
-        <h5 class="modal-title txt-blanco" id="perfilClienteModalDomicilioTitle">Perfil Cliente</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" class="txt-blanco">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">  
-
-        <form [formGroup]="formDataDomicilio">
-
+                 
           <div class="form-group">
-              <div class="bg-naranja txt-blanco font-bold" id=nro-style>2</div>            
-            <div class="bg-naranja txt-blanco font-bold" id='titulo-style'>
-                DOMICILIO
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="">Domicilio de Entrega</label>
-            <input type="text" class="form-control" formControlName="domicilio_entrega" [(ngModel)]="form.domicilio_entrega" placeholder="Ingrese domicilio 1">
-          </div>
-    
-          <div class="form-group">              
-            <input type="text" class="form-control" formControlName="domicilio_entrega_2" [(ngModel)]="form.domicilio_2" placeholder="Ingrese domicilio 2">  
-          </div>
-    
-          <div class="form-group">            
-            <input type="text" class="form-control" formControlName="domicilio_entrega_3"  [(ngModel)]="form.domicilio_3" placeholder="Ingrese domicilio 3">
-          </div>
-    
-          <div class="form-group">
-            <input type="text" class="form-control" formControlName="domicilio_entrega_4" [(ngModel)]="form.domicilio_4" placeholder="Ingrese domicilio 4">        
-          </div>
-    
-          <div class="form-group">            
-            <input type="text" class="form-control" formControlName="domicilio_entrega_5" [(ngModel)]="form.domicilio_5" placeholder="Ingrese domicilio 5">
-          </div>
-
-          <div class="form-group">            
-            <input type="text" class="form-control" formControlName="domicilio_entrega_6" [(ngModel)]="form.domicilio_6" placeholder="Ingrese domicilio 6">
-          </div>          
-        
-        </form>   
-        <div style="padding:10px">
-          <div style="background-color:#f3f6db; color:black; border-radius:6px; padding:15px">
-            <h4 class="text-center font-bold" style="color:#038b36;">Atencion</h4>
-            <p class="text-center font-light">Debera ingresar al menos un(1) Domicilio de entrega </p>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-          <button class='font-bold' style="color:red; background: none; border:none;" data-dismiss="modal" data-toggle="modal" data-target="#perfilClienteModal">Atras</button>
-          <button class='font-bold' style="color:#038b36; background: none; border:none;" data-dismiss="modal" data-toggle="modal" data-target="#perfilClienteModalFacturacion" [disabled]="!formDataDomicilio.valid">Siguiente</button>                
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--  facturacion -->
-<div class="modal fade" id="perfilClienteModalFacturacion" tabindex="-1" role="dialog" aria-labelledby="perfilClienteModalFacturacionTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-azul">
-        <h5 class="modal-title txt-blanco" id="perfilClienteModalFacturacionTitle">Perfil Cliente</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" class="txt-blanco">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">  
-
-        <form [formGroup]="formDataFacturacion">
-
-          <div class="form-group">
-              <div class="bg-naranja txt-blanco font-bold" id=nro-style>3</div>            
-            <div class="bg-naranja txt-blanco font-bold" id='titulo-style'>
-                FACTURACION
-            </div>
+            <label for="">Domicilio entrega</label>
+            <input type="email" class="form-control" formControlName="domicilio_entrega" [(ngModel)]="form.domicilio_entrega" placeholder="Ingrese Domiciolio entrega">
           </div>
           
           <div class="form-group">
@@ -184,10 +95,9 @@
         </form>   
 
       </div>
-      <div class="modal-footer">   
-        <button class='font-bold' style="color:red; background: none; border:none;" data-dismiss="modal" data-toggle="modal" data-target="#perfilClienteModalDomicilio">Atras</button>
-        <button class='font-bold' style="color:#038b36; background: none; border:none;"  *ngIf="isNuevo"  (click)="crear()" [disabled]="!formDataFacturacion.valid">Aceptar</button>                        
-        <button class='font-bold' style="color:#038b36; background: none; border:none;"  *ngIf="!isNuevo" (click)="update()" [disabled]="!formDataFacturacion.valid">Aceptar</button>                        
+      <div class="modal-footer">
+        <button class="btn btn-success btn-block" (click)="crear()" *ngIf="isNuevo" [disabled]="!formData.valid">Crear</button>
+        <button class="btn btn-primary btn-block" (click)="update()" *ngIf="!isNuevo" [disabled]="!formData.valid">Actualizar</button>       
       </div>
     </div>
   </div>

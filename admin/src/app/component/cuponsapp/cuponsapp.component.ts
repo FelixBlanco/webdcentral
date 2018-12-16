@@ -4,7 +4,6 @@ import { AlertsService } from 'src/app/services/alerts.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import * as moment from 'moment';
 import { CuponesService, Cupon } from 'src/app/services/cupones.service';
-import { TipoDescuentosService } from '../../services/tipo-descuentos.service'
 
 declare var $: any;
 @Component({
@@ -39,16 +38,12 @@ export class CuponsappComponent implements OnInit {
   inPromise: boolean;
 
   imgLoaded: File;
-  
-  tipos_descuentos:any;
-  tipo_descuento_id:any; 
 
   constructor(
     private fb: FormBuilder,
     private as: AlertsService,
     private productsService: ProductosService,
-    private cuponsService: CuponesService,
-    private tipoDescuentos: TipoDescuentosService
+    private cuponsService: CuponesService
     ) { 
     this.limit = 5;
     this.newCuponForm = this.fb.group({
@@ -56,10 +51,7 @@ export class CuponsappComponent implements OnInit {
       imagen: [null, Validators.required],
       descripcion: ['', Validators.required],
       producto: ['', Validators.required],
-      fechaExp: ['', Validators.required],      
-      tipo_descuento: ['', Validators.required],
-      monto: [''],
-      promo: [''],
+      fechaExp: ['', Validators.required]
     });
 
     this.cuponToUpdateForm = this.fb.group({
@@ -67,27 +59,13 @@ export class CuponsappComponent implements OnInit {
       imagen: [null, Validators.required],
       descripcion: ['', Validators.required],
       producto: ['', Validators.required],
-      fechaExp: ['', Validators.required],
-      tipo_descuento: ['', Validators.required],
+      fechaExp: ['', Validators.required]
     });
 
   }
 
   ngOnInit() { 
     this.updateLists();
-    this.getTiposDescuentos();
-  }
-
-  getTiposDescuentos(){
-    this.tipoDescuentos.getTipoDescuentos().subscribe(
-      (resp:any) => {         
-        this.tipos_descuentos = resp.body.tipo_descuento;               
-      }
-    )
-  }
-
-  tipoDescuento(event){    
-    this.tipo_descuento_id = event.target.value;    
   }
 
   list(){
@@ -131,9 +109,6 @@ export class CuponsappComponent implements OnInit {
     toSend.set('title', value.titulo);
     toSend.set('description', value.descripcion);
     toSend.set('dateExpired', value.fechaExp);
-    toSend.set('tipo_descuento', value.tipo_descuento);
-    toSend.set('promo', value.promo);
-    toSend.set('monto', value.monto);
     
     this.inPromise = true;
     this.cuponsService.persist(toSend).subscribe(resp => {
@@ -172,7 +147,6 @@ export class CuponsappComponent implements OnInit {
     toSend.append('title', value.titulo);
     toSend.append('description', value.descripcion);
     toSend.append('dateExpired', value.fechaExp);
-    toSend.append('tipo_descuento', value.tipo_descuento);
 
     this.inPromise = true;
     this.cuponsService.update(toSend, this.cuponToUpdate.idCoupons).subscribe(resp => {
@@ -266,8 +240,7 @@ export class CuponsappComponent implements OnInit {
       imagen: row.imagen,
       descripcion: row.description,
       producto: row.fk_idProducto,
-      fechaExp: row.dateExpired,
-      tipo_descuento: row.tipo_descuento
+      fechaExp: row.dateExpired
     })
   }
 

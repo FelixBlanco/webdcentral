@@ -40,8 +40,7 @@ class orderHeader extends Model
         'firma2',
         'comentarioFinal',
         'monto_total',
-        'idCouponsKf',
-        'isPay'
+        'idCouponsKf'
 
     ];
 

@@ -23,7 +23,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner>
-          <button type="button" class="btn btn-primary" (click)="addReclamos()" [disabled]='!myForm.valid || inPromise'>Enviar</button>
+          <button type="button" class="btn btn-primary" (click)="addReclamos()" [disabled]='!myForm.valid || inPromise'>Guardar Cambios</button>
         </div>
       </div>
     </div>

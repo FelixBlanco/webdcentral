@@ -32,7 +32,6 @@ class CreateOrderHeaderTable extends Migration
             $table->string('firma1')->nullable();
             $table->string('firma2')->nullable();
             $table->string('comentarioFinal')->nullable();
-            $table->integer('isPay')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

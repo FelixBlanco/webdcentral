@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertsService } from '../../services/alerts.service';
 import { LoginService } from "../../services/login.service";
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authbackend',
@@ -12,12 +11,10 @@ export class AuthbackendComponent implements OnInit {
 
   form:any = { email:null, password:null }
   inPromise: boolean;
-  bandera: boolean = true;  
 
   constructor(
     private alerService:AlertsService,
-    private loginService:LoginService,
-    private router:Router
+    private loginService:LoginService
   ) { }
 
   ngOnInit() {
@@ -44,10 +41,7 @@ export class AuthbackendComponent implements OnInit {
               localStorage.setItem('imgPerfil',resp.img_perfil);
             }
             this.inPromise = false;
-            this.router.navigate(['/perfil']);
-            // location.reload(); 
-            // Actualizamos para iniciar
-            
+            location.reload(); // Actualizamos para iniciar
           }
         )
       },
@@ -56,14 +50,5 @@ export class AuthbackendComponent implements OnInit {
         this.alerService.msg("ERR", 'El email o la contraseña son incorrecto.');
       }
     )
-  }
-
-  change() {
-    this.bandera = !this.bandera;
-  }
-  
-  changevalue() {
-    console.log("me han dado click");
-    this.bandera = !this.bandera;
   }
 }

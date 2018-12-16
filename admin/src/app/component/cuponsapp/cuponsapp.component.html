@@ -57,7 +57,7 @@
   
                 <ngx-datatable-column name="" prop="opts">
                   <ng-template ngx-datatable-cell-template let-row="row">
-                    <!-- <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#modificar"><i class="fa fa-edit"></i></a> -->
+                    <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#modificar"><i class="fa fa-edit"></i></a>
                     <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
                   </ng-template>                    
                 </ngx-datatable-column>
@@ -121,24 +121,6 @@
               <label for="fechaExp">Fecha de expiración:</label>
               <input type="date" formControlName="fechaExp" class="form-control" id="fechaExp">
             </div>
-            <div class="form-group">
-              <label for="fechaExp">Tipo de Descuento</label>
-              <select formControlName="tipo_descuento" class="form-control" (change)="tipoDescuento($event)">
-                <option *ngFor="let t_d of tipos_descuentos" [value]='t_d.idTipoDescuento'>{{t_d.descripcion}}</option>
-              </select>
-            </div>            
-
-            <div class="form-group" *ngIf="tipo_descuento_id == '1'">
-              <label for="">Ingrese el Monto</label>
-              <input type="text" class="form-control" formControlName='monto' placeholder="Ingrese el Monto">
-            </div>
-            
-            <div class="form-group" *ngIf="tipo_descuento_id == '2'">
-              <label for="">Ingrese el promo</label>
-              <input type="text" class="form-control" formControlName='promo' placeholder="Ingrese el Promo">
-            </div>              
-
-
             <div class="form-group">
               <label for="producto">Producto:</label>
               <select class="form-control" formControlName="producto">

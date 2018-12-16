@@ -19,9 +19,7 @@ Route::get('/', function() {
 Route::get('mail',function(){
 	return view('correos.formato-email');
 });
-Route::get('pedidos',function(){
-	return view('pedidos');
-});
+
 Route::get('email', function() {
 
 
@@ -30,7 +28,6 @@ Route::get('email', function() {
         $mensaje->to('alecortez240192@gmail.com')->subject('Your Reminder!');
     });
 });
-
 
 
 
