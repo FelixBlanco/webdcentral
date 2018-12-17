@@ -23,6 +23,8 @@ export class CarritoFormComponent implements OnInit {
   interiorForm: FormGroup;
   inMarketForm: FormGroup;
 
+  onDomicilioAdd: boolean = false;
+
   check: 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm' = 'inMarket';
 
   actualDate: string;
@@ -31,6 +33,9 @@ export class CarritoFormComponent implements OnInit {
   disponibilidadEnHrsList: string[] = [];
 
   imgLoaded: File;
+
+  onLocalidadesFetch: boolean;
+  localidadesList: any[];
     
   constructor(
     private fb: FormBuilder,
@@ -50,7 +55,6 @@ export class CarritoFormComponent implements OnInit {
       metodoDePago: ['1', Validators.required],
       imagen: [''],
       observations: [''],
-      //codPostal: ['', [Validators.required, Validators.pattern(new RegExp(/^([A-Z]{1}\d{4}[A-Z]{3}|[A-Z]{1}\d{4}|\d{4})$/))]]
     });
 
     this.interiorForm = this.fb.group({
@@ -66,7 +70,7 @@ export class CarritoFormComponent implements OnInit {
       imagen: [''],
     });
 
-    //this.getAllLocalidades();
+    this.getAllLocalidades();
     this.setMommentDates();
   }
 
@@ -170,22 +174,35 @@ export class CarritoFormComponent implements OnInit {
     }
   }
 
+  onDomicilioCreate(bool: boolean){
+    this.onDomicilioAdd = bool;
+
+    if(!bool){
+      //update domicilio entrega box
+      console.log('updating...');
+    }
+  }
+
   getAllLocalidades(){
+    this.onLocalidadesFetch = true;
     this.localidadService.getAll().subscribe(
       (resp) => {
-        if(resp.ok){
-          console.log(resp.body);
+        if(resp.ok && resp.status === 200){
+          this.localidadesList = resp.body;
         }else{
           console.error(resp);
-          this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+          this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno => Listar Localidades');
         }
+        this.onLocalidadesFetch = false;
       }, (error) => {
+        this.onLocalidadesFetch = false;
         console.error(error);
-        this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+        this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno => Listar Localidades');
       }
     )
   }
 
+  //TODO
   createOrder(){
     const val = this.orderForm.value;
     const body = new HttpParams()
