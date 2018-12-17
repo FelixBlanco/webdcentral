@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class OrderHeaderController extends Controller
-{
-    public function añadir(Request $request)
-    {
+class OrderHeaderController extends Controller {
+    public function añadir(Request $request) {
 
         // opcional comentaryClient
 
@@ -69,13 +67,13 @@ class OrderHeaderController extends Controller
             }
 
 
-            $OB->Numero_Pedido = $Numero_Pedido;
-            $OB->Estado_Pedido = 'Abierto';
+            $OB->Numero_Pedido   = $Numero_Pedido;
+            $OB->Estado_Pedido   = 'Abierto';
             $OB->fk_idUserClient = Auth::user()->id;
-            $OB->Email_Cliente = Auth::user()->email;
+            $OB->Email_Cliente   = Auth::user()->email;
             $OB->fk_idUserDriver = 0; //esto no agarra valores nulos por lo que le asigne 0 por default
 
-            $OB->Fecha_Pedido = Carbon::now()->toDateString();
+            $OB->Fecha_Pedido    = Carbon::now()->toDateString();
             $OB->fk_idStateOrder = 1;
 
             $OB->save();
@@ -105,8 +103,7 @@ class OrderHeaderController extends Controller
         }
     }
 
-    public function listarPorIdUsuario($fk_idUser)
-    {
+    public function listarPorIdUsuario($fk_idUser) {
 
         $orders = orderHeader::select("*")->where('fk_idStateOrder', '=', '5')->where('fk_idUserClient', $fk_idUser)->get();
 
@@ -120,11 +117,11 @@ class OrderHeaderController extends Controller
 
     public function safePago(Request $request) {
 
-      
+
         DB::beginTransaction();
         try {
 
-          
+
             DB::connection('mysql')->insert("  INSERT INTO tb_history_mp 
             (   data,
             fk_idOrderHeader) VALUES(
@@ -149,20 +146,20 @@ class OrderHeaderController extends Controller
 
     public function getDataPay(Request $request) {
 
-      
+
         DB::beginTransaction();
         try {
 
-            $obj = array(
-                "clienteid"=>env('MP_clienteid', ''),
-                "clientesecret"=>env('MP_clientesecret', ''),
-                "currency_id"=>env('MP_currency_id', ''),
-                "unit_price"=>$request->unit_price,
-                "id"=>$request->idOrderHeader,
-                "title"=>"Compra Pedido ".$request->Numero_Pedido,
-                "uri"=>env('MP_URI', '')
-            );
-             
+            $obj = [
+                "clienteid"     => env('MP_clienteid', ''),
+                "clientesecret" => env('MP_clientesecret', ''),
+                "currency_id"   => env('MP_currency_id', ''),
+                "unit_price"    => $request->unit_price,
+                "id"            => $request->idOrderHeader,
+                "title"         => "Compra Pedido ".$request->Numero_Pedido,
+                "uri"           => env('MP_URI', ''),
+            ];
+
 
             return response()->json($obj, 200);
 
