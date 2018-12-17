@@ -16,3 +16,37 @@ hr{
     height: 2px;
     margin-top: 0;
 }
+.rubros{
+    border: 0.5px solid #a6acafde;
+    display: inline-block;
+    border-radius: .4em;
+    width: 96%;
+    height: 400px;
+    overflow: auto;
+    text-align: justify;
+    
+}
+input[type='radio'] {
+    -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        outline: none;
+        border: 1px solid coral;
+        padding: 5px;
+        
+}
+input[type='radio']:hover {
+    cursor: pointer;
+        
+}
+input[type='submit']:hover {
+    cursor: pointer;
+        
+}
+input[type="radio"]:checked {
+
+    background: coral;
+  }
+
+  

@@ -1,103 +1,157 @@
 <section>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <img src="assets/banner/banner_principal_servicios.jpg" class="img-fluid  d-block mx-auto">
-            </div>
-        </div>
-    </div>
-</section>
-<section>
-    <div class="container">
-      <div class="row justify-content-center">
-          <div class="col-9">
-            <h5 class="text-white p-4 bg-naranja" style="border-radius: .4em;">TURNOS</h5>
-            <!--form-->
-          </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <img src="assets/banner/banner_principal_servicios.jpg" class="img-fluid  d-block mx-auto">
       </div>
     </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-9">
+        <h5 class="text-white p-4 bg-naranja" style="border-radius: .4em; max-height: 50px;line-height: 2px;">TURNOS</h5>
+        <div class="row" style="height: 450px">
+          <div class="col-4">
+            <h5 style="text-align:center;">Calendario</h5>
+           <!--  <div style="margin:0 auto;">
+                <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+            </div>  -->
+     
+                <ngb-datepicker  #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+
+      
+
+            <hr/>
+          </div>
+
+          <div class="col-8">
+            <h5 style="text-align:center;">Rubros</h5>
+            <mat-spinner *ngIf="inPromise" [diameter]="30" style="margin: 0 auto;"></mat-spinner>
+            <fieldset *ngIf="!inPromise" style="padding:25px;" class="rubros justify-content-center">
+              <div class="d-flex flex-row"  [formGroup]="checkForm" *ngFor="let clasi of checkboxList">       
+                    <input type="radio" [(checked)]="idClasificado==clasi.idClasificado" (click)="checkStatus(clasi.idClasificado)"
+                    value="clasi.idClasificado" formControlName="rubro">{{clasi.titulo}}<br>
+
+              </div>
+            </fieldset>
+
+          </div>
+
+        </div>
+        <div class="row ">
+          <div class="col-12 ">
+            <button mat-raised-button class="text-white p-4 bg-naranja" style="border-radius: .4em; width: 100%; max-height: 50px; line-height: 2px; "
+              (click)="buscar()">BUSCAR</button>
+          </div>
+        </div>
+        <!--form-->
+      </div>
+    </div>
+  </div>
 </section>
 <section style="background-color: #f1f1f1">
   <div class="container">
-      <div class="row">
-        <div class="col">
-            <div class="text-center mt-2"  id="locales">
-                <h2 class="txt-azul font-bold">SERVICIOS</h2>
-            </div>
-            <div class="d-flex justify-content-between">
-              <ng-container *ngIf="localesList.length">
-                  <!--<h4 *ngIf="tittleList" class="font-italic txt-azul text-uppercase font-bold">Coincidencias con '{{tittleList}}'</h4>-->
-                  <h4 *ngIf="carousel" class="font-italic txt-azul text-uppercase font-bold">{{carousel.activeId}}/{{carouselItems.length}}</h4>
-              </ng-container>
-            </div>
-            <hr>
+    <div class="row">
+      <div class="col">
+        <div class="text-center mt-2" id="locales">
+          <h2 class="txt-azul font-bold">SERVICIOS</h2>
         </div>
+        <div class="d-flex justify-content-between">
+          <ng-container *ngIf="localesList && localesList.length">
+            <!--<h4 *ngIf="tittleList" class="font-italic txt-azul text-uppercase font-bold">Coincidencias con '{{tittleList}}'</h4>-->
+            <h4 *ngIf="carousel" class="font-italic txt-azul text-uppercase font-bold">{{carousel.activeId}}/{{carouselItems.length}}</h4>
+          </ng-container>
+        </div>
+        <hr>
+      </div>
     </div>
     <div class="row">
       <div class="col">
         <mat-spinner *ngIf="inPromise" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
         <ng-container *ngIf="!inPromise">
           <ng-container *ngIf="!localesList.length">
-              <div class="container">
-                <div class="row m-3">
-                  <div class="col">
-                    <div class="card">
-                      <p class="card-body font-italic text-center text-muted">No existen locales adheridos que mostrar...</p>
-                    </div>
+            <div class="container">
+              <div class="row m-3">
+                <div class="col">
+                  <div class="card">
+                    <p class="card-body font-italic text-center text-muted">No existen locales adheridos que mostrar...</p>
                   </div>
                 </div>
               </div>
+            </div>
           </ng-container>
           <ng-container *ngIf="localesList.length">
-              <ngb-carousel #carousel="ngbCarousel" [showNavigationArrows]="false" [showNavigationIndicators]="false">
-                <ng-container *ngFor="let item of carouselItems">
-                  <ng-template ngbSlide [id]="item.id">
-                    <div class="row mb-2" *ngFor="let _ of item.items">
-                      <div class="col-12">
-                        <div class="card">
-                          <div class="card-body">
-                            <div class="row" style="height: 146px;margin: 0;">
-                              <div class="col-4" style="padding: 0;">
-                                <img [src]="_.set_imagen_uno" width="100%" height="100%" alt="_.nombre">
-                              </div>
-                              <div class="col-6 p-4">
-                                <h4 class="font-bold text-uppercase txt-azul">{{_.descripcion}}</h4>
-                                <p class="card-text">{{_.nombre}}</p>
-                              </div>
-                              <div class="col-2 m-auto">
-                                <button mat-raised-button class="bg-naranja text-white font-bold btn-block">
-                                  CONTACTAR
-                                </button>
-                              </div>
+            <ngb-carousel #carousel="ngbCarousel" [showNavigationArrows]="false" [showNavigationIndicators]="false">
+              <ng-container *ngFor="let item of carouselItems">
+                <ng-template ngbSlide [id]="item.id">
+                  <div class="row mb-2" *ngFor="let _ of item.items">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="row" style="height: 146px;margin: 0;">
+                            <div class="col-4" style="padding: 0;">
+                              <img [src]="_.set_imagen_uno" width="100%" height="100%" alt="_.nombre">
+                            </div>
+                            <div class="col-6 p-4">
+                              <h4 class="font-bold text-uppercase txt-azul">{{_.descripcion}}</h4>
+                              <p class="card-text">{{_.nombre}}</p>
+                            </div>
+                            <div class="col-2 m-auto">
+                              <button mat-raised-button (click)="setDatos(_.idLocalAdherido,_nombre)" class="bg-naranja text-white font-bold btn-block" data-toggle="modal" data-target="#nuevo">
+                                CONTACTAR
+                              </button>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </ng-template>
-                </ng-container>
-              </ngb-carousel>
-              <ng-container *ngIf="carouselItems.length > 1">
-                <a class="carousel-control-prev" (click)="carousel.prev()" role="button">
-                  <fa-icon class="txt-azul" [icon]="['fas','chevron-left']" size="4x" ></fa-icon>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" (click)="carousel.next()" role="button">
-                  <fa-icon class="txt-azul" [icon]="['fas','chevron-right']" size="4x" ></fa-icon>
-                  <span class="sr-only">Next</span>
-                </a>
+                  </div>
+                </ng-template>
               </ng-container>
-              <div *ngIf="aTimeOutFix" class="d-flex justify-content-center paginator-bubbles mt-2">
-                <button mat-icon-button class="txt-azul" *ngFor="let item of carouselItems" [id]="item.id" (click)="carousel.select(item.id)">
-                  <ng-container [ngSwitch]="carousel.activeId">
-                    <fa-icon *ngSwitchCase="item.id.toString()" class="txt-azul" [icon]="['fas','circle']" size="1x"></fa-icon>
-                    <fa-icon *ngSwitchDefault class="txt-azul" [icon]="['far','circle']" size="1x"></fa-icon>
-                  </ng-container>
-                </button>
-              </div>
+            </ngb-carousel>
+            <ng-container *ngIf="carouselItems.length > 1">
+              <a class="carousel-control-prev" (click)="carousel.prev()" role="button">
+                <fa-icon class="txt-azul" [icon]="['fas','chevron-left']" size="4x"></fa-icon>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" (click)="carousel.next()" role="button">
+                <fa-icon class="txt-azul" [icon]="['fas','chevron-right']" size="4x"></fa-icon>
+                <span class="sr-only">Next</span>
+              </a>
+            </ng-container>
+            <div *ngIf="aTimeOutFix" class="d-flex justify-content-center paginator-bubbles mt-2">
+              <button mat-icon-button class="txt-azul" *ngFor="let item of carouselItems" [id]="item.id" (click)="carousel.select(item.id)">
+                <ng-container [ngSwitch]="carousel.activeId">
+                  <fa-icon *ngSwitchCase="item.id.toString()" class="txt-azul" [icon]="['fas','circle']" size="1x"></fa-icon>
+                  <fa-icon *ngSwitchDefault class="txt-azul" [icon]="['far','circle']" size="1x"></fa-icon>
+                </ng-container>
+              </button>
+            </div>
           </ng-container>
         </ng-container>
       </div>
     </div>
   </div>
 </section>
+
+<!-- crear turno -->
+<!-- Modal Nuevo -->
+<div class="modal fade" id="nuevo" tabindex="-1" role="dialog" aria-labelledby="nuevoModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-success">
+          <h5 class="modal-title text-white" id="nuevoModal">Seleccionar Turno</h5>
+        </div>
+        <div class="modal-body">
+          <h5>Desea Agregar este turno al carrito de compra?</h5>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="" >Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
