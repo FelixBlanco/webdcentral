@@ -19,7 +19,10 @@ export class LocalesAdheridosService {
         
         return this.http.post<any>(`${environment.apiHost}/api/auth/listarClasificado`, null,{observe: 'response', headers: this.header});
     }
-
+    getAllClasificadosSinAuth(): Observable<HttpResponse<any>> {
+        
+        return this.http.post<any>(`${environment.apiHost}/api/v1/listarClasificado`, null,{observe: 'response'});
+    }
     getAll(){
         return this.http.post<any>(environment.apiHost + '/api/auth/listarLocalAdheridos',null, {observe: 'response', headers: this.header});
     }

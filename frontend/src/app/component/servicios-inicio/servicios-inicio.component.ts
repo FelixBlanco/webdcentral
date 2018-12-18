@@ -114,10 +114,23 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   //parte checkbox
   cargarCheckbox() {
     this.inPromise=true;
-    this.localesService.getAllClasificados().subscribe(val => {
-      this.inPromise=false;
-      this.checkboxList = val.body.Clasificado; 
-    })
+    this.localesService.getAllClasificadosSinAuth().subscribe(
+      (resp) =>{
+        if(resp.ok && resp.status === 201){
+          this.inPromise=false;
+         this.checkboxList = resp.body.Clasificado;
+        }else{
+          this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
+
+        }
+        this.inPromise = false;
+      },(error) => {
+
+        this.inPromise = false;
+        this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
+      }
+    )
+   
   }
   cargarLocales() {
       this.localesService.getAll().subscribe(val => {
