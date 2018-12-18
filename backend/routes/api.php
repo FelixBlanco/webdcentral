@@ -89,7 +89,7 @@ Route::group(['prefix' => 'auth'], function () {
 
         /*Clasificados*/
         Route::post('guardarClasificado', 'ClasificadoController@store');
-        Route::post('listarClasificado', 'ClasificadoController@listar');
+
         Route::get('listarPorIdClasificado/{idClasificado}', 'ClasificadoController@listarPorId');
         Route::delete('borrarClasificado/{idClasificado}', 'ClasificadoController@destroy');
         Route::post('editarClasificado/{idClasificado}', 'ClasificadoController@editar');
@@ -140,6 +140,8 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
 
+
+    Route::post('listarClasificado', 'ClasificadoController@listar');
 
     Route::post('add/pago', 'OrderHeaderController@safePago');
 
