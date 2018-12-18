@@ -1,12 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class AddNuevosCamposToOrderHeader extends Migration {
-    public function up() {
-        Schema::table('tb_order_header', function(Blueprint $table) {
+class AddNuevosCamposToOrderHeader extends Migration
+{
+    public function up()
+    {
+        Schema::table('tb_order_header', function (Blueprint $table) {
             $table->string('metodoEntrega')->nullable();
             $table->string('disponibilidadHr')->nullable();
             $table->string('CUIT')->nullable();
@@ -17,6 +19,7 @@ class AddNuevosCamposToOrderHeader extends Migration {
             $table->string('fk_idTipoFactura')->nullable();
             $table->string('monto_total')->nullable();
 
+            $table->date('fecha_retiro')->nullable();
         });
     }
 
@@ -25,8 +28,9 @@ class AddNuevosCamposToOrderHeader extends Migration {
      *
      * @return void
      */
-    public function down() {
-        Schema::table('tb_order_header', function(Blueprint $table) {
+    public function down()
+    {
+        Schema::table('tb_order_header', function (Blueprint $table) {
             $table->dropColumn('metodoEntrega');
             $table->dropColumn('disponibilidadHr');
             $table->dropColumn('CUIT');
@@ -37,6 +41,7 @@ class AddNuevosCamposToOrderHeader extends Migration {
             $table->dropColumn('fk_idTipoFactura');
             $table->dropColumn('monto_total');
 
+            $table->dropColumn('monto_total');
         });
     }
 }

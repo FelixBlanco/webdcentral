@@ -41,7 +41,8 @@ class orderHeader extends Model
         'comentarioFinal',
         'monto_total',
         'idCouponsKf',
-        'isPay'
+        'isPay',
+        'fecha_retiro',
 
     ];
 
