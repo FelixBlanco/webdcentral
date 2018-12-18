@@ -242,6 +242,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     // Config Home
     Route::get('config-home', 'ConfigHomeController@getConfigHome')->name('config-home');
     Route::post('upgrade_config_home', 'ConfigHomeController@upgradeConfigHome')->name('upgrade_config_home');
+    Route::post('addImagenFooter','ConfigFooterController@addImagenFooter');
 
     // Config Footer
     Route::get('config-footer', 'ConfigFooterController@getInfo')->name('config-footer');
