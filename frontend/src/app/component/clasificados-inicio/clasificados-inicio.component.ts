@@ -3,6 +3,7 @@ import { CarouselItem } from 'src/app/services/productos.service';
 import { LocalesAdheridosService } from 'src/app/services/locales-adheridos.service';
 import { Router } from '@angular/router';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { UserTokenService} from 'src/app/services/user-token.service'
 
 @Component({
   selector: 'app-clasificados-inicio',
@@ -21,7 +22,8 @@ export class ClasificadosInicioComponent implements OnInit {
   constructor(
     private localesService: LocalesAdheridosService,
     private as: AlertsService,
-    private router: Router
+    private router: Router,
+    private userTokenService:UserTokenService
   ) { }
 
   ngOnInit() {
@@ -30,18 +32,18 @@ export class ClasificadosInicioComponent implements OnInit {
 
   getAll(){
     this.inPromise = true;
-    this.localesService.getAllClasificados().subscribe(
+    this.localesService.getAllClasificadosSinAuth().subscribe(
       (resp) =>{
         if(resp.ok && resp.status === 201){
           this.clasificadosList = resp.body.Clasificado;
           this.generateCarousel();
         }else{
           this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
-          console.error(resp);
+
         }
         this.inPromise = false;
       },(error) => {
-        console.error(error);
+
         this.inPromise = false;
         this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
       }
@@ -53,25 +55,34 @@ export class ClasificadosInicioComponent implements OnInit {
       return;
     }
 
-    this.inBatch = clasificadoId;
-
+    
+    console.log(this.userTokenService.isNotLogged());
+    if(!this.userTokenService.isNotLogged()){
+      this.inBatch = clasificadoId;  
     this.localesService.getAll().subscribe(
       (resp) => {
         if(resp.ok && resp.status === 201){
-          this.localesService.updateSource(resp.body.LocalAdh);
-          this.router.navigate(['/servicios']);
+
+        
+          this.localesService.updateSource(clasificadoId);
+          
+        
+         this.router.navigate(['/servicios']); 
           //TODO scroll
         }else{
-          console.error(resp);
+
           this.as.msg('ERR', 'Error', 'Ha ocurrido un error al obtener los locales');
         }
         this.inBatch = null;
       },(error) => {
         this.as.msg('ERR', 'Error', 'Ha ocurrido un error al obtener los locales');
-        console.error(error);
+
         this.inBatch = null;
       }
-    )
+    ) 
+  }else{
+    this.as.msg('ERR', 'Error', 'Debe logearse para solicitar turnos' );
+  }
   }
 
   generateCarousel(){
