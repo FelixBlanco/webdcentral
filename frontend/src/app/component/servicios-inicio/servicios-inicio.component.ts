@@ -156,11 +156,16 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   checkStatus(id:any){
     
     this.idClasificado=id;
-    console.log(this.idClasificado)
+   
   }
   buscar(){
-    this.listarLocales();
-    console.log(this.model);
+    if(this.localesList2.length){
+      this.listarLocales();
+    }else{
+      this.cargarLocales();
+    }
+    
+   
 
     
   }

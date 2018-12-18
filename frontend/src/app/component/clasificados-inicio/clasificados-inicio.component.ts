@@ -3,8 +3,8 @@ import { CarouselItem } from 'src/app/services/productos.service';
 import { LocalesAdheridosService } from 'src/app/services/locales-adheridos.service';
 import { Router } from '@angular/router';
 import { AlertsService } from 'src/app/services/alerts.service';
-import { UserTokenService} from 'src/app/services/user-token.service'
-
+import { UserTokenService } from 'src/app/services/user-token.service'
+declare var $;
 @Component({
   selector: 'app-clasificados-inicio',
   templateUrl: './clasificados-inicio.component.html',
@@ -14,6 +14,7 @@ export class ClasificadosInicioComponent implements OnInit {
 
   inPromise: boolean;
   inBatch: number;
+  isLoged: boolean;
 
   clasificadosList: any[] = [];
   carouselItems: CarouselItem[];
@@ -23,26 +24,26 @@ export class ClasificadosInicioComponent implements OnInit {
     private localesService: LocalesAdheridosService,
     private as: AlertsService,
     private router: Router,
-    private userTokenService:UserTokenService
+    private userTokenService: UserTokenService
   ) { }
 
   ngOnInit() {
     this.getAll();
   }
 
-  getAll(){
+  getAll() {
     this.inPromise = true;
     this.localesService.getAllClasificadosSinAuth().subscribe(
-      (resp) =>{
-        if(resp.ok && resp.status === 201){
+      (resp) => {
+        if (resp.ok && resp.status === 201) {
           this.clasificadosList = resp.body.Clasificado;
           this.generateCarousel();
-        }else{
+        } else {
           this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
 
         }
         this.inPromise = false;
-      },(error) => {
+      }, (error) => {
 
         this.inPromise = false;
         this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
@@ -50,71 +51,51 @@ export class ClasificadosInicioComponent implements OnInit {
     )
   }
 
-  getAllLocalesBy(clasificadoId){
-    if(this.inBatch){
+  getAllLocalesBy(clasificadoId) {
+    if (this.inBatch) {
       return;
     }
-
-    
     console.log(this.userTokenService.isNotLogged());
-    if(!this.userTokenService.isNotLogged()){
-      this.inBatch = clasificadoId;  
-    this.localesService.getAll().subscribe(
-      (resp) => {
-        if(resp.ok && resp.status === 201){
-
-        
-          this.localesService.updateSource(clasificadoId);
-          
-        
-         this.router.navigate(['/servicios']); 
-          //TODO scroll
-        }else{
-
-          this.as.msg('ERR', 'Error', 'Ha ocurrido un error al obtener los locales');
-        }
-        this.inBatch = null;
-      },(error) => {
-        this.as.msg('ERR', 'Error', 'Ha ocurrido un error al obtener los locales');
-
-        this.inBatch = null;
-      }
-    ) 
-  }else{
-    this.as.msg('ERR', 'Error', 'Debe logearse para solicitar turnos' );
-  }
+    if (!this.userTokenService.isNotLogged()) {
+      this.inBatch = clasificadoId;
+      this.localesService.updateSource(clasificadoId);
+      this.router.navigate(['/servicios']);
+    } else {
+      $('#loginModal').modal('show');
+      //this.as.msg('ERR', 'Error', 'Debe logearse para solicitar turnos' );
+    }
   }
 
-  generateCarousel(){
-    if(!this.clasificadosList.length){
+  generateCarousel() {
+    if (!this.clasificadosList.length) {
       return;
     }
 
     this.carouselItems = [];
     let index: number = 1;
     this.clasificadosList.forEach((val, i) => {
-      if(this.isACarruselItem(i)){
-        this.carouselItems.push({id: index++, items: this.getPartialItems(i,i+7)});
+      if (this.isACarruselItem(i)) {
+        this.carouselItems.push({ id: index++, items: this.getPartialItems(i, i + 7) });
       }
     });
-    
+
     //Fix ExpressionChangedAfterItHasBeenCheckedError
-    setTimeout(()=> this.aTimeOutFix = true,1000); // :(
+    setTimeout(() => this.aTimeOutFix = true, 1000); // :(
   }
 
   isACarruselItem($index): boolean {
-    if($index % 8){
+    if ($index % 8) {
       return false;
     }
     return true;
   }
 
 
-  getPartialItems(from, to): any[]{
+  getPartialItems(from, to): any[] {
     let items: any[] = [];
 
     this.clasificadosList.forEach((item, i) => {
-      if(i >= from &&  i <= to){
+      if (i >= from && i <= to) {
         items.push(item);
       }
     });
