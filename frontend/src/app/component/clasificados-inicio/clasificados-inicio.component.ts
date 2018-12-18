@@ -58,16 +58,16 @@ export class ClasificadosInicioComponent implements OnInit {
     this.localesService.getAll().subscribe(
       (resp) => {
         if(resp.ok && resp.status === 201){
-          let arr: Array<any> =[];
+        /*   let arr: Array<any> =[];
           resp.body.LocalAdh.map((val,i) =>{ 
 
             if(clasificadoId == val.fk_idClasificado){
               arr = [...arr,val];
             }
            })
-
+ */
         
-          this.localesService.updateSource(arr);
+          this.localesService.updateSource(clasificadoId);
           this.router.navigate(['/servicios']); 
           //TODO scroll
         }else{
