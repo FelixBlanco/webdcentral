@@ -7600,3 +7600,12 @@ backend/vendor/bin/generate-defuse-key
 backend/vendor/autoload.php
 backend/composer.lock
 .idea/workspace.xml
+backend/vendor/composer/autoload_static.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/bin/psysh
+backend/vendor/bin/phpunit
+backend/vendor/bin/php-parse
+backend/vendor/bin/generate-defuse-key
+backend/vendor/autoload.php
+.idea/workspace.xml___jb_old___
+.idea/workspace.xml

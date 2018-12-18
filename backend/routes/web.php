@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\PagoConTarjetaMail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,8 +19,19 @@ Route::get('/', function() {
 });
 
 Route::get('mail',function(){
-	return view('correos.formato-email');
+
+    $titulo = "TITULO DEL EMAIL _____________________________________ ";
+    $descripcion = "
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis distinctio omnis reprehenderit hic, quaerat ducimus temporibus sint molestiae veniam quam, repudiandae perferendis modi eveniet nesciunt doloremque quos libero qui fugit.</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis distinctio omnis reprehenderit hic, quaerat ducimus temporibus sint molestiae veniam quam, repudiandae perferendis modi eveniet nesciunt doloremque quos libero qui fugit.</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis distinctio omnis reprehenderit hic, quaerat ducimus temporibus sint molestiae veniam quam, repudiandae perferendis modi eveniet nesciunt doloremque quos libero qui fugit.</p>";
+
+    Mail::to('alecortez240192@gmail.com')->send(new PagoConTarjetaMail($titulo,$descripcion));
+
 });
+
 Route::get('pedidos',function(){
 	return view('pedidos');
 });
