@@ -150,7 +150,6 @@ class ClasificadoController extends Controller {
     public function destroy($idClasificado) {
 
         $localAdherido = LocalesAdherido::where('fk_idClasificado', $idClasificado)->get();
-       
 
         if (count($localAdherido) >= 1) {
             $response = [
@@ -159,10 +158,20 @@ class ClasificadoController extends Controller {
 
             return response()->json($response, 409);
         } else {
+
             DB::beginTransaction();
 
             try {
-                $clasificados = Clasificado::findOrFail($idClasificado);
+                $clasificados = Clasificado::find($idClasificado);
+
+                if (is_null($clasificados)) {
+                    $response = [
+                        'msj' => 'El clasificado con id: '.$idClasificado.' no existe',
+                    ];
+
+                    return response()->json($response, 404);
+                }
+
                 $clasificados->delete();
 
                 $response = [
@@ -177,7 +186,7 @@ class ClasificadoController extends Controller {
                 Log::error('Ha ocurrido un error en ClasificadoController: '.$e->getMessage().', Linea: '.$e->getLine());
 
                 return response()->json([
-                    'message' => 'Ha ocurrido un error al tratar de eliminar los datos.',
+                    'message' => 'Ha ocurrido un error al tratar de eliminar los datos',
                 ], 500);
             }
         }
