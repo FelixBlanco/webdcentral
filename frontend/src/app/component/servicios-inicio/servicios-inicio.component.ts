@@ -37,7 +37,8 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   model: NgbDateStruct;
   time = {hour: 13, minute: 30};
   date:{year: number, month: number ,day:number};
-  fecha:Date;
+ 
+  stringFecha;
   constructor(
     private localesService: LocalesAdheridosService,
     private fb: FormBuilder,
@@ -169,13 +170,14 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
 
     
   }
-  setDatos(idLocal:any,nombre:any){
-    const stringFecha:string = this.model.year+"-"+this.model.month+"-"+this.model.day;//" "+this.time.hour+":"+this.time.minute+":00";
+  setDatos(idLocal:any,nombre:string){
+    this.stringFecha= this.model.year+"-"+this.model.month+"-"+this.model.day;//" "+this.time.hour+":"+this.time.minute+":00";
+   
     this.nombreLocalSeleccionado=nombre;
-    this.fecha= new Date(stringFecha); 
+    const fecha= new Date(this.stringFecha); 
     
    
-    this.toSend.append('fechaHora', this.fecha.toDateString());
+    this.toSend.append('fechaHora', fecha.toDateString());
     this.toSend.append('fk_idLocalAdherido', idLocal);
     this.toSend.append('fk_idClasificado', this.idClasificado.toString());
     this.toSend.append('fk_idStatusTurnos', '1');
@@ -186,7 +188,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   }
   // agregar turno a la base de datos
   addTurno(){
-      this.inPromise = true;
+   this.inPromise = true;
     this.turnoService.persist(this.toSend).subscribe(
       (resp) => {
         if (resp.ok && resp.status === 201) {
@@ -205,7 +207,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
         console.log(error);
         this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
       }
-    ) 
+    )  
   }
 
   ngOnDestroy() {

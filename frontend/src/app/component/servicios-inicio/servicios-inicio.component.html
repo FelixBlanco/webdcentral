@@ -46,7 +46,7 @@
               (click)="buscar()">BUSCAR</button>
           </div>
         </div>
-        <!--form-->
+        <!--form--> 
       </div>
     </div>
   </div>
@@ -99,7 +99,7 @@
                               <p class="card-text">{{_.nombre}}</p>
                             </div>
                             <div class="col-2 m-auto">
-                              <button mat-raised-button (click)="setDatos(_.idLocalAdherido,_nombre)" class="bg-naranja text-white font-bold btn-block" data-toggle="modal" data-target="#nuevo">
+                              <button mat-raised-button (click)="setDatos(_.idLocalAdherido,_.nombre)" class="bg-naranja text-white font-bold btn-block" data-toggle="modal" data-target="#nuevo">
                                 CONTACTAR
                               </button>
                             </div>
@@ -140,17 +140,18 @@
 <!-- Modal Nuevo -->
 <div class="modal fade" id="nuevo" tabindex="-1" role="dialog" aria-labelledby="nuevoModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
+      <div class="modal-content " >
         <div class="modal-header bg-success">
-          <h5 class="modal-title text-white" id="nuevoModal">Seleccionar Turno</h5>
+          <h5 class="modal-title text-white  font-bold" id="nuevoModal">¿Desea Reservar este turno ?</h5>
         </div>
-        <div class="modal-body">
-          <h5>Desea Agregar este turno al carrito de compra?</h5>
-          
+        <div class="modal-body font-bold">
+         
+          <h5>Local: {{nombreLocalSeleccionado}}</h5>
+          <h5>Fecha: {{stringFecha}}</h5>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="" >Aceptar</button>
+          <button type="submit" class="btn btn-success" [disabled]="inPromise" (click)="addTurno()" >Aceptar</button>
         </div>
       </div>
     </div>
