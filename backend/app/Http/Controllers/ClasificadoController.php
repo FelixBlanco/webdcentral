@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Clasificado;
+use App\LocalesAdherido;
 use App\StatusSistema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,17 +12,15 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
-class ClasificadoController extends Controller
-{
-    public function store(Request $request)
-    {
+class ClasificadoController extends Controller {
+    public function store(Request $request) {
         $this->validate($request, [
             'titulo' => 'required',
             'foto'   => 'image|required|mimes:jpeg,png,jpg,gif,svg',
         ], [
-            'titulo.required'      => 'El campo es requerido',
-            'foto.required'        => 'El campo es requerido',
-            'foto.image'           => 'La imagen debe tener el formato jpeg, pnp,gif,svg',
+            'titulo.required' => 'El campo es requerido',
+            'foto.required'   => 'El campo es requerido',
+            'foto.image'      => 'La imagen debe tener el formato jpeg, pnp,gif,svg',
 
         ]);
 
@@ -38,11 +37,11 @@ class ClasificadoController extends Controller
                 $originalImage = $request->foto;
 
                 $thumbnailImage = Image::make($originalImage);
-                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                $thumbnailImage->fit(2048, 2048, function($constraint) {
                     $constraint->aspectRatio();
                 });
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension='png';
+                $extension      = 'png';
                 //$extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno1 = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno1 = str_slug($nombre_interno1, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
@@ -51,7 +50,7 @@ class ClasificadoController extends Controller
 
                 $clasificados->foto = $nombre_interno1;
             }
-            $clasificados->fk_idUser = Auth::user()->fk_idPerfil;
+            $clasificados->fk_idUser          = Auth::user()->fk_idPerfil;
             $clasificados->fk_idStatusSistema = 1;
 
             $clasificados->save();
@@ -60,7 +59,7 @@ class ClasificadoController extends Controller
             $response = [
                 'msj'         => 'Clasificado Creado exitosamente',
                 'Clasificado' => $clasificados,
-                'ruta_imagen'  => asset('storage\\Clasificados\\'.$clasificados->foto),
+                'ruta_imagen' => asset('storage\\Clasificados\\'.$clasificados->foto),
             ];
             DB::commit();
 
@@ -76,8 +75,7 @@ class ClasificadoController extends Controller
         }
     }
 
-    public function listar(Request $request)
-    {
+    public function listar(Request $request) {
 
         if ($request->exists('offset') && $request->exists('limit')) {
 
@@ -105,9 +103,9 @@ class ClasificadoController extends Controller
             }
         }
 
-        $clasificados->each(function ($clasificados) {
-            $status = StatusSistema::find($clasificados->fk_idStatusSistema);
-            $clasificados->foto = asset('storage\\Clasificados\\'.$clasificados->foto);
+        $clasificados->each(function($clasificados) {
+            $status                       = StatusSistema::find($clasificados->fk_idStatusSistema);
+            $clasificados->foto           = asset('storage\\Clasificados\\'.$clasificados->foto);
             $clasificados->status_sistema = $status->descripcion;
         });
 
@@ -119,18 +117,17 @@ class ClasificadoController extends Controller
         return response()->json($response, 201);
     }
 
-    public function listarPorId(Request $request, $idClasificado)
-    {
+    public function listarPorId(Request $request, $idClasificado) {
 
         $clasificados = Clasificado::with('user')->find($idClasificado);
 
         if (! is_null($clasificados)) {
-            $clasificados->each(function ($clasificados) {
+            $clasificados->each(function($clasificados) {
                 $clasificados->set_imagen = asset('storage\\Clasificados\\'.$clasificados->foto);
             });
         }
 
-        $status = StatusSistema::find($clasificados->fk_idStatusSistema);
+        $status                          = StatusSistema::find($clasificados->fk_idStatusSistema);
         $clasificados->nameStatusSistema = $status->descripcion;
 
         $response = [
@@ -150,34 +147,45 @@ class ClasificadoController extends Controller
         return response()->json($response, 201);
     }
 
-    public function destroy($idClasificado)
-    {
+    public function destroy($idClasificado) {
 
-        DB::beginTransaction();
+        $localAdherido = LocalesAdherido::where('fk_idClasificado', $idClasificado)->get();
+       
 
-        try {
-            $clasificados = Clasificado::findOrFail($idClasificado);
-            $clasificados->delete();
-
+        if (count($localAdherido) >= 1) {
             $response = [
-                'msj' => 'Clasificado eliminado Correctamente',
+                'msj' => 'No se puede eliminar el clasificado!, existen locales adheridos relacionados',
             ];
 
-            DB::commit();
+            return response()->json($response, 409);
+        } else {
+            DB::beginTransaction();
 
-            return response()->json($response, 200);
-        } catch (\Exception $e) {
-            DB::rollback();
-            Log::error('Ha ocurrido un error en ClasificadoController: '.$e->getMessage().', Linea: '.$e->getLine());
+            try {
+                $clasificados = Clasificado::findOrFail($idClasificado);
+                $clasificados->delete();
 
-            return response()->json([
-                'message' => 'Ha ocurrido un error al tratar de eliminar los datos.',
-            ], 500);
+                $response = [
+                    'msj' => 'Clasificado eliminado Correctamente',
+                ];
+
+                DB::commit();
+
+                return response()->json($response, 200);
+            } catch (\Exception $e) {
+                DB::rollback();
+                Log::error('Ha ocurrido un error en ClasificadoController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+                return response()->json([
+                    'message' => 'Ha ocurrido un error al tratar de eliminar los datos.',
+                ], 500);
+            }
         }
+
+
     }
 
-    public function editar(Request $request, $idClasificado)
-    {
+    public function editar(Request $request, $idClasificado) {
 
         if ($request->all() == "[]") {
             $response = [
@@ -198,12 +206,12 @@ class ClasificadoController extends Controller
 
                 $thumbnailImage = Image::make($originalImage);
 
-                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                $thumbnailImage->fit(2048, 2048, function($constraint) {
                     $constraint->aspectRatio();
                 });
 
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension='png';
+                $extension      = 'png';
                 //$extension = $originalImage->getClientOriginalExtension();
 
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
@@ -235,9 +243,8 @@ class ClasificadoController extends Controller
         }
     }
 
-    public function listaPorNro($nro)
-    {
- 
+    public function listaPorNro($nro) {
+
         $clasificados = Clasificado::limit($nro)->get();
 
         $response = [

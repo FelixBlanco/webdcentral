@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7572983c-46c1-4dcd-bdd8-63b58727ca0f" name="Default" comment="listar las direcciones del perfil del cliente">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/LocalesAdherido.php" afterPath="$PROJECT_DIR$/backend/app/LocalesAdherido.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/routes/api.php" afterPath="$PROJECT_DIR$/backend/routes/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Clasificado.php" afterPath="$PROJECT_DIR$/backend/app/Clasificado.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php" />
     </list>
     <list id="afaff616-419a-4d29-a8a1-8a7ab1d61868" name="Revert: migracion de n uevos campos perfil cliente" comment="" />
     <list id="ce147396-643a-4458-ac74-2b6c1d4f536d" name="Revert: config en server" comment="" />
@@ -25,11 +23,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+            <state relative-caret-position="1358">
+              <caret line="93" column="23" lean-forward="true" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="56" />
               <folding>
                 <marker date="1545188793958" expanded="true" signature="404:405" ph="..." />
               </folding>
@@ -37,18 +35,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LocalesAdheridoController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php">
+      <file leaf-file-name="ClasificadoController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="321" column="42" lean-forward="false" selection-start-line="321" selection-start-column="20" selection-end-line="321" selection-end-column="42" />
+            <state relative-caret-position="28">
+              <caret line="152" column="7" lean-forward="false" selection-start-line="152" selection-start-column="7" selection-end-line="152" selection-end-column="7" />
               <folding>
-                <element signature="e#311#4035#0#PHP" expanded="false" />
-                <element signature="e#4041#5524#0#PHP" expanded="false" />
-                <element signature="e#5530#7167#0#PHP" expanded="false" />
-                <element signature="e#7173#7898#0#PHP" expanded="false" />
-                <element signature="e#7904#10798#0#PHP" expanded="false" />
-                <element signature="e#10804#11120#0#PHP" expanded="false" />
+                <element signature="e#2714#4202#0#PHP" expanded="false" />
+                <element signature="e#4208#5180#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Clasificado.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/app/Clasificado.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+              <folding>
+                <element signature="e#23#62#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,8 +73,8 @@
       <file leaf-file-name="turno.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/app/turno.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="18" />
+            <state relative-caret-position="28">
+              <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -100,7 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>im</find>
       <find>ima</find>
       <find>iman</find>
       <find>image</find>
@@ -130,6 +135,7 @@
       <find>locala</find>
       <find>localesad</find>
       <find>listarloca</find>
+      <find>clasificado</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -177,7 +183,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/GaleriaHomeController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/GaleriaHomeProductoController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/OfertaController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" />
@@ -191,7 +196,6 @@
         <option value="$PROJECT_DIR$/backend/database/seeds/TipoDescuetoSeeder.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2018_11_25_214618_create_blog_categorias_table.php" />
         <option value="$PROJECT_DIR$/backend/app/BlogCategoria.php" />
-        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/CouponsController.php" />
         <option value="$PROJECT_DIR$/backend/.gitignore" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/TurnoController.php" />
@@ -228,6 +232,8 @@
         <option value="$PROJECT_DIR$/backend/app/LocalesAdherido.php" />
         <option value="$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php" />
         <option value="$PROJECT_DIR$/backend/routes/api.php" />
+        <option value="$PROJECT_DIR$/backend/app/Clasificado.php" />
+        <option value="$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php" />
       </list>
     </option>
   </component>
@@ -679,10 +685,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="245729000" />
+    <option name="totallyTimeSpent" value="246667000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="696" extended-state="7" />
+    <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -823,27 +829,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backend/database/seeds/OrderSeed.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="17" column="3" lean-forward="false" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-151">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/config/mail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1386">
-          <caret line="99" column="6" lean-forward="true" selection-start-line="99" selection-start-column="6" selection-end-line="99" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/resources/views/correos/suscripcion.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -909,14 +894,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="39" column="33" lean-forward="false" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="78" column="20" lean-forward="false" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1112,10 +1089,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="322" column="28" lean-forward="true" selection-start-line="322" selection-start-column="28" selection-end-line="322" selection-end-column="28" />
+          <folding>
+            <element signature="e#311#4035#0#PHP" expanded="false" />
+            <element signature="e#4041#5524#0#PHP" expanded="false" />
+            <element signature="e#5530#7167#0#PHP" expanded="false" />
+            <element signature="e#7173#7898#0#PHP" expanded="false" />
+            <element signature="e#7904#10798#0#PHP" expanded="false" />
+            <element signature="e#10804#11120#0#PHP" expanded="false" />
+            <element signature="e#11126#11419#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/clasificado_reclamo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoReclamoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="111" column="34" lean-forward="true" selection-start-line="111" selection-start-column="34" selection-end-line="111" selection-end-column="34" />
+          <folding>
+            <element signature="e#254#1760#0#PHP" expanded="false" />
+            <element signature="e#1766#3064#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1358">
+          <caret line="93" column="23" lean-forward="true" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="56" />
+          <folding>
+            <marker date="1545188793958" expanded="true" signature="404:405" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/app/turno.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="18" />
+        <state relative-caret-position="28">
+          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1128,27 +1150,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/LocalesAdheridoController.php">
+    <entry file="file://$PROJECT_DIR$/backend/app/Clasificado.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="321" column="42" lean-forward="false" selection-start-line="321" selection-start-column="20" selection-end-line="321" selection-end-column="42" />
+        <state relative-caret-position="126">
+          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
           <folding>
-            <element signature="e#311#4035#0#PHP" expanded="false" />
-            <element signature="e#4041#5524#0#PHP" expanded="false" />
-            <element signature="e#5530#7167#0#PHP" expanded="false" />
-            <element signature="e#7173#7898#0#PHP" expanded="false" />
-            <element signature="e#7904#10798#0#PHP" expanded="false" />
-            <element signature="e#10804#11120#0#PHP" expanded="false" />
+            <element signature="e#23#62#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/routes/api.php">
+    <entry file="file://$PROJECT_DIR$/backend/app/Http/Controllers/ClasificadoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+        <state relative-caret-position="28">
+          <caret line="152" column="7" lean-forward="false" selection-start-line="152" selection-start-column="7" selection-end-line="152" selection-end-column="7" />
           <folding>
-            <marker date="1545188793958" expanded="true" signature="404:405" ph="..." />
+            <element signature="e#2714#4202#0#PHP" expanded="false" />
+            <element signature="e#4208#5180#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
