@@ -20,6 +20,8 @@ class AddNuevosCamposToOrderHeader extends Migration
             $table->string('monto_total')->nullable();
 
             $table->date('fecha_retiro')->nullable();
+
+            $table->date('fecha')->nullable();
         });
     }
 
@@ -41,7 +43,8 @@ class AddNuevosCamposToOrderHeader extends Migration
             $table->dropColumn('fk_idTipoFactura');
             $table->dropColumn('monto_total');
 
-            $table->dropColumn('monto_total');
+            $table->dropColumn('fecha_retiro');
+            $table->dropColumn('fecha');
         });
     }
 }
