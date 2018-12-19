@@ -140,7 +140,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
 
-    Route::get('listarPorIdClasificado/fk_idClasificado','LocalesAdheridoController@listarPorIdClasificado');
+    Route::get('listarPorIdClasificado/{fk_idClasificado}','LocalesAdheridoController@listarPorIdClasificado');
 
     Route::get('turnoDeUnLocalAdh/{id_Local}','LocalesAdheridoController@turnoDeUnLocalAdh');
 
