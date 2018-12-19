@@ -12,17 +12,14 @@
     <div class="row justify-content-center">
       <div class="col-9">
         <h5 class="text-white p-4 bg-naranja" style="border-radius: .4em; max-height: 50px;line-height: 2px;">TURNOS</h5>
-        <div class="row" style="height: 450px">
+        <div class="row pt-2 cal-rub-cont">
           <div class="col-4">
             <h5 style="text-align:center;">Calendario</h5>
            <!--  <div style="margin:0 auto;">
-                <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+                <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>    input de tiempo
             </div>  -->
-     
+            
                 <ngb-datepicker  #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
-
-      
-
             <hr/>
           </div>
 
@@ -30,9 +27,12 @@
             <h5 style="text-align:center;">Rubros</h5>
             <mat-spinner *ngIf="inPromise" [diameter]="30" style="margin: 0 auto;"></mat-spinner>
             <fieldset *ngIf="!inPromise" style="padding:25px;" class="rubros justify-content-center">
-              <div class="d-flex flex-row"  [formGroup]="checkForm" *ngFor="let clasi of checkboxList">       
-                    <input type="radio" [(checked)]="idClasificado==clasi.idClasificado" (click)="checkStatus(clasi.idClasificado)"
-                    value="clasi.idClasificado" formControlName="rubro">{{clasi.titulo}}<br>
+              <div class="row"  > 
+                  <div class="col-6 p-1" *ngFor="let clasi of checkboxList" >
+                      <input id="clasi.idClasificado" type="radio" [(checked)]="idClasificado==clasi.idClasificado" (click)="checkStatus(clasi.idClasificado)"
+                      value="clasi.idClasificado" >{{clasi.titulo}}<br>
+                  </div>
+                   
 
               </div>
             </fieldset>

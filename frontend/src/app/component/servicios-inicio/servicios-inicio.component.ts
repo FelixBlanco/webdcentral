@@ -144,7 +144,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
      if (this.idClasificado) {  
      let arr: Array<any> = [];
        this.localesList2.map((val, i) => {
-        console.log(val);
+       
         if (this.idClasificado == val.fk_idClasificado) {
           arr = [...arr, val];
         }
@@ -157,7 +157,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   checkStatus(id:any){
     
     this.idClasificado=id;
-   
+    
   }
   buscar(){
     if(this.localesList2.length){
