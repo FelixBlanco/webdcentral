@@ -306,4 +306,22 @@ class LocalesAdheridoController extends Controller
 
         return response()->json($response, 201);        
     }
+
+    public function turnoDeUnLocalAdh($idLocalAdherido){
+
+        $l=LocalesAdherido::find($idLocalAdherido);
+        if(!is_null($l)){
+            $response = [
+                'turno' => $l->turno['fechaHora'],
+            ];
+
+            return response()->json($response, 201);
+        }
+    }
+
+    public function listarPorIdClasificado($fk_idClasificado){
+        $localesA=LocalesAdherido::where('fk_idClasificado',$fk_idClasificado)->get();
+        return response()->json($localesA, 201);
+
+    }
 }
