@@ -30,7 +30,7 @@ class PerfilCliente extends Model
         'CUITrazonSocial',  //opcional
         'CUITDomicilioFidcal', //opcional
 
-        'domicilio_1', // requerido
+        'domicilio_1',
         'domicilio_2',
         'domicilio_3',
         'domicilio_4',
