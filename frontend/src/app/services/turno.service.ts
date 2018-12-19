@@ -20,5 +20,8 @@ export class TurnosService {
 
   persist(body: any): Observable<HttpResponse<any>> {
     return this.http.post<any>(`${environment.apiHost}/api/auth/addTurno`, body, { headers: this.httpOptions, observe: 'response' });
-}
+    }
+  getTurnos(body: any): Observable<HttpResponse<any>> {
+        return this.http.get<any>(`${environment.apiHost}/api/auth/listarTodoslosTurnos`, { headers: this.httpOptions, observe: 'response' });
+    }
 }

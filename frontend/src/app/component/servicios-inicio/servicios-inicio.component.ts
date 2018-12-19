@@ -5,71 +5,80 @@ import { CarouselItem } from 'src/app/services/productos.service';
 import { TurnosService } from 'src/app/services/turno.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AlertsService } from 'src/app/services/alerts.service';
+import { UserTokenService } from 'src/app/services/user-token.service';
+
 
 import {
   NgbCalendar,
-
-  NgbDateStruct
-}from '@ng-bootstrap/ng-bootstrap'
+  NgbDateStruct,
+  NgbTimeStruct,
+  NgbTimepickerConfig
+} from '@ng-bootstrap/ng-bootstrap'
 declare var $: any;
 
 @Component({
   selector: 'app-servicios-inicio',
   templateUrl: './servicios-inicio.component.html',
-  styleUrls: ['./servicios-inicio.component.css']
+  styleUrls: ['./servicios-inicio.component.css'],
+  providers: [NgbTimepickerConfig]
 })
 export class ServiciosInicioComponent implements OnInit, OnDestroy {
-   
+
   inPromise: boolean
   localesBehaviorSuscription: Subscription;
   idClasificadoBehaviorSuscription: Subscription;
   newForm: FormGroup;
   carouselItems: CarouselItem[] = [];
   checkboxList: any[];
-  localesList: any[]=[];
-  localesList2: any[]=[];
+  localesList: any[] = [];
+  localesList2: any[] = [];
   idClasificado: number;
-  nombreLocalSeleccionado:string;
+  nombreLocalSeleccionado: string;
   toSend: FormData = new FormData();
   aTimeOutFix: boolean = false;
   checkForm: FormGroup;
-  rubroId:number=0;
+  rubroId: number = 0;
   model: NgbDateStruct;
-  time = {hour: 13, minute: 30};
-  date:{year: number, month: number ,day:number};
- 
+  time: NgbTimeStruct = { hour: 0o0, minute: 0o0, second: 0o0 };
+  date: { year: number, month: number, day: number };
+  misTurnos: Array<any> = [];
+
   stringFecha;
   constructor(
     private localesService: LocalesAdheridosService,
     private fb: FormBuilder,
     private calendar: NgbCalendar,
-    private turnoService:TurnosService,
-    private as:AlertsService,
-  ) { 
+    private turnoService: TurnosService,
+    private as: AlertsService,
+    private userService: UserTokenService
+
+  ) {
     this.checkForm = this.fb.group({
-      'rubro':(''),
-     });
-     this.newForm = this.fb.group({
+      'rubro': (''),
+    });
+    this.newForm = this.fb.group({
       fk_idLocalAdherido: ['', Validators.required],
       fk_idClasificado: ['', Validators.required],
       fechaHora: ['', Validators.required]
     });
+
   }
 
   ngOnInit() {
     this.model = this.calendar.getToday();
     this.cargarLocales();
-     this.initializeBehavior();
-     this.cargarCheckbox();
-     this.listarLocales();
+    this.initializeBehavior();
+    this.cargarCheckbox();
+    this.listarLocales();
+
   }
-  
+
   initializeBehavior() {
 
     this.localesBehaviorSuscription = this.localesService.idClasificadoSeleccionado.subscribe((val) => {
-  
-      if(val){
-        this.idClasificado= val;
+
+      if (val) {
+        this.idClasificado = val;
       }
 
     });
@@ -114,81 +123,95 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   }
   //parte checkbox
   cargarCheckbox() {
-    this.inPromise=true;
+    this.inPromise = true;
     this.localesService.getAllClasificadosSinAuth().subscribe(
-      (resp) =>{
-        if(resp.ok && resp.status === 201){
-          this.inPromise=false;
-         this.checkboxList = resp.body.Clasificado;
-        }else{
+      (resp) => {
+        if (resp.ok && resp.status === 201) {
+          this.inPromise = false;
+          this.checkboxList = resp.body.Clasificado;
+        } else {
           this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
 
         }
         this.inPromise = false;
-      },(error) => {
+      }, (error) => {
 
         this.inPromise = false;
         this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
       }
     )
-   
+
   }
   cargarLocales() {
-      this.localesService.getAll().subscribe(val => {
+    this.localesService.getAll().subscribe(val => {
       this.localesList2 = val.body.LocalAdh;
       this.listarLocales();
-      
+
     })
   }
   listarLocales() {
-     if (this.idClasificado) {  
-     let arr: Array<any> = [];
-       this.localesList2.map((val, i) => {
-       
+    if (this.idClasificado) {
+      let arr: Array<any> = [];
+      this.localesList2.map((val, i) => {
+
         if (this.idClasificado == val.fk_idClasificado) {
           arr = [...arr, val];
         }
-      }) 
-      this.localesList=arr;
+      })
+      this.localesList = arr;
       this.generateCarousel();
-    } 
-  }
-
-  checkStatus(id:any){
-    
-    this.idClasificado=id;
-    
-  }
-  buscar(){
-    if(this.localesList2.length){
-      this.listarLocales();
-    }else{
-      this.cargarLocales();
     }
-    
-   
-
-    
   }
-  setDatos(idLocal:any,nombre:string){
-    this.stringFecha= this.model.year+"-"+this.model.month+"-"+this.model.day;//" "+this.time.hour+":"+this.time.minute+":00";
-   
-    this.nombreLocalSeleccionado=nombre;
-    const fecha= new Date(this.stringFecha); 
-    
-   
+
+  checkStatus(id: any) {
+
+    this.idClasificado = id;
+
+  }
+  buscar() {
+
+   /*  this.localesService.getLocalesPorClasificados(1).subscribe(resp =>{
+      if(resp.ok && resp.status == 201){
+        console.log(resp);
+      }else{
+        this.as.msg('ERR', "Error", "Ha ocurrido un error interno");
+      }
+    },error =>{
+          this.as.msg('ERR', "Error", "Ha ocurrido un error interno");
+    }
+    ) */
+
+    if (this.userService.isNotLogged) {
+      $('#loginModal').modal('show');
+    } else {
+      if (this.localesList2.length) {
+        this.listarLocales();
+      } else {
+        this.cargarLocales();
+      }
+
+    }
+
+
+  }
+  setDatos(idLocal: any, nombre: string) {
+    this.stringFecha = this.model.year + "-" + this.model.month + "-" + this.model.day + " " + this.time.hour + ":" + this.time.minute + ":" + this.time.second;//" "+this.time.hour+":"+this.time.minute+":00";
+
+    this.nombreLocalSeleccionado = nombre;
+    const fecha = new Date(this.stringFecha);
+
+
+
     this.toSend.append('fechaHora', fecha.toDateString());
     this.toSend.append('fk_idLocalAdherido', idLocal);
     this.toSend.append('fk_idClasificado', this.idClasificado.toString());
     this.toSend.append('fk_idStatusTurnos', '1');
 
 
-    
-   
   }
   // agregar turno a la base de datos
-  addTurno(){
-   this.inPromise = true;
+  addTurno() {
+    this.inPromise = true;
     this.turnoService.persist(this.toSend).subscribe(
       (resp) => {
         if (resp.ok && resp.status === 201) {
@@ -197,7 +220,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
           $('#nuevo').modal('hide');
         } else {
           console.error(resp);
-          this.as.msg("OK", "Error", "Ha ocurrido un error interno");
+          this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
         }
 
         this.inPromise = false;
@@ -207,12 +230,13 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
         console.log(error);
         this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
       }
-    )  
+    )
   }
 
+
   ngOnDestroy() {
-  
-  
+
+
     this.localesBehaviorSuscription.unsubscribe();
   }
 
