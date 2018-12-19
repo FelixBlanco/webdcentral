@@ -11,3 +11,6 @@
 .nav-link .active{
   color: #007bff;
 }
+span{
+  cursor: pointer;
+}
