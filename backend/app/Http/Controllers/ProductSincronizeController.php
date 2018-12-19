@@ -46,7 +46,9 @@ class ProductSincronizeController extends Controller {
                 'destacado'          => 0,
                 'isOutstanding'      => 0,
                 'fechaIsOutstanding' => "",
-                'WebLink_Rubro' => $item->WebLink_Rubro
+                'WebLink_Rubro' => $item->WebLink_Rubro,
+                'Agrupacion' => $item->Agrupacion,
+                'Weblink_fabricante' => $item->Weblink_fabricante
              ];
             ProductoController::create($product);
         }
