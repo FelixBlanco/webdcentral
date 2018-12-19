@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class PerfilClientesController extends Controller {
+
     public function store(Request $request) {
 
         $this->validate($request, [
@@ -184,4 +185,39 @@ class PerfilClientesController extends Controller {
         }
 
     }
+
+    public function listarDomiciliosDeClientes($idCliente) {
+        $p = PerfilCliente::where('fk_idPerfilCliente', $idCliente)->select(
+            'domicilio_1',
+            'domicilio_2',
+            'domicilio_3',
+            'domicilio_4',
+            'domicilio_5',
+            'domicilio_6')->get();
+
+        if (count($p) == 0) {
+            $response = [
+                'msj' => 'No existe perfil para el usuario',
+            ];
+
+            return response()->json($response, 404);
+        }
+
+        $as = [ 'domicilio_1',
+            'domicilio_2',
+            'domicilio_3',
+            'domicilio_4',
+            'domicilio_5',
+            'domicilio_6' ];
+
+        foreach ($as as $a) {
+            if (! is_null($p[0][$a])) {
+
+                $ars[] = $p[0][$a];
+            }
+        }
+
+        return response()->json($ars, 201);
+    }
+
 }
