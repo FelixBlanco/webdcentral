@@ -7609,3 +7609,6 @@ backend/vendor/bin/generate-defuse-key
 backend/vendor/autoload.php
 .idea/workspace.xml___jb_old___
 .idea/workspace.xml
+backend/vendor/composer/autoload_static.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/autoload.php
