@@ -30,7 +30,7 @@ class CreateConfigFootersTable extends Migration {
             $table->string('desde')->nullable();
             $table->string('hasta')->nullable();
             $table->string('url_mercado_libre')->nullable();
-
+            $table->string('imagen')->nullable();
 
             $table->timestamps();
 

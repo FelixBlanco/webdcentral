@@ -13,6 +13,7 @@ import { NgModule } from '@angular/core';
       MatTooltipModule,
       MatBadgeModule,
       MatRadioModule
+
       
     ],
   exports: [
@@ -25,6 +26,7 @@ import { NgModule } from '@angular/core';
       MatTooltipModule,
       MatBadgeModule,
       MatRadioModule
+
     ]
 })
 export class MaterialUiModule { }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Domicilio;
 use App\PerfilCliente;
 use App\User;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class PerfilClientesController extends Controller {
+
     public function store(Request $request) {
 
         $this->validate($request, [
@@ -45,8 +47,6 @@ class PerfilClientesController extends Controller {
             'CUIT.required'                => 'El campo es requerido',
             'CUITrazonSocial.required'     => 'El campo es requerido',
             'CUITDomicilioFidcal.required' => 'El campo es requerido',
-
-
         ]);
 
         DB::beginTransaction();
@@ -182,4 +182,129 @@ class PerfilClientesController extends Controller {
         }
 
     }
+
+    public function listarDomiciliosDeClientes($idCliente) {
+
+        $d = Domicilio::where('fk_idPerfilCliente', $idCliente)->select('idDomicilios', 'descripcion')->get();
+
+        return response()->json($d, 201);
+    }
+
+    public function agregarDomicilio(Request $request) {
+        //$request->fk_idPerfilCliente
+        //$request->descripcion
+
+        $this->validate($request, [
+            'fk_idPerfilCliente' => 'required',
+            'descripcion'        => 'required',
+        ], [
+            'fk_idPerfilCliente.required' => 'El campo es requerido',
+            'descripcion.required'        => 'El campo es requerido',
+        ]);
+
+        $perfil = PerfilCliente::find($request->fk_idPerfilCliente);
+
+        if (is_null($perfil)) {
+
+            $response = [
+                'msj' => 'El perfil del cliente no existe, por favor cree un perfil primero',
+            ];
+
+            return response()->json($response, 404);
+        }
+
+        DB::beginTransaction();
+        try {
+            if (count(Domicilio::all()) < 6) {
+                $d = new Domicilio($request->all());
+                $d->perfilCliente;
+                $d->save();
+
+                $response = [
+                    'msj'       => 'Domicilio creado exitosamente',
+                    'domicilio' => $d,
+                ];
+
+                DB::commit();
+
+                return response()->json($response, 201);
+            } else {
+                $response = [
+                    'msj' => 'Ya el cliente tiene la cantidad maxima de domicilios',
+                ];
+
+                return response()->json($response, 404);
+            }
+
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            Log::error('Ha ocurrido un error en PerfilClientesController: '.$e->getMessage().', Linea: '.$e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+            ], 500);
+        }
+
+    }
+
+    public function editarDomicilio(Request $request) {
+
+        $this->validate($request, [
+            'idDomicilios' => 'required',
+            'descripcion'  => 'required',
+        ], [
+            'idDomicilios.required' => 'El campo es requerido',
+            'descripcion.required'  => 'El campo es requerido',
+        ]);
+
+        $domicilio = Domicilio::find($request->idDomicilios);
+
+        if (is_null($domicilio)) {
+
+            $response = [
+                'msj' => 'El domicilio del cliente no existe',
+            ];
+
+            return response()->json($response, 404);
+
+        } else {
+
+            $domicilio->fill($request->all());
+            $domicilio->save();
+
+            $response = [
+                'msj'       => 'Domicilio actualizado correctamente',
+                'domicilio' => $domicilio,
+            ];
+
+            return response()->json($response, 201);
+        }
+    }
+
+    public function borrarDomicilio($idDomicilios) {
+
+        $domicilio = Domicilio::find($idDomicilios);
+
+        if (is_null($domicilio)) {
+
+            $response = [
+                'msj' => 'El domicilio del cliente no existe',
+            ];
+
+            return response()->json($response, 404);
+        } else {
+
+            $domicilio->delete();
+            $response = [
+                'msj' => 'El domicilio fue borrado correctamente',
+            ];
+
+            return response()->json($response, 201);
+        }
+
+
+    }
+
 }

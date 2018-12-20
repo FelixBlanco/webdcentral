@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-12">
-        <h3 class="p-5 text-center">Configuracion de General</h3>        
+      <h3 class="p-5 text-center">Configuracion de General</h3>
     </div>
   </div>
   <form [formGroup]="myForm">
@@ -9,106 +9,174 @@
       <div class="col-md-6">
         <div class="form-group">
           <label>Dirección</label>
-          <textarea cols="10" rows="5" placeholder="Dirección" class="form-control" formControlName="direccion"></textarea>        
+          <textarea cols="10" rows="5" placeholder="Dirección" class="form-control" formControlName="direccion"></textarea>
           <p *ngIf="!myForm.get('direccion').valid" class="text-danger">Direccion es requerida</p>
         </div>
         <div class="form-group">
           <label>Numero de Contactos</label>
-          <input type="phone"  placeholder="Numero de Contactos" class="form-control" formControlName="nroContacto">
+          <input type="phone" placeholder="Numero de Contactos" class="form-control" formControlName="nroContacto">
           <p *ngIf="!myForm.get('nroContacto').valid" class="text-danger">Numero de Contactos es requerido</p>
         </div>
         <div class="form-group">
           <label>Mails de Ventas 1</label>
-          <input type="email"  placeholder="Ingrese Mails de Ventas 1" class="form-control" formControlName="mail1">
+          <input type="email" placeholder="Ingrese Mails de Ventas 1" class="form-control" formControlName="mail1">
           <p *ngIf="!myForm.get('mail1').valid" class="text-danger">Debe ser email</p>
         </div>
 
         <div class="form-group">
           <label>Mails de Ventas 2</label>
-          <input type="email"  placeholder="Ingrese Mails de Ventas 2" class="form-control" formControlName="mail2">
+          <input type="email" placeholder="Ingrese Mails de Ventas 2" class="form-control" formControlName="mail2">
           <p *ngIf="!myForm.get('mail2').valid" class="text-danger">Debe ser email</p>
         </div>
 
         <div class="form-group">
           <label>Latitud</label>
-          <input type="number"  placeholder="Ingrese su latitud" class="form-control" formControlName="latitud">
+          <input type="number" placeholder="Ingrese su latitud" class="form-control" formControlName="latitud">
           <p *ngIf="!myForm.get('latitud').valid" class="text-danger">Latitud es requerida</p>
         </div>
 
         <div class="form-group">
           <label>Longitud</label>
-          <input type="number"  placeholder="Ingrese la longitud" class="form-control" formControlName="longitud">
+          <input type="number" placeholder="Ingrese la longitud" class="form-control" formControlName="longitud">
           <p *ngIf="!myForm.get('longitud').valid" class="text-danger">Longitud es requerida</p>
         </div>
 
         <div class="form-group">
           <label>WhatsApp 1</label>
-          <input type="text"  placeholder="Ingrese su WhatsApp 1" class="form-control" formControlName="whatsApp1">
+          <input type="text" placeholder="Ingrese su WhatsApp 1" class="form-control" formControlName="whatsApp1">
           <p *ngIf="!myForm.get('whatsApp1').valid" class="text-danger">WhatsApp es requerida</p>
         </div>
 
         <div class="form-group">
           <label>WhatsApp 2</label>
-          <input type="text"  placeholder="Ingrese su WhatsApp 2 " class="form-control" formControlName="whatsApp2">
+          <input type="text" placeholder="Ingrese su WhatsApp 2 " class="form-control" formControlName="whatsApp2">
         </div>
 
       </div>
       <div class="col-md-6">
 
+
+
         <div class="form-group">
-            <label>Horarios</label>
-            <input type="text"  placeholder="Ingrese el Horario" class="form-control" formControlName="horarios">
-          </div>
-          
-          <div class="form-group">
-            <label>Subtes</label>
-            <input type="text"  placeholder="Ingrese Subtes" class="form-control" formControlName="subtes">
-          </div>
-          
-          <div class="form-group">
-            <label>Colectivos</label>
-            <input type="text"  placeholder="Ingrese  el Colectivos" class="form-control" formControlName="colectivos">
-          </div>
-          
-          <div class="form-group">
-            <label>Avenidas Cercanas</label>
-            <input type="text"  placeholder="Ingrese Avenidas Cercanas" class="form-control" formControlName="avenidas">
-          </div>
-          
-          <div class="form-group">
-            <label>Lista de Precio</label>
-            <input type="number"  placeholder="Lista de Precio" class="form-control" formControlName="listaPrecio">
-            <p *ngIf="!myForm.get('listaPrecio').valid" class="text-danger">Lista de Precios debe ser menor 1 y mayor de 9</p>
-          </div>   
-                    
-          <div class="form-group">
-            <label>Horario Inicio Atencion</label>
-            <input type="text"  placeholder="Horario Inicio Atencion" class="form-control" formControlName="desde">
-          </div>   
-                    
-          <div class="form-group">
-            <label>Horario Cierre Atencion</label>
-            <input type="text"  placeholder="Horario Inicio Atencion" class="form-control" formControlName="hasta">
-          </div>   
-                    
-          <div class="form-group">
-            <label>URL de Mercado libre</label>
-            <input type="url"  placeholder="Ingrese URL de Mercado libre" class="form-control" formControlName="url_mercado_libre">
-          </div>   
-          
-          <div class="form-group">
-            <label>Link enlace a otra pagina</label>
-            <input type="url"  placeholder="Ingrese link a otra pagina" class="form-control" formControlName="link_otra_pagina">
-          </div>             
-      </div>
+          <label>Subtes</label>
+          <input type="text" placeholder="Ingrese Subtes" class="form-control" formControlName="subtes">
+        </div>
+
+        <div class="form-group">
+          <label>Colectivos</label>
+          <input type="text" placeholder="Ingrese  el Colectivos" class="form-control" formControlName="colectivos">
+        </div>
+
+        <div class="form-group">
+          <label>Avenidas Cercanas</label>
+          <input type="text" placeholder="Ingrese Avenidas Cercanas" class="form-control" formControlName="avenidas">
+        </div>
+
+        <div class="form-group">
+          <label>Lista de Precio</label>
+          <input type="number" placeholder="Lista de Precio" class="form-control" formControlName="listaPrecio">
+          <p *ngIf="!myForm.get('listaPrecio').valid" class="text-danger">Lista de Precios debe ser menor 1 y mayor de
+            9</p>
+        </div>
+
+
+
+        <div class="form-group">
+          <label>URL de Mercado libre</label>
+          <input type="url" placeholder="Ingrese URL de Mercado libre" class="form-control" formControlName="url_mercado_libre">
+        </div>
+
+        <div class="form-group">
+          <label>Link enlace a otra pagina</label>
+          <input type="url" placeholder="Ingrese link a otra pagina" class="form-control" formControlName="link_otra_pagina">
+        </div>
+
+        <button class="btn btn-success" *ngIf='!inPromise' (click)="getHorarios()" data-toggle="modal"
+          data-target="#horariosModal"  style="width:100%;">Gestionar Horarios de Atencion</button>
+
+
+
+      </div> 
     </div>
     <div class="row">
       <div class="col-md-12">
-          <div class="form-group text-right">   
-            <mat-spinner *ngIf='isPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
-            <button class="btn btn-success" *ngIf='!isPromise' (click)="upgradeCondigFooter()" [disabled]="myForm.invalid || inPromise">Actualizar</button>             
-          </div>
+        <div class="form-group text-right">
+          <mat-spinner *ngIf='inPromise' diameter="30" style="margin: 0 auto"></mat-spinner>
+
+
+          <button class="btn btn-success" *ngIf='!inPromise' (click)="upgradeCondigFooter()" [disabled]="myForm.invalid || inPromise">Actualizar</button>
+
+
+
+        </div>
       </div>
     </div>
   </form>
+</div>
+<!-- Modal Eliminar -->
+<div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true" style="z-index: 100000">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title text-white" id="eliminarModal">Eliminar <span class="text-capitalize" *ngIf="questionToUpdate">'{{questionToUpdate.pregunta}}'</span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div  class="modal-body">
+        <p class="text-muted">¿Desea elíminar el Horario?</p>
+        <div *ngIf="inPromiseHorario">
+          <mat-spinner  diameter="30" style="margin: 0 auto;"></mat-spinner>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-danger" [disabled]="inPromiseHorario" (click)="deleteHorarios()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal  horarios -->
+<div class="modal fade" id="horariosModal" tabindex="-1" role="dialog" aria-labelledby="estatusModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="estatusModal">Horarios</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="myFormHorarios">
+          <div class="form-group">
+            <label>Horario Inicio Atencion</label>
+            <input type="datetime-local" placeholder="Horario Inicio Atencion" class="form-control" formControlName="desde">
+          </div>
+
+          <div class="form-group">
+            <label>Horario Cierre Atencion</label>
+            <input type="datetime-local" placeholder="Horario Inicio Atencion" class="form-control" formControlName="hasta">
+          </div>
+          <div class="justify-content-center">
+            <button type="button" class="btn btn-success " style="margin: 0 auto" (click)="addHorarios()" [disabled]="inPromiseHorario">Agregar</button>
+          </div>
+        </form>
+        <ngx-datatable #table class="bootstrap" [rows]="rowsHorarios" [columns]="columns" [columnMode]="'force'"
+          [footerHeight]="50" [rowHeight]="40" [limit]="limit" style="background:white; padding: 10px 0px 10px 0px;">
+          <ngx-datatable-column name="#" prop="idHorarioAtencion"></ngx-datatable-column>
+          <ngx-datatable-column name="Desde" prop="desde"></ngx-datatable-column>
+          <ngx-datatable-column name="Hasta" prop="hasta"></ngx-datatable-column>
+          <ngx-datatable-column name="" prop="opts" [width]="100" [height]="70">
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>        
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+        <mat-spinner *ngIf='inPromiseHorario' diameter="30" style="margin: 0 auto"></mat-spinner>
+
+      </div>
+
+    </div>
+  </div>
 </div>

@@ -23,7 +23,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner>
-          <button type="button" class="btn btn-primary" (click)="addReclamos()" [disabled]='!myForm.valid || inPromise'>Guardar Cambios</button>
+          <button type="button" class="btn btn-primary" (click)="addReclamos()" [disabled]='!myForm.valid || inPromise'>Enviar</button>
         </div>
       </div>
     </div>
@@ -53,18 +53,19 @@
   </div>
 
 <div style="padding-top:4%; padding-bottom:4%; background-color: #90bb1e">
-  <div class="container">
+  <div class="container-fluid">
       <div class="row">
-        <div class="col-md-8 text-center">          
+        <div class="col-md-7 text-center">          
           <span class="btn btn-r txt-blanco" style="background-color: #E97604;" (click)="clickModal()"><b>SUGERENCIAS</b></span>
           <span class="btn btn-r txt-blanco" style="background-color: #E97604; margin-left:5%" (click)="clickModal()"><b>RECLAMOS</b> </span>          
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <p class="text-justify txt-blanco font-light">
-            <i style="font-size:21px;">
-              En Deposito Central nos importa tu experiencia. 
-              Si tienes algun Reclamo o Sugerencia por favor has 
-              click en el Botón que corresponda.
+            <i style="font-size:25px;">
+              En Deposito Central nos importa tu <br>
+              experiencia. Si tienes algun Reclamo <br> 
+              o Sugerencia por favor has click en el <br>
+              Botón que corresponda.
             </i>
           </p>
         </div>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -30,17 +31,6 @@
         }
     </style>
 </head>
-
-@php
-
-    $titulo = "TITULO DEL EMAIL _____________________________________ ";
-    $descripcion = "
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis distinctio omnis reprehenderit hic, quaerat ducimus temporibus sint molestiae veniam quam, repudiandae perferendis modi eveniet nesciunt doloremque quos libero qui fugit.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis distinctio omnis reprehenderit hic, quaerat ducimus temporibus sint molestiae veniam quam, repudiandae perferendis modi eveniet nesciunt doloremque quos libero qui fugit.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis distinctio omnis reprehenderit hic, quaerat ducimus temporibus sint molestiae veniam quam, repudiandae perferendis modi eveniet nesciunt doloremque quos libero qui fugit.</p>";
-@endphp
 
 <body class = "cuerpo" style = "background-image: url( {{asset('img/cuerpo-email/FONDO.png')}} )">
 <div class = "container-fluid">

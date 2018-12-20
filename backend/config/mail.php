@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'no-responder@depositocentral.com.ar'),
-        'name' => env('MAIL_FROM_NAME', 'No responder'),
+        'name' => env('MAIL_FROM_NAME', 'No_responder'),
     ],
 
     /*

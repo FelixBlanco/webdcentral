@@ -5,8 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PerfilCliente extends Model
-{
+class PerfilCliente extends Model {
     use SoftDeletes;
 
     protected $table = 'tb_perfil_clientes';
@@ -31,8 +30,11 @@ class PerfilCliente extends Model
         'CUITDomicilioFidcal', //opcional
     ];
 
-    public function user()
-    {
+    public function user() {
         return $this->belongsTo('App\User', 'fk_idPerfilCliente');
+    }
+
+    public function domicilios() {
+        return $this->hasMany('App\Domicilio', 'fk_idPerfilCliente', 'idPerfilCliente');
     }
 }

@@ -15,6 +15,8 @@ declare var $;
 export class PerfilClienteComponent implements OnInit {
 
   formData:FormGroup;
+  formDataDomicilio:FormGroup;
+  formDataFacturacion:FormGroup;
 
   form:any={ 
     idPerfilCliente: null, nombreComercio: null, nombre: null, apellido: null,
@@ -22,7 +24,9 @@ export class PerfilClienteComponent implements OnInit {
     telefono: null, celular_code: null, celular: null, fk_idPerfilCliente: null,
     
     domicilio_entrega:null, fk_idTipoFactura: null,CUIT: null, CUITrazonSocial: null,
-    CUITDomicilioFidcal: null
+    CUITDomicilioFidcal: null,
+
+    domicilio_1:null,domicilio_2:null,domicilio_3:null,domicilio_4:null,domicilio_5:null,domicilio_6:null
   };
   
   isNuevo:any; 
@@ -43,16 +47,28 @@ export class PerfilClienteComponent implements OnInit {
       documento_dni   : ['', Validators.required],
       documento_otro  : ['', Validators.required],
       correo          : ['', Validators.required],
-      telefono_code   : ['', Validators.required],
+      telefono_code   : [''],
       telefono        : ['', Validators.required],
-      celular_code    : ['', Validators.required],
+      celular_code    : [''],
       celular         : ['', Validators.required],
+    })
+
+
+    this.formDataDomicilio = this.fb.group({
       domicilio_entrega  : ['', Validators.required],
-      fk_idTipoFactura   : ['', Validators.required],
-      CUIT         : ['', Validators.required],
+      domicilio_entrega_2  : [''],
+      domicilio_entrega_3  : [''],
+      domicilio_entrega_4  : [''],
+      domicilio_entrega_5  : [''],
+      domicilio_entrega_6  : ['']
+    })   
+    
+    this.formDataFacturacion = this.fb.group({
+      CUIT                : ['', Validators.required],
+      fk_idTipoFactura    : ['', Validators.required],      
       CUITrazonSocial         : ['', Validators.required],
       CUITDomicilioFidcal     : ['', Validators.required],
-    })
+    });
 
     this.tipoFacturasService._getTipoFactura().subscribe(
       (resp:any) => {
@@ -103,15 +119,27 @@ export class PerfilClienteComponent implements OnInit {
   crear(){    
     const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
     const data:any = { 
+
+      // DATOS PERSONALES
       nombreComercio: this.form.nombreComercio, 
-      nombre:  this.form.nombre, 
-      apellido:  this.form.apellido,
-      documento_dni: this.form.documento_dni, 
+      nombre        :  this.form.nombre, 
+      apellido      :  this.form.apellido,
+      documento_dni : this.form.documento_dni, 
       documento_otro: this.form.documento_otro, 
-      correo:  this.form.correo, 
-      telefono:  this.form.telefono_code +''+ this.form.telefono, 
-      celular:  this.form.celular_code +''+ this.form.celular,
-      domicilio_entrega:  this.form.domicilio_entrega, 
+      correo        :  this.form.correo, 
+      telefono      :  this.form.telefono_code +''+ this.form.telefono, 
+      celular       :  this.form.celular_code +''+ this.form.celular,
+      
+      // DOMICILIO
+      domicilio_entrega :  this.form.domicilio_entrega, 
+      domicilio_1       :  this.form.domicilio_entrega, // vamos a ignorar este que es el mismo domicilio_entrega
+      domicilio_2       :  this.form.domicilio_2,
+      domicilio_3       :  this.form.domicilio_3,
+      domicilio_4       :  this.form.domicilio_4,
+      domicilio_5       :  this.form.domicilio_5,
+      domicilio_6       :  this.form.domicilio_6,
+      
+      // FACTURA
       fk_idTipoFactura:  this.form.fk_idTipoFactura, 
       CUIT:  this.form.CUIT, 
       CUITrazonSocial:  this.form.CUITrazonSocial, 
