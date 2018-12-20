@@ -123,7 +123,7 @@ class OrderHeaderController extends Controller {
 
 
             DB::connection('mysql')->insert("  INSERT INTO tb_history_mp 
-            (   data,
+            (data,
             fk_idOrderHeader) VALUES(
                  '$request->data',  
                  $request->id

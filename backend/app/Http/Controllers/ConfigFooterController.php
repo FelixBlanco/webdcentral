@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ConfigFooter;
+use Illuminate\Support\Facades\Storage;
+use Image;
 
 class ConfigFooterController extends Controller {
 
@@ -53,9 +55,31 @@ class ConfigFooterController extends Controller {
 
             $c = new ConfigFooter($request->all());
 
+            if (is_null($request->imagen)) {
+            } else {
+                $originalImage = $request->imagen;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension      = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $c->imagen = $nombre_interno;
+            }
+
             $c->save();
             $response = [
-                'msj' => 'Footer Creado',
+                'msj'        => 'Footer Creado',
+                'set_imagen' => asset('storage\\imagenFooter\\'.$c->imagen),
             ];
 
             return response()->json($response, 201);
@@ -79,6 +103,26 @@ class ConfigFooterController extends Controller {
             $d->url_mercado_libre = $request->url_mercado_libre;
             $d->link_otra_pagina  = $request->link_otra_pagina;
 
+            if (is_null($request->imagen)) {
+            } else {
+                $originalImage = $request->imagen;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension      = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $d->imagen = $nombre_interno;
+            }
 
             if (! is_null($request->listaPrecio)) {
 
@@ -96,10 +140,68 @@ class ConfigFooterController extends Controller {
             $d->save();
 
             $response = [
-                'msj' => 'Footer Actualizado',
+                'msj'        => 'Footer Actualizado',
+                'set_imagen' => asset('storage\\imagenFooter\\'.$d->imagen),
             ];
 
             return response()->json($response, 201);
         }
+    }
+
+    public function addImagenFooter(Request $request) {
+
+        $c = ConfigFooter::first();
+
+        if (is_null($request->imagen)) {
+
+            if (! empty($c)) { // Caso de estar vacio
+                $response = [
+                    'set_imagen' => asset('storage\\imagenFooter\\'.$c->imagen),
+                ];
+
+                return response()->json($response, 201);
+            } else {
+                $response = [
+                    'msj' => 'No existe imagen en footer',
+                ];
+
+                return response()->json($response, 404);
+            }
+
+        } else {
+            if (empty($c)) { // Caso de estar vacio
+                $response = [
+                    'msj' => 'No existe footer, 1ero configure footer',
+                ];
+
+                return response()->json($response, 404);
+            }
+
+            $originalImage = $request->imagen;
+
+            $thumbnailImage = Image::make($originalImage);
+
+            $thumbnailImage->fit(2048, 2048, function($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $nombre_publico = $originalImage->getClientOriginalName();
+            $extension      = $originalImage->getClientOriginalExtension();
+
+            $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+            $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+            Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+            $c->imagen = $nombre_interno;
+        }
+
+        $c->save();
+        $response = [
+            'msj'        => 'Imagen de footer Creada',
+            'set_imagen' => asset('storage\\imagenFooter\\'.$c->imagen),
+        ];
+
+        return response()->json($response, 201);
     }
 }

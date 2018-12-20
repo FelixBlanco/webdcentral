@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Clasificado extends Model
 {
+    use SoftDeletes;
     protected $table = 'tb_clasificados';
 
     protected $primaryKey = 'idClasificado';

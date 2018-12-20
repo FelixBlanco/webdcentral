@@ -89,7 +89,7 @@ Route::group(['prefix' => 'auth'], function () {
 
         /*Clasificados*/
         Route::post('guardarClasificado', 'ClasificadoController@store');
-        Route::post('listarClasificado', 'ClasificadoController@listar');
+
         Route::get('listarPorIdClasificado/{idClasificado}', 'ClasificadoController@listarPorId');
         Route::delete('borrarClasificado/{idClasificado}', 'ClasificadoController@destroy');
         Route::post('editarClasificado/{idClasificado}', 'ClasificadoController@editar');
@@ -140,9 +140,18 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
 
+    Route::get('listarPorIdClasificado/{fk_idClasificado}','LocalesAdheridoController@listarPorIdClasificado');
+
+    Route::get('turnoDeUnLocalAdh/{id_Local}','LocalesAdheridoController@turnoDeUnLocalAdh');
+
+    Route::post('agregarDomicilio','PerfilClientesController@agregarDomicilio');
+    Route::get('listarDomiciliosDeClientes/{idCliente}','PerfilClientesController@listarDomiciliosDeClientes');
+    Route::post('editarDomicilio','PerfilClientesController@editarDomicilio');
+    Route::delete('borrarDomicilio/{idDomicilios}','PerfilClientesController@borrarDomicilio');
+
+    Route::post('listarClasificado', 'ClasificadoController@listar');
 
     Route::post('add/pago', 'OrderHeaderController@safePago');
-
 
     Route::post('listar', 'PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
 
@@ -240,6 +249,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     // Config Home
     Route::get('config-home', 'ConfigHomeController@getConfigHome')->name('config-home');
     Route::post('upgrade_config_home', 'ConfigHomeController@upgradeConfigHome')->name('upgrade_config_home');
+    Route::post('addImagenFooter','ConfigFooterController@addImagenFooter');
 
     // Config Footer
     Route::get('config-footer', 'ConfigFooterController@getInfo')->name('config-footer');
@@ -383,6 +393,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
 
     // Tipos de descuentos 
     Route::get('tipo-descuentos','TipoDescuentoController@index');
+
 });
 
 

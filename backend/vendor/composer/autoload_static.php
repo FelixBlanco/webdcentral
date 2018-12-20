@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit189f436697878203f626611f1555808e
+class ComposerStaticInit72cd78d885594005b744672662d0bd64
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -505,6 +505,7 @@ class ComposerStaticInit189f436697878203f626611f1555808e
         'App\\Coupons' => __DIR__ . '/../..' . '/app/Coupons.php',
         'App\\CouponsClient' => __DIR__ . '/../..' . '/app/CouponsClient.php',
         'App\\Destacado' => __DIR__ . '/../..' . '/app/Destacado.php',
+        'App\\Domicilio' => __DIR__ . '/../..' . '/app/Domicilio.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\GaleriaHome' => __DIR__ . '/../..' . '/app/GaleriaHome.php',
         'App\\GaleriaHomeProductos' => __DIR__ . '/../..' . '/app/GaleriaHomeProductos.php',
@@ -568,6 +569,7 @@ class ComposerStaticInit189f436697878203f626611f1555808e
         'App\\LocalesAdherido' => __DIR__ . '/../..' . '/app/LocalesAdherido.php',
         'App\\Mail\\BorrarTurnosMail' => __DIR__ . '/../..' . '/app/Mail/BorrarTurnosMail.php',
         'App\\Mail\\EditarTurnosMail' => __DIR__ . '/../..' . '/app/Mail/EditarTurnosMail.php',
+        'App\\Mail\\PagoConTarjetaMail' => __DIR__ . '/../..' . '/app/Mail/PagoConTarjetaMail.php',
         'App\\Mail\\Prueba' => __DIR__ . '/../..' . '/app/Mail/Prueba.php',
         'App\\Mail\\SuscripcionMail' => __DIR__ . '/../..' . '/app/Mail/SuscripcionMail.php',
         'App\\Mail\\TurnosMail' => __DIR__ . '/../..' . '/app/Mail/TurnosMail.php',
@@ -598,6 +600,7 @@ class ComposerStaticInit189f436697878203f626611f1555808e
         'App\\TagProduct' => __DIR__ . '/../..' . '/app/TagProduct.php',
         'App\\TipoDeFactura' => __DIR__ . '/../..' . '/app/TipoDeFactura.php',
         'App\\TipoDescuento' => __DIR__ . '/../..' . '/app/TipoDescuento.php',
+        'App\\TipoOrden' => __DIR__ . '/../..' . '/app/TipoOrden.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\clasificado_reclamo' => __DIR__ . '/../..' . '/app/clasificado_reclamo.php',
         'App\\orderBody' => __DIR__ . '/../..' . '/app/orderBody.php',
@@ -4784,6 +4787,7 @@ class ComposerStaticInit189f436697878203f626611f1555808e
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
         'TipoDeFacturaSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoDeFacturaSeeder.php',
         'TipoDescuetoSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoDescuetoSeeder.php',
+        'TipoOrdenSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoOrdenSeeder.php',
         'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
@@ -4934,11 +4938,11 @@ class ComposerStaticInit189f436697878203f626611f1555808e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit189f436697878203f626611f1555808e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit189f436697878203f626611f1555808e::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit189f436697878203f626611f1555808e::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit189f436697878203f626611f1555808e::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit189f436697878203f626611f1555808e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit72cd78d885594005b744672662d0bd64::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit72cd78d885594005b744672662d0bd64::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit72cd78d885594005b744672662d0bd64::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit72cd78d885594005b744672662d0bd64::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit72cd78d885594005b744672662d0bd64::$classMap;
 
         }, null, ClassLoader::class);
     }
