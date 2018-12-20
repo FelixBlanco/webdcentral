@@ -144,13 +144,14 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
 
     Route::get('turnoDeUnLocalAdh/{id_Local}','LocalesAdheridoController@turnoDeUnLocalAdh');
 
+    Route::post('agregarDomicilio','PerfilClientesController@agregarDomicilio');
     Route::get('listarDomiciliosDeClientes/{idCliente}','PerfilClientesController@listarDomiciliosDeClientes');
-
+    Route::post('editarDomicilio','PerfilClientesController@editarDomicilio');
+    Route::delete('borrarDomicilio/{idDomicilios}','PerfilClientesController@borrarDomicilio');
 
     Route::post('listarClasificado', 'ClasificadoController@listar');
 
     Route::post('add/pago', 'OrderHeaderController@safePago');
-
 
     Route::post('listar', 'PreguntasFrecuenteController@listar'); //para listar todas las preguntas y respuetas, con filtros offset y  limit
 
@@ -392,6 +393,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
 
     // Tipos de descuentos 
     Route::get('tipo-descuentos','TipoDescuentoController@index');
+
 });
 
 
