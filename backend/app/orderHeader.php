@@ -43,6 +43,8 @@ class orderHeader extends Model {
         'isPay',
         'fecha_retiro',
         'fecha',
+        'personasAutorizadas',
+        'observaciones',
 
     ];
 

@@ -22,6 +22,8 @@ class AddNuevosCamposToOrderHeader extends Migration
             $table->date('fecha_retiro')->nullable();
 
             $table->date('fecha')->nullable();
+            $table->text('personasAutorizadas')->nullable();
+            $table->text('observaciones')->nullable();
         });
     }
 
@@ -45,6 +47,8 @@ class AddNuevosCamposToOrderHeader extends Migration
 
             $table->dropColumn('fecha_retiro');
             $table->dropColumn('fecha');
+            $table->dropColumn('personasAutorizadas');
+            $table->dropColumn('observaciones');
         });
     }
 }
