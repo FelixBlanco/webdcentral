@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+
 import { environment } from 'src/environments/environment';
 
 
@@ -11,6 +12,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class TurnosService {
+    turnoNewBehaviorSource: BehaviorSubject<any> = new BehaviorSubject(null);
+    isNewAdded: Observable<any> = this.turnoNewBehaviorSource.asObservable();
+    
     httpOptions: HttpHeaders = new HttpHeaders({
         'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*',
@@ -23,5 +27,10 @@ export class TurnosService {
     }
   getTurnos(body: any): Observable<HttpResponse<any>> {
         return this.http.get<any>(`${environment.apiHost}/api/auth/listarTodoslosTurnos`, { headers: this.httpOptions, observe: 'response' });
+    }
+    updateSource(data: boolean){
+     console.log(data);
+        this.turnoNewBehaviorSource.next(data);   
+
     }
 }

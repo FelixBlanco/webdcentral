@@ -103,7 +103,7 @@
                         <div class="card-body">
                           <div class="row" style="height: 146px;margin: 0;">
                             <div class="col-4" style="padding: 0;">
-                              <img [src]="loc.foto_1" width="100%" height="100%" alt="loc.nombre">
+                              <img [src]="loc.set_imagen_uno" width="100%" height="100%" alt="loc.nombre">
                             </div>
                             <div class="col-6 p-4">
                               <h4 class="font-bold text-uppercase txt-azul">{{loc.descripcion}}</h4>
@@ -155,11 +155,11 @@
         <div class="modal-header bg-success">
           <h5 class="modal-title text-white  font-bold" id="nuevoModal">¿Desea Reservar este turno ?</h5>
         </div>
-        <div class="modal-body font-bold">
+       <!--  <div class="modal-body font-bold">
          
           <h5>Local: {{nombreLocalSeleccionado}}</h5>
           <h5>Fecha: {{stringFecha}}</h5>
-        </div>
+        </div> -->
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-success" [disabled]="inPromise" (click)="addTurno()" >Aceptar</button>
@@ -167,3 +167,4 @@
       </div>
     </div>
   </div>
+  

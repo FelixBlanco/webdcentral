@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy ,ViewChild} from '@angular/core';
 import { LocalesAdheridosService } from 'src/app/services/locales-adheridos.service';
 import { Subscription } from 'rxjs';
 import { CarouselItem } from 'src/app/services/productos.service';
@@ -6,7 +6,7 @@ import { TurnosService } from 'src/app/services/turno.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AlertsService } from 'src/app/services/alerts.service';
 import { UserTokenService } from 'src/app/services/user-token.service';
-
+import { TurnosListComponent} from './turnos-list/turnos-list.component'
 
 import {
   NgbCalendar,
@@ -23,6 +23,7 @@ declare var $: any;
   providers: [NgbTimepickerConfig]
 })
 export class ServiciosInicioComponent implements OnInit, OnDestroy {
+  @ViewChild(TurnosListComponent) turnosList: TurnosListComponent;
 
   inPromise: boolean;
   inPromise2:boolean;
@@ -35,7 +36,6 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   localesList2: any[] = [];
   idClasificado: number;
   nombreLocalSeleccionado: string;
-  toSend: FormData = new FormData();
   aTimeOutFix: boolean = false;
   checkForm: FormGroup;
   rubroId: number = 0;
@@ -43,6 +43,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   time: NgbTimeStruct = { hour: 0o0, minute: 0o0, second: 0o0 };
   date: { year: number, month: number, day: number };
   misTurnos: Array<any> = [];
+  data;
 
   stringFecha;
   constructor(
@@ -155,10 +156,9 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
       if(resp.ok && resp.status == 201){
         this.inPromise=false;
         this.localesList = resp.body;
-        console.log("this.localesLis");
-        console.log(this.localesList)
+       
         this.generateCarousel();
-        console.log(resp);
+        
       }else{
         this.inPromise=false;
         this.as.msg('ERR', "Error", "Ha ocurrido un error interno");
@@ -181,24 +181,29 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
     this.nombreLocalSeleccionado = nombre;
     const fecha = new Date(this.stringFecha);
 
+    this.data={
+      fechaHora:fecha,
+      fk_idLocalAdherido:idLocal,
+      fk_idClasificado:this.idClasificado,
+      fk_idStatusTurnos:1
+    }
 
-
-    this.toSend.append('fechaHora', fecha.toDateString());
-    this.toSend.append('fk_idLocalAdherido', idLocal);
-    this.toSend.append('fk_idClasificado', this.idClasificado.toString());
-    this.toSend.append('fk_idStatusTurnos', '1');
-    console.log(this.toSend);
+ 
+    
 
   }
   // agregar turno a la base de datos
   addTurno() {
-    this.inPromise = true;
-    this.turnoService.persist(this.toSend).subscribe(
+    console.log(this.data);
+     this.inPromise = true;
+    this.turnoService.persist(this.data).subscribe(
       (resp) => {
         if (resp.ok && resp.status === 201) {
           this.as.msg("OK", "Éxito", "Turno Solicitado.");
           this.newForm.reset();
+          this.turnoService.updateSource(true);
           $('#nuevo').modal('hide');
+     
         } else {
           console.error(resp);
           this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
@@ -211,10 +216,11 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
         console.log(error);
         this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
       }
-    )
+    )  
+    
   }
 
-
+  
   ngOnDestroy() {
 
 

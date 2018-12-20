@@ -11,10 +11,11 @@
         <table class="table table-curved ">
           <thead class="bg-azul text-white">
             <tr>
-              <th scope="col" width="30%">RUBRO</th>
-              <th scope="col" width="15%">N°</th>
-              <th scope="col" width="30%">FECHA</th>
-              <th scope="col" width="25%">ESTADO</th>
+              <th scope="col" width="25%">RUBRO</th>
+              <th scope="col" width="10%">N°</th>
+              <th scope="col" width="25%">FECHA</th>
+              <th scope="col" width="15%">ESTADO</th>
+              <th scope="col" width="25%"></th>
 
             </tr>
           </thead>
@@ -22,18 +23,24 @@
         <div class="bodyTable">
             <table class="table table-curved" >
 
-                <tbody *ngIf="!inPromise">
+                <tbody >
                   <ng-container *ngFor="let item of misTurnos">
-                    <tr>
-                      <td width="30%">{{item.rubro}}</td>
-                      <td width="15%">{{item.id}}</td>
-                      <td width="30%">{{item.fecha}}</td>
-                      <td width="25%">{{item.status}}</td>
+                    <tr *ngIf="misTurnos.length">
+                      <td width="25%">{{item.rubro}}</td>
+                      <td width="10%">{{item.id}}</td>
+                      <td width="25%"><strong>{{item.fecha}}</strong></td>
+                      <td width="15%">
+                        <span *ngIf="item.status == 1">Espera</span>
+                        <span *ngIf="item.status == 2">Activo</span>
+                      </td>
+                      <td width="25%">
+                        <button class="btn-danger" style="width: 100%; border-radius: 4px; cursor: pointer;">Cancelar</button>
+                      </td>
                     </tr>
                   </ng-container>
       
                 </tbody>
-      
+                
                 <!-- <tfoot class="bg-azul text-white">
                         <tr class="font-bold text-capitalize text-right">
                           <td colspan="5">
@@ -49,7 +56,7 @@
 
       </div>
       <div class="modal-footer">
-        <mat-spinner *ngIf='inPromise' diameter="50" style="margin: 0 auto;"></mat-spinner>
+        <mat-spinner *ngIf='inPromise' diameter="30" style="margin: 0 auto;"></mat-spinner>
 
       </div>
     </div>
