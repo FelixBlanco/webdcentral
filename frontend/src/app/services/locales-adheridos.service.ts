@@ -29,8 +29,7 @@ export class LocalesAdheridosService {
         return this.http.post<any>(environment.apiHost + '/api/auth/listarLocalAdheridos',null, {observe: 'response', headers: header2});
     }
     getLocalesPorClasificados(idClasificado:number) :Observable<HttpResponse<any>>{
-        //api/v1/listarPorIdClasificado/fk_idClasificado
-        return this.http.post<any>(environment.apiHost + 'api/v1/listarPorIdClasificado/'+idClasificado,null,{observe: 'response'});
+        return this.http.get<any>(environment.apiHost + '/api/v1/listarPorIdClasificado/'+idClasificado,{observe: 'response'});
     }
     updateSource(data: any[]){
         this.localesBehaviorSource.next(data);   

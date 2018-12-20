@@ -24,7 +24,8 @@ declare var $: any;
 })
 export class ServiciosInicioComponent implements OnInit, OnDestroy {
 
-  inPromise: boolean
+  inPromise: boolean;
+  inPromise2:boolean;
   localesBehaviorSuscription: Subscription;
   idClasificadoBehaviorSuscription: Subscription;
   newForm: FormGroup;
@@ -66,10 +67,10 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.model = this.calendar.getToday();
-    this.cargarLocales();
+
     this.initializeBehavior();
     this.cargarCheckbox();
-    this.listarLocales();
+
 
   }
 
@@ -123,74 +124,54 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   }
   //parte checkbox
   cargarCheckbox() {
-    this.inPromise = true;
+    this.inPromise2 = true;
     this.localesService.getAllClasificadosSinAuth().subscribe(
       (resp) => {
         if (resp.ok && resp.status === 201) {
-          this.inPromise = false;
+          this.inPromise2 = false;
           this.checkboxList = resp.body.Clasificado;
         } else {
           this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
 
         }
-        this.inPromise = false;
+        this.inPromise2 = false;
       }, (error) => {
 
-        this.inPromise = false;
+        this.inPromise2= false;
         this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
       }
     )
 
   }
-  cargarLocales() {
-    this.localesService.getAll().subscribe(val => {
-      this.localesList2 = val.body.LocalAdh;
-      this.listarLocales();
-
-    })
-  }
-  listarLocales() {
-    if (this.idClasificado) {
-      let arr: Array<any> = [];
-      this.localesList2.map((val, i) => {
-
-        if (this.idClasificado == val.fk_idClasificado) {
-          arr = [...arr, val];
-        }
-      })
-      this.localesList = arr;
-      this.generateCarousel();
-    }
-  }
-
+   
   checkStatus(id: any) {
 
     this.idClasificado = id;
 
   }
   buscar() {
-
-   /*  this.localesService.getLocalesPorClasificados(1).subscribe(resp =>{
+       this.inPromise=true;   
+     this.localesService.getLocalesPorClasificados(this.idClasificado).subscribe(resp =>{
       if(resp.ok && resp.status == 201){
+        this.inPromise=false;
+        this.localesList = resp.body;
+        console.log("this.localesLis");
+        console.log(this.localesList)
+        this.generateCarousel();
         console.log(resp);
       }else{
+        this.inPromise=false;
         this.as.msg('ERR', "Error", "Ha ocurrido un error interno");
       }
     },error =>{
+      this.inPromise=false;
           this.as.msg('ERR', "Error", "Ha ocurrido un error interno");
     }
-    ) */
+    )   
 
-    if (this.userService.isNotLogged) {
-      $('#loginModal').modal('show');
-    } else {
-      if (this.localesList2.length) {
-        this.listarLocales();
-      } else {
-        this.cargarLocales();
-      }
 
-    }
+
+     
 
 
   }
@@ -206,7 +187,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
     this.toSend.append('fk_idLocalAdherido', idLocal);
     this.toSend.append('fk_idClasificado', this.idClasificado.toString());
     this.toSend.append('fk_idStatusTurnos', '1');
-
+    console.log(this.toSend);
 
   }
   // agregar turno a la base de datos

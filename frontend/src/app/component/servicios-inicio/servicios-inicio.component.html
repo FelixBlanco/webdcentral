@@ -36,8 +36,8 @@
 
           <div class="col-8">
             <h5 style="text-align:center;">Rubros</h5>
-            <mat-spinner *ngIf="inPromise" [diameter]="30" style="margin: 0 auto;"></mat-spinner>
-            <fieldset *ngIf="!inPromise" style="padding:25px;" class="rubros justify-content-center">
+            <mat-spinner *ngIf="inPromise2" [diameter]="30" style="margin: 0 auto;"></mat-spinner>
+            <fieldset *ngIf="!inPromise2" style="padding:25px;" class="rubros justify-content-center">
               <div class="row"  > 
                   <div class="col-6 p-1" *ngFor="let clasi of checkboxList" >
                       <input id="clasi.idClasificado" type="radio" [(checked)]="idClasificado==clasi.idClasificado" (click)="checkStatus(clasi.idClasificado)"
@@ -97,20 +97,20 @@
             <ngb-carousel #carousel="ngbCarousel" [showNavigationArrows]="false" [showNavigationIndicators]="false">
               <ng-container *ngFor="let item of carouselItems">
                 <ng-template ngbSlide [id]="item.id">
-                  <div class="row mb-2" *ngFor="let _ of item.items">
+                  <div class="row mb-2" *ngFor="let loc of item.items">
                     <div class="col-12">
                       <div class="card">
                         <div class="card-body">
                           <div class="row" style="height: 146px;margin: 0;">
                             <div class="col-4" style="padding: 0;">
-                              <img [src]="_.set_imagen_uno" width="100%" height="100%" alt="_.nombre">
+                              <img [src]="loc.foto_1" width="100%" height="100%" alt="loc.nombre">
                             </div>
                             <div class="col-6 p-4">
-                              <h4 class="font-bold text-uppercase txt-azul">{{_.descripcion}}</h4>
-                              <p class="card-text">{{_.nombre}}</p>
+                              <h4 class="font-bold text-uppercase txt-azul">{{loc.descripcion}}</h4>
+                              <p class="card-text">{{loc.nombre}}</p>
                             </div>
                             <div class="col-2 m-auto">
-                              <button mat-raised-button (click)="setDatos(_.idLocalAdherido,_.nombre)" class="bg-naranja text-white font-bold btn-block" data-toggle="modal" data-target="#nuevo">
+                              <button mat-raised-button (click)="setDatos(loc.idLocalAdherido,loc.nombre)" class="bg-naranja text-white font-bold btn-block" data-toggle="modal" data-target="#nuevo">
                                 CONTACTAR
                               </button>
                             </div>
