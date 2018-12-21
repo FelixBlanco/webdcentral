@@ -28,12 +28,12 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   inPromise: boolean;
   inPromise2:boolean;
   localesBehaviorSuscription: Subscription;
-  idClasificadoBehaviorSuscription: Subscription;
+ /*  idClasificadoBehaviorSuscription: Subscription; */
   newForm: FormGroup;
   carouselItems: CarouselItem[] = [];
   checkboxList: any[];
   localesList: any[] = [];
-  localesList2: any[] = [];
+  /* localesList2: any[] = []; */
   idClasificado: number;
   nombreLocalSeleccionado: string;
   aTimeOutFix: boolean = false;
@@ -42,8 +42,9 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   model: NgbDateStruct;
   time: NgbTimeStruct = { hour: 0o0, minute: 0o0, second: 0o0 };
   date: { year: number, month: number, day: number };
-  misTurnos: Array<any> = [];
+  /* misTurnos: Array<any> = []; */
   data;
+  isNoLogged:boolean;
 
   stringFecha;
   constructor(
@@ -123,7 +124,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
 
     return items;
   }
-  //parte checkbox
+  //cargar clasificados para el checkbox
   cargarCheckbox() {
     this.inPromise2 = true;
     this.localesService.getAllClasificadosSinAuth().subscribe(
@@ -144,12 +145,13 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
     )
 
   }
-   
+  // status para el checkbox  seleccionado
   checkStatus(id: any) {
 
     this.idClasificado = id;
 
   }
+  // busca locales por id clasificado
   buscar() {
        this.inPromise=true;   
      this.localesService.getLocalesPorClasificados(this.idClasificado).subscribe(resp =>{
@@ -175,7 +177,10 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
 
 
   }
+  // instancia la variable data   con los datos para agregar turno
   setDatos(idLocal: any, nombre: string) {
+    this.isNoLogged= this.userService.isNotLogged()
+    if(!this.isNoLogged){
     this.stringFecha = this.model.year + "-" + this.model.month + "-" + this.model.day + " " + this.time.hour + ":" + this.time.minute + ":" + this.time.second;//" "+this.time.hour+":"+this.time.minute+":00";
 
     this.nombreLocalSeleccionado = nombre;
@@ -187,8 +192,12 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
       fk_idClasificado:this.idClasificado,
       fk_idStatusTurnos:1
     }
+    $('#nuevoTurno').modal('show');
 
- 
+
+  }else{
+    $('#loginModal').modal('show');
+  }
     
 
   }
@@ -202,7 +211,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
           this.as.msg("OK", "Éxito", "Turno Solicitado.");
           this.newForm.reset();
           this.turnoService.updateSource(true);
-          $('#nuevo').modal('hide');
+          $('#nuevoTurno').modal('hide');
      
         } else {
           console.error(resp);

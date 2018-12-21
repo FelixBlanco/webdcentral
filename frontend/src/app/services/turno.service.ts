@@ -23,10 +23,21 @@ export class TurnosService {
   constructor(private http: HttpClient) {}
 
   persist(body: any): Observable<HttpResponse<any>> {
-    return this.http.post<any>(`${environment.apiHost}/api/auth/addTurno`, body, { headers: this.httpOptions, observe: 'response' });
+     const httpOptions: HttpHeaders = new HttpHeaders({
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+    });
+
+    return this.http.post<any>(`${environment.apiHost}/api/auth/addTurno`, body, { headers: httpOptions, observe: 'response' });
     }
   getTurnos(body: any): Observable<HttpResponse<any>> {
-        return this.http.get<any>(`${environment.apiHost}/api/auth/listarTodoslosTurnos`, { headers: this.httpOptions, observe: 'response' });
+    const httpOptions: HttpHeaders = new HttpHeaders({  // coloco el header aqui para actualizar el token
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+    });
+        return this.http.get<any>(`${environment.apiHost}/api/auth/listarTodoslosTurnos`, { headers: httpOptions, observe: 'response' });
     }
     updateSource(data: boolean){
      console.log(data);
