@@ -5,9 +5,13 @@
     <div class="modal-content">
       <div class="modal-header bg-azul">
         <h5 class="text-white">TURNOS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="txt-blanco">&times;</span>
+        </button>
       </div>
 
       <div class="modal-body ">
+        
         <table class="table table-curved ">
           <thead class="bg-azul text-white">
             <tr>
@@ -20,6 +24,7 @@
             </tr>
           </thead>
         </table>
+        <h5 *ngIf="!misTurnos.length && !inPromise" style="text-align: center;">No Posee Turnos</h5>
         <div class="bodyTable">
             <table class="table table-curved" >
 

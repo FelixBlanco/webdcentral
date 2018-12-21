@@ -27,7 +27,7 @@
               aria-expanded="false">SERVICIOS</span>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a href="#" class="dropdown-item " style="color:black;" routerLink="servicios">Solicitar Turnos</a>
-              <a href="#" class="dropdown-item " style="color:black;" data-toggle="modal" data-target="#carroturnos">Turnos</a>
+              <a href="#" *ngIf="token" class="dropdown-item " style="color:black;" data-toggle="modal" data-target="#carroturnos">Turnos</a>
             </div>
 
 
