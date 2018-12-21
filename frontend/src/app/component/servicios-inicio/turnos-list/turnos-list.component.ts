@@ -17,6 +17,7 @@ export class TurnosListComponent implements OnInit {
   userId: number;
   modelData: any;
   inPromise: boolean;
+  token;
   turnoNewBehaviorSuscription: Subscription;
   constructor(
     private turnosService: TurnosService,
@@ -28,19 +29,23 @@ export class TurnosListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getTurnosUser();
-    this.initializeBehavior()
+   // this.getTurnosUser();
+    
+    this.userService.token.subscribe(val=>{
+      if(!val){
+        this.misTurnos=[];
+        console.log(val);
+      }else{
+        setTimeout(() => this.initializeBehavior(), 2500)
+       // this.initializeBehavior();
+      }
+    })
 
   }
   initializeBehavior() {
 
-    this.turnoNewBehaviorSuscription = this.turnosService.isNewAdded.subscribe((val) => {
-
-      if(val){
+    this.turnoNewBehaviorSuscription = this.turnosService.isNewAdded.subscribe((val) => { 
         this.getTurnosUser()
-      }
-
-
     })
   }
   getTurnosUser() {

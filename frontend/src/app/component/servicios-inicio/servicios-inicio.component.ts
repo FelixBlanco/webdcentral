@@ -27,6 +27,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
 
   inPromise: boolean;
   inPromise2:boolean;
+  inPromiseAdd:boolean;
   localesBehaviorSuscription: Subscription;
  /*  idClasificadoBehaviorSuscription: Subscription; */
   newForm: FormGroup;
@@ -44,7 +45,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   date: { year: number, month: number, day: number };
   /* misTurnos: Array<any> = []; */
   data;
-  isNoLogged:boolean;
+  token;
 
   stringFecha;
   constructor(
@@ -69,7 +70,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.model = this.calendar.getToday();
-
+    this.userService.token.subscribe( val => this.token = val);  
     this.initializeBehavior();
     this.cargarCheckbox();
 
@@ -82,6 +83,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
 
       if (val) {
         this.idClasificado = val;
+        this.buscar();
       }
 
     });
@@ -179,8 +181,8 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   }
   // instancia la variable data   con los datos para agregar turno
   setDatos(idLocal: any, nombre: string) {
-    this.isNoLogged= this.userService.isNotLogged()
-    if(!this.isNoLogged){
+    
+    if(this.token){
     this.stringFecha = this.model.year + "-" + this.model.month + "-" + this.model.day + " " + this.time.hour + ":" + this.time.minute + ":" + this.time.second;//" "+this.time.hour+":"+this.time.minute+":00";
 
     this.nombreLocalSeleccionado = nombre;
@@ -204,7 +206,7 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   // agregar turno a la base de datos
   addTurno() {
     console.log(this.data);
-     this.inPromise = true;
+     this.inPromiseAdd = true;
     this.turnoService.persist(this.data).subscribe(
       (resp) => {
         if (resp.ok && resp.status === 201) {
@@ -218,10 +220,10 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
           this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
         }
 
-        this.inPromise = false;
+        this.inPromiseAdd = false;
       },
       error => {
-        this.inPromise = false;
+        this.inPromiseAdd = false;
         console.log(error);
         this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
       }
