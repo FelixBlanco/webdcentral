@@ -314,13 +314,13 @@ class ProductoController extends Controller {
 
     public static function getAllRubros() {
 
-        $response = Producto::select("rubro")->distinct('rubro')->orderBy("rubro")->get();
+        $response = Producto::select("rubro","WebLink_Rubro")->groupBy('rubro')->orderBy("rubro")->get();
 
         return response()->json($response, 202);
     }
 
     public static function getAllMarcas() {
-        $response = Producto::select("marca")->distinct('marca')->orderBy("marca")->get();
+        $response = Producto::select("marca")->groupBy('marca')->orderBy("marca")->get();
 
         return response()->json($response, 202);
     }
@@ -329,7 +329,7 @@ class ProductoController extends Controller {
 
         if (! is_null($search)) {
             $busqueda = $search."%";
-            $response = Producto::select("marca")->where('marca', 'like', $busqueda)->distinct('marca')->orderBy("marca")->get();
+            $response = Producto::select("marca")->where('marca', 'like', $busqueda)->groupBy('marca')->orderBy("marca")->get();
 
             if (is_null($response)) {
                 $response = [
@@ -352,7 +352,7 @@ class ProductoController extends Controller {
 
     public function listarSubrubro1($rubro) {
         $response = Producto::select("SubRubro1")
-        ->distinct('SubRubro1')
+        ->groupBy('SubRubro1')
         ->orderBy("SubRubro1")
         ->where("rubro","=",$rubro)
         ->get();
@@ -362,7 +362,7 @@ class ProductoController extends Controller {
 
     public function listarSubrubro2($SubRubro1) {
         $response = Producto::select("SubRubro2")
-        ->distinct('SubRubro2')
+        ->groupBy('SubRubro2')
         ->orderBy("SubRubro2")
         ->where("SubRubro1","=",$SubRubro1)
         ->get();
@@ -507,6 +507,7 @@ class ProductoController extends Controller {
                      ,CantidadDescuentoVenta1_Producto,DescuentoVenta3_Producto ,CantidadDescuentoVenta4_Producto,DescuentoVenta4_Producto
                     ,CantidadDescuentoVenta3_Producto,Expr1,WebLink_Rubro,WebLink_Subrubro1,WebLink_Fabricante  order by Descripcion_Producto  ");
 
+          
             $i = 0;    
             foreach ($rs as $item) {
 
