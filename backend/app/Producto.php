@@ -34,7 +34,9 @@ class Producto extends Model {
         'precioL7',
         'precioL8',
         'precioL9',
-        'WebLink_Rubro'
+        'WebLink_Rubro',
+        'Weblink_fabricante',
+        'Agrupacion'
 
     ];
 }

@@ -20,7 +20,7 @@ export class ClasificadosService {
     ) {  }
 
   _getClasificados(data:any){
-    return this.http.post(environment.apiHost + '/api/auth/listarClasificado',data,httpOptions);
+    return this.http.post(environment.apiHost + '/api/v1/listarClasificado',data);
   }
 
   _getPorIdClasificados(id:number){

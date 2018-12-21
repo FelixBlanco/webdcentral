@@ -88,7 +88,23 @@ export class PreguntasFrecuentesComponent implements OnInit {
   save(){
     this.inPromise =true;
     const val = this.questionForm.value;
-    this.preguntasService.persist({pregunta: val.pregunta, respuesta: val.respuesta}).subscribe((resp) => {
+
+    // set-respuesta 
+		var arrayCadena = val.respuesta.split(" ") // separamos en arrays		
+		var newArray = []; // nuevo array
+    for (let i of arrayCadena) { // exploramos el array
+      console.log(i)
+      let resul = i.substring(4,0) // buscamos si es http o httpS
+      console.log(resul)
+			if(resul == 'http' || resul == 'https'){											
+				newArray.push('<a href="'+ i +'">'+ i +"</a>")								
+			}else{
+				newArray.push(i)				
+			}
+		}
+		let newRespuesta = newArray.join(" "); // mostramos los valores     
+    console.log(newRespuesta)
+    this.preguntasService.persist({pregunta: val.pregunta, respuesta: newRespuesta}).subscribe((resp) => {
       if(resp.ok && resp.status === 201){
         this.list();
         this.ts.msg("OK","Éxito", "Se ha guardado el registro");

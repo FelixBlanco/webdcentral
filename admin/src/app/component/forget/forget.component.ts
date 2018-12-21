@@ -14,6 +14,7 @@ export class ForgetComponent implements OnInit {
 
   myForm: FormGroup;  
   inPromise: boolean;
+  showMsj: boolean;
 
   constructor(
     private _forgetService:ForgetService,
@@ -33,8 +34,9 @@ export class ForgetComponent implements OnInit {
     this._forgetService._newForget({email:this.myForm.value.email}).subscribe(
       (resp:any) => {
         this.inPromise = false;
-        $('#forgetModal').modal('hide');
+        // $('#forgetModal').modal('hide'); quitamos esto para mostrar el mensaje del spam 
         this._alertsService.msg('OK',resp.msj);
+        this.showMsj = true;
       },
       error => {      
         this.inPromise = false;

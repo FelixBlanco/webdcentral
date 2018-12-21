@@ -26,15 +26,23 @@ class ProductoController extends Controller {
                 ->orWhere('SubRubro1', 'like', $busqueda)
                 ->orWhere('SubRubro2', 'like', $busqueda)
                 ->where('fk_idSatate', '=', 1)
+                ->groupBy('Agrupacion')
                 ->get();
 
             $marcas = Producto::Where('marca', 'like', $busqueda)
                 ->where('fk_idSatate', '=', 1)
+                ->groupBy('Agrupacion')
                 ->get();
 
             $nombre = Producto::Where('nombre', 'like', $busqueda)
                 ->where('fk_idSatate', '=', 1)
+                ->groupBy('Agrupacion')
                 ->get();
+
+            
+            $mascotas = $this->getAgrupation($mascotas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
+            $marcas = $this->getAgrupation($marcas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
+            $nombre = $this->getAgrupation($nombre);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
 
             $response = [
                 'msj'      => 'Productos',
@@ -48,13 +56,21 @@ class ProductoController extends Controller {
         } else {
 
             $mascotas = Producto::where('fk_idSatate', '=', 1)
+                ->groupBy('Agrupacion')
                 ->get();
 
             $marcas = Producto::where('fk_idSatate', '=', 1)
+                ->groupBy('Agrupacion')
                 ->get();
 
             $nombre = Producto::where('fk_idSatate', '=', 1)
+                ->groupBy('Agrupacion')
                 ->get();
+
+            $mascotas = $this->getAgrupation($mascotas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
+            $marcas = $this->getAgrupation($marcas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
+            $nombre = $this->getAgrupation($nombre);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
+
 
             $response = [
                 'msj'      => 'Lista de producto',
@@ -67,9 +83,24 @@ class ProductoController extends Controller {
         }
     }
 
+    public static function getAgrupation($listaProductos){
+        $i = 0;    
+            foreach ($listaProductos as $itemMascotas) {
+                $agrupacion =  Producto::where('fk_idSatate', '=', 1)
+                ->where('Agrupacion', '=', $itemMascotas->Agrupacion)
+                ->get();
+                $listaProductos[$i]->listAgrupacion = $agrupacion;
+                $i++;
+            }
+
+            return $listaProductos;
+    }
+
     public function listarPorIsOutstanding() {
-        $producto_activador    = Producto::where('isOutstanding', 1)->get();
-        $producto_desactivador = Producto::where('isOutstanding', 0)->get();
+        $producto_activador    = Producto::where('isOutstanding', 1)->groupBy('Agrupacion')->get();
+        $producto_desactivador = Producto::where('isOutstanding', 0)->groupBy('Agrupacion')->get();
+
+        
 
         $response = [
             'msj'          => 'Productos',
@@ -161,10 +192,10 @@ class ProductoController extends Controller {
 
                 $busqueda = "%".$request->search."%";
 
-                $productos = Producto::where('nombre', 'like', $busqueda)->where('fk_idSatate', '=', 1)->orWhere('titulo', 'like', $busqueda)->orWhere('categoria', 'like', $busqueda)->get();
+                $productos = Producto::where('nombre', 'like', $busqueda)->where('fk_idSatate', '=', 1)->orWhere('titulo', 'like', $busqueda)->orWhere('categoria', 'like', $busqueda)->groupBy('Agrupacion')->get();
             } else {
 
-                $productos = Producto::where('fk_idSatate', '=', 1)->get();
+                $productos = Producto::where('fk_idSatate', '=', 1)->groupBy('Agrupacion')->get();
             }
         }
 
@@ -180,7 +211,7 @@ class ProductoController extends Controller {
 
         $busqueda = $nombre."%";
 
-        $productos = Producto::where('nombre', 'like', $busqueda)->where('fk_idSatate', '=', 1)->get();
+        $productos = Producto::where('nombre', 'like', $busqueda)->where('fk_idSatate', '=', 1)->groupBy('Agrupacion')->get();
 
         $response = [
             'msj'       => 'Lista de productos',
@@ -223,7 +254,9 @@ class ProductoController extends Controller {
             $product->fk_idSatate   = 1;
             $product->destacado     = 0;
             $product->isOutstanding = 0;
-
+            $product->Agrupacion        = $_product['Agrupacion'];
+            $product->WebLink_Rubro = $_product['WebLink_Rubro'];
+            $product->Weblink_fabricante = $_product['Weblink_fabricante'];
             $product->save();
         } else {
             $rs->nombre       = $_product['nombre'];
@@ -246,6 +279,9 @@ class ProductoController extends Controller {
             $rs->rubro        = $_product['rubro'];
             $rs->marca        = $_product['marca'];
             $rs->fk_idSatate  = 1;
+            $rs->Agrupacion        = $_product['Agrupacion'];
+            $rs->WebLink_Rubro = $_product['WebLink_Rubro'];
+            $rs->Weblink_fabricante = $_product['Weblink_fabricante'];
             $rs->update();
         }
     }
@@ -353,14 +389,14 @@ class ProductoController extends Controller {
             $result             = [];
 
             if (! is_null($busqueda_rubro)) {
-                $f1 = Producto::where('rubro', $busqueda_rubro)->get();
+                $f1 = Producto::where('rubro', $busqueda_rubro)->groupBy('Agrupacion')->get();
                 foreach ($f1 as $f) {
                     $result[] = $f;
                 }
             }
 
             if (! is_null($busqueda_SubRubro1)) {
-                $f2 = Producto::where('SubRubro1', $busqueda_SubRubro1)->get();
+                $f2 = Producto::where('SubRubro1', $busqueda_SubRubro1)->groupBy('Agrupacion')->get();
                 foreach ($f2 as $f) {
                     $result[] = $f;
                 }
@@ -368,7 +404,7 @@ class ProductoController extends Controller {
             }
 
             if (! is_null($busqueda_SubRubro2)) {
-                $f3 = Producto::where('SubRubro2', $busqueda_SubRubro2)->get();
+                $f3 = Producto::where('SubRubro2', $busqueda_SubRubro2)->groupBy('Agrupacion')->get();
                 foreach ($f3 as $f) {
                     $result[] = $f;
                 }
@@ -429,20 +465,12 @@ class ProductoController extends Controller {
 
     public function getProductByRubro(Request $request) {
 
-       // $response = Producto::select("rubro")->distinct('rubro')->orderBy("rubro")->get();
-
-       // return response()->json($response, 202);
-
-
         try {
            
             $rs = null;
 
             $sql = "";
             $isWherActive = "where";
-
-            //                $sql = $isWherActive."  Descripcion_Rubro in  ('".$request->rubro."') ";
-
 
             if (! empty($request->rubro)) {
                 $sql = $isWherActive."  Descripcion_Rubro = '".$request->rubro."' ";
@@ -469,7 +497,28 @@ class ProductoController extends Controller {
            
 
             $rs = DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
-             ".$sql."  order by Descripcion_Producto  ");
+             ".$sql." group  by Agrupacion,Codigo_Fabricante,Descripcion_Fabricante
+                  ,Codigo_Rubro,Descripcion_Rubro,Codigo_SubRubro1,Descripcion_SubRubro1
+                  ,Codigo_SubRubro2,Descripcion_SubRubro2,Codigo_Producto,Descripcion_Producto
+                  ,Kilos_Producto,Volumen_Producto,WebLink_Producto,ListadePrecio1_Producto
+                  ,ListadePrecio2_Producto,ListadePrecio3_Producto,ListadePrecio4_Producto,ListadePrecio5_Producto
+                   ,ListadePrecio5_Producto ,ListadePrecio6_Producto ,ListadePrecio7_Producto ,ListadePrecio8_Producto ,ListadePrecio9_Producto
+                    ,CantidadDescuentoVenta1_Producto,DescuentoVenta1_Producto ,CantidadDescuentoVenta2_Producto,DescuentoVenta2_Producto
+                     ,CantidadDescuentoVenta1_Producto,DescuentoVenta3_Producto ,CantidadDescuentoVenta4_Producto,DescuentoVenta4_Producto
+                    ,CantidadDescuentoVenta3_Producto,Expr1,WebLink_Rubro,WebLink_Subrubro1,WebLink_Fabricante  order by Descripcion_Producto  ");
+
+            $i = 0;    
+            foreach ($rs as $item) {
+
+            
+                if($item->Agrupacion != null){
+                    
+                    $agrupacion =  DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
+                    where Agrupacion = '".$item->Agrupacion."' ");
+                    $rs[$i]->listAgrupacion = $agrupacion;
+                }
+                $i++;
+            }
 
 
             if ($rs != null) {
@@ -491,7 +540,7 @@ class ProductoController extends Controller {
 
         if (! is_null($search)) {
             $busqueda = $search."%";
-            $response = Producto::where('marca', 'like', $busqueda)->orderBy("marca")->get();
+            $response = Producto::where('marca', 'like', $busqueda)->orderBy("marca")->groupBy('Agrupacion')->get();
 
             if (is_null($response)) {
                 $response = [
@@ -511,6 +560,8 @@ class ProductoController extends Controller {
             return response()->json($response, 404);
         }
     }
+
+    
 
 
     public function getCostos() {
