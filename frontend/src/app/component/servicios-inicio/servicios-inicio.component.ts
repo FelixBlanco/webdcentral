@@ -1,75 +1,89 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy ,ViewChild} from '@angular/core';
 import { LocalesAdheridosService } from 'src/app/services/locales-adheridos.service';
 import { Subscription } from 'rxjs';
 import { CarouselItem } from 'src/app/services/productos.service';
 import { TurnosService } from 'src/app/services/turno.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AlertsService } from 'src/app/services/alerts.service';
+import { UserTokenService } from 'src/app/services/user-token.service';
+import { TurnosListComponent} from './turnos-list/turnos-list.component'
 
 import {
   NgbCalendar,
-
-  NgbDateStruct
-}from '@ng-bootstrap/ng-bootstrap'
+  NgbDateStruct,
+  NgbTimeStruct,
+  NgbTimepickerConfig
+} from '@ng-bootstrap/ng-bootstrap'
 declare var $: any;
 
 @Component({
   selector: 'app-servicios-inicio',
   templateUrl: './servicios-inicio.component.html',
-  styleUrls: ['./servicios-inicio.component.css']
+  styleUrls: ['./servicios-inicio.component.css'],
+  providers: [NgbTimepickerConfig]
 })
 export class ServiciosInicioComponent implements OnInit, OnDestroy {
-   
-  inPromise: boolean
+  @ViewChild(TurnosListComponent) turnosList: TurnosListComponent;
+
+  inPromise: boolean;
+  inPromise2:boolean;
+  inPromiseAdd:boolean;
   localesBehaviorSuscription: Subscription;
-  idClasificadoBehaviorSuscription: Subscription;
+ /*  idClasificadoBehaviorSuscription: Subscription; */
   newForm: FormGroup;
   carouselItems: CarouselItem[] = [];
   checkboxList: any[];
-  localesList: any[]=[];
-  localesList2: any[]=[];
+  localesList: any[] = [];
+  /* localesList2: any[] = []; */
   idClasificado: number;
-  nombreLocalSeleccionado:string;
-  toSend: FormData = new FormData();
+  nombreLocalSeleccionado: string;
   aTimeOutFix: boolean = false;
   checkForm: FormGroup;
-  rubroId:number=0;
+  rubroId: number = 0;
   model: NgbDateStruct;
-  time = {hour: 13, minute: 30};
-  date:{year: number, month: number ,day:number};
- 
+  time: NgbTimeStruct = { hour: 0o0, minute: 0o0, second: 0o0 };
+  date: { year: number, month: number, day: number };
+  /* misTurnos: Array<any> = []; */
+  data;
+  token;
+
   stringFecha;
   constructor(
     private localesService: LocalesAdheridosService,
     private fb: FormBuilder,
     private calendar: NgbCalendar,
-    private turnoService:TurnosService,
-    private as:AlertsService,
-  ) { 
+    private turnoService: TurnosService,
+    private as: AlertsService,
+    private userService: UserTokenService
+
+  ) {
     this.checkForm = this.fb.group({
-      'rubro':(''),
-     });
-     this.newForm = this.fb.group({
+      'rubro': (''),
+    });
+    this.newForm = this.fb.group({
       fk_idLocalAdherido: ['', Validators.required],
       fk_idClasificado: ['', Validators.required],
       fechaHora: ['', Validators.required]
     });
+
   }
 
   ngOnInit() {
     this.model = this.calendar.getToday();
-    this.cargarLocales();
-     this.initializeBehavior();
-     this.cargarCheckbox();
-     this.listarLocales();
+    this.userService.token.subscribe( val => this.token = val);  
+    this.initializeBehavior();
+    this.cargarCheckbox();
+
+
   }
-  
+
   initializeBehavior() {
 
     this.localesBehaviorSuscription = this.localesService.idClasificadoSeleccionado.subscribe((val) => {
-  
-      if(val){
-        this.idClasificado= val;
+
+      if (val) {
+        this.idClasificado = val;
+        this.buscar();
       }
 
     });
@@ -112,107 +126,115 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
 
     return items;
   }
-  //parte checkbox
+  //cargar clasificados para el checkbox
   cargarCheckbox() {
-    this.inPromise=true;
+    this.inPromise2 = true;
     this.localesService.getAllClasificadosSinAuth().subscribe(
-      (resp) =>{
-        if(resp.ok && resp.status === 201){
-          this.inPromise=false;
-         this.checkboxList = resp.body.Clasificado;
-        }else{
+      (resp) => {
+        if (resp.ok && resp.status === 201) {
+          this.inPromise2 = false;
+          this.checkboxList = resp.body.Clasificado;
+        } else {
           this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
 
         }
-        this.inPromise = false;
-      },(error) => {
+        this.inPromise2 = false;
+      }, (error) => {
 
-        this.inPromise = false;
+        this.inPromise2= false;
         this.as.msg('ERR', 'Ha ocurrido un error interno => Clasificados');
       }
     )
-   
+
   }
-  cargarLocales() {
-      this.localesService.getAll().subscribe(val => {
-      this.localesList2 = val.body.LocalAdh;
-      this.listarLocales();
-      
-    })
+  // status para el checkbox  seleccionado
+  checkStatus(id: any) {
+
+    this.idClasificado = id;
+
   }
-  listarLocales() {
-     if (this.idClasificado) {  
-     let arr: Array<any> = [];
-       this.localesList2.map((val, i) => {
+  // busca locales por id clasificado
+  buscar() {
+       this.inPromise=true;   
+     this.localesService.getLocalesPorClasificados(this.idClasificado).subscribe(resp =>{
+      if(resp.ok && resp.status == 201){
+        this.inPromise=false;
+        this.localesList = resp.body;
        
-        if (this.idClasificado == val.fk_idClasificado) {
-          arr = [...arr, val];
-        }
-      }) 
-      this.localesList=arr;
-      this.generateCarousel();
-    } 
-  }
-
-  checkStatus(id:any){
-    
-    this.idClasificado=id;
-    
-  }
-  buscar(){
-    if(this.localesList2.length){
-      this.listarLocales();
-    }else{
-      this.cargarLocales();
+        this.generateCarousel();
+        
+      }else{
+        this.inPromise=false;
+        this.as.msg('ERR', "Error", "Ha ocurrido un error interno");
+      }
+    },error =>{
+      this.inPromise=false;
+          this.as.msg('ERR', "Error", "Ha ocurrido un error interno");
     }
-    
-   
+    )   
 
-    
+
+
+     
+
+
   }
-  setDatos(idLocal:any,nombre:string){
-    this.stringFecha= this.model.year+"-"+this.model.month+"-"+this.model.day;//" "+this.time.hour+":"+this.time.minute+":00";
-   
-    this.nombreLocalSeleccionado=nombre;
-    const fecha= new Date(this.stringFecha); 
+  // instancia la variable data   con los datos para agregar turno
+  setDatos(idLocal: any, nombre: string) {
     
-   
-    this.toSend.append('fechaHora', fecha.toDateString());
-    this.toSend.append('fk_idLocalAdherido', idLocal);
-    this.toSend.append('fk_idClasificado', this.idClasificado.toString());
-    this.toSend.append('fk_idStatusTurnos', '1');
+    if(this.token){
+    this.stringFecha = this.model.year + "-" + this.model.month + "-" + this.model.day + " " + this.time.hour + ":" + this.time.minute + ":" + this.time.second;//" "+this.time.hour+":"+this.time.minute+":00";
+
+    this.nombreLocalSeleccionado = nombre;
+    const fecha = new Date(this.stringFecha);
+
+    this.data={
+      fechaHora:fecha,
+      fk_idLocalAdherido:idLocal,
+      fk_idClasificado:this.idClasificado,
+      fk_idStatusTurnos:1
+    }
+    $('#nuevoTurno').modal('show');
 
 
+  }else{
+    $('#loginModal').modal('show');
+  }
     
-   
+
   }
   // agregar turno a la base de datos
-  addTurno(){
-   this.inPromise = true;
-    this.turnoService.persist(this.toSend).subscribe(
+  addTurno() {
+    console.log(this.data);
+     this.inPromiseAdd = true;
+    this.turnoService.persist(this.data).subscribe(
       (resp) => {
         if (resp.ok && resp.status === 201) {
           this.as.msg("OK", "Éxito", "Turno Solicitado.");
           this.newForm.reset();
-          $('#nuevo').modal('hide');
+          this.turnoService.updateSource(true);
+          $('#nuevoTurno').modal('hide');
+     
         } else {
           console.error(resp);
-          this.as.msg("OK", "Error", "Ha ocurrido un error interno");
+          this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
         }
 
-        this.inPromise = false;
+        this.inPromiseAdd = false;
       },
       error => {
-        this.inPromise = false;
+        this.inPromiseAdd = false;
         console.log(error);
         this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
       }
     )  
+    
   }
 
+  
   ngOnDestroy() {
-  
-  
+
+
     this.localesBehaviorSuscription.unsubscribe();
   }
 

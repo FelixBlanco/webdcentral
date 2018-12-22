@@ -59,6 +59,7 @@ import { CarritoFormComponent } from './component/carrito/carrito-form/carrito-f
 import { BlogComponent } from './component/blog/blog.component';
 import { ClasificadosInicioComponent } from './component/clasificados-inicio/clasificados-inicio.component';
 import { MinoristaComponent } from './component/minorista/minorista.component';
+import { TurnosListComponent } from './component/servicios-inicio/turnos-list/turnos-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -119,7 +120,8 @@ const appRoutes: Routes = [
     CarritoFormComponent,
     BlogComponent,
     ClasificadosInicioComponent,
-    MinoristaComponent
+    MinoristaComponent,
+    TurnosListComponent
   ],
   imports: [
     BrowserModule,
