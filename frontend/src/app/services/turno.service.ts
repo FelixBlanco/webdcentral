@@ -44,4 +44,11 @@ export class TurnosService {
         this.turnoNewBehaviorSource.next(data);   
 
     }
+   /*  updateStatus(id: number, status: number): Observable<HttpResponse<any>> {
+        return this.http.put<any>(`${environment.apiHost}/api/auth/cambiarStatusGaleria/${id}`, { fk_idStatusSistema: status }, { headers: this.httpOptions, observe: 'response' });
+    } */
+    updateStatus(body: any): Observable<HttpResponse<any>> {
+        console.log("body.idTurnos desde el servicio",body.idTurnos);
+        return this.http.post<any>(`${environment.apiHost}/api/auth/editTurno/${body.idTurnos}`, body, { headers: this.httpOptions, observe: 'response' });
+    }
 }

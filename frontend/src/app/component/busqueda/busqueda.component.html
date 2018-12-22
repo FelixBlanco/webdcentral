@@ -37,15 +37,13 @@
                   <p  class="text-uppercase font-bold text-center mt-4">no se
                       encontraron resultados</p>
               </div> 
-            <div *ngFor="let item of searchList.mascotas" class="row justify-content-left">
+            <div *ngFor="let item of searchList.mascotas" class="row justify-content-left m-3">
                 
               <div class="col-11">
-                <a (click)="seeMore('mascotas')" class="text-muted">{{item.titulo | titlecase}}</a>
+                <a class="mt-4" (click)="seeMore('mascotas')" class="text-muted">{{item.titulo | titlecase}}</a>
               </div>
               <div class="col-1 ">          
-                   <!--  <button class="float-right  " (click)="seeMore('mascotas')"></button> -->
-                <!--    <fa-icon  matSuffix [icon]="['fa', 'search']" (click)=""></fa-icon> -->
-               <!--  <button class="mat-raised-button" (click)="seeMore('mascotas')" class="bg-naranja text-white font-bold btn-block">ir</button> -->
+                 <!-- icono -->
               </div>
             </div>
             
@@ -72,6 +70,7 @@
                 <a (click)="seeMore('productos')" class="text-muted">{{item.titulo | titlecase}}</a>
               </div>
               <div class="col-1">
+                <!-- icono -->
               </div>
 
             </div>
@@ -96,73 +95,12 @@
                   <a (click)="seeMore('marcas')" class="text-muted">{{item.titulo | titlecase}}</a>
                 </div>
                 <div class="col-1">
-<!--                   <button class="float-right" >ver</button>
- -->                </div>
+                    <!--    icono -->
+              </div>
   
               </div>
             </div>
-         <!--  <div class="row justify-content-center" *ngIf="searchList">
-
-            <div class="col-12">
-              <div [ngClass]="{'disabled-wrap': !searchList.nombre.length}">
-                <div class="number-wrap rounded-circle">
-                  <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
-                    <span class="font-bold">2</span>
-                  </div>
-                </div>
-                <div class="container-figure mt-4 rounded">
-                  <h6 class="text-center font-bold txt-naranja text-uppercase">productos</h6>
-                  <ng-container *ngIf="searchList.nombre.length">
-                    <div class="product-draw text-center">
-                      <img *ngIf="!searchList.nombre[0].urlImage" src="assets/no_image_aviable.png" alt="nombre" />
-                      <img *ngIf="searchList.nombre[0].urlImage" [src]="searchList.nombre[0].urlImage" alt="nombre" />
-                      <span class="text-muted">{{searchList.nombre[0].titulo | titlecase}}</span>
-                      <span class="text-uppercase font-bold">Resultados {{searchList.nombre.length}}</span>
-                    </div>
-                  </ng-container>
-
-                  <p *ngIf="!searchList.nombre.length" class="text-uppercase font-bold text-center mt-4">no se
-                    encontraron resultados</p>
-
-                </div>
-                <button (click)="seeMore('productos')" class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1"
-                  [disabled]="!searchList.nombre.length">
-                  ver mas
-                </button>
-              </div>
-            </div>
-          </div> -->
-          <!--  <div class="row justify-content-center" *ngIf="searchList">
-
-            <div class="col-12">
-              <div [ngClass]="{'disabled-wrap': !searchList.marcas.length}">
-                <div class="number-wrap rounded-circle">
-                  <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
-                    <span class="font-bold">3</span>
-                  </div>
-                </div>
-                <div class="container-figure mt-4 rounded">
-                  <h6 class="text-center font-bold txt-naranja text-uppercase">marcas</h6>
-                  <ng-container *ngIf="searchList.marcas.length">
-                    <div class="product-draw text-center">
-                      <img *ngIf="searchList.marcas[0].urlImage" [src]="searchList.marcas[0].urlImage" alt="marcas" />
-                      <img *ngIf="!searchList.marcas[0].urlImage" src="assets/no_image_aviable.png" alt="marcas" />
-                      <span class="text-muted">{{searchList.marcas[0].titulo | titlecase}}</span>
-                      <span class="text-uppercase font-bold">Resultados {{searchList.marcas.length}}</span>
-                    </div>
-                  </ng-container>
-
-                  <p *ngIf="!searchList.marcas.length" class="text-uppercase font-bold text-center mt-4">no se
-                    encontraron resultados</p>
-
-                </div>
-                <button (click)="seeMore('marcas')" class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1"
-                  [disabled]="!searchList.marcas.length">
-                  ver mas
-                </button>
-              </div>
-            </div>
-          </div> -->
+       
         </div>
       </div>
     </div>
