@@ -329,7 +329,7 @@ class ProductoController extends Controller {
 
         if (! is_null($search)) {
             $busqueda = $search."%";
-            $response = Producto::select("marca,Weblink_fabricante")->where('marca', 'like', $busqueda)->groupBy('marca')->orderBy("marca")->get();
+            $response = Producto::select("marca","Weblink_fabricante")->where('marca', 'like', $busqueda)->groupBy('marca')->orderBy("marca")->get();
 
             if (is_null($response)) {
                 $response = [
