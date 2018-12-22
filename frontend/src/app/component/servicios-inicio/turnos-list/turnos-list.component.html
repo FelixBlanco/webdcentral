@@ -35,11 +35,12 @@
                       <td width="10%">{{item.id}}</td>
                       <td width="25%"><strong>{{item.fecha}}</strong></td>
                       <td width="15%">
-                        <span *ngIf="item.status == 1">Espera</span>
-                        <span *ngIf="item.status == 2">Activo</span>
+                        <span *ngIf="item.status == 1">Solicitado</span>
+                        <span *ngIf="item.status == 2">Cancelado</span>
+                        <span *ngIf="item.status == 3">Rechazado</span>
                       </td>
                       <td width="25%">
-                        <button class="btn-danger" style="width: 100%; border-radius: 4px; cursor: pointer;">Cancelar</button>
+                        <button class="btn-danger" style="width: 100%; border-radius: 4px; cursor: pointer;" [disabled]="item.status==2" data-toggle="modal" data-target="#cancelarTurno" (click)="cancelarDatos(item)"  >Cancelar</button>
                       </td>
                     </tr>
                   </ng-container>
@@ -67,3 +68,22 @@
     </div>
   </div>
 </div>
+<!-- Modal cancelar -->
+<div class="modal fade" id="cancelarTurno" tabindex="-1" role="dialog" aria-labelledby="nuevoModal" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content ">
+        <div class="modal-header bg-danger">
+          <h5 class="modal-title text-white  font-bold" id="nuevoModal">¿Desea Cancelar este turno ?</h5>
+        </div>
+        <!--  <div class="modal-body font-bold">
+           
+            <h5>Local: {{nombreLocalSeleccionado}}</h5>
+            <h5>Fecha: {{stringFecha}}</h5>
+          </div> -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="inPromise"  (click)="cancelarStatus()">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>

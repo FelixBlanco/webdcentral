@@ -26,12 +26,22 @@
                   No se encontraron marcas registradas
                 </p>
                 <ng-container *ngIf="this.marcasList.length">
-                  <div class="row justify-content-center m-4">
+                  <div class="row p-2 justify-content-center m-4">
                     <ng-container *ngFor="let marca of marcasList; let i=index">
                       <ng-container *ngIf="isARow(i)">
-                        <div class="col-4 text-center marcas">
+                          <div class="col-4  text-center marcas">
+                            <section *ngFor="let item of getPartialItems(i, i+3)">
+                                <img *ngIf="!item.Weblink_fabricante" src="assets/no_image_aviable.png" alt="nombre" (click)="select(item.marca)"/>
+                                <img *ngIf="item.Weblink_fabricante" [src]="marca.Weblink_fabricante" alt="marca" (click)="select(item.marca)" />
+                                <a  (click)="select(item.marca)" [ngClass]="(marcaSelected === item.marca) ? 'badge bg-naranja text-white': ''" >{{item.marca}}</a>
+                              </section>
+                             
+                            </div>
+                        <!-- <div class="col-4 text-center marcas">
                           <a *ngFor="let item of getPartialItems(i, i+3)" (click)="select(item.marca)" [ngClass]="(marcaSelected === item.marca) ? 'badge bg-naranja text-white': ''" >{{item.marca}}</a>
-                        </div>
+                          <img *ngIf="!marca.Weblink_fabricante" src="assets/no_image_aviable.png" alt="nombre" />
+                          <img *ngIf="marca.Weblink_fabricante" [src]="marca.Weblink_fabricante" alt="marca" />
+                        </div> -->
                       </ng-container>
                     </ng-container>
                   </div>

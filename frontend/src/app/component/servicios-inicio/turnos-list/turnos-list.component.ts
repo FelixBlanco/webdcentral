@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TurnosService } from 'src/app/services/turno.service';
 import { UserTokenService } from 'src/app/services/user-token.service';
+import { AlertsService } from 'src/app/services/alerts.service';
 import { ClasificadosService } from 'src/app/services/clasificados.service';
 import { Subscription } from 'rxjs';
 declare var $: any;
@@ -19,10 +20,12 @@ export class TurnosListComponent implements OnInit {
   inPromise: boolean;
   token;
   turnoNewBehaviorSuscription: Subscription;
+  data;
   constructor(
     private turnosService: TurnosService,
     private userService: UserTokenService,
-    private clasService: ClasificadosService
+    private clasService: ClasificadosService,
+    private as: AlertsService
   ) {
 
   }
@@ -36,7 +39,7 @@ export class TurnosListComponent implements OnInit {
         this.misTurnos=[];
         console.log(val);
       }else{
-        setTimeout(() => this.initializeBehavior(), 2500)
+        setTimeout(() => this.initializeBehavior(), 3000)
        // this.initializeBehavior();
       }
     })
@@ -47,6 +50,25 @@ export class TurnosListComponent implements OnInit {
     this.turnoNewBehaviorSuscription = this.turnosService.isNewAdded.subscribe((val) => { 
         this.getTurnosUser()
     })
+  }
+  cancelarDatos(turno:any){
+    this.data = {
+     
+      "idTurnos": turno.id,
+      "fk_idStatusTurnos":2,
+    }
+  }
+  cancelarStatus(){
+
+  
+     this.turnosService.updateStatus(this.data).subscribe(
+      resp=>{
+        
+            this.getTurnosUser();
+            this.as.msg("OK","Turno cancelado");
+            $("#cancelarTurno").modal("hide");
+      }
+    ) 
   }
   getTurnosUser() {
     this.misTurnos=[];

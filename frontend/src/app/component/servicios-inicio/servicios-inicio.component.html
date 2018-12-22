@@ -15,40 +15,40 @@
         <div class="row pt-2 cal-rub-cont">
           <div class="col-4">
             <h5 style="text-align:center;">Fecha</h5>
-                            <ngb-datepicker  #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
-                            <hr/>
-                            <div class=" row justify-content-center">
-                                <h5 style="text-align:center;">Hora</h5> 
-                            </div> 
-                            <div class="row ">
-                                <div class="col-2">
-  
-                                </div>
-                              <div class="col-8">
-                                  <ngb-timepicker [(ngModel)]="time"></ngb-timepicker> 
+            <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+            <hr />
+            <div class=" row justify-content-center">
+              <h5 style="text-align:center;">Hora</h5>
+            </div>
+            <div class="row ">
+              <div class="col-2">
 
-                              </div>
-                              <div class="col-2">
+              </div>
+              <div class="col-8">
+                <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
 
-                              </div>
-                            </div>
+              </div>
+              <div class="col-2">
+
+              </div>
+            </div>
           </div>
 
           <div class="col-8">
             <h5 style="text-align:center;">Rubros</h5>
             <mat-spinner *ngIf="inPromise2" [diameter]="30" style="margin: 0 auto;"></mat-spinner>
             <fieldset *ngIf="!inPromise2" style="padding:25px;" class="rubros justify-content-center">
-              <div class="row"  > 
-                  <div class="col-6 p-1" *ngFor="let clasi of checkboxList" >
-                      <input id="clasi.idClasificado" type="radio" [(checked)]="idClasificado==clasi.idClasificado" (click)="checkStatus(clasi.idClasificado)"
-                      value="clasi.idClasificado" >{{clasi.titulo}}<br>
-                  </div>
-                   
+              <div class="row">
+                <div class="col-6 p-1" *ngFor="let clasi of checkboxList">
+                  <input id="clasi.idClasificado" type="radio" [(checked)]="idClasificado==clasi.idClasificado" (click)="checkStatus(clasi.idClasificado)"
+                    value="clasi.idClasificado">{{clasi.titulo}}<br>
+                </div>
+
 
               </div>
             </fieldset>
 
-          </div> 
+          </div>
 
         </div>
         <div class="row ">
@@ -57,7 +57,7 @@
               (click)="buscar()">BUSCAR</button>
           </div>
         </div>
-        <!--form--> 
+        <!--form-->
       </div>
     </div>
   </div>
@@ -103,14 +103,16 @@
                         <div class="card-body">
                           <div class="row" style="height: 146px;margin: 0;">
                             <div class="col-4" style="padding: 0;">
-                              <img [src]="loc.set_imagen_uno" width="100%" height="100%" alt="loc.nombre">
+                              <img *ngIf="!loc.set_imagen_uno" src="assets/no_image_aviable.png" width="50%" height="100%"
+                                alt="loc.nombre">
+                              <img *ngIf="loc.set_imagen_uno" [src]="loc.set_imagen_uno" width="100%" height="100%" alt="loc.nombre">
                             </div>
                             <div class="col-6 p-4">
-                              <h4 class="font-bold text-uppercase txt-azul">{{loc.descripcion}}</h4>
-                              <p class="card-text">{{loc.nombre}}</p>
+                              <h4 class="font-bold text-uppercase txt-azul">{{loc.nombre}}</h4>
+                              <p class="card-text">{{loc.descripcion}}</p>
                             </div>
                             <div class="col-2 m-auto">
-                              <button mat-raised-button (click)="setDatos(loc.idLocalAdherido,loc.nombre)" class="bg-naranja text-white font-bold btn-block" >
+                              <button mat-raised-button (click)="setDatos(loc.idLocalAdherido,loc.nombre)" class="bg-naranja text-white font-bold btn-block">
                                 CONTACTAR
                               </button>
                             </div>
@@ -150,21 +152,20 @@
 <!-- crear turno -->
 <!-- Modal Nuevo -->
 <div class="modal fade" id="nuevoTurno" tabindex="-1" role="dialog" aria-labelledby="nuevoModal" aria-hidden="true">
-    <div class="modal-dialog " role="document">
-      <div class="modal-content " >
-        <div class="modal-header bg-success">
-          <h5 class="modal-title text-white  font-bold" id="nuevoModal">¿Desea Reservar este turno ?</h5>
-        </div>
-       <!--  <div class="modal-body font-bold">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content ">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white  font-bold" id="nuevoModal">¿Desea Reservar este turno ?</h5>
+      </div>
+      <!--  <div class="modal-body font-bold">
          
           <h5>Local: {{nombreLocalSeleccionado}}</h5>
           <h5>Fecha: {{stringFecha}}</h5>
         </div> -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="inPromiseAdd" (click)="addTurno()" >Aceptar</button>
-        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success" [disabled]="inPromiseAdd" (click)="addTurno()">Aceptar</button>
       </div>
     </div>
   </div>
-  
+</div>
