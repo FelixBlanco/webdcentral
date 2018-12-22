@@ -11,9 +11,9 @@ class AddNuevosCamposToOrderHeader extends Migration
         Schema::table('tb_order_header', function (Blueprint $table) {
             $table->string('metodoEntrega')->nullable();
             $table->string('disponibilidadHr')->nullable();
-            $table->string('CUIT')->nullable();
+            /*$table->string('CUIT')->nullable();
             $table->string('CUITrazonSocial')->nullable();
-            $table->string('CUITDomicilioFidcal')->nullable();
+            $table->string('CUITDomicilioFidcal')->nullable();*/
             $table->string('metodoPago')->nullable();
             $table->string('comprobanteDepositoTransferencia')->nullable();
             $table->string('fk_idTipoFactura')->nullable();
@@ -37,9 +37,9 @@ class AddNuevosCamposToOrderHeader extends Migration
         Schema::table('tb_order_header', function (Blueprint $table) {
             $table->dropColumn('metodoEntrega');
             $table->dropColumn('disponibilidadHr');
-            $table->dropColumn('CUIT');
+            /*$table->dropColumn('CUIT');
             $table->dropColumn('CUITrazonSocial');
-            $table->dropColumn('CUITDomicilioFidcal');
+            $table->dropColumn('CUITDomicilioFidcal');*/
             $table->dropColumn('metodoPago');
             $table->dropColumn('comprobanteDepositoTransferencia');
             $table->dropColumn('fk_idTipoFactura');
