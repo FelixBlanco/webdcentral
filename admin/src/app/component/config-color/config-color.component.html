@@ -1,22 +1,28 @@
 <div class="container">
   <div class="row content-justify-center">
     <div class="col-md-4">
+      <form [formGroup]="myForm">
+        <div class="form-group">
+          <label for="">Color Oscuro</label>
+          <input type="input" formControlName="colorOscuro" class="form-control" placeholder="Color Oscuro">
+        </div>
+        <div class="form-group">
+          <label for="">Color Medio</label>
+          <input type="input" formControlName="colorMedio" class="form-control" placeholder="Color Medio">
+        </div>
+        <div class="form-group">
+          <label for="">Color Claro</label>
+          <input type="input" formControlName="colorClaro" class="form-control" placeholder="Color Claro">
+        </div>
+      </form>
+
       <div class="form-group">
-        <label for="">Color Oscuro</label>
-        <input type="input" [(ngModel)]="form.colorOscuro" class="form-control" placeholder="Color Oscuro">
-      </div>
-      <div class="form-group">
-        <label for="">Color Medio</label>
-        <input type="input" [(ngModel)]="form.colorMedio" class="form-control" placeholder="Color Medio">
-      </div>
-      <div class="form-group">
-        <label for="">Color Claro</label>
-        <input type="input" [(ngModel)]="form.colorClaro" class="form-control" placeholder="Color Claro">
+        <div class="alert alert-warning" role="alert"><b>Nota:</b> Todos los campos son requeridos y tiene que tener formato Hexadecimal, ejemplo: #ffffff</div>
       </div>
       <div class="form-group">
         <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
         <div *ngIf='!inPromise'>
-          <button class="btn btn-primary" (click)="addColores()"> Guardar </button>
+          <button class="btn btn-primary" [disabled]="myForm.invalid || inPromise" (click)="addColores()"> Guardar </button>
         </div>
       </div>
     </div>

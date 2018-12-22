@@ -1,6 +1,7 @@
 <div class="banner-principal" style="background-image: url('../../assets/banner_principal_delivery.png');">
   <!-- Aqui esta todo el banner -->
 </div>
+<div style="background:#f2f2f2">
 
 <div class="banner-secundario" style="background-image: url('../../assets/banner_principal_delivery-secundario.jpg'); margin-top: 2%">
   <!-- Aqui esta todo el banner -->
@@ -21,59 +22,42 @@
   
   <!--  Lista A -->
   <div class="row txt-azul font-bold">    
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="cont" *ngFor="let l_a of lista_a">				
           <div class="row" >
-            <div class="col-md-8">
-              <h6 style="margin-top: 7%;"><i>{{l_a.Descripcion_Localidad}}</i></h6>
+            <div class="col-md-6 titulo">
+             <i>{{l_a.localidad}}</i>
             </div>
-            <div class="col-md-4">
-              <h2 class="text-right">$ {{l_a.Expr1}}</h2>
+            <div class="col-md-6 titulo-precio text-right">
+              {{l_a.precio}}
             </div>
             <hr>            
           </div>				
-          <p class="text-justify">
-            {{l_a.Descripcion_Zona}}            
+          <p class="text-justify" style="color:#777575; font-size: 14px; font-weight: lighter; padding-top: 2%;">
+            {{l_a.zona}}            
           </p>
         </div>
     </div>
-
-    <!-- Lista B -->
-    <div class="col-md-4">
+    <!-- lista b -->
+    <div class="col-md-5 offset-md-2">
       <div class="cont" *ngFor="let l_b of lista_b">				
-          <div class="row txt-azul font-bold" >
-            <div class="col-md-8">
-              <h6 style="margin-top: 7%;"><i>{{l_b.Descripcion_Localidad}}</i></h6>
+          <div class="row" >
+            <div class="col-md-6 titulo">
+             <i>{{l_b.localidad}}</i>
             </div>
-            <div class="col-md-4">
-              <h2 class="text-right">$ {{l_b.Expr1}}</h2>
-            </div>
-            <hr>            
-          </div>				
-          <p class="text-justify">
-            {{l_b.Descripcion_Zona}}            
-          </p>
-        </div>
-      </div>
-
-    <!-- Lista C -->
-    <div class="col-md-4">
-      <div class="cont" *ngFor="let l_a of lista_a">				
-          <div class="row txt-azul font-bold" >
-            <div class="col-md-8">
-              <h6 style="margin-top: 7%;"><i>{{l_a.Descripcion_Localidad}}</i></h6>
-            </div>
-            <div class="col-md-4">
-              <h2 class="text-right">$ {{l_a.Expr1}}</h2>
+            <div class="col-md-6 titulo-precio text-right">
+              {{l_b.precio}}
             </div>
             <hr>            
           </div>				
-          <p class="text-justify">
-            {{l_a.Descripcion_Zona}}            
+          <p class="text-justify" style="color:#777575; font-size: 14px; font-weight: lighter; padding-top: 2%;">
+            {{l_b.zona}}            
           </p>
         </div>
-      </div>    
+    </div>
   </div>
+  
+</div>
 </div>
 
 

@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
@@ -16,8 +16,8 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 
-.font-light{ font-weight: lighter }
-.font-bold{ font-weight: bold }
+.font-light{ font-family: 'Open Sans', sans-serif; font-weight: 300; }
+.font-bold{ font-family: 'Open Sans', sans-serif; font-weight: 700 }
 
 .txt-negro{ color:black }
 .txt-azul{ color: #009BDD }
