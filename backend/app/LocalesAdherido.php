@@ -23,4 +23,8 @@ class LocalesAdherido extends Model {
         return $this->belongsTo('App\User', 'fk_idUser');
     }
 
+    public function turno(){
+        return $this->hasOne('App\turno','fk_idLocalAdherido','idLocalAdherido');
+    }
+
 }

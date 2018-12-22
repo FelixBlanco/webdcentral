@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TipoDeFacturaSeeder::class);
         $this->call(StatusTurnoSeeder::class);
         $this->call(TipoDescuetoSeeder::class);
+        $this->call(TipoOrdenSeeder::class);
     }
 }

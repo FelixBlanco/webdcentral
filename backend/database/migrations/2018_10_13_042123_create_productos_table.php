@@ -35,6 +35,8 @@ class CreateProductosTable extends Migration
             $table->string('rubro')->nullable();
             $table->string('marca')->nullable();
             $table->string('WebLink_Rubro')->nullable();
+            $table->string('Weblink_fabricante')->nullable();
+            $table->string('Agrupacion')->nullable();
             $table->integer('fk_idSatate')->unsigned();
             $table->timestamps();
 

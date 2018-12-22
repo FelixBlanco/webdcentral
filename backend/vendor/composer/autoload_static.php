@@ -4,15 +4,15 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d
+class ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'cf97c57bfe0f23854afd2f3818abb7a0' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/create_uploaded_file.php',
@@ -27,11 +27,11 @@ class ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
-        '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
+        '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -181,8 +181,8 @@ class ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'Zend\\Diactoros\\' => 
         array (
@@ -354,8 +354,8 @@ class ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d
         ),
         'Illuminate\\Notifications\\' => 
         array (
-            0 => __DIR__ . '/..' . '/laravel/nexmo-notification-channel/src',
-            1 => __DIR__ . '/..' . '/laravel/slack-notification-channel/src',
+            0 => __DIR__ . '/..' . '/laravel/slack-notification-channel/src',
+            1 => __DIR__ . '/..' . '/laravel/nexmo-notification-channel/src',
         ),
         'Illuminate\\' => 
         array (
@@ -505,6 +505,7 @@ class ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d
         'App\\Coupons' => __DIR__ . '/../..' . '/app/Coupons.php',
         'App\\CouponsClient' => __DIR__ . '/../..' . '/app/CouponsClient.php',
         'App\\Destacado' => __DIR__ . '/../..' . '/app/Destacado.php',
+        'App\\Domicilio' => __DIR__ . '/../..' . '/app/Domicilio.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\GaleriaHome' => __DIR__ . '/../..' . '/app/GaleriaHome.php',
         'App\\GaleriaHomeProductos' => __DIR__ . '/../..' . '/app/GaleriaHomeProductos.php',
@@ -568,6 +569,7 @@ class ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d
         'App\\LocalesAdherido' => __DIR__ . '/../..' . '/app/LocalesAdherido.php',
         'App\\Mail\\BorrarTurnosMail' => __DIR__ . '/../..' . '/app/Mail/BorrarTurnosMail.php',
         'App\\Mail\\EditarTurnosMail' => __DIR__ . '/../..' . '/app/Mail/EditarTurnosMail.php',
+        'App\\Mail\\PagoConTarjetaMail' => __DIR__ . '/../..' . '/app/Mail/PagoConTarjetaMail.php',
         'App\\Mail\\Prueba' => __DIR__ . '/../..' . '/app/Mail/Prueba.php',
         'App\\Mail\\SuscripcionMail' => __DIR__ . '/../..' . '/app/Mail/SuscripcionMail.php',
         'App\\Mail\\TurnosMail' => __DIR__ . '/../..' . '/app/Mail/TurnosMail.php',
@@ -598,6 +600,7 @@ class ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d
         'App\\TagProduct' => __DIR__ . '/../..' . '/app/TagProduct.php',
         'App\\TipoDeFactura' => __DIR__ . '/../..' . '/app/TipoDeFactura.php',
         'App\\TipoDescuento' => __DIR__ . '/../..' . '/app/TipoDescuento.php',
+        'App\\TipoOrden' => __DIR__ . '/../..' . '/app/TipoOrden.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\clasificado_reclamo' => __DIR__ . '/../..' . '/app/clasificado_reclamo.php',
         'App\\orderBody' => __DIR__ . '/../..' . '/app/orderBody.php',
@@ -4785,6 +4788,7 @@ class ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
         'TipoDeFacturaSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoDeFacturaSeeder.php',
         'TipoDescuetoSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoDescuetoSeeder.php',
+        'TipoOrdenSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoOrdenSeeder.php',
         'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
@@ -4935,11 +4939,11 @@ class ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit1b2721b42960612bf6f5784ea7bb096d::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d::$classMap;
 
         }, null, ClassLoader::class);
     }

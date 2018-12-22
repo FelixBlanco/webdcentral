@@ -1,0 +1,69 @@
+<!-- Modal turnos lista -->
+<div class="modal fade bd-example-modal-lg" id="carroturnos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-azul">
+        <h5 class="text-white">TURNOS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="txt-blanco">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body ">
+        
+        <table class="table table-curved ">
+          <thead class="bg-azul text-white">
+            <tr>
+              <th scope="col" width="25%">RUBRO</th>
+              <th scope="col" width="10%">N°</th>
+              <th scope="col" width="25%">FECHA</th>
+              <th scope="col" width="15%">ESTADO</th>
+              <th scope="col" width="25%"></th>
+
+            </tr>
+          </thead>
+        </table>
+        <h5 *ngIf="!misTurnos.length && !inPromise" style="text-align: center;">No Posee Turnos</h5>
+        <div class="bodyTable">
+            <table class="table table-curved" >
+
+                <tbody >
+                  <ng-container *ngFor="let item of misTurnos">
+                    <tr *ngIf="misTurnos.length">
+                      <td width="25%">{{item.rubro}}</td>
+                      <td width="10%">{{item.id}}</td>
+                      <td width="25%"><strong>{{item.fecha}}</strong></td>
+                      <td width="15%">
+                        <span *ngIf="item.status == 1">Espera</span>
+                        <span *ngIf="item.status == 2">Activo</span>
+                      </td>
+                      <td width="25%">
+                        <button class="btn-danger" style="width: 100%; border-radius: 4px; cursor: pointer;">Cancelar</button>
+                      </td>
+                    </tr>
+                  </ng-container>
+      
+                </tbody>
+                
+                <!-- <tfoot class="bg-azul text-white">
+                        <tr class="font-bold text-capitalize text-right">
+                          <td colspan="5">
+                            <span class="mr-4">PRODUCTOS: {{items.length}}</span>
+                            <span class="mr-4">CANTIDAD: {{cantidad}}</span>
+                            <span>TOTAL</span><span class="total m-1 font-bold">{{total | currency: 'ARS': '$'}}</span>
+                          </td>
+                        </tr>
+                      </tfoot>  -->
+              </table>
+        </div>
+        
+
+      </div>
+      <div class="modal-footer">
+        <mat-spinner *ngIf='inPromise' diameter="30" style="margin: 0 auto;"></mat-spinner>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,10 +6,11 @@ import { environment } from '../../environments/environment';
 @Injectable({providedIn: 'root'})
 export class LocalesAdheridosService {
 
-    localesBehaviorSource: BehaviorSubject<any[]> = new BehaviorSubject([]);
-    localesItems: Observable<any[]> = this.localesBehaviorSource.asObservable();
+    localesBehaviorSource: BehaviorSubject<any> = new BehaviorSubject(null);
+    idClasificadoSeleccionado: Observable<any> = this.localesBehaviorSource.asObservable();
 
-    header = new HttpHeaders().append('Authorization', 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjBlZDhkODNjN2E3ODI2NjU2MDNlYjY4YmIwYzM2NzUzNTk0ZjRmODQzYTMxYWM3M2FjODZkNDg4YTU0ZGMwYTdkZGZhNjUyNzI3NmJjNTI2In0.eyJhdWQiOiIzIiwianRpIjoiMGVkOGQ4M2M3YTc4MjY2NTYwM2ViNjhiYjBjMzY3NTM1OTRmNGY4NDNhMzFhYzczYWM4NmQ0ODhhNTRkYzBhN2RkZmE2NTI3Mjc2YmM1MjYiLCJpYXQiOjE1NDQwMjk1NjcsIm5iZiI6MTU0NDAyOTU2NywiZXhwIjoxNTc1NTY1NTY3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.BZgR-fARdPNdMU5mNI5A5pCpErZ7bqTC9WyzpSZxX5BSJi1WGhXZMLrWfGlOZD_ZWugqzojOrIrhfzezwkkOLuzmXCxE4gvgL1IqEIrFsycaZPptZuBxrb-ftFUsurAiCsixndNTO0x0iZwk64EsRUWH-d7Z42UZSy8GIxyriOkn_mFeZ0eE_gc-yQ1FUCA4NlPuvqKiMT3iy-aU4qTLIZlAVGJX6NeFvviSpo-0kal49C7CeHMZRi1BKrrPe3AVFdf_dyTr7AeqvWfhmmsvVqqJeqF3lD6Tvqq4HDz4kFWsnRNHacI4fxtX3pL0opJpXt2V7hCK3QkhUO5N8poPgCB5PmHX1e42uerBSzTCo8hVaHv6RmGTSwJutCo6H9M-RV7IfXDAbd0YmkQRZpO5oWkU-6V3WstdUy7vsbzV-LTASjF9rktLFREbTG69_FU0C8IAOKfD_3aYuW_r16_VogJ3kOKRNjaNoFtgbXtpB8h9aRuSAO0TmePvi1MvDB2vRvmpDyWg4TJyCCGEOB1sgARqFh9Jd3b1uVkMFruomvK5oZnG5M64B-RlUEhFaw1YhTujFe9cpTJYgK_UMpj1S2h9VdbqHbwTp4L3kmVme8UiEPBQ2opVL2xUfnSdHeXQ8-NYbgBj4b2pOp2LOK9lsHbKjSrJn9elmIkSTIfTl4Y');
+  
+    header = new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token'));/* 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMyMzdlNmJmMzkyMmMzNDU3YjNkOTJlZjI0YWQ3NjJhZjliNGU2YTM5MWMzNDk3NDRjYzJkNWM4ZjQzMTRmZmIyMjliNTllNTJiOTE0NmQ2In0.eyJhdWQiOiIzIiwianRpIjoiMzIzN2U2YmYzOTIyYzM0NTdiM2Q5MmVmMjRhZDc2MmFmOWI0ZTZhMzkxYzM0OTc0NGNjMmQ1YzhmNDMxNGZmYjIyOWI1OWU1MmI5MTQ2ZDYiLCJpYXQiOjE1NDQ5MTQ2MzMsIm5iZiI6MTU0NDkxNDYzMywiZXhwIjoxNTc2NDUwNjMyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.WTR90FhdU3lsykeMynhAw1xHQZfV5By8dADM6aPZdW9vi-aYSqrn7czrfkQbaE1_c2QDKrSxID_KjKjPP1eEKKV4di4mx83jhPktQznxVMrpDpVcWLBH9hc--b7_jYjaMu7NvFrkgJwMnu5aoNT7XcMLgfM7K1u4tw2iOoTlj4uYFsaTumVquXKi3aHa24EAXQ5Pn5myyOR7-Vlkl-A-40jphYOqUHeJcQIDieGUbyJ73OEnjFY4uo-bfWRbjkQvwxnkm0aCv1-P0TfP1ZkagKrIcXw1-vLy_bAvG0LNpdPVNkcKQW2xJQYnDQoEVu5avF3Hc1aQCZIYtGMmKb2m934kul9LLFIG-r3n_EXqhraumqMiZKZk1c8Ww_hd9RiEha9Cx_OyAu4jYDyTR0mUSszwq2jHFuckiT7ezeaoDFF0bk_ypW-iZBQ8m_R6EwA9ix4N1v6akZmahgilsJYtKAJhOfYHnmsJoj9PWyW1NPv7X35G00P68yA6EjfimOU4harD_zQvuBCVaxVVFZSBIobHCE6NZV8Q6S0Ohu8uo7UW7gGH10_x6KltsJhdmg81MGjBPOcjyXRpsAFpG0Ux5TTuVGrtpH9KWRr1PVkqGa2WOS2qSvfWQUVg5dfIzvhZFruId71gREoqnBzM7k4zqVdlq_WNVhr0USgAR1ynu0s'); */
 
     constructor(private http: HttpClient) {}
 
@@ -18,14 +19,23 @@ export class LocalesAdheridosService {
         
         return this.http.post<any>(`${environment.apiHost}/api/auth/listarClasificado`, null,{observe: 'response', headers: this.header});
     }
-
+    getAllClasificadosSinAuth(): Observable<HttpResponse<any>> {
+        
+        return this.http.post<any>(`${environment.apiHost}/api/v1/listarClasificado`, null,{observe: 'response'});
+    }
     getAll(){
-        return this.http.post<any>(environment.apiHost + '/api/auth/listarLocalAdheridos',null, {observe: 'response', headers: this.header});
-    }
+        let header2 = new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token'));/* 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMyMzdlNmJmMzkyMmMzNDU3YjNkOTJlZjI0YWQ3NjJhZjliNGU2YTM5MWMzNDk3NDRjYzJkNWM4ZjQzMTRmZmIyMjliNTllNTJiOTE0NmQ2In0.eyJhdWQiOiIzIiwianRpIjoiMzIzN2U2YmYzOTIyYzM0NTdiM2Q5MmVmMjRhZDc2MmFmOWI0ZTZhMzkxYzM0OTc0NGNjMmQ1YzhmNDMxNGZmYjIyOWI1OWU1MmI5MTQ2ZDYiLCJpYXQiOjE1NDQ5MTQ2MzMsIm5iZiI6MTU0NDkxNDYzMywiZXhwIjoxNTc2NDUwNjMyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.WTR90FhdU3lsykeMynhAw1xHQZfV5By8dADM6aPZdW9vi-aYSqrn7czrfkQbaE1_c2QDKrSxID_KjKjPP1eEKKV4di4mx83jhPktQznxVMrpDpVcWLBH9hc--b7_jYjaMu7NvFrkgJwMnu5aoNT7XcMLgfM7K1u4tw2iOoTlj4uYFsaTumVquXKi3aHa24EAXQ5Pn5myyOR7-Vlkl-A-40jphYOqUHeJcQIDieGUbyJ73OEnjFY4uo-bfWRbjkQvwxnkm0aCv1-P0TfP1ZkagKrIcXw1-vLy_bAvG0LNpdPVNkcKQW2xJQYnDQoEVu5avF3Hc1aQCZIYtGMmKb2m934kul9LLFIG-r3n_EXqhraumqMiZKZk1c8Ww_hd9RiEha9Cx_OyAu4jYDyTR0mUSszwq2jHFuckiT7ezeaoDFF0bk_ypW-iZBQ8m_R6EwA9ix4N1v6akZmahgilsJYtKAJhOfYHnmsJoj9PWyW1NPv7X35G00P68yA6EjfimOU4harD_zQvuBCVaxVVFZSBIobHCE6NZV8Q6S0Ohu8uo7UW7gGH10_x6KltsJhdmg81MGjBPOcjyXRpsAFpG0Ux5TTuVGrtpH9KWRr1PVkqGa2WOS2qSvfWQUVg5dfIzvhZFruId71gREoqnBzM7k4zqVdlq_WNVhr0USgAR1ynu0s'); */
 
-    updateSource(data: any[]){
-        this.localesBehaviorSource.next(data);
+        return this.http.post<any>(environment.apiHost + '/api/auth/listarLocalAdheridos',null, {observe: 'response', headers: header2});
     }
+    getLocalesPorClasificados(idClasificado:number) :Observable<HttpResponse<any>>{
+        return this.http.get<any>(environment.apiHost + '/api/v1/listarPorIdClasificado/'+idClasificado,{observe: 'response'});
+    }
+    updateSource(data: any[]){
+        this.localesBehaviorSource.next(data);   
+
+    }
+    
 
     getListaPorNro(nro:number){
         return this.http.get(environment.apiHost + '/api/v1/lista-locales-por-nro/'+ nro);

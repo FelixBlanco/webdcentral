@@ -61,6 +61,7 @@ import { BlogComponent } from './component/blog/blog.component';
 import { ClasificadosInicioComponent } from './component/clasificados-inicio/clasificados-inicio.component';
 import { MinoristaComponent } from './component/minorista/minorista.component';
 import { DomicilioEntregaFormComponent } from './component/carrito/carrito-form/domicilio-entrega-form/domicilio-entrega-form.component';
+import { TurnosListComponent } from './component/servicios-inicio/turnos-list/turnos-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -122,7 +123,8 @@ const appRoutes: Routes = [
     BlogComponent,
     ClasificadosInicioComponent,
     MinoristaComponent,
-    DomicilioEntregaFormComponent
+    DomicilioEntregaFormComponent,
+    TurnosListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 #searchInput{ display: none }
 
 #nav-dos .nav-item{
-  margin-left: -3%;
+  margin-left: -2%;
 }
 
 #nav-dos .nav-link{
@@ -10,4 +10,7 @@
 
 .nav-link .active{
   color: #007bff;
+}
+span{
+  cursor: pointer;
 }

@@ -3,15 +3,13 @@
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
-class OrderSeed extends Seeder
-{
+class OrderSeed extends Seeder {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         $faker = Faker::create();
 
         for ($i = 0; $i < 10; $i++) {
@@ -35,13 +33,12 @@ class OrderSeed extends Seeder
                 \App\orderBody::create([
                     'fk_idOrderHeader'             => $j,
                     'codeProdSys'                  => $faker->numberBetween($min = 0, $max = 100000),
-                    'Cantidad_Producto'            => $j + 10*$faker->randomDigit,
+                    'Cantidad_Producto'            => $j + 10 * $faker->randomDigit,
                     'PrecioUnitario_Producto'      => $faker->numberBetween($min = 0, $max = 99999),
                     'PorcentajeDescuento_Producto' => $faker->randomDigit,
                     'Devolucion_Producto'          => $faker->randomDigit,
                     'Numero_EncabezadoVenta'       => $faker->randomDigit,
                     'fk_idProducto'                => $faker->numberBetween($min = 1, $max = 4),
-
                 ]);
             }
         }

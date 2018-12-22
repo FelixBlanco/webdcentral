@@ -1,12 +1,14 @@
-
 <div class="container">
   <div class="row justify-content-center">
 
     <ng-container *ngFor="let item of items">
-      <div class="col-md-3 mt-2">
+      <div class="col-sm-6 col-md-4 col-lg-3 mt-2">
         <div class="card m-auto">
-          <img *ngIf="item.urlImage" width="130" height="230" class="card-img-top" [src]="item.urlImage" alt="{{item.nombre}}">
-          <img *ngIf="!item.urlImage" width="130" height="230" class="card-img-top" src="assets/no_image_aviable.png" alt="{{item.nombre}}"/>
+
+          <img *ngIf="item.urlImage" class="card-img-top " [src]="item.urlImage" alt="{{item.nombre}}">
+          <img *ngIf="!item.urlImage" width="130" height="230" class="card-img-top" src="assets/no_image_aviable.png"
+            alt="{{item.nombre}}" />
+
           <div class="card-body">
             <div class="text-center">
               <small class="text-center txt-azul">{{item.marca}}</small>
