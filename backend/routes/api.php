@@ -11,11 +11,11 @@
 |
 */
 
-Route::group(['prefix' => 'auth'], function () {
+Route::group(['prefix' => 'auth'], function() {
 
     Route::post('login', 'API\AuthController@login'); //logear
 
-    Route::group(['middleware' => 'auth:api'], function () {
+    Route::group(['middleware' => 'auth:api'], function() {
 
         Route::post('crearGaleriaHomeProd', 'GaleriaHomeProductoController@createGaleria');
         Route::delete('borrraGaleriaHomeProd/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@destroy');
@@ -48,8 +48,8 @@ Route::group(['prefix' => 'auth'], function () {
         /*ORDER HEADER (Orden de compra)*/
         Route::post('añadirOrderHeader', 'OrderHeaderController@añadir');
 
-         /*ORDER HEADER (Orden de compra)*/
-         Route::post('get/data/pago', 'OrderHeaderController@getDataPay');
+        /*ORDER HEADER (Orden de compra)*/
+        Route::post('get/data/pago', 'OrderHeaderController@getDataPay');
 
         /*ORDER HEADER (Orden de compra)*/
 
@@ -130,24 +130,24 @@ Route::group(['prefix' => 'auth'], function () {
         Route::delete('borrarCatBlog/{idBlogCategoria}', 'BlogCategoriaController@borrar');
 
         /* HORARIO DE ATENCION */
-        Route::resource('horario-atencion','HorarioAtencionController');
-        Route::get('delete-horario-atencion/{id}','HorarioAtencionController@destroy');
-        
+        Route::resource('horario-atencion', 'HorarioAtencionController');
+        Route::get('delete-horario-atencion/{id}', 'HorarioAtencionController@destroy');
+
     });
 });
 
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
-Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
+Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 
-    Route::get('listarPorIdClasificado/{fk_idClasificado}','LocalesAdheridoController@listarPorIdClasificado');
+    Route::get('listarPorIdClasificado/{fk_idClasificado}', 'LocalesAdheridoController@listarPorIdClasificado');
 
-    Route::get('turnoDeUnLocalAdh/{id_Local}','LocalesAdheridoController@turnoDeUnLocalAdh');
+    Route::get('turnoDeUnLocalAdh/{id_Local}', 'LocalesAdheridoController@turnoDeUnLocalAdh');
 
-    Route::post('agregarDomicilio','PerfilClientesController@agregarDomicilio');
-    Route::get('listarDomiciliosDeClientes/{idCliente}','PerfilClientesController@listarDomiciliosDeClientes');
-    Route::post('editarDomicilio','PerfilClientesController@editarDomicilio');
-    Route::delete('borrarDomicilio/{idDomicilios}','PerfilClientesController@borrarDomicilio');
+    Route::post('agregarDomicilio', 'PerfilClientesController@agregarDomicilio');
+    Route::get('listarDomiciliosDeClientes/{idCliente}', 'PerfilClientesController@listarDomiciliosDeClientes');
+    Route::post('editarDomicilio', 'PerfilClientesController@editarDomicilio');
+    Route::delete('borrarDomicilio/{idDomicilios}', 'PerfilClientesController@borrarDomicilio');
 
     Route::post('listarClasificado', 'ClasificadoController@listar');
 
@@ -249,7 +249,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     // Config Home
     Route::get('config-home', 'ConfigHomeController@getConfigHome')->name('config-home');
     Route::post('upgrade_config_home', 'ConfigHomeController@upgradeConfigHome')->name('upgrade_config_home');
-    Route::post('addImagenFooter','ConfigFooterController@addImagenFooter');
+    Route::post('addImagenFooter', 'ConfigFooterController@addImagenFooter');
 
     // Config Footer
     Route::get('config-footer', 'ConfigFooterController@getInfo')->name('config-footer');
@@ -368,7 +368,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     /*PARA LAS CATEGORIAS DEL BLOG*/
 
     Route::get('listarCatBlog', 'BlogCategoriaController@listar');
-    
+
     Route::get('listarPorIdCatBlog/{idBlogCategoria}', 'BlogCategoriaController@buscarIdBlogCategoria');
 
     /*PARA el BLOG*/
@@ -376,7 +376,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     Route::get('listarPorIdBlog/{idBlogCategoria}', 'BlogController@buscarIdBlogCategoria');
 
     /*PARA LISTAR LOS BLOGS POR ID DE CATEGORIA DE BLOG*/
-    Route::get('listarBlogPorIdDeCategoria/{idBlogCategoria}','BlogController@listarBlogPorIdDeCategoria');
+    Route::get('listarBlogPorIdDeCategoria/{idBlogCategoria}', 'BlogController@listarBlogPorIdDeCategoria');
 
     /*PARA LISTAR LOS ESTATUS DE LOS TURNOS*/
     Route::get('listarTodoslosEstatusTurnos', 'TurnoController@listarTodoslosEstatusTurnos');
@@ -386,13 +386,13 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     Route::post('client/ml/update', 'OrderDriverController@updateClienteMl');
 
     /*** CLASIFICADOS ****/
-    Route::get('lista-por-nro/{id}','ClasificadoController@listaPorNro');
+    Route::get('lista-por-nro/{id}', 'ClasificadoController@listaPorNro');
 
     /*** LOCALES ADHERIDOS ****/
-    Route::get('lista-locales-por-nro/{id}','LocalesAdheridoController@listaLocalesPorNro');
+    Route::get('lista-locales-por-nro/{id}', 'LocalesAdheridoController@listaLocalesPorNro');
 
     // Tipos de descuentos 
-    Route::get('tipo-descuentos','TipoDescuentoController@index');
+    Route::get('tipo-descuentos', 'TipoDescuentoController@index');
 
 });
 
