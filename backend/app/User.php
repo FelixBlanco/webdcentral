@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     protected $dates = ['created_at', 'deleted_at'];
 
-    public function generateToken()
+    public function generateToken ()
     {
         $this->api_token = str_random(60);
         $this->save();
@@ -52,17 +52,17 @@ class User extends Authenticatable
         return $this->api_token;
     }
 
-    public function perfil()
+    public function perfil ()
     {
         return $this->belongsTo('App\Perfil', 'fk_idPerfil');
     }
 
-    public function perfilCliene()
+    public function perfilCliene ()
     {
         return $this->hasOne('App\PerfilCliente', 'fk_idPerfilCliente');
     }
 
-    public function ReclamosSugerencias()
+    public function ReclamosSugerencias ()
     {
         return $this->hasMany('App\ReclamosYSugerencia', 'fk_idUser'); //muchos reclamos
     }
