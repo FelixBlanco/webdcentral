@@ -241,7 +241,7 @@ class PerfilClientesController extends Controller
                     'msj' => 'Ya el cliente tiene la cantidad maxima de domicilios',
                 ];
 
-                return response()->json($response, 404);
+                return response()->json($response, 409);
             }
 
 
@@ -332,14 +332,14 @@ class PerfilClientesController extends Controller
 
         if (count($perfilCliente) >= 1) {
 
-            return response()->json($perfilCliente, 201);
+            return response()->json($perfilCliente, 200);
         } else {
 
             $response = [
                 'msj' => 'No hay perfil del cliente',
             ];
 
-            return response()->json($response, 404);
+            return response()->json($response, 200);
         }
     }
 

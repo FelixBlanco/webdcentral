@@ -1,8 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CarritoService, Item } from 'src/app/services/carrito.service';
-import { ProductosService, PedidoHeader } from 'src/app/services/productos.service';
+import { ProductosService } from 'src/app/services/productos.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { LocalidadService } from 'src/app/services/localidad.service';
 import * as moment from 'moment';
@@ -197,7 +196,19 @@ export class CarritoFormComponent implements OnInit {
 
   async getAllDomicilios(){
     const idUser = this.userService.getUserId();
-    const resp = await this.domicilioService.getAll(idUser.toString()).toPromise();
+    const respIdPerfilCliente = await this.domicilioService.getIdPerfilBy(idUser.toString()).toPromise();
+
+    if(!respIdPerfilCliente.ok){
+      this.as.msg('ERR', 'Error', 'Ha ocurrido un error al obtener el perfil del cliente');
+      return;
+    }
+
+    let idPerfilCliente = 0;
+    if(respIdPerfilCliente.ok){
+      idPerfilCliente = respIdPerfilCliente.body[0].idPerfilCliente;
+    }
+
+    const resp = await this.domicilioService.getAll(idPerfilCliente.toString()).toPromise();
 
     if(resp.ok){
       this.domiciliosList = resp.body;
@@ -223,7 +234,30 @@ export class CarritoFormComponent implements OnInit {
   }
 
   //TODO
-  createOrder(){
+  createOrder(type: 'internalDelivery' | 'delivery' | 'inMarketForm'){
+
+    const total = this.carritoService.getTotal();
+    const carritoItems: Item[] =  this.carritoService.getAll();
+    let orderBody: any[] = []
+
+    carritoItems.forEach(val => {
+      orderBody.push({
+        codeProdSys: val.id,
+        Cantidad_Producto: val.cantidad,
+        PrecioUnitario_Producto: val.precio,
+        PorcentajeDescuento_Producto: 0,
+        Numero_EncabezadoVenta: 0,
+        Devolucion_Producto: 0
+      });
+    });
+
+    switch(type){
+      case 'internalDelivery': 
+      case 'delivery':
+      case 'inMarketForm': this.inMarketSave(orderBody, total);
+      default : return;
+    }
+    /*
     const val = this.orderForm.value;
     const body = new HttpParams()
       .set("Domicilio_Entrega", val.direccion)
@@ -277,7 +311,53 @@ export class CarritoFormComponent implements OnInit {
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno')
       this.inPromise = false;
       console.error(error);
-    });
+    });*/
+  }
+
+  async saveOrderBody(idOrderHeader, orderBody){
+    const resp = await this.productosService.orderBody(orderBody, idOrderHeader).toPromise();
+
+    return resp;
+  }
+
+  async inMarketSave(orderBody: any[], total: number){
+
+    const values = this.inMarketForm.value;
+    const metodoDePago = values.metodoDePago === 1 ? 'Efectivo': values.metodoDePago === 2 ? 'Depósito' : 'Transferencia';
+
+    let body: FormData = new FormData()
+    
+    body.append('fecha_retiro', values.fechaRetiro);
+    body.append('metodoPago', metodoDePago);
+    body.append('monto_total', total.toString());
+
+    if(values.metodoDePago !== 1){
+      body.append('comprobanteDepositoTransferencia', this.imgLoaded);
+    }
+
+    this.inPromise = true;
+    const respOrderHeader = await this.productosService.orderHeader(body).toPromise();
+    
+    if(!respOrderHeader.ok){
+      this.inPromise = false;
+      this.as.msg('ERR', 'Error', 'Ha ocurrido un error al crear la orden');
+      return;
+    }
+
+    const idOrder = respOrderHeader.body.OB.idOrderHeader;
+
+    const respOrderBody = await this.saveOrderBody(idOrder, orderBody);
+
+    if(!respOrderBody.ok){
+      this.inPromise = false;
+      this.as.msg('ERR', 'Error', 'Ha ocurrido un error al actualizar la lista de productos, comuniquese con un administrador');
+      return;
+    }
+
+    this.as.msg('OK', 'Éxito', 'Se ha creado el pedido');
+    this.section = 'shipping';
+    this.carritoService.clear();
+    
   }
 
 }

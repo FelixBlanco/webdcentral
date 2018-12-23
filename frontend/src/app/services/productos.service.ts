@@ -42,22 +42,7 @@ export interface SearchBody{
   nombre: Producto[];
 }
 
-export interface PedidoHeader{
-  Codigo_Postal: string;
-  Domicilio_Entrega: string;
-  Email_Cliente: string;
-  Estado_Pedido: string;
-  Fecha_Pedido: string;
-  Numero_Pedido: number;
-  comentaryClient: string;
-  created_at: string;
-  fk_idStateOrder: number;
-  fk_idUserClient: number;
-  fk_idUserDriver: number;
-  idOrderHeader: number;
-  stars: string;
-  updated_at: string;
-}
+
 
 export interface CarouselItem{
   id: number;
@@ -118,10 +103,10 @@ export class ProductosService {
       return this.http.post<any>(`${environment.apiHost}/api/auth/añadirOrderHeader`, data , {headers: this.headers, observe: 'response'});      
     }
 
-    orderBody(data: any, id: number):Observable<HttpResponse<{ OB: PedidoHeader, msj: string}>>{
+    orderBody(data: any, id: number):Observable<HttpResponse<any>>{
       this.headers = new HttpHeaders()
         .append("Authorization", `Bearer ${localStorage.getItem('token')}`)
-      return this.http.post<{ OB: PedidoHeader, msj: string}>(`${environment.apiHost}/api/auth/añadirOrderBody/${id}`, data , {headers: this.headers, observe: 'response'});      
+      return this.http.post<any>(`${environment.apiHost}/api/auth/añadirOrderBody/${id}`, data , {headers: this.headers, observe: 'response'});      
     }
 
     getByMarca(marca: string):Observable<HttpResponse<Producto[]>>{

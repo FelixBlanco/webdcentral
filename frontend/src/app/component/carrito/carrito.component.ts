@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CarritoService, Item } from 'src/app/services/carrito.service';
-import { ProductosService, Producto, PedidoHeader } from 'src/app/services/productos.service';
+import { CarritoService } from 'src/app/services/carrito.service';
+import { ProductosService, Producto } from 'src/app/services/productos.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { forkJoin, Observable } from 'rxjs';
-import { HttpResponse, HttpParams } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { UserTokenService } from 'src/app/services/user-token.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 
 declare var $: any;
@@ -163,11 +162,11 @@ export class CarritoComponent implements OnInit {
       $('#loginModal').modal('show');
       return;
     }
-    /* TODO
+   
     if(!this.carritoService.getAll().length){
       this.as.msg('INFO', 'Info', 'Debes agregar productos al carrito de compras');
       return
-    }*/
+    }
 
     this.section = section;
   }
