@@ -163,7 +163,7 @@ export class CarritoComponent implements OnInit {
       $('#loginModal').modal('show');
       return;
     }
-    /*
+    /* TODO
     if(!this.carritoService.getAll().length){
       this.as.msg('INFO', 'Info', 'Debes agregar productos al carrito de compras');
       return

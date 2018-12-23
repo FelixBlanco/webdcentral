@@ -6,6 +6,8 @@ import { ProductosService, PedidoHeader } from 'src/app/services/productos.servi
 import { AlertsService } from 'src/app/services/alerts.service';
 import { LocalidadService } from 'src/app/services/localidad.service';
 import * as moment from 'moment';
+import { DomicilioEntregaService } from '../../../services/domicilio-entrega.service';
+import { UserTokenService } from '../../../services/user-token.service';
 
 @Component({
   selector: 'app-carrito-form',
@@ -36,6 +38,7 @@ export class CarritoFormComponent implements OnInit {
 
   onLocalidadesFetch: boolean;
   localidadesList: any[];
+  domiciliosList: any[] = [];
     
   constructor(
     private fb: FormBuilder,
@@ -43,6 +46,8 @@ export class CarritoFormComponent implements OnInit {
     private productosService: ProductosService,
     private localidadService: LocalidadService,
     private as: AlertsService,
+    private domicilioService: DomicilioEntregaService,
+    private userService: UserTokenService
   ) { }
 
   ngOnInit() {
@@ -70,9 +75,16 @@ export class CarritoFormComponent implements OnInit {
       imagen: [''],
     });
 
-    this.getAllLocalidades();
-    this.setMommentDates();
+    this.onLocalidadesFetch = true;
+    this.getAllDomicilios().then(
+      () => {
+        this.getAllLocalidades();
+        this.setMommentDates();
+      }
+    );
   }
+
+  
 
   setMommentDates(){
     this.actualDate = moment().toJSON().split('T')[0];
@@ -179,12 +191,20 @@ export class CarritoFormComponent implements OnInit {
 
     if(!bool){
       //update domicilio entrega box
-      console.log('updating...');
+      this.getAllDomicilios();
+    }
+  }
+
+  async getAllDomicilios(){
+    const idUser = this.userService.getUserId();
+    const resp = await this.domicilioService.getAll(idUser.toString()).toPromise();
+
+    if(resp.ok){
+      this.domiciliosList = resp.body;
     }
   }
 
   getAllLocalidades(){
-    this.onLocalidadesFetch = true;
     this.localidadService.getAll().subscribe(
       (resp) => {
         if(resp.ok && resp.status === 200){

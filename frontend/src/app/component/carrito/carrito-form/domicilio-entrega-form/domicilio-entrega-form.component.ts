@@ -1,6 +1,8 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { DomicilioEntregaService } from '../../../../services/domicilio-entrega.service';
+import { UserTokenService } from '../../../../services/user-token.service';
 
 @Component({
   selector: 'app-domicilio-entrega-form',
@@ -16,7 +18,9 @@ export class DomicilioEntregaFormComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private as: AlertsService
+    private as: AlertsService,
+    private domicilioEntregaService: DomicilioEntregaService,
+    private userTokenService: UserTokenService
   ) { }
 
   ngOnInit() {
@@ -25,14 +29,46 @@ export class DomicilioEntregaFormComponent implements OnInit{
     });
   }
 
-  save(){
+  async save(){
     this.inPromise = true;
-    //TODO
-    setTimeout(() => {
-      this.inPromise = false;
-      this.onSaveEmmitEvent();
-      this.as.msg('OK', 'Éxito', 'Se ha creado el domicilio, información actualizada')
-    },3000)
+    const idUser = this.userTokenService.getUserId();
+
+    debugger;
+
+    const respGetId = await this.domicilioEntregaService.getIdPerfilBy(idUser.toString()).toPromise();
+
+    if(!respGetId.ok){
+      this.as.msg('ERR', 'Error', 'Ha ocurrido un error al obtener el perfil del cliente');
+      return
+    }
+
+    let idPefilCliente;
+    if(respGetId.ok){
+      if(Array.isArray(respGetId.body)){
+        idPefilCliente = respGetId.body[0].idPerfilCliente;
+      }else{
+        this.as.msg('INFO', 'Info', 'El usuario no posee un perfil de cliente registrado');
+        return;
+      }
+    }
+
+    this.domicilioEntregaService.persistBy(
+      {fk_idPerfilCliente: idPefilCliente, descripcion: this.domicilioForm.value.domicilio}
+    ).subscribe(
+      (resp) => {
+        if(resp.ok){
+          this.onSaveEmmitEvent();
+          this.as.msg('OK', 'Éxito', 'Se ha creado el domicilio, información actualizada');
+        }else{
+          console.error(resp);
+          this.as.msg('ERR', 'Error', 'Ha ocurrido un error al guardar los datos vuelvelo a intentar');
+        }
+        this.inPromise = false;
+      }, error => {
+        console.error(error);
+        this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+      }
+    );
   }
 
   onSaveEmmitEvent(){
