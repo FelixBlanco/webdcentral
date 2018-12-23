@@ -11,7 +11,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="busquedaModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="busquedaModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header bg-azul">
@@ -37,13 +37,14 @@
                   <p  class="text-uppercase font-bold text-center mt-4">no se
                       encontraron resultados</p>
               </div> 
-            <div *ngFor="let item of searchList.mascotas" class="row justify-content-left m-3">
+            <div *ngFor="let item of searchList.mascotas" class="row justify-content-left ml-4">
                 
               <div class="col-11">
                 <a class="mt-4" (click)="seeMore('mascotas')" class="text-muted">{{item.titulo | titlecase}}</a>
               </div>
               <div class="col-1 ">          
-                 <!-- icono -->
+                <fa (click)="seeMore('mascotas')" class="fa-lg text-center txt-naranja " name="eye" style="  cursor: pointer;" ></fa>
+
               </div>
             </div>
             
@@ -65,12 +66,13 @@
                   <p  class="text-uppercase font-bold text-center mt-4">no se
                       encontraron resultados</p>
               </div> 
-            <div *ngFor="let item of searchList.nombre" class="row justify-content-left">
+            <div *ngFor="let item of searchList.nombre" class="row justify-content-left ml-4">
               <div class="col-11">
                 <a (click)="seeMore('productos')" class="text-muted">{{item.titulo | titlecase}}</a>
               </div>
               <div class="col-1">
-                <!-- icono -->
+                <fa (click)="seeMore('productos')" class="fa-lg text-center txt-naranja " name="eye" style="  cursor: pointer;" ></fa>
+
               </div>
 
             </div>
@@ -90,13 +92,13 @@
                     <p  class="text-uppercase font-bold text-center mt-4">no se
                         encontraron resultados</p>
                 </div> 
-              <div *ngFor="let item of searchList.marcas" class="row justify-content-left">
+              <div *ngFor="let item of searchList.marcas" class="row justify-content-left ml-4">
                 <div class="col-11">
                   <a (click)="seeMore('marcas')" class="text-muted">{{item.titulo | titlecase}}</a>
                 </div>
-                <div class="col-1">
-                    <!--    icono -->
-              </div>
+                <div class="col-1  ">    
+                  <fa (click)="seeMore('marcas')" class="fa-lg text-center txt-naranja " name="eye" style="  cursor: pointer;" ></fa>
+                </div>
   
               </div>
             </div>

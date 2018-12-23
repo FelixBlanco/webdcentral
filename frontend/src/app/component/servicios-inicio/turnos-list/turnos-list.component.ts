@@ -18,6 +18,8 @@ export class TurnosListComponent implements OnInit {
   userId: number;
   modelData: any;
   inPromise: boolean;
+  inPromise2: boolean;
+
   token;
   turnoNewBehaviorSuscription: Subscription;
   data;
@@ -60,10 +62,11 @@ export class TurnosListComponent implements OnInit {
   }
   cancelarStatus(){
 
-  
+    this.inPromise2 = true;
      this.turnosService.updateStatus(this.data).subscribe(
       resp=>{
-        
+        this.inPromise2 = false;
+ 
             this.getTurnosUser();
             this.as.msg("OK","Turno cancelado");
             $("#cancelarTurno").modal("hide");
@@ -81,11 +84,13 @@ export class TurnosListComponent implements OnInit {
           resp.body.turnos.map((val) => {
 
             if (val.fk_idUser == this.userId) {
+               console.log(resp.body);
               this.modelData = {
                 "rubro": val.clasificado.titulo,
                 "id": val.idTurnos,
                 "fecha": val.fechaHora,
-                "status": val.fk_idStatusTurnos
+                "status": val.fk_idStatusTurnos,
+                "local":val.local_adherido.nombre
               }
               this.misTurnos = [...this.misTurnos, this.modelData];
             
