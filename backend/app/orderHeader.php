@@ -28,9 +28,7 @@ class orderHeader extends Model {
         'fk_idUserDriver',
         'metodoEntrega',
         'disponibilidadHr',
-        /*'CUIT',
-        'CUITrazonSocial',
-        'CUITDomicilioFidcal',*/
+
         'metodoPago',
         'comprobanteDepositoTransferencia',
         'fk_idTipoFactura',

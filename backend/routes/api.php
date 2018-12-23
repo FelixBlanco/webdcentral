@@ -140,6 +140,10 @@ Route::group(['prefix' => 'auth'], function() {
 
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 
+
+    /* PARA SABER EL ID DEL PERFILCLIENTE DE UN USUARIO */
+    Route::get('retornarIdDelPerfil/{idUser?}','PerfilClientesController@retornarIdDelPerfil');
+
     Route::get('listarPorIdClasificado/{fk_idClasificado}', 'LocalesAdheridoController@listarPorIdClasificado');
 
     Route::get('turnoDeUnLocalAdh/{id_Local}', 'LocalesAdheridoController@turnoDeUnLocalAdh');
@@ -393,6 +397,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 
     // Tipos de descuentos 
     Route::get('tipo-descuentos', 'TipoDescuentoController@index');
+
 
 });
 

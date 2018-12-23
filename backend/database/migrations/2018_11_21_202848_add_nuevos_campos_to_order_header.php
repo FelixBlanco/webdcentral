@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 class AddNuevosCamposToOrderHeader extends Migration
 {
-    public function up()
+    public function up ()
     {
-        Schema::table('tb_order_header', function (Blueprint $table) {
+        Schema::table('tb_order_header', function(Blueprint $table) {
             $table->string('metodoEntrega')->nullable();
             $table->string('disponibilidadHr')->nullable();
             /*$table->string('CUIT')->nullable();
@@ -24,6 +24,7 @@ class AddNuevosCamposToOrderHeader extends Migration
             $table->date('fecha')->nullable();
             $table->text('personasAutorizadas')->nullable();
             $table->text('observaciones')->nullable();
+            $table->string('tipoOrder')->nullable();
         });
     }
 
@@ -32,9 +33,9 @@ class AddNuevosCamposToOrderHeader extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down ()
     {
-        Schema::table('tb_order_header', function (Blueprint $table) {
+        Schema::table('tb_order_header', function(Blueprint $table) {
             $table->dropColumn('metodoEntrega');
             $table->dropColumn('disponibilidadHr');
             /*$table->dropColumn('CUIT');
@@ -49,6 +50,7 @@ class AddNuevosCamposToOrderHeader extends Migration
             $table->dropColumn('fecha');
             $table->dropColumn('personasAutorizadas');
             $table->dropColumn('observaciones');
+            $table->dropColumn('tipoOrder');
         });
     }
 }
