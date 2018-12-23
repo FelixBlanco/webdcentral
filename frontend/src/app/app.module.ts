@@ -61,6 +61,8 @@ import { ClasificadosInicioComponent } from './component/clasificados-inicio/cla
 import { MinoristaComponent } from './component/minorista/minorista.component';
 import { TurnosListComponent } from './component/servicios-inicio/turnos-list/turnos-list.component';
 
+
+
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'registro', component: RegisterComponent },
@@ -138,7 +140,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCiGsoFevMN2J-dXWtD_31AN4UkraR4Hq0'
-    })
+    }),
+  
   ],
   providers: [
     CarritoService,

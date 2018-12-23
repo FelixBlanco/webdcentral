@@ -181,32 +181,42 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   }
   // instancia la variable data   con los datos para agregar turno
   setDatos(idLocal: any, nombre: string) {
+
+     let mes,dia,hora,minutos;
+    
+     this.model.month<10 ? mes= `0${this.model.month}`: mes= this.model.month;
+     this.model.day<10 ? dia= `0${this.model.day}`: dia= this.model.day;
+     this.time.hour<10 ? hora= `0${this.time.hour}`: hora= this.time.hour;
+     this.time.minute<10 ? minutos= `0${this.time.minute}`: minutos= this.time.minute;
     
     if(this.token){
-    this.stringFecha = this.model.year + "-" + this.model.month + "-" + this.model.day + " " + this.time.hour + ":" + this.time.minute + ":" + this.time.second;//" "+this.time.hour+":"+this.time.minute+":00";
+    //this.stringFecha = this.model.year + "-" + this.model.month + "-" + this.model.day + "T" + this.time.hour + ":" + this.time.minute + ":" + this.time.second;//" "+this.time.hour+":"+this.time.minute+":00";
+      this.stringFecha =`${this.model.year}-${mes}-${dia}T${hora}:${minutos}:00Z`
+    this.nombreLocalSeleccionado = nombre
+   /*  const fecha = new Date(this.stringFecha);
+    console.log(fecha);
+    console.log(this.stringFecha); */
 
-    this.nombreLocalSeleccionado = nombre;
-    const fecha = new Date(this.stringFecha);
-
-    this.data={
-      fechaHora:fecha,
+     this.data={
+      fechaHora:this.stringFecha,
       fk_idLocalAdherido:idLocal,
       fk_idClasificado:this.idClasificado,
       fk_idStatusTurnos:1
     }
-    $('#nuevoTurno').modal('show');
+    $('#nuevoTurno').modal('show'); 
 
 
   }else{
-    $('#loginModal').modal('show');
+    $('#loginModal').modal('show'); 
   }
     
 
   }
   // agregar turno a la base de datos
   addTurno() {
-    console.log(this.data);
-     this.inPromiseAdd = true;
+
+    
+    this.inPromiseAdd = true;
     this.turnoService.persist(this.data).subscribe(
       (resp) => {
         if (resp.ok && resp.status === 201) {
