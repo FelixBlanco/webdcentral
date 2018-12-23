@@ -33,7 +33,7 @@ export class BusquedaComponent implements OnInit{
 
   ngOnInit(){
     this.productService.productosSearchItems.subscribe((val) => {
-      console.log(val);
+    
       this.searchList = val;
     })
   }

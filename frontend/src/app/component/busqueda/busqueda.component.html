@@ -44,8 +44,8 @@
                   <a class="mt-4" (click)="seeMore('mascotas')" class="text-muted">{{item.titulo | titlecase}}</a>
                 </div>
                 <div class="col-1 ">
-                  <fa (click)="seeMore('mascotas')" class="fa-lg text-center txt-naranja " name="eye" style="  cursor: pointer;"></fa>
-
+                   
+                     <fa-icon (click)="seeMore('mascotas')" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
                 </div>
               </div>
 
@@ -54,7 +54,7 @@
 
           
             <div class="container" [ngClass]="{'disabled-wrap': !searchList.nombre.length}">
-              <!-- productos -->
+            
               <div class="row justify-content-left mt-2">
                 <div class="number-wrap rounded-circle">
                   <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
@@ -74,8 +74,7 @@
                     <a (click)="seeMore('productos')" class="text-muted">{{item.titulo | titlecase}}</a>
                   </div>
                   <div class="col-1">
-                    <fa (click)="seeMore('productos')" class="fa-lg text-center txt-naranja " name="eye" style="  cursor: pointer;"></fa>
-
+                    <fa-icon (click)="seeMore('productos')" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
                   </div>
 
                 </div>
@@ -83,7 +82,7 @@
             </div>
           
 
-          <!-- marcas -->
+        
           <div class="container" [ngClass]="{'disabled-wrap': !searchList.marcas.length}">
             <div class="row justify-content-left mt-2" >
               <div class="number-wrap rounded-circle">
@@ -104,14 +103,14 @@
                   <a (click)="seeMore('marcas')" class="text-muted">{{item.titulo | titlecase}}</a>
                 </div>
                 <div class="col-1  ">
-                  <fa (click)="seeMore('marcas')" class="fa-lg text-center txt-naranja " name="eye" style="  cursor: pointer;"></fa>
+                  <fa-icon (click)="seeMore('marcas')" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
                 </div>
   
               </div>
             </div>
           </div>
           
-
+ 
         </div>
       </div>
     </div>

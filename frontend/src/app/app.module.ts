@@ -61,7 +61,7 @@ import { ClasificadosInicioComponent } from './component/clasificados-inicio/cla
 import { MinoristaComponent } from './component/minorista/minorista.component';
 import { TurnosListComponent } from './component/servicios-inicio/turnos-list/turnos-list.component';
 
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -141,7 +141,7 @@ const appRoutes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCiGsoFevMN2J-dXWtD_31AN4UkraR4Hq0'
     }),
-    AngularFontAwesomeModule
+  
   ],
   providers: [
     CarritoService,
