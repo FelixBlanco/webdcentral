@@ -20,8 +20,8 @@ class OrderHeaderController extends Controller
         // opcional comentaryClient
 
         $this->validate($request, [
-            'Domicilio_Entrega' => 'required',
-            'Codigo_Postal' => 'required',
+            //'Domicilio_Entrega' => 'required',
+            //'Codigo_Postal' => 'required',
             //'monto_total'       => 'required',
             //'comentarioFinal'   => 'required',
             'metodoEntrega' => 'required',
@@ -35,8 +35,8 @@ class OrderHeaderController extends Controller
             //'localidad'                        => 'required',
 
         ], [
-            'Domicilio_Entrega.required' => 'El campo es requerido',
-            'Codigo_Postal.required' => 'El campo es requerido',
+            //'Domicilio_Entrega.required' => 'El campo es requerido',
+            //'Codigo_Postal.required' => 'El campo es requerido',
             //'monto_total.required'       => 'El campo es requerido',
             //'comentarioFinal.required'   => 'El campo es requerido',
             'metodoEntrega.required' => 'El campo es requerido',

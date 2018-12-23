@@ -44,6 +44,7 @@ class ProductoController extends Controller {
             $marcas = $this->getAgrupation($marcas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
             $nombre = $this->getAgrupation($nombre);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
 
+
             $response = [
                 'msj'      => 'Productos',
                 'mascotas' => $mascotas,

@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusTurnoSeeder::class);
         $this->call(TipoDescuetoSeeder::class);
         $this->call(TipoOrdenSeeder::class);
+        $this->call(MetodoEntregaSeed::class);
     }
 }

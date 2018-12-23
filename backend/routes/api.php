@@ -140,6 +140,8 @@ Route::group(['prefix' => 'auth'], function() {
 
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 
+    Route::post('agregarDuracion/{idUser}','NotificacionDuracionAlimentoController@agregarDuracion');
+
 
     /* PARA SABER EL ID DEL PERFILCLIENTE DE UN USUARIO */
     Route::get('retornarIdDelPerfil/{idUser?}','PerfilClientesController@retornarIdDelPerfil');
