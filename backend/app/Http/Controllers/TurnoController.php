@@ -20,14 +20,14 @@ class TurnoController extends Controller
         $this->validate($request, [
             'fk_idClasificado'   => 'required',
             'fk_idLocalAdherido' => 'required',
-            //'fechaHora'          => 'required',
+            'fechaHora'          => 'required',
             'fk_idStatusTurnos'  => 'required',  // 1 Solicitado, 2 Cancelado, 3 Rechazado
             //'fk_idUser'          => 'required',
 
         ], [
             'fk_idClasificado.required'   => 'El campo es requerido',
             'fk_idLocalAdherido.required' => 'El campo es requerido',
-            //'fechaHora.required'          => 'El campo es requerido',
+            'fechaHora.required'          => 'El campo es requerido',
             'fk_idStatusTurnos.required'  => 'El campo es requerido',
             //'fk_idUser.required'          => 'El campo es requerido',
 
@@ -39,7 +39,7 @@ class TurnoController extends Controller
 
             $turno = new turno($request->all());
             $turno->fk_idUser = Auth::user()->fk_idPerfil;
-            $turno->fechaHora = Carbon::now();
+            //$turno->fechaHora = Carbon::now();
             $turno->statusTurno;
 
             $turno->save();

@@ -24,30 +24,47 @@ export class EnviosPageComponent implements OnInit {
         // Motamos en cada una de las columnas
         const stop_uno:any  =  nroDivido;
         const stop_dos:any  =  parseInt(nroDivido) * 2;
-        const stop_tres:any = parseInt(nroDivido) * 3; 
+        var precio:any;
 
         for(let i in resp){
-
+          
           if(i < stop_uno){ 
-            this.lista_a.push(resp[i]);
+            // this.lista_a.push(resp[i]);
+            if(!resp[i].Expr1){
+              precio = 0
+            }else{
+              precio = resp[i].Expr1;
+            }
+
+            this.lista_a.push({
+              localidad: resp[i].Descripcion_Localidad,
+              precio : '$ '+precio,
+              zona : resp[i].Descripcion_Zona
+            });
           }
+
+          // segunda lista
 
           if(i > stop_uno){ 
-            if(i <= stop_dos){ 
-              this.lista_b.push(resp[i]);
-            }
-          }
- 
-          if(i > stop_dos){ 
-            if(i <= stop_tres){
-              this.lista_c.push(resp[i]);
+            if(i < stop_dos){ 
+              if(!resp[i].Expr1){
+                precio = 0
+              }else{
+                precio = resp[i].Expr1;
+              }
+  
+              this.lista_b.push({
+                localidad: resp[i].Descripcion_Localidad,
+                precio : '$ '+precio,
+                zona : resp[i].Descripcion_Zona
+              });
             }
           }
 
-        }
+
+        }        
       }
     )
-    
   }
 
 }

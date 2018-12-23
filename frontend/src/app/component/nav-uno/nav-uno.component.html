@@ -50,7 +50,7 @@
           <ng-container *ngIf="token">
 
             <li class="nav-item txt-blanco">
-              <a href="#" class="nav-link" [ngStyle]=" colorDos ? {color: colorDos } : {color: '#FFFFFF' }" data-toggle="modal" data-target="#perfilClienteModal">{{ userName }}</a>
+              <a href="#" class="nav-link" [ngStyle]=" colorDos ? {color: colorDos } : {color: '#FFFFFF' }" data-toggle="modal" (click)='getPerfilCliente()' data-target="#perfilClienteModal">{{ userName }}</a>
             </li>
 
             <li class="nav-item txt-blanco" style="margin-top:2px; margin-right: 2%">

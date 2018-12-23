@@ -14,11 +14,22 @@
 
 hr{
   background: #009BDD;
-  left: 4%;
-  margin-top: 11%;
-  position: absolute;
-  width: 92%;
+  width: 96%;
+  margin: auto;
 }
 h2{
   font-weight: bold;
+}
+
+.cont{
+  margin-bottom: 2%;
+}
+.titulo{
+  font-style: italic;
+  font-size: 15px;
+  padding-top: 10%;
+}
+.titulo-precio{
+  font-weight: bold;
+  font-size: 3em;
 }

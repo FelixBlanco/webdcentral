@@ -128,7 +128,11 @@
           <label for="domicilioEntrega" class="text-uppercase font-bold">Domicilio de Entrega</label>
           <div class="input-group mb-3">
             <select class="custom-select" id="domicilioEntrega" formControlName="domicilioEntrega" aria-label="Example select with button addon">
-              <option value="">Seleccionar</option>
+              <ng-container *ngIf="domiciliosList.length">
+                <option value="">Seleccione...</option>
+                <option *ngFor="let item of domiciliosList"></option>
+              </ng-container>
+              <option *ngIf="!domiciliosList.length">No existen registros</option>
             </select>
             <div class="input-group-prepend">
               <button class="btn btn-default font-bold bg-naranja text-white" (click)="onDomicilioCreate(true)" [disabled]="onDomicilioAdd" type="button">NUEVO</button>

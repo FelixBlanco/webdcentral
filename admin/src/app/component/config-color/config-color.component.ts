@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ConfigColorService} from "../../services/config-color.service";
 import {AlertsService} from "../../services/alerts.service";
+import { FormBuilder, Validators, FormGroup } from '@angular/forms'
 
 @Component({
     selector: 'app-config-color',
@@ -12,9 +13,17 @@ export class ConfigColorComponent implements OnInit {
     colores: any;
     form: any = {colorOscuro: null, colorMedio: null, colorClaro: null}
     inPromise: boolean;
+    myForm : FormGroup;
 
     constructor(private _coloresServices: ConfigColorService,
-                private _alertServicices: AlertsService) {
+                private _alertServicices: AlertsService,
+                private fb:FormBuilder,
+                ) {
+        this.myForm = this.fb.group({
+            'colorOscuro'   : ['',Validators.minLength(7)],
+            'colorMedio'    : ['',Validators.minLength(7)],
+            'colorClaro'    : ['',Validators.minLength(7)],
+        })
     }
 
     ngOnInit() {
@@ -30,11 +39,14 @@ export class ConfigColorComponent implements OnInit {
     }
 
     addColores() {
-        this.inPromise = true;
-        if (!this.form.colorOscuro || !this.form.colorMedio || !this.form.colorClaro) {
+        const val = this.myForm.value;
+        console.log(val)
+        this.inPromise = true;        
+        if (val.colorOscuro != null || val.colorMedio != null || val.colorClaro != null) {
+            this.inPromise = false;    
             this._alertServicices.msg('ERR', 'Error', 'Todos los campos son requeridos');
-        } else {
-            this._coloresServices.addColores(this.form).subscribe(
+        }else {
+            this._coloresServices.addColores(val).subscribe(
                 resp => {
                     this.inPromise = false;
                     this.getColores();
@@ -47,7 +59,6 @@ export class ConfigColorComponent implements OnInit {
                 }
             )
         }
-
     }
 
     eliminarColor(id) {

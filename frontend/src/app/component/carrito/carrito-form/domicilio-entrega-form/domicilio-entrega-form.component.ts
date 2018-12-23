@@ -33,8 +33,6 @@ export class DomicilioEntregaFormComponent implements OnInit{
     this.inPromise = true;
     const idUser = this.userTokenService.getUserId();
 
-    debugger;
-
     const respGetId = await this.domicilioEntregaService.getIdPerfilBy(idUser.toString()).toPromise();
 
     if(!respGetId.ok){

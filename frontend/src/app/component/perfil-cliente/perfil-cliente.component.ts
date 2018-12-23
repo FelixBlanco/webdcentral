@@ -104,6 +104,7 @@ export class PerfilClienteComponent implements OnInit {
               this.form = resp.perfil; 
               this.form.idPerfilCliente = resp.perfil.idPerfilCliente;
               this.isNuevo = false;
+              console.log(this.form)
             }
           },
           error => {

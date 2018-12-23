@@ -63,6 +63,8 @@ import { MinoristaComponent } from './component/minorista/minorista.component';
 import { DomicilioEntregaFormComponent } from './component/carrito/carrito-form/domicilio-entrega-form/domicilio-entrega-form.component';
 import { TurnosListComponent } from './component/servicios-inicio/turnos-list/turnos-list.component';
 
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'registro', component: RegisterComponent },
@@ -142,7 +144,8 @@ const appRoutes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCiGsoFevMN2J-dXWtD_31AN4UkraR4Hq0'
     }),
-    NgSelectModule
+    NgSelectModule,
+    AngularFontAwesomeModule
   ],
   providers: [
     CarritoService,

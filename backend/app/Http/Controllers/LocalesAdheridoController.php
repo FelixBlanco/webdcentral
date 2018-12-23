@@ -37,7 +37,7 @@ class LocalesAdheridoController extends Controller
 
         try {
 
-            $LAH = new LocalesAdherido($request->all());
+            $localesA = new LocalesAdherido($request->all());
 
             if (is_null($request->foto_1)) {
             } else {
@@ -57,7 +57,7 @@ class LocalesAdheridoController extends Controller
                 Storage::disk('local')->put('\\localesAdheridos\\'.$nombre_interno1, (string) $thumbnailImage->encode());
                 /*para la foto*/
 
-                $LAH->foto_1 = $nombre_interno1;
+                $localesA->foto_1 = $nombre_interno1;
 
                 /*para la foto*/
                 $originalImage = $request->foto_2;
@@ -74,15 +74,15 @@ class LocalesAdheridoController extends Controller
                 Storage::disk('local')->put('\\localesAdheridos\\'.$nombre_interno2, (string) $thumbnailImage->encode());
                 /*para la foto*/
 
-                $LAH->foto_2 = $nombre_interno2;
+                $localesA->foto_2 = $nombre_interno2;
             }
-            $LAH->fk_idUser = Auth::user()->fk_idPerfil;
+            $localesA->fk_idUser = Auth::user()->fk_idPerfil;
 
-            $LAH->save();
+            $localesA->save();
 
             $response = [
                 'msj'      => 'Local Creado',
-                'LocalAdh' => $LAH,
+                'LocalAdh' => $localesA,
             ];
             DB::commit();
 
@@ -114,28 +114,27 @@ class LocalesAdheridoController extends Controller
                 'limit.min'  => 'Debe tener al menos un número',
             ]);
 
-            $LAH = LocalesAdherido::offset($request->offset)->limit($request->limit)->with('user')->get();
+            $localesA = LocalesAdherido::offset($request->offset)->limit($request->limit)->with('user')->get();
         } else {
             if ($request->exists('search')) {
 
                 $busqueda = "%".$request->search."%";
 
-                $LAH = LocalesAdherido::where('nombre', 'like', $busqueda)->orWhere('descripcion', 'like', $busqueda)->with('user')->get();
+                $localesA = LocalesAdherido::where('nombre', 'like', $busqueda)->orWhere('descripcion', 'like', $busqueda)->with('user')->get();
             } else {
 
-                $LAH = LocalesAdherido::with('user')->get();
+                $localesA = LocalesAdherido::with('user')->get();
             }
         }
 
-        $LAH->each(function ($LAH) {
-            $LAH->set_imagen = asset('storage\\localesAdheridos\\'.$LAH->imagen);
-            $LAH->set_imagen_uno = asset('storage\\localesAdheridos\\'.$LAH->foto_1);
-            $LAH->set_imagen_dos = asset('storage\\localesAdheridos\\'.$LAH->foto_2);
+        $localesA->each(function ($localesA) {
+            $localesA->set_imagen_uno = asset('storage\\localesAdheridos\\'.$localesA->foto_1);
+            $localesA->set_imagen_dos = asset('storage\\localesAdheridos\\'.$localesA->foto_2);
         });
 
         $response = [
             'msj'      => 'Lista de Locales Adheridos',
-            'LocalAdh' => $LAH,
+            'LocalAdh' => $localesA,
         ];
 
         return response()->json($response, 201);
@@ -156,36 +155,36 @@ class LocalesAdheridoController extends Controller
                 'limit.min'  => 'Debe tener al menos un número',
             ]);
 
-            $LAH = LocalesAdherido::offset($request->offset)->limit($request->limit)->with('user')->get();
+            $localesA = LocalesAdherido::offset($request->offset)->limit($request->limit)->with('user')->get();
         } else {
             if ($request->exists('search')) {
 
                 $busqueda = "%".$request->search."%";
 
-                $LAH = LocalesAdherido::where('nombre', 'like', $busqueda)->orWhere('descripcion', 'like', $busqueda)->with('user')->get();
+                $localesA = LocalesAdherido::where('nombre', 'like', $busqueda)->orWhere('descripcion', 'like', $busqueda)->with('user')->get();
             } else {
 
-                $LAH = LocalesAdherido::find($idLocalAdherido);
+                $localesA = LocalesAdherido::find($idLocalAdherido);
             }
         }
-        if (! is_null($LAH)) {
-            $LAH->each(function ($LAH) {
-                $LAH->set_imagen = asset('storage\\localesAdheridos\\'.$LAH->imagen);
+        if (! is_null($localesA)) {
+            $localesA->each(function ($localesA) {
+                $localesA->set_imagen = asset('storage\\localesAdheridos\\'.$localesA->imagen);
             });
         }
 
         $response = [
             'msj'      => 'Lista de Locales Adheridos',
-            'LocalAdh' => $LAH,
+            'LocalAdh' => $localesA,
         ];
 
         return response()->json($response, 201);
 
-        $LAH = LocalesAdherido::with('user')->findOrFail($idLocalAdherido);
+        $localesA = LocalesAdherido::with('user')->findOrFail($idLocalAdherido);
 
         $response = [
             'msj'      => 'Lista de Locales Adheridos',
-            'LocalAdh' => $LAH,
+            'LocalAdh' => $localesA,
         ];
 
         return response()->json($response, 201);
@@ -197,8 +196,8 @@ class LocalesAdheridoController extends Controller
         DB::beginTransaction();
 
         try {
-            $LAH = LocalesAdherido::findOrFail($idLocalAdherido);
-            $LAH->delete();
+            $localesA = LocalesAdherido::findOrFail($idLocalAdherido);
+            $localesA->delete();
 
             $response = [
                 'msj' => 'Local Adherido eliminado Correctamente',
@@ -229,9 +228,9 @@ class LocalesAdheridoController extends Controller
 
         DB::beginTransaction();
         try {
-            $LAH = LocalesAdherido::findOrFail($idLocalAdherido);
+            $localesA = LocalesAdherido::findOrFail($idLocalAdherido);
 
-            $LAH->fill($request->all());
+            $localesA->fill($request->all());
 
             if ($request->foto_1) {
                 $originalImage = $request->foto_1;
@@ -251,7 +250,7 @@ class LocalesAdheridoController extends Controller
 
                 Storage::disk('local')->put('\\localesAdheridos\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
-                $LAH->foto_1 = $nombre_interno;
+                $localesA->foto_1 = $nombre_interno;
             }
 
             if ($request->foto_2) {
@@ -272,14 +271,14 @@ class LocalesAdheridoController extends Controller
 
                 Storage::disk('local')->put('\\localesAdheridos\\'.$nombre_interno2, (string) $thumbnailImage->encode());
 
-                $LAH->foto_2 = $nombre_interno2;
+                $localesA->foto_2 = $nombre_interno2;
             }
 
-            $LAH->save();
+            $localesA->save();
 
             $response = [
                 'msj'   => 'Info de los locales actulizada',
-                'LocalAdh' => $LAH,
+                'LocalAdh' => $localesA,
                 'ruta_imagen'  => asset('storage\\localesAdheridos\\'),
             ];
 
@@ -320,7 +319,14 @@ class LocalesAdheridoController extends Controller
     }
 
     public function listarPorIdClasificado($fk_idClasificado){
-        $localesA=LocalesAdherido::where('fk_idClasificado',$fk_idClasificado)->get();
+        $localesA=LocalesAdherido::with('user')->where('fk_idClasificado',$fk_idClasificado)->get();
+
+        $localesA->each(function ($localesA) {
+            $localesA->set_imagen_uno = asset('storage\\localesAdheridos\\'.$localesA->foto_1);
+            $localesA->set_imagen_dos = asset('storage\\localesAdheridos\\'.$localesA->foto_2);
+        });
+
+
         return response()->json($localesA, 201);
 
     }
