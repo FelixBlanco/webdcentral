@@ -330,6 +330,7 @@ export class CarritoFormComponent implements OnInit {
     body.append('fecha_retiro', values.fechaRetiro);
     body.append('metodoPago', metodoDePago);
     body.append('monto_total', total.toString());
+    body.append('metodoEntrega', '1');
 
     if(values.metodoDePago !== 1){
       body.append('comprobanteDepositoTransferencia', this.imgLoaded);
