@@ -20,65 +20,71 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <div class="container">
-          <!--    Rubros -->
-          <div class="row justify-content-left">
-            <div class="number-wrap rounded-circle">
-              <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
-                <span class="font-bold">1</span>
+      <div *ngIf="searchList">
+        <div class="modal-body">
+          <div class="container" [ngClass]="{'disabled-wrap': !searchList.mascotas.length}">
+            <!--    Rubros -->
+            <div class="row justify-content-left mt-2">
+              <div class="number-wrap rounded-circle">
+                <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
+                  <span class="font-bold">1</span>
+                </div>
               </div>
-            </div>
 
-            <h6 class="text-center font-bold txt-naranja text-uppercase" style="padding:13px;">RUBROS</h6>
+              <h6 class="text-center font-bold txt-naranja text-uppercase" style="padding:13px;">RUBROS</h6>
+            </div>
+            <div *ngIf="searchList">
+              <div *ngIf="searchList.mascotas.length==0" class="row justify-content-left">
+                <p class="text-uppercase font-bold text-center mt-4">no se
+                  encontraron resultados</p>
+              </div>
+              <div *ngFor="let item of searchList.mascotas" class="row justify-content-left ml-4">
+
+                <div class="col-11">
+                  <a class="mt-4" (click)="seeMore('mascotas')" class="text-muted">{{item.titulo | titlecase}}</a>
+                </div>
+                <div class="col-1 ">
+                   
+                     <fa-icon (click)="seeMore('mascotas')" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
+                </div>
+              </div>
+
+            </div>
           </div>
-          <div *ngIf="searchList">
-              <div  *ngIf="searchList.mascotas.length==0" class="row justify-content-left">
-                  <p  class="text-uppercase font-bold text-center mt-4">no se
-                      encontraron resultados</p>
-              </div> 
-            <div *ngFor="let item of searchList.mascotas" class="row justify-content-left ml-4">
-                
-              <div class="col-11">
-                <a class="mt-4" (click)="seeMore('mascotas')" class="text-muted">{{item.titulo | titlecase}}</a>
-              </div>
-              <div class="col-1 ">          
-                <fa (click)="seeMore('mascotas')" class="fa-lg text-center txt-naranja " name="eye" style="  cursor: pointer;" ></fa>
 
-              </div>
-            </div>
+          
+            <div class="container" [ngClass]="{'disabled-wrap': !searchList.nombre.length}">
             
-          </div>
-          
-          
-          <!-- productos -->
-          <div class="row justify-content-left">
-            <div class="number-wrap rounded-circle">
-              <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
-                <span class="font-bold">2</span>
+              <div class="row justify-content-left mt-2">
+                <div class="number-wrap rounded-circle">
+                  <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
+                    <span class="font-bold">2</span>
+                  </div>
+                </div>
+
+                <h6 class="text-center font-bold txt-naranja text-uppercase" style="padding:13px;">Productos</h6>
+              </div>
+              <div *ngIf="searchList">
+                <div *ngIf="searchList.nombre.length==0" class="row justify-content-left">
+                  <p class="text-uppercase font-bold text-center mt-4">no se
+                    encontraron resultados</p>
+                </div>
+                <div *ngFor="let item of searchList.nombre" class="row justify-content-left ml-4">
+                  <div class="col-11">
+                    <a (click)="seeMore('productos')" class="text-muted">{{item.titulo | titlecase}}</a>
+                  </div>
+                  <div class="col-1">
+                    <fa-icon (click)="seeMore('productos')" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
+                  </div>
+
+                </div>
               </div>
             </div>
+          
 
-            <h6 class="text-center font-bold txt-naranja text-uppercase" style="padding:13px;">Productos</h6>
-          </div>
-          <div *ngIf="searchList">
-              <div  *ngIf="searchList.nombre.length==0" class="row justify-content-left">
-                  <p  class="text-uppercase font-bold text-center mt-4">no se
-                      encontraron resultados</p>
-              </div> 
-            <div *ngFor="let item of searchList.nombre" class="row justify-content-left ml-4">
-              <div class="col-11">
-                <a (click)="seeMore('productos')" class="text-muted">{{item.titulo | titlecase}}</a>
-              </div>
-              <div class="col-1">
-                <fa (click)="seeMore('productos')" class="fa-lg text-center txt-naranja " name="eye" style="  cursor: pointer;" ></fa>
-
-              </div>
-
-            </div>
-          </div>
-           <!-- marcas -->
-           <div class="row justify-content-left">
+        
+          <div class="container" [ngClass]="{'disabled-wrap': !searchList.marcas.length}">
+            <div class="row justify-content-left mt-2" >
               <div class="number-wrap rounded-circle">
                 <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
                   <span class="font-bold">3</span>
@@ -88,21 +94,23 @@
               <h6 class="text-center font-bold txt-naranja text-uppercase" style="padding:13px;">marcas</h6>
             </div>
             <div *ngIf="searchList">
-                <div  *ngIf="searchList.marcas.length==0" class="row justify-content-left">
-                    <p  class="text-uppercase font-bold text-center mt-4">no se
-                        encontraron resultados</p>
-                </div> 
+              <div *ngIf="searchList.marcas.length==0" class="row justify-content-left">
+                <p class="text-uppercase font-bold text-center mt-4">no se
+                  encontraron resultados</p>
+              </div>
               <div *ngFor="let item of searchList.marcas" class="row justify-content-left ml-4">
                 <div class="col-11">
                   <a (click)="seeMore('marcas')" class="text-muted">{{item.titulo | titlecase}}</a>
                 </div>
-                <div class="col-1  ">    
-                  <fa (click)="seeMore('marcas')" class="fa-lg text-center txt-naranja " name="eye" style="  cursor: pointer;" ></fa>
+                <div class="col-1  ">
+                  <fa-icon (click)="seeMore('marcas')" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
                 </div>
   
               </div>
             </div>
-       
+          </div>
+          
+ 
         </div>
       </div>
     </div>

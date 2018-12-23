@@ -24,7 +24,8 @@ import {
     faChevronLeft as fasChevronLeft,
     faChevronRight as fasChevronRight,
     faCircle as fasCricle,
-    faCheckCircle as fasCheckCircle
+    faCheckCircle as fasCheckCircle,
+    faEye as fasEye,
 } from '@fortawesome/free-solid-svg-icons';
 
 export const FA_ICONS: any = [
@@ -51,6 +52,7 @@ export const FA_ICONS: any = [
     fasChevronRight,
     fasCricle,
     farCircle,
-    fasCheckCircle
+    fasCheckCircle,
+    fasEye
 ];
 
