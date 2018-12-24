@@ -33,7 +33,7 @@ class CreateOrderHeaderTable extends Migration
             $table->string('firma2')->nullable();
             $table->string('comentarioFinal')->nullable();
             $table->integer('isPay')->default(0);
-            $table->integer('idCouponsKf');
+            $table->integer('idCouponsKf')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
