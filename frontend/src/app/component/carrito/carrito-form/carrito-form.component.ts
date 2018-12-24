@@ -251,67 +251,7 @@ export class CarritoFormComponent implements OnInit {
       });
     });
 
-    switch(type){
-      case 'internalDelivery': 
-      case 'delivery':
-      case 'inMarketForm': this.inMarketSave(orderBody, total);
-      default : return;
-    }
-    /*
-    const val = this.orderForm.value;
-    const body = new HttpParams()
-      .set("Domicilio_Entrega", val.direccion)
-      .set("Codigo_Postal", val.codPostal)
-      .set("comentaryClient", val.comentario)
-      .set("stars", "0");
-    
-    const carritoItems: Item[] =  this.carritoService.getAll();
-    let orderBody: any[] = []
-
-    carritoItems.forEach(val => {
-      orderBody.push({
-        codeProdSys: val.id,
-        Cantidad_Producto: val.cantidad,
-        PrecioUnitario_Producto: val.precio,
-        PorcentajeDescuento_Producto: 0,
-        Numero_EncabezadoVenta: 0,
-        Devolucion_Producto: 0
-      });
-    });
-
-    this.inPromise = true;
-    this.productosService.orderHeader(body.toString()).subscribe(resp => {
-      if(resp.ok && resp.status === 201){
-        const pedidoCreated: PedidoHeader = resp.body.OB;
-
-        this.productosService.orderBody({items: orderBody}, pedidoCreated.idOrderHeader).subscribe(resp => {
-          if(resp.ok && resp.status === 201){
-            this.as.msg('OK', 'Éxito', 'Se ha creado el pedido');
-            this.section = 'shipping';
-            this.carritoService.clear();
-            this.orderForm.reset();
-            
-          }else{
-            console.error(resp);
-            this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
-          }
-          this.inPromise = false;
-        }, error => {
-          this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
-          this.inPromise = false;
-          console.error(error);
-        });
-        
-      }else{
-        this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
-        this.inPromise = false;
-        console.error(resp);
-      }
-    }, error => {
-      this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno')
-      this.inPromise = false;
-      console.error(error);
-    });*/
+    this.save(orderBody, total, type);
   }
 
   async saveOrderBody(idOrderHeader, orderBody){
@@ -320,20 +260,53 @@ export class CarritoFormComponent implements OnInit {
     return resp;
   }
 
-  async inMarketSave(orderBody: any[], total: number){
-
-    const values = this.inMarketForm.value;
-    const metodoDePago = values.metodoDePago === 1 ? 'Efectivo': values.metodoDePago === 2 ? 'Depósito' : 'Transferencia';
-
-    let body: FormData = new FormData()
+  async save(orderBody: any[], total: number, type: 'inMarketForm' | 'delivery' | 'internalDelivery'){
     
-    body.append('fecha_retiro', values.fechaRetiro);
-    body.append('metodoPago', metodoDePago);
-    body.append('monto_total', total.toString());
-    body.append('metodoEntrega', '1');
+    let body: FormData = new FormData();
 
-    if(values.metodoDePago !== 1){
-      body.append('comprobanteDepositoTransferencia', this.imgLoaded);
+    if(type === 'inMarketForm'){
+
+      const values = this.inMarketForm.value;
+      const metodoDePago = values.metodoDePago === 1 ? 'Efectivo': values.metodoDePago === 2 ? 'Depósito' : 'Transferencia';
+      body.append('fecha_retiro', values.fechaRetiro);
+      body.append('metodoPago', metodoDePago);
+      body.append('monto_total', total.toString());
+      body.append('metodoEntrega', '1');
+
+      if(values.metodoDePago !== 1){
+        body.append('comprobanteDepositoTransferencia', this.imgLoaded);
+      }
+
+    }else if(type === 'delivery'){
+
+      const values = this.orderForm.value;
+      const metodoDePago = values.metodoDePago === 1 ? 'Efectivo': values.metodoDePago === 2 ? 'Depósito' : 'Transferencia';
+
+      body.append('metodoEntrega', '2');
+      body.append('monto_total', total.toString());
+      body.append('metodoPago', metodoDePago);
+
+      
+      body.append('localidad', values.localidad);
+      body.append('fecha', values.fecha);
+      body.append('disponibilidadHr', values.disponibilidad);
+      body.append('Domicilio_Entrega', values.domicilioEntrega);
+      body.append('personasAutorizadas', values.authorizedPerson);
+      body.append('observaciones', values.observations);
+
+      if(values.metodoDePago !== 1 && values.metodoDePago !== 4){
+        body.append('comprobanteDepositoTransferencia', this.imgLoaded);
+      }
+      
+    }else{
+      const values = this.orderForm.value;
+
+      body.append('metodoEntrega', '2');
+      body.append('monto_total', total.toString());
+      body.append('Domicilio_Entrega', values.domicilioEntrega);
+      body.append('localidad', values.localidad);
+      body.append('Codigo_Postal', values.codigoPostal);
+      //TODO dirección
     }
 
     this.inPromise = true;
@@ -355,10 +328,10 @@ export class CarritoFormComponent implements OnInit {
       return;
     }
 
-    this.as.msg('OK', 'Éxito', 'Se ha creado el pedido');
+    this.as.msg('OK', 'Éxito', 'Su pedido ha sido procesado');
     this.section = 'shipping';
     this.carritoService.clear();
-    
+
   }
 
 }
