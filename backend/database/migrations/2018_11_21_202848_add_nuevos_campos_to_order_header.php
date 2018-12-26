@@ -25,6 +25,7 @@ class AddNuevosCamposToOrderHeader extends Migration
             $table->text('personasAutorizadas')->nullable();
             $table->text('observaciones')->nullable();
             $table->string('tipoOrder')->nullable();
+            $table->string('direccion')->nullable();
         });
     }
 
