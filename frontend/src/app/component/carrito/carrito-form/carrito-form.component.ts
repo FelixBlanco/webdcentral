@@ -203,6 +203,11 @@ export class CarritoFormComponent implements OnInit {
       return;
     }
 
+    if(!Array.isArray(respIdPerfilCliente.body)){
+      this.as.msg('INFO', 'Info', 'Usted no posee un perfil de cliente, por lo tanto la información de los domicilios no puede ser cargada.');
+      return;
+    }
+
     let idPerfilCliente = 0;
     if(respIdPerfilCliente.ok){
       idPerfilCliente = respIdPerfilCliente.body[0].idPerfilCliente;
@@ -264,6 +269,10 @@ export class CarritoFormComponent implements OnInit {
     
     let body: FormData = new FormData();
 
+    /**
+     * Para setear el cuerpo de la petición
+     * se pregunta el tipo de formulario
+     */
     if(type === 'inMarketForm'){
 
       const values = this.inMarketForm.value;
@@ -280,7 +289,9 @@ export class CarritoFormComponent implements OnInit {
     }else if(type === 'delivery'){
 
       const values = this.orderForm.value;
-      const metodoDePago = values.metodoDePago === 1 ? 'Efectivo': values.metodoDePago === 2 ? 'Depósito' : 'Transferencia';
+      const metodoDePago = values.metodoDePago === 1 ? 'Efectivo': 
+        values.metodoDePago === 2 ? 'Depósito' : 
+        values.metodoDePago === 3 ?  'Transferencia' : 'MercadoPago';
 
       body.append('metodoEntrega', '2');
       body.append('monto_total', total.toString());
@@ -301,12 +312,12 @@ export class CarritoFormComponent implements OnInit {
     }else{
       const values = this.orderForm.value;
 
-      body.append('metodoEntrega', '2');
+      body.append('metodoEntrega', '3');
       body.append('monto_total', total.toString());
       body.append('Domicilio_Entrega', values.domicilioEntrega);
       body.append('localidad', values.localidad);
       body.append('Codigo_Postal', values.codigoPostal);
-      //TODO dirección
+      body.append('direccion', values.direccion);
     }
 
     this.inPromise = true;
