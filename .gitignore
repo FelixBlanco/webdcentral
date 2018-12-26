@@ -7626,3 +7626,8 @@ frontend/package-lock.json
 backend/vendor/composer/autoload_real.php
 backend/vendor/autoload.php
 admin/package-lock.json
+frontend/package-lock.json
+backend/vendor/composer/autoload_static.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/autoload.php
+.idea/workspace.xml

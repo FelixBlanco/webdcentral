@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MetodoEntregaTable extends Migration
+class MetodoEntregaValues extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class MetodoEntregaTable extends Migration
      */
     public function up()
     {
-
-         Schema::create('tb_metodo_entrega_values', function (Blueprint $table) {
+        Schema::create('tb_metodo_entrega_values', function(Blueprint $table) {
             $table->increments('idMetodoEntregaValue');
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();
+
             $table->timestamps();
         });
-       
+
+
+
     }
 
     /**
