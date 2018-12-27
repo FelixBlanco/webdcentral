@@ -83,7 +83,7 @@
           
 
         
-          <div class="container" [ngClass]="{'disabled-wrap': !searchList.marcas.length}">
+          <div class="container" [ngClass]="{'disabled-wrap': !searchListMarcas.length}">
             <div class="row justify-content-left mt-2" >
               <div class="number-wrap rounded-circle">
                 <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">
@@ -93,17 +93,17 @@
   
               <h6 class="text-center font-bold txt-naranja text-uppercase" style="padding:13px;">marcas</h6>
             </div>
-            <div *ngIf="searchList">
-              <div *ngIf="searchList.marcas.length==0" class="row justify-content-left">
+            <div *ngIf="searchListMarcas">
+              <div *ngIf="searchListMarcas.length==0" class="row justify-content-left">
                 <p class="text-uppercase font-bold text-center mt-4">no se
-                  encontraron resultados</p>
+                  encontraron resultados</p> 
               </div>
-              <div *ngFor="let item of searchList.marcas" class="row justify-content-left ml-4">
+              <div *ngFor="let item of searchListMarcas" class="row justify-content-left ml-4">
                 <div class="col-11">
-                  <a (click)="seeMore('marcas')" class="text-muted">{{item.titulo | titlecase}}</a>
+                  <a (click)="seeMarcas(item.marca)" class="text-muted">{{item.marca | titlecase}}</a>
                 </div>
                 <div class="col-1  ">
-                  <fa-icon (click)="seeMore('marcas')" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
+                  <fa-icon (click)="seeMarcas(item.marca)" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
                 </div>
   
               </div>

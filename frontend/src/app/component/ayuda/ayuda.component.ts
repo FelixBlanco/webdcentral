@@ -18,7 +18,12 @@ export class AyudaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.section = 'home';
+    
+   this.footerConfigService.ayudaS.subscribe(val=>{
+  
+     this.section=val;
+   });
+   this.section = 'home';
   }
 
   routeTo(section : 'home' | 'questions' | 'howto' | 'contact' | 'whereare'){
