@@ -65,8 +65,7 @@ class OrderHeaderController extends Controller
 
             $OB = new orderHeader($request->all());
 
-            if (is_null($request->comprobanteDepositoTransferencia)) {
-            } else {
+            if ($request->comprobanteDepositoTransferencia != "null") {
 
                 $this->validate($request, [
                     'comprobanteDepositoTransferencia' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
@@ -121,7 +120,7 @@ class OrderHeaderController extends Controller
                 $OB->tipoFactura;
             }
 
-            //OrderDriverController::addHeader($OB);
+            OrderDriverController::addHeader($OB);
             $response = [
                 'msj' => 'Pedido Creado',
                 'OB' => $OB,
