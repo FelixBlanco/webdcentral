@@ -104,8 +104,9 @@ export class ProductosService {
 
     orderBody(data: any, id: number):Observable<HttpResponse<any>>{
       this.headers = new HttpHeaders()
-        .append("Authorization", `Bearer ${localStorage.getItem('token')}`)
-      return this.http.post<any>(`${environment.apiHost}/api/auth/añadirOrderBody/${id}`, data , {headers: this.headers, observe: 'response'});      
+        .append("Authorization", `Bearer ${localStorage.getItem('token')}`); 
+
+      return this.http.post<any>(`${environment.apiHost}/api/auth/añadirOrderBody/${id}`, {items: data} , {headers: this.headers, observe: 'response'});      
     }
 
     getByMarca(marca: string):Observable<HttpResponse<Producto[]>>{
