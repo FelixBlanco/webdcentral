@@ -18,7 +18,9 @@ export class TurnosListComponent implements OnInit {
   userId: number;
   modelData: any;
   inPromise: boolean;
+
   inPromise2: boolean;
+
 
   token;
   turnoNewBehaviorSuscription: Subscription;
@@ -42,6 +44,7 @@ export class TurnosListComponent implements OnInit {
         console.log(val);
       }else{
         setTimeout(() => this.initializeBehavior(), 3000)
+
        // this.initializeBehavior();
       }
     })

@@ -182,6 +182,8 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   // instancia la variable data   con los datos para agregar turno
   setDatos(idLocal: any, nombre: string) {
 
+
+
      let mes,dia,hora,minutos;
     
      this.model.month<10 ? mes= `0${this.model.month}`: mes= this.model.month;
@@ -215,8 +217,10 @@ export class ServiciosInicioComponent implements OnInit, OnDestroy {
   // agregar turno a la base de datos
   addTurno() {
 
+
     
     this.inPromiseAdd = true;
+
     this.turnoService.persist(this.data).subscribe(
       (resp) => {
         if (resp.ok && resp.status === 201) {
