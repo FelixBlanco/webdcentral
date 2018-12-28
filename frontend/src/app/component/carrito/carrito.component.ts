@@ -154,6 +154,8 @@ export class CarritoComponent implements OnInit {
   }
 
   routeTo(section: 'shipping' | 'toBuy' | 'deliveryMethod' | 'inMarket' | 'delivery'){
+    console.warn('actual: ',this.section, 'to', section);
+
     const isNotLogged = this.userToken.isNotLogged();
 
     if(isNotLogged && section === 'toBuy'){
@@ -163,7 +165,7 @@ export class CarritoComponent implements OnInit {
       return;
     }
    
-    if(!this.carritoService.getAll().length){
+    if(!this.carritoService.getAll().length && section === 'toBuy'){
       this.as.msg('INFO', 'Info', 'Debes agregar productos al carrito de compras');
       return
     }

@@ -340,7 +340,7 @@ export class CarritoFormComponent implements OnInit {
     }
 
     this.as.msg('OK', 'Éxito', 'Su pedido ha sido procesado');
-    this.section = 'shipping';
+    this.routeTo('shipping');
     this.carritoService.clear();
 
   }

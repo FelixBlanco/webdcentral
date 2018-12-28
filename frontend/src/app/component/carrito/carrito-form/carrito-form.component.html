@@ -130,7 +130,7 @@
             <select class="custom-select" id="domicilioEntrega" formControlName="domicilioEntrega" aria-label="Example select with button addon">
               <ng-container *ngIf="domiciliosList.length">
                 <option value="">Seleccione...</option>
-                <option *ngFor="let item of domiciliosList" value="item.idDomicilios">{{item.descripcion}}</option>
+                <option *ngFor="let item of domiciliosList" [value]="item.descripcion">{{item.descripcion}}</option>
               </ng-container>
               <option *ngIf="!domiciliosList.length">No existen registros</option>
             </select>
@@ -193,7 +193,7 @@
           <select class="custom-select" id="domicilioEntrega" formControlName="domicilioEntrega" aria-label="Example select with button addon">
             <ng-container *ngIf="domiciliosList.length">
               <option value="">Seleccione...</option>
-              <option *ngFor="let item of domiciliosList" value="item.idDomicilios">{{item.descripcion}}</option>
+              <option *ngFor="let item of domiciliosList" [value]="item.descripcion">{{item.descripcion}}</option>
             </ng-container>
             <option *ngIf="!domiciliosList.length">No existen registros</option>
           </select>
