@@ -43,7 +43,9 @@ export class TurnosListComponent implements OnInit {
         this.misTurnos=[];
         console.log(val);
       }else{
+
         setTimeout(() => this.initializeBehavior(), 3000)
+
 
        // this.initializeBehavior();
       }
