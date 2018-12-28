@@ -13,7 +13,8 @@ use Image;
 
 class OrderHeaderController extends Controller
 {
-    public function añadir(Request $request)
+
+    public function añadir (Request $request)
     {
 
         // opcional comentaryClient
@@ -53,42 +54,46 @@ class OrderHeaderController extends Controller
 
         try {
 
+
             $Numero_Pedido_max = orderHeader::select('idOrderHeader')->orderby('idOrderHeader', 'desc')->first();
 
             if (is_null($Numero_Pedido_max)) {
-                $Numero_Pedido = '1-'.Carbon::now()->format('Ymd');
+                $Numero_Pedido = '1-' . Carbon::now()->format('Ymd');
             } else {
-                $Numero_Pedido = ($Numero_Pedido_max->idOrderHeader + 1).'-'.Carbon::now()->format('Ymd');
+                $Numero_Pedido = ($Numero_Pedido_max->idOrderHeader + 1) . '-' . Carbon::now()->format('Ymd');
             }
 
             $OB = new orderHeader($request->all());
 
-            if ($request->comprobanteDepositoTransferencia != "null") {
+            if (is_null($request->comprobanteDepositoTransferencia)) {
+            } else {
 
                 $this->validate($request, [
                     'comprobanteDepositoTransferencia' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
                 ], [
                     'comprobanteDepositoTransferencia.required' => 'El campo es requerido',
-                    'comprobanteDepositoTransferencia.image'    => 'La imagen debe tener el formato jpeg, pnp, gif, svg',
+                    'comprobanteDepositoTransferencia.image' => 'La imagen debe tener el formato jpeg, pnp, gif, svg',
                 ]);
+
 
                 /*para el comprobante*/
                 $originalImage = $request->comprobanteDepositoTransferencia;
 
                 $thumbnailImage = Image::make($originalImage);
-                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                $thumbnailImage->fit(2048, 2048, function($constraint) {
                     $constraint->aspectRatio();
                 });
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension = 'png';
+                $extension      = 'png';
                 //$extension = $originalImage->getClientOriginalExtension();
-                $nombre_interno1 = str_replace('.'.$extension, '', $nombre_publico);
-                $nombre_interno1 = str_slug($nombre_interno1, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
-                Storage::disk('local')->put('\\comprobanteDepositoTransferencia\\'.$nombre_interno1, (string) $thumbnailImage->encode());
+                $nombre_interno1 = str_replace('.' . $extension, '', $nombre_publico);
+                $nombre_interno1 = str_slug($nombre_interno1, '-') . '-' . time() . '-' . strval(rand(100, 999)) . '.' . $extension;
+                Storage::disk('local')->put('\\comprobanteDepositoTransferencia\\' . $nombre_interno1, (string)$thumbnailImage->encode());
                 /*para el comprobante*/
 
                 $OB->comprobanteDepositoTransferencia = $nombre_interno1;
             }
+
 
             if (is_null($request->stars)) {
                 $OB->stars = 0;
@@ -98,27 +103,28 @@ class OrderHeaderController extends Controller
                 $OB->monto_total = 0;
             }
 
-            $OB->Numero_Pedido = $Numero_Pedido;
-            $OB->Estado_Pedido = 'Abierto';
+
+            $OB->Numero_Pedido   = $Numero_Pedido;
+            $OB->Estado_Pedido   = 'Abierto';
             $OB->fk_idUserClient = Auth::user()->id;
-            $OB->Email_Cliente = Auth::user()->email;
+            $OB->Email_Cliente   = Auth::user()->email;
             $OB->fk_idUserDriver = 0; //esto no agarra valores nulos por lo que le asigne 0 por default
 
-            $OB->Fecha_Pedido = Carbon::now()->toDateString();
+            $OB->Fecha_Pedido    = Carbon::now()->toDateString();
             $OB->fk_idStateOrder = 1;
 
             $OB->save();
             $OB->user;
             $OB->state;
 
-            if (! is_null($OB->fk_idTipoFactura)) {
+            if (!is_null($OB->fk_idTipoFactura)) {
                 $OB->tipoFactura;
             }
 
             //OrderDriverController::addHeader($OB);
             $response = [
-                'msj'        => 'Pedido Creado',
-                'OB'         => $OB,
+                'msj' => 'Pedido Creado',
+                'OB' => $OB,
                 'set_imagen' => asset('storage\\comprobanteDepositoTransferencia\\'.$OB->comprobanteDepositoTransferencia),
             ];
             DB::commit();
@@ -127,7 +133,7 @@ class OrderHeaderController extends Controller
         } catch (\Exception $e) {
 
             DB::rollback();
-            Log::error('Ha ocurrido un error en OrderHeaderController: '.$e->getMessage().', Linea: '.$e->getLine());
+            Log::error('Ha ocurrido un error en OrderHeaderController: ' . $e->getMessage() . ', Linea: ' . $e->getLine());
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
@@ -135,24 +141,26 @@ class OrderHeaderController extends Controller
         }
     }
 
-    public function listarPorIdUsuario($fk_idUser)
+    public function listarPorIdUsuario ($fk_idUser)
     {
 
         $orders = orderHeader::select("*")->where('fk_idStateOrder', '=', '5')->where('fk_idUserClient', $fk_idUser)->get();
 
         $response = [
-            'msj'    => 'Pedidos que faltan calificar por cliente ',
+            'msj' => 'Pedidos que faltan calificar por cliente ',
             'orders' => $orders,
         ];
 
         return response()->json($response, 200);
     }
 
-    public function safePago(Request $request)
+    public function safePago (Request $request)
     {
+
 
         DB::beginTransaction();
         try {
+
 
             DB::connection('mysql')->insert("  INSERT INTO tb_history_mp 
             (data,
@@ -162,42 +170,52 @@ class OrderHeaderController extends Controller
               )");
 
             return response()->json("Registro creado", 200);
+
         } catch (\Exception $e) {
 
             DB::rollback();
-            Log::error('Ha ocurrido un error en NotificationController: '.$e->getMessage().', Linea: '.$e->getLine());
+            Log::error('Ha ocurrido un error en NotificationController: ' . $e->getMessage() . ', Linea: ' . $e->getLine());
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
             ], 500);
         }
+
+
     }
 
-    public function getDataPay(Request $request)
+    public function getDataPay (Request $request)
     {
+
 
         DB::beginTransaction();
         try {
 
             $obj = [
-                "clienteid"     => env('MP_clienteid', ''),
+                "clienteid" => env('MP_clienteid', ''),
                 "clientesecret" => env('MP_clientesecret', ''),
-                "currency_id"   => env('MP_currency_id', ''),
-                "unit_price"    => $request->unit_price,
-                "id"            => $request->idOrderHeader,
-                "title"         => "Compra Pedido ".$request->Numero_Pedido,
-                "uri"           => env('MP_URI', ''),
+                "currency_id" => env('MP_currency_id', ''),
+                "unit_price" => $request->unit_price,
+                "id" => $request->idOrderHeader,
+                "title" => "Compra Pedido " . $request->Numero_Pedido,
+                "uri" => env('MP_URI', ''),
             ];
 
+
             return response()->json($obj, 200);
+
         } catch (\Exception $e) {
 
             DB::rollback();
-            Log::error('Ha ocurrido un error en NotificationController: '.$e->getMessage().', Linea: '.$e->getLine());
+            Log::error('Ha ocurrido un error en NotificationController: ' . $e->getMessage() . ', Linea: ' . $e->getLine());
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
             ], 500);
         }
+
+
     }
+
+
 }
