@@ -152,19 +152,25 @@
 <!-- crear turno -->
 <!-- Modal Nuevo -->
 <div class="modal fade" id="nuevoTurno" tabindex="-1" role="dialog" aria-labelledby="nuevoModal" aria-hidden="true">
+
   <div class="modal-dialog " role="document">
     <div class="modal-content ">
       <div class="modal-header bg-success">
         <h5 class="modal-title text-white  font-bold" id="nuevoModal">¿Desea Reservar este turno ?</h5>
       </div>
       <!--  <div class="modal-body font-bold">
+
+   
          
           <h5>Local: {{nombreLocalSeleccionado}}</h5>
           <h5>Fecha: {{stringFecha}}</h5>
         </div> -->
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-success" [disabled]="inPromiseAdd" (click)="addTurno()">Aceptar</button>
+
+
       </div>
     </div>
   </div>
