@@ -46,7 +46,7 @@ Route::group(['prefix' => 'auth'], function() {
         /*ORDER BODY (carrito de compra)*/
 
         /*ORDER HEADER (Orden de compra)*/
-        Route::post('anadirOrderHeader', 'OrderHeaderController@añadir');
+        Route::post('añadirOrderHeader', 'OrderHeaderController@añadir');
 
         /*ORDER HEADER (Orden de compra)*/
         Route::post('get/data/pago', 'OrderHeaderController@getDataPay');
