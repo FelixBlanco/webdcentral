@@ -97,8 +97,7 @@ export class ProductosService {
 
     orderHeader(data: any):Observable<HttpResponse<any>>{
       this.headers = new HttpHeaders()
-        .append("Authorization", `Bearer ${localStorage.getItem('token')}`)
-        .append("Content-Type", `application/x-www-form-urlencoded`)
+        .append("Authorization", `Bearer ${localStorage.getItem('token')}`);
 
       return this.http.post<any>(`${environment.apiHost}/api/auth/añadirOrderHeader`, data , {headers: this.headers, observe: 'response'});      
     }
