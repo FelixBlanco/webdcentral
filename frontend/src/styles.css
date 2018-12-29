@@ -5,6 +5,7 @@
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 @import '~ngx-toastr/toastr.css';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 *{
     margin: 0px;

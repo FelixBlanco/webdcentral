@@ -144,7 +144,7 @@ class BlogCategoriaController extends Controller {
                     'idBlogDependientes' => $blogDeEsaCategoria,
                 ];
 
-                return response()->json($response, 200);
+                return response()->json($response, 409);
 
             } else {
                 $CatBlog = BlogCategoria::find($idBlogCategoria);

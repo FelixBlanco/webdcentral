@@ -75,8 +75,8 @@ export class MarcaComponent implements OnInit {
     return partialItems;
   }
 
-  filter(marca:string){
-    
+  filter(){
+    const marca = this.marcaSelected;
 
     if(!marca){
       return;

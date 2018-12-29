@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CarritoService, Item } from 'src/app/services/carrito.service';
-import { ProductosService, Producto, PedidoHeader } from 'src/app/services/productos.service';
+import { CarritoService } from 'src/app/services/carrito.service';
+import { ProductosService, Producto } from 'src/app/services/productos.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { forkJoin, Observable } from 'rxjs';
-import { HttpResponse, HttpParams } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { UserTokenService } from 'src/app/services/user-token.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 
 declare var $: any;
@@ -155,7 +154,8 @@ export class CarritoComponent implements OnInit {
   }
 
   routeTo(section: 'shipping' | 'toBuy' | 'deliveryMethod' | 'inMarket' | 'delivery'){
-    console.log('section',section)
+    console.warn('actual: ',this.section, 'to', section);
+
     const isNotLogged = this.userToken.isNotLogged();
 
     if(isNotLogged && section === 'toBuy'){
@@ -163,6 +163,11 @@ export class CarritoComponent implements OnInit {
       $('#carrito').modal('hide');
       $('#loginModal').modal('show');
       return;
+    }
+   
+    if(!this.carritoService.getAll().length && section === 'toBuy'){
+      this.as.msg('INFO', 'Info', 'Debes agregar productos al carrito de compras');
+      return
     }
 
     this.section = section;
