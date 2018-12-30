@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { Producto, ProductosService, CarouselItem } from 'src/app/services/productos.service';
 
@@ -9,11 +10,11 @@ import { Producto, ProductosService, CarouselItem } from 'src/app/services/produ
 })
 export class ProductosComponent implements OnInit {
 
-
+  nrSelect=19;
   productsList: Producto[];
-
+  chargeCarrousel: boolean;
   inPromise: boolean;
-
+  max:number =19;
   currentPage: number;
   pages: number;
 
@@ -41,21 +42,23 @@ export class ProductosComponent implements OnInit {
     if(!this.productsList){
       return;
     }
-
     this.carouselItems = [];
     let index: number = 1;
     this.productsList.forEach((val, i) => {
       if(this.isACarruselItem(i)){
-        this.carouselItems.push({id: index++, products: this.getPartialItems(i,i+7)});
+        this.carouselItems.push({id: index++, products: this.getPartialItems(i,i+this.max)});
+        console.log(i);
       }
+      
     });
-
+   
     this.pages = this.carouselItems.length;
+    console.log(this.carouselItems.length);
 
   }
 
-  isACarruselItem($index): boolean {
-    if($index % 8){
+  isACarruselItem(index): boolean {
+    if(index % (this.max+1)){
       return false;
     }
     return true;
@@ -92,6 +95,12 @@ export class ProductosComponent implements OnInit {
   setCurrent({current}){
     if(current)
     this.currentPage = current
+  }
+  MaxRangePartialItem(max:string){
+    
+    this.max=Number(max);
+    console.log(this.max);
+     this.generateCarousel(); 
   }
 
 }

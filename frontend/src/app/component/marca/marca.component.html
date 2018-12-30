@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <ng-container *ngIf="!inPromise" >
+        <ng-container  *ngIf="!inPromise" styles="max-height:400px; overflow:auto;" >
           <a *ngFor="let _ of letters" mat-stroked-button [ngClass]=" (charSelected === _ ) ? 'active' : ''" (click)="find(_)">{{_}}</a>
         </ng-container>
         <mat-progress-bar *ngIf="inPromise" mode="indeterminate"></mat-progress-bar>
@@ -31,9 +31,10 @@
                       <ng-container *ngIf="isARow(i)">
                           <div class="col-4  text-center marcas">
                             <section *ngFor="let item of getPartialItems(i, i+3)">
-                                <img *ngIf="!item.Weblink_fabricante" src="assets/no_image_aviable.png" alt="nombre" (click)="select(item.marca)"/>
-                                <img *ngIf="item.Weblink_fabricante" [src]="marca.Weblink_fabricante" alt="marca" (click)="select(item.marca)" />
-                                <a  (click)="select(item.marca)" [ngClass]="(marcaSelected === item.marca) ? 'badge bg-naranja text-white': ''" >{{item.marca}}</a>
+                                <img *ngIf="!item.Weblink_fabricante" src="assets/no_image_aviable.png" alt="nombre" (click)="filter(item.marca)"/>
+                                <img *ngIf="item.Weblink_fabricante" [src]="item.Weblink_fabricante" alt="marca" (click)="filter(item.marca)" />
+                                <!-- <a  (click)="select(item.marca)" [ngClass]="(marcaSelected === item.marca) ? 'badge bg-naranja text-white': ''" >{{item.marca}}</a> -->
+                                <a  (click)="filter(item.marca)" [ngClass]="(marcaSelected === item.marca) ? 'badge bg-naranja text-white': ''" >{{item.marca}}</a> 
                               </section>
                              
                             </div>
@@ -53,9 +54,9 @@
       <div class="modal-footer">
         <ng-container *ngIf="!inFetch">
           <span *ngIf="marcaSelected" class="text-muted font-italic m-3">Marca Seleccionada: {{marcaSelected}}</span>
-          <button class="btn btn-light txt-verde font-bold" [disabled]="!marcaSelected" (click)="filter()">
+         <!--  <button class="btn btn-light txt-verde font-bold" [disabled]="!marcaSelected" (click)="filter()">
             BUSCAR
-          </button>
+          </button> -->
         </ng-container>
         <mat-spinner *ngIf="inFetch" class="m-auto" diameter="30"></mat-spinner>
       </div>

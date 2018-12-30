@@ -5,6 +5,7 @@ import { AlertsService } from '../../services/alerts.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { ConfigRedesService } from '../../services/config-redes.service'
 import { UserTokenService } from 'src/app/services/user-token.service';
+import { ConfgFooterService } from 'src/app/services/confg-footer.service';
 import { Router } from '@angular/router';
 
 declare var $:any;
@@ -35,11 +36,12 @@ export class NavUnoComponent implements OnInit {
     private carritoService: CarritoService,
     private configRedes: ConfigRedesService,
     private userToken: UserTokenService,
-    private router: Router
+    private router: Router,
+    private footerService:ConfgFooterService
   ) { }
 
   ngOnInit() {
-
+    this.helpStatus();
     this.initBadgeBehavior();
     this.initUserToken();
     this.userToken.userData.subscribe(val => this.userName = val ? val.userName : '');
@@ -93,5 +95,9 @@ export class NavUnoComponent implements OnInit {
 
   initUserToken(){
     this.userToken.token.subscribe(val => this.token = val);
+  }
+ helpStatus(){
+ 
+    this.footerService.restartAyudaStatus(); 
   }
 }
