@@ -157,7 +157,6 @@ export class BlogComponent implements OnInit {
 
   save(){
     const value = this.newForm.value;
-    debugger;
 
     let toSend = new FormData();
 

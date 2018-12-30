@@ -4,6 +4,9 @@
 .bg-verde{
     background-color: #018d36;
 }
+.bg-naranja{
+    background-color: #E97604;
+}
 .mat-fab.mat-accent{
     background-color: #ffffff;
     border: 2px solid #ff7e00;
@@ -39,12 +42,20 @@
     padding: .8rem;
 }
 
-select.form-control {
+select.form-control, 
+select.custom-select, 
+.ng-select-custom ::ng-deep .ng-select-container {
     background-color: #f2f6db;
     border: 1px solid #e97604;
+}
+
+.ng-select-custom ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option{
+    background-color: #f2f6db;    
 }
 
 .custom-file-label::after{
     content: "Examinar";
 }
-
+.custom-file-label{
+    overflow: hidden;
+}

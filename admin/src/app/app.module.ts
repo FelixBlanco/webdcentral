@@ -30,7 +30,6 @@ import { BajaAppInicioComponent } from './component/baja-app-inicio/baja-app-ini
 import { DestacadoInicioComponent } from './component/destacado-inicio/destacado-inicio.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HomeModule } from './component/home/home.module';
 import { AppRoutingModule } from './app-routing.module';
 import { MapaComponent } from './component/mapa/mapa.component';
 import { CuponsappComponent } from './component/cuponsapp/cuponsapp.component';
@@ -126,8 +125,7 @@ import { ClasificadoReclamoComponent } from './component/clasificado-reclamo/cla
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxDatatableModule,
-    MaterialUiModule,
-    // UserIdleModule.forRoot({idle: 0, timeout: 0, ping: 30})
+    MaterialUiModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],
