@@ -32,7 +32,7 @@
                           <div class="col-4  text-center marcas">
                             <section *ngFor="let item of getPartialItems(i, i+3)">
                                 <img *ngIf="!item.Weblink_fabricante" src="assets/no_image_aviable.png" alt="nombre" (click)="filter(item.marca)"/>
-                                <img *ngIf="item.Weblink_fabricante" [src]="marca.Weblink_fabricante" alt="marca" (click)="filter(item.marca)" />
+                                <img *ngIf="item.Weblink_fabricante" [src]="item.Weblink_fabricante" alt="marca" (click)="filter(item.marca)" />
                                 <!-- <a  (click)="select(item.marca)" [ngClass]="(marcaSelected === item.marca) ? 'badge bg-naranja text-white': ''" >{{item.marca}}</a> -->
                                 <a  (click)="filter(item.marca)" [ngClass]="(marcaSelected === item.marca) ? 'badge bg-naranja text-white': ''" >{{item.marca}}</a> 
                               </section>
