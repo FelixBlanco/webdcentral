@@ -9,10 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class PerfilClientesController extends Controller
-{
-    public function store(Request $request)
-    {
+class PerfilClientesController extends Controller {
+    public function store(Request $request) {
 
         $this->validate($request, [
             'nombreComercio'     => 'required',
@@ -85,8 +83,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function update(Request $request, $idPerfilCliente)
-    {
+    public function update(Request $request, $idPerfilCliente) {
 
         DB::beginTransaction();
 
@@ -123,8 +120,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function destroy($idPerfilCliente)
-    {
+    public function destroy($idPerfilCliente) {
 
         DB::beginTransaction();
 
@@ -158,8 +154,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function listar()
-    {
+    public function listar() {
         $perfil_cliente = PerfilCliente::with('user')->get();
 
         $response = [
@@ -170,8 +165,7 @@ class PerfilClientesController extends Controller
         return response()->json($response, 201);
     }
 
-    public function getPerfil($id)
-    {
+    public function getPerfil($id) {
         $perfil_cliente = PerfilCliente::where('fk_idPerfilCliente', $id)->first();
 
         if (is_null($perfil_cliente)) {
@@ -186,40 +180,35 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function listarDomiciliosDeClientes($idCliente)
-    {
+    public function listarDomiciliosDeClientes($idCliente) {
 
         $d = Domicilio::where('fk_idPerfilCliente', $idCliente)->select('idDomicilios', 'descripcion')->get();
 
         return response()->json($d, 201);
     }
 
-    public function agregarDomicilio(Request $request)
-    {
+    public function agregarDomicilio(Request $request) {
         //$request->fk_idPerfilCliente
         //$request->descripcion
 
         $this->validate($request, [
-            'fk_idPerfilCliente' => 'required',
-            'descripcion'        => 'required',
+            'fk_idCliente' => 'required',
+            'descripcion'  => 'required',
         ], [
-            'fk_idPerfilCliente.required' => 'El campo es requerido',
-            'descripcion.required'        => 'El campo es requerido',
+            'fk_idCliente.required' => 'El campo es requerido',
+            'descripcion.required'  => 'El campo es requerido',
         ]);
 
-        $idPerfil = PerfilCliente::where('fk_idPerfilCliente', $request->fk_idPerfilCliente)->first();
+        $idPerfil = PerfilCliente::where('fk_idPerfilCliente', $request->fk_idCliente)->first();
 
         DB::beginTransaction();
 
         try {
             if (count(Domicilio::all()) < 6) {
-                $d = new Domicilio($request->all());
 
-                if (count($idPerfil) > 0) {
-
-                    $d->fk_idPerfilCliente = $idPerfil;
-                    $d->perfilCliente;
-                }
+                $d                     = new Domicilio();
+                $d->descripcion        = $request->descripcion;
+                $d->fk_idPerfilCliente = $idPerfil->idPerfilCliente;
 
                 $d->save();
 
@@ -249,8 +238,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function editarDomicilio(Request $request)
-    {
+    public function editarDomicilio(Request $request) {
 
         $this->validate($request, [
             'idDomicilios' => 'required',
@@ -283,8 +271,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function borrarDomicilio($idDomicilios)
-    {
+    public function borrarDomicilio($idDomicilios) {
 
         $domicilio = Domicilio::find($idDomicilios);
 
@@ -306,8 +293,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function retornarIdDelPerfil($idUser = null)
-    {
+    public function retornarIdDelPerfil($idUser = null) {
 
         if ($idUser == null) {
             $response = [
