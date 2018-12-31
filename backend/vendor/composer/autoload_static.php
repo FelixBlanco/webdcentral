@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit450ea28ebe4e7f2018706d75a8ddb844
+class ComposerStaticInit19589e636be404d58f7cac5c278b1d7e
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -2958,6 +2958,7 @@ class ComposerStaticInit450ea28ebe4e7f2018706d75a8ddb844
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
         'Nexmo\\Account\\Balance' => __DIR__ . '/..' . '/nexmo/client/src/Account/Balance.php',
         'Nexmo\\Account\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Account/Client.php',
+        'Nexmo\\Account\\PrefixPrice' => __DIR__ . '/..' . '/nexmo/client/src/Account/PrefixPrice.php',
         'Nexmo\\Account\\Price' => __DIR__ . '/..' . '/nexmo/client/src/Account/Price.php',
         'Nexmo\\Account\\Secret' => __DIR__ . '/..' . '/nexmo/client/src/Account/Secret.php',
         'Nexmo\\Account\\SecretCollection' => __DIR__ . '/..' . '/nexmo/client/src/Account/SecretCollection.php',
@@ -4943,11 +4944,11 @@ class ComposerStaticInit450ea28ebe4e7f2018706d75a8ddb844
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit450ea28ebe4e7f2018706d75a8ddb844::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit450ea28ebe4e7f2018706d75a8ddb844::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit450ea28ebe4e7f2018706d75a8ddb844::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit450ea28ebe4e7f2018706d75a8ddb844::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit450ea28ebe4e7f2018706d75a8ddb844::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit19589e636be404d58f7cac5c278b1d7e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit19589e636be404d58f7cac5c278b1d7e::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit19589e636be404d58f7cac5c278b1d7e::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit19589e636be404d58f7cac5c278b1d7e::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit19589e636be404d58f7cac5c278b1d7e::$classMap;
 
         }, null, ClassLoader::class);
     }

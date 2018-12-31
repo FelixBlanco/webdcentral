@@ -20,11 +20,9 @@
  .card .card-body{
     border-radius: 30% 30% 0 0;
     background: #DCF5F9;
-    max-height: 50%;
-    max-width: 99%;
-
+    max-height: 57%;
+    max-width: 100%;
     padding-bottom: 5px;
-    
  }
 
 .card-img-top{
@@ -32,7 +30,7 @@
     margin: auto;
     padding: 10px;
     text-align: center;
-    max-height: 50%;
+    max-height: 43%;
     width: auto;
     max-width: 100%;
 
@@ -51,4 +49,8 @@ button{
 }
 h5{
     font-size: auto;
+}
+.card-title{
+    
+    min-height: 60px;
 }

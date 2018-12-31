@@ -11,6 +11,18 @@
               </button>
               <h5 class="modal-title text-white text-uppercase mt-1">retiro en tienda</h5>
           </ng-container>
+          <ng-container  *ngSwitchCase="'inMarketForm'">
+            <button class="btn btn-link text-white" (click)="routeTo('inMarket')">
+              <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
+            </button>
+            <h5 class="modal-title text-white text-uppercase mt-1">retiro en tienda</h5>
+          </ng-container>
+          <ng-container  *ngSwitchCase="'internalDelivery'">
+            <button class="btn btn-link text-white" (click)="routeTo('deliveryMethod')">
+              <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
+            </button>
+            <h5 class="modal-title text-white text-uppercase mt-1">despacho al interior</h5>
+          </ng-container>
           <ng-container  *ngSwitchCase="'delivery'">
             <button class="btn btn-link text-white" (click)="routeTo('deliveryMethod')">
               <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
@@ -90,8 +102,8 @@
         </ng-container>
       </div>
       <div class="modal-footer" *ngIf="section === 'shipping'">
-        <button type="button" *ngIf="token" [routerLink]="[ '/recompra']" class="btn btn-light text-uppercase txt-azul font-bold" data-dismiss="modal">historial de compras</button>
-        <button type="button" [routerLink]="[ '/productos']" class="btn btn-light text-uppercase txt-naranja font-bold" data-dismiss="modal">continuar comprando</button>
+        <button type="button" *ngIf="token" [routerLink]="['/recompra']" class="btn btn-light text-uppercase txt-azul font-bold" data-dismiss="modal">historial de compras</button>
+        <button type="button" [routerLink]="['/productos']" class="btn btn-light text-uppercase txt-naranja font-bold" data-dismiss="modal">continuar comprando</button>
         <button type="button" class="btn btn-light text-uppercase txt-verde font-bold" (click)="routeTo('toBuy')" >enviar pedido</button>
       </div>
     </div>

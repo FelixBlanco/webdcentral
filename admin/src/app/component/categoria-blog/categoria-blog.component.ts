@@ -184,9 +184,9 @@ export class CategoriaBlogComponent implements OnInit {
 
     this.inPromise = true;
     this.blogService.deleteCategory(values.idBlogCategoria).subscribe((resp) => {
-      if(resp.ok){
+      if(resp.ok && resp.status === 200){
         $('#eliminar').modal('hide');
-        this.as.msg('OK', 'Éxito', 'Se ha eliminado el cupón');
+        this.as.msg('OK', 'Éxito', 'Se ha eliminado la categoría');
       }else{
         console.error(resp);
         this.as.msg("ERR", "Error", 'Ha ocurrido un error interno');
@@ -195,9 +195,14 @@ export class CategoriaBlogComponent implements OnInit {
       this.inPromise = false;
 
     }, error => {
-      console.error(error);
+      if(error.status === 409){
+        this.as.msg('INFO', 'Info', 'No se puede eliminar la categoría por que ya está en uso');
+      }else{
+        console.error(error);
+        this.as.msg("ERR", "Error", 'Ha ocurrido un error interno');
+      }
       this.inPromise = false;
-      this.as.msg("ERR", "Error", 'Ha ocurrido un error interno');
+      
     });
   }
 

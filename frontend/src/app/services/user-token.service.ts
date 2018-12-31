@@ -76,7 +76,6 @@ export class UserTokenService {
     }
 
     isTokenExpired(): boolean{
-        console.log('is token expired', this.tokenHelper.isTokenExpired(localStorage.getItem('token')));
         return this.tokenHelper.isTokenExpired(localStorage.getItem('token'));
     }
 

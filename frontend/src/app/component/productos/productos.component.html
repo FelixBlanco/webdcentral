@@ -20,13 +20,15 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <div class="text-center"  id="productos">
+                <div class="text-center" id="productos">
                     <h2 class="txt-azul font-bold">PRODUCTOS</h2>
                 </div>
                 <div class="d-flex justify-content-between">
                     <ng-container *ngIf="productsList.length">
-                        <h4 *ngIf="tittleList" class="font-italic txt-azul text-uppercase font-bold">Coincidencias con '{{tittleList}}'</h4>
-                        <h4 class="font-italic txt-azul text-uppercase font-bold">{{!currentPage ? 1 : currentPage}}/{{pages}}</h4>
+                        <h4 *ngIf="tittleList" class="font-italic txt-azul text-uppercase font-bold">Coincidencias con
+                            '{{tittleList}}'</h4>
+                        <h4 class="font-italic txt-azul text-uppercase font-bold">{{!currentPage ? 1 :
+                            currentPage}}/{{pages}}</h4>
                     </ng-container>
                 </div>
                 <hr>
@@ -41,8 +43,11 @@
                             <div class="row m-3">
                                 <div class="col">
                                     <div class="card">
-                                        <p class="card-body font-italic text-center text-muted">No hay productos que listar...</p>
-                                        <p class="card-body font-italic text-center text-muted">Puede intentar seleccionando productos desde la sección de busqueda general o seleccionando los parámetros de los filtros</p>
+                                        <p class="card-body font-italic text-center text-muted">No hay productos que
+                                            listar...</p>
+                                        <p class="card-body font-italic text-center text-muted">Puede intentar
+                                            seleccionando productos desde la sección de busqueda general o
+                                            seleccionando los parámetros de los filtros</p>
                                     </div>
                                 </div>
                             </div>
@@ -50,22 +55,39 @@
                     </ng-container>
                     <ng-container *ngSwitchDefault>
                         <div class="mb-3">
-                            <ngb-carousel #carousel="ngbCarousel" (slide)="setCurrent($event)" [showNavigationArrows]="false" [showNavigationIndicators]="false">
+                            <ngb-carousel #carousel="ngbCarousel" (slide)="setCurrent($event)" [showNavigationArrows]="false"
+                                [showNavigationIndicators]="false">
                                 <ng-container *ngFor="let item of carouselItems">
-                                    <ng-template ngbSlide [id]="item.id"> 
+                                    <ng-template ngbSlide [id]="item.id">
                                         <app-productos-carousel-page [items]="item.products"></app-productos-carousel-page>
                                     </ng-template>
                                 </ng-container>
+
                             </ngb-carousel>
                         </div>
+
                         <div class="row" *ngIf="pages > 1 && productsList">
+
                             <div class="col d-flex justify-content-center">
+                             
+                                <div class="max txt-azul font-bold">
+                                        <h3>MAX:</h3>
+                                </div>      
+                                <div class="ver ">
+                                        
+                                    <select  (change)="MaxRangePartialItem($event.target.value)" class='form-control'>
+                                        <option value='19'>20</option>
+                                        <option value='49'>50</option>
+                                        <option value='99'>100</option>
+                                    </select>
+                                </div>
                                 <button class="btn btn-link txt-azul" (click)="carousel.prev()">
-                                    <fa-icon [icon]="['fas','angle-left']" size="4x" ></fa-icon>
+                                    <fa-icon [icon]="['fas','angle-left']" size="4x"></fa-icon>
                                 </button>
-                                <h4 class="font-italic txt-azul text-uppercase font-bold mt-4">{{!currentPage ? 1 : currentPage}}/{{pages}}</h4>
+                                <h4 class="font-italic txt-azul text-uppercase font-bold mt-4">{{!currentPage ? 1 :
+                                    currentPage}}/{{pages}}</h4>
                                 <button class="btn btn-link txt-azul" (click)="carousel.next()">
-                                    <fa-icon [icon]="['fas','angle-right']" size="4x" ></fa-icon>
+                                    <fa-icon [icon]="['fas','angle-right']" size="4x"></fa-icon>
                                 </button>
                                 <div class="total txt-azul font-bold">
                                     <h3>TOTAL: {{productsList.length}} PRODUCTOS</h3>
