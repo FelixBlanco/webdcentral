@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Prueba;
+use App\PerfilCliente;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -141,6 +142,10 @@ class UserController extends Controller
             $usuario->userName = $request->email;
 
             $usuario->save();
+
+            $perfilCliente=new PerfilCliente(['fk_idPerfilCliente'=>$usuario->id]);
+            $perfilCliente->save();
+
 
             $response = [
                 'msj'  => 'Usuario Creado',
