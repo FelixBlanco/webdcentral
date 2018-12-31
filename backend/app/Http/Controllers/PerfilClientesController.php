@@ -9,45 +9,41 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class PerfilClientesController extends Controller
-{
-
-    public function store (Request $request)
-    {
+class PerfilClientesController extends Controller {
+    public function store(Request $request) {
 
         $this->validate($request, [
-            'nombreComercio' => 'required',
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'documento_dni' => 'required',
-            'documento_otro' => 'required',
-            'correo' => 'required',
-            'telefono' => 'required',
-            'celular' => 'required',
+            'nombreComercio'     => 'required',
+            'nombre'             => 'required',
+            'apellido'           => 'required',
+            'documento_dni'      => 'required',
+            'documento_otro'     => 'required',
+            'correo'             => 'required',
+            'telefono'           => 'required',
+            'celular'            => 'required',
             'fk_idPerfilCliente' => 'required',
 
-            'domicilio_entrega' => 'required',
-            'fk_idTipoFactura' => 'required',
-            'CUIT' => 'required',
-            'CUITrazonSocial' => 'required',
+            'domicilio_entrega'   => 'required',
+            'fk_idTipoFactura'    => 'required',
+            'CUIT'                => 'required',
+            'CUITrazonSocial'     => 'required',
             'CUITDomicilioFidcal' => 'required',
 
-
         ], [
-            'nombreComercio.required' => 'El campo es requerido',
-            'nombre.required' => 'El campo es requerido',
-            'apellido.required' => 'El campo es requerido',
-            'documento_dni.required' => 'El campo es requerido',
-            'documento_otro.required' => 'El campo es requerido',
-            'correo.required' => 'El campo es requerido',
-            'telefono.required' => 'El campo es requerido',
-            'celular.required' => 'El campo es requerido',
+            'nombreComercio.required'     => 'El campo es requerido',
+            'nombre.required'             => 'El campo es requerido',
+            'apellido.required'           => 'El campo es requerido',
+            'documento_dni.required'      => 'El campo es requerido',
+            'documento_otro.required'     => 'El campo es requerido',
+            'correo.required'             => 'El campo es requerido',
+            'telefono.required'           => 'El campo es requerido',
+            'celular.required'            => 'El campo es requerido',
             'fk_idPerfilCliente.required' => 'El campo es requerido',
 
-            'domicilio_entrega.required' => 'El campo es requerido',
-            'fk_idTipoFactura.required' => 'El campo es requerido',
-            'CUIT.required' => 'El campo es requerido',
-            'CUITrazonSocial.required' => 'El campo es requerido',
+            'domicilio_entrega.required'   => 'El campo es requerido',
+            'fk_idTipoFactura.required'    => 'El campo es requerido',
+            'CUIT.required'                => 'El campo es requerido',
+            'CUITrazonSocial.required'     => 'El campo es requerido',
             'CUITDomicilioFidcal.required' => 'El campo es requerido',
         ]);
 
@@ -70,7 +66,7 @@ class PerfilClientesController extends Controller
             $perfilcliente->user;
 
             $response = [
-                'msj' => 'Perfil creado exitosamente',
+                'msj'  => 'Perfil creado exitosamente',
                 'user' => $perfilcliente,
             ];
             DB::commit();
@@ -79,7 +75,7 @@ class PerfilClientesController extends Controller
         } catch (\Exception $e) {
 
             DB::rollback();
-            Log::error('Ha ocurrido un error en PerfilClientesController: ' . $e->getMessage() . ', Linea: ' . $e->getLine());
+            Log::error('Ha ocurrido un error en PerfilClientesController: '.$e->getMessage().', Linea: '.$e->getLine());
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
@@ -87,8 +83,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function update (Request $request, $idPerfilCliente)
-    {
+    public function update(Request $request, $idPerfilCliente) {
 
         DB::beginTransaction();
 
@@ -107,7 +102,7 @@ class PerfilClientesController extends Controller
             $pefilCliente->update($request->all());
 
             $response = [
-                'msj' => 'Info del Perfil actulizada',
+                'msj'    => 'Info del Perfil actulizada',
                 'perfil' => $pefilCliente,
             ];
 
@@ -117,7 +112,7 @@ class PerfilClientesController extends Controller
             return response()->json($response, 200);
         } catch (\Exception $e) {
             DB::rollback();
-            Log::error('Ha ocurrido un error en PerfilClientesController: ' . $e->getMessage() . ', Linea: ' . $e->getLine());
+            Log::error('Ha ocurrido un error en PerfilClientesController: '.$e->getMessage().', Linea: '.$e->getLine());
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
@@ -125,8 +120,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function destroy ($idPerfilCliente)
-    {
+    public function destroy($idPerfilCliente) {
 
         DB::beginTransaction();
 
@@ -152,7 +146,7 @@ class PerfilClientesController extends Controller
             return response()->json($response, 200);
         } catch (\Exception $e) {
             DB::rollback();
-            Log::error('Ha ocurrido un error en PerfilClientesController: ' . $e->getMessage() . ', Linea: ' . $e->getLine());
+            Log::error('Ha ocurrido un error en PerfilClientesController: '.$e->getMessage().', Linea: '.$e->getLine());
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de eliminar los datos.',
@@ -160,76 +154,66 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function listar ()
-    {
+    public function listar() {
         $perfil_cliente = PerfilCliente::with('user')->get();
 
         $response = [
-            'msj' => 'Lista de perfiles',
+            'msj'      => 'Lista de perfiles',
             'perfiles' => $perfil_cliente,
         ];
 
         return response()->json($response, 201);
     }
 
-    public function getPerfil ($id)
-    {
+    public function getPerfil($id) {
         $perfil_cliente = PerfilCliente::where('fk_idPerfilCliente', $id)->first();
 
         if (is_null($perfil_cliente)) {
             return null;
         } else {
             $response = [
-                'msj' => 'Perfiles',
+                'msj'    => 'Perfiles',
                 'perfil' => $perfil_cliente,
             ];
 
             return response()->json($response, 201);
         }
-
     }
 
-    public function listarDomiciliosDeClientes ($idCliente)
-    {
+    public function listarDomiciliosDeClientes($idCliente) {
 
         $d = Domicilio::where('fk_idPerfilCliente', $idCliente)->select('idDomicilios', 'descripcion')->get();
 
         return response()->json($d, 201);
     }
 
-    public function agregarDomicilio (Request $request)
-    {
+    public function agregarDomicilio(Request $request) {
         //$request->fk_idPerfilCliente
         //$request->descripcion
 
         $this->validate($request, [
-            'fk_idPerfilCliente' => 'required',
-            'descripcion' => 'required',
+            'fk_idCliente' => 'required',
+            'descripcion'  => 'required',
         ], [
-            'fk_idPerfilCliente.required' => 'El campo es requerido',
-            'descripcion.required' => 'El campo es requerido',
+            'fk_idCliente.required' => 'El campo es requerido',
+            'descripcion.required'  => 'El campo es requerido',
         ]);
 
-        $perfil = PerfilCliente::find($request->fk_idPerfilCliente);
-
-        if (is_null($perfil)) {
-
-            $response = [
-                'msj' => 'El perfil del cliente no existe, por favor cree un perfil primero',
-            ];
-
-            return response()->json($response, 404);
-        }
+        $idPerfil = PerfilCliente::where('fk_idPerfilCliente', $request->fk_idCliente)->first();
 
         DB::beginTransaction();
+
         try {
             if (count(Domicilio::all()) < 6) {
-                $d = new Domicilio($request->all());
-                $d->perfilCliente;
+
+                $d                     = new Domicilio();
+                $d->descripcion        = $request->descripcion;
+                $d->fk_idPerfilCliente = $idPerfil->idPerfilCliente;
+
                 $d->save();
 
                 $response = [
-                    'msj' => 'Domicilio creado exitosamente',
+                    'msj'       => 'Domicilio creado exitosamente',
                     'domicilio' => $d,
                 ];
 
@@ -243,29 +227,25 @@ class PerfilClientesController extends Controller
 
                 return response()->json($response, 409);
             }
-
-
         } catch (\Exception $e) {
 
             DB::rollback();
-            Log::error('Ha ocurrido un error en PerfilClientesController: ' . $e->getMessage() . ', Linea: ' . $e->getLine());
+            Log::error('Ha ocurrido un error en PerfilClientesController: '.$e->getMessage().', Linea: '.$e->getLine());
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
             ], 500);
         }
-
     }
 
-    public function editarDomicilio (Request $request)
-    {
+    public function editarDomicilio(Request $request) {
 
         $this->validate($request, [
             'idDomicilios' => 'required',
-            'descripcion' => 'required',
+            'descripcion'  => 'required',
         ], [
             'idDomicilios.required' => 'El campo es requerido',
-            'descripcion.required' => 'El campo es requerido',
+            'descripcion.required'  => 'El campo es requerido',
         ]);
 
         $domicilio = Domicilio::find($request->idDomicilios);
@@ -277,14 +257,13 @@ class PerfilClientesController extends Controller
             ];
 
             return response()->json($response, 404);
-
         } else {
 
             $domicilio->fill($request->all());
             $domicilio->save();
 
             $response = [
-                'msj' => 'Domicilio actualizado correctamente',
+                'msj'       => 'Domicilio actualizado correctamente',
                 'domicilio' => $domicilio,
             ];
 
@@ -292,8 +271,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function borrarDomicilio ($idDomicilios)
-    {
+    public function borrarDomicilio($idDomicilios) {
 
         $domicilio = Domicilio::find($idDomicilios);
 
@@ -313,12 +291,9 @@ class PerfilClientesController extends Controller
 
             return response()->json($response, 201);
         }
-
-
     }
 
-    public function retornarIdDelPerfil ($idUser = null)
-    {
+    public function retornarIdDelPerfil($idUser = null) {
 
         if ($idUser == null) {
             $response = [
@@ -342,6 +317,4 @@ class PerfilClientesController extends Controller
             return response()->json($response, 200);
         }
     }
-
-
 }
