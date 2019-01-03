@@ -36,7 +36,12 @@ class Producto extends Model {
         'precioL9',
         'WebLink_Rubro',
         'Weblink_fabricante',
-        'Agrupacion'
-
+        'Agrupacion',
     ];
+
+    public function tag() {
+        return $this->hasOne('App\TagProduct', 'codeProdSys');
+    }
+
+
 }
