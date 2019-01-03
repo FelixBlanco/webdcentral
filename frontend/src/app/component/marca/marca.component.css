@@ -27,11 +27,17 @@
 }
 
 .marcas a{
+    padding-top: 15px;
     cursor: pointer;
     display: block;
     text-decoration: none !important;
     color: inherit;
+    min-width: 100px;
+    min-height: 100px;
+   
+   
 }
+
 img{
     padding-top: 15px;
     max-width: 100px;
@@ -42,3 +48,4 @@ img{
     
 
 }
+
