@@ -10,8 +10,9 @@
             alt="{{item.nombre}}" />
 
           <div class="card-body">
-            <div class="text-center">
-              <small class="text-center txt-azul">{{item.marca}}</small>
+            <div class="text-center ">
+              <small class="text-center txt-azul txt-marca">{{item.marca}}</small>
+              <small *ngIf="!item.marca" class="text-center txt-azul txt-marca">SIN ESPECIFICAR</small>
               <h6 class="card-title text-center txt-azul font-bold">
                 {{item.nombre}}
               </h6>
