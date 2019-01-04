@@ -40,11 +40,11 @@ class ProductoController extends Controller {
                 ->get();
 
 
-            $tags = Producto::select(DB::raw('tb_productos.*'))
+            $tags = Producto::select('tb_productos.*')
                 ->join('tb_tag_producto', 'tb_productos.codeProdSys', '=', 'tb_tag_producto.codeProdSys')
-                ->where('nombre', 'like', $busqueda)
-                ->where('fk_idSatate', '=', 1)
-                ->groupBy('Agrupacion')
+                ->where('tb_productos.nombre', 'like', $busqueda)
+                ->where('tb_productos.fk_idSatate', '=', 1)
+                ->groupBy('tb_productos.Agrupacion')
                 ->get();
 
 
