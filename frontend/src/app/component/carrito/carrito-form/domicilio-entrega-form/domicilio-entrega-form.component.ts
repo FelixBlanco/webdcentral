@@ -32,8 +32,10 @@ export class DomicilioEntregaFormComponent implements OnInit{
   async save(){
     this.inPromise = true;
     const idUser = this.userTokenService.getUserId();
+    console.log(idUser);
 
-    const respGetId = await this.domicilioEntregaService.getIdPerfilBy(idUser.toString()).toPromise();
+   // Esta parte ya no se usa  
+   /*  const respGetId = await this.domicilioEntregaService.getIdPerfilBy(idUser.toString()).toPromise();
 
     if(!respGetId.ok){
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error al obtener el perfil del cliente');
@@ -45,16 +47,17 @@ export class DomicilioEntregaFormComponent implements OnInit{
     if(respGetId.ok){
       if(Array.isArray(respGetId.body)){
         idPefilCliente = respGetId.body[0].idPerfilCliente;
+        console.log(idPefilCliente);
       }else{
         this.inPromise = false;
         this.as.msg('INFO', 'Info', 'El usuario no posee un perfil de cliente registrado');
         return;
       }
     }
-
+ */
     this.domicilioEntregaService.persistBy(
-      {fk_idPerfilCliente: idPefilCliente, descripcion: this.domicilioForm.value.domicilio}
-    ).subscribe(
+      {fk_idCliente: idUser, descripcion: this.domicilioForm.value.domicilio}
+    ).subscribe( 
       (resp) => {
         if(resp.ok){
           this.onSaveEmmitEvent();
