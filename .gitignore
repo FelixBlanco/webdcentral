@@ -7,3 +7,9 @@ backend/vendor/composer/autoload_classmap.php
 backend/vendor/**
 .idea/workspace.xml
 admin/package-lock.json
+admin/package-lock.json
+admin/package.json
+backend/composer.lock
+backend/vendor/autoload.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/composer/autoload_static.php
