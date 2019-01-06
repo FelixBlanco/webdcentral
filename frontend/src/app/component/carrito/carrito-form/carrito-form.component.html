@@ -145,15 +145,18 @@
             <label for="authorizedPerson" class="text-uppercase font-bold">Persona Autorizada a recibir</label>
             <input  class="form-control" placeholder="Ingrese Nombre y Apellido" type="text" id="authorizedPerson" formControlName="authorizedPerson"> 
 
-              <select class="form-control" id="identidad" formControlName="identidad">
+              <select class="form-control" id="identidad" formControlName="identidad" (change)="validDni()">
                 <option value="">Seleccionar</option>
                 <option *ngFor="let iden of identidadTipo" value="{{iden}}">{{iden}}</option>
               </select>
             
-            <input *ngIf="orderForm.value.identidad=='DNI'" class="form-control" placeholder="Ingrese el DNI  " type="text" id="authorizedPersonDni" formControlName="authorizedPersonDni" maxlength="8">
-            <small class="form-text text-danger" *ngIf="orderForm.get('authorizedPersonDni').invalid">
-              Ingrese un DNI  válido
-            </small> 
+            <input *ngIf="orderForm.value.identidad=='DNI'" class="form-control" placeholder="Ingrese el DNI  " type="text" id="authorizedPersonDni" formControlName="authorizedPersonDni" minlength="7" maxlength="8"  >
+              <div *ngIf="dniValidator ">
+              <small class="form-text text-danger" *ngIf=" orderForm.value.identidad=='DNI'  && orderForm.get('authorizedPersonDni').invalid  ">
+                Ingrese un DNI  válido
+              </small> 
+            </div>
+           
             <input *ngIf="orderForm.value.identidad=='PASAPORTE'" class="form-control" placeholder="Ingrese el Pasaporte " type="text" id="authorizedPersonPasaporte" formControlName="authorizedPersonPasaporte"> 
           </div>
           

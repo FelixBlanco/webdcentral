@@ -41,6 +41,7 @@ export class CarritoFormComponent implements OnInit {
   localidadesList: any[];
   domiciliosList: any[] = [];
     
+  dniValidator:boolean=false; 
   constructor(
     private fb: FormBuilder,
     private carritoService: CarritoService,
@@ -59,8 +60,8 @@ export class CarritoFormComponent implements OnInit {
       domicilioEntrega:['', Validators.required],
       authorizedPerson: ['', Validators.required],
       identidad: ['', Validators.required],
-      authorizedPersonDni: ['', [Validators.required ,  Validators.pattern(new RegExp(/^([A-Z]{1}\d{4}[A-Z]{3}|[A-Z]{1}\d{4}|\d{4})$/))]], 
-      authorizedPersonPasaporte: ['', Validators.required],
+      authorizedPersonDni: ['', [Validators.required, Validators.pattern(new RegExp(/^(0|[1-9][0-9]*|[1-9][0-9]{0,2}(,[0-9]{3,3})*)$/))]], 
+      authorizedPersonPasaporte: ['',Validators.required],
       metodoDePago: ['1', Validators.required],
       imagen: [''],
       observations: [''],
@@ -208,6 +209,8 @@ export class CarritoFormComponent implements OnInit {
       this.inMarketForm.patchValue({image: value});
     }else if(section === 'delivery'){
       this.orderForm.patchValue({image: value});
+    }else if(section === 'internalDelivery'){
+      this.interiorForm.patchValue({image: value});
     }
   }
 
@@ -335,6 +338,12 @@ export class CarritoFormComponent implements OnInit {
       if(values.metodoDePago !== 1 && values.metodoDePago !== 4){
         body.append('comprobanteDepositoTransferencia', this.imgLoaded);
       }
+      if(values.identidad == "DNI" ){
+        body.append('DNIautorizado',values.authorizedPersonDni);
+      }else{
+        body.append('DNIautorizado',values.authorizedPersonPasaporte);
+      }
+      
       
     }else{
       const values = this.orderForm.value;
@@ -379,6 +388,26 @@ export class CarritoFormComponent implements OnInit {
     this.routeTo('shipping');
     this.carritoService.clear();
 
+  }
+  validDni(){
+    
+    if(this.orderForm.value.identidad=="DNI"){
+      this.orderForm.get("authorizedPersonPasaporte").clearValidators();
+      this.orderForm.get("authorizedPersonPasaporte").updateValueAndValidity();
+
+      this.orderForm.get("authorizedPersonDni").setValidators([Validators.required, Validators.pattern(new RegExp(/^(0|[1-9][0-9]*|[1-9][0-9]{0,2}(,[0-9]{3,3})*)$/))]);
+      this.orderForm.get("authorizedPersonDni").updateValueAndValidity();
+
+       setTimeout(() =>this.dniValidator=true , 2000);
+
+    }else if(this.orderForm.value.identidad=="PASAPORTE"){
+      this.orderForm.get("authorizedPersonDni").clearValidators();
+      this.orderForm.get("authorizedPersonDni").updateValueAndValidity();
+
+      this.orderForm.get("authorizedPersonPasaporte").setValidators([Validators.required]);
+      this.orderForm.get("authorizedPersonPasaporte").updateValueAndValidity();
+
+    }
   }
  
 

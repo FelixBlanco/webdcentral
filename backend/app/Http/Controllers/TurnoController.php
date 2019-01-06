@@ -38,7 +38,7 @@ class TurnoController extends Controller
         try {
 
             $turno = new turno($request->all());
-            $turno->fk_idUser = Auth::user()->fk_idPerfil;
+            $turno->fk_idUser = Auth::user()->id;
             //$turno->fechaHora = Carbon::now();
             $turno->statusTurno;
 
@@ -53,7 +53,7 @@ class TurnoController extends Controller
                 'turno' => $turno,
             ];
 
-            //Mail::to(Auth::user()->email)->send(new TurnosMail($turno));
+            Mail::to(Auth::user()->email)->send(new TurnosMail($turno));
             DB::commit();
 
             return response()->json($response, 201);
