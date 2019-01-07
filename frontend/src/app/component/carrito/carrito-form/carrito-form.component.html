@@ -143,7 +143,21 @@
 
           <div class="form-group">
             <label for="authorizedPerson" class="text-uppercase font-bold">Persona Autorizada a recibir</label>
-            <input class="form-control" placeholder="Ingrese nombre de la persona" type="text" id="authorizedPerson" formControlName="authorizedPerson"> 
+            <input  class="form-control" placeholder="Ingrese Nombre y Apellido" type="text" id="authorizedPerson" formControlName="authorizedPerson"> 
+
+              <select class="form-control" id="identidad" formControlName="identidad" (change)="validDni()">
+                <option value="">Seleccionar</option>
+                <option *ngFor="let iden of identidadTipo" value="{{iden}}">{{iden}}</option>
+              </select>
+            
+            <input *ngIf="orderForm.value.identidad=='DNI'" class="form-control" placeholder="Ingrese el DNI  " type="text" id="authorizedPersonDni" formControlName="authorizedPersonDni" minlength="7" maxlength="8"  >
+              <div *ngIf="dniValidator ">
+              <small class="form-text text-danger" *ngIf=" orderForm.value.identidad=='DNI'  && orderForm.get('authorizedPersonDni').invalid  ">
+                Ingrese un DNI  válido
+              </small> 
+            </div>
+           
+            <input *ngIf="orderForm.value.identidad=='PASAPORTE'" class="form-control" placeholder="Ingrese el Pasaporte " type="text" id="authorizedPersonPasaporte" formControlName="authorizedPersonPasaporte"> 
           </div>
           
           <div class="m-2">
@@ -225,6 +239,30 @@
         <div class="form-group">
           <label for="direccion">Dirección</label>
           <textarea rows="3" class="form-control" id="direccion" placeholder="Ingrese dirección" formControlName="direccion"></textarea>
+        </div>
+        <div class="m-2">
+          <h6 class="text-uppercase font-bold">método de pago</h6>
+          <mat-radio-group formControlName="metodoDePago">
+            <mat-radio-button value="1">Efectivo</mat-radio-button>
+            <mat-radio-button value="2">Depósito</mat-radio-button>
+            <mat-radio-button value="3">Transferencia</mat-radio-button>
+            <mat-radio-button value="4">Mercadopago</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="card m-1" *ngIf="interiorForm.get('metodoDePago').value !== '1' && interiorForm.get('metodoDePago').value !== '4'">
+          <div class="card-header">
+            Adjunte Comprobante de Pago
+          </div>
+          <div class="card-body">
+            <div class="input-group">
+              <div class="custom-file">
+                <label class="custom-file-label" for="adjunto">{{imgLoaded ? imgLoaded.name: 'Seleccione un archivo'}}</label>
+                <input type="file" (change)="onFileChange($event, 'internalDelivery')" class="custom-file-input" id="adjunto">
+              </div>
+            </div>
+            <small class="m-1 form-text text-danger" *ngIf="interiorForm.get('imagen').invalid">Debe adjuntar el comprobante de pago</small>
+          </div>
         </div>
       </form>
     </div>

@@ -45,6 +45,7 @@ class orderHeader extends Model
         'personasAutorizadas',
         'observaciones',
         'direccion',
+        'DNIautorizado',
 
     ];
 
