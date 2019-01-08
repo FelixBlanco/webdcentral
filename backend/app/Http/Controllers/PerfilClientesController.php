@@ -182,7 +182,7 @@ class PerfilClientesController extends Controller {
 
     public function listarDomiciliosDeClientes($idCliente) {
 
-        $d = Domicilio::where('fk_idPerfilCliente', $idCliente)->select('idDomicilios', 'descripcion')->get();
+        $d = Domicilio::where('fk_idCliente', $idCliente)->select('idDomicilios', 'descripcion')->get();
 
         return response()->json($d, 201);
     }
@@ -199,16 +199,17 @@ class PerfilClientesController extends Controller {
             'descripcion.required'  => 'El campo es requerido',
         ]);
 
-        $idPerfil = PerfilCliente::where('fk_idPerfilCliente', $request->fk_idCliente)->first();
 
         DB::beginTransaction();
+        $domi=Domicilio::where('fk_idCliente',$request->fk_idCliente)->get();
 
         try {
-            if (count(Domicilio::all()) < 6) {
 
-                $d                     = new Domicilio();
-                $d->descripcion        = $request->descripcion;
-                $d->fk_idPerfilCliente = $idPerfil->idPerfilCliente;
+            if (count($domi) < 6) {
+
+                $d               = new Domicilio();
+                $d->descripcion  = $request->descripcion;
+                $d->fk_idCliente = $request->fk_idCliente;
 
                 $d->save();
 
@@ -221,6 +222,7 @@ class PerfilClientesController extends Controller {
 
                 return response()->json($response, 201);
             } else {
+
                 $response = [
                     'msj' => 'Ya el cliente tiene la cantidad maxima de domicilios',
                 ];

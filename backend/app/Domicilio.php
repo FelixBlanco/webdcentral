@@ -13,10 +13,10 @@ class Domicilio extends Model {
 
     protected $fillable = [
         'descripcion',
-        'fk_idPerfilCliente',
+        'fk_idCliente',
     ];
 
-    public function perfilCliente() {
-        return $this->belongsTo('App\PerfilCliente', 'fk_idPerfilCliente');
+    public function Cliente() {
+        return $this->belongsTo('App\User', 'fk_idCliente');
     }
 }

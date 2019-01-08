@@ -154,7 +154,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     Route::get('turnoDeUnLocalAdh/{id_Local}', 'LocalesAdheridoController@turnoDeUnLocalAdh');
 
     Route::post('agregarDomicilio', 'PerfilClientesController@agregarDomicilio');
-    Route::get('listarDomiciliosDeClientes/{idCliente}', 'PerfilClientesController@listarDomiciliosDeClientes');
+    Route::get('listarDomiciliosDeClientes/{fk_idCliente}', 'PerfilClientesController@listarDomiciliosDeClientes');
     Route::post('editarDomicilio', 'PerfilClientesController@editarDomicilio');
     Route::delete('borrarDomicilio/{idDomicilios}', 'PerfilClientesController@borrarDomicilio');
 
