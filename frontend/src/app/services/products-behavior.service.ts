@@ -12,10 +12,23 @@ export class ProductsBehaviorService {
     productListValue: string;
     constructor(private configFooterService: ConfgFooterService){}
 
-    updateSource(products: Producto[]): void{
-        this.parseDefaultPrice(products).then(value => {
-            this.productsSource.next(value);
-        })
+    updateSource(products: Producto[],index_:number): void{
+        if(index_==null){
+            
+            this.parseDefaultPrice(products).then(value => {
+                this.productsSource.next(value);
+            })         
+        } else{
+           
+             let productsArr: Producto[];
+            productsArr = [ products[index_]];
+            this.parseDefaultPrice(productsArr).then(value => {
+                this.productsSource.next(value);
+            })   
+
+        } 
+        /* console.log(index_);
+        console.log(products); */
         
     }
 

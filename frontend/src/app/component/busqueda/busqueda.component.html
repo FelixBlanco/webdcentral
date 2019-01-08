@@ -38,14 +38,14 @@
                 <p class="text-uppercase font-bold text-center mt-4">no se
                   encontraron resultados</p>
               </div>
-              <div *ngFor="let item of searchList.mascotas" class="row justify-content-left ml-4">
+              <div *ngFor="let item of searchList.mascotas; let i = index" class="row justify-content-left ml-4">
 
                 <div class="col-11">
-                  <a class="mt-4" (click)="seeMore('mascotas')" class="text-muted">{{item.titulo | titlecase}}</a>
+                  <a class="mt-4" (click)="seeMore('mascotas',i)" class="text-muted">{{item.rubro | titlecase}} > {{item.SubRubro1 | titlecase}} > {{item.titulo | titlecase}}</a>
                 </div>
                 <div class="col-1 ">
                    
-                     <fa-icon (click)="seeMore('mascotas')" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
+                     <fa-icon (click)="seeMore('mascotas',i)" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
                 </div>
               </div>
 
@@ -69,12 +69,12 @@
                   <p class="text-uppercase font-bold text-center mt-4">no se
                     encontraron resultados</p>
                 </div>
-                <div *ngFor="let item of searchList.nombre" class="row justify-content-left ml-4">
+                <div *ngFor="let item of searchList.nombre; let i = index" class="row justify-content-left ml-4">
                   <div class="col-11">
-                    <a (click)="seeMore('productos')" class="text-muted">{{item.titulo | titlecase}}</a>
+                    <a (click)="seeMore('productos',i)" class="text-muted">{{item.titulo | titlecase}}</a>
                   </div>
                   <div class="col-1">
-                    <fa-icon (click)="seeMore('productos')" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
+                    <fa-icon (click)="seeMore('productos',i)" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
                   </div>
 
                 </div>
@@ -99,10 +99,12 @@
                   encontraron resultados</p> 
               </div>
               <div *ngFor="let item of searchListMarcas" class="row justify-content-left ml-4">
-                <div class="col-11">
-                  <a (click)="seeMarcas(item.marca)" class="text-muted">{{item.marca | titlecase}}</a>
+                <div class="col-11 ">
+                  <!-- <a (click)="seeMarcas(item.marca)" class="text-muted">{{item.marca | titlecase}}</a> -->
+                  <img *ngIf="item.Weblink_fabricante" [src]="item.Weblink_fabricante" alt="" (click)="seeMarcas(item.marca)" />
+                  <a *ngIf="!item.Weblink_fabricante" (click)="seeMarcas(item.marca)" class="text-muted">{{item.marca | titlecase}}</a>
                 </div>
-                <div class="col-1  ">
+                <div class="col-1  my-auto">
                   <fa-icon (click)="seeMarcas(item.marca)" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
                 </div>
   
