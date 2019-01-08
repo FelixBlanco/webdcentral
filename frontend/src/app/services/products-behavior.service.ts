@@ -12,7 +12,7 @@ export class ProductsBehaviorService {
     productListValue: string;
     constructor(private configFooterService: ConfgFooterService){}
 
-    updateSource(products: Producto[],index_:number): void{
+    updateSource(products: Producto[],index_:number=null): void{
         if(index_==null){
             
             this.parseDefaultPrice(products).then(value => {
