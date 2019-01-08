@@ -16,7 +16,7 @@ class CreateDomiciliosTable extends Migration
         Schema::create('tb_domicilios', function (Blueprint $table) {
             $table->increments('idDomicilios');
             $table->text('descripcion')->nullable();
-            $table->integer('fk_idPerfilCliente');
+            $table->integer('fk_idCliente');
             $table->timestamps();
             $table->softDeletes();
         });
