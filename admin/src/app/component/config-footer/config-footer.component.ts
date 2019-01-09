@@ -59,8 +59,7 @@ export class ConfigFooterComponent implements OnInit {
   getConfigFooter() {
     this._confgFooterService._getConfigFooter().subscribe(
       (resp: any) => {
-        if (resp) {
-          
+        if (resp) {   
           this.myForm.setValue({
             direccion: resp.direccion,
             nroContacto: resp.nroContacto,
@@ -70,13 +69,10 @@ export class ConfigFooterComponent implements OnInit {
             longitud: resp.longitud,
             whatsApp1: resp.whatsApp1,
             whatsApp2: resp.whatsApp2,
-            horarios: resp.horarios,
             subtes: resp.subtes,
             colectivos: resp.colectivos,
             avenidas: resp.avenidas,
             listaPrecio: resp.listaPrecio,
-            desde: resp.desde,
-            hasta: resp.hasta,
             url_mercado_libre: resp.url_mercado_libre,
             link_otra_pagina: resp.link_otra_pagina,
           })

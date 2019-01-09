@@ -53,10 +53,9 @@
         </div>
 
       </div>
+
+      
       <div class="col-md-6">
-
-
-
         <div class="form-group">
           <label>Subtes</label>
           <input type="text" placeholder="Ingrese Subtes" class="form-control" formControlName="subtes">
@@ -78,36 +77,23 @@
           <p *ngIf="!myForm.get('listaPrecio').valid" class="text-danger">Lista de Precios debe ser menor 1 y mayor de
             9</p>
         </div>
-
-
-
         <div class="form-group">
           <label>URL de Mercado libre</label>
           <input type="url" placeholder="Ingrese URL de Mercado libre" class="form-control" formControlName="url_mercado_libre">
         </div>
-
         <div class="form-group">
           <label>Link enlace a otra pagina</label>
           <input type="url" placeholder="Ingrese link a otra pagina" class="form-control" formControlName="link_otra_pagina">
         </div>
-
         <button class="btn btn-success" *ngIf='!inPromise' (click)="getHorarios()" data-toggle="modal"
           data-target="#horariosModal"  style="width:100%;">Gestionar Horarios de Atencion</button>
-
-
-
       </div> 
     </div>
     <div class="row">
       <div class="col-md-12">
         <div class="form-group text-right">
           <mat-spinner *ngIf='inPromise' diameter="30" style="margin: 0 auto"></mat-spinner>
-
-
           <button class="btn btn-success" *ngIf='!inPromise' (click)="upgradeCondigFooter()" [disabled]="myForm.invalid || inPromise">Actualizar</button>
-
-
-
         </div>
       </div>
     </div>

@@ -5,6 +5,9 @@
         <div class="form-group">
           <label for="">Color Oscuro</label>
           <input type="input" formControlName="colorOscuro" class="form-control" placeholder="Color Oscuro">
+          <div *ngIf="submitted && myForm.firstName.errors" class="invalid-feedback">
+            <div *ngIf="myForm.firstName.errors.required">Este color es requerido</div>
+        </div>          
         </div>
         <div class="form-group">
           <label for="">Color Medio</label>
