@@ -69,7 +69,9 @@ export class RubrosgaleryInicioComponent implements OnInit {
       return;
     }
 
+
     /*  let aux: any[] = [];
+e31209333aca1a9385d3c44112f74c15d929550b
 
     //Para tener solo los items que poseen imagenes
     this.galeryList.forEach(val => {
@@ -78,7 +80,9 @@ export class RubrosgaleryInicioComponent implements OnInit {
       }
     });
 
+
     this.galeryList =  [...aux];  */
+
 
     this.carouselItems = [];
     let index: number = 1;
