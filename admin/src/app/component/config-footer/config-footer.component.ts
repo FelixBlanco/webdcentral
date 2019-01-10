@@ -44,6 +44,8 @@ export class ConfigFooterComponent implements OnInit {
       listaPrecio: [Validators.min(1), Validators.max(9)],
       url_mercado_libre: [''],
       link_otra_pagina: [''],
+      url_app_store: [''],
+      url_google_play: [''],          
     })
     this.myFormHorarios = this.fb.group({
       desde: ['', Validators.required],
@@ -75,6 +77,8 @@ export class ConfigFooterComponent implements OnInit {
             listaPrecio: resp.listaPrecio,
             url_mercado_libre: resp.url_mercado_libre,
             link_otra_pagina: resp.link_otra_pagina,
+            url_app_store: resp.url_app_store,
+            url_google_play: resp.url_google_play
           })
         }
       }

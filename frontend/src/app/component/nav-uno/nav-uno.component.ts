@@ -64,7 +64,7 @@ export class NavUnoComponent implements OnInit {
           this.linksR.twitter   = resp.url_twit;
           this.linksR.instagram = resp.url_inst;
           this.linksR.whatsapp  = resp.url_what;                  
-        }   
+        }        
       }
     )
 

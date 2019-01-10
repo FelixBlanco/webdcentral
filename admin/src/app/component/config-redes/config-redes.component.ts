@@ -36,7 +36,7 @@ export class ConfigRedesComponent implements OnInit {
   getRedes(){
     this.configRedesService._getRed().subscribe(
       (resp:any) => {        
-        if(!resp){                                  
+        if(resp){                                  
           this.isNew = false; // no es nuevo
           this.r_edit = resp.id_redSocial,
           this.myRedes.setValue({            
@@ -53,7 +53,7 @@ export class ConfigRedesComponent implements OnInit {
   addRedes(){
     this.inPromise=true;
     const val: any = this.myRedes.value
-    const data:any = {url_face: val.facebook, url_twit: val.twitter, url_inst: val.instagram, url_what: val.twitter} 
+    const data:any = {url_face: val.facebook, url_twit: val.twitter, url_inst: val.instagram, url_what: val.whatsapp} 
     this.configRedesService._addRed(data).subscribe(
       resp => {
         this.inPromise=false;
@@ -71,7 +71,8 @@ export class ConfigRedesComponent implements OnInit {
   updateRedes(){
     this.inPromise=true;
     const val: any = this.myRedes.value
-    const data:any = {url_face: val.facebook, url_twit: val.twitter, url_inst: val.instagram, url_what: val.twitter} 
+    console.log(val)
+    const data:any = {url_face: val.facebook, url_twit: val.twitter, url_inst: val.instagram, url_what: val.whatsapp} 
     this.configRedesService._updateRed(data,this.r_edit).subscribe(
       (resp:any) => {
         this.inPromise=false;

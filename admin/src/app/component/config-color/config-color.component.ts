@@ -10,7 +10,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms'
 })
 export class ConfigColorComponent implements OnInit {
 
-    colores: any;
+    colores: any = {colorOscuro: null, colorMedio: null, colorClaro: null};
     form: any = {colorOscuro: null, colorMedio: null, colorClaro: null}
     inPromise: boolean;
     myForm : FormGroup;
@@ -32,8 +32,11 @@ export class ConfigColorComponent implements OnInit {
 
     getColores() {
         this._coloresServices._getColor().subscribe(
-            resp => {
-                this.colores = resp
+            (resp:any) => {   
+                this.colores.idColor    = resp.idColor;             
+                this.colores.colorOscuro = resp.colorOscuro;
+                this.colores.colorMedio = resp.colorMedio;
+                this.colores.colorClaro = resp.colorClaro; 
             }
         )
     }
