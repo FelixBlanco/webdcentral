@@ -92,13 +92,13 @@ export class PerfilClienteComponent implements OnInit {
     this.userT_service.token.subscribe((val)=>{
       if(localStorage.getItem('token') != null){ // Verificamos si esta logueado
         this.isNuevo = true; // Cuando llamemos la informacion, consultamos si existe en perfil-cliente
-        console.log("token");
+      
          this.getPerfilCliente(); 
   
       } 
     })
    
-    console.log("on");
+
     
  
   //  this.getPerfilCliente(); 
@@ -125,14 +125,14 @@ export class PerfilClienteComponent implements OnInit {
               this.isNuevo=false;
               this.inPromise=false;
               
-               console.log(this.form); 
+               
             }
           },
           error => {
             // Como no hay perfil, le decimos crear            
             this.isNuevo = true; 
             this.inPromise=false;
-            console.log("es nuevo");
+           
            
           }
         )
