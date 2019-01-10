@@ -25,3 +25,13 @@
   width: 91%;
   border-radius: 6px;    
 }
+.title {
+  cursor: pointer; 
+}
+.desplegable-contenido{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+button{
+  cursor: pointer;
+}

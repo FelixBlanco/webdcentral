@@ -1,5 +1,233 @@
-<!--Perfil Cliente -->
-<div class="modal fade" id="perfilClienteModal" tabindex="-1" role="dialog" aria-labelledby="perfilClienteModalTitle" aria-hidden="true">
+<!--  gestion perfil -->
+<div class="modal fade" id="perfilClienteModalGestion" tabindex="-1" role="dialog" aria-labelledby="perfilClienteModalGestionTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-azul">
+        <h5 class="modal-title txt-blanco" id="perfilClienteModalFacturacionTitle">Gestion de perfil</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="txt-blanco">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--Perfil Cliente -->
+
+        <div class="pt-2 pb-2">
+          <div class="bg-naranja txt-blanco font-bold title " id=nro-style>1</div>
+          <div class="bg-naranja txt-blanco font-bold title" id='titulo-style' (click)="desplegarOpcion(0)">
+            DATOS PERSONALES
+          </div>
+
+
+          <div *ngIf="desplegar[0]" class="desplegable-contenido">
+            <form [formGroup]="formData">
+
+              <!-- <div class="form-group">
+                    <div class="bg-naranja txt-blanco font-bold" id=nro-style>1</div>            
+                  <div class="bg-naranja txt-blanco font-bold subtitle" >
+                      DATOS PERSONALES
+                  </div> 
+                </div>-->
+
+              <div class="form-group pt-2">
+                <label for="">Nombre del Comercio</label>
+                <input type="text" class="form-control" formControlName="nombreComercio" [(ngModel)]="form.nombreComercio"
+                  placeholder="Ingrese Nombre del Comercio">
+              </div>
+
+              <div class="form-group">
+                <label for="">Nombre</label>
+                <input type="text" class="form-control" formControlName="nombre" [(ngModel)]="form.nombre" placeholder="Nombre">
+              </div>
+
+              <div class="form-group">
+                <label for="">Apellido</label>
+                <input type="text" class="form-control" formControlName="apellido" [(ngModel)]="form.apellido"
+                  placeholder="Apellido">
+              </div>
+
+
+
+              <!-- <div class="form-group">
+                <label for="">Documento Otro</label>
+                <input type="text" class="form-control" formControlName="documento_otro" [(ngModel)]="form.documento_otro"
+                  placeholder="Documento Otro">
+              </div> -->
+              <div class="form-group">
+                <select class="form-control" formControlName="tipo_documento">
+                  <option value="">Seleccionar tipo de documento</option>
+                  <option *ngFor="let type of tipoDocumento" value="type">{{type}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="documento_dni" [(ngModel)]="form.documento_dni"
+                  placeholder="Inserte Documento">
+              </div>
+
+              <div class="form-group">
+                <label for="">Correo Electronico</label>
+                <input type="email" class="form-control" formControlName="correo" [(ngModel)]="form.correo" placeholder="Ingrese Email">
+              </div>
+
+
+
+              <div class="form-group">
+                <label for="">Celular</label>
+                <div class="form-inline">
+                  <input type="phone" class="form-control" formControlName="celular_code" [(ngModel)]="form.celular_code"
+                    placeholder="(011)" size="5">
+                  <input type="phone" class="form-control" formControlName="celular" [(ngModel)]="form.celular"
+                    placeholder="Ingrese Celular">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="">Telefono</label>
+                <div class="form-inline">
+                  <input type="phone" class="form-control" formControlName="telefono_code" [(ngModel)]="form.telefono_code"
+                    placeholder="(011)" size="5">
+                  <input type="phone" class="form-control" formControlName="telefono" [(ngModel)]="form.telefono"
+                    placeholder="Ingrese Telefono">
+                  <p class="fond-bold pl-2 pt-2" style="color:#038b36"> opcional</p>
+                </div>
+              </div>
+
+            </form>
+            <div style="text-align: center;" (click)="desplegarOpcion(0)">
+              <!-- <fa-icon *ngIf="!desplegar[0]" matSuffix [icon]="['fa', 'chevron-down']" ></fa-icon> -->
+              <fa-icon style="cursor:pointer" *ngIf="desplegar[0]" matSuffix [icon]="['fa', 'chevron-up']"></fa-icon>
+            </div>
+          </div>
+
+        </div>
+
+        <!--  datos domiclio  -->
+        <div class="pt-2 pb-2">
+          <div class="bg-naranja txt-blanco font-bold title" id=nro-style>2</div>
+          <div class="bg-naranja txt-blanco font-bold title" id='titulo-style' (click)="desplegarOpcion(1)">
+            DOMICILIO
+          </div>
+          <div *ngIf="desplegar[1]" class="desplegable-contenido">
+
+            <form [formGroup]="formDataDomicilio">
+
+
+              <div class="form-group">
+                <label for="">Domicilio de Entrega</label>
+                <input type="text" class="form-control" formControlName="domicilio_entrega" [(ngModel)]="form.domicilio_entrega"
+                  placeholder="Ingrese domicilio 1">
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="domicilio_entrega_2" [(ngModel)]="form.domicilio_2"
+                  placeholder="Ingrese domicilio 2">
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="domicilio_entrega_3" [(ngModel)]="form.domicilio_3"
+                  placeholder="Ingrese domicilio 3">
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="domicilio_entrega_4" [(ngModel)]="form.domicilio_4"
+                  placeholder="Ingrese domicilio 4">
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="domicilio_entrega_5" [(ngModel)]="form.domicilio_5"
+                  placeholder="Ingrese domicilio 5">
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="domicilio_entrega_6" [(ngModel)]="form.domicilio_6"
+                  placeholder="Ingrese domicilio 6">
+              </div>
+
+            </form>
+
+            <div style="padding:10px">
+              <div style="background-color:#f3f6db; color:black; border-radius:6px; padding:15px">
+                <h4 class="text-center font-bold" style="color:#038b36;">Atencion</h4>
+                <p class="text-center font-light">Debera ingresar al menos un(1) Domicilio de entrega </p>
+              </div>
+            </div>
+            <div style="text-align: center;" (click)="desplegarOpcion(1)">
+              <!-- <fa-icon *ngIf="!desplegar[0]" matSuffix [icon]="['fa', 'chevron-down']" ></fa-icon> -->
+              <fa-icon style="cursor:pointer" *ngIf="desplegar[1]" matSuffix [icon]="['fa', 'chevron-up']"></fa-icon>
+            </div>
+          </div>
+
+        </div>
+
+        <!--  datos facturacion  -->
+        <div class="pt-2 pb-2">
+          <div class="bg-naranja txt-blanco font-bold title" id=nro-style>3</div>
+          <div class="bg-naranja txt-blanco font-bold title" id='titulo-style' (click)="desplegarOpcion(2)">
+            FACTURACION
+          </div>
+          <div *ngIf="desplegar[2]" class="desplegable-contenido">
+            <form [formGroup]="formDataFacturacion">
+
+
+
+
+
+              <div class="form-group">
+                <label for="">Tipos de Facturas</label>
+                <select [(ngModel)]="form.fk_idTipoFactura" formControlName="fk_idTipoFactura" class="form-control"
+                  (change)="SelectValueChange()">
+                  <option *ngFor='let tf of tiposFacturas' [value]="tf.idTipoFactura">{{tf.descripcion}}</option>
+                </select>
+              </div>
+              <div *ngIf="formDataFacturacion.value.fk_idTipoFactura==1" class="form-group">
+                <label for="">CUIT</label>
+                <input type="email" class="form-control" formControlName="CUIT" [(ngModel)]="form.CUIT" placeholder="Ingrese CUIT">
+              </div>
+              <div class="form-group">
+                <label for="">CUIT Razon Social</label>
+                <input type="email" class="form-control" formControlName="CUITrazonSocial" [(ngModel)]="form.CUITrazonSocial"
+                  placeholder="Ingrese CUIT Razon Social">
+              </div>
+
+              <div class="form-group">
+                <label for="">CUIT Domicilio Fiscal</label>
+                <input type="email" class="form-control" formControlName="CUITDomicilioFidcal" [(ngModel)]="form.CUITDomicilioFidcal"
+                  placeholder="Ingrese CUIT Domicilio Fiscal">
+              </div>
+
+            </form>
+            <div style="text-align: center;" (click)="desplegarOpcion(2)">
+              <!-- <fa-icon *ngIf="!desplegar[0]" matSuffix [icon]="['fa', 'chevron-down']" ></fa-icon> -->
+              <fa-icon style="cursor:pointer" *ngIf="desplegar[2]" matSuffix [icon]="['fa', 'chevron-up']"></fa-icon>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <div class="modal-footer ">
+        
+<!--             <small *ngIf="!inPromise && (!formData.valid || !formDataDomicilio.valid || !formDataFacturacion.valid)" class="fond-bold " style="color:red; ">Verifique los Datos</small>
+ -->            <mat-spinner *ngIf='inPromise' diameter="30" style="margin: 0 auto;"></mat-spinner>
+        
+        <!--         <button  class='font-bold' style="color:#038b36; background: none; border:none;" *ngIf="isNuevo && !inPromise" (click)="crear()"
+          [disabled]="!formData.valid && !formDataDomicilio.valid && !formDataFacturacion.valid">Aceptar</button>
+        <button class='font-bold' style="color:#038b36; background: none; border:none;" *ngIf="!isNuevo && !inPromise" (click)="update()"
+          [disabled]="!formData.valid && !formDataDomicilio.valid && !formDataFacturacion.valid">Aceptar</button> -->
+        <button type="submit" class="btn btn-success" [disabled]="!formData.valid || !formDataDomicilio.valid || !formDataFacturacion.valid"
+          *ngIf="isNuevo && !inPromise" (click)="crear()">Registrar</button>
+        <button type="submit" class="btn btn-success" [disabled]="!formData.valid || !formDataDomicilio.valid || !formDataFacturacion.valid"
+          *ngIf="!isNuevo && !inPromise" (click)="update()">Modificar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+
+<div class="modal fade" id="perfilClienteModal" tabindex="-1" role="dialog" aria-labelledby="perfilClienteModalTitle"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-azul">
@@ -8,76 +236,89 @@
           <span aria-hidden="true" class="txt-blanco">&times;</span>
         </button>
       </div>
-      <div class="modal-body">  
+      <div class="modal-body">
 
         <form [formGroup]="formData">
 
           <div class="form-group">
-              <div class="bg-naranja txt-blanco font-bold" id=nro-style>1</div>            
+            <div class="bg-naranja txt-blanco font-bold" id=nro-style>1</div>
             <div class="bg-naranja txt-blanco font-bold" id='titulo-style'>
-                DATOS PERSONALES
+              DATOS PERSONALES
             </div>
           </div>
 
           <div class="form-group">
             <label for="">Nombre del Comercio</label>
-            <input type="text" class="form-control" formControlName="nombreComercio" [(ngModel)]="form.nombreComercio" placeholder="Ingrese Nombre del Comercio">
+            <input type="text" class="form-control" formControlName="nombreComercio" [(ngModel)]="form.nombreComercio"
+              placeholder="Ingrese Nombre del Comercio">
           </div>
-    
+
           <div class="form-group">
-            <label for="">Nombre</label>      
-            <input type="text" class="form-control" formControlName="nombre" [(ngModel)]="form.nombre" placeholder="Nombre">  
+            <label for="">Nombre</label>
+            <input type="text" class="form-control" formControlName="nombre" [(ngModel)]="form.nombre" placeholder="Nombre">
           </div>
-    
+
           <div class="form-group">
-            <label for="">Apellido</label>      
+            <label for="">Apellido</label>
             <input type="text" class="form-control" formControlName="apellido" [(ngModel)]="form.apellido" placeholder="Apellido">
           </div>
-    
+
           <div class="form-group">
-            <label for="">Documento DNI</label>      
-            <input type="text" class="form-control" formControlName="documento_dni" [(ngModel)]="form.documento_dni" placeholder="Documento DNI">
+            <label for="">Documento DNI</label>
+            <input type="text" class="form-control" formControlName="documento_dni" [(ngModel)]="form.documento_dni"
+              placeholder="Documento DNI">
           </div>
-    
+
           <div class="form-group">
             <label for="">Documento Otro</label>
-            <input type="text" class="form-control" formControlName="documento_otro" [(ngModel)]="form.documento_otro" placeholder="Documento Otro">        
+            <input type="text" class="form-control" formControlName="documento_otro" [(ngModel)]="form.documento_otro"
+              placeholder="Documento Otro">
           </div>
-    
+
           <div class="form-group">
             <label for="">Correo Electronico</label>
             <input type="email" class="form-control" formControlName="correo" [(ngModel)]="form.correo" placeholder="Ingrese Email">
           </div>
-    
+
           <div class="form-group">
             <label for="">Telefono</label>
             <div class="form-inline">
-              <input type="phone" class="form-control" formControlName="telefono_code" [(ngModel)]="form.telefono_code" placeholder="(011)" size="5">
-              <input type="phone" class="form-control" formControlName="telefono" [(ngModel)]="form.telefono" placeholder="Ingrese Telefono">
-            </div>        
+              <input type="phone" class="form-control" formControlName="telefono_code" [(ngModel)]="form.telefono_code"
+                placeholder="(011)" size="5">
+              <input type="phone" class="form-control" formControlName="telefono" [(ngModel)]="form.telefono"
+                placeholder="Ingrese Telefono">
+            </div>
           </div>
-    
+
           <div class="form-group">
             <label for="">Celular</label>
             <div class="form-inline">
-              <input type="phone" class="form-control" formControlName="celular_code" [(ngModel)]="form.celular_code" placeholder="(011)" size="5">
+              <input type="phone" class="form-control" formControlName="celular_code" [(ngModel)]="form.celular_code"
+                placeholder="(011)" size="5">
               <input type="phone" class="form-control" formControlName="celular" [(ngModel)]="form.celular" placeholder="Ingrese Celular">
             </div>
           </div>
 
-        </form>   
+        </form>
 
       </div>
       <div class="modal-footer text-right">
-        <button class='font-bold' style="color:red; background: none; border:none;" data-dismiss="modal" >Cerrar</button>
-        <button class='font-bold' style="color:#038b36; background: none;  border:none;" data-dismiss="modal" data-toggle="modal" data-target="#perfilClienteModalDomicilio" [disabled]="!formData.valid">Siguiente</button>
+        <button class='font-bold' style="color:red; background: none; border:none;" data-dismiss="modal">Cerrar</button>
+        <button class='font-bold' style="color:#038b36; background: none;  border:none;" data-dismiss="modal"
+          data-toggle="modal" data-target="#perfilClienteModalDomicilio" [disabled]="!formData.valid">Siguiente</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- DOMICILIO -->
-<div class="modal fade" id="perfilClienteModalDomicilio" tabindex="-1" role="dialog" aria-labelledby="perfilClienteModalDomicilioTitle" aria-hidden="true">
+
+
+
+
+
+
+<div class="modal fade" id="perfilClienteModalDomicilio" tabindex="-1" role="dialog" aria-labelledby="perfilClienteModalDomicilioTitle"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-azul">
@@ -86,43 +327,49 @@
           <span aria-hidden="true" class="txt-blanco">&times;</span>
         </button>
       </div>
-      <div class="modal-body">  
+      <div class="modal-body">
 
         <form [formGroup]="formDataDomicilio">
 
           <div class="form-group">
-              <div class="bg-naranja txt-blanco font-bold" id=nro-style>2</div>            
+            <div class="bg-naranja txt-blanco font-bold" id=nro-style>2</div>
             <div class="bg-naranja txt-blanco font-bold" id='titulo-style'>
-                DOMICILIO
+              DOMICILIO
             </div>
           </div>
 
           <div class="form-group">
             <label for="">Domicilio de Entrega</label>
-            <input type="text" class="form-control" formControlName="domicilio_entrega" [(ngModel)]="form.domicilio_entrega" placeholder="Ingrese domicilio 1">
-          </div>
-    
-          <div class="form-group">              
-            <input type="text" class="form-control" formControlName="domicilio_entrega_2" [(ngModel)]="form.domicilio_2" placeholder="Ingrese domicilio 2">  
-          </div>
-    
-          <div class="form-group">            
-            <input type="text" class="form-control" formControlName="domicilio_entrega_3"  [(ngModel)]="form.domicilio_3" placeholder="Ingrese domicilio 3">
-          </div>
-    
-          <div class="form-group">
-            <input type="text" class="form-control" formControlName="domicilio_entrega_4" [(ngModel)]="form.domicilio_4" placeholder="Ingrese domicilio 4">        
-          </div>
-    
-          <div class="form-group">            
-            <input type="text" class="form-control" formControlName="domicilio_entrega_5" [(ngModel)]="form.domicilio_5" placeholder="Ingrese domicilio 5">
+            <input type="text" class="form-control" formControlName="domicilio_entrega" [(ngModel)]="form.domicilio_entrega"
+              placeholder="Ingrese domicilio 1">
           </div>
 
-          <div class="form-group">            
-            <input type="text" class="form-control" formControlName="domicilio_entrega_6" [(ngModel)]="form.domicilio_6" placeholder="Ingrese domicilio 6">
-          </div>          
-        
-        </form>   
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="domicilio_entrega_2" [(ngModel)]="form.domicilio_2"
+              placeholder="Ingrese domicilio 2">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="domicilio_entrega_3" [(ngModel)]="form.domicilio_3"
+              placeholder="Ingrese domicilio 3">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="domicilio_entrega_4" [(ngModel)]="form.domicilio_4"
+              placeholder="Ingrese domicilio 4">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="domicilio_entrega_5" [(ngModel)]="form.domicilio_5"
+              placeholder="Ingrese domicilio 5">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="domicilio_entrega_6" [(ngModel)]="form.domicilio_6"
+              placeholder="Ingrese domicilio 6">
+          </div>
+
+        </form>
         <div style="padding:10px">
           <div style="background-color:#f3f6db; color:black; border-radius:6px; padding:15px">
             <h4 class="text-center font-bold" style="color:#038b36;">Atencion</h4>
@@ -131,15 +378,23 @@
         </div>
       </div>
       <div class="modal-footer">
-          <button class='font-bold' style="color:red; background: none; border:none;" data-dismiss="modal" data-toggle="modal" data-target="#perfilClienteModal">Atras</button>
-          <button class='font-bold' style="color:#038b36; background: none; border:none;" data-dismiss="modal" data-toggle="modal" data-target="#perfilClienteModalFacturacion" [disabled]="!formDataDomicilio.valid">Siguiente</button>                
+        <button class='font-bold' style="color:red; background: none; border:none;" data-dismiss="modal" data-toggle="modal"
+          data-target="#perfilClienteModal">Atras</button>
+        <button class='font-bold' style="color:#038b36; background: none; border:none;" data-dismiss="modal"
+          data-toggle="modal" data-target="#perfilClienteModalFacturacion" [disabled]="!formDataDomicilio.valid">Siguiente</button>
       </div>
     </div>
   </div>
 </div>
 
-<!--  facturacion -->
-<div class="modal fade" id="perfilClienteModalFacturacion" tabindex="-1" role="dialog" aria-labelledby="perfilClienteModalFacturacionTitle" aria-hidden="true">
+
+
+
+
+
+
+<div class="modal fade" id="perfilClienteModalFacturacion" tabindex="-1" role="dialog" aria-labelledby="perfilClienteModalFacturacionTitle"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-azul">
@@ -148,47 +403,52 @@
           <span aria-hidden="true" class="txt-blanco">&times;</span>
         </button>
       </div>
-      <div class="modal-body">  
+      <div class="modal-body">
 
         <form [formGroup]="formDataFacturacion">
 
           <div class="form-group">
-              <div class="bg-naranja txt-blanco font-bold" id=nro-style>3</div>            
+            <div class="bg-naranja txt-blanco font-bold" id=nro-style>3</div>
             <div class="bg-naranja txt-blanco font-bold" id='titulo-style'>
-                FACTURACION
+              FACTURACION
             </div>
           </div>
-          
+
           <div class="form-group">
             <label for="">CUIT</label>
             <input type="email" class="form-control" formControlName="CUIT" [(ngModel)]="form.CUIT" placeholder="Ingrese CUIT">
           </div>
-          
+
           <div class="form-group">
             <label for="">Tipos de Facturas</label>
             <select [(ngModel)]="form.fk_idTipoFactura" formControlName="fk_idTipoFactura" class="form-control">
               <option *ngFor='let tf of tiposFacturas' [value]="tf.idTipoFactura">{{tf.descripcion}}</option>
             </select>
           </div>
-                    
+
           <div class="form-group">
             <label for="">CUIT Razon Social</label>
-            <input type="email" class="form-control" formControlName="CUITrazonSocial" [(ngModel)]="form.CUITrazonSocial" placeholder="Ingrese CUIT Razon Social">
+            <input type="email" class="form-control" formControlName="CUITrazonSocial" [(ngModel)]="form.CUITrazonSocial"
+              placeholder="Ingrese CUIT Razon Social">
           </div>
-          
+
           <div class="form-group">
             <label for="">CUIT Domicilio Fiscal</label>
-            <input type="email" class="form-control" formControlName="CUITDomicilioFidcal" [(ngModel)]="form.CUITDomicilioFidcal" placeholder="Ingrese CUIT Domicilio Fiscal">
+            <input type="email" class="form-control" formControlName="CUITDomicilioFidcal" [(ngModel)]="form.CUITDomicilioFidcal"
+              placeholder="Ingrese CUIT Domicilio Fiscal">
           </div>
-                   
-        </form>   
+
+        </form>
 
       </div>
-      <div class="modal-footer">   
-        <button class='font-bold' style="color:red; background: none; border:none;" data-dismiss="modal" data-toggle="modal" data-target="#perfilClienteModalDomicilio">Atras</button>
-        <button class='font-bold' style="color:#038b36; background: none; border:none;"  *ngIf="isNuevo"  (click)="crear()" [disabled]="!formDataFacturacion.valid">Aceptar</button>                        
-        <button class='font-bold' style="color:#038b36; background: none; border:none;"  *ngIf="!isNuevo" (click)="update()" [disabled]="!formDataFacturacion.valid">Aceptar</button>                        
+      <div class="modal-footer">
+        <button class='font-bold' style="color:red; background: none; border:none;" data-dismiss="modal" data-toggle="modal"
+          data-target="#perfilClienteModalDomicilio">Atras</button>
+        <button class='font-bold' style="color:#038b36; background: none; border:none;" *ngIf="isNuevo" (click)="crear()"
+          [disabled]="!formDataFacturacion.valid">Aceptar</button>
+        <button class='font-bold' style="color:#038b36; background: none; border:none;" *ngIf="!isNuevo" (click)="update()"
+          [disabled]="!formDataFacturacion.valid">Aceptar</button>
       </div>
     </div>
   </div>
-</div>
+</div> -->

@@ -62,6 +62,7 @@ import { ClasificadosInicioComponent } from './component/clasificados-inicio/cla
 import { MinoristaComponent } from './component/minorista/minorista.component';
 import { DomicilioEntregaFormComponent } from './component/carrito/carrito-form/domicilio-entrega-form/domicilio-entrega-form.component';
 import { TurnosListComponent } from './component/servicios-inicio/turnos-list/turnos-list.component';
+import { RubrosgaleryInicioComponent } from './component/rubrosgalery-inicio/rubrosgalery-inicio.component';
 
 
 
@@ -126,7 +127,8 @@ const appRoutes: Routes = [
     ClasificadosInicioComponent,
     MinoristaComponent,
     DomicilioEntregaFormComponent,
-    TurnosListComponent
+    TurnosListComponent,
+    RubrosgaleryInicioComponent
   ],
   imports: [
     BrowserModule,

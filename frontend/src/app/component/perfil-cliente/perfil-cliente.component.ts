@@ -20,7 +20,7 @@ export class PerfilClienteComponent implements OnInit {
 
   form:any={ 
     idPerfilCliente: null, nombreComercio: null, nombre: null, apellido: null,
-    documento_dni:null, documento_otro:null, correo: null, telefono_code: null, 
+    documento_dni:null,  correo: null, telefono_code: null, 
     telefono: null, celular_code: null, celular: null, fk_idPerfilCliente: null,
     
     domicilio_entrega:null, fk_idTipoFactura: null,CUIT: null, CUITrazonSocial: null,
@@ -31,6 +31,12 @@ export class PerfilClienteComponent implements OnInit {
   
   isNuevo:any; 
   tiposFacturas:any;
+
+  desplegar: boolean[] = [false,false,false]; // BOLEANOS PARA DESPLEGAR FORMULARIOS
+
+  inPromise:boolean=false;
+
+  tipoDocumento:string[]=["DNI","LE","LC","Pasaporte"];
 
   constructor(
     private perfilService: PerfilClienteService,
@@ -45,10 +51,10 @@ export class PerfilClienteComponent implements OnInit {
       nombre          : ['', Validators.required],
       apellido        : ['', Validators.required],
       documento_dni   : ['', Validators.required],
-      documento_otro  : ['', Validators.required],
+      tipo_documento  : [''],
       correo          : ['', Validators.required],
       telefono_code   : [''],
-      telefono        : ['', Validators.required],
+      telefono        : [''],
       celular_code    : [''],
       celular         : ['', Validators.required],
     })
@@ -64,12 +70,12 @@ export class PerfilClienteComponent implements OnInit {
     })   
     
     this.formDataFacturacion = this.fb.group({
-      CUIT                : ['', Validators.required],
+      CUIT                : [''],
       fk_idTipoFactura    : ['', Validators.required],      
       CUITrazonSocial         : ['', Validators.required],
       CUITDomicilioFidcal     : ['', Validators.required],
     });
-
+    
     this.tipoFacturasService._getTipoFactura().subscribe(
       (resp:any) => {
         if(resp){
@@ -89,6 +95,7 @@ export class PerfilClienteComponent implements OnInit {
   }
 
   getPerfilCliente(){
+    this.inPromise=true;
     //Solicitamos la informacion del usuario 
     this.user._getAuthUser().subscribe(
       (resp:any) => { 
@@ -104,12 +111,16 @@ export class PerfilClienteComponent implements OnInit {
               this.form = resp.perfil; 
               this.form.idPerfilCliente = resp.perfil.idPerfilCliente;
               this.isNuevo = false;
-              console.log(this.form)
+              this.inPromise=false;
+               console.log(this.form); 
             }
           },
           error => {
             // Como no hay perfil, le decimos crear            
-            this.isNuevo = true;            
+            this.isNuevo = true; 
+            this.inPromise=false;
+            console.log("es nuevo");
+           
           }
         )
         
@@ -126,7 +137,7 @@ export class PerfilClienteComponent implements OnInit {
       nombre        :  this.form.nombre, 
       apellido      :  this.form.apellido,
       documento_dni : this.form.documento_dni, 
-      documento_otro: this.form.documento_otro, 
+      /* documento_otro: this.form.documento_otro,  */
       correo        :  this.form.correo, 
       telefono      :  this.form.telefono_code +''+ this.form.telefono, 
       celular       :  this.form.celular_code +''+ this.form.celular,
@@ -147,30 +158,68 @@ export class PerfilClienteComponent implements OnInit {
       CUITDomicilioFidcal:  this.form.CUITDomicilioFidcal, 
       fk_idPerfilCliente: userId.id
     } 
-
+    this.inPromise=true;
     this.perfilService._crear(data).subscribe(
       (resp:any) =>{
         this.as.msg('OK',resp.msj)
         this.getPerfilCliente();
-        $("#perfilClienteModal").modal('hide');
+        /* $("#perfilClienteModal").modal('hide'); */
+        this.inPromise=false;
       },
       error => {
         this.as.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+        this.inPromise=false;
+
       }
     )
   }
 
   update(){
+    this.inPromise=true;
+
     const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
     this.perfilService._update(this.form, this.form.idPerfilCliente).subscribe(
       resp => {
         this.as.msg('OK','Actualizacion completada')
         this.getPerfilCliente();
-        $("#perfilClienteModal").modal('hide');
+        /* $("#perfilClienteModal").modal('hide'); */
+        this.inPromise=false;
+
       },
       error => {
         this.as.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+        this.inPromise=false;
+
       }
     )
+  }
+  desplegarOpcion(opc:number){
+     if(opc<0 && opc > this.desplegar.length-1){
+      return
+    } 
+    
+    if(this.desplegar[opc]){
+      this.desplegar[opc]=false;
+     
+    }else {
+      this.desplegar[opc]=true;
+    
+    }
+    
+
+
+  }
+  SelectValueChange(){
+    console.log(this.formDataFacturacion.value.fk_idTipoFactura);
+    // el cuit solo sera requerido cuando la factura sea de tipo A
+    if(this.formDataFacturacion.value.fk_idTipoFactura==1){  // el valor 1 corresponde al tipo de Factura A
+      this.formDataFacturacion.get('CUIT').clearValidators();
+      this.formDataFacturacion.get('CUIT').setValidators([ Validators.required]);
+      this.formDataFacturacion.get('CUIT').updateValueAndValidity();
+    }else{
+      this.formDataFacturacion.get('CUIT').clearValidators();
+      this.formDataFacturacion.get('CUIT').updateValueAndValidity();
+    }
+   
   }
 }
