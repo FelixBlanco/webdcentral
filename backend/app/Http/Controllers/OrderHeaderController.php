@@ -64,7 +64,7 @@ class OrderHeaderController extends Controller
 
             $OB = new orderHeader($request->all());
 
-            if (isset($request->comprobanteDepositoTransferencia)) {
+            if (isset($request->comprobanteDepositoTransferencia) && $request->comprobanteDepositoTransferencia != "null") {
 
                 $this->validate($request, [
                     'comprobanteDepositoTransferencia' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
