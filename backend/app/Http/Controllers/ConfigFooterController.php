@@ -102,6 +102,9 @@ class ConfigFooterController extends Controller {
             $d->hasta             = $request->hasta;
             $d->url_mercado_libre = $request->url_mercado_libre;
             $d->link_otra_pagina  = $request->link_otra_pagina;
+            $d->url_app_store     = $request->url_app_store;
+            $d->url_google_play   = $request->url_google_play;
+            $d->url_mercadopago   = $request->url_mercadopago;
 
             if (is_null($request->imagen)) {
             } else {
