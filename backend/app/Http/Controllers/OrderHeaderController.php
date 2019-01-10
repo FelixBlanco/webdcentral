@@ -16,7 +16,6 @@ class OrderHeaderController extends Controller
 
     public function añadir (Request $request)
     {
-
         // opcional comentaryClient
 
         $this->validate($request, [
@@ -65,7 +64,7 @@ class OrderHeaderController extends Controller
 
             $OB = new orderHeader($request->all());
 
-            if ($request->comprobanteDepositoTransferencia != "null") {
+            if (isset($request->comprobanteDepositoTransferencia)) {
 
                 $this->validate($request, [
                     'comprobanteDepositoTransferencia' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
@@ -112,6 +111,7 @@ class OrderHeaderController extends Controller
             $OB->Fecha_Pedido    = Carbon::now()->toDateString();
             $OB->fk_idStateOrder = 1;
 
+
             $OB->save();
             $OB->user;
             $OB->state;
@@ -120,7 +120,7 @@ class OrderHeaderController extends Controller
                 $OB->tipoFactura;
             }
 
-            OrderDriverController::addHeader($OB);
+            //OrderDriverController::addHeader($OB);
             $response = [
                 'msj' => 'Pedido Creado',
                 'OB' => $OB,
