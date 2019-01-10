@@ -16,7 +16,8 @@ class ColorController extends Controller
      */
     public function index()
     {
-        return Color::orderby('idColor', 'desc')->get();
+        // Vamos a necesitar solo el que se esta usando actualmente.
+        return Color::orderby('idColor', 'desc')->first();
     }
 
     /**
