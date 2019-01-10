@@ -43,6 +43,7 @@ export class ConfigFooterComponent implements OnInit {
       avenidas: [''],
       listaPrecio: [Validators.min(1), Validators.max(9)],
       url_mercado_libre: [''],
+      url_mercadopago:[''],
       link_otra_pagina: [''],
       url_app_store: [''],
       url_google_play: [''],          
@@ -78,7 +79,9 @@ export class ConfigFooterComponent implements OnInit {
             url_mercado_libre: resp.url_mercado_libre,
             link_otra_pagina: resp.link_otra_pagina,
             url_app_store: resp.url_app_store,
-            url_google_play: resp.url_google_play
+            url_google_play: resp.url_google_play,
+            url_mercadopago:resp.url_mercadopago
+
           })
         }
       }
