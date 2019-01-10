@@ -23,6 +23,8 @@ import {
     faMinus as fasMinus,
     faChevronLeft as fasChevronLeft,
     faChevronRight as fasChevronRight,
+    faChevronDown as fasChevronDown,
+    faChevronUp as fasChevronUp,
     faCircle as fasCricle,
     faCheckCircle as fasCheckCircle,
     faEye as fasEye,
@@ -50,9 +52,13 @@ export const FA_ICONS: any = [
     fasMinus,
     fasChevronLeft,
     fasChevronRight,
+    fasChevronDown,
+    fasChevronUp,
     fasCricle,
     farCircle,
     fasCheckCircle,
-    fasEye
+    fasEye,
+    fasChevronDown,
+    fasChevronUp,
 ];
 

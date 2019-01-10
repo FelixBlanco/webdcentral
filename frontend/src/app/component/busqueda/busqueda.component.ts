@@ -53,6 +53,7 @@ export class BusquedaComponent implements OnInit {
     this.marcasServices.getMarcasBy(search).subscribe(resp => {
       if (resp.ok && resp.status === 202) {
         this.searchListMarcas = resp.body;
+        console.log(resp.body);
 
       } else {
         this.as.msg("ERR", "Error", "Ha ocurrido un error interno");
@@ -66,7 +67,7 @@ export class BusquedaComponent implements OnInit {
 
     this.productService.search(search).subscribe(resp => {
       if (resp.ok && resp.status === 200) {
-
+        console.log(resp.body.mascotas);
         behaviorPromises.push(
           this.productsBehavior.parseDefaultPrice(resp.body.marcas),
           this.productsBehavior.parseDefaultPrice(resp.body.nombre),
@@ -88,7 +89,7 @@ export class BusquedaComponent implements OnInit {
             this.searchForm.controls[key].setErrors(null);
           });
         });
-      } else {
+      } else { 
         console.error(resp);
         this.as.msg('ERR', 'Ha ocurrido un error al buscar');
       }
@@ -105,10 +106,10 @@ export class BusquedaComponent implements OnInit {
   }
 
 
-  seeMore(what: 'mascotas' | 'productos' | 'marcas') {
-    this.productsBehavior.updateSource(
-      what === 'mascotas' ? this.searchList.mascotas : what === 'productos' ? this.searchList.nombre : this.searchList.marcas
-    );
+  seeMore(what: 'mascotas' | 'productos' | 'marcas',index_:number) {
+    
+    const prod:any[]= what === 'mascotas' ? this.searchList.mascotas : what === 'productos' ? this.searchList.nombre : this.searchList.marcas
+    this.productsBehavior.updateSource(prod,index_);
     $('#busquedaModal').modal('toggle');
     this.router.navigate(['/productos']);
     setTimeout(() => document.getElementById('productos').scrollIntoView({ behavior: 'smooth' }), 1000);
@@ -117,7 +118,7 @@ export class BusquedaComponent implements OnInit {
     this.productService.getByMarca(marca).subscribe((resp) => {
       if(resp.ok && resp.status === 202){
        
-        this.productsBehavior.updateSource(resp.body);
+        this.productsBehavior.updateSource(resp.body,null);
         this.productService.productosFilterTittleSource.next(marca);
         $('#busquedaModal').modal('toggle');
         this.router.navigate(['/productos']);

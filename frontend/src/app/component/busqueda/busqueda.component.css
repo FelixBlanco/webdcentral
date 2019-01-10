@@ -9,10 +9,20 @@
     height: 250px;
     padding: 40px 40px 10px 40px ;
 }
-img{
+/* img{
     width: 90px;
     height: 100px;
     margin-bottom: 1.3rem;
+} */
+img{
+    /* padding-top: 15px; */
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    
+
 }
 
 .product-draw span{
@@ -71,7 +81,6 @@ img{
     align-items: center;
     min-height: 25px; 
     width: 35px;
-      
     background: orange;
    
     border-radius: 95% 0; 

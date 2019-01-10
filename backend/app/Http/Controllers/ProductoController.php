@@ -40,18 +40,29 @@ class ProductoController extends Controller {
                 ->get();
 
 
-            $tags = Producto::select('tb_productos.*')
+            $tags = Producto::select('tb_tag_producto.tag')
                 ->join('tb_tag_producto', 'tb_productos.codeProdSys', '=', 'tb_tag_producto.codeProdSys')
                 ->where('tb_productos.nombre', 'like', $busqueda)
                 ->where('tb_productos.fk_idSatate', '=', 1)
                 ->groupBy('tb_productos.Agrupacion')
+                ->distinct()
                 ->get();
 
 
             $mascotas = $this->getAgrupation($mascotas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
             $marcas   = $this->getAgrupation($marcas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
             $nombre   = $this->getAgrupation($nombre);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
-            $tags     = $this->getAgrupation($tags);// OBTEBNER LISTADO DE TAGS DE UN PRODUCTO //
+            //$tags     = $this->getAgrupation($tags);// OBTEBNER LISTADO DE TAGS DE UN PRODUCTO //
+
+            $array_tags=array();
+
+            if(count($tags)>0)
+            {
+                foreach ($tags as $tag) {
+                    $array_tags[] = $tag->tag;
+                }
+            }
+
 
 
             $response = [
@@ -59,7 +70,7 @@ class ProductoController extends Controller {
                 'mascotas' => $mascotas,
                 'marcas'   => $marcas,
                 'nombre'   => $nombre,
-                'tags'     => $tags,
+                'tags'     => $array_tags,
             ];
 
             return response()->json($response, 200);
@@ -84,6 +95,7 @@ class ProductoController extends Controller {
                 ->where('fk_idSatate', '=', 1)
                 ->groupBy('Agrupacion')
                 ->get();
+
 
             $mascotas = $this->getAgrupation($mascotas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
             $marcas   = $this->getAgrupation($marcas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
@@ -526,7 +538,9 @@ class ProductoController extends Controller {
                    ,ListadePrecio5_Producto ,ListadePrecio6_Producto ,ListadePrecio7_Producto ,ListadePrecio8_Producto ,ListadePrecio9_Producto
                     ,CantidadDescuentoVenta1_Producto,DescuentoVenta1_Producto ,CantidadDescuentoVenta2_Producto,DescuentoVenta2_Producto
                      ,CantidadDescuentoVenta1_Producto,DescuentoVenta3_Producto ,CantidadDescuentoVenta4_Producto,DescuentoVenta4_Producto
-                    ,CantidadDescuentoVenta3_Producto,Expr1,WebLink_Rubro,WebLink_Subrubro1,WebLink_Fabricante  order by Descripcion_Producto  ");
+                    ,CantidadDescuentoVenta3_Producto,WebLink_Rubro,WebLink_Subrubro1,WebLink_Fabricante,StockActual_Producto,
+                    Medida_Producto,KilosProducto,MedidaKilosProducto,VolumenProducto,MedidaVolumneProducto,Presentacion 
+                    order by Descripcion_Producto  ");
 
 
             $i = 0;
