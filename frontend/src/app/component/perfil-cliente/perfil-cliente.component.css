@@ -35,3 +35,6 @@
 button{
   cursor: pointer;
 }
+small{
+  margin: 0 auto;
+}

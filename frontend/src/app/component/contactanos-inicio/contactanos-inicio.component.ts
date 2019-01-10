@@ -44,8 +44,8 @@ export class ContactanosInicioComponent implements OnInit {
         this.nroTelefono = 'tel:'+resp.nroContacto
         this.email1 = 'mailto:'+resp.mail1
         this.email2 = 'mailto:'+resp.mail2        
-        this.nroWhatsapp = 'whatsapp://send/'+resp.whatsApp1;      
-        this.nroWhatsapp2 = 'whatsapp://send/'+resp.whatsApp2;
+        this.nroWhatsapp = 'https://api.whatsapp.com/send?phone='+resp.whatsApp1;      
+        this.nroWhatsapp2 = 'https://api.whatsapp.com/send?phone='+resp.whatsApp2;
         
         if(!isNaN(this.footerConfig.latitud) && !isNaN(this.footerConfig.longitud)){
           this.lat = Number(this.footerConfig.latitud);

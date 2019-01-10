@@ -46,4 +46,8 @@ export class LoginService {
     return this.http.get<any>(`${environment.apiHost}/api/v1/buscarSuscripcionPorEmail/${email}`, {observe: 'response'});
   }
   
+  forgetPassword(email:any){
+    return this.http.post(`${environment.apiHost}/api/v1/reestablecerClave`,{email:email});
+  }
+
 }

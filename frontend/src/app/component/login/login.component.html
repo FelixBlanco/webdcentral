@@ -21,7 +21,8 @@
           </div>
           <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner>
           <div class="p-1 text-center">
-            <a style="cursor: pointer;color: #009BDD;" class="font-bold btn btn-link txt-azul" (click)="routeToLogin()">¿Aún no posees usuario? Registrarse aquí</a>
+            <a style="cursor: pointer;color: #009BDD;" class="font-bold btn btn-link txt-azul" (click)="routeToLogin()">¿Aún no posees usuario? Registrarse aquí</a> <br>
+            <p  (click)='irToForget()'> Olvidaste tu Contraseña? </p>
           </div>
           
       </div>

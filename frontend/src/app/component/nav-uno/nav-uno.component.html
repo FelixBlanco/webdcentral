@@ -22,6 +22,36 @@
   </div>
 </div>
 
+
+<!-- MODAL OLVIDAR CONTRASENA -->
+<div class="modal fade" id="olvidarContrasenaModal" tabindex="-1" role="dialog" aria-labelledby="olvidarContrasenaModalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-naranja">
+        <h5 class="modal-title txt-blanco" id="olvidarContrasenaModalTitle">Recuperar Contraseña</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="txt-blanco">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">  
+        <form [formGroup]="formOlvidarPassword">
+          <div class="form-group">
+              <label for="">Ingresa tu email</label>
+              <input type="text" class="form-control" placeholder="Ingresa tu email" formControlName='email'>
+          </div>          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <ng-container *ngIf="!inPromise">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" [disabled]='!formOlvidarPassword.valid' (click)="forgetPassword()">Enviar</button>      
+        </ng-container>
+        <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner>        
+      </div>
+    </div>
+  </div>
+</div>
+
 <app-perfil-cliente></app-perfil-cliente>
 
 <!-- Primer Nav -->

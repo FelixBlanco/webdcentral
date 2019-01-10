@@ -111,4 +111,9 @@ export class LoginComponent implements OnInit {
         $("#loginModal").modal('hide');
         setTimeout(() =>  $("#registraseModal").modal('show'), 500);
     }
+
+    irToForget(){
+        $('#loginModal').modal('hide');
+        setTimeout(() =>  $("#olvidarContrasenaModal").modal('show'), 500);  
+    }     
 }
