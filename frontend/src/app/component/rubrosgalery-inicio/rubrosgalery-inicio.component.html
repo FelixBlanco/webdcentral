@@ -24,9 +24,25 @@
                     <div class="container-fluid">
                       <div class="row justify-content-center">
                         <div class="col-3 text-center" *ngFor="let _ of item.items">
-                          <img  matTooltip="{{_.rubro}}"
+
+                         <img *ngIf="!_.WebLink_Rubro"
+                           src="assets/no_image_aviable.png" alt="nombre"
+                           matTooltip="{{_.rubro}}"
                            matTooltipPosition="above"
-                           (click)="filterProducts(_.rubro)" [src]="_.WebLink_Rubro" alt="_.rubro" height="200" width="200">
+                           (click)="filterProducts(_.rubro)" 
+                           height="200"
+                           width="200"
+                           /> 
+
+                          <img *ngIf="_.WebLink_Rubro"
+                           matTooltip="{{_.rubro}}"
+                           matTooltipPosition="above"
+                           (click)="filterProducts(_.rubro)"
+                            [src]="_.WebLink_Rubro" alt="_.rubro" 
+                            height="200"
+                             width="200"
+                             />
+
                         </div>
                       </div>
                     </div>
