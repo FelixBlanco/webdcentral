@@ -183,15 +183,15 @@
                 <input type="email" class="form-control" formControlName="CUIT" [(ngModel)]="form.CUIT" placeholder="Ingrese CUIT">
               </div>
               <div class="form-group">
-                <label for="">CUIT Razon Social</label>
+                <label for="">Razon Social</label>
                 <input type="email" class="form-control" formControlName="CUITrazonSocial" [(ngModel)]="form.CUITrazonSocial"
-                  placeholder="Ingrese CUIT Razon Social">
+                  placeholder="Ingrese  Razon Social">
               </div>
 
               <div class="form-group">
-                <label for="">CUIT Domicilio Fiscal</label>
+                <label for="">Domicilio Fiscal</label>
                 <input type="email" class="form-control" formControlName="CUITDomicilioFidcal" [(ngModel)]="form.CUITDomicilioFidcal"
-                  placeholder="Ingrese CUIT Domicilio Fiscal">
+                  placeholder="Ingrese  Domicilio Fiscal">
               </div>
 
             </form>
@@ -205,11 +205,12 @@
 
 
       </div>
+      <hr>
+      <small  *ngIf="!inPromise && (!formData.valid || !formDataDomicilio.valid || !formDataFacturacion.valid)" class="fond-bold " style="color:red; ">Verifique los Datos</small>
 
       <div class="modal-footer ">
         
-<!--             <small *ngIf="!inPromise && (!formData.valid || !formDataDomicilio.valid || !formDataFacturacion.valid)" class="fond-bold " style="color:red; ">Verifique los Datos</small>
- -->            <mat-spinner *ngIf='inPromise' diameter="30" style="margin: 0 auto;"></mat-spinner>
+             <mat-spinner *ngIf='inPromise' diameter="30" style="margin: 0 auto;"></mat-spinner>
         
         <!--         <button  class='font-bold' style="color:#038b36; background: none; border:none;" *ngIf="isNuevo && !inPromise" (click)="crear()"
           [disabled]="!formData.valid && !formDataDomicilio.valid && !formDataFacturacion.valid">Aceptar</button>

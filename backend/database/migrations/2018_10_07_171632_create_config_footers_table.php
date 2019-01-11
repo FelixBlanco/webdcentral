@@ -35,6 +35,7 @@ class CreateConfigFootersTable extends Migration {
             $table->string('url_app_store')->nullable();
             $table->string('url_google_play')->nullable();
 
+
             $table->timestamps();
 
             $table->softDeletes();

@@ -4,7 +4,7 @@ import { PerfilClienteService } from '../../services/perfil-cliente.service';
 import { AlertsService } from '../../services/alerts.service'
 import { LoginService } from '../../services/login.service';
 import { TipoFacturasService } from '../../services/tipo-facturas.service'
-
+import { UserTokenService } from '../../services/user-token.service'
 declare var $;
 
 @Component({
@@ -43,7 +43,8 @@ export class PerfilClienteComponent implements OnInit {
     private as: AlertsService,
     private fb: FormBuilder, 
     private user: LoginService,
-    private tipoFacturasService: TipoFacturasService
+    private tipoFacturasService: TipoFacturasService,
+    private userT_service:UserTokenService,
   ) { 
 
     this.formData = this.fb.group({
@@ -87,11 +88,20 @@ export class PerfilClienteComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('token') != null){ // Verificamos si esta logueado
-      this.isNuevo = true; // Cuando llamemos la informacion, consultamos si existe en perfil-cliente
+   
+    this.userT_service.token.subscribe((val)=>{
+      if(localStorage.getItem('token') != null){ // Verificamos si esta logueado
+        this.isNuevo = true; // Cuando llamemos la informacion, consultamos si existe en perfil-cliente
+      
+         this.getPerfilCliente(); 
+  
+      } 
+    })
+   
 
-      this.getPerfilCliente();
-    }  
+    
+ 
+  //  this.getPerfilCliente(); 
   }
 
   getPerfilCliente(){
@@ -101,6 +111,7 @@ export class PerfilClienteComponent implements OnInit {
       (resp:any) => { 
 
         this.form.fk_idPerfilCliente = resp.id // agregamos el ID
+        console.log(resp.id);
         
         const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
         // verificamos si ya tiene su informacio 
@@ -110,16 +121,18 @@ export class PerfilClienteComponent implements OnInit {
             if(resp){
               this.form = resp.perfil; 
               this.form.idPerfilCliente = resp.perfil.idPerfilCliente;
-              this.isNuevo = false;
+              /* this.isNuevo = resp.perfil.nombre ? false:true; */
+              this.isNuevo=false;
               this.inPromise=false;
-               console.log(this.form); 
+              
+               
             }
           },
           error => {
             // Como no hay perfil, le decimos crear            
             this.isNuevo = true; 
             this.inPromise=false;
-            console.log("es nuevo");
+           
            
           }
         )
@@ -173,16 +186,24 @@ export class PerfilClienteComponent implements OnInit {
       }
     )
   }
-
   update(){
-    this.inPromise=true;
+   if(!this.form.idPerfilCliente){
+      this.getPerfilCliente();
+      this.update2();
+    }else{
+      this.update2();
+    }
+  }
+  update2(){
+    console.log(this.form.idPerfilCliente);
+     this.inPromise=true;
 
     const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
     this.perfilService._update(this.form, this.form.idPerfilCliente).subscribe(
       resp => {
         this.as.msg('OK','Actualizacion completada')
         this.getPerfilCliente();
-        /* $("#perfilClienteModal").modal('hide'); */
+       
         this.inPromise=false;
 
       },
@@ -191,7 +212,7 @@ export class PerfilClienteComponent implements OnInit {
         this.inPromise=false;
 
       }
-    )
+    ) 
   }
   desplegarOpcion(opc:number){
      if(opc<0 && opc > this.desplegar.length-1){
