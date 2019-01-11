@@ -7,6 +7,7 @@ import { ConfigRedesService } from '../../services/config-redes.service'
 import { UserTokenService } from 'src/app/services/user-token.service';
 import { ConfgFooterService } from 'src/app/services/confg-footer.service';
 import { Router } from '@angular/router';
+import { FormGroup, Validator, FormBuilder, Validators  } from '@angular/forms'
 
 declare var $:any;
 
@@ -29,6 +30,8 @@ export class NavUnoComponent implements OnInit {
 
   inPromise: boolean;
 
+  formOlvidarPassword: FormGroup;
+
   constructor(
     private _color: ConfigColorService,
     private _loginService: LoginService,
@@ -37,8 +40,13 @@ export class NavUnoComponent implements OnInit {
     private configRedes: ConfigRedesService,
     private userToken: UserTokenService,
     private router: Router,
-    private footerService:ConfgFooterService
-  ) { }
+    private footerService:ConfgFooterService,
+    private fb : FormBuilder
+  ) { 
+    this.formOlvidarPassword = this.fb.group({
+      email : ['',[Validators.email, Validators.required]]
+    })
+  }
 
   ngOnInit() {
     this.helpStatus();
@@ -99,5 +107,23 @@ export class NavUnoComponent implements OnInit {
  helpStatus(){
  
     this.footerService.restartAyudaStatus(); 
+  }
+
+  forgetPassword(){    
+    this.inPromise = true;
+    this._loginService.forgetPassword(this.formOlvidarPassword.value.email).subscribe(
+      (resp:any) => {
+        this.inPromise = false;        
+        if(resp.msj != null){
+          this._alertsService.msg('OK',resp.msj)
+        }              
+      },
+      error => {
+        this.inPromise = false;
+        if(error.errors.email != null){
+          this._alertsService.msg('ERR',error.errors.email);
+        }                
+      }
+    )
   }
 }

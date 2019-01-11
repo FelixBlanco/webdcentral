@@ -448,7 +448,7 @@ class UserController extends Controller
         if (is_null($user)) {
 
             $response = [
-                'msj' => 'Si eres usuario nuetro, te enviamos un Mail, revise su correo para proceder al inicio de sesión',
+                'msj' => 'Si eres usuario nuestro, te enviamos un Mail, revise su correo para proceder al inicio de sesión',
             ];
 
             return response()->json($response, 200);
@@ -459,7 +459,7 @@ class UserController extends Controller
 
             Mail::to($user->email)->send(new Prueba($user, $clave_nueva));
             $response = [
-                'msj'       => 'Si eres usuario nuetro, te enviamos un Mail, revise su correo para proceder al inicio de sesión',
+                'msj'       => 'Si eres usuario nuestro, te enviamos un Mail, revise su correo para proceder al inicio de sesión',
                 'user'      => $user,
                 'clave_new' => $clave_nueva,
             ];
