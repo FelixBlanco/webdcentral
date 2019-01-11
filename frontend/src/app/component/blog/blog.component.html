@@ -29,7 +29,11 @@
               <ng-container *ngSwitchDefault>
                 <div class="col-3 text-center" *ngFor="let cat of categoriesList">
                   <div class="card sm m-2" (click)="routeTo('blogs', cat)">
-                    <img class="card-img-top" [src]="cat.set_imagen" alt="{{cat.titulo}}">                    
+                    <img *ngIf="cat.set_imagen" class="card-img-top" [src]="cat.set_imagen" alt="{{cat.titulo}}">                    
+                    <img *ngIf="!cat.set_imagen"
+                          src="assets/no_image_aviable.png" alt="nombre"
+                           class="card-img-top"
+                          />
                     <div class="card-body">
                       <h5 class="card-title text-capitalize font-bold">{{cat.titulo}}</h5>
                     </div>
@@ -68,12 +72,17 @@
       <div class="modal-body" *ngIf="actualBlog">
         <div class="row">
           <div class="col-4">
-            <img width="100%" [src]="actualBlog.set_imagen" alt="" style="border-radius: .7em;">
+            <img *ngIf="actualBlog.set_imagen" width="100%" [src]="actualBlog.set_imagen" alt="" style="border-radius: .7em;">
+            <img *ngIf="!actualBlog.set_imagen"
+                           src="assets/no_image_aviable.png" alt="nombre"
+                           style="border-radius: .7em;"
+                           width="100%"
+                           />
           </div>
           <div class="col-8">
             <div class="p-3">
               <h4 class="text-capitalize txt-naranja font-bold">{{actualBlog.blogs.titulo}}</h4>
-              <p class="text-justify">{{actualBlog.blogs.descripcion}}</p>
+              <p class="text-justify" >{{actualBlog.blogs.descripcion}}</p>
             </div>
           </div>
         </div>

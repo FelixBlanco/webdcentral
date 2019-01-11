@@ -72,3 +72,6 @@ button{
     top: 20%;
     right: 35%;
 }
+p{
+    word-wrap: break-word;
+}
