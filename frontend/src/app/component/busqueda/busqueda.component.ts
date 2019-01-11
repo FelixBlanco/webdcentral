@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProductosService, SearchBody, Producto } from 'src/app/services/productos.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { MarcasService } from 'src/app/services/marcas.service';
+import { RubrosService } from 'src/app/services/rubros.service';
+
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { Router } from '@angular/router';
 import { parse } from 'url';
@@ -17,6 +19,7 @@ export class BusquedaComponent implements OnInit {
   searchForm: FormGroup;
   searchList: SearchBody;
   searchListMarcas: Array<any>;
+  filterFormRubros: FormGroup;
 
   inPromise: boolean;
 
@@ -26,11 +29,18 @@ export class BusquedaComponent implements OnInit {
     private as: AlertsService,
     private productsBehavior: ProductsBehaviorService,
     private router: Router,
-    private marcasServices: MarcasService
+    private marcasServices: MarcasService,
+    private rubroService:RubrosService
   ) {
     this.searchForm = this.fb.group({
       searchValue: ['', [Validators.required, Validators.maxLength(50)]]
     })
+      this.filterFormRubros = this.fb.group({
+      rubro: [''],
+      subRubroA: [''],
+      subRubroB: [''],
+      searchValue: ['', Validators.required]
+    });
   }
 
 
@@ -132,6 +142,52 @@ export class BusquedaComponent implements OnInit {
       console.error(error);
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno');
     })
+  }
+  seeRubro(rubro:string,subRubro1:string,subRubro2:string) {
+
+    if (!rubro && !subRubro1 && !subRubro2) {
+      return;
+    }
+     $('#busquedaModal').modal('toggle');
+        this.router.navigate(['/productos']);
+
+  
+    this.filterFormRubros.get('rubro').setValue(rubro);
+    this.filterFormRubros.get('subRubroA').setValue(subRubro1);
+    this.filterFormRubros.get('subRubroB').setValue(subRubro2);
+    this.filterFormRubros.updateValueAndValidity();
+    const rub = this.filterFormRubros.value;
+
+    this.inPromise = true;
+    this.productService.filter3Pack(rub).subscribe((resp) => {
+      if (resp.ok && resp.status === 201) {
+        this.productsBehavior.updateSource(resp.body.productos);
+       
+        setTimeout(() => document.getElementById('productos').scrollIntoView({ behavior: 'smooth' }), 1000);
+        
+        this.setTittleByRubros(rub);
+      } else {
+        console.error(resp);
+        this.as.msg('ERR', 'Ha ocurrido un error interno => Filtrar por Rubros');
+      }
+      this.inPromise = false;
+    }, error => {
+      console.error(error);
+      this.as.msg('ERR', 'Ha ocurrido un error interno => Filtrar por Rubros');
+      this.inPromise = false;
+    });
+  }
+  setTittleByRubros({ rubro, subRubroA, subRubroB }) {
+    const rubros = { rubro, subRubroA, subRubroB };
+    const keys: string[] = Object.keys(rubros);
+    let tittle: string = '';
+
+
+    keys.forEach((val, indx) => {
+      tittle = tittle.concat(indx === 0 ? rubros[val] : rubros[val] ? ` / ${rubros[val]}` : '');
+    })
+
+    this.productService.productosFilterTittleSource.next(tittle);
   }
 
 }
