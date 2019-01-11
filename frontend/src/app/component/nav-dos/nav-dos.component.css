@@ -1,5 +1,9 @@
 #searchInput{ display: none }
 
+#nav-dos{
+  margin-top: -3%;
+}
+
 #nav-dos .nav-item{
   margin-left: -2%;
 }
@@ -13,4 +17,10 @@
 }
 span{
   cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  #nav-dos{
+    margin-top: 1%;
+  }
 }
