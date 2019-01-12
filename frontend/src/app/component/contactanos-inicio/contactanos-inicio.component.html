@@ -63,15 +63,14 @@
               <ng-container *ngIf="footerConfig">
                 <div class="container">
                   <div class="row justify-content-center mb-3">
-                    <div class="col-6">
-                      <h6 class="font-bold text-uppercase text-center">horario de atención del local: <br> {{footerConfig.horarios}}</h6>
+                    <div class="col-6">                      
                       <h6 *ngIf="!footerConfig.horarios" class="font-bold text-uppercase text-center">horario de atención del local: <br> <span class="text-muted font-italic">Disculpe no tenemos horarios disponibles</span></h6>
                       <ng-container *ngIf="lat && lng">
                         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16">
                           <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
                         </agm-map>
                         <div class="text-center">
-                          <a [href]="urlMaps" class="btn p-2" target="_blank">Ampliar Mapa</a>
+                          <a [href]="urlMaps" class="btn p-2" target="_blank"><h4>Ir</h4>  </a>
                         </div>                        
                       </ng-container>
                       <div *ngIf="!lat && !lng" class="card">
