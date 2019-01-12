@@ -195,14 +195,14 @@ class PerfilClientesController extends Controller {
         //$request->descripcion
 
         $this->validate($request, [
-            'fk_idPerfilCliente' => 'required',
+           // 'fk_idPerfilCliente' => 'required',
             'descripcion'        => 'required',
         ], [
-            'fk_idPerfilCliente.required' => 'El campo es requerido',
+            //'fk_idPerfilCliente.required' => 'El campo es requerido',
             'descripcion.required'        => 'El campo es requerido',
         ]);
 
-        $perfil = PerfilCliente::find($request->fk_idPerfilCliente);
+        /*$perfil = PerfilCliente::find($request->fk_idPerfilCliente);
 
         if (is_null($perfil)) {
 
@@ -211,7 +211,7 @@ class PerfilClientesController extends Controller {
             ];
 
             return response()->json($response, 404);
-        }
+        }*/
 
         DB::beginTransaction();
         try {

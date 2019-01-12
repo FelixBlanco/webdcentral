@@ -314,13 +314,13 @@ class ProductoController extends Controller {
 
     public static function getAllRubros() {
 
-        $response = Producto::select("rubro","WebLink_Rubro")->groupBy('rubro')->orderBy("rubro")->get();
+        $response = Producto::select("rubro","WebLink_Rubro")->where('fk_idSatate','!=','3')->groupBy('rubro')->orderBy("rubro")->get();
 
         return response()->json($response, 202);
     }
 
     public static function getAllMarcas() {
-        $response = Producto::select("marca")->groupBy('marca')->orderBy("marca")->get();
+        $response = Producto::select("marca")->where('fk_idSatate','!=','3')->groupBy('marca')->orderBy("marca")->get();
 
         return response()->json($response, 202);
     }
@@ -329,7 +329,7 @@ class ProductoController extends Controller {
 
         if (! is_null($search)) {
             $busqueda = $search."%";
-            $response = Producto::select("marca","Weblink_fabricante")->where('marca', 'like', $busqueda)->groupBy('marca')->orderBy("marca")->get();
+            $response = Producto::select("marca","Weblink_fabricante")->where('fk_idSatate','!=','3')->where('marca', 'like', $busqueda)->groupBy('marca')->orderBy("marca")->get();
 
             if (is_null($response)) {
                 $response = [
@@ -354,6 +354,7 @@ class ProductoController extends Controller {
         $response = Producto::select("SubRubro1")
         ->groupBy('SubRubro1')
         ->orderBy("SubRubro1")
+        ->where('fk_idSatate','!=','3')
         ->where("rubro","=",$rubro)
         ->get();
 
@@ -364,6 +365,7 @@ class ProductoController extends Controller {
         $response = Producto::select("SubRubro2")
         ->groupBy('SubRubro2')
         ->orderBy("SubRubro2")
+        ->where('fk_idSatate','!=','3')
         ->where("SubRubro1","=",$SubRubro1)
         ->get();
 
@@ -384,33 +386,50 @@ class ProductoController extends Controller {
         } else {
 
             $busqueda_rubro     = $request->rubro;
-            $busqueda_SubRubro1 = $request->SubRubro1;
-            $busqueda_SubRubro2 = $request->SubRubro2;
+            $busqueda_SubRubro1 = $request->subRubroA;
+            $busqueda_SubRubro2 = $request->subRubroB;
             $result             = [];
 
+
+            $sql = "SELECT * FROM tb_productos where  fk_idSatate != 3  ";
+
             if (! is_null($busqueda_rubro)) {
-                $f1 = Producto::where('rubro', $busqueda_rubro)->groupBy('Agrupacion')->get();
+                //$f1 = Producto::where('rubro', $busqueda_rubro)->where('fk_idSatate','!=','3')->groupBy('Agrupacion')->get();
+                $sql = $sql." and rubro = '".$busqueda_rubro."' ";
+                /*DB::connection('mysql')->select($sql);
                 foreach ($f1 as $f) {
                     $result[] = $f;
-                }
+                }*/
             }
 
             if (! is_null($busqueda_SubRubro1)) {
-                $f2 = Producto::where('SubRubro1', $busqueda_SubRubro1)->groupBy('Agrupacion')->get();
-                foreach ($f2 as $f) {
+                //$f2 = Producto::where('SubRubro1', $busqueda_SubRubro1)->where('fk_idSatate','!=','3')->groupBy('Agrupacion')->get();
+                
+                $sql = $sql." and SubRubro1 = '".$busqueda_SubRubro1."' ";
+
+               /* foreach ($f2 as $f) {
                     $result[] = $f;
-                }
+                }*/
 
             }
 
             if (! is_null($busqueda_SubRubro2)) {
-                $f3 = Producto::where('SubRubro2', $busqueda_SubRubro2)->groupBy('Agrupacion')->get();
-                foreach ($f3 as $f) {
+                //$f3 = Producto::where('SubRubro2', $busqueda_SubRubro2)->where('fk_idSatate','!=','3')->groupBy('Agrupacion')->get();
+                $sql = $sql." and SubRubro2 = '".$busqueda_SubRubro2."' ";
+
+                /*foreach ($f3 as $f) {
                     $result[] = $f;
-                }
+                }*/
             }
 
-            $result_unico = array_unique($result);
+            $sql = $sql."  group by Agrupacion ";
+
+
+            //dd($sql);
+            $result_unico = DB::connection('mysql')->select($sql);
+                
+
+            //$result_unico = array_unique($result);
 
 
             $response = [
@@ -493,7 +512,7 @@ class ProductoController extends Controller {
 
             }
 
-
+             
            
 
             $rs = DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
@@ -505,7 +524,10 @@ class ProductoController extends Controller {
                    ,ListadePrecio5_Producto ,ListadePrecio6_Producto ,ListadePrecio7_Producto ,ListadePrecio8_Producto ,ListadePrecio9_Producto
                     ,CantidadDescuentoVenta1_Producto,DescuentoVenta1_Producto ,CantidadDescuentoVenta2_Producto,DescuentoVenta2_Producto
                      ,CantidadDescuentoVenta1_Producto,DescuentoVenta3_Producto ,CantidadDescuentoVenta4_Producto,DescuentoVenta4_Producto
-                    ,CantidadDescuentoVenta3_Producto,Expr1,WebLink_Rubro,WebLink_Subrubro1,WebLink_Fabricante  order by Descripcion_Producto  ");
+                    ,CantidadDescuentoVenta3_Producto,WebLink_Rubro,WebLink_Subrubro1,WebLink_Fabricante
+                    ,Valoracion_Fabricante,StockActual_Producto
+                    
+                    order by Descripcion_Producto  ");
 
           
             $i = 0;    
@@ -515,8 +537,27 @@ class ProductoController extends Controller {
                 if($item->Agrupacion != null){
                     
                     $agrupacion =  DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
-                    where Agrupacion = '".$item->Agrupacion."' ");
+                    where Agrupacion = '".$item->Agrupacion."' 
+                    ");
                     $rs[$i]->listAgrupacion = $agrupacion;
+
+                    // LITADO DE SUB ITEM //'
+                    $rs1 = $agrupacion;
+                    $j = 0;    
+                    foreach ($rs1 as $item2) {
+        
+                    
+                        if($item2->Agrupacion != null){
+                            
+                            $agrupacion2 =  DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
+                            where Agrupacion = '".$item2->Agrupacion."' ");
+                            $rs1[$j]->listAgrupacion = $agrupacion2;
+        
+                            
+                        }
+                        $j++;
+                    }
+
                 }
                 $i++;
             }
