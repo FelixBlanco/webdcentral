@@ -62,7 +62,7 @@ export class PerfilClienteComponent implements OnInit {
 
 
     this.formDataDomicilio = this.fb.group({
-      domicilio_entrega  : ['', Validators.required],
+      domicilio_entrega  : [''],
       domicilio_entrega_2  : [''],
       domicilio_entrega_3  : [''],
       domicilio_entrega_4  : [''],
