@@ -351,7 +351,7 @@ class ProductoController extends Controller {
     }
 
     public static function getAllMarcas() {
-        $response = Producto::select("marca")->groupBy('marca')->orderBy("marca")->get();
+        $response = Producto::select("marca")->where('fk_idSatate','!=','3')->groupBy('marca')->orderBy("marca")->get();
 
         return response()->json($response, 202);
     }
@@ -415,38 +415,56 @@ class ProductoController extends Controller {
         } else {
 
             $busqueda_rubro     = $request->rubro;
-            $busqueda_SubRubro1 = $request->SubRubro1;
-            $busqueda_SubRubro2 = $request->SubRubro2;
+            $busqueda_SubRubro1 = $request->subRubroA;
+            $busqueda_SubRubro2 = $request->subRubroB;
             $result             = [];
 
+
+            $sql = "SELECT * FROM tb_productos where  fk_idSatate != 3  ";
+
             if (! is_null($busqueda_rubro)) {
-                $f1 = Producto::where('rubro', $busqueda_rubro)->groupBy('Agrupacion')->get();
+                //$f1 = Producto::where('rubro', $busqueda_rubro)->where('fk_idSatate','!=','3')->groupBy('Agrupacion')->get();
+                $sql = $sql." and rubro = '".$busqueda_rubro."' ";
+                /*DB::connection('mysql')->select($sql);
                 foreach ($f1 as $f) {
                     $result[] = $f;
-                }
+                }*/
             }
 
             if (! is_null($busqueda_SubRubro1)) {
-                $f2 = Producto::where('SubRubro1', $busqueda_SubRubro1)->groupBy('Agrupacion')->get();
-                foreach ($f2 as $f) {
+                //$f2 = Producto::where('SubRubro1', $busqueda_SubRubro1)->where('fk_idSatate','!=','3')->groupBy('Agrupacion')->get();
+                
+                $sql = $sql." and SubRubro1 = '".$busqueda_SubRubro1."' ";
+
+               /* foreach ($f2 as $f) {
                     $result[] = $f;
-                }
+                }*/
 
             }
 
             if (! is_null($busqueda_SubRubro2)) {
-                $f3 = Producto::where('SubRubro2', $busqueda_SubRubro2)->groupBy('Agrupacion')->get();
-                foreach ($f3 as $f) {
+                //$f3 = Producto::where('SubRubro2', $busqueda_SubRubro2)->where('fk_idSatate','!=','3')->groupBy('Agrupacion')->get();
+                $sql = $sql." and SubRubro2 = '".$busqueda_SubRubro2."' ";
+
+                /*foreach ($f3 as $f) {
                     $result[] = $f;
-                }
+                }*/
             }
 
-            $result_unico = array_unique($result);
+            $sql = $sql."  group by Agrupacion ";
+            //dd($sql);
+
+            $result_unico = DB::connection('mysql')->select($sql);
+
+
+            $RESUL   = $this->getAgrupation($result_unico);
+
+            //$result_unico = array_unique($result);
 
 
             $response = [
                 'msj'       => 'Lista de productos',
-                'productos' => $result_unico,
+                'productos' => $RESUL,
             ];
 
             return response()->json($response, 201);
@@ -552,6 +570,24 @@ class ProductoController extends Controller {
                     $agrupacion             = DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
                     where Agrupacion = '".$item->Agrupacion."' ");
                     $rs[$i]->listAgrupacion = $agrupacion;
+
+                    // LITADO DE SUB ITEM //'
+                    $rs1 = $agrupacion;
+                    $j = 0;    
+                    foreach ($rs1 as $item2) {
+        
+                    
+                        if($item2->Agrupacion != null){
+                            
+                            $agrupacion2 =  DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
+                            where Agrupacion = '".$item2->Agrupacion."' ");
+                            $rs1[$j]->listAgrupacion = $agrupacion2;
+        
+                            
+                        }
+                        $j++;
+                    }
+
                 }
                 $i++;
             }

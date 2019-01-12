@@ -38,6 +38,8 @@ class CreateProductosTable extends Migration
             $table->string('Weblink_fabricante')->nullable();
             $table->string('Agrupacion')->nullable();
             $table->integer('fk_idSatate')->unsigned();
+            $table->string('stockActual')->nullable();
+            $table->string('Valoracion_Fabricante')->nullable();
             $table->timestamps();
 
             $table->softDeletes();
