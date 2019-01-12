@@ -5,8 +5,8 @@
       <div class="col-sm-6 col-md-4 col-lg-3 mt-2">
         <div class="card m-auto">
 
-          <img *ngIf="item.urlImage" class="card-img-top " [src]="item.urlImage" alt="{{item.nombre}}">
-          <img *ngIf="!item.urlImage" width="130" height="230" class="card-img-top" src="assets/no_image_aviable.png"
+          <img *ngIf="itemToBuy.urlImage" class="card-img-top " [src]="item.urlImage" alt="{{item.nombre}}">
+          <img *ngIf="!itemToBuy.urlImage" width="130" height="230" class="card-img-top" src="assets/no_image_aviable.png"
             alt="{{item.nombre}}" />
 
           <div class="card-body">
@@ -14,14 +14,25 @@
               <small class="text-center txt-azul txt-marca">{{item.marca}}</small>
               <small *ngIf="!item.marca" class="text-center txt-azul txt-marca">SIN ESPECIFICAR</small>
               <h6 class="card-title text-center txt-azul font-bold">
-                {{item.nombre}}
+                {{nombre}}
               </h6>
             </div>
             <div class="text-center semi-body">
-              <div class="circle font-bold bg-azul text-white m-auto" style="font-size: .6rem;padding: .2rem;">
-                {{item.kiloProdcuto}} <br> kg
+              <div class="agrupacion">
+                  <div  *ngIf="kilogramos.length" class="row justify-content-center">
+                      <div  *ngFor="let kilos of kilogramos; let i = index">
+                        
+                          <div class="col-2">
+                            <div class="circle font-bold bg-azul text-white m-auto disable-circle" style="font-size: .6rem;padding: .2rem;" (click)="kilosSelected(i)"  [ngClass]="{'disable-circle':!(kilos==itemToBuy.kiloProdcuto)}">
+                              {{kilos}} <br> kg
+                            </div>
+                          </div>
+                        
+                      </div>
+                    </div>
               </div>
-              <h5 class="text-center txt-naranja font-bold mt-2">POR: {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
+              
+              <h5 class="text-center txt-naranja font-bold mt-2">POR: {{precio | currency: 'ARS': '$'}}</h5>
               <div class="row justify-content-center mt-2 mb-2">
                 <div class="col-8 d-flex justify-content-center">
                   <button mat-icon-button (click)="incrase(item, false)">

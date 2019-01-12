@@ -33,6 +33,7 @@ export interface Producto{
   deleted_at: Date;
   cantidad?: number;
   defaultPrice: string;
+  listAgrupacion:Array<any>
 }
 
 export interface SearchBody{
