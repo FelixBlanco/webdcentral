@@ -452,16 +452,19 @@ class ProductoController extends Controller {
             }
 
             $sql = $sql."  group by Agrupacion ";
+            //dd($sql);
 
             $result_unico = DB::connection('mysql')->select($sql);
-                
+
+
+            $RESUL   = $this->getAgrupation($result_unico);
 
             //$result_unico = array_unique($result);
 
 
             $response = [
                 'msj'       => 'Lista de productos',
-                'productos' => $result_unico,
+                'productos' => $RESUL,
             ];
 
             return response()->json($response, 201);
