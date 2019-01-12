@@ -36,7 +36,9 @@ class Producto extends Model {
         'precioL9',
         'WebLink_Rubro',
         'Weblink_fabricante',
-        'Agrupacion'
+        'Agrupacion',
+        'stockActual',
+        'Valoracion_Fabricante'
 
     ];
 }
