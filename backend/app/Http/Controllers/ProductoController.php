@@ -424,8 +424,6 @@ class ProductoController extends Controller {
 
             $sql = $sql."  group by Agrupacion ";
 
-
-            //dd($sql);
             $result_unico = DB::connection('mysql')->select($sql);
                 
 
