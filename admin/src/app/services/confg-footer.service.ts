@@ -26,6 +26,7 @@ export class ConfgFooterService {
   }
 
   _upgradeConfigFooter(data:any){
+    console.log(data);
     return this.http.post(`${environment.apiHost}/api/v1/update-config-footer`,data,httpOptions);
   }
 }

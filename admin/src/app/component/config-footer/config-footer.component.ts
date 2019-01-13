@@ -46,7 +46,11 @@ export class ConfigFooterComponent implements OnInit {
       url_mercadopago:[''],
       link_otra_pagina: [''],
       url_app_store: [''],
-      url_google_play: [''],          
+      url_google_play: [''],
+      img_como_comprar: [''],
+      img_envio_1: [''],          
+      img_envio_2: [''],          
+      img_envio_3: [''],          
     })
     this.myFormHorarios = this.fb.group({
       desde: ['', Validators.required],
@@ -80,8 +84,11 @@ export class ConfigFooterComponent implements OnInit {
             link_otra_pagina: resp.link_otra_pagina,
             url_app_store: resp.url_app_store,
             url_google_play: resp.url_google_play,
-            url_mercadopago:resp.url_mercadopago
-
+            url_mercadopago:resp.url_mercadopago,
+            img_como_comprar: resp.img_como_comprar, 
+            img_envio_1: resp.img_envio_1,                     
+            img_envio_2: resp.img_envio_2,          
+            img_envio_3: resp.img_envio_3,
           })
         }
       }
@@ -151,9 +158,50 @@ export class ConfigFooterComponent implements OnInit {
     )
   }
 
+  guardarImgEnvios() {
+    $("#imagenesEnvio").modal('hide');
+  }
+
+  setFormImageValue(section, value) {
+    if (section === 'img_como_comprar') {
+      this.myForm.patchValue({ img_como_comprar: null});
+    } else if (section === 'img_envio_1') {
+        this.myForm.patchValue({ img_envio_1: null});
+    } else if (section === 'img_envio_2') {
+      this.myForm.patchValue({ img_envio_2: null});
+    } else if (section === 'img_envio_3') {
+      this.myForm.patchValue({ img_envio_3: null});
+    }
+  }
+
+  onFileChange(event, section) {
+    if(event.target.files && event.target.files.length) {
+      const fileTo: File = event.target.files[0];
+
+      if(!fileTo.type.includes('image/png') 
+        && !fileTo.type.includes('image/jpg') 
+        && !fileTo.type.includes('image/jpeg') ){
+          this._alertService.msg('ERR','Error:', 'El archivo no es admitido o no es una imagen');
+          this.setFormImageValue(section, null);
+          return;
+      }
+
+      if(fileTo.size > 5000000){
+        this._alertService.msg('ERR','Error:', 'El archivo es muy pesado');
+        this.setFormImageValue(section, null);
+          return;
+      }
+
+      
+      this.setFormImageValue(section, fileTo);
+    }
+  }
+
   upgradeCondigFooter() {
     this.inPromise = true;
+
     const val = this.myForm.value;
+    
  
     this._confgFooterService._upgradeConfigFooter(val).subscribe(
       (resp: any) => { this.inPromise = false; this.getConfigFooter(); this._alertService.msg("OK", resp.msj); },

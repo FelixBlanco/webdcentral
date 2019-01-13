@@ -99,6 +99,9 @@
         </div>         
         <button class="btn btn-success" *ngIf='!inPromise' (click)="getHorarios()" data-toggle="modal"
           data-target="#horariosModal"  style="width:100%;">Gestionar Horarios de Atencion</button>
+          <!-- Modal Imagenes -->
+          <button class="btn btn-success" *ngIf='!inPromise'  data-toggle="modal"
+          data-target="#imagenesEnvio"  style="width:100%;">Cargar Imagenes Envio</button>
       </div> 
     </div>
     <div class="row">
@@ -111,6 +114,50 @@
     </div>
   </form>
 </div>
+
+<!-- Modal Imagenes Envio -->
+<div class="modal fade" id="imagenesEnvio" tabindex="-1" role="dialog" aria-labelledby="imagenesEnvio" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="imagenesEnvio">Imagenes Envio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="myForm">
+          <div class="form-group">
+            <label>Imagen Como Comprar</label>
+            <input type="file"  #image type="file" accept="image/*" (change)="onFileChange($event, 'img_como_comprar')" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Imagen Envio 1</label>
+            <input type="file"  #image type="file" accept="image/*" (change)="onFileChange($event, 'img_envio_1')" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Imagen Envio 2</label>
+            <input type="file"  #image type="file" accept="image/*" (change)="onFileChange($event, 'img_envio_2')" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Imagen Envio 3</label>
+            <input type="file"  #image type="file" accept="image/*" (change)="onFileChange($event, 'img_envio_3')" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <mat-spinner *ngIf="inPromise" style="margin:0 auto;" diameter="40"></mat-spinner>
+        <ng-container *ngIf="!inPromise">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="myForm.invalid || inPromise" (click)="guardarImgEnvios()">Guardar</button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <!-- Modal Eliminar -->
 <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true" style="z-index: 100000">
   <div class="modal-dialog modal-dialog-centered" role="document">
