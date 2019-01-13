@@ -305,12 +305,7 @@ class ProductoController extends Controller {
         }
     }
 
-  /*  public static function getAllTags() {
-
-        $response = TagProduct::select("tag")->distinct('tag')->orderBy("tag")->get();
-
-        return response()->json($response, 202);
-    }*/
+  
 
     public static function getAllRubros() {
 
