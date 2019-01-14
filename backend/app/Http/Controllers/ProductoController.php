@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+ini_set('memory_limit','512M');
+ini_set('max_execution_time','500');
+
+
 use App\Producto;
 use App\TagProduct;
 use Carbon\Carbon;
@@ -476,77 +480,174 @@ class ProductoController extends Controller {
 
 
     public function getProductByRubro(Request $request) {
-
         try {
-           
+
+            /**/
+
             $rs = null;
 
             $sql = "";
             $isWherActive = "where";
 
             if (! empty($request->rubro)) {
-                $sql = $isWherActive."  Descripcion_Rubro = '".$request->rubro."' ";
+                $sql = $isWherActive."  rubro = '".$request->rubro."' ";
                 $isWherActive = " and ";
             }
 
             if (!empty($request->SubRubro1)) {
-                $sql = $sql." ".$isWherActive."  Descripcion_SubRubro1 = '".$request->SubRubro1."' ";
+                $sql = $sql." ".$isWherActive."  SubRubro1 = '".$request->SubRubro1."' ";
                 if($isWherActive == "where"){$isWherActive = " and ";}
             }
 
             if (!empty($request->SubRubro2)) {
-                $sql = $sql." ".$isWherActive."  Descripcion_SubRubro2 = '".$request->SubRubro2."' ";
+                $sql = $sql." ".$isWherActive."  SubRubro2 = '".$request->SubRubro2."' ";
                 if($isWherActive == "where"){$isWherActive = " and ";}
 
             }
 
             if (!empty($request->search)) {
-                $sql = $sql." ".$isWherActive."  Descripcion_Producto  like '%".$request->search."%' ";
+                $sql = $sql." ".$isWherActive."  nombre  like '%".$request->search."%' ";
 
             }
 
-             
-           
+            if ($request->exists('offset') && $request->exists('limit')) {
+                $this->validate($request, [
+                    'offset' => 'integer|min:1',
+                    'limit'  => 'integer|min:1',
+                ], [
+                    'offset.integer' => 'Debe ser numérico',
+                    'limit.integer'  => 'Debe ser numérico',
 
-            $rs = DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
-             ".$sql." group  by Agrupacion,Codigo_Fabricante,Descripcion_Fabricante
-                  ,Codigo_Rubro,Descripcion_Rubro,Codigo_SubRubro1,Descripcion_SubRubro1
-                  ,Codigo_SubRubro2,Descripcion_SubRubro2,Codigo_Producto,Descripcion_Producto
-                  ,Kilos_Producto,Volumen_Producto,WebLink_Producto,ListadePrecio1_Producto
-                  ,ListadePrecio2_Producto,ListadePrecio3_Producto,ListadePrecio4_Producto,ListadePrecio5_Producto
-                   ,ListadePrecio5_Producto ,ListadePrecio6_Producto ,ListadePrecio7_Producto ,ListadePrecio8_Producto ,ListadePrecio9_Producto
-                    ,CantidadDescuentoVenta1_Producto,DescuentoVenta1_Producto ,CantidadDescuentoVenta2_Producto,DescuentoVenta2_Producto
-                     ,CantidadDescuentoVenta1_Producto,DescuentoVenta3_Producto ,CantidadDescuentoVenta4_Producto,DescuentoVenta4_Producto
-                    ,CantidadDescuentoVenta3_Producto,WebLink_Rubro,WebLink_Subrubro1,WebLink_Fabricante
-                    ,Valoracion_Fabricante,StockActual_Producto
-                    
-                    order by Descripcion_Producto  ");
+                    'offset.min' => 'Debe tener al menos un número',
+                    'limit.min'  => 'Debe tener al menos un número',
+                ]);
 
-          
+                $rs = DB::connection('mysql')->select(" SELECT 
+             nombre as Descripcion_Producto,
+             urlImage as WebLink_Producto,
+             codeProdSys as Codigo_Producto,
+             kiloProdcuto as Kilos_Producto,
+             SubRubro1 as Descripcion_SubRubro1,
+             SubRubro2 as Descripcion_Subrubro2,
+             precioL1 as ListadePrecio1_Producto,
+             precioL2 as ListadePrecio2_Producto,
+             precioL3 as ListadePrecio3_Producto,
+             precioL4 as ListadePrecio4_Producto,
+             precioL5 as ListadePrecio5_Producto,
+             precioL6 as ListadePrecio6_Producto,
+             precioL7 as ListadePrecio7_Producto,
+             precioL8 as ListadePrecio8_Producto,
+             precioL9 as ListadePrecio9_Producto,
+             rubro as Descripcion_Rubro,
+             marca as Descripcion_Fabricante,
+             WebLink_Rubro as WebLink_Rubro,
+             Agrupacion as Agrupacion,
+             Weblink_fabricante as WebLink_Fabricante,
+             stockActual as StockActual_Producto,
+             Valoracion_Fabricante as Valoracion_Fabricante
+              FROM   tb_productos  
+             ".$sql." order by nombre  ")->offset($request->offset)->limit($request->limit);
+
+            }else{
+
+                $rs = DB::connection('mysql')->select(" SELECT 
+             nombre as Descripcion_Producto,
+             urlImage as WebLink_Producto,
+             codeProdSys as Codigo_Producto,
+             kiloProdcuto as Kilos_Producto,
+             SubRubro1 as Descripcion_SubRubro1,
+             SubRubro2 as Descripcion_Subrubro2,
+             precioL1 as ListadePrecio1_Producto,
+             precioL2 as ListadePrecio2_Producto,
+             precioL3 as ListadePrecio3_Producto,
+             precioL4 as ListadePrecio4_Producto,
+             precioL5 as ListadePrecio5_Producto,
+             precioL6 as ListadePrecio6_Producto,
+             precioL7 as ListadePrecio7_Producto,
+             precioL8 as ListadePrecio8_Producto,
+             precioL9 as ListadePrecio9_Producto,
+             rubro as Descripcion_Rubro,
+             marca as Descripcion_Fabricante,
+             WebLink_Rubro as WebLink_Rubro,
+             Agrupacion as Agrupacion,
+             Weblink_fabricante as WebLink_Fabricante,
+             stockActual as StockActual_Producto,
+             Valoracion_Fabricante as Valoracion_Fabricante
+              FROM   tb_productos  
+             ".$sql." order by nombre  ");
+            }
+
+
             $i = 0;    
             foreach ($rs as $item) {
-
             
-                if($item->Agrupacion != null){
+                if($item->Agrupacion !=null){
                     
-                    $agrupacion =  DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
+                    $agrupacion =  DB::connection('mysql')->select(" SELECT 
+                     nombre as Descripcion_Producto,
+                     urlImage as WebLink_Producto,
+                     codeProdSys as Codigo_Producto,
+                     kiloProdcuto as Kilos_Producto,
+                     SubRubro1 as Descripcion_SubRubro1,
+                     SubRubro2 as Descripcion_Subrubro2,
+                     precioL1 as ListadePrecio1_Producto,
+                     precioL2 as ListadePrecio2_Producto,
+                     precioL3 as ListadePrecio3_Producto,
+                     precioL4 as ListadePrecio4_Producto,
+                     precioL5 as ListadePrecio5_Producto,
+                     precioL6 as ListadePrecio6_Producto,
+                     precioL7 as ListadePrecio7_Producto,
+                     precioL8 as ListadePrecio8_Producto,
+                     precioL9 as ListadePrecio9_Producto,
+                     rubro as Descripcion_Rubro,
+                     marca as Descripcion_Fabricante,
+                     WebLink_Rubro as WebLink_Rubro,
+                     Agrupacion as Agrupacion,
+                     Weblink_fabricante as WebLink_Fabricante,
+                     stockActual as StockActual_Producto,
+                     Valoracion_Fabricante as Valoracion_Fabricante
+                    FROM tb_productos  
                     where Agrupacion = '".$item->Agrupacion."' 
                     ");
+
                     $rs[$i]->listAgrupacion = $agrupacion;
 
                     // LITADO DE SUB ITEM //'
                     $rs1 = $agrupacion;
-                    $j = 0;    
+                    $j = 0;
+
                     foreach ($rs1 as $item2) {
-        
-                    
-                        if($item2->Agrupacion != null){
-                            
-                            $agrupacion2 =  DB::connection('sqlsrv')->select(" SELECT * FROM   VistaProductosAPP  
+
+                        if($item2->Agrupacion !=null){
+
+                            $agrupacion2 =  DB::connection('mysql')->select(" SELECT 
+                             nombre as Descripcion_Producto,
+                             urlImage as WebLink_Producto,
+                             codeProdSys as Codigo_Producto,
+                             kiloProdcuto as Kilos_Producto,
+                             SubRubro1 as Descripcion_SubRubro1,
+                             SubRubro2 as Descripcion_Subrubro2,
+                             precioL1 as ListadePrecio1_Producto,
+                             precioL2 as ListadePrecio2_Producto,
+                             precioL3 as ListadePrecio3_Producto,
+                             precioL4 as ListadePrecio4_Producto,
+                             precioL5 as ListadePrecio5_Producto,
+                             precioL6 as ListadePrecio6_Producto,
+                             precioL7 as ListadePrecio7_Producto,
+                             precioL8 as ListadePrecio8_Producto,
+                             precioL9 as ListadePrecio9_Producto,
+                             rubro as Descripcion_Rubro,
+                             marca as Descripcion_Fabricante,
+                             WebLink_Rubro as WebLink_Rubro,
+                             Agrupacion as Agrupacion,
+                             Weblink_fabricante as WebLink_Fabricante,
+                             stockActual as StockActual_Producto,
+                             Valoracion_Fabricante as Valoracion_Fabricante
+                             FROM   tb_productos  
                             where Agrupacion = '".$item2->Agrupacion."' ");
+
                             $rs1[$j]->listAgrupacion = $agrupacion2;
-        
-                            
+
                         }
                         $j++;
                     }
@@ -554,6 +655,8 @@ class ProductoController extends Controller {
                 }
                 $i++;
             }
+
+
 
 
             if ($rs != null) {
@@ -576,6 +679,7 @@ class ProductoController extends Controller {
         if (! is_null($search)) {
             $busqueda = $search."%";
             $response = Producto::where('marca', 'like', $busqueda)->orderBy("marca")->groupBy('Agrupacion')->get();
+            $res=self::getAgrupation($response);
 
             if (is_null($response)) {
                 $response = [
