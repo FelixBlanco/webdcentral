@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row justify-content-center">
 
-    <ng-container *ngFor="let item of items">
+    <ng-container *ngFor="let item of products; let i =index">
       <div class="col-sm-6 col-md-4 col-lg-3 mt-2">
         <div class="card m-auto">
-
+          <!-- arupaciones -->
           <img *ngIf="item.urlImage" class="card-img-top " [src]="item.urlImage" alt="{{item.nombre}}">
           <img *ngIf="!item.urlImage" width="130" height="230" class="card-img-top" src="assets/no_image_aviable.png"
             alt="{{item.nombre}}" />
@@ -17,11 +17,49 @@
                 {{item.nombre}}
               </h6>
             </div>
-            <div class="text-center semi-body">
-              <div class="circle font-bold bg-azul text-white m-auto" style="font-size: .6rem;padding: .2rem;">
-                {{item.kiloProdcuto}} <br> kg
+            <div class="text-center semi-body" >
+              <!--  si existe agrupacion -->
+             <div *ngIf="item.Agrupacion.length && item.listAgrupacion">
+                <div class="agrupacion"  *ngIf="item.listAgrupacion.length">
+                    <div class=" row justify-content-center" style="padding-top:5px;">
+                        <div *ngFor="let ite of item.listAgrupacion; let j = index">
+                          <div class="col-3">
+                              <div class="  circle font-bold bg-azul text-white m-auto" 
+                              style="font-size: .6rem;padding: .2rem;" 
+                              (click)="selectAgrupacion(i,j)"
+                                [ngClass]="{'disable-circle':ite.codeProdSys != item.codeProdSys}"
+                              >
+                                {{ite.kiloProdcuto}} 
+                              </div>
+                          </div>
+                        </div>
+        
+                      </div>
+                </div>
+             </div>
+
+              <!--  si no existe agrupacion -->
+              <div *ngIf="!item.Agrupacion.length " >
+
+                <div class="agrupacion" >
+                    <div class="circle font-bold bg-azul text-white m-auto" style="font-size: .6rem;padding: .2rem;" >
+                        {{item.kiloProdcuto}}
+                      </div>
+                </div>
+
+
               </div>
-              <h5 class="text-center txt-naranja font-bold mt-2">POR: {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
+              <div *ngIf="item.Agrupacion.length && !item.listAgrupacion" class="agrupacion" >        
+                      <div class="circle font-bold bg-azul text-white m-auto" style="font-size: .6rem;padding: .2rem;" >
+                          {{item.kiloProdcuto}}
+                        </div>
+                </div>
+               
+             
+
+              <h5 class="text-center txt-naranja font-bold mt-2">POR: {{item.precioL1 | currency: 'ARS': '$'}}</h5>
+
+
               <div class="row justify-content-center mt-2 mb-2">
                 <div class="col-8 d-flex justify-content-center">
                   <button mat-icon-button (click)="incrase(item, false)">
