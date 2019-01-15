@@ -49,5 +49,9 @@ export class LoginService {
   forgetPassword(email:any){
     return this.http.post(`${environment.apiHost}/api/v1/reestablecerClave`,{email:email});
   }
-
+  
+  changePassword(password:any){
+    return this.http.post(`${environment.apiHost}/api/auth/change-password`,{password:password},httpOptions);
+  }
+  
 }

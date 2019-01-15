@@ -52,6 +52,36 @@
   </div>
 </div>
 
+
+<!-- MODAL OLVIDAR CONTRASENA -->
+<div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="changePasswordTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-naranja">
+        <h5 class="modal-title txt-blanco" id="changePasswordTitle">Cambiar Contraseña</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="txt-blanco">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">  
+        <form [formGroup]="formChangePassword">
+          <div class="form-group">
+              <label for="">Ingresa tu nueva clave</label>
+              <input type="text" class="form-control" placeholder="Ingresa tu nueva clave" formControlName='password'>
+          </div>          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <ng-container *ngIf="!inPromise">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" [disabled]='!formChangePassword.valid' (click)="changePassword()">Enviar</button>      
+        </ng-container>
+        <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner>        
+      </div>
+    </div>
+  </div>
+</div>
+
 <app-perfil-cliente></app-perfil-cliente>
 
 <!-- Primer Nav -->
@@ -86,6 +116,10 @@
             <li class="nav-item txt-blanco" style="margin-top:2px; margin-right: 2%">
               <a href="#" class="nav-link bg-naranja txt-blanco font-bold" [ngStyle]=" colorDos ? {color: colorDos } : {color: '#FFFFFF' }" style="padding:7px" data-toggle="modal" data-target="#perfilClienteModalGestion">TU PERFIL</a>
             </li>            
+
+            <li class="nav-item txt-blanco" style="margin-left: -2%;"> 
+              <a href="#" class="nav-link" data-toggle="modal" data-target="#changePassword">Cambiar Contraseña</a>
+            </li>
 
             <li class="nav-item txt-blanco" style="margin-left: -2%;"> 
               <a href="#"  (click)="helpStatus()" class="nav-link" data-toggle="modal" data-target="#ayudaModal">AYUDA</a>

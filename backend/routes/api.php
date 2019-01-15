@@ -133,6 +133,10 @@ Route::group(['prefix' => 'auth'], function() {
         Route::resource('horario-atencion', 'HorarioAtencionController');
         Route::get('delete-horario-atencion/{id}', 'HorarioAtencionController@destroy');
 
+        /*PARA CAMBIAR LA CLAVE*/
+
+        Route::post('change-password', 'UserController@setClave'); // Cambio de clave
+
     });
 });
 
@@ -239,7 +243,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     Route::post('listarUsers', 'UserController@listar');
     Route::put('user/update/tokenfb/{idUser}', 'UserController@updateTokenFirebase');
 
-    Route::put('setClave/{api_token}', 'UserController@setClave'); // Cambio de clave
 
     Route::post('reestablecerClave', 'UserController@reestablecerClave'); // recibe email y genera clave aleatoria, posterior envia email para el login
 

@@ -43,17 +43,40 @@ class ProductoController extends Controller {
                 ->groupBy('Agrupacion')
                 ->get();
 
-            
+            $tags = Producto::select('tb_tag_producto.tag')
+                ->join('tb_tag_producto', 'tb_productos.codeProdSys', '=', 'tb_tag_producto.codeProdSys')
+                ->where('tb_productos.nombre', 'like', $busqueda)
+                ->where('tb_productos.fk_idSatate', '=', 1)
+                ->groupBy('tb_productos.Agrupacion')
+                ->distinct()
+                ->get();
+
+
             $mascotas = $this->getAgrupation($mascotas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
-            $marcas = $this->getAgrupation($marcas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
-            $nombre = $this->getAgrupation($nombre);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
+            $marcas   = $this->getAgrupation($marcas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
+            $nombre   = $this->getAgrupation($nombre);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
+            //$tags     = $this->getAgrupation($tags);// OBTEBNER LISTADO DE TAGS DE UN PRODUCTO //
+
+            $array_tags=array();
+
+            if(count($tags)>0)
+            {
+                foreach ($tags as $tag) {
+                    $array_tags[] = $tag->tag;
+                }
+            }
+
+
 
             $response = [
                 'msj'      => 'Productos',
                 'mascotas' => $mascotas,
                 'marcas'   => $marcas,
                 'nombre'   => $nombre,
+                'tags'     => $array_tags,
             ];
+            
+
 
             return response()->json($response, 200);
 
@@ -71,9 +94,17 @@ class ProductoController extends Controller {
                 ->groupBy('Agrupacion')
                 ->get();
 
+            $tags = Producto::select(DB::raw('tb_productos.*'))
+                ->join('tb_tag_producto', 'tb_productos.codeProdSys', '=', 'tb_tag_producto.codeProdSys')
+                ->where('fk_idSatate', '=', 1)
+                ->groupBy('Agrupacion')
+                ->get();
+
+
             $mascotas = $this->getAgrupation($mascotas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
-            $marcas = $this->getAgrupation($marcas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
-            $nombre = $this->getAgrupation($nombre);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
+            $marcas   = $this->getAgrupation($marcas);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
+            $nombre   = $this->getAgrupation($nombre);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
+            $tags     = $this->getAgrupation($tags);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
 
 
             $response = [
@@ -81,24 +112,14 @@ class ProductoController extends Controller {
                 'mascotas' => $mascotas,
                 'marcas'   => $marcas,
                 'nombre'   => $nombre,
+                'tags'     => $tags,
             ];
 
             return response()->json($response, 404);
         }
     }
 
-    public static function getAgrupation($listaProductos){
-        $i = 0;    
-            foreach ($listaProductos as $itemMascotas) {
-                $agrupacion =  Producto::where('fk_idSatate', '=', 1)
-                ->where('Agrupacion', '=', $itemMascotas->Agrupacion)
-                ->get();
-                $listaProductos[$i]->listAgrupacion = $agrupacion;
-                $i++;
-            }
 
-            return $listaProductos;
-    }
 
     public function listarPorIsOutstanding() {
         $producto_activador    = Producto::where('isOutstanding', 1)->groupBy('Agrupacion')->get();
@@ -424,6 +445,8 @@ class ProductoController extends Controller {
             $sql = $sql."  group by Agrupacion ";
 
             $result_unico = DB::connection('mysql')->select($sql);
+
+            $result=$this->getAgrupation($result_unico);
                 
 
             //$result_unico = array_unique($result);
@@ -431,7 +454,7 @@ class ProductoController extends Controller {
 
             $response = [
                 'msj'       => 'Lista de productos',
-                'productos' => $result_unico,
+                'productos' => $result,
             ];
 
             return response()->json($response, 201);
@@ -700,8 +723,6 @@ class ProductoController extends Controller {
         }
     }
 
-    
-
 
     public function getCostos() {
 
@@ -716,5 +737,18 @@ class ProductoController extends Controller {
         } else {
             return response()->json($rs, 200);
         }
+    }
+
+    public static function getAgrupation($listaProductos){
+        $i = 0;
+        foreach ($listaProductos as $itemMascotas) {
+            $agrupacion =  Producto::where('fk_idSatate', '=', 1)
+                ->where('Agrupacion', '=', $itemMascotas->Agrupacion)
+                ->get();
+            $listaProductos[$i]->listAgrupacion = $agrupacion;
+            $i++;
+        }
+
+        return $listaProductos;
     }
 }
