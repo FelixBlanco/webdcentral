@@ -67,7 +67,7 @@
         <form [formGroup]="formChangePassword">
           <div class="form-group">
               <label for="">Ingresa tu nueva clave</label>
-              <input type="text" class="form-control" placeholder="Ingresa tu nueva clave" formControlName='password'>
+              <input type="password" class="form-control" placeholder="Ingresa tu nueva clave" formControlName='password'>
               <div *ngIf='!formChangePassword.valid' style="color:red">
                 El password es requerido y tiene que tener minimo 9 caracteres
               </div> 
