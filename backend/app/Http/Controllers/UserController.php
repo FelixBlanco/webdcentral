@@ -353,12 +353,13 @@ class UserController extends Controller
 
         try {
 
-            $user_id=Auth::user();
+            $user_id=Auth::user()->id;
+
 
             $user = User::findOrFail($user_id);
 
             $pass_last = $user->password;
-
+            //return response()->json($pass_last);
 
             if ($request->password != null && ! empty($request->password)) {
                 $user->password = bcrypt($request->password);
