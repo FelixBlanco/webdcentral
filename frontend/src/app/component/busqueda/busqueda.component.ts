@@ -193,7 +193,7 @@ export class BusquedaComponent implements OnInit {
     this.productService.productosFilterTittleSource.next(tittle);
   }
   deleteRepeatRubros(){
-    if(this.searchList && this.searchList.mascotas){
+    if(this.searchList && this.searchList.mascotas && this.searchList.mascotas.length){
       this.searchListRubros=[];
       this.searchListRubros.push(this.searchList.mascotas[0]);
       
@@ -215,6 +215,7 @@ export class BusquedaComponent implements OnInit {
     })
     
     }
+    console.log(this.searchListRubros)
    
   }
 
