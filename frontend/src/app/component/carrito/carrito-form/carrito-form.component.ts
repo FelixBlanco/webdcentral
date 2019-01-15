@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { CarritoService, Item } from 'src/app/services/carrito.service';
+import { CarritoService, Item ,detallesCompra } from 'src/app/services/carrito.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { LocalidadService } from 'src/app/services/localidad.service';
@@ -17,15 +17,16 @@ import { ConfgFooterService } from 'src/app/services/confg-footer.service';
 export class CarritoFormComponent implements OnInit {
 
   @Output('onSectionChange') onSectionChange = new EventEmitter();
-  @Input('section') section: 'shipping' | 'deliveryMethod' | 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm' = 'deliveryMethod';
+  @Input('section') section: 'shipping' | 'deliveryMethod' | 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm' | 'detalleCompra' = 'deliveryMethod';
 
   inPromise: boolean;
   link_mercadopago:string;
-
+ 
   orderForm: FormGroup;
   interiorForm: FormGroup;
   inMarketForm: FormGroup;
-
+  metodoDePago:string;
+  metodoEntrega: 'internalDelivery' | 'delivery' | 'inMarketForm' ='inMarketForm' ;
   onDomicilioAdd: boolean = false;
 
   check: 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm' = 'inMarket';
@@ -172,7 +173,7 @@ export class CarritoFormComponent implements OnInit {
     }
   }
 
-  routeTo(section: 'shipping' | 'deliveryMethod' | 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm'){
+  routeTo(section: 'shipping' | 'deliveryMethod' | 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm' | 'detalleCompra'){
     this.onSectionChange.emit(section);
     this.section = section;
   }
@@ -277,6 +278,7 @@ export class CarritoFormComponent implements OnInit {
 
     const total = this.carritoService.getTotal();
     const carritoItems: Item[] =  this.carritoService.getAll();
+    
     let orderBody: any[] = []
 
     carritoItems.forEach(val => {
@@ -302,7 +304,7 @@ export class CarritoFormComponent implements OnInit {
   async save(orderBody: any[], total: number, type: 'inMarketForm' | 'delivery' | 'internalDelivery'){
     
     let body: FormData = new FormData();
-
+    this.metodoEntrega = type;
     /**
      * Para setear el cuerpo de la petición
      * se pregunta el tipo de formulario
@@ -310,10 +312,10 @@ export class CarritoFormComponent implements OnInit {
     if(type === 'inMarketForm'){
 
       const values = this.inMarketForm.value;
-      let metodoDePago = values.metodoDePago == 1 ?  'Efectivo': values.metodoDePago == 2 ? 'Depósito' : 'Transferencia';
-      console.log(values.metodoDePago+"--"+metodoDePago);
+      this.metodoDePago = values.metodoDePago == 1 ?  'Efectivo': values.metodoDePago == 2 ? 'Depósito' : 'Transferencia';
+      
       body.append('fecha_retiro', values.fechaRetiro);
-      body.append('metodoPago', metodoDePago);
+      body.append('metodoPago', this.metodoDePago);
       body.append('monto_total', total.toString());
       body.append('metodoEntrega', '1');
 
@@ -324,13 +326,13 @@ export class CarritoFormComponent implements OnInit {
     }else if(type === 'delivery'){
 
       const values = this.orderForm.value;
-      const metodoDePago = values.metodoDePago == 1 ? 'Efectivo': 
+      this.metodoDePago = values.metodoDePago == 1 ? 'Efectivo': 
         values.metodoDePago == 2 ? 'Depósito' : 
         values.metodoDePago == 3 ?  'Transferencia' : 'MercadoPago';
 
       body.append('metodoEntrega', '2');
       body.append('monto_total', total.toString());
-      body.append('metodoPago', metodoDePago);
+      body.append('metodoPago', this.metodoDePago);
 
       
       body.append('localidad', values.localidad);
@@ -352,7 +354,7 @@ export class CarritoFormComponent implements OnInit {
       
     }else{
       const values = this.orderForm.value;
-      const metodoDePago = values.metodoDePago == 1 ? 'Efectivo': 
+       this.metodoDePago = values.metodoDePago == 1 ? 'Efectivo': 
       values.metodoDePago == 2 ? 'Depósito' : 
       values.metodoDePago == 3 ?  'Transferencia' : 'MercadoPago';
 
@@ -362,7 +364,7 @@ export class CarritoFormComponent implements OnInit {
       body.append('localidad', values.localidad);
       body.append('Codigo_Postal', values.codigoPostal);
       body.append('direccion', values.direccion);
-      body.append('metodoPago', metodoDePago);
+      body.append('metodoPago', this.metodoDePago);
 
       if(values.metodoDePago !== 1 && values.metodoDePago !== 4){
         body.append('comprobanteDepositoTransferencia', this.imgLoaded);
@@ -370,7 +372,7 @@ export class CarritoFormComponent implements OnInit {
 
     }
 
-    this.inPromise = true;
+      this.inPromise = true;
     const respOrderHeader = await this.productosService.orderHeader(body).toPromise();
     
     if(!respOrderHeader.ok){
@@ -387,10 +389,10 @@ export class CarritoFormComponent implements OnInit {
       this.inPromise = false;
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error al actualizar la lista de productos, comuniquese con un administrador');
       return;
-    }
-
+    }  
+    this.setLastOrderDetail( total,this.metodoDePago); 
     this.as.msg('OK', 'Éxito', 'Su pedido ha sido procesado');
-    this.routeTo('shipping');
+    this.routeTo('detalleCompra');
     this.carritoService.clear();
 
   }
@@ -429,6 +431,17 @@ export class CarritoFormComponent implements OnInit {
   route_Mpago(){
     /* window.location.href=this.link_mercadopago; */ // abre el link en la pestaña actual
     window.open(this.link_mercadopago,'_blank');  // abre el link en una nueva pestaña
+  }
+  // crear detalles de la ultima compra
+  setLastOrderDetail( total :number , metodoDePago:string){
+     const data:detallesCompra={
+      metodoEntrega: this.metodoEntrega,
+      metodoDePago: metodoDePago,
+      productos :this.carritoService.getAll(),
+      total:total
+     }
+    
+    this.carritoService.setDetallesLastOrder(data);
   }
  
 
