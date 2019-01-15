@@ -51,7 +51,12 @@ export class LoginService {
   }
   
   changePassword(password:any){
-    return this.http.post(`${environment.apiHost}/api/auth/change-password`,{password:password},httpOptions);
+    return this.http.post(`${environment.apiHost}/api/auth/change-password`,{password:password},{
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      })
+    });
   }
   
 }

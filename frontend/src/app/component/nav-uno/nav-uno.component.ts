@@ -142,6 +142,11 @@ export class NavUnoComponent implements OnInit {
       },
       error => {
         this.inPromise = false;
+
+        if(error.message != null){
+          this._alertsService.msg('ERR',error.message);
+        } 
+        
         if(error.errors.password != null){
           this._alertsService.msg('ERR',error.errors.password);
         }        
