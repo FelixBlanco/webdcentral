@@ -55,7 +55,7 @@ export class BusquedaComponent implements OnInit {
 
 
   search() {
-
+    this.searchListRubros =[];
     if (this.searchForm.invalid) {
       return;
     }

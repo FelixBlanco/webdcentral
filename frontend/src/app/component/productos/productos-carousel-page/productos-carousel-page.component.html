@@ -9,7 +9,7 @@
           <img *ngIf="!item.urlImage" width="130" height="230" class="card-img-top" src="assets/no_image_aviable.png"
             alt="{{item.nombre}}" />
 
-          <div class="card-body" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#FFFFFF' }">
+          <div class="card-body" [ngStyle]=" colorTres ? {background: colorTres } : ''">
             <div class="text-center ">
               <small class="text-center txt-azul txt-marca">{{item.marca}}</small>
               <small *ngIf="!item.marca" class="text-center txt-azul txt-marca">SIN ESPECIFICAR</small>
