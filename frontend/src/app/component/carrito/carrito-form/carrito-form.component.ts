@@ -7,6 +7,7 @@ import { LocalidadService } from 'src/app/services/localidad.service';
 import * as moment from 'moment';
 import { DomicilioEntregaService } from '../../../services/domicilio-entrega.service';
 import { UserTokenService } from '../../../services/user-token.service';
+import { ConfgFooterService } from 'src/app/services/confg-footer.service';
 
 @Component({
   selector: 'app-carrito-form',
@@ -19,6 +20,7 @@ export class CarritoFormComponent implements OnInit {
   @Input('section') section: 'shipping' | 'deliveryMethod' | 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm' = 'deliveryMethod';
 
   inPromise: boolean;
+  link_mercadopago:string;
 
   orderForm: FormGroup;
   interiorForm: FormGroup;
@@ -49,7 +51,9 @@ export class CarritoFormComponent implements OnInit {
     private localidadService: LocalidadService,
     private as: AlertsService,
     private domicilioService: DomicilioEntregaService,
-    private userService: UserTokenService
+    private userService: UserTokenService,
+    private footerConfigService:ConfgFooterService
+
   ) { }
 
   ngOnInit() {
@@ -83,6 +87,7 @@ export class CarritoFormComponent implements OnInit {
     });
 
     this.onLocalidadesFetch = true;
+    this.getLinkMercadoPAgo()
     this.getAllDomicilios().then(
       () => {
         this.getAllLocalidades();
@@ -408,6 +413,22 @@ export class CarritoFormComponent implements OnInit {
       this.orderForm.get("authorizedPersonPasaporte").updateValueAndValidity();
 
     }
+  }
+  getLinkMercadoPAgo(){
+    this.footerConfigService._getConfigFooter().subscribe(
+      (resp:any) => {   
+        if(resp){
+         
+          
+          this.link_mercadopago = resp.url_mercadopago;
+     
+        }     
+      }
+    )      
+  }
+  route_Mpago(){
+    /* window.location.href=this.link_mercadopago; */ // abre el link en la pestaña actual
+    window.open(this.link_mercadopago,'_blank');  // abre el link en una nueva pestaña
   }
  
 
