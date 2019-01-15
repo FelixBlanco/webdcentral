@@ -9,6 +9,14 @@ export interface Item{
     cantidad: number;
 }
 
+export interface detallesCompra{
+  
+    productos:Item[];
+    metodoDePago:string;
+    metodoEntrega:'inMarketForm' | 'delivery' | 'internalDelivery';
+    total:number;
+}
+
 @Injectable()
 export class CarritoService {
 
@@ -17,6 +25,9 @@ export class CarritoService {
 
     orderProducts: BehaviorSubject<any[]> = new BehaviorSubject([]);
     orderItems: Observable<any[]> = this.orderProducts.asObservable();
+
+    detallesSource: BehaviorSubject<detallesCompra> = new BehaviorSubject(null);
+    detallesItems: Observable<detallesCompra> = this.detallesSource.asObservable();
 
 
     constructor(){
@@ -132,5 +143,9 @@ export class CarritoService {
 
     clear(): void{
         this.carritoSource.next([]);
+    }
+
+    setDetallesLastOrder(detail:detallesCompra){
+        this.detallesSource.next(detail);
     }
 }

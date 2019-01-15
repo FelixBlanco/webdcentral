@@ -23,7 +23,7 @@ export class ProductosCarouselPageComponent implements OnInit {
 
   ngOnInit() {
     this.products= [...this.items]; // cargando los productos a nuevo array
-
+    console.log(this.products);
 
   }
 
