@@ -1,19 +1,22 @@
 <div class="container-fluid">
   <div class="row" style="padding-top:1%; padding-bottom:1%;">
     <div class="col-md-4">
-      <img [src]="data.img_envio_1" class="img-fluid mx-auto d-block" width="130px">
+      <img *ngIf="data.img_envio_1" [src]="data.img_envio_1" class="img-fluid mx-auto d-block" width="130px">
+      <img *ngIf="!data.img_envio_1" src="assets/no_image_aviable.png" class="img-fluid mx-auto d-block" alt="img_envio_1" height="200" width="200"/>
       <p class="text-center txt-azul mt-4" style="font-size:24px;">
         ENTREGAS EXPRESS <br> <b><i>EN EL DÍA</i></b>
       </p>
     </div>
     <div class="col-md-4">
-      <img [src]="data.img_envio_2" class="img-fluid mx-auto d-block" width="50px">
+      <img *ngIf="data.img_envio_2" [src]="data.img_envio_2" class="img-fluid mx-auto d-block" width="50px">
+      <img *ngIf="!data.img_envio_2" src="assets/no_image_aviable.png" class="img-fluid mx-auto d-block" alt="img_envio_2" height="200" width="200"/>
       <p class="text-center txt-azul mt-4" style="font-size:24px;">
         ENVÍOS GRATIS COMPRADO DESDE <br> <b><i>LA APP O LA WEB</i></b>
       </p>
     </div>
     <div class="col-md-4">
-      <img [src]="data.img_envio_3" class="img-fluid mx-auto d-block" width="70px">
+      <img *ngIf="data.img_envio_3" [src]="data.img_envio_3" class="img-fluid mx-auto d-block" width="70px">
+      <img *ngIf="!data.img_envio_3" src="assets/no_image_aviable.png" class="img-fluid mx-auto d-block" alt="img_envio_3" height="200" width="200"/>
       <p class="text-center txt-azul mt-4" style="font-size:24px;">
         RETIRO GRATUITO <br> <b><i>EN SUCURSAL</i></b>
       </p>
