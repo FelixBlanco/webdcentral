@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CarritoService } from 'src/app/services/carrito.service';
+import { CarritoService ,detallesCompra} from 'src/app/services/carrito.service';
 import { ProductosService, Producto } from 'src/app/services/productos.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { forkJoin, Observable } from 'rxjs';
@@ -16,7 +16,7 @@ declare var $: any;
 })
 export class CarritoComponent implements OnInit {
 
-  section: 'shipping' | 'toBuy' | 'deliveryMethod' | 'inMarket' | 'delivery' = 'shipping';
+  section: 'shipping' | 'toBuy' | 'deliveryMethod' | 'inMarket' | 'delivery' | 'detalleCompra' = 'shipping';
 
   items: any[] = [];
   total: number;
@@ -27,7 +27,7 @@ export class CarritoComponent implements OnInit {
   inPromise: boolean;
   requests: Observable<HttpResponse<Producto>>[] = [];
   itemPerCuantity: {id: number, cantidad: number}[] = [];
-
+  detailLasOrder:detallesCompra;
   token: string;
 
   constructor(
@@ -48,6 +48,10 @@ export class CarritoComponent implements OnInit {
       this.items = val;
       this.setTotal();
       this.setCantidad();
+    })
+    this.carritoService.detallesItems.subscribe(val =>{
+      this.detailLasOrder = val;
+      console.log(val);
     })
   }
 
@@ -153,7 +157,7 @@ export class CarritoComponent implements OnInit {
     });
   }
 
-  routeTo(section: 'shipping' | 'toBuy' | 'deliveryMethod' | 'inMarket' | 'delivery'){
+  routeTo(section: 'shipping' | 'toBuy' | 'deliveryMethod' | 'inMarket' | 'delivery' | 'detalleCompra'){
     console.warn('actual: ',this.section, 'to', section);
 
     const isNotLogged = this.userToken.isNotLogged();
@@ -172,5 +176,6 @@ export class CarritoComponent implements OnInit {
 
     this.section = section;
   }
+ 
 
 }
