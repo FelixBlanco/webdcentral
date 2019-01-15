@@ -13,3 +13,16 @@ backend/composer.lock
 backend/vendor/autoload.php
 backend/vendor/composer/autoload_real.php
 backend/vendor/composer/autoload_static.php
+admin/package-lock.json
+admin/package.json
+backend/composer.lock
+backend/vendor/autoload.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/composer/autoload_static.php
+frontend/package-lock.json
+frontend/package.json
+.idea/webdcentral.iml
+.idea/workspace.xml
+backend/vendor/autoload.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/composer/autoload_static.php

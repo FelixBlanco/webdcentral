@@ -20,6 +20,7 @@ export class BusquedaComponent implements OnInit {
   searchList: SearchBody;
   searchListMarcas: Array<any>;
   filterFormRubros: FormGroup;
+  searchListRubros:Array<any>;
 
   inPromise: boolean;
 
@@ -46,8 +47,9 @@ export class BusquedaComponent implements OnInit {
 
   ngOnInit() {
     this.productService.productosSearchItems.subscribe((val) => {
-      console.log(val);
+    
       this.searchList = val;
+      this.deleteRepeatRubros();
     })
   }
 
@@ -57,6 +59,7 @@ export class BusquedaComponent implements OnInit {
     if (this.searchForm.invalid) {
       return;
     }
+    //busquedas de marcas
     const search = this.searchForm.value.searchValue;
     let behaviorPromises: Promise<Producto[]>[] = [];
     this.inPromise = true;
@@ -74,7 +77,7 @@ export class BusquedaComponent implements OnInit {
 
     })
 
-
+   //busqueda productos y mascotas
     this.productService.search(search).subscribe(resp => {
       if (resp.ok && resp.status === 200) {
         console.log(resp.body.mascotas);
@@ -144,7 +147,7 @@ export class BusquedaComponent implements OnInit {
     })
   }
   seeRubro(rubro:string,subRubro1:string,subRubro2:string) {
-
+    
     if (!rubro && !subRubro1 && !subRubro2) {
       return;
     }
@@ -188,6 +191,31 @@ export class BusquedaComponent implements OnInit {
     })
 
     this.productService.productosFilterTittleSource.next(tittle);
+  }
+  deleteRepeatRubros(){
+    if(this.searchList && this.searchList.mascotas){
+      this.searchListRubros=[];
+      this.searchListRubros.push(this.searchList.mascotas[0]);
+      
+      this.searchList.mascotas.map((val,i)=>{
+        let aux:boolean=true;
+        this.searchListRubros.map(val2=>{
+          if(aux && val.SubRubro1==val2.SubRubro1){
+             if(val.SubRubro2==val2.SubRubro2){
+              aux=false;
+             }
+             
+          }
+        })
+        if(aux){
+          this.searchListRubros.push(val);
+        }
+
+      
+    })
+    
+    }
+   
   }
 
 }

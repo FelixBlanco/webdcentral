@@ -33,20 +33,24 @@
 
               <h6 class="text-center font-bold txt-naranja text-uppercase" style="padding:13px;">RUBROS</h6>
             </div>
-            <div *ngIf="searchList">
-              <div *ngIf="searchList.mascotas.length==0" class="row justify-content-left">
+            <div *ngIf="searchListRubros">
+              <div *ngIf="!searchListRubros.length" class="row justify-content-left">
                 <p class="text-uppercase font-bold text-center mt-4">no se
                   encontraron resultados</p>
               </div>
-              <div *ngFor="let item of searchList.mascotas; let i = index" class="row justify-content-left ml-4">
+              <div *ngIf="searchListRubros.length">
+                  <div *ngFor="let item of searchListRubros; let i = index" class="row justify-content-left ml-4">
 
-                <div class="col-11">
-                  <a class="mt-4" (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" class="text-muted">{{item.rubro | titlecase}} > {{item.SubRubro1 | titlecase}} > {{item.SubRubro2 | titlecase}}</a>
-                </div>
-                <div class="col-1 ">
-                   
-                     <fa-icon (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
-                </div>
+                      <div class="col-11">
+                          <img *ngIf="!item.WebLink_Rubro" src="assets/no_image_aviable.png" alt="" (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" />
+                        <img *ngIf="item.WebLink_Rubro" [src]="item.WebLink_Rubro" alt="" (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" />
+                        <a class="mt-4" (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" class="text-muted">{{item.rubro | titlecase}} > {{item.SubRubro1 | titlecase}} > {{item.SubRubro2 | titlecase}}</a>
+                      </div>
+                      <div class="col-1 my-auto">
+                         
+                           <fa-icon (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
+                      </div>
+                    </div>
               </div>
 
             </div>
@@ -70,8 +74,8 @@
                     encontraron resultados</p>
                 </div>
                 <div *ngFor="let item of searchList.nombre; let i = index" class="row justify-content-left ml-4">
-                  <div class="col-11">
-                    <a (click)="seeMore('productos',i)" class="text-muted">{{item.titulo | titlecase}}</a>
+                  <div *ngIf="item.Agrupacion" class="col-11">
+                    <a (click)="seeMore('productos',i)" class="text-muted">{{item.Agrupacion | titlecase}}</a>
                   </div>
                   <div class="col-1">
                     <fa-icon (click)="seeMore('productos',i)" class="txt-naranja view-icon" style="  cursor: pointer;" [icon]="['fa', 'eye']" ></fa-icon>
