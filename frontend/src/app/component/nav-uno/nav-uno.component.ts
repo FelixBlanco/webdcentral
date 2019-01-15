@@ -32,6 +32,8 @@ export class NavUnoComponent implements OnInit {
 
   formOlvidarPassword: FormGroup;
 
+  formChangePassword: FormGroup;
+
   constructor(
     private _color: ConfigColorService,
     private _loginService: LoginService,
@@ -45,6 +47,10 @@ export class NavUnoComponent implements OnInit {
   ) { 
     this.formOlvidarPassword = this.fb.group({
       email : ['',[Validators.email, Validators.required]]
+    })
+
+    this.formChangePassword = this.fb.group({
+      password : ['', [ Validators.minLength(6), Validators.required ]]
     })
   }
 
@@ -123,6 +129,22 @@ export class NavUnoComponent implements OnInit {
         if(error.errors.email != null){
           this._alertsService.msg('ERR',error.errors.email);
         }                
+      }
+    )
+  }
+
+  changePassword(){
+    this.inPromise = true;
+    this._loginService.changePassword(this.formChangePassword.value.password).subscribe(
+      (resp:any) => {
+        this.inPromise = false;
+        this._alertsService.msg('OK',resp.msj)
+      },
+      error => {
+        this.inPromise = false;
+        if(error.errors.password != null){
+          this._alertsService.msg('ERR',error.errors.password);
+        }        
       }
     )
   }
