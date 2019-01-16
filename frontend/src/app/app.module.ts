@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import * as bootstrap from 'bootstrap';
 import { AgmCoreModule } from '@agm/core';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 // import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
@@ -59,7 +60,11 @@ import { CarritoFormComponent } from './component/carrito/carrito-form/carrito-f
 import { BlogComponent } from './component/blog/blog.component';
 import { ClasificadosInicioComponent } from './component/clasificados-inicio/clasificados-inicio.component';
 import { MinoristaComponent } from './component/minorista/minorista.component';
+import { DomicilioEntregaFormComponent } from './component/carrito/carrito-form/domicilio-entrega-form/domicilio-entrega-form.component';
 import { TurnosListComponent } from './component/servicios-inicio/turnos-list/turnos-list.component';
+import { RubrosgaleryInicioComponent } from './component/rubrosgalery-inicio/rubrosgalery-inicio.component';
+
+
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -121,7 +126,9 @@ const appRoutes: Routes = [
     BlogComponent,
     ClasificadosInicioComponent,
     MinoristaComponent,
-    TurnosListComponent
+    DomicilioEntregaFormComponent,
+    TurnosListComponent,
+    RubrosgaleryInicioComponent
   ],
   imports: [
     BrowserModule,
@@ -138,7 +145,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCiGsoFevMN2J-dXWtD_31AN4UkraR4Hq0'
-    })
+    }),
+    NgSelectModule
   ],
   providers: [
     CarritoService,

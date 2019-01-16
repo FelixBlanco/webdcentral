@@ -5,7 +5,9 @@ import { AlertsService } from '../../services/alerts.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { ConfigRedesService } from '../../services/config-redes.service'
 import { UserTokenService } from 'src/app/services/user-token.service';
+import { ConfgFooterService } from 'src/app/services/confg-footer.service';
 import { Router } from '@angular/router';
+import { FormGroup, Validator, FormBuilder, Validators  } from '@angular/forms'
 
 declare var $:any;
 
@@ -28,6 +30,10 @@ export class NavUnoComponent implements OnInit {
 
   inPromise: boolean;
 
+  formOlvidarPassword: FormGroup;
+
+  formChangePassword: FormGroup;
+
   constructor(
     private _color: ConfigColorService,
     private _loginService: LoginService,
@@ -35,11 +41,21 @@ export class NavUnoComponent implements OnInit {
     private carritoService: CarritoService,
     private configRedes: ConfigRedesService,
     private userToken: UserTokenService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private footerService:ConfgFooterService,
+    private fb : FormBuilder
+  ) { 
+    this.formOlvidarPassword = this.fb.group({
+      email : ['',[Validators.email, Validators.required]]
+    })
+
+    this.formChangePassword = this.fb.group({
+      password : ['', [ Validators.minLength(6), Validators.required ]]
+    })
+  }
 
   ngOnInit() {
-
+    this.helpStatus();
     this.initBadgeBehavior();
     this.initUserToken();
     this.userToken.userData.subscribe(val => this.userName = val ? val.userName : '');
@@ -62,7 +78,7 @@ export class NavUnoComponent implements OnInit {
           this.linksR.twitter   = resp.url_twit;
           this.linksR.instagram = resp.url_inst;
           this.linksR.whatsapp  = resp.url_what;                  
-        }   
+        }        
       }
     )
 
@@ -93,5 +109,48 @@ export class NavUnoComponent implements OnInit {
 
   initUserToken(){
     this.userToken.token.subscribe(val => this.token = val);
+  }
+ helpStatus(){
+ 
+    this.footerService.restartAyudaStatus(); 
+  }
+
+  forgetPassword(){    
+    this.inPromise = true;
+    this._loginService.forgetPassword(this.formOlvidarPassword.value.email).subscribe(
+      (resp:any) => {
+        this.inPromise = false;        
+        if(resp.msj != null){
+          this._alertsService.msg('OK',resp.msj)
+        }              
+      },
+      error => {
+        this.inPromise = false;
+        if(error.errors.email != null){
+          this._alertsService.msg('ERR',error.errors.email);
+        }                
+      }
+    )
+  }
+
+  changePassword(){
+    this.inPromise = true;
+    this._loginService.changePassword(this.formChangePassword.value.password).subscribe(
+      (resp:any) => {
+        this.inPromise = false;
+        this._alertsService.msg('OK',resp.msj)
+      },
+      error => {
+        this.inPromise = false;
+
+        if(error.message != null){
+          this._alertsService.msg('ERR',error.message);
+        } 
+        
+        if(error.errors.password != null){
+          this._alertsService.msg('ERR',error.errors.password);
+        }        
+      }
+    )
   }
 }

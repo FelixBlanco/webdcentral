@@ -46,7 +46,7 @@ export class GaleriaHomeComponent implements OnInit {
 
     ngOnInit() {
         this.updateLists();
-
+        this.getListProductos();
         this.newForm = this.fb.group({
             titulo: ['', Validators.required],
             fk_idProducto: [''],
@@ -72,8 +72,8 @@ export class GaleriaHomeComponent implements OnInit {
 
     getListProductos() {
         this._productosServices._getProductos().subscribe(
-            (resp: any) => {
-                this.productList = resp;
+            (resp: any) => {                
+                this.productList = resp;                
             }
         )
     }
@@ -89,8 +89,7 @@ export class GaleriaHomeComponent implements OnInit {
 
         this.inPromise = true;
         this._galeriaHomeService._addSlideHome(toSend).subscribe(
-            (resp: any) => {
-                //this._alertService.Success(resp.msj);
+            (resp: any) => {                
                 this._alertService.msg("OK", "Éxito", "Se ha guardado el registro");
                 this.newForm.reset();
                 this.image.nativeElement.value = '';

@@ -37,8 +37,14 @@ class Producto extends Model {
         'WebLink_Rubro',
         'Weblink_fabricante',
         'Agrupacion',
+
         'stockActual',
         'Valoracion_Fabricante'
-
     ];
+
+    public function tag() {
+        return $this->hasOne('App\TagProduct', 'codeProdSys');
+    }
+
+
 }

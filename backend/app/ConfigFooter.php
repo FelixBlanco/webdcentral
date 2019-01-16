@@ -36,5 +36,14 @@ class ConfigFooter extends Model {
         'url_mercado_libre',
         'link_otra_pagina',
         'imagen',
+        'url_app_store',
+        'url_google_play',
+        'url_mercadopago',
+
+
+        'img_envio_1',
+        'img_envio_2',
+        'img_envio_3',
+        'img_como_comprar',
     ];
 }

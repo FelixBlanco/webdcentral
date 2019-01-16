@@ -1,15 +1,28 @@
 <!-- Modal -->
 <div class="modal fade" id="carrito" tabindex="-1" role="dialog" aria-labelledby="carritoTittle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" [ngClass]=" (section === 'shipping') ? 'modal-lg' : ''"  role="document">
+  <div class="modal-dialog modal-dialog-centered" [ngClass]=" (section === 'shipping' || section === 'detalleCompra') ? 'modal-lg' : ''"  role="document">
     <div class="modal-content">
       <div class="modal-header bg-azul">
         <ng-container [ngSwitch]="section">
           <h5 *ngSwitchCase="'shipping'" class="modal-title text-white  text-uppercase" id="carritoTittle"><img src="assets/social/carrito.png" alt="Carrito de compras"> Carrito de Compras</h5>
+          <h5 *ngSwitchCase="'detalleCompra'" class="modal-title text-white  text-uppercase" id="detalleTittle"> Detalles del Pedido</h5>
           <ng-container *ngSwitchCase="'inMarket'">
               <button class="btn btn-link text-white" (click)="routeTo('deliveryMethod')">
                   <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
               </button>
               <h5 class="modal-title text-white text-uppercase mt-1">retiro en tienda</h5>
+          </ng-container>
+          <ng-container  *ngSwitchCase="'inMarketForm'">
+            <button class="btn btn-link text-white" (click)="routeTo('inMarket')">
+              <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
+            </button>
+            <h5 class="modal-title text-white text-uppercase mt-1">retiro en tienda</h5>
+          </ng-container>
+          <ng-container  *ngSwitchCase="'internalDelivery'">
+            <button class="btn btn-link text-white" (click)="routeTo('deliveryMethod')">
+              <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
+            </button>
+            <h5 class="modal-title text-white text-uppercase mt-1">despacho al interior</h5>
           </ng-container>
           <ng-container  *ngSwitchCase="'delivery'">
             <button class="btn btn-link text-white" (click)="routeTo('deliveryMethod')">
@@ -84,16 +97,76 @@
               </div>
             </div>
           </ng-container>
+
+          <ng-container *ngSwitchCase="'detalleCompra'">
+            <div class="card">
+              
+              <div class="card-body">
+                <table class="table table-curved">
+                  <thead class="bg-azul text-white">
+                    <tr>
+                      <th scope="col" width="50%">PRODUCTO</th>
+                      <th scope="col" width="30%">PRECIO</th>
+                      <th scope="col" width="20%">CANTIDAD</th>
+                                          
+                    </tr>
+                  </thead>
+                   <tbody *ngIf="detailLasOrder && detailLasOrder.productos.length">
+                    <ng-container *ngFor="let item of detailLasOrder.productos">
+                      <tr>
+                       
+                        <td>{{item.producto}}</td>
+                        <td><span class="font-bold">{{item.precio | currency: 'ARS': '$'}}</span></td>
+                        <td>
+                          <span>{{item.cantidad}}</span>
+                        </td>
+                       
+                      </tr>
+                    </ng-container>
+                    <ng-container *ngIf="detailLasOrder && !detailLasOrder.productos.length">
+                      <tr><td colspan="5" height="80" class="font-italic text-muted text-center"></td>Lista Vacia</tr>
+                    </ng-container>
+                  </tbody> 
+                   <tfoot *ngIf="detailLasOrder" class="bg-azul text-white">
+                    <tr class="font-bold text-capitalize text-right">
+                      <td colspan="5">
+                        <span class="pr-2">METODO DE ENTREGA: </span>
+                        <span *ngIf="detailLasOrder.metodoEntrega =='inMarketForm'" class="font-bold"> Retiro En Tienda</span>
+                        <span *ngIf="detailLasOrder.metodoEntrega =='delivery'" class="font-bold"> Delivery</span>
+                        <span *ngIf="detailLasOrder.metodoEntrega =='internalDelivery'" class="font-bold"> Despacho al Interior</span>         
+                        <span class="pl-5 pr-2">METODO DE PAGO:</span><span class="font-bold"> {{detailLasOrder.metodoDePago}}</span>
+                        <span class="pl-5">TOTAL</span><span class="total m-1 font-bold">{{detailLasOrder.total | currency: 'ARS': '$'}}</span>
+                      </td>
+                 
+                    </tr>
+                   <!--  <tr class="font-bold text-capitalize text-right">
+                      
+                        <td colspan="5">
+                            <button type="button" class="btn btn-primary"   (click)="routeTo('shipping')">ACEPTAR</button>
+    
+                          </td>
+                      </tr> -->
+                   
+                  </tfoot> 
+                </table>
+              </div>
+            </div>
+          </ng-container>
+
+
           <ng-container *ngSwitchDefault>
             <app-carrito-form (onSectionChange)="routeTo($event);" [section]="section"></app-carrito-form>
           </ng-container>
         </ng-container>
       </div>
       <div class="modal-footer" *ngIf="section === 'shipping'">
-        <button type="button" *ngIf="token" [routerLink]="[ '/recompra']" class="btn btn-light text-uppercase txt-azul font-bold" data-dismiss="modal">historial de compras</button>
-        <button type="button" [routerLink]="[ '/productos']" class="btn btn-light text-uppercase txt-naranja font-bold" data-dismiss="modal">continuar comprando</button>
+        <button type="button" *ngIf="token" [routerLink]="['/recompra']" class="btn btn-light text-uppercase txt-azul font-bold" data-dismiss="modal">historial de compras</button>
+        <button type="button" [routerLink]="['/productos']" class="btn btn-light text-uppercase txt-naranja font-bold" data-dismiss="modal">continuar comprando</button>
         <button type="button" class="btn btn-light text-uppercase txt-verde font-bold" (click)="routeTo('toBuy')" >enviar pedido</button>
       </div>
+      <div class="modal-footer" *ngIf="section === 'detalleCompra'">
+          <button type="button" [routerLink]="['/productos']" (click)="routeTo('shipping')" class="btn btn-light text-uppercase txt-naranja font-bold" data-dismiss="modal">continuar comprando</button>
+        </div>
     </div>
   </div>
 </div>

@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class orderHeader extends Model {
+class orderHeader extends Model
+{
     //
     use SoftDeletes;
 
@@ -28,9 +29,7 @@ class orderHeader extends Model {
         'fk_idUserDriver',
         'metodoEntrega',
         'disponibilidadHr',
-        'CUIT',
-        'CUITrazonSocial',
-        'CUITDomicilioFidcal',
+
         'metodoPago',
         'comprobanteDepositoTransferencia',
         'fk_idTipoFactura',
@@ -45,22 +44,28 @@ class orderHeader extends Model {
         'fecha',
         'personasAutorizadas',
         'observaciones',
+        'direccion',
+        'DNIautorizado',
 
     ];
 
-    public function state() {
+    public function state()
+    {
         return $this->belongsTo('App\StateOrder', 'fk_idStateOrder');
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\User', 'fk_idUser');
     }
 
-    public function tipoFactura() {
+    public function tipoFactura()
+    {
         return $this->belongsTo('App\TipoDeFactura', 'fk_idTipoFactura');
     }
 
-    public function orderBody() {
+    public function orderBody()
+    {
         return $this->hasMany('App\orderBody', 'fk_idOrderHeader', 'idOrderHeader');
     }
 }

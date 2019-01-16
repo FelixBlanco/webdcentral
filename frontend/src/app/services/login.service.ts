@@ -46,4 +46,17 @@ export class LoginService {
     return this.http.get<any>(`${environment.apiHost}/api/v1/buscarSuscripcionPorEmail/${email}`, {observe: 'response'});
   }
   
+  forgetPassword(email:any){
+    return this.http.post(`${environment.apiHost}/api/v1/reestablecerClave`,{email:email});
+  }
+  
+  changePassword(password:any){
+    return this.http.post(`${environment.apiHost}/api/auth/change-password`,{password:password},{
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      })
+    });
+  }
+  
 }

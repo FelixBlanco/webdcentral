@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Prueba;
+use App\PerfilCliente;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -141,6 +143,10 @@ class UserController extends Controller
             $usuario->userName = $request->email;
 
             $usuario->save();
+
+            $perfilCliente=new PerfilCliente(['fk_idPerfilCliente'=>$usuario->id]);
+            $perfilCliente->save();
+
 
             $response = [
                 'msj'  => 'Usuario Creado',
@@ -333,26 +339,27 @@ class UserController extends Controller
         }
     }
 
-    public function setClave(Request $request, $api_token)
+    public function setClave(Request $request)
     {
 
         $this->validate($request, [
-            'password' => 'required|min:8',
+            'password' => 'required|min:6',
         ], [
             'password.required' => 'Este campo es requerido',
-            'password.min'      => 'La contraseña debe de tener minimo 8 caracteres',
+            'password.min'      => 'La contraseña debe de tener minimo 6 caracteres',
         ]);
 
         DB::beginTransaction();
 
         try {
 
-            $user = User::where('api_token', $api_token)->first();
+            $user_id=Auth::user()->id;
 
-            $user = User::findOrFail($user->id);
+
+            $user = User::findOrFail($user_id);
 
             $pass_last = $user->password;
-            $user->fill($request->all());
+            //return response()->json($pass_last);
 
             if ($request->password != null && ! empty($request->password)) {
                 $user->password = bcrypt($request->password);
@@ -360,13 +367,13 @@ class UserController extends Controller
                 $user->password = $pass_last;
             }
 
+            $user->save();
+            DB::commit();
+
             $response = [
                 'msj'  => 'Info del Usuario actulizada',
                 'user' => $user,
             ];
-
-            $user->save();
-            DB::commit();
 
             return response()->json($response, 200);
         } catch (\Exception $e) {
@@ -443,7 +450,7 @@ class UserController extends Controller
         if (is_null($user)) {
 
             $response = [
-                'msj' => 'Si eres usuario nuetro, te enviamos un Mail, revise su correo para proceder al inicio de sesión',
+                'msj' => 'Si eres usuario nuestro, te enviamos un Mail, revise su correo para proceder al inicio de sesión',
             ];
 
             return response()->json($response, 200);
@@ -454,7 +461,7 @@ class UserController extends Controller
 
             Mail::to($user->email)->send(new Prueba($user, $clave_nueva));
             $response = [
-                'msj'       => 'Si eres usuario nuetro, te enviamos un Mail, revise su correo para proceder al inicio de sesión',
+                'msj'       => 'Si eres usuario nuestro, te enviamos un Mail, revise su correo para proceder al inicio de sesión',
                 'user'      => $user,
                 'clave_new' => $clave_nueva,
             ];

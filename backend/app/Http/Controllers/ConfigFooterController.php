@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\ConfigFooter;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
-class ConfigFooterController extends Controller {
-
-    public function getInfo() {
+class ConfigFooterController extends Controller
+{
+    public function getInfo()
+    {
         return ConfigFooter::first();
     }
 
-    public function updateInfo(Request $request) {
+    public function updateInfo(Request $request)
+    {
         // Como se supone que estamos editanto,
         // vamos a dejar el unico registro
         // para editar
@@ -37,7 +39,7 @@ class ConfigFooterController extends Controller {
                 //'avenidas'    => 'required',
                 //'listaPrecio' => 'required|integer|between:1,9',
             ], [
-                'direccion'            => 'El campo es requerido',
+                'direccion.required'   => 'El campo es requerido',
                 'nroContacto.required' => 'El campo es requerido',
                 'mail1.required'       => 'El campo es requerido',
                 'mail1.email'          => 'El campo no tiene el formado de correo valido',
@@ -61,12 +63,12 @@ class ConfigFooterController extends Controller {
 
                 $thumbnailImage = Image::make($originalImage);
 
-                $thumbnailImage->fit(2048, 2048, function($constraint) {
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
                     $constraint->aspectRatio();
                 });
 
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension      = $originalImage->getClientOriginalExtension();
+                $extension = $originalImage->getClientOriginalExtension();
 
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
@@ -74,6 +76,90 @@ class ConfigFooterController extends Controller {
                 Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
                 $c->imagen = $nombre_interno;
+            }
+
+            if (is_null($request->img_envio_1)) {
+            } else {
+                $originalImage = $request->img_envio_1;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $c->img_envio_1 = $nombre_interno;
+            }
+
+            if (is_null($request->img_envio_2)) {
+            } else {
+                $originalImage = $request->img_envio_2;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $c->img_envio_2 = $nombre_interno;
+            }
+
+            if (is_null($request->img_envio_3)) {
+            } else {
+                $originalImage = $request->img_envio_3;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $c->img_envio_3 = $nombre_interno;
+            }
+
+            if (is_null($request->img_como_comprar)) {
+            } else {
+                $originalImage = $request->img_como_comprar;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $c->img_como_comprar = $nombre_interno;
             }
 
             $c->save();
@@ -84,24 +170,32 @@ class ConfigFooterController extends Controller {
 
             return response()->json($response, 201);
         } else {
-            $d->direccion   = $request->direccion;
+            $d->direccion = $request->direccion;
             $d->nroContacto = $request->nroContacto;
-            $d->mail1       = $request->mail1;
-            $d->mail2       = $request->mail2;
-            $d->latitud     = $request->latitud;
-            $d->longitud    = $request->longitud;
-            $d->whatsApp1   = $request->whatsApp1;
-            $d->whatsApp2   = $request->whatsApp2;
+            $d->mail1 = $request->mail1;
+            $d->mail2 = $request->mail2;
+            $d->latitud = $request->latitud;
+            $d->longitud = $request->longitud;
+            $d->whatsApp1 = $request->whatsApp1;
+            $d->whatsApp2 = $request->whatsApp2;
 
-            $d->horarios   = $request->horarios;
-            $d->subtes     = $request->subtes;
+            $d->horarios = $request->horarios;
+            $d->subtes = $request->subtes;
             $d->colectivos = $request->colectivos;
-            $d->avenidas   = $request->avenidas;
+            $d->avenidas = $request->avenidas;
 
-            $d->desde             = $request->desde;
-            $d->hasta             = $request->hasta;
+            $d->desde = $request->desde;
+            $d->hasta = $request->hasta;
             $d->url_mercado_libre = $request->url_mercado_libre;
-            $d->link_otra_pagina  = $request->link_otra_pagina;
+            $d->link_otra_pagina = $request->link_otra_pagina;
+            $d->url_app_store = $request->url_app_store;
+            $d->url_google_play = $request->url_google_play;
+            $d->url_mercadopago = $request->url_mercadopago;
+
+            $d->img_envio_1 = $request->img_envio_1;
+            $d->img_envio_2 = $request->img_envio_2;
+            $d->img_envio_3 = $request->img_envio_3;
+            $d->img_como_comprar = $request->img_como_comprar;
 
             if (is_null($request->imagen)) {
             } else {
@@ -109,12 +203,12 @@ class ConfigFooterController extends Controller {
 
                 $thumbnailImage = Image::make($originalImage);
 
-                $thumbnailImage->fit(2048, 2048, function($constraint) {
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
                     $constraint->aspectRatio();
                 });
 
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension      = $originalImage->getClientOriginalExtension();
+                $extension = $originalImage->getClientOriginalExtension();
 
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
@@ -124,8 +218,8 @@ class ConfigFooterController extends Controller {
                 $d->imagen = $nombre_interno;
             }
 
-            if (! is_null($request->listaPrecio)) {
 
+            if (! is_null($request->listaPrecio)) {
 
                 $this->validate($request, [
                     'listaPrecio' => 'integer|between:1,9',
@@ -135,7 +229,6 @@ class ConfigFooterController extends Controller {
 
                 $d->listaPrecio = $request->listaPrecio;
             }
-
 
             $d->save();
 
@@ -148,7 +241,8 @@ class ConfigFooterController extends Controller {
         }
     }
 
-    public function addImagenFooter(Request $request) {
+    public function addImagenFooter(Request $request)
+    {
 
         $c = ConfigFooter::first();
 
@@ -167,7 +261,6 @@ class ConfigFooterController extends Controller {
 
                 return response()->json($response, 404);
             }
-
         } else {
             if (empty($c)) { // Caso de estar vacio
                 $response = [
@@ -181,12 +274,12 @@ class ConfigFooterController extends Controller {
 
             $thumbnailImage = Image::make($originalImage);
 
-            $thumbnailImage->fit(2048, 2048, function($constraint) {
+            $thumbnailImage->fit(2048, 2048, function ($constraint) {
                 $constraint->aspectRatio();
             });
 
             $nombre_publico = $originalImage->getClientOriginalName();
-            $extension      = $originalImage->getClientOriginalExtension();
+            $extension = $originalImage->getClientOriginalExtension();
 
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
@@ -203,5 +296,211 @@ class ConfigFooterController extends Controller {
         ];
 
         return response()->json($response, 201);
+    }
+
+    public function addImgenes(Request $request){
+
+
+        $d = ConfigFooter::first();
+
+
+        if(isset($d)){
+
+
+            if (is_null($request->img_envio_1)) {
+            } else {
+                $originalImage = $request->img_envio_1;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $d->img_envio_1 = $nombre_interno;
+            }
+
+            if (is_null($request->img_envio_2)) {
+            } else {
+                $originalImage = $request->img_envio_2;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $d->img_envio_2 = $nombre_interno;
+            }
+
+            if (is_null($request->img_envio_3)) {
+            } else {
+                $originalImage = $request->img_envio_3;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $d->img_envio_3 = $nombre_interno;
+            }
+
+            if (is_null($request->img_como_comprar)) {
+            } else {
+                $originalImage = $request->img_como_comprar;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $d->img_como_comprar = $nombre_interno;
+            }
+            $d->save();
+
+            $response = [
+                'msj'        => 'Footer Actualizado',
+                'set_imagen_img_envio_1' => asset('storage\\imagenFooter\\'.$d->img_envio_1),
+                'set_imagen_img_envio_2' => asset('storage\\imagenFooter\\'.$d->img_envio_2),
+                'set_imagen_img_envio_3' => asset('storage\\imagenFooter\\'.$d->img_envio_3),
+                'set_imagen_img_como_comprar' => asset('storage\\imagenFooter\\'.$d->img_como_comprar),
+            ];
+
+            return response()->json($response, 201);
+
+        }else{
+
+            $d=new ConfigFooter();
+
+            if (is_null($request->img_envio_1)) {
+            } else {
+                $originalImage = $request->img_envio_1;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $d->img_envio_1 = $nombre_interno;
+            }
+
+            if (is_null($request->img_envio_2)) {
+            } else {
+                $originalImage = $request->img_envio_2;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $d->img_envio_2 = $nombre_interno;
+            }
+
+            if (is_null($request->img_envio_3)) {
+            } else {
+                $originalImage = $request->img_envio_3;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $d->img_envio_3 = $nombre_interno;
+            }
+
+            if (is_null($request->img_como_comprar)) {
+            } else {
+                $originalImage = $request->img_como_comprar;
+
+                $thumbnailImage = Image::make($originalImage);
+
+                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $nombre_publico = $originalImage->getClientOriginalName();
+                $extension = $originalImage->getClientOriginalExtension();
+
+                $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
+                $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+
+                Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
+
+                $d->img_como_comprar = $nombre_interno;
+            }
+            $d->save();
+
+            $response = [
+                'msj'        => 'Footer Actualizado',
+                'set_imagen_img_envio_1' => storage_path().'\\imagenFooter'.$d->img_envio_1,
+                'set_imagen_img_envio_2' => storage_path().'\\imagenFooter\\'.$d->img_envio_2,
+                'set_imagen_img_envio_3' => storage_path().'storage\\imagenFooter\\'.$d->img_envio_3,
+                'set_imagen_img_como_comprar' => storage_path().'storage\\imagenFooter\\'.$d->img_como_comprar,
+            ];
+
+            return response()->json($response, 201);
+        }
+
     }
 }

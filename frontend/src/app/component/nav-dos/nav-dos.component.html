@@ -1,15 +1,17 @@
 <!--Segundo Nav-->
 <div class="container-fluid">
   <div class="row mt-4" style="padding-top: 1%; padding-bottom: 2%;">
-    <div class="col-md-4">
+    <div class="col-12 col-md-12 col-lg-4">
       <!-- Logo -->
       <!-- <img *ngIf="c_h.set_logo" src="{{c_h.set_logo}}" height="108px" class="img-fluid mx-auto d-block"> -->
       <img src="../../assets/logo.png" class="img-fluid d-block mx-auto" width="300" style="margin-top:-3%;">
     </div>
-    <div class="col-md-8">
-      <div id="nav-dos">
-
-        <ul class="nav font-light" style="margin-top:3%; margin-left: 16%; font-size:18px;">
+    <div class="col-12 col-md-12 col-lg-8">
+      <div id="nav-dos">                
+        
+        <app-busqueda></app-busqueda>
+        
+        <ul class="nav font-light justify-content-end" style="font-size:18px;">
           <li class="nav-item txt-gris">
             <a routerLink="" class="nav-link">INICIO</a>
           </li>
@@ -29,8 +31,6 @@
               <a href="#" class="dropdown-item " style="color:black;" routerLink="servicios">Solicitar Turnos</a>
               <a href="#" *ngIf="token" class="dropdown-item " style="color:black;" data-toggle="modal" data-target="#carroturnos">Turnos</a>
             </div>
-
-
           </li>
           <li class="nav-item txt-gris">
             <a routerLink="blog" routerLinkActive="active" class="nav-link">BLOG</a>
@@ -38,7 +38,7 @@
           <li class="nav-item txt-gris" *ngIf="token">
             <a href="#" class="nav-link" routerLink="recompra">HISTORIAL</a>
           </li>
-
+    
           <li class="nav-item txt-gris">
             <a href="#" class="nav-link" data-toggle="modal" data-target="#contactanosModal">CONTÁCTANOS</a>
           </li>
@@ -46,4 +46,11 @@
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      
+    </div>
+  </div>
+
 </div>

@@ -18,7 +18,7 @@ export class EnviosInicioComponent implements OnInit {
 
   lat: number;
   lng: number;
-
+  link_mercadopago:string;
   constructor(private footerConfigService: ConfgFooterService) { }
 
   ngOnInit() {
@@ -72,11 +72,17 @@ export class EnviosInicioComponent implements OnInit {
       (resp:any) => {   
         if(resp){
           this.configData = resp;
+          
+          this.link_mercadopago = resp.url_mercadopago;
           this.lat = Number(this.configData.latitud);
           this.lng = Number(this.configData.longitud);
         }     
       }
     )      
+  }
+  route_Mpago(){
+    /* window.location.href=this.link_mercadopago; */ // abre el link en la pestaña actual
+    window.open(this.link_mercadopago,'_blank');  // abre el link en una nueva pestaña
   }
 
 }

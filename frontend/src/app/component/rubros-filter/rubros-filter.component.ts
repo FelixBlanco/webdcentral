@@ -6,7 +6,7 @@ import { RubrosService } from 'src/app/services/rubros.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import { Router } from '@angular/router';
 
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-rubros-filter',
@@ -29,10 +29,11 @@ export class RubrosFilterComponent implements OnInit {
     private rubrosService: RubrosService,
     private as: AlertsService,
     private productosService: ProductosService,
-    private router : Router
+    private router: Router
   ) { }
 
   ngOnInit() {
+    
     this.setRubro();
 
     this.filterForm = this.fb.group({
@@ -41,14 +42,32 @@ export class RubrosFilterComponent implements OnInit {
       subRubroB: [''],
       searchValue: ['', Validators.required]
     });
+    
 
   }
-
-  setRubro(){
+  selectValue(){ 
+  this.rubrosService.rubroItem.subscribe(val => {
+    if (val) {
+       this.rubrosList.map((value,i)=>{
+      
+         if(value.rubro==val){
+           
+          this.filterForm.get('rubro').setValue(val); 
+          this.onChange(val,'subrubro1');
+          this.filterProducts();
+        }
+       })
+       
+      
+    }
+  })
+}
+  setRubro() {
     this.rubrosService.getRubros().subscribe((resp) => {
-      if(resp.status === 202){
+      if (resp.status === 202) {
         this.rubrosList = resp.body;
-      }else{
+        this.selectValue();
+      } else {
         console.error(resp);
         this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Rubros');
       }
@@ -58,17 +77,17 @@ export class RubrosFilterComponent implements OnInit {
     });
   }
 
-  onChange(filter: string, criteria?: string){
-
-    if(!filter){
-      if(criteria){
+  onChange(filter: string, criteria?: string) {
+    
+    if (!filter) {
+      if (criteria) {
         this.subRubrosAList = [];
       }
       this.subRubrosBList = [];
       return;
     }
 
-    if(filter && criteria){
+    if (filter && criteria) {
       this.filterForm.patchValue({
         subRubroA: '',
         subRubroB: ''
@@ -76,11 +95,11 @@ export class RubrosFilterComponent implements OnInit {
     }
 
 
-    if(criteria === 'subrubro1'){
+    if (criteria === 'subrubro1') {
       this.rubrosService.getSubrubroA(filter).subscribe((resp) => {
-        if(resp.status === 202){
+        if (resp.status === 202) {
           this.subRubrosAList = resp.body;
-        }else{
+        } else {
           console.error(resp);
           this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Sub Rubros A');
         }
@@ -94,9 +113,9 @@ export class RubrosFilterComponent implements OnInit {
     }
 
     this.rubrosService.getSubrubroB(filter).subscribe((resp) => {
-      if(resp.status === 202){
+      if (resp.status === 202) {
         this.subRubrosBList = resp.body;
-      }else{
+      } else {
         console.error(resp);
         this.as.msg('ERR', 'Ha ocurrido un error interno => Listar Sub Rubros B');
       }
@@ -106,72 +125,72 @@ export class RubrosFilterComponent implements OnInit {
     })
   }
 
-  filterProducts(){
+  filterProducts() {
     const rubros = this.filterForm.value;
-
-    if(!rubros.rubro && !rubros.subRubroA && !rubros.subRubroB){
+    console.log(rubros);
+    if (!rubros.rubro && !rubros.subRubroA && !rubros.subRubroB) {
       this.as.msg('INFO', 'Info', 'Debe seleccionar al menos Rubro, Sub Rubro A ó Sub Rubro B');
       return
     }
 
     this.inPromise = true;
     this.productosService.filter3Pack(rubros).subscribe((resp) => {
-      if(resp.ok && resp.status === 201){
+      if (resp.ok && resp.status === 201) {
         this.productsBehavior.updateSource(resp.body.productos);
         this.router.navigate(['/productos']);
-        setTimeout(()=> document.getElementById('productos').scrollIntoView({behavior: 'smooth'}),1000);
+        setTimeout(() => document.getElementById('productos').scrollIntoView({ behavior: 'smooth' }), 1000);
         $('#mascotasModal').modal('hide');
         this.setTittleByRubros(rubros);
-      }else{
+      } else {
         console.error(resp);
         this.as.msg('ERR', 'Ha ocurrido un error interno => Filtrar por Rubros');
       }
       this.inPromise = false;
-    },error => {
+    }, error => {
       console.error(error);
       this.as.msg('ERR', 'Ha ocurrido un error interno => Filtrar por Rubros');
       this.inPromise = false;
     });
-    
+
   }
 
-  setTittleByRubros({rubro,subRubroA, subRubroB}){
-    const rubros = {rubro,subRubroA, subRubroB};
+  setTittleByRubros({ rubro, subRubroA, subRubroB }) {
+    const rubros = { rubro, subRubroA, subRubroB };
     const keys: string[] = Object.keys(rubros);
     let tittle: string = '';
 
 
-    keys.forEach((val,indx) => {
-      tittle = tittle.concat(indx === 0 ? rubros[val] : rubros[val] ? ` / ${rubros[val]}`: '');
+    keys.forEach((val, indx) => {
+      tittle = tittle.concat(indx === 0 ? rubros[val] : rubros[val] ? ` / ${rubros[val]}` : '');
     })
 
     this.productosService.productosFilterTittleSource.next(tittle);
   }
 
-  someAreEmpty(): boolean{
+  someAreEmpty(): boolean {
     const values = this.filterForm.value;
-    return (values.rubro === '') 
-      && (values.subRubroA === '') 
+    return (values.rubro === '')
+      && (values.subRubroA === '')
       && (values.subRubroB === '');
   }
 
-  search(){
+  search() {
 
-    if(this.filterForm.invalid){
+    if (this.filterForm.invalid) {
       return;
     }
 
     const search = this.filterForm.value.searchValue;
     this.inPromise = true;
     this.productosService.search(search).subscribe(resp => {
-      if(resp.ok && resp.status === 200){
+      if (resp.ok && resp.status === 200) {
         this.productosService.productosSearchSource.next(resp.body);
         this.productosService.productosFilterTittleSource.next(search);
         $('#mascotasModal').modal('hide');
         $('#busquedaModal').modal('show');
 
 
-      }else{
+      } else {
         console.error(resp);
         this.as.msg('ERR', 'Ha ocurrido un error al buscar');
       }
@@ -183,7 +202,7 @@ export class RubrosFilterComponent implements OnInit {
     });
   }
 
-  clearFilters(){
+  clearFilters() {
     this.filterForm.patchValue({
       rubro: '',
       subRubroA: '',

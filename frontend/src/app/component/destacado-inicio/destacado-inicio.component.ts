@@ -3,7 +3,7 @@ import { ProductosService, Producto, CarouselItem } from 'src/app/services/produ
 import { NgbCarouselConfig, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
-
+import { ConfigColorService } from '../../services/config-color.service';
 
 @Component({
   selector: 'app-destacado-inicio',
@@ -25,7 +25,8 @@ export class DestacadoInicioComponent implements OnInit {
     private productosService: ProductosService, 
     private carouselConfig: NgbCarouselConfig, 
     private ts: AlertsService,
-    private productsBehavior: ProductsBehaviorService
+    private productsBehavior: ProductsBehaviorService,
+    private _color: ConfigColorService
   ) { 
     this.carouselConfig.interval = 5000;
     this.carouselConfig.showNavigationArrows = true;
@@ -33,6 +34,15 @@ export class DestacadoInicioComponent implements OnInit {
 
   ngOnInit() {
     this.setDestacadosList();
+
+    this._color._paletaColor().subscribe(
+      (resp:any) => {
+        if(resp){
+          this.colorTres = resp.colorClaro;
+        }        
+      }
+    );
+    
   }
 
   setDestacadosList(){

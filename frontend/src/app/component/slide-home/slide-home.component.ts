@@ -24,7 +24,7 @@ export class SlideHomeComponent implements OnInit {
     this._color._paletaColor().subscribe(
       (resp:any) => {
         if(resp){
-          this.colorDos = resp.colorOscuro;
+          this.colorDos = resp.colorMedio;
         }        
       }
     );

@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ConfigColorService} from "../../services/config-color.service";
 import {AlertsService} from "../../services/alerts.service";
+import { FormBuilder, Validators, FormGroup } from '@angular/forms'
 
 @Component({
     selector: 'app-config-color',
@@ -9,12 +10,20 @@ import {AlertsService} from "../../services/alerts.service";
 })
 export class ConfigColorComponent implements OnInit {
 
-    colores: any;
+    colores: any = {colorOscuro: null, colorMedio: null, colorClaro: null};
     form: any = {colorOscuro: null, colorMedio: null, colorClaro: null}
     inPromise: boolean;
+    myForm : FormGroup;
 
     constructor(private _coloresServices: ConfigColorService,
-                private _alertServicices: AlertsService) {
+                private _alertServicices: AlertsService,
+                private fb:FormBuilder,
+                ) {
+        this.myForm = this.fb.group({
+            'colorOscuro'   : ['',[Validators.required, Validators.minLength(7)]],
+            'colorMedio'    : ['',[Validators.required, Validators.minLength(7)]],
+            'colorClaro'    : ['',[Validators.required, Validators.minLength(7)]],
+        })
     }
 
     ngOnInit() {
@@ -23,31 +32,30 @@ export class ConfigColorComponent implements OnInit {
 
     getColores() {
         this._coloresServices._getColor().subscribe(
-            resp => {
-                this.colores = resp
+            (resp:any) => {   
+                this.colores.idColor    = resp.idColor;             
+                this.colores.colorOscuro = resp.colorOscuro;
+                this.colores.colorMedio = resp.colorMedio;
+                this.colores.colorClaro = resp.colorClaro; 
             }
         )
     }
 
     addColores() {
-        this.inPromise = true;
-        if (!this.form.colorOscuro || !this.form.colorMedio || !this.form.colorClaro) {
-            this._alertServicices.msg('ERR', 'Error', 'Todos los campos son requeridos');
-        } else {
-            this._coloresServices.addColores(this.form).subscribe(
-                resp => {
-                    this.inPromise = false;
-                    this.getColores();
-                    this.form = {colorOscuro: null, colorMedio: null, colorClaro: null}
-                    this._alertServicices.msg('OK', 'Éxito', 'Se guardo correctamente');
-                },
-                error => {
-                    this.inPromise = false;
-                    this._alertServicices.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
-                }
-            )
-        }
-
+        const val = this.myForm.value;
+        this.inPromise = true;        
+        this._coloresServices.addColores(val).subscribe(
+            resp => {
+                this.inPromise = false;
+                this.getColores();                    
+                this.form = {colorOscuro: null, colorMedio: null, colorClaro: null}
+                this._alertServicices.msg('OK', 'Éxito', 'Se guardo correctamente');
+            },
+            error => {
+                this.inPromise = false;
+                this._alertServicices.msg("ERR", "Error", `Error: ${error.status} - ${error.statusText}`);
+            }
+        )
     }
 
     eliminarColor(id) {

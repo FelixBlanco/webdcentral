@@ -1,7 +1,6 @@
 .busqueda{
-    position: absolute;
-    right: 30px;
-    width: 35%;
+    width: 80%;
+    margin-left: 34%;
 }
 
 .container-figure{
@@ -9,10 +8,20 @@
     height: 250px;
     padding: 40px 40px 10px 40px ;
 }
-img{
+/* img{
     width: 90px;
     height: 100px;
     margin-bottom: 1.3rem;
+} */
+img{
+    /* padding-top: 15px; */
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    
+
 }
 
 .product-draw span{
@@ -28,19 +37,19 @@ img{
     max-width: 1000px;
 }
 .number-wrap{
-    width: 55px;
-    height: 55px;
+    width: 45px;
+    height: 45px;
     padding: 7px;
     background-color: white;
     border: 1px solid #e97604;
-    position: absolute;
+    /* position: absolute; */
     right: 40%;
     top: 0;
 }
 .sub-number-wrap{
-    width: 40px;
-    height: 40px;
-    padding: 8px;
+    width: 30px;
+    height: 30px;
+    padding: 4px;
 }
 .btn-green{
     background-color: #018c36;
@@ -64,4 +73,44 @@ img{
 .disabled-wrap p{
     font-size:0.8em;
 }
+
+.verIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 25px; 
+    width: 35px;
+    background: orange;
+   
+    border-radius: 95% 0; 
+   transform: rotate(30deg);
+   position:relative;
+    } 
+.verIcon2 { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px; 
+    width: 20px;
+    margin:auto;
+ 
+    background: white;
+  
+    border-radius: 50%; 
+   
+ } 
+.verIcon3 { 
+    height: 10px; 
+   width: 10px;
+   margin:auto;
+   background: orange;
+  
+   border-radius: 50%; 
+ }
+ a{
+     cursor: pointer;
+
+ }
+
+ 
 

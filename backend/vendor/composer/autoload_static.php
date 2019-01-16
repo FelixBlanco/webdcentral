@@ -4,14 +4,14 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d
+class ComposerStaticInit86e309ec09b9a950b4df5755b59947f4
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
@@ -27,11 +27,11 @@ class ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -181,8 +181,8 @@ class ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Zend\\Diactoros\\' => 
         array (
@@ -354,8 +354,8 @@ class ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d
         ),
         'Illuminate\\Notifications\\' => 
         array (
-            0 => __DIR__ . '/..' . '/laravel/slack-notification-channel/src',
-            1 => __DIR__ . '/..' . '/laravel/nexmo-notification-channel/src',
+            0 => __DIR__ . '/..' . '/laravel/nexmo-notification-channel/src',
+            1 => __DIR__ . '/..' . '/laravel/slack-notification-channel/src',
         ),
         'Illuminate\\' => 
         array (
@@ -506,6 +506,7 @@ class ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d
         'App\\CouponsClient' => __DIR__ . '/../..' . '/app/CouponsClient.php',
         'App\\Destacado' => __DIR__ . '/../..' . '/app/Destacado.php',
         'App\\Domicilio' => __DIR__ . '/../..' . '/app/Domicilio.php',
+        'App\\DuracionAlimento' => __DIR__ . '/../..' . '/app/DuracionAlimento.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\GaleriaHome' => __DIR__ . '/../..' . '/app/GaleriaHome.php',
         'App\\GaleriaHomeProductos' => __DIR__ . '/../..' . '/app/GaleriaHomeProductos.php',
@@ -534,6 +535,7 @@ class ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\HorarioAtencionController' => __DIR__ . '/../..' . '/app/Http/Controllers/HorarioAtencionController.php',
         'App\\Http\\Controllers\\LocalesAdheridoController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocalesAdheridoController.php',
+        'App\\Http\\Controllers\\NotificacionDuracionAlimentoController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificacionDuracionAlimentoController.php',
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\OfertaController' => __DIR__ . '/../..' . '/app/Http/Controllers/OfertaController.php',
         'App\\Http\\Controllers\\OrderBodyController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderBodyController.php',
@@ -603,6 +605,7 @@ class ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d
         'App\\TipoOrden' => __DIR__ . '/../..' . '/app/TipoOrden.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\clasificado_reclamo' => __DIR__ . '/../..' . '/app/clasificado_reclamo.php',
+        'App\\metodoEntregaValues' => __DIR__ . '/../..' . '/app/metodoEntregaValues.php',
         'App\\orderBody' => __DIR__ . '/../..' . '/app/orderBody.php',
         'App\\orderHeader' => __DIR__ . '/../..' . '/app/orderHeader.php',
         'App\\serviciosAdd' => __DIR__ . '/../..' . '/app/serviciosAdd.php',
@@ -2617,6 +2620,7 @@ class ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d
         'Laravel\\Passport\\Http\\Controllers\\ScopeController' => __DIR__ . '/..' . '/laravel/passport/src/Http/Controllers/ScopeController.php',
         'Laravel\\Passport\\Http\\Controllers\\TransientTokenController' => __DIR__ . '/..' . '/laravel/passport/src/Http/Controllers/TransientTokenController.php',
         'Laravel\\Passport\\Http\\Middleware\\CheckClientCredentials' => __DIR__ . '/..' . '/laravel/passport/src/Http/Middleware/CheckClientCredentials.php',
+        'Laravel\\Passport\\Http\\Middleware\\CheckClientCredentialsForAnyScope' => __DIR__ . '/..' . '/laravel/passport/src/Http/Middleware/CheckClientCredentialsForAnyScope.php',
         'Laravel\\Passport\\Http\\Middleware\\CheckForAnyScope' => __DIR__ . '/..' . '/laravel/passport/src/Http/Middleware/CheckForAnyScope.php',
         'Laravel\\Passport\\Http\\Middleware\\CheckScopes' => __DIR__ . '/..' . '/laravel/passport/src/Http/Middleware/CheckScopes.php',
         'Laravel\\Passport\\Http\\Middleware\\CreateFreshApiToken' => __DIR__ . '/..' . '/laravel/passport/src/Http/Middleware/CreateFreshApiToken.php',
@@ -2775,6 +2779,7 @@ class ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d
         'League\\OAuth2\\Server\\ResponseTypes\\BearerTokenResponse' => __DIR__ . '/..' . '/league/oauth2-server/src/ResponseTypes/BearerTokenResponse.php',
         'League\\OAuth2\\Server\\ResponseTypes\\RedirectResponse' => __DIR__ . '/..' . '/league/oauth2-server/src/ResponseTypes/RedirectResponse.php',
         'League\\OAuth2\\Server\\ResponseTypes\\ResponseTypeInterface' => __DIR__ . '/..' . '/league/oauth2-server/src/ResponseTypes/ResponseTypeInterface.php',
+        'MetodoEntregaSeeder' => __DIR__ . '/../..' . '/database/seeds/MetodoEntregaSeeder.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV5.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV6' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV6.php',
@@ -2954,6 +2959,7 @@ class ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
         'Nexmo\\Account\\Balance' => __DIR__ . '/..' . '/nexmo/client/src/Account/Balance.php',
         'Nexmo\\Account\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Account/Client.php',
+        'Nexmo\\Account\\PrefixPrice' => __DIR__ . '/..' . '/nexmo/client/src/Account/PrefixPrice.php',
         'Nexmo\\Account\\Price' => __DIR__ . '/..' . '/nexmo/client/src/Account/Price.php',
         'Nexmo\\Account\\Secret' => __DIR__ . '/..' . '/nexmo/client/src/Account/Secret.php',
         'Nexmo\\Account\\SecretCollection' => __DIR__ . '/..' . '/nexmo/client/src/Account/SecretCollection.php',
@@ -4939,11 +4945,11 @@ class ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitcfaab273d64edc0da2886d68f9f2085d::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit86e309ec09b9a950b4df5755b59947f4::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit86e309ec09b9a950b4df5755b59947f4::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit86e309ec09b9a950b4df5755b59947f4::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit86e309ec09b9a950b4df5755b59947f4::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit86e309ec09b9a950b4df5755b59947f4::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -57,8 +57,8 @@ const routes: Routes = [
       { path: 'categoria-blog', component: CategoriaBlogComponent, canActivate: [AuthGuard] },
       { path: 'blog', component: BlogComponent, canActivate: [AuthGuard] },
       { path: 'locales-adheridos', component: LocalesAdheridosComponent, canActivate: [AuthGuard] },
-      { path: 'clasificadoReclamo', component: ClasificadoReclamoComponent}
-
+      { path: 'clasificadoReclamo', component: ClasificadoReclamoComponent},      
+      { path: 'Cupones', component: CuponsappComponent},      
     ]
   }, 
   { path: '', redirectTo: 'login', pathMatch: 'full' },

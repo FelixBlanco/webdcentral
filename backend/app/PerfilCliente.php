@@ -21,8 +21,7 @@ class PerfilCliente extends Model {
         'correo',
         'telefono',
         'celular',
-        'fk_idPerfilCliente',
-
+        'fk_idPerfilCliente', //id del cliente
         'domicilio_entrega',
         'fk_idTipoFactura', //opcional
         'CUIT',             //opcional

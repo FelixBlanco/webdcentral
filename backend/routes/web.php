@@ -27,8 +27,8 @@ Route::get('mail',function(){
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis distinctio omnis reprehenderit hic, quaerat ducimus temporibus sint molestiae veniam quam, repudiandae perferendis modi eveniet nesciunt doloremque quos libero qui fugit.</p>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis distinctio omnis reprehenderit hic, quaerat ducimus temporibus sint molestiae veniam quam, repudiandae perferendis modi eveniet nesciunt doloremque quos libero qui fugit.</p>";
-
-    Mail::to('alecortez240192@gmail.com')->send(new PagoConTarjetaMail($titulo,$descripcion));
+    return view('correos.formato-email')->with('titulo', $titulo)->with('descripcion', $descripcion);
+    //Mail::to('alecortez240192@gmail.com')->send(new PagoConTarjetaMail($titulo,$descripcion));
 
 });
 

@@ -21,6 +21,18 @@
               <fa-icon *ngSwitchDefault class="txt-naranja" [icon]="['far','circle']" size="3x"></fa-icon>
             </ng-container>
           </button>
+          <h2 class="mt-1">Delivery</h2>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col text-center">
+          <button mat-fab (click)="checkDeliveryMethod('internalDelivery')">
+            <ng-container [ngSwitch]="check">
+              <fa-icon *ngSwitchCase="'internalDelivery'" class="txt-naranja" [icon]="['fas','check-circle']" size="3x"></fa-icon>
+              <fa-icon *ngSwitchDefault class="txt-naranja" [icon]="['far','circle']" size="3x"></fa-icon>
+            </ng-container>
+          </button>
           <h2 class="mt-1">Despachos al Interior</h2>
           <p class="text-danger"> <strong>ATENCIÓN</strong> <br> Solo trabajamos VÍA CARGO. </p>
         </div>
@@ -28,87 +40,261 @@
       <button class="btn btn-block bg-verde font-bold text-white" (click)="routeTo(check)">SIGUIENTE</button>
     </div>
   </ng-container>
+  <!-- in market -->
   <ng-container *ngSwitchCase="'inMarket'">
     <div class="m-3">
       <div class="jumbotron" style="background-color: #f3f6db">
         <div class="text-center">
           <h4 class="txt-verde font-bold">Atención</h4>
-          <p class="lead mt-2">La mercadería permanecerá reservada con un plazo de 48hs, 
+          <p class="lead mt-2">La mercadería permanecerá reservada con un plazo de 48hs,
             pasado ese tiempo el pedido se anulará automáticamente</p>
         </div>
       </div>
-      <button class="btn btn-block bg-verde font-bold text-white">ACEPTAR</button>
+      <button class="btn btn-block bg-verde font-bold text-white" (click)="routeTo('inMarketForm')">ACEPTAR</button>
     </div>
   </ng-container>
+  <ng-container *ngSwitchCase="'inMarketForm'">
+    <div class="m-2">
+      <form [formGroup]="inMarketForm">
+        <div class="form-group">
+          <label for="fechaRetiro" class="text-uppercase font-bold">fecha de retiro <span class="text-danger">(MAX 48
+              HS)</span></label>
+          <input type="date" class="form-control" id="fechaRetiro" min="actualDate" max="twoDaysAfter" formControlName="fechaRetiro">
+          <small class="form-text text-danger" *ngIf="inMarketForm.get('fechaRetiro').invalid">
+            El rango de las fechas debe estar entre {{actualDate | date: 'dd/MM/yyyy'}} y {{twoDaysAfter | date:
+            'dd/MM/yyyy'}}
+          </small>
+        </div>
+
+        <div class="m-2">
+          <h6 class="text-uppercase font-bold">método de pago</h6>
+          <mat-radio-group formControlName="metodoDePago">
+            <mat-radio-button value="1">Efectivo</mat-radio-button>
+            <mat-radio-button value="2">Depósito</mat-radio-button>
+            <mat-radio-button value="3">Transferencia</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="card" *ngIf="inMarketForm.get('metodoDePago').value !== '1' && inMarketForm.get('metodoDePago').value !== '4'">
+          <div class="card-header">
+            Adjunte Comprobante de Pago
+          </div>
+          <div class="card-body">
+            <div class="input-group">
+              <div class="custom-file">
+                <label class="custom-file-label" for="adjunto">{{imgLoaded ? imgLoaded.name: 'Seleccione un archivo'}}</label>
+                <input type="file" (change)="onFileChange($event, 'inMarketForm')" class="custom-file-input" id="adjunto">
+              </div>
+            </div>
+            <small class="m-1 form-text text-danger" *ngIf="inMarketForm.get('imagen').invalid">Debe adjuntar el
+              comprobante de pago</small>
+          </div>
+        </div>
+
+        <div class="text-right mt-1" *ngIf="!inPromise">
+          <button class="btn btn-light txt-verde font-bold" [disabled]="inMarketForm.invalid" (click)="createOrder('inMarketForm')">ACEPTAR</button>
+        </div>
+        <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto;"></mat-spinner>
+      </form>
+    </div>
+  </ng-container>
+
+  <!-- Delivery -->
   <ng-container *ngSwitchCase="'delivery'">
-      <div class="m-2">
-        <form [formGroup]="orderForm">
-          <div class="form-group">
-            <label for="localidad" class="text-uppercase font-bold">Localidad</label>
-            <select class="form-control" id="localidad" formControlName="localidad">
-              <option value="">Seleccionar</option>
-            </select>
+    <div class="m-2">
+      <form [formGroup]="orderForm">
+        <div class="form-group">
+          <label for="localidad" class="text-uppercase font-bold">Localidad</label>
+          <ng-select formControlName="localidad" [loading]="onLocalidadesFetch" notFoundText="No se encontraron coincidencias..."
+            placeholder="Seleccione la localidad" class="ng-select-custom">
+            <ng-option *ngFor="let localidad of localidadesList" [value]="localidad.Descripcion_Localidad">{{localidad.Descripcion_Localidad}}</ng-option>
+          </ng-select>
+        </div>
+        <div class="form-group">
+          <label for="fecha" class="text-uppercase font-bold">Fecha</label>
+          <input type="date" class="form-control" id="fecha" formControlName="fecha">
+          <small class="form-text text-danger" *ngIf="orderForm.get('fecha').invalid">
+            La fecha de entrega debe ser a partir de {{twoDaysAfter | date: 'dd/MM/yyyy'}}
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="disponibilidadEnHs" class="text-uppercase font-bold">disponibilidad en hs</label>
+          <select class="form-control" id="disponibilidadEnHs" formControlName="disponibilidad">
+            <option value="">Seleccionar</option>
+            <option *ngFor="let disp of disponibilidadEnHrsList" value="{{disp}}">{{disp}}</option>
+          </select>
+        </div>
+        <label for="domicilioEntrega" class="text-uppercase font-bold">Domicilio de Entrega</label>
+        <div class="input-group mb-3">
+          <select class="custom-select" id="domicilioEntrega" formControlName="domicilioEntrega" aria-label="Example select with button addon">
+            <ng-container *ngIf="domiciliosList.length">
+              <option value="">Seleccione...</option>
+              <option *ngFor="let item of domiciliosList" [value]="item.descripcion">{{item.descripcion}}</option>
+            </ng-container>
+            <option *ngIf="!domiciliosList.length">No existen registros</option>
+          </select>
+          <div class="input-group-prepend">
+            <button class="btn btn-default font-bold bg-naranja text-white" (click)="onDomicilioCreate(true)"
+              [disabled]="onDomicilioAdd" type="button">NUEVO</button>
           </div>
-          <div class="form-group">
-            <label for="direccion" class="text-uppercase font-bold">Dirección de envío</label>
-            <input type="text" class="form-control" id="direccion" formControlName="direccionEnvio" placeholder= "Ingrese Dirección">
+        </div>
+
+        <app-domicilio-entrega-form *ngIf="onDomicilioAdd" (onSaveDone)="onDomicilioCreate(false)"></app-domicilio-entrega-form>
+
+        <div class="form-group">
+          <label for="authorizedPerson" class="text-uppercase font-bold">Persona Autorizada a recibir</label>
+          <input class="form-control" placeholder="Ingrese Nombre y Apellido" type="text" id="authorizedPerson"
+            formControlName="authorizedPerson">
+
+          <select class="form-control" id="identidad" formControlName="identidad" (change)="validDni()">
+            <option value="">Seleccionar</option>
+            <option *ngFor="let iden of identidadTipo" value="{{iden}}">{{iden}}</option>
+          </select>
+
+          <input *ngIf="orderForm.value.identidad=='DNI'" class="form-control" placeholder="Ingrese el DNI  " type="text"
+            id="authorizedPersonDni" formControlName="authorizedPersonDni" minlength="7" maxlength="8">
+          <div *ngIf="dniValidator ">
+            <small class="form-text text-danger" *ngIf=" orderForm.value.identidad=='DNI'  && orderForm.get('authorizedPersonDni').invalid  ">
+              Ingrese un DNI válido
+            </small>
           </div>
-          <div class="form-group">
-            <label for="disponibilidadEnHs" class="text-uppercase font-bold">disponibilidad en hs</label>
-            <select class="form-control" id="disponibilidadEnHs" formControlName="disponibilidad">
-              <option value="">Seleccionar</option>
-            </select>
+
+          <input *ngIf="orderForm.value.identidad=='PASAPORTE'" class="form-control" placeholder="Ingrese el Pasaporte "
+            type="text" id="authorizedPersonPasaporte" formControlName="authorizedPersonPasaporte">
+        </div>
+
+        <div class="m-2">
+          <h6 class="text-uppercase font-bold">método de pago</h6>
+          <mat-radio-group formControlName="metodoDePago">
+            <mat-radio-button value="1">Efectivo</mat-radio-button>
+            <mat-radio-button value="2">Depósito</mat-radio-button>
+            <mat-radio-button value="3">Transferencia</mat-radio-button>
+            <mat-radio-button value="4">Mercadopago</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="card m-1" *ngIf="orderForm.get('metodoDePago').value !== '1' && orderForm.get('metodoDePago').value !== '4'">
+          <div class="card-header">
+            Adjunte Comprobante de Pago
           </div>
-          <div class="form-group">
-            <label for="tiposDeFacturacion" class="text-uppercase font-bold">tipos de facturación</label>
-            <select class="form-control" id="tiposDeFacturacion" formControlName="tiposFacturacion">
-              <option value="">Seleccionar</option>
-              <option value="RI">RI</option>
-            </select>
-          </div>
-          <div class="card" *ngIf="orderForm.get('tiposFacturacion').value === 'RI'">
-            <div class="card-body">
-              <div class="form-group">
-                <label for="cuit">CUIT</label>
-                <input type="text" class="form-control" id="cuit" placeholder="0000000">
+          <div class="card-body">
+            <div class="input-group">
+              <div class="custom-file">
+                <label class="custom-file-label" for="adjunto">{{imgLoaded ? imgLoaded.name: 'Seleccione un archivo'}}</label>
+                <input type="file" (change)="onFileChange($event, 'delivery')" class="custom-file-input" id="adjunto">
               </div>
-              <div class="form-group">
-                <label for="razonSocial">Razón Social</label>
-                <input type="text" class="form-control" id="razonSocial" placeholder="0000000">
-              </div>
-              <div class="form-group">
-                <label for="domicilioFiscal">Domicilio Fiscal</label>
-                <input type="text" class="form-control" id="domicilioFiscal" placeholder="Av, Sucursal, Calle">
+            </div>
+            <small class="m-1 form-text text-danger" *ngIf="orderForm.get('imagen').invalid">Debe adjuntar el
+              comprobante de pago</small>
+          </div>
+        </div>
+        <div class="card m-1" *ngIf="orderForm.get('metodoDePago').value == '4'">
+          
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <p>Promociones disponibles en:</p>
+                <button class="btn btn-primary btn-small" style="background: #009bde; margin-top: 10%;" (click)="route_Mpago()">
+                  Promociones de <b>MERCADOPAGO</b></button>
               </div>
             </div>
           </div>
-          <div class="m-2">
-            <h6 class="text-uppercase font-bold">método de pago</h6>
-            <mat-radio-group formControlName="metodoDePago">
-              <mat-radio-button value="1">Efectivo</mat-radio-button>
-              <mat-radio-button value="2">Deposito</mat-radio-button>
-              <mat-radio-button value="3">Transferencia</mat-radio-button>
-              <mat-radio-button value="4">Mercadopago</mat-radio-button>
-            </mat-radio-group>
+        </div> 
+
+          <div class="form-group">
+            <label for="observations">Observaciones</label>
+            <textarea placeholder="Ingrese observación" rows="3" class="form-control" id="observations" formControlName="observations"></textarea>
           </div>
-          <div class="card" *ngIf="orderForm.get('metodoDePago').value !== '1' && orderForm.get('metodoDePago').value !== '4'">
-            <div class="card-header">
-              Adjunte Comprobante de Pago
+      </form>
+    </div>
+    <div class="text-right" *ngIf="!inPromise">
+      <button class="btn btn-light txt-verde font-bold" [disabled]="orderForm.invalid" (click)="createOrder('delivery')">ACEPTAR</button>
+    </div>
+    <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto;"></mat-spinner>
+  </ng-container>
+
+
+  <!-- En el interior-->
+  <ng-container *ngSwitchCase="'internalDelivery'">
+    <div class="m-2">
+      <form [formGroup]="interiorForm">
+        <label for="domicilioEntrega" class="text-uppercase font-bold">Domicilio de Entrega</label>
+        <div class="input-group mb-3">
+          <select class="custom-select" id="domicilioEntrega" formControlName="domicilioEntrega" aria-label="Example select with button addon">
+            <ng-container *ngIf="domiciliosList.length">
+              <option value="">Seleccione...</option>
+              <option *ngFor="let item of domiciliosList" [value]="item.descripcion">{{item.descripcion}}</option>
+            </ng-container>
+            <option *ngIf="!domiciliosList.length">No existen registros</option>
+          </select>
+          <div class="input-group-prepend">
+            <button class="btn btn-default font-bold bg-naranja text-white" (click)="onDomicilioCreate(true)"
+              [disabled]="onDomicilioAdd" type="button">NUEVO</button>
+          </div>
+        </div>
+
+        <app-domicilio-entrega-form *ngIf="onDomicilioAdd" (onSaveDone)="onDomicilioCreate(false)"></app-domicilio-entrega-form>
+
+        <div class="form-group">
+          <label for="localidad" class="text-uppercase font-bold">Localidad</label>
+          <ng-select formControlName="localidad" [loading]="onLocalidadesFetch" notFoundText="No se encontraron coincidencias..."
+            placeholder="Seleccione la localidad" class="ng-select-custom">
+            <ng-option *ngFor="let localidad of localidadesList" [value]="localidad.Descripcion_Localidad">{{localidad.Descripcion_Localidad}}</ng-option>
+          </ng-select>
+        </div>
+        <div class="form-group">
+          <label for="codigoPostal" class="text-uppercase font-bold">Código Postal</label>
+          <input type="text" class="form-control" id="codigoPostal" placeholder="Ingrese código postal" formControlName="codigoPostal">
+          <small class="form-text text-danger" *ngIf="interiorForm.get('codigoPostal').invalid">
+            Ingrese un código postal válido
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="direccion">Dirección</label>
+          <textarea rows="3" class="form-control" id="direccion" placeholder="Ingrese dirección" formControlName="direccion"></textarea>
+        </div>
+        <div class="m-2">
+          <h6 class="text-uppercase font-bold">método de pago</h6>
+          <mat-radio-group formControlName="metodoDePago">
+            <mat-radio-button value="1">Efectivo</mat-radio-button>
+            <mat-radio-button value="2">Depósito</mat-radio-button>
+            <mat-radio-button value="3">Transferencia</mat-radio-button>
+            <mat-radio-button value="4">Mercadopago</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="card m-1" *ngIf="interiorForm.get('metodoDePago').value !== '1' && interiorForm.get('metodoDePago').value !== '4'">
+          <div class="card-header">
+            Adjunte Comprobante de Pago
+          </div>
+          <div class="card-body">
+            <div class="input-group">
+              <div class="custom-file">
+                <label class="custom-file-label" for="adjunto">{{imgLoaded ? imgLoaded.name: 'Seleccione un archivo'}}</label>
+                <input type="file" (change)="onFileChange($event, 'internalDelivery')" class="custom-file-input" id="adjunto">
+              </div>
             </div>
-            <div class="card-body">
-              <div class="input-group">
-                <div class="custom-file">
-                  <label class="custom-file-label" for="adjunto">Seleccione un archivo</label>
-                  <input type="file" class="custom-file-input" id="adjunto">
-                </div>
+            <small class="m-1 form-text text-danger" *ngIf="interiorForm.get('imagen').invalid">Debe adjuntar el
+              comprobante de pago</small>
+          </div>
+        </div>
+        <div class="card m-1" *ngIf="interiorForm.get('metodoDePago').value == '4'">
+         
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <p>Promociones disponibles en:</p>
+                <button class="btn btn-primary btn-small" style="background: #009bde; margin-top: 10%;" (click)="route_Mpago()">
+                  Promociones de <b>MERCADOPAGO</b></button>
               </div>
             </div>
           </div>
-        </form>
-      </div>
-      <div class="text-right" *ngIf="!inPromise">
-        <button class="btn btn-light txt-verde font-bold" [disabled]="orderForm.invalid" (click)="createOrder()">ENVIAR</button>
-      </div>
-      <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto;"></mat-spinner>
+        </div>
+      </form>
+    </div>
+    <div class="text-right" *ngIf="!inPromise">
+      <button class="btn btn-light txt-verde font-bold" [disabled]="interiorForm.invalid" (click)="createOrder('internalDelivery')">ACEPTAR</button>
+    </div>
+    <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto;"></mat-spinner>
   </ng-container>
 </ng-container>

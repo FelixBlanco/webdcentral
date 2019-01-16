@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class PerfilClientesController extends Controller {
-
     public function store(Request $request) {
 
         $this->validate($request, [
@@ -29,7 +28,6 @@ class PerfilClientesController extends Controller {
             'CUIT'                => 'required',
             'CUITrazonSocial'     => 'required',
             'CUITDomicilioFidcal' => 'required',
-
 
         ], [
             'nombreComercio.required'     => 'El campo es requerido',
@@ -180,12 +178,11 @@ class PerfilClientesController extends Controller {
 
             return response()->json($response, 201);
         }
-
     }
 
     public function listarDomiciliosDeClientes($idCliente) {
 
-        $d = Domicilio::where('fk_idPerfilCliente', $idCliente)->select('idDomicilios', 'descripcion')->get();
+        $d = Domicilio::where('fk_idCliente', $idCliente)->select('idDomicilios', 'descripcion')->get();
 
         return response()->json($d, 201);
     }
@@ -195,29 +192,25 @@ class PerfilClientesController extends Controller {
         //$request->descripcion
 
         $this->validate($request, [
-           // 'fk_idPerfilCliente' => 'required',
-            'descripcion'        => 'required',
+            'fk_idCliente' => 'required',
+            'descripcion'  => 'required',
         ], [
-            //'fk_idPerfilCliente.required' => 'El campo es requerido',
-            'descripcion.required'        => 'El campo es requerido',
+            'fk_idCliente.required' => 'El campo es requerido',
+            'descripcion.required'  => 'El campo es requerido',
         ]);
 
-        /*$perfil = PerfilCliente::find($request->fk_idPerfilCliente);
-
-        if (is_null($perfil)) {
-
-            $response = [
-                'msj' => 'El perfil del cliente no existe, por favor cree un perfil primero',
-            ];
-
-            return response()->json($response, 404);
-        }*/
 
         DB::beginTransaction();
+        $domi=Domicilio::where('fk_idCliente',$request->fk_idCliente)->get();
+
         try {
-            if (count(Domicilio::all()) < 6) {
-                $d = new Domicilio($request->all());
-                $d->perfilCliente;
+
+            if (count($domi) < 6) {
+
+                $d               = new Domicilio();
+                $d->descripcion  = $request->descripcion;
+                $d->fk_idCliente = $request->fk_idCliente;
+
                 $d->save();
 
                 $response = [
@@ -229,14 +222,13 @@ class PerfilClientesController extends Controller {
 
                 return response()->json($response, 201);
             } else {
+
                 $response = [
                     'msj' => 'Ya el cliente tiene la cantidad maxima de domicilios',
                 ];
 
-                return response()->json($response, 404);
+                return response()->json($response, 409);
             }
-
-
         } catch (\Exception $e) {
 
             DB::rollback();
@@ -246,7 +238,6 @@ class PerfilClientesController extends Controller {
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
             ], 500);
         }
-
     }
 
     public function editarDomicilio(Request $request) {
@@ -268,7 +259,6 @@ class PerfilClientesController extends Controller {
             ];
 
             return response()->json($response, 404);
-
         } else {
 
             $domicilio->fill($request->all());
@@ -303,8 +293,30 @@ class PerfilClientesController extends Controller {
 
             return response()->json($response, 201);
         }
-
-
     }
 
+    public function retornarIdDelPerfil($idUser = null) {
+
+        if ($idUser == null) {
+            $response = [
+                'msj' => 'Debe enviar un id de cliente',
+            ];
+
+            return response()->json($response, 404);
+        }
+
+        $perfilCliente = PerfilCliente::select('idPerfilCliente')->where('fk_idPerfilCliente', $idUser)->get();
+
+        if (count($perfilCliente) >= 1) {
+
+            return response()->json($perfilCliente, 200);
+        } else {
+
+            $response = [
+                'msj' => 'No hay perfil del cliente',
+            ];
+
+            return response()->json($response, 200);
+        }
+    }
 }

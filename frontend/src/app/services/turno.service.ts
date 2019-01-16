@@ -44,4 +44,15 @@ export class TurnosService {
         this.turnoNewBehaviorSource.next(data);   
 
     }
+   /*  updateStatus(id: number, status: number): Observable<HttpResponse<any>> {
+        return this.http.put<any>(`${environment.apiHost}/api/auth/cambiarStatusGaleria/${id}`, { fk_idStatusSistema: status }, { headers: this.httpOptions, observe: 'response' });
+    } */
+    updateStatus(body: any): Observable<HttpResponse<any>> {
+        const httpOptions2: HttpHeaders = new HttpHeaders({  // coloco el header aqui para actualizar el token
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        });
+        return this.http.post<any>(`${environment.apiHost}/api/auth/editTurno/${body.idTurnos}`, body, { headers: httpOptions2, observe: 'response' });
+    }
 }
