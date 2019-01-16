@@ -8,6 +8,8 @@ import * as moment from 'moment';
 import { DomicilioEntregaService } from '../../../services/domicilio-entrega.service';
 import { UserTokenService } from '../../../services/user-token.service';
 import { ConfgFooterService } from 'src/app/services/confg-footer.service';
+import { MercadoPagoService } from 'src/app/services/mercado-pago.service';
+
 
 @Component({
   selector: 'app-carrito-form',
@@ -21,6 +23,8 @@ export class CarritoFormComponent implements OnInit {
 
   inPromise: boolean;
   link_mercadopago:string;
+  link_mercadopago2:string;
+
  
   orderForm: FormGroup;
   interiorForm: FormGroup;
@@ -53,7 +57,8 @@ export class CarritoFormComponent implements OnInit {
     private as: AlertsService,
     private domicilioService: DomicilioEntregaService,
     private userService: UserTokenService,
-    private footerConfigService:ConfgFooterService
+    private footerConfigService:ConfgFooterService,
+    private mercadoPagoService:MercadoPagoService
 
   ) { }
 
@@ -353,7 +358,7 @@ export class CarritoFormComponent implements OnInit {
       
       
     }else{
-      const values = this.orderForm.value;
+      const values = this.interiorForm.value;
        this.metodoDePago = values.metodoDePago == 1 ? 'Efectivo': 
       values.metodoDePago == 2 ? 'Depósito' : 
       values.metodoDePago == 3 ?  'Transferencia' : 'MercadoPago';
@@ -372,29 +377,79 @@ export class CarritoFormComponent implements OnInit {
 
     }
 
-      this.inPromise = true;
+    this.inPromise = true;
     const respOrderHeader = await this.productosService.orderHeader(body).toPromise();
     
     if(!respOrderHeader.ok){
       this.inPromise = false;
+      
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error al crear la orden');
       return;
     }
-
+  
     const idOrder = respOrderHeader.body.OB.idOrderHeader;
-
-    const respOrderBody = await this.saveOrderBody(idOrder, orderBody);
+    const Numero_Pedido = respOrderHeader.body.OB.Numero_Pedido;
+    const unit_price= respOrderHeader.body.OB.monto_total;
+   /*   const respOrderBody = await this.saveOrderBody(idOrder, orderBody); 
 
     if(!respOrderBody.ok){
       this.inPromise = false;
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error al actualizar la lista de productos, comuniquese con un administrador');
       return;
-    }  
+    } */  
+    
+    
     this.setLastOrderDetail( total,this.metodoDePago); 
     this.as.msg('OK', 'Éxito', 'Su pedido ha sido procesado');
-    this.routeTo('detalleCompra');
-    this.carritoService.clear();
+    this.goToMercadoPago(idOrder,Numero_Pedido,unit_price);
+    if(this.metodoDePago!='MercadoPago'){
+      this.routeTo('detalleCompra');
+      this.carritoService.clear();
+    }
+   
+    
 
+  }
+  goToMercadoPago(idOrder:any,Numero_Pedido:any,unit_price:any){  // si elije mercado pago redirecionar a una pagina obtenida desde un servicio
+    if(this.metodoDePago==='MercadoPago'){
+      this.mercadoPagoService.getDataPago({idOrderHeader:idOrder,Numero_Pedido:Numero_Pedido,unit_price:unit_price}).subscribe(resp=>{
+        if(resp.body){
+          //crear json para l siguiente servicio que retornara la url 
+          const precio:number =  resp.body.unit_price;
+          const data={
+            "clienteid": resp.body.clienteid,
+            "clientesecret": resp.body.clientesecret,
+            "currency_id": resp.body.currency_id,
+            "id": resp.body.id,
+            "title": resp.body.title,
+            "unit_price": Number(resp.body.unit_price),
+            "uri": resp.body.uri
+            }
+        
+          this.mercadoPagoService.getDataMercadoPago(data).subscribe((val)=>{
+          
+            if(val){
+              console.log("exist");
+              if(val.ok && val.body){
+             
+                window.open(val.body,'_blank');
+              }else if(val.status == 404){
+                console.log("error");
+                this.as.msg('ERR', 'Error', 'Link a Mercado Pago No Encontrado');
+              }
+            }
+            this.routeTo('detalleCompra');
+            this.carritoService.clear();
+          })
+          
+        }else{
+          this.as.msg('ERR', 'Error', 'error');
+          this.routeTo('detalleCompra');
+          this.carritoService.clear();
+          console.error("error");
+        }
+      })
+    }
   }
   validDni(){
     
