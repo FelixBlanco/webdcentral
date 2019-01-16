@@ -16,7 +16,7 @@ export class PerfilService {
 
   
   _upgradeInfoPerfil(data:any){
-    return this.http.put(environment.apiHost + '/api/v1/user/1',data);
+    return this.http.post(environment.apiHost + '/api/v1/user/1',data);
   }
 
   _upgradePerfil(data:any){
