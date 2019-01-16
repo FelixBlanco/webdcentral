@@ -26,3 +26,9 @@ frontend/package.json
 backend/vendor/autoload.php
 backend/vendor/composer/autoload_real.php
 backend/vendor/composer/autoload_static.php
+backend/composer.lock
+backend/vendor/autoload.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/composer/autoload_static.php
+.idea/webdcentral.iml
+.idea/workspace.xml

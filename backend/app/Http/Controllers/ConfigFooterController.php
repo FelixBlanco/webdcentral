@@ -94,7 +94,7 @@ class ConfigFooterController extends Controller {
 
                 Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
-                $d->img_envio_1 = $nombre_interno;
+                $c->img_envio_1 = $nombre_interno;
             }
 
             if (is_null($request->img_envio_2)) {
@@ -115,7 +115,7 @@ class ConfigFooterController extends Controller {
 
                 Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
-                $d->img_envio_2 = $nombre_interno;
+                $c->img_envio_2 = $nombre_interno;
             }
 
             if (is_null($request->img_envio_3)) {
@@ -136,7 +136,7 @@ class ConfigFooterController extends Controller {
 
                 Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
-                $d->img_envio_3 = $nombre_interno;
+                $c->img_envio_3 = $nombre_interno;
             }
 
             if (is_null($request->img_como_comprar)) {
@@ -157,7 +157,7 @@ class ConfigFooterController extends Controller {
 
                 Storage::disk('local')->put('\\imagenFooter\\'.$nombre_interno, (string) $thumbnailImage->encode());
 
-                $d->img_como_comprar = $nombre_interno;
+                $c->img_como_comprar = $nombre_interno;
             }
 
             $c->save();
