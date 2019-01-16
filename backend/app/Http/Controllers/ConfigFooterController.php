@@ -493,10 +493,10 @@ class ConfigFooterController extends Controller
 
             $response = [
                 'msj'        => 'Footer Actualizado',
-                'set_imagen_img_envio_1' => asset('storage\\imagenFooter\\'.$d->img_envio_1),
-                'set_imagen_img_envio_2' => asset('storage\\imagenFooter\\'.$d->img_envio_2),
-                'set_imagen_img_envio_3' => asset('storage\\imagenFooter\\'.$d->img_envio_3),
-                'set_imagen_img_como_comprar' => asset('storage\\imagenFooter\\'.$d->img_como_comprar),
+                'set_imagen_img_envio_1' => storage_path().'\\imagenFooter'.$d->img_envio_1,
+                'set_imagen_img_envio_2' => storage_path().'\\imagenFooter\\'.$d->img_envio_2,
+                'set_imagen_img_envio_3' => storage_path().'storage\\imagenFooter\\'.$d->img_envio_3,
+                'set_imagen_img_como_comprar' => storage_path().'storage\\imagenFooter\\'.$d->img_como_comprar,
             ];
 
             return response()->json($response, 201);
