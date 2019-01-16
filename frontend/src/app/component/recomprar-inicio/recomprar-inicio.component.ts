@@ -31,6 +31,7 @@ export class RecomprarInicioComponent implements OnInit {
         this.historialList = resp.body;
       }else{
         console.error(resp);
+        console.log(resp);
         this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno => Obtener Historial de Compras');
       }
     }, error => {
