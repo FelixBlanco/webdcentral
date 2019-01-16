@@ -266,6 +266,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     // Config Footer
     Route::get('config-footer', 'ConfigFooterController@getInfo')->name('config-footer');
     Route::post('update-config-footer', 'ConfigFooterController@updateInfo')->name('update-config-footer');
+    Route::post('imagenes_footer','ConfigFooterController@addImgenes');
 
     // Conexion External SYS //
     Route::post('get/order/bydriver', 'OrderDriverController@getAllByEmailDriver');
