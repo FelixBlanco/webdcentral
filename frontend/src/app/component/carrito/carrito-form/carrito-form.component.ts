@@ -64,7 +64,7 @@ export class CarritoFormComponent implements OnInit {
 
   ngOnInit() {
     this.orderForm = this.fb.group({
-      localidad: [''],
+      localidad: ['', Validators.required],
       fecha: ['', Validators.required],
       disponibilidad:['', Validators.required],
       domicilioEntrega:['', Validators.required],
@@ -358,7 +358,7 @@ export class CarritoFormComponent implements OnInit {
       
       
     }else{
-      const values = this.orderForm.value;
+      const values = this.interiorForm.value;
        this.metodoDePago = values.metodoDePago == 1 ? 'Efectivo': 
       values.metodoDePago == 2 ? 'Depósito' : 
       values.metodoDePago == 3 ?  'Transferencia' : 'MercadoPago';
@@ -386,36 +386,70 @@ export class CarritoFormComponent implements OnInit {
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error al crear la orden');
       return;
     }
-    console.log(respOrderHeader.body.OB);
+  
     const idOrder = respOrderHeader.body.OB.idOrderHeader;
     const Numero_Pedido = respOrderHeader.body.OB.Numero_Pedido;
     const unit_price= respOrderHeader.body.OB.monto_total;
-    /* const respOrderBody = await this.saveOrderBody(idOrder, orderBody); */
+   /*   const respOrderBody = await this.saveOrderBody(idOrder, orderBody); 
 
-   /*  if(!respOrderBody.ok){
+    if(!respOrderBody.ok){
       this.inPromise = false;
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error al actualizar la lista de productos, comuniquese con un administrador');
       return;
-    }  */
+    } */  
     
     
     this.setLastOrderDetail( total,this.metodoDePago); 
     this.as.msg('OK', 'Éxito', 'Su pedido ha sido procesado');
-    this.routeTo('detalleCompra');
-    this.carritoService.clear();
-    if(this.metodoDePago){
+    this.goToMercadoPago(idOrder,Numero_Pedido,unit_price);
+    if(this.metodoDePago!='MercadoPago'){
+      this.routeTo('detalleCompra');
+      this.carritoService.clear();
+    }
+   
+    
+
+  }
+  goToMercadoPago(idOrder:any,Numero_Pedido:any,unit_price:any){  // si elije mercado pago redirecionar a una pagina obtenida desde un servicio
+    if(this.metodoDePago==='MercadoPago'){
       this.mercadoPagoService.getDataPago({idOrderHeader:idOrder,Numero_Pedido:Numero_Pedido,unit_price:unit_price}).subscribe(resp=>{
         if(resp.body){
-         console.log(resp.body);
-          this.mercadoPagoService.getDataMercadoPago(resp.body).subscribe(val=>{
-            console.log(val)
+          //crear json para l siguiente servicio que retornara la url 
+          const precio:number =  resp.body.unit_price;
+          const data={
+            "clienteid": resp.body.clienteid,
+            "clientesecret": resp.body.clientesecret,
+            "currency_id": resp.body.currency_id,
+            "id": resp.body.id,
+            "title": resp.body.title,
+            "unit_price": Number(resp.body.unit_price),
+            "uri": resp.body.uri
+            }
+        
+          this.mercadoPagoService.getDataMercadoPago(data).subscribe((val)=>{
+          
+            if(val){
+              console.log("exist");
+              if(val.ok && val.body){
+             
+                window.open(val.body,'_blank');
+              }else if(val.status == 404){
+                console.log("error");
+                this.as.msg('ERR', 'Error', 'Link a Mercado Pago No Encontrado');
+              }
+            }
+            this.routeTo('detalleCompra');
+            this.carritoService.clear();
           })
+          
         }else{
+          this.as.msg('ERR', 'Error', 'error');
+          this.routeTo('detalleCompra');
+          this.carritoService.clear();
           console.error("error");
         }
       })
     }
-
   }
   validDni(){
     

@@ -22,10 +22,12 @@ export class MercadoPagoService {
   }
   getDataMercadoPago(data:any): Observable<HttpResponse<any>>{
     const httpOptions: HttpHeaders = new HttpHeaders({
-      'Accept': 'application/json',
+      "content-type": "application/json",
       'Access-Control-Allow-Origin': '*',
-      'Authorization': 'Bearer ' + localStorage.getItem('token'),
+     /*  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+      "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept, Authorization" */
+
   });
-    return this.http.post<any>(`${environment.apiHost}/webdcentral/mpago/index.php`,data,{observe:'response'})
+    return this.http.post<any>(`${environment.apiHost}/webdcentral/mpago/index.php`,data,{headers: httpOptions, observe:'response'})
   }
 }
