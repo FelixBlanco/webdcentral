@@ -139,6 +139,7 @@ export class NavUnoComponent implements OnInit {
       (resp:any) => {
         this.inPromise = false;
         this._alertsService.msg('OK',resp.msj)
+        this._alertsService.msg('OK','Recuerde revisar la carpeta de spam, si no le llega el email')
       },
       error => {
         this.inPromise = false;

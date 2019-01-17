@@ -44,7 +44,10 @@
                       <div class="col-11">
                           <img *ngIf="!item.WebLink_Rubro" src="assets/no_image_aviable.png" alt="" (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" />
                         <img *ngIf="item.WebLink_Rubro" [src]="item.WebLink_Rubro" alt="" (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" />
-                        <a class="mt-4" (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" class="text-muted">{{item.rubro | titlecase}} > {{item.SubRubro1 | titlecase}} > {{item.SubRubro2 | titlecase}}</a>
+                        <a *ngIf="item.SubRubro2 && (item.marca!='Sin Especificar' && item.marca!='SIN ESPECIFICAR')" class="mt-4" (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" class="text-muted">{{item.rubro | titlecase}} > {{item.SubRubro1 | titlecase}} > {{item.SubRubro2 | titlecase}} > {{item.marca | titlecase}}</a>
+                        <a *ngIf="item.SubRubro2 && (item.marca=='Sin Especificar' || item.marca=='SIN ESPECIFICAR')" class="mt-4" (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" class="text-muted">{{item.rubro | titlecase}} > {{item.SubRubro1 | titlecase}} > {{item.SubRubro2 | titlecase}} </a>
+                        <a *ngIf="!item.SubRubro2 && (item.marca!='Sin Especificar' && item.marca!='SIN ESPECIFICAR')" class="mt-4" (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" class="text-muted">{{item.rubro | titlecase}} > {{item.SubRubro1 | titlecase}} > {{item.marca | titlecase}}</a>
+                        <a *ngIf="!item.SubRubro2 && (item.marca=='Sin Especificar' || item.marca=='SIN ESPECIFICAR')" class="mt-4" (click)="seeRubro(item.rubro,item.SubRubro1,item.SubRubro2)" class="text-muted">{{item.rubro | titlecase}} > {{item.SubRubro1 | titlecase}} </a>
                       </div>
                       <div class="col-1 my-auto">
                          

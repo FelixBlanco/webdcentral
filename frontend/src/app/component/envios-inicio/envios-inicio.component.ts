@@ -14,8 +14,8 @@ export class EnviosInicioComponent implements OnInit {
     horarios:null, colectivos: null, subtes: null, avenidas: null,
     latitud:null, longitud: null
   };
-
-
+  
+  inPromise:Boolean=false;
   lat: number;
   lng: number;
   link_mercadopago:string;
@@ -64,15 +64,17 @@ export class EnviosInicioComponent implements OnInit {
       $("#retiro_tienda h3").removeClass('hover-blue')
       $("#retiro_tienda h3").addClass('hover-normal')
     })
-
+    
   }
 
   getData(){
+    this.inPromise= true;  
     this.footerConfigService._getConfigFooter().subscribe(
-      (resp:any) => {   
+      (resp:any) => {  
+        this.inPromise=false; 
         if(resp){
           this.configData = resp;
-          
+         
           this.link_mercadopago = resp.url_mercadopago;
           this.lat = Number(this.configData.latitud);
           this.lng = Number(this.configData.longitud);
@@ -83,6 +85,11 @@ export class EnviosInicioComponent implements OnInit {
   route_Mpago(){
     /* window.location.href=this.link_mercadopago; */ // abre el link en la pestaña actual
     window.open(this.link_mercadopago,'_blank');  // abre el link en una nueva pestaña
+  }
+
+  dondeEstamosModal(){ // muestre el donde estamos de una vez de contactanos
+    $('#contactanosModal').modal('show');
+    document.getElementById("btn_contactanos").click();  
   }
 
 }
