@@ -282,6 +282,8 @@ class ProductoController extends Controller {
             $product->Agrupacion        = $_product['Agrupacion'];
             $product->WebLink_Rubro = $_product['WebLink_Rubro'];
             $product->Weblink_fabricante = $_product['Weblink_fabricante'];
+            $product->stockActual   = $_product['stockActual'];
+            $product->Valoracion_Fabricante   = $_product['Valoracion_Fabricante'];
             $product->save();
         } else {
             $rs->nombre       = $_product['nombre'];
@@ -307,6 +309,8 @@ class ProductoController extends Controller {
             $rs->Agrupacion        = $_product['Agrupacion'];
             $rs->WebLink_Rubro = $_product['WebLink_Rubro'];
             $rs->Weblink_fabricante = $_product['Weblink_fabricante'];
+            $rs->stockActual   = $_product['stockActual'];
+            $rs->Valoracion_Fabricante   = $_product['Valoracion_Fabricante'];
             $rs->update();
         }
     }

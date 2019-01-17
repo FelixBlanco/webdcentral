@@ -28,6 +28,6 @@ export class MercadoPagoService {
       "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept, Authorization" */
 
   });
-    return this.http.post<any>(`${environment.apiHost}/webdcentral/mpago/index.php`,data,{headers: httpOptions, observe:'response'})
+    return this.http.post<any>(`http://depocentral.dyndns.org/webdcentral/mpago/index.php`,data,{headers: httpOptions, observe:'response'})
   }
 }
