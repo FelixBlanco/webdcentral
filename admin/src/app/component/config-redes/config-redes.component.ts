@@ -35,8 +35,8 @@ export class ConfigRedesComponent implements OnInit {
 
   getRedes(){
     this.configRedesService._getRed().subscribe(
-      (resp:any) => {        
-        if(resp){                                  
+      (resp:any) => {                
+        if(resp != 'null'){                                  
           this.isNew = false; // no es nuevo
           this.r_edit = resp.id_redSocial,
           this.myRedes.setValue({            
@@ -45,6 +45,8 @@ export class ConfigRedesComponent implements OnInit {
             instagram     : resp.url_inst,
             whatsapp      : resp.url_what
           })
+        }else{
+          this.isNew = true;
         }
       }
     )
