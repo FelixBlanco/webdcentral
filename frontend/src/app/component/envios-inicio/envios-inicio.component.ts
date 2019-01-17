@@ -14,8 +14,8 @@ export class EnviosInicioComponent implements OnInit {
     horarios:null, colectivos: null, subtes: null, avenidas: null,
     latitud:null, longitud: null
   };
-
-
+  
+  inPromise:Boolean=false;
   lat: number;
   lng: number;
   link_mercadopago:string;
@@ -68,8 +68,10 @@ export class EnviosInicioComponent implements OnInit {
   }
 
   getData(){
+    this.inPromise= true;  
     this.footerConfigService._getConfigFooter().subscribe(
-      (resp:any) => {   
+      (resp:any) => {  
+        this.inPromise=false; 
         if(resp){
           this.configData = resp;
           
