@@ -194,7 +194,8 @@
             <div class="row">
               <div class="col-md-12 text-center">
                 <p>Promociones disponibles en:</p>
-                <button class="btn btn-primary btn-small" style="background: #009bde; margin-top: 10%;" (click)="route_Mpago()">
+                <mat-spinner class="mx-auto" matSuffix *ngIf="inPromiseM_pago" [diameter]="25"></mat-spinner>
+                <button  *ngIf="!inPromiseM_pago" class="btn btn-primary btn-small" style="background: #009bde; margin-top: 10%;" (click)="route_Mpago()">
                   Promociones de <b>MERCADOPAGO</b></button>
               </div>
             </div>
@@ -284,7 +285,8 @@
             <div class="row">
               <div class="col-md-12 text-center">
                 <p>Promociones disponibles en:</p>
-                <button class="btn btn-primary btn-small" style="background: #009bde; margin-top: 10%;" (click)="route_Mpago()">
+                <mat-spinner class="mx-auto" matSuffix *ngIf="inPromiseM_pago" [diameter]="25"></mat-spinner>
+                <button  *ngIf="!inPromiseM_pago" class="btn btn-primary btn-small" style="background: #009bde; margin-top: 10%;" (click)="route_Mpago()">
                   Promociones de <b>MERCADOPAGO</b></button>
               </div>
             </div>

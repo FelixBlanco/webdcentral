@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ConfgFooterService } from '../../services/confg-footer.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { ConfgFooterService } from '../../services/confg-footer.service';
 })
 export class ContactanosInicioComponent implements OnInit {
   
+  @Input('section_contactanos') section: 'contacts' | 'whereare';
 
-  section: 'contacts' | 'whereare';
   footerConfig: any;
 
   lat: number;
@@ -44,8 +44,8 @@ export class ContactanosInicioComponent implements OnInit {
         this.nroTelefono = 'tel:'+resp.nroContacto
         this.email1 = 'mailto:'+resp.mail1
         this.email2 = 'mailto:'+resp.mail2        
-        this.nroWhatsapp = 'https://api.whatsapp.com/send?phone='+resp.whatsApp1+'&text=Hola,%necesito%hacerte%la%siguiente%consulta.';      
-        this.nroWhatsapp2 = 'https://api.whatsapp.com/send?phone='+resp.whatsApp2+'&text=Hola,%necesito%hacerte%la%siguiente%consulta.';
+        this.nroWhatsapp = 'https://api.whatsapp.com/send?phone='+resp.whatsApp1+'&text=Hola, necesito hacerte la siguiente consulta.';      
+        this.nroWhatsapp2 = 'https://api.whatsapp.com/send?phone='+resp.whatsApp2+'&text=Hola, necesito hacerte la siguiente consulta.';
         
         if(!isNaN(this.footerConfig.latitud) && !isNaN(this.footerConfig.longitud)){
           this.lat = Number(this.footerConfig.latitud);

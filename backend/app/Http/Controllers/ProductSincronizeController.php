@@ -20,6 +20,7 @@ class ProductSincronizeController extends Controller {
         $rs = DB::connection('sqlsrv')->select(" SELECT * FROM  VistaProductosAPP ");
 
         
+        
         foreach ($rs as $item) {
 
             $product = [

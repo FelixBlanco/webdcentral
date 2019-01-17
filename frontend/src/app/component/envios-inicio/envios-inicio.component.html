@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="col-md-3" id="retiro_tienda">
-      <div data-toggle="modal" data-target="#contactanosModal">
+      <div (click)='dondeEstamosModal()'>
         <img src="../assets/como_envio/retirar_en_tienda_1.png" width="130" class="d-block mx-auto img-fluid">
         <h3 class="text-center hover-normal"> RETIRAR EN <br> <b> LA TIENDA</b> </h3>
       </div>
@@ -216,7 +216,9 @@
                 <div class="row">
                   <div class="col-md-12 text-center">
                     <p>Promociones disponibles en:</p>
-                    <button class="btn btn-primary btn-small" style="background: #009bde; margin-top: 10%;" (click)="route_Mpago()"> Promociones de <b>MERCADOPAGO</b></button>
+                    <button *ngIf="!inPromise" [disabled]="!link_mercadopago" class="btn btn-primary btn-small" style="background: #009bde; margin-top: 10%;" (click)="route_Mpago()"> Promociones de <b>MERCADOPAGO</b></button>
+                    <mat-spinner class="mx-auto" matSuffix *ngIf="inPromise" [diameter]="25"></mat-spinner>
+
                   </div>
                 </div>
               </div>

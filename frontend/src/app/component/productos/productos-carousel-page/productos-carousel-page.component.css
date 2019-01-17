@@ -42,8 +42,8 @@ button{
 }
 
 .circle {
-    width: 35px;
-    height: 35px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     text-align: center;
     cursor: pointer;
@@ -57,11 +57,11 @@ h5{
 }
 .card-title{
     
-    min-height: 60px;
+    min-height: 50px;
 }
 .txt-marca{
     min-height: 24px;
 }
 .agrupacion{
-    height: 74px;
+    height: 84px;
 }

@@ -13,17 +13,20 @@
             <div class="text-center ">
               <small class="text-center txt-azul txt-marca">{{item.marca}}</small>
               <small *ngIf="!item.marca" class="text-center txt-azul txt-marca">SIN ESPECIFICAR</small>
-              <h6 class="card-title text-center txt-azul font-bold">
-                {{item.nombre}}
+              <h6 *ngIf="item.Agrupacion" class="card-title text-center txt-azul font-bold">
+                {{item.Agrupacion}}
               </h6>
+              <h6 *ngIf="!item.Agrupacion" class="card-title text-center txt-azul font-bold">
+                  {{item.nombre}}
+                </h6>
             </div>
             <div class="text-center semi-body">
               <!--  si existe agrupacion -->
              <div *ngIf="item.Agrupacion && item.listAgrupacion">
                 <div class="agrupacion"  *ngIf="item.listAgrupacion.length">
-                    <div class=" row justify-content-center" style="padding-top:5px;">
+                    <div class=" row justify-content-center " >
                         <div *ngFor="let ite of item.listAgrupacion; let j = index">
-                          <div class="col-3">
+                          <div class="col-3 pb-1">
                               <div class="  circle font-bold bg-azul text-white m-auto" 
                               style="font-size: .6rem;padding: .2rem;" 
                               (click)="selectAgrupacion(i,j)"

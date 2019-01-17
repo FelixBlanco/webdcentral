@@ -24,7 +24,7 @@ export class CarritoFormComponent implements OnInit {
   inPromise: boolean;
   link_mercadopago:string;
   link_mercadopago2:string;
-
+  inPromiseM_pago:Boolean= false;
  
   orderForm: FormGroup;
   interiorForm: FormGroup;
@@ -472,8 +472,10 @@ export class CarritoFormComponent implements OnInit {
     }
   }
   getLinkMercadoPAgo(){
+    this.inPromiseM_pago=true;
     this.footerConfigService._getConfigFooter().subscribe(
       (resp:any) => {   
+        this.inPromiseM_pago=false;
         if(resp){
          
           
