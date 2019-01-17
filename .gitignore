@@ -21,8 +21,6 @@ backend/vendor/composer/autoload_real.php
 backend/vendor/composer/autoload_static.php
 frontend/package-lock.json
 frontend/package.json
-.idea/webdcentral.iml
-.idea/workspace.xml
 backend/vendor/autoload.php
 backend/vendor/composer/autoload_real.php
 backend/vendor/composer/autoload_static.php
@@ -84,6 +82,4 @@ backend/public/storage/localesAdheridos/unnamed-1544927510-206.png
 backend/public/storage/oferta/primer-color-1547010701-701.png
 backend/public/storage/oferta/producto2-1545670061-104.jpg
 backend/public/storage/slide/2019-01-09t185407573z-1547060052-869.png
-.idea/workspace.xml
-.idea/webdcentral.iml
 
