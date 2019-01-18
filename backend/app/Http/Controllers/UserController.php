@@ -86,11 +86,7 @@ class UserController extends Controller {
         }
         $user[0]->update([ 'statusUser' => '1' ]);
 
-        $response = [
-            'msj' => 'Usuario activo',
-        ];
-
-        return response()->json($response, 201);
+        return http_redirect('http://depocentral.dyndns.org/frontend/');
 
     }
 
