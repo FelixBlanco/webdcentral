@@ -9,7 +9,10 @@ import { DomicilioEntregaService } from '../../../services/domicilio-entrega.ser
 import { UserTokenService } from '../../../services/user-token.service';
 import { ConfgFooterService } from 'src/app/services/confg-footer.service';
 import { MercadoPagoService } from 'src/app/services/mercado-pago.service';
+import { PerfilClienteService } from 'src/app/services/perfil-cliente.service';
 
+/* import { runInThisContext } from 'vm'; */
+declare var $;
 
 @Component({
   selector: 'app-carrito-form',
@@ -20,16 +23,17 @@ export class CarritoFormComponent implements OnInit {
 
   @Output('onSectionChange') onSectionChange = new EventEmitter();
   @Input('section') section: 'shipping' | 'deliveryMethod' | 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm' | 'detalleCompra' = 'deliveryMethod';
-
+  detailOrder:detallesCompra;
   inPromise: boolean;
   link_mercadopago:string;
   link_mercadopago2:string;
   inPromiseM_pago:Boolean= false;
- 
+  pedidoRealizado :boolean =false;
   orderForm: FormGroup;
   interiorForm: FormGroup;
   inMarketForm: FormGroup;
   metodoDePago:string;
+  Numero_Pedido :any =null;
   metodoEntrega: 'internalDelivery' | 'delivery' | 'inMarketForm' ='inMarketForm' ;
   onDomicilioAdd: boolean = false;
 
@@ -58,13 +62,14 @@ export class CarritoFormComponent implements OnInit {
     private domicilioService: DomicilioEntregaService,
     private userService: UserTokenService,
     private footerConfigService:ConfgFooterService,
-    private mercadoPagoService:MercadoPagoService
+    private mercadoPagoService:MercadoPagoService,
+    private perfilClienteService:PerfilClienteService
 
   ) { }
 
   ngOnInit() {
     this.orderForm = this.fb.group({
-      localidad: ['', Validators.required],
+      localidad: ['',Validators.required],
       fecha: ['', Validators.required],
       disponibilidad:['', Validators.required],
       domicilioEntrega:['', Validators.required],
@@ -79,7 +84,7 @@ export class CarritoFormComponent implements OnInit {
 
     this.interiorForm = this.fb.group({
       domicilioEntrega: ['', Validators.required],
-      localidad: ['', Validators.required],
+      localidad: ['',Validators.required],
       direccion: ['', Validators.required],
       codigoPostal: ['', [Validators.required, Validators.pattern(new RegExp(/^([A-Z]{1}\d{4}[A-Z]{3}|[A-Z]{1}\d{4}|\d{4})$/))]],
       metodoDePago: ['1', Validators.required],
@@ -317,7 +322,9 @@ export class CarritoFormComponent implements OnInit {
     if(type === 'inMarketForm'){
 
       const values = this.inMarketForm.value;
-      this.metodoDePago = values.metodoDePago == 1 ?  'Efectivo': values.metodoDePago == 2 ? 'Depósito' : 'Transferencia';
+      this.metodoDePago = values.metodoDePago == 1 ? 'Efectivo': 
+      values.metodoDePago == 2 ? 'Depósito' : 
+      values.metodoDePago == 3 ?  'Transferencia' :values.metodoDePago == 4? 'MercadoPago':'Tarjeta';
       
       body.append('fecha_retiro', values.fechaRetiro);
       body.append('metodoPago', this.metodoDePago);
@@ -332,8 +339,8 @@ export class CarritoFormComponent implements OnInit {
 
       const values = this.orderForm.value;
       this.metodoDePago = values.metodoDePago == 1 ? 'Efectivo': 
-        values.metodoDePago == 2 ? 'Depósito' : 
-        values.metodoDePago == 3 ?  'Transferencia' : 'MercadoPago';
+      values.metodoDePago == 2 ? 'Depósito' : 
+      values.metodoDePago == 3 ?  'Transferencia' :values.metodoDePago == 4? 'MercadoPago':'Tarjeta';
 
       body.append('metodoEntrega', '2');
       body.append('monto_total', total.toString());
@@ -361,7 +368,7 @@ export class CarritoFormComponent implements OnInit {
       const values = this.interiorForm.value;
        this.metodoDePago = values.metodoDePago == 1 ? 'Efectivo': 
       values.metodoDePago == 2 ? 'Depósito' : 
-      values.metodoDePago == 3 ?  'Transferencia' : 'MercadoPago';
+      values.metodoDePago == 3 ?  'Transferencia' :values.metodoDePago == 4? 'MercadoPago':'Tarjeta';
 
       body.append('metodoEntrega', '3');
       body.append('monto_total', total.toString());
@@ -388,24 +395,28 @@ export class CarritoFormComponent implements OnInit {
     }
   
     const idOrder = respOrderHeader.body.OB.idOrderHeader;
-    const Numero_Pedido = respOrderHeader.body.OB.Numero_Pedido;
+    this.Numero_Pedido = respOrderHeader.body.OB.Numero_Pedido;
     const unit_price= respOrderHeader.body.OB.monto_total;
-   /*   const respOrderBody = await this.saveOrderBody(idOrder, orderBody); 
+      const respOrderBody = await this.saveOrderBody(idOrder, orderBody); 
 
     if(!respOrderBody.ok){
       this.inPromise = false;
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error al actualizar la lista de productos, comuniquese con un administrador');
       return;
-    } */  
+    }   
     
     
-    this.setLastOrderDetail( total,this.metodoDePago); 
+    
     this.as.msg('OK', 'Éxito', 'Su pedido ha sido procesado');
-    this.goToMercadoPago(idOrder,Numero_Pedido,unit_price);
-    if(this.metodoDePago!='MercadoPago'){
-      this.routeTo('detalleCompra');
-      this.carritoService.clear();
-    }
+    this.carritoService.clear();
+    this.goToMercadoPago(idOrder,this.Numero_Pedido,unit_price);
+    this.inPromise=false;
+    this.pedidoRealizado=true;
+    this.carritoService.setDetallesLastOrder(this.pedidoRealizado);
+    this.carritoService.setDetallesLastOrderNumber(this.Numero_Pedido);
+  
+      
+
    
     
 
@@ -438,14 +449,12 @@ export class CarritoFormComponent implements OnInit {
                 this.as.msg('ERR', 'Error', 'Link a Mercado Pago No Encontrado');
               }
             }
-            this.routeTo('detalleCompra');
-            this.carritoService.clear();
+          
           })
           
         }else{
           this.as.msg('ERR', 'Error', 'error');
-          this.routeTo('detalleCompra');
-          this.carritoService.clear();
+  
           console.error("error");
         }
       })
@@ -489,17 +498,88 @@ export class CarritoFormComponent implements OnInit {
     /* window.location.href=this.link_mercadopago; */ // abre el link en la pestaña actual
     window.open(this.link_mercadopago,'_blank');  // abre el link en una nueva pestaña
   }
-  // crear detalles de la ultima compra
-  setLastOrderDetail( total :number , metodoDePago:string){
-     const data:detallesCompra={
-      metodoEntrega: this.metodoEntrega,
-      metodoDePago: metodoDePago,
-      productos :this.carritoService.getAll(),
-      total:total
-     }
+  // crear detalles del pedido para confirmar antes de la compra
+  setOrderDetail( metodoDePago:number){
+    //variables para verificar que el perfil no este en null
+     let apellido;
+     let nombre;
+     let DNI;
+     // verificamos que el usuario tenga un perfil registrado
+     const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
+     // verificamos si ya tiene su informacio 
+     this.inPromise = true;
+     this.perfilClienteService._getPerfilCliente(userId.id).subscribe(
+       (resp:any) => {
+         // Como ya existe , vamos a editar
+         if(resp){
+           console.log(resp);
+           apellido = resp.perfil.apellido;
+           nombre  = resp.perfil.nombre;
+           DNI =  resp.perfil.documento_dni; 
+           this.goToOrderDetail(metodoDePago,nombre,apellido,DNI);
+
+         }
+         this.inPromise = false;
+       },
+       error => {
+         // Como no hay perfil, le decimos crear            
+         console.error(error);
+         this.inPromise = false;
+
+        
+       })
+       console.log(apellido+" "+nombre+" "+DNI);     
+
+     
     
-    this.carritoService.setDetallesLastOrder(data);
+    
   }
+  goToOrderDetail( metodoDePago:number, nombre:string , apellido:string , DNI:string){
+    
+    if( !apellido || !nombre || !DNI){
+      this.as.msg('INFO','PERFIL','Rellene su Perfil Antes de hacer un pedido');
+       this.as.msg('ERR','ERROR','Perfil No Registrado!');
+       
+       $('#carrito').modal('hide');
+       this.section= 'shipping';
+       $('#perfilClienteModalGestion').modal('toggle');
+       
+        return
+     }
+  // datos segun el metodo de entrega
+   const domicilio = this.section == 'inMarketForm'? null : this.section == 'delivery'? this.orderForm.value.domicilioEntrega : this.interiorForm.value.domicilioEntrega
+   const personasAutorizada=  this.section == 'delivery'? this.orderForm.value.authorizedPerson :null;
+   const personasAutorizadaDni=  this.section == 'delivery'? this.orderForm.value.authorizedPersonDni :null;
+   const personasAutorizadaPasaporte=  this.section == 'delivery'? this.orderForm.value.authorizedPersonPasaporte :null; 
+   const codigoPostal = this.section == 'internalDelivery' ? this.interiorForm.value.codigoPostal:null;
+   const localidad =this.section == 'delivery'? this.orderForm.value.localidad : this.section == 'internalDelivery' ? this.interiorForm.value.localidad :null;
+   const disponibilidad=  this.section == 'delivery'? this.orderForm.value.disponibilidad :null;
+   const fecha=  this.section == 'delivery'? this.orderForm.value.fecha : this.section == 'inMarketForm'? this.inMarketForm.value.fechaRetiro:null;
+
+
+
+   this.metodoDePago = metodoDePago == 1 ? 'Efectivo': 
+      metodoDePago == 2 ? 'Depósito' : 
+      metodoDePago == 3 ?  'Transferencia' :
+      metodoDePago == 4 ? 'MercadoPago' : 'Tarjeta';
+   
+   // datos detalles de compra
+      this.detailOrder ={
+      metodoEntrega: this.section,
+      metodoDePago: this.metodoDePago,
+      productos : this.carritoService.getAll(),
+      total : this.carritoService.getTotal(),
+      domicilio: domicilio,
+      persona_authorizada:personasAutorizada,
+      codigo_postal:codigoPostal,
+      localidad:localidad,
+      fecha:fecha,
+      disponibilidad:disponibilidad,
+      personasAutorizadaDni:personasAutorizadaDni,
+      personasAutorizadaPasaport:personasAutorizadaPasaporte
+    }
+   this.routeTo('detalleCompra'); 
+  } 
  
 
 }

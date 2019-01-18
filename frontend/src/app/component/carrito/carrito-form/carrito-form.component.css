@@ -59,3 +59,9 @@ select.custom-select,
 .custom-file-label{
     overflow: hidden;
 }
+table th {
+    text-align: center;
+}
+table tr {
+    text-align: center;
+}
