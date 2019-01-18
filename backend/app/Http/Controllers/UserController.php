@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EnviarTokenMail;
 use App\Mail\Prueba;
 use App\PerfilCliente;
 use App\User;
@@ -13,10 +14,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
-class UserController extends Controller
-{
-    public function listar(Request $request)
-    {
+class UserController extends Controller {
+    public function listar(Request $request) {
 
         if ($request->exists('offset') && $request->exists('limit')) {
 
@@ -44,7 +43,7 @@ class UserController extends Controller
             }
         }
 
-        $users->each(function ($users) {
+        $users->each(function($users) {
             $users->perfil;
             if (! is_null($users->fotoPerfil)) {
                 $users->ruta_imagen = asset('storage\\perfil\\'.$users->fotoPerfil);
@@ -61,8 +60,7 @@ class UserController extends Controller
         return response()->json($response, 202);
     }
 
-    public function index()
-    {
+    public function index() {
     }
 
     /**
@@ -70,13 +68,33 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
-    public function store(Request $request)
-    {
+    public function ActivarCuenta($TokenActivacion) {
+
+        $user = User::where('tockenActivarCuenta', $TokenActivacion)->get();
+
+        if (count($user) < 1) {
+
+            $response = [
+                'msj' => 'Token inválido',
+            ];
+
+            return response()->json($response, 401);
+        }
+        $user[0]->update([ 'statusUser' => '1' ]);
+
+        $response = [
+            'msj' => 'Usuario activo',
+        ];
+
+        return response()->json($response, 201);
+
+    }
+
+    public function store(Request $request) {
 
         $password_default = 123456;
 
@@ -118,11 +136,11 @@ class UserController extends Controller
                 $originalImage = $request->fotoPerfil;
 
                 $thumbnailImage = Image::make($originalImage);
-                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                $thumbnailImage->fit(2048, 2048, function($constraint) {
                     $constraint->aspectRatio();
                 });
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension='png';
+                $extension      = 'png';
                 //$extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
@@ -140,16 +158,25 @@ class UserController extends Controller
             }
 
             $usuario->fk_idPerfil = 2;
-            $usuario->userName = $request->email;
+            $usuario->userName    = $request->email;
+
+
+            /*PARA ACTIVACION DE USER y STATUS INICIAL=0*/
+            $usuario->generateTokenActivacion();
+            Mail::to($usuario->email)->send(new EnviarTokenMail($usuario->tockenActivarCuenta));
+            /*PARA ACTIVACION DE USER y STATUS INICIAL=0*/
+
 
             $usuario->save();
 
-            $perfilCliente=new PerfilCliente(['fk_idPerfilCliente'=>$usuario->id]);
-            $perfilCliente->save();
 
+            /*PARA CREAR EL PERFIL DEL CLIENTE*/
+            $perfilCliente = new PerfilCliente([ 'fk_idPerfilCliente' => $usuario->id ]);
+            $perfilCliente->save();
+            /*PARA CREAR EL PERFIL DEL CLIENTE*/
 
             $response = [
-                'msj'  => 'Usuario Creado',
+                'msj'  => 'Usuario Creado, en breve le será enviado un correo para la activacion de su cuenta, es importante que revise aun en los mensajes spam',
                 'user' => $usuario,
             ];
             DB::commit();
@@ -179,8 +206,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
 
         try {
 
@@ -207,8 +233,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -219,8 +244,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
 
         /*$this->validate($request, [
             'name'  => 'required|max:30|min:2',
@@ -259,11 +283,11 @@ class UserController extends Controller
                 $originalImage = $request->fotoPerfil;
 
                 $thumbnailImage = Image::make($originalImage);
-                $thumbnailImage->fit(2048, 2048, function ($constraint) {
+                $thumbnailImage->fit(2048, 2048, function($constraint) {
                     $constraint->aspectRatio();
                 });
                 $nombre_publico = $originalImage->getClientOriginalName();
-                $extension='png';
+                $extension      = 'png';
                 //$extension = $originalImage->getClientOriginalExtension();
                 $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
                 $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
@@ -299,8 +323,7 @@ class UserController extends Controller
         }
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
 
         DB::beginTransaction();
 
@@ -326,8 +349,7 @@ class UserController extends Controller
         }
     }
 
-    public function getFotoPerfil($archivo)
-    {
+    public function getFotoPerfil($archivo) {
 
         if (Storage::exists('\\perfil\\'.$archivo)) {
 
@@ -339,8 +361,7 @@ class UserController extends Controller
         }
     }
 
-    public function setClave(Request $request)
-    {
+    public function setClave(Request $request) {
 
         $this->validate($request, [
             'password' => 'required|min:6',
@@ -353,7 +374,7 @@ class UserController extends Controller
 
         try {
 
-            $user_id=Auth::user()->id;
+            $user_id = Auth::user()->id;
 
 
             $user = User::findOrFail($user_id);
@@ -388,8 +409,7 @@ class UserController extends Controller
 
     // Actualizamos o agragamos la img de perfil
 
-    public function upgradeFotoPerfil(Request $request)
-    {
+    public function upgradeFotoPerfil(Request $request) {
 
         $this->validate($request, [
             'id_user'    => 'required',
@@ -406,11 +426,11 @@ class UserController extends Controller
             $originalImage = $request->fotoPerfil;
 
             $thumbnailImage = Image::make($originalImage);
-            $thumbnailImage->fit(2048, 2048, function ($constraint) {
+            $thumbnailImage->fit(2048, 2048, function($constraint) {
                 $constraint->aspectRatio();
             });
             $nombre_publico = $originalImage->getClientOriginalName();
-            $extension='png';
+            $extension      = 'png';
             //$extension = $originalImage->getClientOriginalExtension();
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
@@ -436,8 +456,7 @@ class UserController extends Controller
         }
     }
 
-    public function reestablecerClave(Request $request)
-    {
+    public function reestablecerClave(Request $request) {
 
         $this->validate($request, [
             'email' => 'required',
@@ -455,7 +474,7 @@ class UserController extends Controller
 
             return response()->json($response, 200);
         } else {
-            $clave_nueva = str_random(6);
+            $clave_nueva    = str_random(6);
             $user->password = bcrypt($clave_nueva);
             $user->save();
 
@@ -470,15 +489,13 @@ class UserController extends Controller
         }
     }
 
-    public function updateTokenFirebase(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
+    public function updateTokenFirebase(Request $request, $id) {
+        $user                = User::findOrFail($id);
         $user->tokenFirebase = $request->tokenFirebase;
         $user->save();
     }
 
-    public function addFotoPerfil(Request $request)
-    {
+    public function addFotoPerfil(Request $request) {
 
         $this->validate($request, [
             'id_user'    => 'required',
@@ -495,12 +512,12 @@ class UserController extends Controller
             $originalImage = $request->fotoPerfil;
 
             $thumbnailImage = Image::make($originalImage);
-            $thumbnailImage->fit(2048, 2048, function ($constraint) {
+            $thumbnailImage->fit(2048, 2048, function($constraint) {
                 $constraint->aspectRatio();
             });
             $nombre_publico = $originalImage->getClientOriginalName();
-            $extension='png';
-           // $extension = $originalImage->getClientOriginalExtension();
+            $extension      = 'png';
+            // $extension = $originalImage->getClientOriginalExtension();
             $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
             $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
             Storage::disk('local')->put('\\perfil\\'.$nombre_interno, (string) $thumbnailImage->encode());

@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
                     this.inPromise = false;
                     
                 },error => {
+
                     this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
                     this.inPromise = false;                    
                 })

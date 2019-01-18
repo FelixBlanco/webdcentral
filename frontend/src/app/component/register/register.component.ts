@@ -48,7 +48,9 @@ export class RegisterComponent implements OnInit {
         this._registerService._addRegister(data_i).subscribe(
             (resp: any) => {
                 //TODO que se debe hacer con el cuerpo de respuesta? 
-                this._alertService.msg('OK', 'Registrado')
+                this._alertService.msg('OK', 'Registrado');
+                this._alertService.msg('OK', resp.msj);
+
                 $("#registraseModal").modal('hide');
             },
             (error: any) => {
