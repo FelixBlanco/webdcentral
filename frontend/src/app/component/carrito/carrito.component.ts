@@ -27,7 +27,7 @@ export class CarritoComponent implements OnInit {
   requests: Observable<HttpResponse<Producto>>[] = [];
   itemPerCuantity: {id: number, cantidad: number}[] = [];
   pedidoRealizado:boolean =false;
-
+  Numero_Pedido = null;
   token: string;
 
   constructor(
@@ -51,7 +51,12 @@ export class CarritoComponent implements OnInit {
     })
     this.carritoService.pedidoRealizadoData.subscribe(val=>{
       console.log(val);
-      this.pedidoRealizado =val;
+      this.pedidoRealizado = val;
+      
+    })
+    this.carritoService.pedidoNumeroData.subscribe(val =>{
+      console.log(val);
+      this.Numero_Pedido = val;
     })
    
   }
@@ -178,8 +183,12 @@ export class CarritoComponent implements OnInit {
     this.section = section;
   }
   resetSection(){
-    this.section = 'shipping';
-    this.pedidoRealizado=false;
+    $('#carrito').modal('hide');
+    setTimeout(() => {
+      this.section = 'shipping';
+      this.pedidoRealizado=false;
+    }, 1000);
+    
     
   }
 

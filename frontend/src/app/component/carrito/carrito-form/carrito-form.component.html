@@ -45,7 +45,7 @@
     <div class="card">
       <div class="card-body">
         <table class="table table-curved justify-content-center">
-          <thead class="bg-azul text-white">
+          <thead class="bg-azul text-white" [ngClass]="{'bg-success': pedidoRealizado}">
             <tr>
               <th scope="col" width="50%">PRODUCTO</th>
               <th scope="col" width="30%">PRECIO</th>
@@ -65,33 +65,76 @@
 
               </tr>
             </ng-container>
+            <ng-container>
+              <tr>
+
+                <td></td>
+                <td><span>TOTAL: </span><span class="total m-1 font-bold">{{detailOrder.total | currency: 'ARS':'$'}}</span></td>
+                <td>
+
+                </td>
+
+              </tr>
+            </ng-container>
             <!-- <ng-container *ngIf="detailOrder && detailLOrder.productos ">
             <tr><td colspan="5" height="80" class="font-italic text-muted text-center"></td>Lista Vacia</tr>
           </ng-container> -->
           </tbody>
-          <tfoot *ngIf="detailOrder" class="bg-azul text-white">
-            <tr class="font-bold text-capitalize ">
+          <tfoot *ngIf="detailOrder" class="bg-azul text-white" [ngClass]="{'bg-success': pedidoRealizado}">
+            <tr class="font-bold  ">
               <td colspan="5">
-                    <div class="row justify-content-center">
-                      
-                    <div class="col-6">
-                        <span >Metodo De Entrega: </span>
-                        <span *ngIf="detailOrder.metodoEntrega =='inMarketForm'" class="font-bold"> RETIRO EN TIENDA</span>
-                        <span *ngIf="detailOrder.metodoEntrega =='delivery'" class="font-bold"> DELIVERY</span>
-                        <span *ngIf="detailOrder.metodoEntrega =='internalDelivery'" class="font-bold"> DESPACHO AL INTERIOR</span>
-                    </div>      
-                    <div class="col-3">
-                        <span >Metodo De Pago:</span><span class="font-bold"> {{detailOrder.metodoDePago | uppercase}}</span>
-                    </div>
-                    <div class="col-3">
-                        <span >TOTAL</span><span class="total m-1 font-bold">{{detailOrder.total | currency: 'ARS':'$'}}</span>
-                    </div>
+                <div class="row justify-content-center">
+
+                  <div class="col-12 pt-2">
+                    <span>Metodo De Entrega: </span>
+                    <span *ngIf="detailOrder.metodoEntrega =='inMarketForm'" class="font-bold"> RETIRO EN TIENDA</span>
+                    <span *ngIf="detailOrder.metodoEntrega =='delivery'" class="font-bold"> DELIVERY</span>
+                    <span *ngIf="detailOrder.metodoEntrega =='internalDelivery'" class="font-bold"> DESPACHO AL
+                      INTERIOR</span>
                   </div>
-                
+
+                  <div class="col-12 pt-2 ">
+                    <span>Metodo De Pago: </span><span class="font-bold"> {{detailOrder.metodoDePago | uppercase}}</span>
+                  </div>
+
+
+
+                  <div *ngIf="detailOrder.domicilio" class="col-12 pt-2 ">
+                    <span>Domicilio: </span><span class=" font-bold">{{detailOrder.domicilio | uppercase}}</span>
+                  </div>
+
+                  <div *ngIf="detailOrder.persona_authorizada" class="col-12 pt-2 ">
+                    <span>Persona Authorizada: </span><span class=" font-bold">{{detailOrder.persona_authorizada |
+                      uppercase}}</span>
+                  </div>
+                  <div *ngIf="detailOrder.personasAutorizadaDni" class="col-12 pt-2 ">
+                    <span>Persona Autorizada DNI: </span><span class=" font-bold">{{detailOrder.personasAutorizadaDni |
+                      uppercase}}</span>
+                  </div>
+                  <div *ngIf="detailOrder.personasAutorizadaPasaport" class="col-12 pt-2 ">
+                    <span>Persona Autorizada Pasaporte: </span><span class=" font-bold">{{detailOrder.personasAutorizadaPasaport
+                      | uppercase}}</span>
+                  </div>
+                  <div *ngIf="detailOrder.codigo_postal" class="col-12 pt-2 ">
+                    <span>Codigo Postal: </span><span class=" font-bold">{{detailOrder.codigo_postal | uppercase}}</span>
+                  </div>
+                  <div *ngIf="detailOrder.localidad" class="col-12 pt-2 ">
+                    <span>Localidad: </span><span class=" font-bold">{{detailOrder.localidad | uppercase}}</span>
+                  </div>
+                  <div *ngIf="detailOrder.fecha" class="col-12 pt-2 ">
+                    <span>Fecha: </span><span class=" font-bold">{{detailOrder.fecha | uppercase}}</span>
+                  </div>
+                  <div *ngIf="detailOrder.disponibilidad" class="col-12 pt-2 ">
+                    <span>Disponibilidad: </span><span class=" font-bold">{{detailOrder.disponibilidad | uppercase}}</span>
+                  </div>
+
+
+                </div>
+
               </td>
 
             </tr>
-          
+
 
           </tfoot>
         </table>
@@ -99,7 +142,8 @@
     </div>
   </ng-container>
   <div class="modal-footer" *ngIf="section === 'detalleCompra'">
-    <button *ngIf="!inPromise && !pedidoRealizado" type="button" class="btn btn-light text-uppercase txt-verde font-bold mx-auto" (click)="createOrder(detailOrder.metodoEntrega)" >Confirmar Pedido</button>
+    <button *ngIf="!inPromise && !pedidoRealizado" type="button" class="btn btn-light text-uppercase txt-verde font-bold mx-auto"
+      (click)="createOrder(detailOrder.metodoEntrega)">Confirmar Pedido</button>
     <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto;"></mat-spinner>
 
   </div>
@@ -137,10 +181,12 @@
             <mat-radio-button value="1">Efectivo</mat-radio-button>
             <mat-radio-button value="2">Depósito</mat-radio-button>
             <mat-radio-button value="3">Transferencia</mat-radio-button>
+            <mat-radio-button value="4">Mercadopago</mat-radio-button>
+            <mat-radio-button value="5">Tarjeta</mat-radio-button>
           </mat-radio-group>
         </div>
 
-        <div class="card" *ngIf="inMarketForm.get('metodoDePago').value !== '1' && inMarketForm.get('metodoDePago').value !== '4'">
+        <div class="card" *ngIf="inMarketForm.get('metodoDePago').value !== '1' && inMarketForm.get('metodoDePago').value !== '4' && inMarketForm.get('metodoDePago').value !== '5'">
           <div class="card-header">
             Adjunte Comprobante de Pago
           </div>
@@ -153,6 +199,20 @@
             </div>
             <small class="m-1 form-text text-danger" *ngIf="inMarketForm.get('imagen').invalid">Debe adjuntar el
               comprobante de pago</small>
+          </div>
+        </div>
+        <div class="card m-1" *ngIf="inMarketForm.get('metodoDePago').value == '4'">
+
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <p>Promociones disponibles en:</p>
+                <mat-spinner class="mx-auto" matSuffix *ngIf="inPromiseM_pago" [diameter]="25"></mat-spinner>
+                <button *ngIf="!inPromiseM_pago" class="btn btn-primary btn-small" style="background: #009bde; margin-top: 10%;"
+                  (click)="route_Mpago()">
+                  Promociones de <b>MERCADOPAGO</b></button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -275,7 +335,7 @@
       </form>
     </div>
     <div class="text-right" *ngIf="!inPromise">
-      <button class="btn btn-light txt-verde font-bold" [disabled]="orderForm.invalid" (click)="routeTo('detalleCompra')">ACEPTAR</button>
+      <button class="btn btn-light txt-verde font-bold" [disabled]="orderForm.invalid" (click)="setOrderDetail(orderForm.get('metodoDePago').value)">ACEPTAR</button>
     </div>
     <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto;"></mat-spinner>
   </ng-container>
@@ -362,7 +422,7 @@
       </form>
     </div>
     <div class="text-right" *ngIf="!inPromise">
-      <button class="btn btn-light txt-verde font-bold" [disabled]="interiorForm.invalid" (click)="routeTo('detalleCompra')">ACEPTAR</button>
+      <button class="btn btn-light txt-verde font-bold" [disabled]="interiorForm.invalid" (click)="setOrderDetail(interiorForm.get('metodoDePago').value)">ACEPTAR</button>
     </div>
     <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto;"></mat-spinner>
   </ng-container>

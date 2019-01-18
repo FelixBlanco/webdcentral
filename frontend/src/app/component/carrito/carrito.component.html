@@ -2,7 +2,7 @@
 <div class="modal fade" id="carrito" tabindex="-1" role="dialog" aria-labelledby="carritoTittle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" [ngClass]=" (section === 'shipping' || section === 'detalleCompra') ? 'modal-lg' : ''"  role="document">
     <div class="modal-content">
-      <div class="modal-header bg-azul">
+      <div class="modal-header bg-azul" [ngClass]="{'bg-success': pedidoRealizado}">
         <ng-container [ngSwitch]="section">
           <h5 *ngSwitchCase="'shipping'" class="modal-title text-white  text-uppercase" id="carritoTittle"><img src="assets/social/carrito.png" alt="Carrito de compras"> Carrito de Compras</h5>
           <ng-container *ngSwitchCase="'inMarket'">
@@ -33,13 +33,15 @@
             <button *ngIf="!pedidoRealizado" class="btn btn-link text-white" (click)="routeTo('deliveryMethod')">
               <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
             </button>
-            <h5 class="modal-title text-white text-uppercase mt-1">Detalles Del Pedido</h5>
+            <h5 *ngIf="!pedidoRealizado" class="modal-title text-white text-uppercase mt-1">Detalles Del Pedido</h5>
+            <h5 *ngIf="Numero_Pedido && pedidoRealizado" class="modal-title text-white text-uppercase mt-1 " >Pedido: # {{Numero_Pedido}}</h5>
           </ng-container>
           <ng-container *ngSwitchDefault>
             <button  class="btn btn-link text-white" (click)="routeTo('shipping')">
                 <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
             </button>
             <h5 class="modal-title text-white text-uppercase mt-1" >método de entrega</h5>
+            
           </ng-container>
         </ng-container>
         <button *ngIf="!pedidoRealizado" type="button" class="close" data-dismiss="modal" aria-label="Close">
