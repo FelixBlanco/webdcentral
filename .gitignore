@@ -83,3 +83,6 @@ backend/public/storage/oferta/primer-color-1547010701-701.png
 backend/public/storage/oferta/producto2-1545670061-104.jpg
 backend/public/storage/slide/2019-01-09t185407573z-1547060052-869.png
 
+backend/vendor/composer/autoload_real.php
+backend/vendor/composer/autoload_static.php
+backend/vendor/autoload.php
