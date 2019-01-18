@@ -13,7 +13,7 @@ export interface detallesCompra{
   
     productos:Item[];
     metodoDePago:string;
-    metodoEntrega:'inMarketForm' | 'delivery' | 'internalDelivery';
+    metodoEntrega:string;
     total:number;
 }
 
@@ -26,8 +26,10 @@ export class CarritoService {
     orderProducts: BehaviorSubject<any[]> = new BehaviorSubject([]);
     orderItems: Observable<any[]> = this.orderProducts.asObservable();
 
-    detallesSource: BehaviorSubject<detallesCompra> = new BehaviorSubject(null);
-    detallesItems: Observable<detallesCompra> = this.detallesSource.asObservable();
+    pedidoRealizado: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    pedidoRealizadoData: Observable<boolean> = this.pedidoRealizado.asObservable();
+
+
 
 
     constructor(){
@@ -145,7 +147,7 @@ export class CarritoService {
         this.carritoSource.next([]);
     }
 
-    setDetallesLastOrder(detail:detallesCompra){
-        this.detallesSource.next(detail);
+    setDetallesLastOrder(data:any){
+        this.pedidoRealizado.next(data);
     }
 }

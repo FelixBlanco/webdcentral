@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CarritoService ,detallesCompra} from 'src/app/services/carrito.service';
+import { CarritoService } from 'src/app/services/carrito.service';
 import { ProductosService, Producto } from 'src/app/services/productos.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { forkJoin, Observable } from 'rxjs';
@@ -21,13 +21,13 @@ export class CarritoComponent implements OnInit {
   items: any[] = [];
   total: number;
   cantidad: number;
-
   productsByOrder: any[] = [];
   aBadResponse: any[] = [];
   inPromise: boolean;
   requests: Observable<HttpResponse<Producto>>[] = [];
   itemPerCuantity: {id: number, cantidad: number}[] = [];
-  detailLasOrder:detallesCompra;
+  pedidoRealizado:boolean =false;
+
   token: string;
 
   constructor(
@@ -49,10 +49,11 @@ export class CarritoComponent implements OnInit {
       this.setTotal();
       this.setCantidad();
     })
-    this.carritoService.detallesItems.subscribe(val =>{
-      this.detailLasOrder = val;
+    this.carritoService.pedidoRealizadoData.subscribe(val=>{
       console.log(val);
+      this.pedidoRealizado =val;
     })
+   
   }
 
   setTotal(){
@@ -176,6 +177,10 @@ export class CarritoComponent implements OnInit {
 
     this.section = section;
   }
- 
+  resetSection(){
+    this.section = 'shipping';
+    this.pedidoRealizado=false;
+    
+  }
 
 }

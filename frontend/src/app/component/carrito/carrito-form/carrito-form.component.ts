@@ -9,6 +9,7 @@ import { DomicilioEntregaService } from '../../../services/domicilio-entrega.ser
 import { UserTokenService } from '../../../services/user-token.service';
 import { ConfgFooterService } from 'src/app/services/confg-footer.service';
 import { MercadoPagoService } from 'src/app/services/mercado-pago.service';
+import { runInThisContext } from 'vm';
 
 
 @Component({
@@ -20,16 +21,17 @@ export class CarritoFormComponent implements OnInit {
 
   @Output('onSectionChange') onSectionChange = new EventEmitter();
   @Input('section') section: 'shipping' | 'deliveryMethod' | 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm' | 'detalleCompra' = 'deliveryMethod';
-
+  detailOrder:detallesCompra;
   inPromise: boolean;
   link_mercadopago:string;
   link_mercadopago2:string;
   inPromiseM_pago:Boolean= false;
- 
+  pedidoRealizado :boolean =false;
   orderForm: FormGroup;
   interiorForm: FormGroup;
   inMarketForm: FormGroup;
   metodoDePago:string;
+  Numero_Pedido :any =null;
   metodoEntrega: 'internalDelivery' | 'delivery' | 'inMarketForm' ='inMarketForm' ;
   onDomicilioAdd: boolean = false;
 
@@ -388,7 +390,7 @@ export class CarritoFormComponent implements OnInit {
     }
   
     const idOrder = respOrderHeader.body.OB.idOrderHeader;
-    const Numero_Pedido = respOrderHeader.body.OB.Numero_Pedido;
+    this.Numero_Pedido = respOrderHeader.body.OB.Numero_Pedido;
     const unit_price= respOrderHeader.body.OB.monto_total;
    /*   const respOrderBody = await this.saveOrderBody(idOrder, orderBody); 
 
@@ -399,13 +401,16 @@ export class CarritoFormComponent implements OnInit {
     } */  
     
     
-    this.setLastOrderDetail( total,this.metodoDePago); 
+    /* this.setLastOrderDetail( total,this.metodoDePago);  */
     this.as.msg('OK', 'Éxito', 'Su pedido ha sido procesado');
-    this.goToMercadoPago(idOrder,Numero_Pedido,unit_price);
-    if(this.metodoDePago!='MercadoPago'){
-      this.routeTo('detalleCompra');
-      this.carritoService.clear();
-    }
+    this.carritoService.clear();
+    this.goToMercadoPago(idOrder,this.Numero_Pedido,unit_price);
+    this.inPromise=false;
+    this.pedidoRealizado=true;
+    this.carritoService.setDetallesLastOrder(this.pedidoRealizado);
+  
+      
+
    
     
 
@@ -438,14 +443,12 @@ export class CarritoFormComponent implements OnInit {
                 this.as.msg('ERR', 'Error', 'Link a Mercado Pago No Encontrado');
               }
             }
-            this.routeTo('detalleCompra');
-            this.carritoService.clear();
+          
           })
           
         }else{
           this.as.msg('ERR', 'Error', 'error');
-          this.routeTo('detalleCompra');
-          this.carritoService.clear();
+  
           console.error("error");
         }
       })
@@ -489,16 +492,23 @@ export class CarritoFormComponent implements OnInit {
     /* window.location.href=this.link_mercadopago; */ // abre el link en la pestaña actual
     window.open(this.link_mercadopago,'_blank');  // abre el link en una nueva pestaña
   }
-  // crear detalles de la ultima compra
-  setLastOrderDetail( total :number , metodoDePago:string){
-     const data:detallesCompra={
-      metodoEntrega: this.metodoEntrega,
-      metodoDePago: metodoDePago,
-      productos :this.carritoService.getAll(),
-      total:total
-     }
+  // crear detalles del pedido para confirmar antes de la compra
+  setOrderDetail( metodoDePago:number){
     
-    this.carritoService.setDetallesLastOrder(data);
+    
+    this.metodoDePago = metodoDePago == 1 ? 'Efectivo': 
+        metodoDePago == 2 ? 'Depósito' : 
+        metodoDePago == 3 ?  'Transferencia' : 'MercadoPago';
+     this.detailOrder ={
+        metodoEntrega: this.section,
+        metodoDePago: this.metodoDePago,
+        productos : this.carritoService.getAll(),
+        total : this.carritoService.getTotal(),
+      }
+     this.routeTo('detalleCompra'); 
+     
+    
+    
   }
  
 
