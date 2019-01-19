@@ -107,12 +107,16 @@
                     <span>Persona Authorizada: </span><span class=" font-bold">{{detailOrder.persona_authorizada |
                       uppercase}}</span>
                   </div>
-                  <div *ngIf="detailOrder.personasAutorizadaDni" class="col-12 pt-2 ">
+                  <div *ngIf="detailOrder.personasAutorizadaDni && !detailOrder.personasAutorizadaPasaport " class="col-12 pt-2 ">
                     <span>Persona Autorizada DNI: </span><span class=" font-bold">{{detailOrder.personasAutorizadaDni |
                       uppercase}}</span>
                   </div>
-                  <div *ngIf="detailOrder.personasAutorizadaPasaport" class="col-12 pt-2 ">
+                  <div *ngIf="detailOrder.personasAutorizadaPasaport && !detailOrder.personasAutorizadaDni" class="col-12 pt-2 ">
                     <span>Persona Autorizada Pasaporte: </span><span class=" font-bold">{{detailOrder.personasAutorizadaPasaport
+                      | uppercase}}</span>
+                  </div>
+                  <div *ngIf="detailOrder.personasAutorizadaPasaport && detailOrder.personasAutorizadaDni" class="col-12 pt-2 ">
+                    <span>Persona Autorizada Identidad: </span><span class=" font-bold">{{detailOrder.personasAutorizadaDni
                       | uppercase}}</span>
                   </div>
                   <div *ngIf="detailOrder.codigo_postal" class="col-12 pt-2 ">
@@ -182,7 +186,7 @@
             <mat-radio-button value="2">Depósito</mat-radio-button>
             <mat-radio-button value="3">Transferencia</mat-radio-button>
             <mat-radio-button value="4">Mercadopago</mat-radio-button>
-            <mat-radio-button value="5">Tarjeta</mat-radio-button>
+            
           </mat-radio-group>
         </div>
 
@@ -383,7 +387,7 @@
         <div class="m-2">
           <h6 class="text-uppercase font-bold">método de pago</h6>
           <mat-radio-group formControlName="metodoDePago">
-            <mat-radio-button value="1">Efectivo</mat-radio-button>
+            
             <mat-radio-button value="2">Depósito</mat-radio-button>
             <mat-radio-button value="3">Transferencia</mat-radio-button>
             <mat-radio-button value="4">Mercadopago</mat-radio-button>
