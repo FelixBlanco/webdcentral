@@ -85,8 +85,12 @@ export class CarritoFormComponent implements OnInit {
     this.interiorForm = this.fb.group({
       domicilioEntrega: ['', Validators.required],
       localidad: ['',Validators.required],
+      identidad: ['', Validators.required],
+      authorizedPerson: ['', Validators.required],
+      authorizedPersonDni: ['', [Validators.required, Validators.pattern(new RegExp(/^(0|[1-9][0-9]*|[1-9][0-9]{0,2}(,[0-9]{3,3})*)$/))]], 
+      authorizedPersonPasaporte: ['',Validators.required], 
       direccion: ['', Validators.required],
-      codigoPostal: ['', [Validators.required, Validators.pattern(new RegExp(/^([A-Z]{1}\d{4}[A-Z]{3}|[A-Z]{1}\d{4}|\d{4})$/))]],
+      codigoPostal: ['', [Validators.required,Validators.maxLength[4], Validators.pattern(new RegExp(/^([A-Z]{1}\d{4}[A-Z]{3}|[A-Z]{1}\d{4}|\d{4})$/))]],
       metodoDePago: ['1', Validators.required],
       imagen: [''],
     });
@@ -473,7 +477,7 @@ export class CarritoFormComponent implements OnInit {
     }
   }
   validDni(){
-    
+    //validar dni o pasaporte para delivery
     if(this.orderForm.value.identidad=="DNI"){
       this.orderForm.get("authorizedPersonPasaporte").clearValidators();
       this.orderForm.get("authorizedPersonPasaporte").updateValueAndValidity();
@@ -489,6 +493,24 @@ export class CarritoFormComponent implements OnInit {
 
       this.orderForm.get("authorizedPersonPasaporte").setValidators([Validators.required]);
       this.orderForm.get("authorizedPersonPasaporte").updateValueAndValidity();
+
+    }
+    //validar dni o pasaporte para despacho al interior
+    if(this.interiorForm.value.identidad=="DNI"){
+      this.interiorForm.get("authorizedPersonPasaporte").clearValidators();
+      this.interiorForm.get("authorizedPersonPasaporte").updateValueAndValidity();
+
+      this.interiorForm.get("authorizedPersonDni").setValidators([Validators.required, Validators.pattern(new RegExp(/^(0|[1-9][0-9]*|[1-9][0-9]{0,2}(,[0-9]{3,3})*)$/))]);
+      this.interiorForm.get("authorizedPersonDni").updateValueAndValidity();
+
+       setTimeout(() =>this.dniValidator=true , 2000);
+
+    }else if(this.interiorForm.value.identidad=="PASAPORTE"){
+      this.interiorForm.get("authorizedPersonDni").clearValidators();
+      this.interiorForm.get("authorizedPersonDni").updateValueAndValidity();
+
+      this.interiorForm.get("authorizedPersonPasaporte").setValidators([Validators.required]);
+      this.interiorForm.get("authorizedPersonPasaporte").updateValueAndValidity();
 
     }
   }
