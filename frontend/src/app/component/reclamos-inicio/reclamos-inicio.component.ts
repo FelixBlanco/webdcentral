@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ReclamosSugerenciasService } from '../../services/reclamos-sugerencias.service'
 import { AlertsService } from '../../services/alerts.service'
 import { Validators, FormBuilder, FormGroup } from '@angular/forms'
+import { ConfigColorService } from '../../services/config-color.service';
+
 declare var $;
 
 @Component({
@@ -12,12 +14,19 @@ declare var $;
 export class ReclamosInicioComponent implements OnInit {
   
   myForm:FormGroup;
-
-  constructor(private _reclamosSugerenciasService: ReclamosSugerenciasService, private _alertService:AlertsService , private fb:FormBuilder) {
+  colorTres:any;
+  
+  constructor(private _reclamosSugerenciasService: ReclamosSugerenciasService, private _alertService:AlertsService , private fb:FormBuilder,private configColor: ConfigColorService,) {
     this.myForm = this.fb.group({
       'titulo'      :['',Validators.required],
       'descripcion' :['',Validators.required]
     })
+
+    this.configColor._getColor().subscribe(
+      (resp:any)=> {
+        this.colorTres = resp.colorClaro
+      }
+    )    
    }
 
   ngOnInit() {}

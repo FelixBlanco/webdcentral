@@ -90,7 +90,7 @@ export class BlogComponent implements OnInit {
 
     this.inBatch = id;
     this.blogService.getOne(id).subscribe(
-      (resp) => {
+      (resp) => {        
         if(resp.ok && resp.status === 200){
           setTimeout(() => {
             this.actualBlog = resp.body;

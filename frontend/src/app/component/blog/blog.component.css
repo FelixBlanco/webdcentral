@@ -53,6 +53,7 @@ hr{
     white-space: nowrap;
     width: 100%;
     margin: 0px auto;
+    padding-top: 10%; 
 }
 
 .deposito-cards .card-body p{
@@ -60,7 +61,7 @@ hr{
     width: 100%;
     word-break: break-word;
     margin: 0 auto;
-    height: 95px;
+    height: 100px;
 }
 
 button{

@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="text-center p-3 txt-naranja font-bold">LO MÁS VENDIDO</h2>
+				<h2 class="text-center p-3 txt-naranja font-bold" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }">LO MÁS VENDIDO</h2>
 				<mat-spinner *ngIf="inPromise" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
 				<ng-container *ngIf="!inPromise" [ngSwitch]="masVendidoList.length">
 					<ng-container *ngSwitchCase="0">

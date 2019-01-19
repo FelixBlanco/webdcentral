@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="text-center p-3 txt-azul font-bold"><b>DESTACADOS</b></h2>
+				<h2 class="text-center p-3 txt-azul font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }"><b>DESTACADOS</b></h2>
 				<mat-spinner *ngIf="inPromise" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
 				<ng-container *ngIf="!inPromise" [ngSwitch]="destacadosList.length">
 					<ng-container *ngSwitchCase="0">

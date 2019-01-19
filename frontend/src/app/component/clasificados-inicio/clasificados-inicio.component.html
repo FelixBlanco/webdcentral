@@ -2,7 +2,7 @@
   <div class="container-fluid mt-3 mb-3">
     <div class="row">
       <div class="col">
-        <h2 class="text-center p-3 txt-azul font-bold">CLASIFICADOS</h2>
+        <h2 class="text-center p-3 txt-azul font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">CLASIFICADOS</h2>
         <mat-spinner *ngIf="inPromise" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
         <ng-container *ngIf="!inPromise">
           <ng-container *ngIf="!clasificadosList.length">

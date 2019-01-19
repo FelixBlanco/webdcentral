@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfgFooterService } from '../../services/confg-footer.service';
+import { ConfigColorService } from '../../services/config-color.service';
 
 declare var $; 
 
@@ -19,20 +20,31 @@ export class EnviosInicioComponent implements OnInit {
   lat: number;
   lng: number;
   link_mercadopago:string;
-  constructor(private footerConfigService: ConfgFooterService) { }
+  colorUno:any;
+
+  constructor(private footerConfigService: ConfgFooterService, private configColorService: ConfigColorService) { }
 
   ngOnInit() {
     
     this.getData();
 
+    this.configColorService._getColor().subscribe(
+      (resp:any) => {
+        this.colorUno = resp.colorOscuro
+      }
+    )
+    
     $("#compra").hover(function(){      
       $("#compra img").attr('src',"../assets/como_envio/como_comprar_2.png");
       $("#compra h3").removeClass('hover-normal')
       $("#compra h3").addClass('hover-blue')
+      $("#compra h3").css('background-color',this.colorUno);
+      ;
     },function(){
       $("#compra img").attr('src',"../assets/como_envio/como_comprar_1.png")
       $("#compra h3").removeClass('hover-blue')
       $("#compra h3").addClass('hover-normal')
+      $("#compra h3").css('background-color','#ffffff')
     })
 
     $("#forma_pago").hover(function(){
