@@ -39,7 +39,7 @@ export class CarritoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.carritoService.persistItemsCar();
     this.userToken.token.subscribe(val => this.token = val);
 
     this.carritoService.orderItems.subscribe(val => this.updateItemsByOrder(val));

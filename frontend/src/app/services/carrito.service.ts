@@ -95,9 +95,10 @@ export class CarritoService {
     
             items.push(added);
         }
-
-
+        
+        
         this.carritoSource.next(items);
+       
 
         return added;
     }
@@ -162,11 +163,21 @@ export class CarritoService {
 
     clear(): void{
         this.carritoSource.next([]);
+        localStorage.removeItem('carritoItems'); 
     }
 
     setDetailOrder(data:detallesCompra){
         this.orderDetailsBehavior.next(data);
     }
+    persistItemsCar(){
+        
+        const dataCarrito = JSON.parse(localStorage.getItem('carritoItems'));
+        console.log(dataCarrito);
+        dataCarrito.map(element => {
+            this.addItem(element.id,element.producto,element.marca,element.cantidad,element.precio);
+        });
+      
+    }   
      /*
     setDetallesLastOrderNumber(data:any){
         this.pedidoNumero.next(data);
