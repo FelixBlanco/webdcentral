@@ -47,10 +47,11 @@
                   <table class="table table-curved">
                     <thead class="bg-azul text-white">
                       <tr>
-                        <th scope="col" width="10%">PEDIDO</th>
+                        <th scope="col" width="15%">PEDIDO</th>
                         <th scope="col" width="20%">FECHA</th>
-                        <th scope="col" width="35%">DIRECCIÓN DE ENVÍO</th>
-                        <th scope="col" width="25%">ACCIONES</th>
+                        <th scope="col" width="20%">DIRECCIÓN DE ENVÍO</th>
+                        <th scope="col" width="15%">ESTADO</th>
+                        <th scope="col" width="30%">ACCIONES</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -58,7 +59,9 @@
                         <tr>
                           <td>{{item.Numero_Pedido}}</td>
                           <td>{{item.Fecha_Pedido}}</td>
-                          <td>{{item.Domicilio_Entrega}}</td>
+                          <td *ngIf="item.Domicilio_Entrega">{{item.Domicilio_Entrega}}</td>
+                          <td *ngIf="!item.Domicilio_Entrega">Retiro En Tienda</td>
+                          <td>{{item.Estado_Pedido}}</td>
                           <td>
                             <button
                               matTooltip="Agregar al carrito. La información será acumulada si es agregada nuevamente"
@@ -67,10 +70,13 @@
                               (click)="toRebuy(item)"
                               style="margin-right: .3rem;"
                               >
-                              recomprar
+                              Recomprar
+                            </button>
+                            <button style="padding-right: 3px;" class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="viewDetail(item)">
+                              Detalles
                             </button>
                             <button class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="toPdf(item)">
-                              imprimir
+                              Imprimir
                             </button>
                           </td>
                         </tr>
