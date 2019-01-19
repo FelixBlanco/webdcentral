@@ -12,7 +12,8 @@
               <ng-container  *ngFor="let pregunta of preguntasList">
                   <ng-container *ngIf="pregunta.fk_idStatusSistema != 2">
                     <p class="text-uppercase bg-naranja rounded p-2 text-white font-bold">{{pregunta.pregunta}}</p>
-                    <p class="card-text mr-4 ml-4 text-justify text-muted">{{pregunta.respuesta}}</p>
+                    <p class="card-text mr-4 ml-4 text-justify text-muted" [innerHTML]='pregunta.respuesta'></p>
+                    <p id="respuesta"></p>
                   </ng-container>
               </ng-container>  
             </ng-container>

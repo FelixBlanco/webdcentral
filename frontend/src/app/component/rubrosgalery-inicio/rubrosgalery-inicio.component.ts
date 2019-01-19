@@ -6,6 +6,7 @@ import { RubrosService } from 'src/app/services/rubros.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import { Router } from '@angular/router';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
+import { ConfigColorService } from '../../services/config-color.service';
 
 @Component({
   selector: 'app-rubrosgalery-inicio',
@@ -24,7 +25,7 @@ export class RubrosgaleryInicioComponent implements OnInit {
   inPromise: boolean;
 
   constructor(
-     
+    private configColor: ConfigColorService,
     private carouselConfig: NgbCarouselConfig, 
     private ts: AlertsService,
     private productsBehavior: ProductsBehaviorService,
@@ -38,6 +39,11 @@ export class RubrosgaleryInicioComponent implements OnInit {
 
   ngOnInit() {
     this.setRubrosList();
+    this.configColor._getColor().subscribe(
+      (resp:any)=> {
+        this.colorTres = resp.colorClaro
+      }
+    )
   }
 
   setRubrosList(){
@@ -88,7 +94,7 @@ e31209333aca1a9385d3c44112f74c15d929550b
     let index: number = 1;
     this.galeryList.forEach((val, i) => {
       if(this.isACarruselItem(i)){
-        this.carouselItems.push({id: index++, items: this.getPartialItems(i,i+3)});
+        this.carouselItems.push({id: index++, items: this.getPartialItems(i,i+4)});
       }
     });
     this.inPromise = false;
@@ -97,7 +103,7 @@ e31209333aca1a9385d3c44112f74c15d929550b
   }
 
   isACarruselItem($index): boolean {
-    if($index % 4){
+    if($index % 5){
       return false;
     }
     return true;

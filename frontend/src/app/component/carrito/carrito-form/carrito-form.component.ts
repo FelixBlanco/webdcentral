@@ -105,6 +105,15 @@ export class CarritoFormComponent implements OnInit {
         this.setMommentDates();
       }
     );
+    this.carritoService.orderDetails.subscribe(val =>{
+      if(val){
+        
+      this.detailOrder = val;
+      this.pedidoRealizado = val.pedidoRealizado;
+      console.log("detailcompraevent")
+       this.routeTo('detalleCompra');  
+      }
+    })
   }
 
   
@@ -386,7 +395,7 @@ export class CarritoFormComponent implements OnInit {
 
     this.inPromise = true;
     const respOrderHeader = await this.productosService.orderHeader(body).toPromise();
-    
+    console.log(respOrderHeader);
     if(!respOrderHeader.ok){
       this.inPromise = false;
       
@@ -411,9 +420,12 @@ export class CarritoFormComponent implements OnInit {
     this.carritoService.clear();
     this.goToMercadoPago(idOrder,this.Numero_Pedido,unit_price);
     this.inPromise=false;
-    this.pedidoRealizado=true;
-    this.carritoService.setDetallesLastOrder(this.pedidoRealizado);
-    this.carritoService.setDetallesLastOrderNumber(this.Numero_Pedido);
+   
+    this.detailOrder.pedidoRealizado=true;
+    this.detailOrder.numeroPedido = this.Numero_Pedido;
+    this.carritoService.setDetailOrder(this.detailOrder);
+    /* this.carritoService.setDetallesLastOrder(this.pedidoRealizado);
+    this.carritoService.setDetallesLastOrderNumber(this.Numero_Pedido); */
   
       
 
@@ -516,7 +528,7 @@ export class CarritoFormComponent implements OnInit {
            apellido = resp.perfil.apellido;
            nombre  = resp.perfil.nombre;
            DNI =  resp.perfil.documento_dni; 
-           this.goToOrderDetail(metodoDePago,nombre,apellido,DNI);
+           this.setMoreDetail(metodoDePago,nombre,apellido,DNI);
 
          }
          this.inPromise = false;
@@ -534,8 +546,8 @@ export class CarritoFormComponent implements OnInit {
     
     
   }
-  goToOrderDetail( metodoDePago:number, nombre:string , apellido:string , DNI:string){
-    
+  setMoreDetail( metodoDePago:number, nombre:string , apellido:string , DNI:string){
+     
     if( !apellido || !nombre || !DNI){
       this.as.msg('INFO','PERFIL','Rellene su Perfil Antes de hacer un pedido');
        this.as.msg('ERR','ERROR','Perfil No Registrado!');
@@ -571,14 +583,18 @@ export class CarritoFormComponent implements OnInit {
       total : this.carritoService.getTotal(),
       domicilio: domicilio,
       persona_authorizada:personasAutorizada,
-      codigo_postal:codigoPostal,
+      codigo_postal:codigoPostal, 
       localidad:localidad,
       fecha:fecha,
       disponibilidad:disponibilidad,
       personasAutorizadaDni:personasAutorizadaDni,
-      personasAutorizadaPasaport:personasAutorizadaPasaporte
+      personasAutorizadaPasaport:personasAutorizadaPasaporte,
+      numeroPedido : null,
+      pedidoRealizado: false,
+
     }
-   this.routeTo('detalleCompra'); 
+    this.carritoService.setDetailOrder(this.detailOrder);
+   
   } 
  
 

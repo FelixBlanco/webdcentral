@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <h2 class="text-center p-3 txt-naranja font-bold"><b>RUBROS</b></h2>
+          <h2 class="text-center p-3 txt-naranja font-bold" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }"><b>RUBROS</b></h2>
  <!--          <p>{{galeryList.length}}</p> -->
           <mat-spinner *ngIf="!galeryList" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
           <ng-container *ngIf="galeryList" [ngSwitch]="galeryList.length">
@@ -11,7 +11,7 @@
                 <div class="row m-3">
                   <div class="col">
                     <div class="card">
-                      <p class="card-body font-italic text-center text-muted">No existen slides para mostrar...</p>
+                      <p class="card-body font-italic text-center text-muted">No existen rubros para mostrar...</p>
                     </div>
                   </div>
                 </div>
@@ -23,7 +23,7 @@
                   <ng-template ngbSlide [id]="item.id">
                     <div class="container-fluid">
                       <div class="row justify-content-center">
-                        <div class="col-3 text-center" *ngFor="let _ of item.items">
+                        <div class="col-2 text-center" *ngFor="let _ of item.items">
 
                          <img *ngIf="!_.WebLink_Rubro"
                            src="assets/no_image_aviable.png" alt="nombre"

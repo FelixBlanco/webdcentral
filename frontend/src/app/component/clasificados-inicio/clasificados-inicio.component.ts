@@ -4,6 +4,8 @@ import { LocalesAdheridosService } from 'src/app/services/locales-adheridos.serv
 import { Router } from '@angular/router';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { UserTokenService } from 'src/app/services/user-token.service'
+import { ConfigColorService } from '../../services/config-color.service';
+
 declare var $;
 @Component({
   selector: 'app-clasificados-inicio',
@@ -15,7 +17,7 @@ export class ClasificadosInicioComponent implements OnInit {
   inPromise: boolean;
   inBatch: number;
   isLoged: boolean;
-
+  colorTres: any;
   clasificadosList: any[] = [];
   carouselItems: CarouselItem[];
 
@@ -24,11 +26,20 @@ export class ClasificadosInicioComponent implements OnInit {
     private localesService: LocalesAdheridosService,
     private as: AlertsService,
     private router: Router,
-    private userTokenService: UserTokenService
+    private userTokenService: UserTokenService,
+    private _color: ConfigColorService
   ) { }
 
   ngOnInit() {
     this.getAll();
+
+    this._color._getColor().subscribe(
+      (resp:any) => {
+        if(resp){
+          this.colorTres = resp.colorClaro;
+        }        
+      }
+    );       
   }
 
   getAll() {
