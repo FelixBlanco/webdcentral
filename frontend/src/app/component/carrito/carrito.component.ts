@@ -39,7 +39,7 @@ export class CarritoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.carritoService.persistItemsCar();
     this.userToken.token.subscribe(val => this.token = val);
 
     this.carritoService.orderItems.subscribe(val => this.updateItemsByOrder(val));
@@ -49,15 +49,19 @@ export class CarritoComponent implements OnInit {
       this.setTotal();
       this.setCantidad();
     })
-    this.carritoService.pedidoRealizadoData.subscribe(val=>{
+    this.carritoService.orderDetails.subscribe(val=>{
       console.log(val);
-      this.pedidoRealizado = val;
-      
+      if(val){
+      this.pedidoRealizado = val.pedidoRealizado;
+      this.Numero_Pedido = val.numeroPedido; 
+      this.routeTo('detalleCompra');
+
+      }else{
+        this.pedidoRealizado = false;
+      this.Numero_Pedido = null; 
+      }
     })
-    this.carritoService.pedidoNumeroData.subscribe(val =>{
-      console.log(val);
-      this.Numero_Pedido = val;
-    })
+  
    
   }
 
@@ -186,7 +190,7 @@ export class CarritoComponent implements OnInit {
     $('#carrito').modal('hide');
     setTimeout(() => {
       this.section = 'shipping';
-      this.pedidoRealizado=false;
+      this.carritoService.setDetailOrder(null);
     }, 1000);
     
     

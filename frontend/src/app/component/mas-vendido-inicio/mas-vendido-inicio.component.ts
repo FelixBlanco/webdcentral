@@ -3,6 +3,7 @@ import { ProductosService, Producto, CarouselItem } from 'src/app/services/produ
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
+import { ConfigColorService } from '../../services/config-color.service';
 
 @Component({
   selector: 'app-mas-vendido-inicio',
@@ -24,7 +25,8 @@ export class MasVendidoInicioComponent implements OnInit {
     private productosService: ProductosService, 
     private carouselConfig: NgbCarouselConfig, 
     private ts: AlertsService,
-    private productsBehavior: ProductsBehaviorService
+    private productsBehavior: ProductsBehaviorService,
+    private _color: ConfigColorService
   ) { 
     this.carouselConfig.interval = 5000;
     this.carouselConfig.showNavigationArrows = true;
@@ -32,6 +34,14 @@ export class MasVendidoInicioComponent implements OnInit {
 
   ngOnInit() {
     this.setDestacadosList();
+
+    this._color._getColor().subscribe(
+      (resp:any) => {
+        if(resp){
+          this.colorTres = resp.colorClaro;
+        }        
+      }
+    );    
   }
 
   setDestacadosList(){

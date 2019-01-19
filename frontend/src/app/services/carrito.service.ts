@@ -23,6 +23,11 @@ export interface detallesCompra{
     personasAutorizadaPasaport?:string;
     disponibilidad?:string;
     fecha?:string;
+    pedidoRealizado?:boolean,
+    numeroPedido?:string,
+    provincia?:string,
+    telefono?:string,
+    celular?:string
 }
 
 @Injectable()
@@ -34,11 +39,14 @@ export class CarritoService {
     orderProducts: BehaviorSubject<any[]> = new BehaviorSubject([]);
     orderItems: Observable<any[]> = this.orderProducts.asObservable();
 
-    pedidoRealizado: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    orderDetailsBehavior: BehaviorSubject<detallesCompra> = new BehaviorSubject(null);
+    orderDetails: Observable<detallesCompra> = this.orderDetailsBehavior.asObservable();
+
+   /*  pedidoRealizado: BehaviorSubject<boolean> = new BehaviorSubject(false);
     pedidoRealizadoData: Observable<boolean> = this.pedidoRealizado.asObservable();
 
     pedidoNumero: BehaviorSubject<any> = new BehaviorSubject(null);
-    pedidoNumeroData: Observable<any> = this.pedidoNumero.asObservable();
+    pedidoNumeroData: Observable<any> = this.pedidoNumero.asObservable(); */
 
 
     constructor(){
@@ -87,9 +95,10 @@ export class CarritoService {
     
             items.push(added);
         }
-
-
+        
+        
         this.carritoSource.next(items);
+       
 
         return added;
     }
@@ -154,12 +163,23 @@ export class CarritoService {
 
     clear(): void{
         this.carritoSource.next([]);
+        localStorage.removeItem('carritoItems'); 
     }
 
-    setDetallesLastOrder(data:any){
-        this.pedidoRealizado.next(data);
+    setDetailOrder(data:detallesCompra){
+        this.orderDetailsBehavior.next(data);
     }
+    persistItemsCar(){
+        
+        const dataCarrito = JSON.parse(localStorage.getItem('carritoItems'));
+        console.log(dataCarrito);
+        dataCarrito.map(element => {
+            this.addItem(element.id,element.producto,element.marca,element.cantidad,element.precio);
+        });
+      
+    }   
+     /*
     setDetallesLastOrderNumber(data:any){
         this.pedidoNumero.next(data);
-    }
+    } */
 }

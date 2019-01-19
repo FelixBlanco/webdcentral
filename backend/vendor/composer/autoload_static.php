@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit43d98d037e986508c09883b7a0679f9c
+class ComposerStaticInit1052d334a1e36741de86d70f4a503813
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -571,6 +571,7 @@ class ComposerStaticInit43d98d037e986508c09883b7a0679f9c
         'App\\LocalesAdherido' => __DIR__ . '/../..' . '/app/LocalesAdherido.php',
         'App\\Mail\\BorrarTurnosMail' => __DIR__ . '/../..' . '/app/Mail/BorrarTurnosMail.php',
         'App\\Mail\\EditarTurnosMail' => __DIR__ . '/../..' . '/app/Mail/EditarTurnosMail.php',
+        'App\\Mail\\EnviarTokenMail' => __DIR__ . '/../..' . '/app/Mail/EnviarTokenMail.php',
         'App\\Mail\\PagoConTarjetaMail' => __DIR__ . '/../..' . '/app/Mail/PagoConTarjetaMail.php',
         'App\\Mail\\Prueba' => __DIR__ . '/../..' . '/app/Mail/Prueba.php',
         'App\\Mail\\SuscripcionMail' => __DIR__ . '/../..' . '/app/Mail/SuscripcionMail.php',
@@ -4945,11 +4946,11 @@ class ComposerStaticInit43d98d037e986508c09883b7a0679f9c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit43d98d037e986508c09883b7a0679f9c::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit43d98d037e986508c09883b7a0679f9c::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit43d98d037e986508c09883b7a0679f9c::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit43d98d037e986508c09883b7a0679f9c::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit43d98d037e986508c09883b7a0679f9c::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit1052d334a1e36741de86d70f4a503813::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit1052d334a1e36741de86d70f4a503813::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit1052d334a1e36741de86d70f4a503813::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit1052d334a1e36741de86d70f4a503813::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit1052d334a1e36741de86d70f4a503813::$classMap;
 
         }, null, ClassLoader::class);
     }

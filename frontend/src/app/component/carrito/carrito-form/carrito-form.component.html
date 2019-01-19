@@ -107,12 +107,16 @@
                     <span>Persona Authorizada: </span><span class=" font-bold">{{detailOrder.persona_authorizada |
                       uppercase}}</span>
                   </div>
-                  <div *ngIf="detailOrder.personasAutorizadaDni" class="col-12 pt-2 ">
+                  <div *ngIf="detailOrder.personasAutorizadaDni && !detailOrder.personasAutorizadaPasaport " class="col-12 pt-2 ">
                     <span>Persona Autorizada DNI: </span><span class=" font-bold">{{detailOrder.personasAutorizadaDni |
                       uppercase}}</span>
                   </div>
-                  <div *ngIf="detailOrder.personasAutorizadaPasaport" class="col-12 pt-2 ">
+                  <div *ngIf="detailOrder.personasAutorizadaPasaport && !detailOrder.personasAutorizadaDni" class="col-12 pt-2 ">
                     <span>Persona Autorizada Pasaporte: </span><span class=" font-bold">{{detailOrder.personasAutorizadaPasaport
+                      | uppercase}}</span>
+                  </div>
+                  <div *ngIf="detailOrder.personasAutorizadaPasaport && detailOrder.personasAutorizadaDni" class="col-12 pt-2 ">
+                    <span>Persona Autorizada Identidad: </span><span class=" font-bold">{{detailOrder.personasAutorizadaDni
                       | uppercase}}</span>
                   </div>
                   <div *ngIf="detailOrder.codigo_postal" class="col-12 pt-2 ">
@@ -127,6 +131,12 @@
                   <div *ngIf="detailOrder.disponibilidad" class="col-12 pt-2 ">
                     <span>Disponibilidad: </span><span class=" font-bold">{{detailOrder.disponibilidad | uppercase}}</span>
                   </div>
+                  <div *ngIf="detailOrder.telefono" class="col-12 pt-2 ">
+                      <span>Telefono: </span><span class=" font-bold">{{detailOrder.telefono | uppercase}}</span>
+                    </div>
+                    <div *ngIf="detailOrder.celular" class="col-12 pt-2 ">
+                        <span>Celular: </span><span class=" font-bold">{{detailOrder.celular | uppercase}}</span>
+                      </div>
 
 
                 </div>
@@ -182,7 +192,7 @@
             <mat-radio-button value="2">Depósito</mat-radio-button>
             <mat-radio-button value="3">Transferencia</mat-radio-button>
             <mat-radio-button value="4">Mercadopago</mat-radio-button>
-            <mat-radio-button value="5">Tarjeta</mat-radio-button>
+
           </mat-radio-group>
         </div>
 
@@ -370,12 +380,48 @@
           </ng-select>
         </div>
         <div class="form-group">
+            <label for="provincia" class="text-uppercase font-bold">Provincia</label>
+            <input type="text" class="form-control" id="provincia" placeholder="Ingrese Provincia" formControlName="provincia">
+  
+          </div>
+        <div class="form-group">
           <label for="codigoPostal" class="text-uppercase font-bold">Código Postal</label>
-          <input type="text" class="form-control" id="codigoPostal" placeholder="Ingrese código postal" formControlName="codigoPostal">
+          <input type="text" class="form-control" id="codigoPostal" placeholder="Ingrese código postal" formControlName="codigoPostal" maxlength="4">
           <small class="form-text text-danger" *ngIf="interiorForm.get('codigoPostal').invalid">
             Ingrese un código postal válido
           </small>
         </div>
+        <div class="form-group">
+          <label for="authorizedPerson" class="text-uppercase font-bold">Persona Autorizada a recibir</label>
+          <input class="form-control" placeholder="Ingrese Nombre y Apellido" type="text" id="authorizedPerson"
+            formControlName="authorizedPerson">
+
+          <select class="form-control" id="identidad" formControlName="identidad" (change)="validDni()">
+            <option value="">Seleccionar</option>
+            <option *ngFor="let iden of identidadTipo" value="{{iden}}">{{iden}}</option>
+          </select>
+
+          <input *ngIf="interiorForm.value.identidad=='DNI'" class="form-control" placeholder="Ingrese el DNI  " type="text"
+            id="authorizedPersonDni" formControlName="authorizedPersonDni" minlength="7" maxlength="8">
+          <div *ngIf="dniValidator ">
+            <small class="form-text text-danger" *ngIf=" interiorForm.value.identidad=='DNI'  && interiorForm.get('authorizedPersonDni').invalid  ">
+              Ingrese un DNI válido
+            </small>
+          </div>
+
+          <input *ngIf="interiorForm.value.identidad=='PASAPORTE'" class="form-control" placeholder="Ingrese el Pasaporte "
+            type="text" id="authorizedPersonPasaporte" formControlName="authorizedPersonPasaporte">
+        </div>
+        <div class="form-group">
+          <label for="telefono" class="text-uppercase font-bold">Telefono</label>
+          <input type="text" class="form-control" id="telefono" placeholder="(Ingrese Telefono)" formControlName="telefono">
+
+        </div>
+        <div class="form-group">
+            <label for="celular" class="text-uppercase font-bold">Celular</label>
+            <input type="text" class="form-control" id="celular" placeholder="Ingrese Celular" formControlName="celular">
+  
+          </div>
         <div class="form-group">
           <label for="direccion">Dirección</label>
           <textarea rows="3" class="form-control" id="direccion" placeholder="Ingrese dirección" formControlName="direccion"></textarea>
@@ -383,7 +429,7 @@
         <div class="m-2">
           <h6 class="text-uppercase font-bold">método de pago</h6>
           <mat-radio-group formControlName="metodoDePago">
-            <mat-radio-button value="1">Efectivo</mat-radio-button>
+
             <mat-radio-button value="2">Depósito</mat-radio-button>
             <mat-radio-button value="3">Transferencia</mat-radio-button>
             <mat-radio-button value="4">Mercadopago</mat-radio-button>

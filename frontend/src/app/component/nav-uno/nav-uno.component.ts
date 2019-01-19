@@ -104,6 +104,13 @@ export class NavUnoComponent implements OnInit {
   initBadgeBehavior(){
     this.carritoService.carritoItems.subscribe((vals) => {
       this.badgeContent = vals.length
+      if(vals.length){
+        
+        console.log("agregando carrito al local storage");
+        localStorage.setItem('carritoItems',JSON.stringify(vals)); // añadiendo items del carrito al localStorage
+        console.log(localStorage.getItem('carritoItems'));
+      }
+
     });
   }
 

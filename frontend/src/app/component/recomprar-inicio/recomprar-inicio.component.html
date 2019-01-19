@@ -47,10 +47,11 @@
                   <table class="table table-curved">
                     <thead class="bg-azul text-white">
                       <tr>
-                        <th scope="col" width="10%">PEDIDO</th>
+                        <th scope="col" width="15%">PEDIDO</th>
                         <th scope="col" width="20%">FECHA</th>
-                        <th scope="col" width="35%">DIRECCIÓN DE ENVÍO</th>
-                        <th scope="col" width="25%">ACCIONES</th>
+                        <th scope="col" width="20%">DIRECCIÓN DE ENVÍO</th>
+                        <th scope="col" width="15%">ESTADO</th>
+                        <th scope="col" width="30%">ACCIONES</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -58,7 +59,9 @@
                         <tr>
                           <td>{{item.Numero_Pedido}}</td>
                           <td>{{item.Fecha_Pedido}}</td>
-                          <td>{{item.Domicilio_Entrega}}</td>
+                          <td *ngIf="item.Domicilio_Entrega">{{item.Domicilio_Entrega}}</td>
+                          <td *ngIf="!item.Domicilio_Entrega">Retiro En Tienda</td>
+                          <td>{{item.Estado_Pedido}}</td>
                           <td>
                             <button
                               matTooltip="Agregar al carrito. La información será acumulada si es agregada nuevamente"
@@ -67,19 +70,33 @@
                               (click)="toRebuy(item)"
                               style="margin-right: .3rem;"
                               >
-                              recomprar
+                              Recomprar
+                            </button>
+                            <button style="padding-right: 3px;" class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="viewDetail(item,false)">
+                              Detalles
                             </button>
                             <button class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="toPdf(item)">
-                              imprimir
+                              Imprimir
                             </button>
                           </td>
                         </tr>
                       </ng-container>
-                      <ng-container *ngIf="!historialList.length">
+
+                      <ng-container *ngIf="!historialList.length && !inPromise">
                         <tr><td colspan="4" height="80" class="font-italic text-muted text-center"><h5>No existen compras asociados a su cuenta...</h5></td></tr>
                         <tr><td colspan="4" height="20" class="text-center"> <a class="btn btn-light font-bold text-uppercase"[routerLink]="[ '/productos']">buscar productos</a> </td></tr>
-                      </ng-container>
+                      </ng-container> 
                     </tbody>
+                    <tfoot >
+                        <tr >
+                            <td colspan="5">
+                                <mat-spinner style="margin: 0 auto;" matSuffix *ngIf="inPromise" [diameter]="40" ></mat-spinner>
+
+                            </td>
+                          </tr>
+            
+
+                    </tfoot>
                   </table>
                 </div>
               </div>
