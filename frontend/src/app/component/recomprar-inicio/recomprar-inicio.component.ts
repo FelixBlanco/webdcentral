@@ -146,9 +146,12 @@ export class RecomprarInicioComponent implements OnInit {
       fecha: row.fecha,
       disponibilidad: row.disponibilidadHr,
       personasAutorizadaDni: row.DNIautorizado,
-      personasAutorizadaPasaport: row.DNIautorizado,
+      personasAutorizadaPasaport: row.pasarpoteAutorizado,
       pedidoRealizado: true,
-      numeroPedido: row.Numero_Pedido
+      numeroPedido: row.Numero_Pedido,
+      provincia:row.provincia,
+      telefono:row.telefonoAutorizado,
+      celular:row.celularAutorizado
     }
     //enviamos datos al servicio para que se muestren
     if (!justView) {

@@ -24,7 +24,10 @@ export interface detallesCompra{
     disponibilidad?:string;
     fecha?:string;
     pedidoRealizado?:boolean,
-    numeroPedido?:string
+    numeroPedido?:string,
+    provincia?:string,
+    telefono?:string,
+    celular?:string
 }
 
 @Injectable()

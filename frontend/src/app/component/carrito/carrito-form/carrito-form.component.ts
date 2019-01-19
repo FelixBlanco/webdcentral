@@ -69,7 +69,7 @@ export class CarritoFormComponent implements OnInit {
 
   ngOnInit() {
     this.orderForm = this.fb.group({
-      localidad: ['',Validators.required],
+      localidad: ['', Validators.required],
       fecha: ['', Validators.required],
       disponibilidad:['', Validators.required],
       domicilioEntrega:['', Validators.required],
@@ -83,15 +83,18 @@ export class CarritoFormComponent implements OnInit {
     });
 
     this.interiorForm = this.fb.group({
-      domicilioEntrega: ['', Validators.required],
+      domicilioEntrega: ['',Validators.required],
       localidad: ['',Validators.required],
       identidad: ['', Validators.required],
       authorizedPerson: ['', Validators.required],
       authorizedPersonDni: ['', [Validators.required, Validators.pattern(new RegExp(/^(0|[1-9][0-9]*|[1-9][0-9]{0,2}(,[0-9]{3,3})*)$/))]], 
       authorizedPersonPasaporte: ['',Validators.required], 
       direccion: ['', Validators.required],
-      codigoPostal: ['', [Validators.required,Validators.maxLength[4], Validators.pattern(new RegExp(/^([A-Z]{1}\d{4}[A-Z]{3}|[A-Z]{1}\d{4}|\d{4})$/))]],
-      metodoDePago: ['1', Validators.required],
+      codigoPostal: ['', [Validators.required,Validators.maxLength(4), Validators.pattern(new RegExp(/^([A-Z]{1}\d{4}[A-Z]{3}|[A-Z]{1}\d{4}|\d{4})$/))]],
+      metodoDePago: ['2', Validators.required],
+      provincia: ['', Validators.required],
+      telefono: ['', Validators.required],
+      celular: ['', Validators.required],
       imagen: [''],
     });
 
@@ -366,14 +369,14 @@ export class CarritoFormComponent implements OnInit {
       body.append('Domicilio_Entrega', values.domicilioEntrega);
       body.append('personasAutorizadas', values.authorizedPerson);
       body.append('observaciones', values.observations);
-
+      body.append('tipoIdentidad', values.identidad);
       if(values.metodoDePago !== 1 && values.metodoDePago !== 4){
         body.append('comprobanteDepositoTransferencia', this.imgLoaded);
       }
       if(values.identidad == "DNI" ){
         body.append('DNIautorizado',values.authorizedPersonDni);
       }else{
-        body.append('DNIautorizado',values.authorizedPersonPasaporte);
+        body.append('pasarpoteAutorizado',values.authorizedPersonPasaporte);
       }
       
       
@@ -390,13 +393,28 @@ export class CarritoFormComponent implements OnInit {
       body.append('Codigo_Postal', values.codigoPostal);
       body.append('direccion', values.direccion);
       body.append('metodoPago', this.metodoDePago);
+      body.append('personasAutorizadas', values.authorizedPerson);
+      body.append('provincia', values.provincia);
+      body.append('telefonoAutorizado', values.telefono);
+      body.append('celularAutorizado', values.celular);
+      body.append('tipoIdentidad', values.identidad);
+
+
+
 
       if(values.metodoDePago !== 1 && values.metodoDePago !== 4){
         body.append('comprobanteDepositoTransferencia', this.imgLoaded);
       }
+      if(values.identidad == "DNI" ){
+        body.append('DNIautorizado',values.authorizedPersonDni);
+      }else{
+        console.log("pasaporte");
+        body.append('pasarpoteAutorizado',values.authorizedPersonPasaporte);
+      }
+      
 
     }
-
+    console.log("test")
     this.inPromise = true;
     const respOrderHeader = await this.productosService.orderHeader(body).toPromise();
     console.log(respOrderHeader);
@@ -410,13 +428,13 @@ export class CarritoFormComponent implements OnInit {
     const idOrder = respOrderHeader.body.OB.idOrderHeader;
     this.Numero_Pedido = respOrderHeader.body.OB.Numero_Pedido;
     const unit_price= respOrderHeader.body.OB.monto_total;
-      const respOrderBody = await this.saveOrderBody(idOrder, orderBody); 
+       const respOrderBody = await this.saveOrderBody(idOrder, orderBody); 
 
     if(!respOrderBody.ok){
       this.inPromise = false;
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error al actualizar la lista de productos, comuniquese con un administrador');
       return;
-    }   
+    }  
     
     
     
@@ -541,7 +559,9 @@ export class CarritoFormComponent implements OnInit {
      // verificamos que el usuario tenga un perfil registrado
      const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
      // verificamos si ya tiene su informacio 
-     this.inPromise = true;
+
+     
+      this.inPromise = true;  // 
      this.perfilClienteService._getPerfilCliente(userId.id).subscribe(
        (resp:any) => {
          // Como ya existe , vamos a editar
@@ -563,14 +583,16 @@ export class CarritoFormComponent implements OnInit {
         
        })
        console.log(apellido+" "+nombre+" "+DNI);     
+ 
+     
 
      
     
     
   }
   setMoreDetail( metodoDePago:number, nombre:string , apellido:string , DNI:string){
-     
-    if( !apellido || !nombre || !DNI){
+   
+     if( !apellido || !nombre || !DNI){
       this.as.msg('INFO','PERFIL','Rellene su Perfil Antes de hacer un pedido');
        this.as.msg('ERR','ERROR','Perfil No Registrado!');
        
@@ -579,17 +601,19 @@ export class CarritoFormComponent implements OnInit {
        $('#perfilClienteModalGestion').modal('toggle');
        
         return
-     }
+     } 
   // datos segun el metodo de entrega
    const domicilio = this.section == 'inMarketForm'? null : this.section == 'delivery'? this.orderForm.value.domicilioEntrega : this.interiorForm.value.domicilioEntrega
-   const personasAutorizada=  this.section == 'delivery'? this.orderForm.value.authorizedPerson :null;
-   const personasAutorizadaDni=  this.section == 'delivery'? this.orderForm.value.authorizedPersonDni :null;
-   const personasAutorizadaPasaporte=  this.section == 'delivery'? this.orderForm.value.authorizedPersonPasaporte :null; 
+   const personasAutorizada=  this.section == 'delivery'? this.orderForm.value.authorizedPerson :this.interiorForm.value.authorizedPerson;
+   const personasAutorizadaDni=  this.section == 'delivery'? this.orderForm.value.authorizedPersonDni :this.interiorForm.value.authorizedPersonDni;
+   const personasAutorizadaPasaporte=  this.section == 'delivery'? this.orderForm.value.authorizedPersonPasaporte :this.interiorForm.value.authorizedPersonPasaporte; 
    const codigoPostal = this.section == 'internalDelivery' ? this.interiorForm.value.codigoPostal:null;
    const localidad =this.section == 'delivery'? this.orderForm.value.localidad : this.section == 'internalDelivery' ? this.interiorForm.value.localidad :null;
    const disponibilidad=  this.section == 'delivery'? this.orderForm.value.disponibilidad :null;
    const fecha=  this.section == 'delivery'? this.orderForm.value.fecha : this.section == 'inMarketForm'? this.inMarketForm.value.fechaRetiro:null;
-
+   const provincia = this.section == 'internalDelivery' ?  this.interiorForm.value.provincia:null
+   const telefono = this.section == 'internalDelivery' ?  this.interiorForm.value.telefono:null
+   const celular = this.section == 'internalDelivery' ?  this.interiorForm.value.celular:null
 
 
    this.metodoDePago = metodoDePago == 1 ? 'Efectivo': 
@@ -613,6 +637,9 @@ export class CarritoFormComponent implements OnInit {
       personasAutorizadaPasaport:personasAutorizadaPasaporte,
       numeroPedido : null,
       pedidoRealizado: false,
+      provincia:provincia,
+      telefono:telefono,
+      celular:celular
 
     }
     this.carritoService.setDetailOrder(this.detailOrder);
