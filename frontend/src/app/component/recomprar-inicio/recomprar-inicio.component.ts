@@ -7,6 +7,9 @@ import { AlertsService } from 'src/app/services/alerts.service';
 import { UserTokenService } from 'src/app/services/user-token.service';
 import { forkJoin, Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
+
 declare var $
 @Component({
   selector: 'app-recomprar-inicio',
@@ -14,15 +17,16 @@ declare var $
   styleUrls: ['./recomprar-inicio.component.css']
 })
 export class RecomprarInicioComponent implements OnInit {
-
+  pdfView: boolean = false;
   itemPerCuantity
-  itemToShow: Item[] =[];
+  itemToShow: Item[] = [];
   historialList: any[] = [];
   requests: Observable<HttpResponse<Producto>>[] = [];
   productsByOrder: any[] = [];
   aBadResponse: any[] = [];
   productsToParse: Producto[] = [];;
   inPromise: boolean = false;
+  orderDetail: detallesCompra;
   constructor(
     private productosService: ProductosService,
     private carritoService: CarritoService,
@@ -36,17 +40,22 @@ export class RecomprarInicioComponent implements OnInit {
   }
 
   setHistorial() {
-
+    this.inPromise= true;
     this.productosService.getUserHistory(this.userToken.getUserId().toString()).subscribe(resp => {
       if (resp.ok && resp.status === 201) {
+        this.inPromise=false;
         console.log(resp.body);
         this.historialList = resp.body;
       } else {
         console.error(resp);
         console.log(resp);
         this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno => Obtener Historial de Compras');
+        this.inPromise=false;
+
       }
     }, error => {
+      this.inPromise=false;
+
       console.error(error);
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error interno => Obtener Historial de Compras');
     })
@@ -54,8 +63,61 @@ export class RecomprarInicioComponent implements OnInit {
 
   toPdf(row) {
     console.log(row);
-  }
+    this.viewDetail(row, true);
 
+
+
+    // Few necessary setting options 
+
+    /*  var pageHeight = 295;
+    
+     var heightLeft = imgHeight; */
+
+
+
+
+  }
+  createPdf() {
+    let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF 
+    let position: number = 10;
+    pdf.setFont("courier", "italic");
+    pdf.setFontSize(12);
+    pdf.text(10, position, `PEDIDO # ${this.orderDetail.numeroPedido}`); position = position + 10;
+    if (this.orderDetail.fecha) { pdf.text(10, position, `FECHA : ${this.orderDetail.fecha}`); position = position + 10; }
+    pdf.text(10, position, `METODO DE ENTREGA : ${this.orderDetail.metodoEntrega}`); position = position + 10;
+    pdf.text(10, position, `METODO DE PAGO : ${this.orderDetail.metodoDePago}`); position = position + 10;
+    if (this.orderDetail.domicilio) { pdf.text(10, position, `DOMICILIO : ${this.orderDetail.domicilio}`); position = position + 10; }
+    if (this.orderDetail.localidad) { pdf.text(10, position, `LOCALIDAD : ${this.orderDetail.localidad}`); position = position + 10; }
+    if (this.orderDetail.persona_authorizada) { pdf.text(10, position, `PERSONA AUTHORIZADA : ${this.orderDetail.persona_authorizada}`); position = position + 10; }
+    if (this.orderDetail.personasAutorizadaDni) { pdf.text(10, position, `IDENTIDAD PERSONA AUTHORIZADA : ${this.orderDetail.personasAutorizadaDni}`); position = position + 10; }
+    if (this.orderDetail.productos) {
+      position = position + 10;
+      pdf.setFontType("bold");
+      pdf.text(10, position, `PRODUCTO `);
+      pdf.text(120, position, `PRECIO `);
+      pdf.text(150, position, `CANTIDAD `);
+      position = position + 10;
+      pdf.setFontSize(10);
+      pdf.setFont("courier", "italic");
+      this.orderDetail.productos.map(val => {
+        pdf.text(10, position, val.producto);
+        pdf.text(120, position, val.precio.toString() + '$');
+        pdf.text(150, position, val.cantidad.toString());
+        position = position + 10;
+
+      })
+    }
+    position = position + 10;
+    pdf.setFontType("bold");
+    pdf.setFontSize(18);
+    pdf.text(10, position, `TOTAL : ${this.orderDetail.total}$`);
+
+
+
+
+/*       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+ */      pdf.save(`Pedido${this.orderDetail.numeroPedido}.pdf`); // Generated PDF  
+  }
   toRebuy(row) {
     console.log(row);
     if (!row.order_body.length) {
@@ -66,14 +128,14 @@ export class RecomprarInicioComponent implements OnInit {
     this.carritoService.carritoItems.subscribe(() => this.setHistorial());
 
   }
-  viewDetail(row) {
+  viewDetail(row, justView: boolean = false) {
     //get productos
-    this.updateItemsByOrder(row.order_body);
+    this.updateItemsByOrder(row.order_body, justView);
     console.log(row);
 
     //seteamos datos a los detalles del pedido
-    let detailOrder: detallesCompra = {
-      metodoEntrega: row.metodoEntrega == '1' ?'inMarketForm':  row.metodoEntrega == '2' ? 'delivery' :'internalDelivery',
+    this.orderDetail = {
+      metodoEntrega: row.metodoEntrega == '1' ? 'inMarketForm' : row.metodoEntrega == '2' ? 'delivery' : 'internalDelivery',
       metodoDePago: row.metodoPago,
       productos: this.itemToShow,
       total: row.monto_total,
@@ -89,12 +151,15 @@ export class RecomprarInicioComponent implements OnInit {
       numeroPedido: row.Numero_Pedido
     }
     //enviamos datos al servicio para que se muestren
-    this.carritoService.setDetailOrder(detailOrder);
-    $('#carrito').modal('toggle');
+    if (!justView) {
+      this.carritoService.setDetailOrder(this.orderDetail);
+      $('#carrito').modal('toggle');
+    }
+
 
   }
   // Funcion para obtener los productos
-  updateItemsByOrder(val) {
+  updateItemsByOrder(val, justView: boolean) {
 
     if (!val.length) {
       return;
@@ -168,7 +233,10 @@ export class RecomprarInicioComponent implements OnInit {
                ); */
             }
           );
-
+          // crear pdf
+          if (justView) {
+            this.createPdf();
+          }
           this.inPromise = false;
 
           if (this.aBadResponse.length) {

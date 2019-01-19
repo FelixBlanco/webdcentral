@@ -72,7 +72,7 @@
                               >
                               Recomprar
                             </button>
-                            <button style="padding-right: 3px;" class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="viewDetail(item)">
+                            <button style="padding-right: 3px;" class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="viewDetail(item,false)">
                               Detalles
                             </button>
                             <button class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="toPdf(item)">
@@ -81,11 +81,22 @@
                           </td>
                         </tr>
                       </ng-container>
-                      <ng-container *ngIf="!historialList.length">
+
+                      <ng-container *ngIf="!historialList.length && !inPromise">
                         <tr><td colspan="4" height="80" class="font-italic text-muted text-center"><h5>No existen compras asociados a su cuenta...</h5></td></tr>
                         <tr><td colspan="4" height="20" class="text-center"> <a class="btn btn-light font-bold text-uppercase"[routerLink]="[ '/productos']">buscar productos</a> </td></tr>
-                      </ng-container>
+                      </ng-container> 
                     </tbody>
+                    <tfoot >
+                        <tr >
+                            <td colspan="5">
+                                <mat-spinner style="margin: 0 auto;" matSuffix *ngIf="inPromise" [diameter]="40" ></mat-spinner>
+
+                            </td>
+                          </tr>
+            
+
+                    </tfoot>
                   </table>
                 </div>
               </div>
