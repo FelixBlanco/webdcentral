@@ -8,9 +8,9 @@ import { DestacadosService } from 'src/app/services/destacados.service';
   styleUrls: ['./mapa.component.css']
 })
 export class MapaComponent implements OnInit {
-  
-  list_order:any = {
-    Pedido: null, EstadoPedido: null, 
+
+  list_order: any = {
+    Pedido: null, EstadoPedido: null,
     Codigo_Provincia: null, Codigo_Localidad: null,
     Nombre_Cliente: null, Nombre_Transporte: null
   }
@@ -24,10 +24,19 @@ export class MapaComponent implements OnInit {
     this.order();
   }
 
-  order(){
-    this.destacadoService._getOrdenes().subscribe(
+  order() {
+    this.destacadoService._getOrdenes2().subscribe(
       resp => {
-        this.list_order = resp;
+        console.log(resp);
+        if (resp.ok ) {
+       
+          this.list_order = resp.body;
+        }else{
+          this.alertService.msg('ERR','Fail',resp.statusText);
+        }
+      },error=>{
+        console.log(error);
+        this.alertService.msg('ERR','Fail',error);
       }
     )
   }
