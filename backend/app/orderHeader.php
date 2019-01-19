@@ -47,6 +47,11 @@ class orderHeader extends Model
         'direccion',
         'DNIautorizado',
 
+        'tipoIdentidad',
+        'provincia',
+        'telefonoAutorizado',
+        'celularAutorizado',
+        'pasarpoteAutorizado',
     ];
 
     public function state()
