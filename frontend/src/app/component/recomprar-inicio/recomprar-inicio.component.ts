@@ -8,7 +8,7 @@ import { UserTokenService } from 'src/app/services/user-token.service';
 import { forkJoin, Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import * as jspdf from 'jspdf';
-import html2canvas from 'html2canvas';
+//import html2canvas from 'html2canvas';
 
 declare var $
 @Component({
