@@ -14,6 +14,7 @@ export class DestacadoInicioComponent implements OnInit {
 
   destacadosList: Producto[] = [];
   colorTres:any;
+  colorUno:any;
 
   carouselItems: CarouselItem[] = [];
 
@@ -35,9 +36,10 @@ export class DestacadoInicioComponent implements OnInit {
   ngOnInit() {
     this.setDestacadosList();
 
-    this._color._paletaColor().subscribe(
+    this._color._getColor().subscribe(
       (resp:any) => {
         if(resp){
+          this.colorUno = resp.colorOscuro;
           this.colorTres = resp.colorClaro;
         }        
       }

@@ -19,7 +19,7 @@ export class PreguntasFrecuentesComponent implements OnInit {
     this.preguntasService.getAll().subscribe((resp)=> {
       if(resp.ok && resp.status === 202){
         this.preguntasList = resp.body.PFrec as Array<Question>;
-        this.inPromise = false;
+        this.inPromise = false;        
       }else{
         this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
         this.inPromise = false;
