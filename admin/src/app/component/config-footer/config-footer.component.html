@@ -54,7 +54,7 @@
 
       </div>
 
-      
+
       <div class="col-md-6">
         <div class="form-group">
           <label>Subtes</label>
@@ -96,10 +96,10 @@
         <div class="form-group">
           <label>URL GOOGLE PLAY</label>
           <input type="url" placeholder="Ingrese URL de GOOGLE PLAY" class="form-control" formControlName="url_google_play">
-        </div>         
-        <button class="btn btn-success" *ngIf='!inPromise' (click)="getHorarios()" data-toggle="modal"
-          data-target="#horariosModal"  style="width:100%;">Gestionar Horarios de Atencion</button>
-      </div> 
+        </div>
+        <button class="btn btn-success" *ngIf='!inPromise' (click)="getHorarios()" data-toggle="modal" data-target="#horariosModal"
+          style="width:100%;">Gestionar Horarios de Atencion</button>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -112,7 +112,8 @@
   </form>
 </div>
 <!-- Modal Eliminar -->
-<div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true" style="z-index: 100000">
+<div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true"
+  style="z-index: 100000">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-danger">
@@ -121,13 +122,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div  class="modal-body">
+      <div class="modal-body">
         <p class="text-muted">¿Desea elíminar el Horario?</p>
         <div *ngIf="inPromiseHorario">
-          <mat-spinner  diameter="30" style="margin: 0 auto;"></mat-spinner>
+          <mat-spinner diameter="30" style="margin: 0 auto;"></mat-spinner>
         </div>
       </div>
-      
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-danger" [disabled]="inPromiseHorario" (click)="deleteHorarios()">Eliminar</button>
@@ -136,7 +137,7 @@
   </div>
 </div>
 <!-- modal  horarios -->
-<div class="modal fade" id="horariosModal" tabindex="-1" role="dialog" aria-labelledby="estatusModal" aria-hidden="true">
+<div class="modal fade " id="horariosModal" tabindex="-1" role="dialog" aria-labelledby="estatusModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-success">
@@ -145,32 +146,65 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body horariosBody">
         <form [formGroup]="myFormHorarios">
+          <h2 class="modal-title text-white" id="estatusModal">Horarios Regulares</h2>
           <div class="form-group">
-            <label>Horario Inicio Atencion</label>
-            <input type="datetime-local" placeholder="Horario Inicio Atencion" class="form-control" formControlName="desde">
+            <label>Dias</label>
+            <input type="date" placeholder="Horario Inicio Atencion" class="form-control" formControlName="diaRegular">
           </div>
 
           <div class="form-group">
-            <label>Horario Cierre Atencion</label>
-            <input type="datetime-local" placeholder="Horario Inicio Atencion" class="form-control" formControlName="hasta">
+            <label>Horarios</label>
+            <input type="time" class="form-control" formControlName="desdeRegular">
+            <input type="time" class="form-control" formControlName="hastaRegular">
           </div>
+
           <div class="justify-content-center">
-            <button type="button" class="btn btn-success " style="margin: 0 auto" (click)="addHorarios()" [disabled]="inPromiseHorario">Agregar</button>
+            <button type="button" class="btn btn-success " style="margin: 0 auto" (click)="addHorarios(myFormHorarios.value.diaRegular,myFormHorarios.value.desdeRegular,myFormHorarios.value.hastaRegular,true)"
+              [disabled]="inPromiseHorario">Agregar</button>
           </div>
         </form>
         <ngx-datatable #table class="bootstrap" [rows]="rowsHorarios" [columns]="columns" [columnMode]="'force'"
-          [footerHeight]="50" [rowHeight]="40" [limit]="limit" style="background:white; padding: 10px 0px 10px 0px;">
-          <ngx-datatable-column name="#" prop="idHorarioAtencion"></ngx-datatable-column>
+          [footerHeight]="50" [rowHeight]="50" [limit]="limit" style="background:white; padding: 10px 0px 10px 0px;">
+          <ngx-datatable-column name="#" prop="idHorarioAtencion" [width]="40"></ngx-datatable-column>
           <ngx-datatable-column name="Desde" prop="desde"></ngx-datatable-column>
           <ngx-datatable-column name="Hasta" prop="hasta"></ngx-datatable-column>
           <ngx-datatable-column name="" prop="opts" [width]="100" [height]="70">
             <ng-template ngx-datatable-cell-template let-row="row">
-              <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>        
+              <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
             </ng-template>
           </ngx-datatable-column>
         </ngx-datatable>
+        <form [formGroup]="myFormHorariosFestivos" class="pt-2">
+          <h2 class="modal-title text-white" id="estatusModal">Horarios Festivos</h2>
+          <div class="form-group">
+            <label>Dias</label>
+            <input type="date" placeholder="Horario Inicio Atencion" class="form-control" formControlName="diaFestivo">
+          </div>
+
+          <div class="form-group">
+            <label>Horarios</label>
+            <input type="time" class="form-control" formControlName="desdeFestivo">
+            <input type="time" class="form-control" formControlName="hastaFestivo">
+          </div>
+
+          <div class="justify-content-center">
+            <button type="button" class="btn btn-success " style="margin: 0 auto" [disabled]="inPromiseHorario" (click)="addHorarios(myFormHorariosFestivos.value.diaFestivo,myFormHorariosFestivos.value.desdeFestivo,myFormHorariosFestivos.value.hastaFestivo,false)">Agregar</button>
+          </div>
+        </form>
+        <ngx-datatable #table class="bootstrap" [rows]="rowsHorarios2" [columns]="columns" [columnMode]="'force'"
+          [footerHeight]="50" [rowHeight]="50" [limit]="limit" style="background:white; padding: 10px 0px 10px 0px;">
+          <ngx-datatable-column name="#" prop="idHorarioAtencion" [width]="40"></ngx-datatable-column>
+          <ngx-datatable-column name="Desde" prop="desde"></ngx-datatable-column>
+          <ngx-datatable-column name="Hasta" prop="hasta"></ngx-datatable-column>
+          <ngx-datatable-column name="" prop="opts" [width]="100" [height]="70">
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+
         <mat-spinner *ngIf='inPromiseHorario' diameter="30" style="margin: 0 auto"></mat-spinner>
 
       </div>
