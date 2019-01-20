@@ -118,10 +118,7 @@ class HorarioAtencionController extends Controller
         }
 
         try {
-            $h->fill([
-                'desde' => $request->desde,
-                'hasta' => $request->hasta,
-            ]);
+            $h->fill($request->all());
             $h->save();        
             $response = [
                 'msj'  => 'Horario actualizado exitosamente',
