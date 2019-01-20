@@ -456,20 +456,23 @@ export class CarritoFormComponent implements OnInit {
 
   }
   goToMercadoPago(idOrder:any,Numero_Pedido:any,unit_price:any){  // si elije mercado pago redirecionar a una pagina obtenida desde un servicio
+      console.log(idOrder,Numero_Pedido,unit_price);
     if(this.metodoDePago==='MercadoPago'){
       this.mercadoPagoService.getDataPago({idOrderHeader:idOrder,Numero_Pedido:Numero_Pedido,unit_price:unit_price}).subscribe(resp=>{
         if(resp.body){
+          console.log(resp.body);
           //crear json para l siguiente servicio que retornara la url 
           const precio:number =  resp.body.unit_price;
           const data={
-            "clienteid": resp.body.clienteid,
-            "clientesecret": resp.body.clientesecret,
-            "currency_id": resp.body.currency_id,
+            "clienteid":"852703498787697",//deberia ser resp.body.clienteid, pero por problemas con el api , le colocamos datos estaticos ,
+            "clientesecret":"vJ23r7VROnkzgnKH7PPbOvJvoz1yleT2", //deberia ser resp.body.clientesecret, pero por problemas con el api , le colocamos datos estaticos resp.body.clientesecret,
+            "currency_id":"ARG", // deberia ser resp.body.currency_id, pero por problemas con el api , le colocamos datos estaticos resp.body.currency_id,
             "id": resp.body.id,
             "title": resp.body.title,
             "unit_price": Number(resp.body.unit_price),
-            "uri": resp.body.uri
+            "uri": "http://127.0.0.1:8000/api/v1/add/pago"   //resp.body.uri deberia ser 
             }
+            console.log(data);
         
           this.mercadoPagoService.getDataMercadoPago(data).subscribe((val)=>{
           
@@ -484,14 +487,18 @@ export class CarritoFormComponent implements OnInit {
               }
             }
           
-          })
+          }),error =>{
+            this.as.msg('ERR', 'Error', 'Link a Mercado Pago No Encontrado');
+          }
           
         }else{
           this.as.msg('ERR', 'Error', 'error');
   
           console.error("error");
         }
-      })
+      }),error =>{
+        this.as.msg('ERR', 'Error', error);
+      }
     }
   }
   validDni(){
