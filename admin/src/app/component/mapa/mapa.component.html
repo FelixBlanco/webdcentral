@@ -1,9 +1,16 @@
 <div class="row">
-  <div class="col-sm-2" *ngIf="list_order.length" style="
+  <div class="col-sm-2">
+    <input *ngIf="aux" [(ngModel)]="searchCode" type="text" placeholder="Introduzca un codigo" (keydown)="search($event)">
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-sm-2" *ngIf="aux" style="
     max-height: 700px;
     overflow: auto;
 ">
-    <div *ngFor="let order of list_order" style="background: white;
+   <div *ngIf="list_orderSearch.length">
+      <div *ngFor="let order of list_orderSearch" style="background: white;
     border-radius: 15px;
     padding: 10px;
     margin-top: 13px;
@@ -15,7 +22,13 @@
       <label>Chofer: {{order.Nombre_Transporte}}</label>
 
     </div>
+    <div *ngIf="!list_orderSearch.length">
+        <p >No se encontraron Resultados</p>
+    </div>
+    
+   </div>
   </div>
+  
   <div class="col-sm-10" style="height:700px">
     <iframe src="http://depocentral.dyndns.org:3000" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe>
   </div>
