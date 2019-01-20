@@ -50,11 +50,12 @@ export class CarritoComponent implements OnInit {
       this.setCantidad();
     })
     this.carritoService.orderDetails.subscribe(val=>{
-      console.log(val);
+      console.log(val); 
       if(val){
       this.pedidoRealizado = val.pedidoRealizado;
       this.Numero_Pedido = val.numeroPedido; 
       this.routeTo('detalleCompra');
+      $('#carrito').modal('show');
 
       }else{
         this.pedidoRealizado = false;

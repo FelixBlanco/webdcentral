@@ -129,6 +129,7 @@ export class RecomprarInicioComponent implements OnInit {
 
   }
   viewDetail(row, justView: boolean = false) {
+    this.orderDetail = null;
     //get productos
     this.updateItemsByOrder(row.order_body, justView);
     console.log(row);
@@ -155,8 +156,11 @@ export class RecomprarInicioComponent implements OnInit {
     }
     //enviamos datos al servicio para que se muestren
     if (!justView) {
+      console.log('enviando desde recmprar')
+     setTimeout(() => {
       this.carritoService.setDetailOrder(this.orderDetail);
-      $('#carrito').modal('toggle');
+     }, 1500); 
+     
     }
 
 
@@ -170,7 +174,8 @@ export class RecomprarInicioComponent implements OnInit {
     console.log(val);
     this.itemPerCuantity = [];
     this.requests = [];
-
+    this.itemToShow = [];
+    this.productsToParse=[]
     this.productsByOrder = val;
     /* $('#carrito').modal('toggle'); */
 
