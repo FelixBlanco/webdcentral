@@ -86,3 +86,6 @@ backend/public/storage/slide/2019-01-09t185407573z-1547060052-869.png
 backend/vendor/composer/autoload_real.php
 backend/vendor/composer/autoload_static.php
 backend/vendor/autoload.php
+backend/vendor/autoload.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/composer/autoload_static.php
