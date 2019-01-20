@@ -146,11 +146,12 @@ export class ConfigFooterComponent implements OnInit {
     )
   }
   getHorarios() {
+    console.log("getHorarios");
     this._horariosAtencionService._getHorarios(null).subscribe(
       (resp: any) => {
         this.inPromiseHorario = false;
         //Aqui validar si resp.EsFestivo(o el nombre de la base de datos)
-
+        console.log(resp);
         this.rowsHorarios = resp;
         this.rowsHorarios2=resp;
         if (!resp) {
