@@ -79,6 +79,7 @@ export class RecomprarInicioComponent implements OnInit {
 
   }
   createPdf() {
+    this.inPromise=true;
     let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF 
     let position: number = 10;
     pdf.setFont("courier", "italic");
@@ -118,6 +119,7 @@ export class RecomprarInicioComponent implements OnInit {
 
 /*       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
  */      pdf.save(`Pedido${this.orderDetail.numeroPedido}.pdf`); // Generated PDF  
+      this.inPromise=false;
   }
   toRebuy(row) {
     console.log(row);
@@ -150,7 +152,7 @@ export class RecomprarInicioComponent implements OnInit {
       persona_authorizada: row.personasAutorizadas,
       codigo_postal: row.Codigo_Postal,
       localidad: row.localidad,
-      fecha: row.fecha,
+      fecha: row.fecha? row.fecha:row.fecha_retiro?row.fecha_retiro:"NO APLICA",
       disponibilidad: row.disponibilidadHr,
       personasAutorizadaDni: row.DNIautorizado,
       personasAutorizadaPasaport: row.pasarpoteAutorizado,
@@ -160,6 +162,7 @@ export class RecomprarInicioComponent implements OnInit {
       telefono:row.telefonoAutorizado,
       celular:row.celularAutorizado,
       recomprar:true,
+      direccion:row.direccion
     }
     //enviamos datos al servicio para que se muestren
     if (!justView) {

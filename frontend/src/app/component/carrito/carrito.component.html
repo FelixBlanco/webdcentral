@@ -2,7 +2,7 @@
 <div class="modal fade" id="carrito" tabindex="-1" role="dialog" aria-labelledby="carritoTittle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" [ngClass]=" (section === 'shipping' || section === 'detalleCompra') ? 'modal-lg' : ''"  role="document">
     <div class="modal-content">
-      <div class="modal-header bg-azul" [ngClass]="{'bg-success': pedidoRealizado}">
+      <div class="modal-header bg-azul" >
         <ng-container [ngSwitch]="section">
           <h5 *ngSwitchCase="'shipping'" class="modal-title text-white  text-uppercase" id="carritoTittle"><img src="assets/social/carrito.png" alt="Carrito de compras"> Carrito de Compras</h5>
           <ng-container *ngSwitchCase="'inMarket'">

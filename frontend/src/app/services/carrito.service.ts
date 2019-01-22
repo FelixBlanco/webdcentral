@@ -28,7 +28,9 @@ export interface detallesCompra{
     provincia?:string,
     telefono?:string,
     celular?:string,
-    recomprar?:boolean
+    recomprar?:boolean,
+    direccion?: boolean,
+    observacion?:boolean
 }
 
 @Injectable()

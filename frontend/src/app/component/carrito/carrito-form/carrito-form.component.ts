@@ -619,11 +619,11 @@ export class CarritoFormComponent implements OnInit {
    const codigoPostal = this.section == 'internalDelivery' ? this.interiorForm.value.codigoPostal:null;
    const localidad =this.section == 'delivery'? this.orderForm.value.localidad : this.section == 'internalDelivery' ? this.interiorForm.value.localidad :null;
    const disponibilidad=  this.section == 'delivery'? this.orderForm.value.disponibilidad :null;
-   const fecha=  this.section == 'delivery'? this.orderForm.value.fecha : this.section == 'inMarketForm'? this.inMarketForm.value.fechaRetiro:null;
+   const fecha=  this.section == 'delivery'? this.orderForm.value.fecha : this.section == 'inMarketForm'? this.inMarketForm.value.fechaRetiro:'NO APLICA';
    const provincia = this.section == 'internalDelivery' ?  this.interiorForm.value.provincia:null
    const telefono = this.section == 'internalDelivery' ?  this.interiorForm.value.telefono:null
    const celular = this.section == 'internalDelivery' ?  this.interiorForm.value.celular:null
-
+   const direccion = this.section == 'internalDelivery' ?  this.interiorForm.value.direccion:null
 
    this.metodoDePago = metodoDePago == 1 ? 'Efectivo': 
       metodoDePago == 2 ? 'Depósito' : 
@@ -650,6 +650,7 @@ export class CarritoFormComponent implements OnInit {
       telefono:telefono,
       celular:celular,
       recomprar:false,
+      direccion:direccion
 
     }
     this.carritoService.setDetailOrder(this.detailOrder);
