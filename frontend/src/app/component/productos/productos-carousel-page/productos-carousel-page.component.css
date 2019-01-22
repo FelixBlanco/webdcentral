@@ -40,7 +40,19 @@
 button{
     outline: none;
 }
-
+.rectangle{
+    width: auto;
+    height: auto;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 4px;
+    text-align: center;
+    font-size: 14px;
+    margin: 5px;
+    font-weight: 700;
+    position: relative
+}
 .circle {
     width: 42px;
     height: 42px;
@@ -63,5 +75,7 @@ h5{
     min-height: 24px;
 }
 .agrupacion{
-    height: 84px;
+    height: 90px;
+    display:flex;
+    flex-flow: row wrap;
 }

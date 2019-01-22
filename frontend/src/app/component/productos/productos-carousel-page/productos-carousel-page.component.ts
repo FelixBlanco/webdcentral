@@ -36,8 +36,9 @@ export class ProductosCarouselPageComponent implements OnInit {
      this.items.map((val,i)=>{
        if(val.listAgrupacion && val.listAgrupacion.length){
          this.productsBehaviorService.parseDefaultPrice(val.listAgrupacion).then(val=>{
-            this.products[i].listAgrupacion =val;
-            console.log(this.products[i]);
+          this.products[i].listAgrupacion =val;
+/*             this.products[i].listAgrupacion =val.sort((a,b)=> Number(a.kiloProdcuto.slice(0,a.kiloProdcuto.search(" "))) -Number(b.kiloProdcuto.slice(0,a.kiloProdcuto.search(" ")));
+ */         //   console.log(this.products[i]);
          })
          
        }
