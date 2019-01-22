@@ -38,6 +38,7 @@ export class ProductsBehaviorService {
 
     protected async updateProductListPrice(){
         const resp: any = await this.configFooterService._getConfigFooter().toPromise();
+       // console.log(resp);
         if(!resp){
             this.productListValue = "precioL1";
             return;

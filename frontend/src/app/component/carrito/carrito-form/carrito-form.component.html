@@ -47,9 +47,10 @@
         <table class="table table-curved justify-content-center">
           <thead class="bg-azul text-white" [ngClass]="{'bg-success': pedidoRealizado}">
             <tr>
-              <th scope="col" width="50%">PRODUCTO</th>
-              <th scope="col" width="30%">PRECIO</th>
-              <th scope="col" width="20%">CANTIDAD</th>
+              <th scope="col" width="40%">PRODUCTO</th>
+              <th scope="col" width="20%">PRECIO</th>
+              <th scope="col" width="15%">CANTIDAD</th>
+              <th *ngIf="pedidoRealizado" scope="col" width="25%"></th>
 
             </tr>
           </thead>
@@ -61,6 +62,11 @@
                 <td><span class="font-bold">{{item.precio | currency: 'ARS': '$'}}</span></td>
                 <td>
                   <span>{{item.cantidad}}</span>
+                </td>
+                <td *ngIf="pedidoRealizado && recomprarProduct">
+                    <button  class="btn btn-sm text-white btn-success font-bold text-uppercase" (click)="recomprar(item)">
+                        AGREGAR AL CARRITO 
+                      </button>
                 </td>
 
               </tr>

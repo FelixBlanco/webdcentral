@@ -27,7 +27,8 @@ export interface detallesCompra{
     numeroPedido?:string,
     provincia?:string,
     telefono?:string,
-    celular?:string
+    celular?:string,
+    recomprar?:boolean
 }
 
 @Injectable()
@@ -145,15 +146,16 @@ export class CarritoService {
     /**
      * Obtiene la cantidad total de la factura a pagar
      */
-    getTotal(): number{
-        const items: Item[] = this.carritoSource.getValue();
+    getTotal(itemProducts?:Item[]): number{
+        let items: Item[];
+        console.log(items)
+        itemProducts? items=itemProducts: items=this.carritoSource.getValue();
         let total = 0;
         if(!items.length){
             return 0;
         }
 
         items.forEach((val) => total += (val.cantidad * val.precio));
-
         return total;
     }
 

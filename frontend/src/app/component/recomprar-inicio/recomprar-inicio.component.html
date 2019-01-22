@@ -31,7 +31,7 @@
     <div class="row">
       <div class="col">
         <h2 class="txt-azul font-bold text-center p-3">
-          ÚLTIMAS COMPRAS
+          RECOMPRAR
         </h2>
       </div>
     </div>
@@ -39,7 +39,7 @@
       <div class="col">
         <div class="card">
           <div class="card-header bg-azul txt-blanco text-uppercase">
-            <h5 class="m-2">historial de compras</h5>
+            <h5 class="m-2">RECOMPRAR</h5>
           </div>
           <div class="card-body">
               <div class="card">
@@ -63,7 +63,7 @@
                           <td *ngIf="!item.Domicilio_Entrega">Retiro En Tienda</td>
                           <td>{{item.Estado_Pedido}}</td>
                           <td>
-                            <button
+                           <!--  <button
                               matTooltip="Agregar al carrito. La información será acumulada si es agregada nuevamente"
                               matTooltipPosition="above"
                               class="btn btn-sm text-white bg-naranja font-bold text-uppercase" 
@@ -71,8 +71,8 @@
                               style="margin-right: .3rem;"
                               >
                               Recomprar
-                            </button>
-                            <button style="padding-right: 3px;" class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="viewDetail(item,false)">
+                            </button> -->
+                            <button style="margin-right: .3rem;" class="btn btn-sm text-white btn-danger font-bold text-uppercase" (click)="viewDetail(item,false)">
                               Detalles
                             </button>
                             <button class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="toPdf(item)">

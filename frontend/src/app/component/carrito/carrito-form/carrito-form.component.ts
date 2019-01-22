@@ -34,6 +34,7 @@ export class CarritoFormComponent implements OnInit {
   inMarketForm: FormGroup;
   metodoDePago:string;
   Numero_Pedido :any =null;
+  recomprarProduct:boolean = false;
   metodoEntrega: 'internalDelivery' | 'delivery' | 'inMarketForm' ='inMarketForm' ;
   onDomicilioAdd: boolean = false;
 
@@ -117,6 +118,7 @@ export class CarritoFormComponent implements OnInit {
         
       this.detailOrder = val;
       this.pedidoRealizado = val.pedidoRealizado;
+      this.recomprarProduct = val.recomprar;
       console.log("detailcompraevent")
        this.routeTo('detalleCompra');  
       }
@@ -646,12 +648,19 @@ export class CarritoFormComponent implements OnInit {
       pedidoRealizado: false,
       provincia:provincia,
       telefono:telefono,
-      celular:celular
+      celular:celular,
+      recomprar:false,
 
     }
     this.carritoService.setDetailOrder(this.detailOrder);
    
   } 
- 
+  // para recomprar el producto del  pedido(desde recomprar-> detalles) 
+ recomprar(item){
+    console.log(item);
+    this.carritoService.addItem(item.id, item.producto, item.marca, item.cantidad, item.precio);
+
+    this.as.msg("OK", "Éxito", `Se han agregado ${item.cantidad} '${item.producto}' al carrito de compras`); item.cantidad = 1;
+ }
 
 }
