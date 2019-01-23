@@ -15,8 +15,13 @@ export class ReclamosInicioComponent implements OnInit {
   inPromise:boolean = false;
   myForm:FormGroup;
   colorTres:any;
+  fecha:any;
   
-  constructor(private _reclamosSugerenciasService: ReclamosSugerenciasService, private _alertService:AlertsService , private fb:FormBuilder,private configColor: ConfigColorService,) {
+  constructor(
+    private _reclamosSugerenciasService: ReclamosSugerenciasService, 
+    private _alertService:AlertsService , 
+    private fb:FormBuilder,
+    private configColor: ConfigColorService,) {
     this.myForm = this.fb.group({
       'titulo'      :['',Validators.required],
       'descripcion' :['',Validators.required]
@@ -28,6 +33,8 @@ export class ReclamosInicioComponent implements OnInit {
       }
     ) 
     this.inPromise = false;   
+
+    this.fecha = new Date();
    }
 
   ngOnInit() {}
@@ -45,7 +52,13 @@ export class ReclamosInicioComponent implements OnInit {
     this.inPromise = true;
     const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
     const val = this.myForm.value;
-    const data: any = { titulo: val.titulo, descripcion: val.descripcion, fk_idUser: userId.id, fk_idStatusReclamo: 1 }
+    const numeroTicket = this.generarNumeroTicket();
+    const data: any = { 
+      titulo: val.titulo, 
+      descripcion: val.descripcion,
+      numero_ticket : numeroTicket,
+      fk_idUser: userId.id, 
+      fk_idStatusReclamo: 1 }
     this._reclamosSugerenciasService._addReclamos(data).subscribe(
       (resp:any) => {
         $("#reclamoModel").modal('hide');
@@ -66,6 +79,19 @@ export class ReclamosInicioComponent implements OnInit {
       }
       
     )
+  }
+
+
+  generarNumeroTicket(){
+    const dia = this.fecha.getDate();
+    const mes = this.fecha.getMonth()+1;
+    const año = this.fecha.getFullYear();
+    const minutos = this.fecha.getMinutes();
+    const segundos = this.fecha.getSeconds();
+
+    const numeroTicket = "TK-"+dia+mes+año+minutos+segundos;
+    console.log(numeroTicket);
+    return numeroTicket;
   }
 
 }
