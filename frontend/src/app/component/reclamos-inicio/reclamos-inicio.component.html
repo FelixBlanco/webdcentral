@@ -11,6 +11,15 @@
         <div class="modal-body">
           <form [formGroup]="myForm">
             <div class="form-group">
+              <label for="">Clasificacion de Reclamo/Sugerencia</label>
+              <select class="form-control"  id="ClasificacionReclamo">
+                <option *ngFor="let clasificacion of listaClasificacionReclamos">
+                    {{ clasificacion.nombre }}
+                </option>
+               
+              </select>
+            </div>
+            <div class="form-group">
               <label for="">Titulo</label>
               <input type="text" formControlName='titulo' class="form-control" placeholder="Titulo del reclarmo o sugerencia">
             </div>

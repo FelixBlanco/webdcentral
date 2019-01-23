@@ -3,6 +3,7 @@ import { ReclamosSugerenciasService } from '../../services/reclamos-sugerencias.
 import { AlertsService } from '../../services/alerts.service'
 import { Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { ConfigColorService } from '../../services/config-color.service';
+import { ClasificacionReclamosService } from '../../services/clasificacion-reclamos.service';
 
 declare var $;
 
@@ -16,12 +17,14 @@ export class ReclamosInicioComponent implements OnInit {
   myForm:FormGroup;
   colorTres:any;
   fecha:any;
+  listaClasificacionReclamos:any;
   
   constructor(
     private _reclamosSugerenciasService: ReclamosSugerenciasService, 
     private _alertService:AlertsService , 
     private fb:FormBuilder,
-    private configColor: ConfigColorService,) {
+    private configColor: ConfigColorService,
+    private _clasificacionReclamos: ClasificacionReclamosService) {
     this.myForm = this.fb.group({
       'titulo'      :['',Validators.required],
       'descripcion' :['',Validators.required]
@@ -35,6 +38,15 @@ export class ReclamosInicioComponent implements OnInit {
     this.inPromise = false;   
 
     this.fecha = new Date();
+    
+    this._clasificacionReclamos._getClasificacionReclamos().subscribe(resp => {
+      this.listaClasificacionReclamos = resp['clasificados'];
+      console.log(this.listaClasificacionReclamos);
+    });
+
+    
+  
+    
    }
 
   ngOnInit() {}
