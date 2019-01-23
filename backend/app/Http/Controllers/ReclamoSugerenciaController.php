@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\ReclamosYSugerencia;
 use App\StatusReclamo;
+use App\User;
+use App\Mail\ReclamosSugerenciasMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -136,6 +138,10 @@ class ReclamoSugerenciaController extends Controller {
                 'msj'                  => 'Reclamo y o notificación Creada, Su numero de ticket es: '.$request->numero_ticket,
                 'reclamo_notificacion' => $rs,
             ];
+
+            $user = User::where('id', $rs->fk_idUser)->first();
+            
+            Mail::to($user->email)->send( new ReclamosSugerenciasMail($rs) );
 
             return response()->json($response, 201);
         } catch (\Exception $e) {
