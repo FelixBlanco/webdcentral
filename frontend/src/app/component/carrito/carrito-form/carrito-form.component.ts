@@ -34,6 +34,7 @@ export class CarritoFormComponent implements OnInit {
   inMarketForm: FormGroup;
   metodoDePago:string;
   Numero_Pedido :any =null;
+  recomprarProduct:boolean = false;
   metodoEntrega: 'internalDelivery' | 'delivery' | 'inMarketForm' ='inMarketForm' ;
   onDomicilioAdd: boolean = false;
 
@@ -117,6 +118,7 @@ export class CarritoFormComponent implements OnInit {
         
       this.detailOrder = val;
       this.pedidoRealizado = val.pedidoRealizado;
+      this.recomprarProduct = val.recomprar;
       console.log("detailcompraevent")
        this.routeTo('detalleCompra');  
       }
@@ -617,11 +619,11 @@ export class CarritoFormComponent implements OnInit {
    const codigoPostal = this.section == 'internalDelivery' ? this.interiorForm.value.codigoPostal:null;
    const localidad =this.section == 'delivery'? this.orderForm.value.localidad : this.section == 'internalDelivery' ? this.interiorForm.value.localidad :null;
    const disponibilidad=  this.section == 'delivery'? this.orderForm.value.disponibilidad :null;
-   const fecha=  this.section == 'delivery'? this.orderForm.value.fecha : this.section == 'inMarketForm'? this.inMarketForm.value.fechaRetiro:null;
+   const fecha=  this.section == 'delivery'? this.orderForm.value.fecha : this.section == 'inMarketForm'? this.inMarketForm.value.fechaRetiro:'NO APLICA';
    const provincia = this.section == 'internalDelivery' ?  this.interiorForm.value.provincia:null
    const telefono = this.section == 'internalDelivery' ?  this.interiorForm.value.telefono:null
    const celular = this.section == 'internalDelivery' ?  this.interiorForm.value.celular:null
-
+   const direccion = this.section == 'internalDelivery' ?  this.interiorForm.value.direccion:null
 
    this.metodoDePago = metodoDePago == 1 ? 'Efectivo': 
       metodoDePago == 2 ? 'Depósito' : 
@@ -646,12 +648,20 @@ export class CarritoFormComponent implements OnInit {
       pedidoRealizado: false,
       provincia:provincia,
       telefono:telefono,
-      celular:celular
+      celular:celular,
+      recomprar:false,
+      direccion:direccion
 
     }
     this.carritoService.setDetailOrder(this.detailOrder);
    
   } 
- 
+  // para recomprar el producto del  pedido(desde recomprar-> detalles) 
+ recomprar(item){
+    console.log(item);
+    this.carritoService.addItem(item.id, item.producto, item.marca, item.cantidad, item.precio);
+
+    this.as.msg("OK", "Éxito", `Se han agregado ${item.cantidad} '${item.producto}' al carrito de compras`); item.cantidad = 1;
+ }
 
 }
