@@ -12,7 +12,7 @@ declare var $;
   styleUrls: ['./reclamos-inicio.component.css']
 })
 export class ReclamosInicioComponent implements OnInit {
-  
+  inPromise:boolean = false;
   myForm:FormGroup;
   colorTres:any;
   
@@ -26,7 +26,8 @@ export class ReclamosInicioComponent implements OnInit {
       (resp:any)=> {
         this.colorTres = resp.colorClaro
       }
-    )    
+    ) 
+    this.inPromise = false;   
    }
 
   ngOnInit() {}
@@ -41,6 +42,7 @@ export class ReclamosInicioComponent implements OnInit {
   }
   
   addReclamos(){
+    this.inPromise = true;
     const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
     const val = this.myForm.value;
     const data: any = { titulo: val.titulo, descripcion: val.descripcion, fk_idUser: userId.id, fk_idStatusReclamo: 1 }
@@ -48,8 +50,10 @@ export class ReclamosInicioComponent implements OnInit {
       (resp:any) => {
         $("#reclamoModel").modal('hide');
         this._alertService.msg('OK',resp.msj); 
+        this.inPromise = false;
       },
       error => {
+        this.inPromise = false;
         if(error.error.errors.titulo != null){
           this._alertService.msg('ERR',error.error.errors.titulo); 
         }
@@ -60,6 +64,7 @@ export class ReclamosInicioComponent implements OnInit {
           this._alertService.msg('ERR',error.message); 
         }              
       }
+      
     )
   }
 
