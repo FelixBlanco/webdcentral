@@ -163,7 +163,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 
     Route::post('agregarDomicilio', 'PerfilClientesController@agregarDomicilio');
 
-    Route::post('agregarLocalidadYProvincia/{id_Perfil}', 'PerfilClientesController@agregarDomicilio');
+    Route::post('agregarLocalidadYProvincia/{idDomicilios}', 'PerfilClientesController@addProvinciaLocalidad');
 
     Route::get('listarDomiciliosDeClientes/{fk_idCliente}', 'PerfilClientesController@listarDomiciliosDeClientes');
     Route::post('editarDomicilio', 'PerfilClientesController@editarDomicilio');

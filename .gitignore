@@ -89,3 +89,4 @@ backend/vendor/autoload.php
 backend/vendor/autoload.php
 backend/vendor/composer/autoload_real.php
 backend/vendor/composer/autoload_static.php
+.idea/workspace.xml

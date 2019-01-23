@@ -9,10 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class PerfilClientesController extends Controller
-{
-    public function store(Request $request)
-    {
+class PerfilClientesController extends Controller {
+    public function store(Request $request) {
 
         $this->validate($request, [
             'nombreComercio'     => 'required',
@@ -85,8 +83,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function update(Request $request, $idPerfilCliente)
-    {
+    public function update(Request $request, $idPerfilCliente) {
 
         DB::beginTransaction();
 
@@ -123,8 +120,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function destroy($idPerfilCliente)
-    {
+    public function destroy($idPerfilCliente) {
 
         DB::beginTransaction();
 
@@ -158,8 +154,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function listar()
-    {
+    public function listar() {
         $perfil_cliente = PerfilCliente::with('user')->get();
 
         $response = [
@@ -170,8 +165,7 @@ class PerfilClientesController extends Controller
         return response()->json($response, 201);
     }
 
-    public function getPerfil($id)
-    {
+    public function getPerfil($id) {
         $perfil_cliente = PerfilCliente::where('fk_idPerfilCliente', $id)->first();
 
         if (is_null($perfil_cliente)) {
@@ -186,16 +180,14 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function listarDomiciliosDeClientes($idCliente)
-    {
+    public function listarDomiciliosDeClientes($idCliente) {
 
         $d = Domicilio::where('fk_idCliente', $idCliente)->select('idDomicilios', 'descripcion')->get();
 
         return response()->json($d, 201);
     }
 
-    public function agregarDomicilio(Request $request)
-    {
+    public function agregarDomicilio(Request $request) {
         //$request->fk_idPerfilCliente
         //$request->descripcion
 
@@ -214,9 +206,7 @@ class PerfilClientesController extends Controller
 
             if (count($domi) < 6) {
 
-                $d = new Domicilio();
-                $d->descripcion = $request->descripcion;
-                $d->fk_idCliente = $request->fk_idCliente;
+                $d = new Domicilio($request->all());
 
                 $d->save();
 
@@ -247,9 +237,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function editarDomicilio(Request $request)
-    {
-
+    public function editarDomicilio(Request $request) {
         $this->validate($request, [
             'idDomicilios' => 'required',
             'descripcion'  => 'required',
@@ -281,8 +269,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function borrarDomicilio($idDomicilios)
-    {
+    public function borrarDomicilio($idDomicilios) {
 
         $domicilio = Domicilio::find($idDomicilios);
 
@@ -304,8 +291,7 @@ class PerfilClientesController extends Controller
         }
     }
 
-    public function retornarIdDelPerfil($idUser = null)
-    {
+    public function retornarIdDelPerfil($idUser = null) {
 
         if ($idUser == null) {
             $response = [
@@ -330,12 +316,12 @@ class PerfilClientesController extends Controller
         }
     }
 
-    /*public function addProvinciaLocalidad(Request $request, $idPerfil)
-    {
-        $d = Domicilio::find($idPerfil);
+    public function addProvinciaLocalidad(Request $request, $idDomicilios) {
+        $d = Domicilio::find($idDomicilios);
 
         if (! is_null($d)) {
             $d->fill($request->all());
+            $d->save();
 
             $response = [
                 'msj'       => 'Domicilio actualizado correctamente',
@@ -350,5 +336,5 @@ class PerfilClientesController extends Controller
 
             return response()->json($response, 404);
         }
-    }*/
+    }
 }
