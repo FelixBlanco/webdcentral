@@ -133,7 +133,7 @@ class ReclamoSugerenciaController extends Controller {
             DB::commit();
 
             $response = [
-                'msj'                  => 'Reclamo y o notificación Creada',
+                'msj'                  => 'Reclamo y o notificación Creada, Su numero de ticket es: '.$request->numero_ticket,
                 'reclamo_notificacion' => $rs,
             ];
 
