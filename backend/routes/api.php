@@ -144,6 +144,8 @@ Route::group(['prefix' => 'auth'], function() {
 
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 
+    Route::get('getArbolProductos','ProductoController@getArbolProductos');
+
     Route::get('activarCuenta/{TokenActivacion}','UserController@ActivarCuenta');
 
     Route::post('agregarDuracion/{idUser}','NotificacionDuracionAlimentoController@agregarDuracion');
