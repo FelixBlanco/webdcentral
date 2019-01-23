@@ -45,11 +45,12 @@
     <div class="card">
       <div class="card-body">
         <table class="table table-curved justify-content-center">
-          <thead class="bg-azul text-white" [ngClass]="{'bg-success': pedidoRealizado}">
+          <thead class="bg-azul text-white" >
             <tr>
-              <th scope="col" width="50%">PRODUCTO</th>
-              <th scope="col" width="30%">PRECIO</th>
+              <th scope="col" width="40%">PRODUCTO</th>
+              <th scope="col" width="25%">PRECIO</th>
               <th scope="col" width="20%">CANTIDAD</th>
+              <th *ngIf="pedidoRealizado" scope="col" width="15%"></th>
 
             </tr>
           </thead>
@@ -61,6 +62,11 @@
                 <td><span class="font-bold">{{item.precio | currency: 'ARS': '$'}}</span></td>
                 <td>
                   <span>{{item.cantidad}}</span>
+                </td>
+                <td *ngIf="pedidoRealizado && recomprarProduct">
+                  <button class="btn btn-sm text-white btn-success font-bold text-uppercase" (click)="recomprar(item)">
+                    AGREGAR AL CARRITO
+                  </button>
                 </td>
 
               </tr>
@@ -80,77 +86,107 @@
             <tr><td colspan="5" height="80" class="font-italic text-muted text-center"></td>Lista Vacia</tr>
           </ng-container> -->
           </tbody>
-          <tfoot *ngIf="detailOrder" class="bg-azul text-white" [ngClass]="{'bg-success': pedidoRealizado}">
-            <tr class="font-bold  ">
-              <td colspan="5">
-                <div class="row justify-content-center">
-
-                  <div class="col-12 pt-2">
-                    <span>Metodo De Entrega: </span>
-                    <span *ngIf="detailOrder.metodoEntrega =='inMarketForm'" class="font-bold"> RETIRO EN TIENDA</span>
-                    <span *ngIf="detailOrder.metodoEntrega =='delivery'" class="font-bold"> DELIVERY</span>
-                    <span *ngIf="detailOrder.metodoEntrega =='internalDelivery'" class="font-bold"> DESPACHO AL
-                      INTERIOR</span>
-                  </div>
-
-                  <div class="col-12 pt-2 ">
-                    <span>Metodo De Pago: </span><span class="font-bold"> {{detailOrder.metodoDePago | uppercase}}</span>
-                  </div>
-
-
-
-                  <div *ngIf="detailOrder.domicilio" class="col-12 pt-2 ">
-                    <span>Domicilio: </span><span class=" font-bold">{{detailOrder.domicilio | uppercase}}</span>
-                  </div>
-
-                  <div *ngIf="detailOrder.persona_authorizada" class="col-12 pt-2 ">
-                    <span>Persona Authorizada: </span><span class=" font-bold">{{detailOrder.persona_authorizada |
-                      uppercase}}</span>
-                  </div>
-                  <div *ngIf="detailOrder.personasAutorizadaDni && !detailOrder.personasAutorizadaPasaport " class="col-12 pt-2 ">
-                    <span>Persona Autorizada DNI: </span><span class=" font-bold">{{detailOrder.personasAutorizadaDni |
-                      uppercase}}</span>
-                  </div>
-                  <div *ngIf="detailOrder.personasAutorizadaPasaport && !detailOrder.personasAutorizadaDni" class="col-12 pt-2 ">
-                    <span>Persona Autorizada Pasaporte: </span><span class=" font-bold">{{detailOrder.personasAutorizadaPasaport
-                      | uppercase}}</span>
-                  </div>
-                  <div *ngIf="detailOrder.personasAutorizadaPasaport && detailOrder.personasAutorizadaDni" class="col-12 pt-2 ">
-                    <span>Persona Autorizada Identidad: </span><span class=" font-bold">{{detailOrder.personasAutorizadaDni
-                      | uppercase}}</span>
-                  </div>
-                  <div *ngIf="detailOrder.codigo_postal" class="col-12 pt-2 ">
-                    <span>Codigo Postal: </span><span class=" font-bold">{{detailOrder.codigo_postal | uppercase}}</span>
-                  </div>
-                  <div *ngIf="detailOrder.localidad" class="col-12 pt-2 ">
-                    <span>Localidad: </span><span class=" font-bold">{{detailOrder.localidad | uppercase}}</span>
-                  </div>
-                  <div *ngIf="detailOrder.provincia" class="col-12 pt-2 ">
-                    <span>Provincia: </span><span class=" font-bold">{{detailOrder.provincia | uppercase}}</span>
-                  </div>
-                  <div *ngIf="detailOrder.fecha" class="col-12 pt-2 ">
-                    <span>Fecha: </span><span class=" font-bold">{{detailOrder.fecha | uppercase}}</span>
-                  </div>
-                  <div *ngIf="detailOrder.disponibilidad" class="col-12 pt-2 ">
-                    <span>Disponibilidad: </span><span class=" font-bold">{{detailOrder.disponibilidad | uppercase}}</span>
-                  </div>
-                  <div *ngIf="detailOrder.telefono" class="col-12 pt-2 ">
-                      <span>Telefono: </span><span class=" font-bold">{{detailOrder.telefono | uppercase}}</span>
-                    </div>
-                    <div *ngIf="detailOrder.celular" class="col-12 pt-2 ">
-                        <span>Celular: </span><span class=" font-bold">{{detailOrder.celular | uppercase}}</span>
-                      </div>
-
-
-                </div>
-
-              </td>
-
-            </tr>
-
-
-          </tfoot>
+         
         </table>
+        <table  class="table table-curved">
+          <thead class="bg-azul text-white">
+            <tr>
+              <th scope="col" width="35%">METODO DE ENTREGA</th>
+              <th scope="col" width="35%">METODO DE PAGO</th>
+              <th scope="col" width="30%">FECHA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container>
+              <tr>
+                <td>
+                  <span *ngIf="detailOrder.metodoEntrega =='inMarketForm'" class="font-bold"> RETIRO EN TIENDA</span>
+                  <span *ngIf="detailOrder.metodoEntrega =='delivery'" class="font-bold"> DELIVERY</span>
+                  <span *ngIf="detailOrder.metodoEntrega =='internalDelivery'" class="font-bold"> DESPACHO AL INTERIOR</span>
+                </td>
+                <td>
+                  <span class="font-bold">{{detailOrder.metodoDePago || uppercase}}</span>
+                </td>
+                <td>
+                    <span class="font-bold">{{detailOrder.fecha | uppercase}}</span>
+                </td>
+              </tr>
+            </ng-container>
+
+
+          </tbody>
+        </table>
+        <table *ngIf="detailOrder.metodoEntrega !='inMarketForm'" class="table table-curved">
+            <thead class="bg-azul text-white">
+              <tr>
+                <th scope="col" width="23%">LOCALIDAD</th>
+                <th scope="col" width="23%">DOMICILIO DE ENTREGA</th>
+                <th scope="col" width="24%">PERSONA AUTORIZADA</th>
+                <th scope="col" width="15%">IDENTIDAD</th>
+                <th *ngIf="detailOrder.metodoEntrega =='delivery'" scope="col" width="15%">DISPONILIDAD</th>
+                <th *ngIf="detailOrder.metodoEntrega =='internalDelivery'" scope="col" width="15%">COD. POSTAL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container>
+                <tr>
+                  <td>
+                      <span class="font-bold">{{detailOrder.localidad || uppercase}}</span>
+                  </td>
+                  <td>
+                      <span class=" font-bold">{{detailOrder.domicilio | uppercase}}</span>
+                  </td>
+                  <td>
+                      <span class=" font-bold">{{detailOrder.persona_authorizada | uppercase}}</span>
+                  </td>
+                  <td>
+                    <span *ngIf="detailOrder.personasAutorizadaDni" class=" font-bold">{{detailOrder.personasAutorizadaDni | uppercase}}</span>
+                    <span *ngIf="detailOrder.personasAutorizadaPasaport" class=" font-bold">{{detailOrder.personasAutorizadaPasaport| uppercase}}</span>
+                  </td>
+                  <td *ngIf="detailOrder.metodoEntrega =='delivery'">
+                      <span class=" font-bold">{{detailOrder.disponibilidad | uppercase}}</span>
+                  </td>
+                  <td *ngIf="detailOrder.metodoEntrega =='internalDelivery'">
+                      <span class=" font-bold">{{detailOrder.codigo_postal | uppercase}}</span>
+                  </td>
+                </tr>
+              </ng-container>
+  
+  
+            </tbody>
+          </table>
+          <table *ngIf="detailOrder.metodoEntrega =='internalDelivery'" class="table table-curved">
+              <thead class="bg-azul text-white">
+                <tr>
+                  <th scope="col" width="23%">PROVINCIA</th>
+                  <th scope="col" width="23%">TELEFONO</th>
+                  <th scope="col" width="24%">CELULAR</th>
+                  <th scope="col" width="30%">DIRECCION</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container>
+                  <tr>
+                    <td>
+                        <span class="font-bold">{{detailOrder.provincia || uppercase}}</span>
+                    </td>
+                    <td>
+                        <span class=" font-bold">{{detailOrder.telefono | uppercase}}</span>
+                    </td>
+                    <td>
+                        <span class=" font-bold">{{detailOrder.celular | uppercase}}</span>
+                    </td>
+                    <td>
+                      <span  class=" font-bold">{{detailOrder.direccion | uppercase}}</span>
+                    </td>
+                    
+                  </tr>
+                </ng-container>
+    
+    
+              </tbody>
+            </table>
       </div>
     </div>
   </ng-container>
@@ -383,13 +419,14 @@
           </ng-select>
         </div>
         <div class="form-group">
-            <label for="provincia" class="text-uppercase font-bold">Provincia</label>
-            <input type="text" class="form-control" id="provincia" placeholder="Ingrese Provincia" formControlName="provincia">
-  
-          </div>
+          <label for="provincia" class="text-uppercase font-bold">Provincia</label>
+          <input type="text" class="form-control" id="provincia" placeholder="Ingrese Provincia" formControlName="provincia">
+
+        </div>
         <div class="form-group">
           <label for="codigoPostal" class="text-uppercase font-bold">Código Postal</label>
-          <input type="text" class="form-control" id="codigoPostal" placeholder="Ingrese código postal" formControlName="codigoPostal" maxlength="4">
+          <input type="text" class="form-control" id="codigoPostal" placeholder="Ingrese código postal" formControlName="codigoPostal"
+            maxlength="4">
           <small class="form-text text-danger" *ngIf="interiorForm.get('codigoPostal').invalid">
             Ingrese un código postal válido
           </small>
@@ -421,10 +458,10 @@
 
         </div>
         <div class="form-group">
-            <label for="celular" class="text-uppercase font-bold">Celular</label>
-            <input type="text" class="form-control" id="celular" placeholder="Ingrese Celular" formControlName="celular">
-  
-          </div>
+          <label for="celular" class="text-uppercase font-bold">Celular</label>
+          <input type="text" class="form-control" id="celular" placeholder="Ingrese Celular" formControlName="celular">
+
+        </div>
         <div class="form-group">
           <label for="direccion">Dirección</label>
           <textarea rows="3" class="form-control" id="direccion" placeholder="Ingrese dirección" formControlName="direccion"></textarea>

@@ -20,6 +20,7 @@ export class RecomprarInicioComponent implements OnInit {
   pdfView: boolean = false;
   itemPerCuantity
   itemToShow: Item[] = [];
+  newTotal :number=0;
   historialList: any[] = [];
   requests: Observable<HttpResponse<Producto>>[] = [];
   productsByOrder: any[] = [];
@@ -78,6 +79,7 @@ export class RecomprarInicioComponent implements OnInit {
 
   }
   createPdf() {
+    this.inPromise=true;
     let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF 
     let position: number = 10;
     pdf.setFont("courier", "italic");
@@ -117,6 +119,7 @@ export class RecomprarInicioComponent implements OnInit {
 
 /*       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
  */      pdf.save(`Pedido${this.orderDetail.numeroPedido}.pdf`); // Generated PDF  
+      this.inPromise=false;
   }
   toRebuy(row) {
     console.log(row);
@@ -131,20 +134,25 @@ export class RecomprarInicioComponent implements OnInit {
   viewDetail(row, justView: boolean = false) {
     this.orderDetail = null;
     //get productos
-    this.updateItemsByOrder(row.order_body, justView);
+     this.updateItemsByOrder(row, justView);
     console.log(row);
-
     //seteamos datos a los detalles del pedido
+   
+   
+
+
+  }
+  createDetail(row,justView){
     this.orderDetail = {
       metodoEntrega: row.metodoEntrega == '1' ? 'inMarketForm' : row.metodoEntrega == '2' ? 'delivery' : 'internalDelivery',
       metodoDePago: row.metodoPago,
       productos: this.itemToShow,
-      total: row.monto_total,
+      total: this.newTotal,
       domicilio: row.Domicilio_Entrega,
       persona_authorizada: row.personasAutorizadas,
       codigo_postal: row.Codigo_Postal,
       localidad: row.localidad,
-      fecha: row.fecha,
+      fecha: row.fecha? row.fecha:row.fecha_retiro?row.fecha_retiro:"NO APLICA",
       disponibilidad: row.disponibilidadHr,
       personasAutorizadaDni: row.DNIautorizado,
       personasAutorizadaPasaport: row.pasarpoteAutorizado,
@@ -152,7 +160,9 @@ export class RecomprarInicioComponent implements OnInit {
       numeroPedido: row.Numero_Pedido,
       provincia:row.provincia,
       telefono:row.telefonoAutorizado,
-      celular:row.celularAutorizado
+      celular:row.celularAutorizado,
+      recomprar:true,
+      direccion:row.direccion
     }
     //enviamos datos al servicio para que se muestren
     if (!justView) {
@@ -162,12 +172,11 @@ export class RecomprarInicioComponent implements OnInit {
      }, 1500); 
      
     }
-
-
   }
+  
   // Funcion para obtener los productos
-  updateItemsByOrder(val, justView: boolean) {
-
+  updateItemsByOrder(row, justView: boolean) {
+    const val = row.order_body;
     if (!val.length) {
       return;
     }
@@ -202,6 +211,7 @@ export class RecomprarInicioComponent implements OnInit {
       resps.forEach((resp) => { //Iteramos todas las respuestas
         if (resp.ok && resp.status === 200) {
           this.productsToParse.push(resp.body);//agregamos a la lista para parsear
+          console.log(this.productsToParse);
         } else if (resp.status === 404) {
           this.aBadResponse.push(val);// estas son respuestas de productos no encontrados
         } else {
@@ -215,7 +225,7 @@ export class RecomprarInicioComponent implements OnInit {
       this.productsBehavior.parseDefaultPrice(this.productsToParse).then(
         data => {
           this.productsToParse = data;
-          console.log(data);
+      //    console.log(data);
           this.productsToParse.forEach(
             (val) => {
               let id = val.codeProdSys;
@@ -241,6 +251,9 @@ export class RecomprarInicioComponent implements OnInit {
                ); */
             }
           );
+           this.newTotal=this.carritoService.getTotal(this.itemToShow); 
+          this.createDetail(row,justView);
+          console.log(this.newTotal);
           // crear pdf
           if (justView) {
             this.createPdf();

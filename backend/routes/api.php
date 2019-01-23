@@ -144,6 +144,8 @@ Route::group(['prefix' => 'auth'], function() {
 
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 
+    Route::get('getArbolProductos','ProductoController@getArbolProductos');
+
     Route::get('activarCuenta/{TokenActivacion}','UserController@ActivarCuenta');
 
     Route::post('agregarDuracion/{idUser}','NotificacionDuracionAlimentoController@agregarDuracion');
@@ -160,6 +162,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     Route::get('turnoDeUnLocalAdh/{id_Local}', 'LocalesAdheridoController@turnoDeUnLocalAdh');
 
     Route::post('agregarDomicilio', 'PerfilClientesController@agregarDomicilio');
+
+    Route::post('agregarLocalidadYProvincia/{idDomicilios}', 'PerfilClientesController@addProvinciaLocalidad');
+
     Route::get('listarDomiciliosDeClientes/{fk_idCliente}', 'PerfilClientesController@listarDomiciliosDeClientes');
     Route::post('editarDomicilio', 'PerfilClientesController@editarDomicilio');
     Route::delete('borrarDomicilio/{idDomicilios}', 'PerfilClientesController@borrarDomicilio');

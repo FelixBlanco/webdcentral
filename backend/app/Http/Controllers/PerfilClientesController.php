@@ -199,17 +199,14 @@ class PerfilClientesController extends Controller {
             'descripcion.required'  => 'El campo es requerido',
         ]);
 
-
         DB::beginTransaction();
-        $domi=Domicilio::where('fk_idCliente',$request->fk_idCliente)->get();
+        $domi = Domicilio::where('fk_idCliente', $request->fk_idCliente)->get();
 
         try {
 
             if (count($domi) < 6) {
 
-                $d               = new Domicilio();
-                $d->descripcion  = $request->descripcion;
-                $d->fk_idCliente = $request->fk_idCliente;
+                $d = new Domicilio($request->all());
 
                 $d->save();
 
@@ -241,7 +238,6 @@ class PerfilClientesController extends Controller {
     }
 
     public function editarDomicilio(Request $request) {
-
         $this->validate($request, [
             'idDomicilios' => 'required',
             'descripcion'  => 'required',
@@ -317,6 +313,28 @@ class PerfilClientesController extends Controller {
             ];
 
             return response()->json($response, 200);
+        }
+    }
+
+    public function addProvinciaLocalidad(Request $request, $idDomicilios) {
+        $d = Domicilio::find($idDomicilios);
+
+        if (! is_null($d)) {
+            $d->fill($request->all());
+            $d->save();
+
+            $response = [
+                'msj'       => 'Domicilio actualizado correctamente',
+                'domicilio' => $d,
+            ];
+
+            return response()->json($response, 201);
+        } else {
+            $response = [
+                'msj' => 'El domicilio del cliente no existe',
+            ];
+
+            return response()->json($response, 404);
         }
     }
 }

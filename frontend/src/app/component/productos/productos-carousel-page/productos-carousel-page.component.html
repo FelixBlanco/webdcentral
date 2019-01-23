@@ -17,50 +17,72 @@
                 {{item.Agrupacion}}
               </h6>
               <h6 *ngIf="!item.Agrupacion" class="card-title text-center txt-azul font-bold">
-                  {{item.nombre}}
-                </h6>
+                {{item.nombre}}
+              </h6>
             </div>
             <div class="text-center semi-body">
               <!--  si existe agrupacion -->
-             <div *ngIf="item.Agrupacion && item.listAgrupacion">
+              <!-- <div *ngIf="item.Agrupacion && item.listAgrupacion">
                 <div class="agrupacion"  *ngIf="item.listAgrupacion.length">
                     <div class=" row justify-content-center " >
                         <div *ngFor="let ite of item.listAgrupacion; let j = index">
-                          <div class="col-3 pb-1">
-                              <div class="  circle font-bold bg-azul text-white m-auto" 
-                              style="font-size: .6rem;padding: .2rem;" 
+                          <div class="col-3 pb-1 ">
+                              <div class="  rectangle font-bold bg-azul text-white m-auto" 
+                              style="font-size: .8rem;padding: .2rem;" 
                               (click)="selectAgrupacion(i,j)"
                                 [ngClass]="{'disable-circle':ite.codeProdSys != item.codeProdSys}"
                               >
-                                {{ite.kiloProdcuto}} 
+                                {{ite.kiloProdcuto}}
                               </div>
                           </div>
                         </div>
         
                       </div>
                 </div>
-             </div>
+             </div> -->
+              <div *ngIf="item.Agrupacion && item.listAgrupacion">
+                <div class="agrupacion justify-content-center" *ngIf="item.listAgrupacion.length">
+
+                  <div *ngFor="let ite of item.listAgrupacion; let j = index">
+
+                    
+                   
+                  <div class="pr-2">
+                      <div class="  rectangle font-bold bg-azul text-white m-auto" 
+                      (click)="selectAgrupacion(i,j)" [ngClass]="{'disable-circle':ite.codeProdSys != item.codeProdSys}">
+                      {{ite.kiloProdcuto}}
+                    </div>
+                    
+                  </div>
+              
+                  
+
+                  </div>
+
+
+                </div>
+              </div>
 
               <!--  si no existe agrupacion -->
-              <div *ngIf="!item.Agrupacion " >
+              <div *ngIf="!item.Agrupacion ">
 
-                <div class="agrupacion" >
-                    <div class="circle font-bold bg-azul text-white m-auto" style="font-size: .6rem;padding: .2rem;" >
-                        {{item.kiloProdcuto}}
-                      </div>
+                <div class="agrupacion">
+                  <div class="circle font-bold bg-azul text-white m-auto" style="font-size: .6rem;padding: .2rem;">
+                    {{item.kiloProdcuto}}
+                  </div>
                 </div>
 
 
               </div>
-              <div *ngIf="item.Agrupacion && !item.listAgrupacion" class="agrupacion" >        
-                      <div class="circle font-bold bg-azul text-white m-auto" style="font-size: .6rem;padding: .2rem;" >
-                          {{item.kiloProdcuto}}
-                        </div>
+              <div *ngIf="item.Agrupacion && !item.listAgrupacion" class="agrupacion">
+                <div class="circle font-bold bg-azul text-white m-auto" style="font-size: .6rem;padding: .2rem;">
+                  {{item.kiloProdcuto}}
                 </div>
-               
-             
+              </div>
 
-              <h5 class="text-center txt-naranja font-bold mt-2">POR: {{item.precioL1 | currency: 'ARS': '$'}}</h5>
+
+
+              <h5 class="text-center txt-naranja font-bold mt-2">POR: {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
 
 
               <div class="row justify-content-center mt-2 mb-2">

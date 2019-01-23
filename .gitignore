@@ -31,3 +31,11 @@ backend/public/storage/comprobanteDepositoTransferencia/144-805x452jpg-154811882
 backend/public/storage/comprobanteDepositoTransferencia/captura-de-pantalla-2019-01-20-a-las-122448-1548003422-286.png
 backend/public/storage/slide/2019-01-23t143925717z-1548254367-160.png
 backend/public/storage/slide/2019-01-23t144058978z-1548254461-330.png
+backend/database/migrations/2019_01_22_144457_add_nuevos_campos_to_domicilio.php
+backend/public/storage/blog/galeria-home-1547873129-941.png
+backend/public/storage/Categoria_blog/cupones-1547873103-646.png
+backend/public/storage/comprobanteDepositoTransferencia/144-805x452jpg-1546543505-246.png
+backend/public/storage/comprobanteDepositoTransferencia/144-805x452jpg-1547846124-489.png
+backend/public/storage/comprobanteDepositoTransferencia/144-805x452jpg-1547851289-764.png
+backend/public/storage/coupons/galeria-home-1547833195-742.png
+backend/vendor/composer/autoload_static.php
