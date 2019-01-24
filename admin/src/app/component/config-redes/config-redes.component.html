@@ -24,6 +24,10 @@
           <input type="text" class="form-control" formControlName="whatsapp" placeholder="Ingrese la URl de Whatsapp">
         </div>  
         <div class="form-group">
+          <label for="">MENSAJE DE WHATSAPP</label>
+          <textarea class="form-control" formControlName="mensaje_whatsapp" placeholder="Ingrese la Mensaje de Whatsapp"></textarea>
+        </div>                  
+        <div class="form-group">
           <mat-spinner *ngIf='inPromise' diameter="30" style="margin: 0 auto"></mat-spinner>
           <div *ngIf='!inPromise'>        
             <button class="btn btn-success btn-block" (click)="addRedes()" [disabled]="myRedes.invalid || inPromise" *ngIf="isNew">Agregar redes</button>

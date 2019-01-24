@@ -338,7 +338,7 @@ class ProductoController extends Controller {
 
     public static function getAllRubros() {
 
-        $response = Producto::select("rubro","WebLink_Rubro")->where('fk_idSatate','!=','3')->groupBy('rubro')->orderBy("rubro")->get();
+        $response = Producto::select('titulo',"rubro","WebLink_Rubro")->where('fk_idSatate','!=','3')->groupBy('rubro')->orderBy("rubro")->get();
 
         return response()->json($response, 202);
     }
