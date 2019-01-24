@@ -34,7 +34,7 @@ class ClasificadoReclamoController extends Controller {
 
                 $response = [
                     'msj'  => 'Creado Exitosamente',
-                    'blog' => $cla,
+                    'clasificado' => $cla,
                 ];
                 DB::commit();
 

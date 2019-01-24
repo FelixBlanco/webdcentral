@@ -755,4 +755,25 @@ class ProductoController extends Controller {
 
         return $listaProductos;
     }
+
+    public static function getArbolProductos() {
+
+        try {
+            $rs = null;
+            $rs = DB::connection('sqlsrv')->select("  SELECT  Atributo_TablaGenerica,Descripcion_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ) AS  Dato_TablaGenerica
+            FROM VistaProductosTagsAPP 
+            GROUP BY Atributo_TablaGenerica, Descripcion_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR )
+            ORDER BY Atributo_TablaGenerica, Descripcion_TablaGenerica,Dato_TablaGenerica
+            ");
+
+            if ($rs) {
+                return response()->json($rs, 200);
+            } else {
+                return response()->json("No existe contenido ", 204);
+            }
+        } catch (\Exception $e) {
+            dd($e);
+            return response()->json("Error conectando a el DC", 500);
+        }
+    }
 }

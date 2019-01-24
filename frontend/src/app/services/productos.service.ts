@@ -35,6 +35,7 @@ export interface Producto{
   defaultPrice: string;
   listAgrupacion:Array<any>,
   Agrupacion:string,
+  volumenToSort:number,
 }
 
 export interface SearchBody{
