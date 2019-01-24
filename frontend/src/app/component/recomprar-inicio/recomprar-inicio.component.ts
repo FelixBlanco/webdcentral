@@ -38,6 +38,7 @@ export class RecomprarInicioComponent implements OnInit {
 
   ngOnInit() {
     this.setHistorial();
+    setTimeout(()=> document.getElementById('recomprar').scrollIntoView({behavior: 'smooth'}),1000);
   }
 
   setHistorial() {
@@ -270,6 +271,9 @@ export class RecomprarInicioComponent implements OnInit {
       console.error(error);
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error al encontrar un producto');
     });
+  }
+  goToCar(){
+    $('#carrito').modal('toggle');
   }
 
 

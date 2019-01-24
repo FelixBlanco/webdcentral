@@ -414,6 +414,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     // Tipos de descuentos 
     Route::get('tipo-descuentos', 'TipoDescuentoController@index');
 
+    Route::resource('secciones-paginas','SeccionesPaginasController');
+
+    Route::get('lista-slide-web','SlideController@listarWeb');
 
 });
 
