@@ -20,6 +20,15 @@
                 {{item.nombre}}
               </h6>
             </div>
+            <div *ngIf="item.valoracion" class="valoracion text-center">
+               
+                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.valoracion < 1}"></fa-icon>
+                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.valoracion < 2}"></fa-icon>
+                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.valoracion < 3}"></fa-icon>
+                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.valoracion < 4}"></fa-icon>
+                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.valoracion < 5}"></fa-icon>
+              
+            </div>
             <div class="text-center semi-body">
               <!--  si existe agrupacion -->
               <!-- <div *ngIf="item.Agrupacion && item.listAgrupacion">
