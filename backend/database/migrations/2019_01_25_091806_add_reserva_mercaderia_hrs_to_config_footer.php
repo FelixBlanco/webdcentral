@@ -13,7 +13,7 @@ class AddReservaMercaderiaHrsToConfigFooter extends Migration
      */
     public function up()
     {
-        Schema::table('tb_config_footer', function (Blueprint $table) {
+        Schema::table('tb_config_footers', function (Blueprint $table) {
             $table->string('reservaMercaderiaHrs')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddReservaMercaderiaHrsToConfigFooter extends Migration
      */
     public function down()
     {
-        Schema::table('tb_config_footer', function (Blueprint $table) {
+        Schema::table('tb_config_footers', function (Blueprint $table) {
             $table->dropColumn('reservaMercaderiaHrs');
         });
     }
