@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TipoDescuetoSeeder::class);
         $this->call(TipoOrdenSeeder::class);
         $this->call(MetodoEntregaSeeder::class);
+        $this->call(SeccionesPaginaSeed::class);        
     }
 }

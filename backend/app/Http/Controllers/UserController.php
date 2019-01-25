@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Mail\EnviarTokenMail;
 use App\Mail\Prueba;
+use App\Mail\SuscripcionMail;
 use App\PerfilCliente;
+use App\Suscripcion;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -164,6 +166,15 @@ class UserController extends Controller {
 
 
             $usuario->save();
+
+            $suscripcion = new Suscripcion([
+                'email'              => $request->email,
+                'fk_idStatusSistema' => 1,
+            ]);
+            $suscripcion->generateToken();
+
+            Mail::to($request->email)->send(new SuscripcionMail($suscripcion));
+            $suscripcion->save();
 
 
             /*PARA CREAR EL PERFIL DEL CLIENTE*/

@@ -228,8 +228,8 @@
           <h6 class="text-uppercase font-bold">método de pago</h6>
           <mat-radio-group formControlName="metodoDePago">
             <mat-radio-button value="1">Efectivo</mat-radio-button>
-            <mat-radio-button value="2">Depósito</mat-radio-button>
-            <mat-radio-button value="3">Transferencia</mat-radio-button>
+           <!--  <mat-radio-button value="2">Depósito</mat-radio-button>
+            <mat-radio-button value="3">Transferencia</mat-radio-button> -->
             <mat-radio-button value="4">Mercadopago</mat-radio-button>
 
           </mat-radio-group>
@@ -277,27 +277,13 @@
   <ng-container *ngSwitchCase="'delivery'">
     <div class="m-2">
       <form [formGroup]="orderForm">
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="localidad" class="text-uppercase font-bold">Localidad</label>
           <ng-select formControlName="localidad" [loading]="onLocalidadesFetch" notFoundText="No se encontraron coincidencias..."
             placeholder="Seleccione la localidad" class="ng-select-custom">
             <ng-option *ngFor="let localidad of localidadesList" [value]="localidad.Descripcion_Localidad">{{localidad.Descripcion_Localidad}}</ng-option>
           </ng-select>
-        </div>
-        <div class="form-group">
-          <label for="fecha" class="text-uppercase font-bold">Fecha</label>
-          <input type="date" class="form-control" id="fecha" formControlName="fecha">
-          <small class="form-text text-danger" *ngIf="orderForm.get('fecha').invalid">
-            La fecha de entrega debe ser a partir de {{twoDaysAfter | date: 'dd/MM/yyyy'}}
-          </small>
-        </div>
-        <div class="form-group">
-          <label for="disponibilidadEnHs" class="text-uppercase font-bold">disponibilidad en hs</label>
-          <select class="form-control" id="disponibilidadEnHs" formControlName="disponibilidad">
-            <option value="">Seleccionar</option>
-            <option *ngFor="let disp of disponibilidadEnHrsList" value="{{disp}}">{{disp}}</option>
-          </select>
-        </div>
+        </div> -->
         <label for="domicilioEntrega" class="text-uppercase font-bold">Domicilio de Entrega</label>
         <div class="input-group mb-3">
           <select class="custom-select" id="domicilioEntrega" formControlName="domicilioEntrega" aria-label="Example select with button addon">
@@ -315,7 +301,23 @@
 
         <app-domicilio-entrega-form *ngIf="onDomicilioAdd" (onSaveDone)="onDomicilioCreate(false)"></app-domicilio-entrega-form>
 
+
         <div class="form-group">
+          <label for="fecha" class="text-uppercase font-bold">Fecha</label>
+          <input type="date" class="form-control" id="fecha" formControlName="fecha">
+          <small class="form-text text-danger" *ngIf="orderForm.get('fecha').invalid">
+            La fecha de entrega debe ser a partir de {{twoDaysAfter | date: 'dd/MM/yyyy'}}
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="disponibilidadEnHs" class="text-uppercase font-bold">disponibilidad en hs</label>
+          <select class="form-control" id="disponibilidadEnHs" formControlName="disponibilidad">
+            <option value="">Seleccionar</option>
+            <option *ngFor="let disp of disponibilidadEnHrsList" value="{{disp}}">{{disp}}</option>
+          </select>
+        </div>
+    
+        <div  *ngIf="orderForm.get('metodoDePago').value == '4'" class="form-group">
           <label for="authorizedPerson" class="text-uppercase font-bold">Persona Autorizada a recibir</label>
           <input class="form-control" placeholder="Ingrese Nombre y Apellido" type="text" id="authorizedPerson"
             formControlName="authorizedPerson">
@@ -339,10 +341,10 @@
 
         <div class="m-2">
           <h6 class="text-uppercase font-bold">método de pago</h6>
-          <mat-radio-group formControlName="metodoDePago">
+          <mat-radio-group formControlName="metodoDePago" (change)="validateMethodPay()">
             <mat-radio-button value="1">Efectivo</mat-radio-button>
-            <mat-radio-button value="2">Depósito</mat-radio-button>
-            <mat-radio-button value="3">Transferencia</mat-radio-button>
+           <!--  <mat-radio-button value="2">Depósito</mat-radio-button>
+            <mat-radio-button value="3">Transferencia</mat-radio-button> -->
             <mat-radio-button value="4">Mercadopago</mat-radio-button>
           </mat-radio-group>
         </div>
@@ -470,8 +472,8 @@
           <h6 class="text-uppercase font-bold">método de pago</h6>
           <mat-radio-group formControlName="metodoDePago">
 
-            <mat-radio-button value="2">Depósito</mat-radio-button>
-            <mat-radio-button value="3">Transferencia</mat-radio-button>
+           <!--  <mat-radio-button value="2">Depósito</mat-radio-button>
+            <mat-radio-button value="3">Transferencia</mat-radio-button> -->
             <mat-radio-button value="4">Mercadopago</mat-radio-button>
           </mat-radio-group>
         </div>

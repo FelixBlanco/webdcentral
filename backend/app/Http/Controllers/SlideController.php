@@ -15,13 +15,19 @@ class SlideController extends Controller {
 
     public function listar() {
 
-        $slides = Slide::get();
+        $slides = Slide::orderby('idSlide','desc')->get();
         $slides->each(function($slides) {
             $slides->set_imagen = asset('storage\\slide\\'.$slides->imagen);
             $slides->producto;
-            if (! empty($slides->fk_idProducto)) {
+            
+            if (!empty($slides->fk_idProducto)) {
                 $slides->nameProducto = $slides->producto->nombre;
             }
+
+            if (!empty($slides->secciones_pagina)) {
+                $slides->seccionPagina = $slides->seccionPagina->nombre;
+            }
+
         });
 
         $response = [
@@ -31,6 +37,36 @@ class SlideController extends Controller {
 
         return response()->json($response, 201);
     }
+
+
+    /**
+    * USAREMOS UN LIMITE DE 3 IMAGENES EN EL SLIDE 
+    * DE LA WEB.
+    */
+
+    public function listarWeb() {
+        $slides = Slide::orderby('idSlide','desc')->limit(3)->get();
+        $slides->each(function($slides) {
+            $slides->set_imagen = asset('storage\\slide\\'.$slides->imagen);
+            $slides->producto;
+            
+            if (! empty($slides->fk_idProducto)) {
+                $slides->nameProducto = $slides->producto->nombre;
+            }
+            
+            if (!empty($slides->secciones_pagina)) {
+                $slides->seccionPaginaLink = $slides->seccionPagina->link;
+            }
+
+        });
+
+        $response = [
+            'msj'      => 'Lista de slides',
+            'producto' => $slides,
+        ];
+
+        return response()->json($response, 201);
+    }    
 
     public function listarPorId($idSlide) {
 
@@ -92,6 +128,7 @@ class SlideController extends Controller {
 
                 $imagemodel->imagen        = $nombre_interno;
                 $imagemodel->fk_idProducto = $request->fk_idProducto;
+                $imagemodel->secciones_pagina = $request->secciones_pagina;
                 $imagemodel->save();
 
                 DB::commit();
