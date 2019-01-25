@@ -13,8 +13,9 @@ class AddCamposToOfertas extends Migration
      */
     public function up()
     {
-        Schema::table('ofertas', function (Blueprint $table) {
-            //
+        Schema::table('tb_ofertas', function (Blueprint $table) {
+            $table->string('base_cond')->nullable();
+            $table->string('activar_uso')->nullable();
         });
     }
 
@@ -25,8 +26,9 @@ class AddCamposToOfertas extends Migration
      */
     public function down()
     {
-        Schema::table('ofertas', function (Blueprint $table) {
-            //
+        Schema::table('tb_ofertas', function (Blueprint $table) {
+            $table->dropColumn('base_cond');
+            $table->dropColumn('activar_uso');
         });
     }
 }

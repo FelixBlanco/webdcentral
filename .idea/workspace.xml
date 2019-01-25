@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a3924c-1359-4e47-9f47-e2a05a433f41" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Coupons.php" afterPath="$PROJECT_DIR$/backend/app/Coupons.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/backend/vendor/composer/autoload_static.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/app/Oferta.php" afterPath="$PROJECT_DIR$/backend/app/Oferta.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/database/migrations/2019_01_25_170719_add_campos_to_ofertas.php" afterPath="$PROJECT_DIR$/backend/database/migrations/2019_01_25_170719_add_campos_to_ofertas.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,11 +35,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2019_01_25_170701_add_campos_to_cupones.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2019_01_25_170701_add_campos_to_cupones.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/database/migrations/2019_01_25_170701_add_campos_to_cupones.php">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="392">
+              <caret line="30" column="46" lean-forward="true" selection-start-line="29" selection-start-column="11" selection-end-line="30" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2019_01_25_170719_add_campos_to_ofertas.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/database/migrations/2019_01_25_170719_add_campos_to_ofertas.php">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="17" column="54" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="17" selection-end-column="54" />
+              <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="37" />
+              <caret line="17" column="39" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Oferta.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/app/Oferta.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -73,6 +93,8 @@
         <option value="$PROJECT_DIR$/backend/database/migrations/2019_01_25_091806_add_reserva_mercaderia_hrs_to_config_footer.php" />
         <option value="$PROJECT_DIR$/backend/app/Coupons.php" />
         <option value="$PROJECT_DIR$/backend/database/migrations/2019_01_25_170701_add_campos_to_cupones.php" />
+        <option value="$PROJECT_DIR$/backend/database/migrations/2019_01_25_170719_add_campos_to_ofertas.php" />
+        <option value="$PROJECT_DIR$/backend/app/Oferta.php" />
       </list>
     </option>
   </component>
@@ -280,12 +302,12 @@
       <workItem from="1548327399864" duration="1007000" />
       <workItem from="1548381720970" duration="105000" />
       <workItem from="1548420817777" duration="1828000" />
-      <workItem from="1548450070810" duration="518000" />
+      <workItem from="1548450070810" duration="599000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4534000" />
+    <option name="totallyTimeSpent" value="4615000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1592" y="-8" width="1616" height="916" extended-state="6" />
@@ -602,8 +624,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/database/migrations/2019_01_25_170701_add_campos_to_cupones.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="30" column="46" lean-forward="true" selection-start-line="29" selection-start-column="11" selection-end-line="30" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database/migrations/2019_01_25_170719_add_campos_to_ofertas.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="17" column="54" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="17" selection-end-column="54" />
+          <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="37" />
+          <caret line="17" column="39" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/app/Oferta.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
           <folding />
         </state>
       </provider>
