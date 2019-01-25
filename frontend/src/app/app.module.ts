@@ -64,7 +64,7 @@ import { DomicilioEntregaFormComponent } from './component/carrito/carrito-form/
 import { TurnosListComponent } from './component/servicios-inicio/turnos-list/turnos-list.component';
 import { RubrosgaleryInicioComponent } from './component/rubrosgalery-inicio/rubrosgalery-inicio.component';
 import { ClasificacionReclamosService } from './services/clasificacion-reclamos.service';
-
+import { HorarioAtencionServiceService } from './services/horario-atencion-service.service';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -151,7 +151,8 @@ const appRoutes: Routes = [
   providers: [
     CarritoService,
     MarcasService,
-    ClasificacionReclamosService
+    ClasificacionReclamosService,
+    HorarioAtencionServiceService
   ],
   bootstrap: [AppComponent]
 })

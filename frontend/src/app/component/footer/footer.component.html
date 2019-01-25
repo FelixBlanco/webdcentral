@@ -40,7 +40,7 @@
     </div>
     <hr style="background-color: white; padding:1px;">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h4 class="font-bold txt-blanco">NOSOTROS </h4>
         <p class="txt-blanco font-light" *ngIf="footer_data">
             {{footer_data.nroContacto}} <br>
@@ -50,7 +50,7 @@
             Trabaja con Nosotros
         </p>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h4 class="font-bold txt-blanco">SERVICIOS</h4>
         
         <div *ngFor="let lista_clasificado of lista_clasificados" class="txt-blanco font-light">
@@ -58,12 +58,32 @@
         </div>
           
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h4 class="font-bold txt-blanco">LOCALES ADHERIDOS</h4>
         <div *ngFor="let l_l of lista_locales" class="txt-blanco font-light">
             {{l_l.nombre}}
-          </div>                  
-        </div>
-    </div>
+        </div>                  
+      </div>
+      
+      <div class="col-md-3">
+        <h4 class="font-bold txt-blanco">HORARIOS DE ATENCIÓN</h4>
+        <table class="table tableEstilo">
+          <thead>
+            <tr>
+              <th scope="col">Desde</th>
+              <th scope="col">Hasta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let horario of listaHorarios">
+                <td>{{ horario.desde }}</td>
+                <td>{{ horario.hasta }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      
+    
   </div>
 </div>
