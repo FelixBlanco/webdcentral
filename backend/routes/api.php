@@ -199,6 +199,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     /*Para camiar el estatus a una suscripcion*/
     Route::put('cambiarStatusSus/{idSuscripcion}', 'SuscripcionController@cambiarStatusSus');
 
+    /*PARA CANCELAR UNA SUSCRIPCION POR TOKEN DE DESACTIVACION*/
+    Route::get('cancelarSuscripcionTocken/{tocken}','SuscripcionController@cancelarSuscripcionTocken');
+
     /*para cancelar una suscripcion*/
     Route::put('cancelarSus/{idSuscripcion}', 'SuscripcionController@cancelarSus');
 
