@@ -32,6 +32,14 @@ export class MarcaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.marcaService.fromMarcaInicio.subscribe(val =>{
+      console.log(val);
+      if(val){
+    
+        this.find('A');
+        this.marcaService.updateFromMarcaInicio(false);
+      }
+    })
   }
 
   select(marca: string){
@@ -39,6 +47,7 @@ export class MarcaComponent implements OnInit {
   }
 
   find(i: string): void{
+    console.log('find '+i);
     this.inPromise = true;
     this.charSelected = i;
     this.marcasList = [];
@@ -102,5 +111,6 @@ export class MarcaComponent implements OnInit {
       this.ts.msg('ERR', 'Error', 'Ha ocurrido un error interno');
     })
   }
+
 
 }

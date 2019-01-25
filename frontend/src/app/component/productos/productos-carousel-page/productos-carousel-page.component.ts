@@ -34,8 +34,10 @@ export class ProductosCarouselPageComponent implements OnInit {
   // funcion para order los kilos de menor a mayor , y para mostrar "KG" y "GR" en vez de "kilos" y "Gramos"
   setAgrupacion() {
     this.items.map((val, i) => {
-      val.valoracion= Math.floor((Math.random() * 5) + 1); // ponnemos valoracion random mientras esperamos que habiliten este campo en la respuesta del servicio
-
+      val.Valoracion_Fabricante= Number(val.Valoracion_Fabricante); 
+      if(val.Agrupacion.match(val.marca)){
+        console.log(val);
+      }
       if (val.listAgrupacion && val.listAgrupacion.length) {
         this.productsBehaviorService.parseDefaultPrice(val.listAgrupacion).then(val => {
          // this.products[i].listAgrupacion = val;
@@ -50,8 +52,8 @@ export class ProductosCarouselPageComponent implements OnInit {
           //  debugger;
             value.kiloProdcuto = value.kiloProdcuto.replace('Kilos','KG');
             value.kiloProdcuto = value.kiloProdcuto.replace('Gramos','GR');  
-            value.valoracion= Math.floor((Math.random() * 5) + 1); // ponnemos valoracion random mientras esperamos que habiliten este campo en la respuesta del servicio
-
+            value.Valoracion_Fabricante= Number(value.Valoracion_Fabricante); 
+            value.Agrupacion.replace(value.marca," ");
           })
           //   console.log(this.products[i]);
           this.products[i].listAgrupacion= val.sort((a,b)=>a.volumenToSort-b.volumenToSort);
@@ -82,7 +84,7 @@ export class ProductosCarouselPageComponent implements OnInit {
       this.products[i].defaultPrice = this.products[i].listAgrupacion[j].defaultPrice;
       this.products[i].codeProdSys = this.products[i].listAgrupacion[j].codeProdSys;
       this.products[i].urlImage = this.products[i].listAgrupacion[j].urlImage;
-      this.products[i].valoracion = this.products[i].listAgrupacion[j].valoracion;
+      this.products[i].Valoracion_Fabricante = this.products[i].listAgrupacion[j].Valoracion_Fabricante;
     }
   }
 
