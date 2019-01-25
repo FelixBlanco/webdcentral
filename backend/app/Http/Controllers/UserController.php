@@ -171,6 +171,7 @@ class UserController extends Controller {
                 'email'              => $request->email,
                 'fk_idStatusSistema' => 1,
             ]);
+            $suscripcion->generateToken();
 
             Mail::to($request->email)->send(new SuscripcionMail($suscripcion));
             $suscripcion->save();

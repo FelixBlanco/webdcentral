@@ -9,14 +9,24 @@ class Suscripcion extends Model
 {
     use SoftDeletes;
 
-    protected $table      = 'tb_suscripcions';
+    protected $table = 'tb_suscripcions';
+
     protected $primaryKey = 'idSuscripcion';
 
     protected $fillable = [
         'email',
         'motivoDeCancelacion',
         'fk_idStatusSistema',
+        'tocken',
     ];
+
+
+    public function generateToken() {
+        $this->tocken = str_random(60);
+        $this->save();
+
+        return $this->tocken;
+    }
 
     public function estatusSitema()
     {
