@@ -43,7 +43,12 @@
                 <ng-template ngx-datatable-cell-template let-row="row"> 
                   {{row.nameProducto | titlecase}}
                 </ng-template>
-              </ngx-datatable-column>                
+              </ngx-datatable-column>  
+              <ngx-datatable-column name="Seccion Pagina" prop="seccionPagina">
+                <ng-template ngx-datatable-cell-template let-row="row"> 
+                  {{row.seccionPagina | titlecase}}
+                </ng-template>
+              </ngx-datatable-column>                              
               <ngx-datatable-column name="Imagen" prop="set_imagen">
                 <ng-template ngx-datatable-cell-template let-row="row">
                     <img class="clickeable" [src]="row.set_imagen" alt="{{row.title}}" width="70" (click)="showImage(row)">
@@ -107,13 +112,23 @@
             <label for="titulo">Título:</label>
             <input type="text" formControlName="titulo" class="form-control" id="titulo" placeholder="Escriba un título" maxlength="255">
           </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf='visualProducto'>
             <label for="producto">Producto:</label>
-            <select class="form-control" formControlName="fk_idProducto">
-              <option value=""></option>
+            <select class="form-control" formControlName="fk_idProducto" (change)="changeProducto($event,'producto')">
+              <option value="none">Nada</option>
               <option *ngFor="let product of productList" value="{{product.idProducto}}">{{product.nombre}}</option>
             </select>
           </div>
+
+          <div class="form-group" *ngIf='visualSeccionesPagina'>
+            <label for="producto">Seccion de la Pagina:</label>
+            <select class="form-control" formControlName="secciones_pagina" (change)="changeProducto($event,'secciones_pagina')">
+              <option value="none">Nada</option>
+              <option *ngFor="let secciones_paginas of lista_s_paginas" value="{{secciones_paginas.id}}">{{secciones_paginas.nombre}}</option>
+            </select>
+          </div>          
+
+          
           <div class="form-group">
             <label for="respuesta">Imagen del Slide:</label>
             <input #image type="file" (change)="onFileChange($event)" >

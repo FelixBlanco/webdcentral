@@ -16,11 +16,17 @@ class Slide extends Model {
         'titulo',
         'imagen',
         'fk_idProducto',
+        'secciones_pagina'
     ];
 
     public function producto()
     {
         return $this->belongsTo('App\Producto', 'fk_idProducto');
     }
+
+    public function seccionPagina()
+    {
+        return $this->belongsTo('App\SeccionesPagina', 'secciones_pagina');
+    }    
 
 }

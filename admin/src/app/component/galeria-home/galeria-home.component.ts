@@ -3,6 +3,7 @@ import {GaleriaHomeService} from '../../services/galeria-home.service';
 import {ProductosService} from '../../services/productos.service';
 import {AlertsService} from '../../services/alerts.service'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SeccionesPaginaService } from '../../services/secciones-pagina.service';
 
 declare var $:any;
 
@@ -21,6 +22,7 @@ export class GaleriaHomeComponent implements OnInit {
     columns: any = [
       { prop: 'titulo' },
       { prop: 'nameProducto'},
+      { prop: 'seccionPagina'},
       { prop: 'set_imagen'},
       { prop: 'opts'}
     ];
@@ -32,24 +34,29 @@ export class GaleriaHomeComponent implements OnInit {
 
     inPromise: boolean;
     imgLoaded: File;
-
     galeriaList: any[] = [];
-
     productList: any[];
+    lista_s_paginas: any;
+
+    visualProducto : boolean = true;
+    visualSeccionesPagina : boolean = true;
 
     constructor(
         private _galeriaHomeService: GaleriaHomeService,
         private _productosServices: ProductosService,
         private _alertService: AlertsService,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private seccionesPagina : SeccionesPaginaService
     ) { }
 
     ngOnInit() {
         this.updateLists();
         this.getListProductos();
+        this.getSeccionesPagina();
         this.newForm = this.fb.group({
             titulo: ['', Validators.required],
             fk_idProducto: [''],
+            secciones_pagina: [''],
             imagen: ['', Validators.required]
         });
     }
@@ -86,7 +93,8 @@ export class GaleriaHomeComponent implements OnInit {
         toSend.append('titulo', values.titulo);
         toSend.append('imagen', this.imgLoaded, new Date().toJSON());
         toSend.append('fk_idProducto', values.fk_idProducto);
-
+        toSend.append('secciones_pagina', values.secciones_pagina);
+        
         this.inPromise = true;
         this._galeriaHomeService._addSlideHome(toSend).subscribe(
             (resp: any) => {                
@@ -185,5 +193,33 @@ export class GaleriaHomeComponent implements OnInit {
 
     set(row: any){
         this.galeriaSet = row;
+    }
+
+    getSeccionesPagina(){
+        this.seccionesPagina.getSeccionesPagina().subscribe(
+          resp => {
+            this.lista_s_paginas = resp;
+          }
+        )
+    }
+    
+    changeProducto(event:any,option:any){        
+        
+        if(option == 'producto'){
+            if(event.target.value != 'none'){
+                this.visualSeccionesPagina = false                    
+            }else{
+                this.visualSeccionesPagina = true    
+            }
+        }
+
+        if(option == 'secciones_pagina'){
+            if(event.target.value != 'none'){
+                this.visualProducto = false                    
+            }else{
+                this.visualProducto = true    
+            }
+        }
+
     }
 }

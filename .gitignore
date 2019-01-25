@@ -105,11 +105,7 @@ backend/public/storage/imagenFooter/144-805x452-1547684883-238.jpg
 backend/public/storage/slide/2019-01-17t073024758z-1547710234-459.png
 backend/public/storage/slide/2019-01-23t143925717z-1548254367-160.png
 backend/public/storage/slide/2019-01-23t144058978z-1548254461-330.png
-.idea/blade.xml
-.idea/inspectionProfiles/Project_Default.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/typescript-compiler.xml
-.idea/vcs.xml
-.idea/webdcentral.iml
-.idea/workspace.xml
+
+
+.idea/laravel-plugin.xml
+

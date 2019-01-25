@@ -70,14 +70,14 @@ export class CarritoFormComponent implements OnInit {
 
   ngOnInit() {
     this.orderForm = this.fb.group({
-      localidad: ['', Validators.required],
+      localidad: [''],
       fecha: ['', Validators.required],
       disponibilidad:['', Validators.required],
       domicilioEntrega:['', Validators.required],
-      authorizedPerson: ['', Validators.required],
-      identidad: ['', Validators.required],
-      authorizedPersonDni: ['', [Validators.required, Validators.pattern(new RegExp(/^(0|[1-9][0-9]*|[1-9][0-9]{0,2}(,[0-9]{3,3})*)$/))]], 
-      authorizedPersonPasaporte: ['',Validators.required],
+      authorizedPerson: [''],
+      identidad: [''],
+      authorizedPersonDni: [''], 
+      authorizedPersonPasaporte: [''],
       metodoDePago: ['1', Validators.required],
       imagen: [''],
       observations: [''],
@@ -502,6 +502,31 @@ export class CarritoFormComponent implements OnInit {
         this.as.msg('ERR', 'Error', error);
       }
     }
+  }
+  validateMethodPay(){
+    //solo pedir personas autorizadas en delivery si el metodo de pago  es mercadoPago(value 4)
+    if(this.orderForm.value.metodoDePago==4){
+      
+    /*   this.orderForm.get("authorizedPersonPasaporte").updateValueAndValidity(); */
+
+      this.orderForm.get("authorizedPerson").setValidators([Validators.required]);
+      this.orderForm.get("authorizedPerson").updateValueAndValidity();
+      this.orderForm.get("identidad").setValidators([Validators.required]);
+      this.orderForm.get("identidad").updateValueAndValidity();
+
+       setTimeout(() =>this.dniValidator=true , 2000);
+      }else{
+        this.orderForm.get("authorizedPerson").clearValidators();
+        this.orderForm.get("authorizedPerson").updateValueAndValidity();
+
+        this.orderForm.get("identidad").clearValidators();
+        this.orderForm.get("identidad").updateValueAndValidity();
+        this.orderForm.get("authorizedPersonDni").clearValidators();
+        this.orderForm.get("authorizedPersonDni").updateValueAndValidity();
+        this.orderForm.get("authorizedPersonPasaporte").clearValidators();
+        this.orderForm.get("authorizedPersonPasaporte").updateValueAndValidity();
+
+      }
   }
   validDni(){
     //validar dni o pasaporte para delivery

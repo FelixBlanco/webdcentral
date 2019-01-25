@@ -11,7 +11,7 @@ import { AlertsService } from 'src/app/services/alerts.service';
 })
 export class ProductosCarouselPageComponent implements OnInit {
   @Input('items') items: Producto[];
-
+  maxStar:number=5;
   products: Producto[];
   kilogramos: Array<any> = [];
   colorTres: any;
@@ -34,10 +34,13 @@ export class ProductosCarouselPageComponent implements OnInit {
   // funcion para order los kilos de menor a mayor , y para mostrar "KG" y "GR" en vez de "kilos" y "Gramos"
   setAgrupacion() {
     this.items.map((val, i) => {
+      val.valoracion= Math.floor((Math.random() * 5) + 1); // ponnemos valoracion random mientras esperamos que habiliten este campo en la respuesta del servicio
+
       if (val.listAgrupacion && val.listAgrupacion.length) {
         this.productsBehaviorService.parseDefaultPrice(val.listAgrupacion).then(val => {
          // this.products[i].listAgrupacion = val;
           val.map(value=>{
+
             let i:number =value.kiloProdcuto.search(" ");
             let str:string = value.kiloProdcuto.slice(0,i);
             if(Number(str)){
@@ -47,6 +50,8 @@ export class ProductosCarouselPageComponent implements OnInit {
           //  debugger;
             value.kiloProdcuto = value.kiloProdcuto.replace('Kilos','KG');
             value.kiloProdcuto = value.kiloProdcuto.replace('Gramos','GR');  
+            value.valoracion= Math.floor((Math.random() * 5) + 1); // ponnemos valoracion random mientras esperamos que habiliten este campo en la respuesta del servicio
+
           })
           //   console.log(this.products[i]);
           this.products[i].listAgrupacion= val.sort((a,b)=>a.volumenToSort-b.volumenToSort);
@@ -77,6 +82,7 @@ export class ProductosCarouselPageComponent implements OnInit {
       this.products[i].defaultPrice = this.products[i].listAgrupacion[j].defaultPrice;
       this.products[i].codeProdSys = this.products[i].listAgrupacion[j].codeProdSys;
       this.products[i].urlImage = this.products[i].listAgrupacion[j].urlImage;
+      this.products[i].valoracion = this.products[i].listAgrupacion[j].valoracion;
     }
   }
 
