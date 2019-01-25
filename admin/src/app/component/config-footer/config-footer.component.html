@@ -137,6 +137,45 @@
   </div>
 </div>
 <!-- modal  horarios -->
+
+<!-- Modal editar -->
+<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true"
+  style="z-index: 100000">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title text-white" id="eliminarModal">Editar <span class="text-capitalize" *ngIf="questionToUpdate">'{{questionToUpdate.pregunta}}'</span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="myFormHorarioEditar">
+          <h2 class="modal-title text-white" id="estatusModal">Horarios Regulares</h2>
+          <div class="form-group">
+            <label>Dias</label>
+            <input type="text" placeholder="Horario Inicio Atencion" class="form-control" formControlName="diaRegularEditar" [value]="horarioElegido.TipoDeDia">
+          </div>
+
+          <div class="form-group">
+            <label>Horarios</label>
+            <input type="text" class="form-control" formControlName="desdeRegularEditar" placeholder="desde 00:00" [value]=horarioElegido.desde>
+            <br>
+            <input type="text" class="form-control" formControlName="hastaRegularEditar" placeholder="hasta 00:00" [value]="horarioElegido.hasta">
+          </div>
+
+          <div class="justify-content-center">
+            <button type="button" class="btn btn-success " style="margin: 0 auto" (click)="editarHorarios(myFormHorarioEditar.value.diaRegularEditar,myFormHorarioEditar.value.desdeRegularEditar,myFormHorarioEditar.value.hastaRegularEditar)"
+              [disabled]="inPromiseHorario">Editar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal  horarios -->
+
 <div class="modal fade " id="horariosModal" tabindex="-1" role="dialog" aria-labelledby="estatusModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -151,13 +190,14 @@
           <h2 class="modal-title text-white" id="estatusModal">Horarios Regulares</h2>
           <div class="form-group">
             <label>Dias</label>
-            <input type="date" placeholder="Horario Inicio Atencion" class="form-control" formControlName="diaRegular">
+            <input type="text" placeholder="Horario Inicio Atencion" class="form-control" formControlName="diaRegular">
           </div>
 
           <div class="form-group">
             <label>Horarios</label>
-            <input type="time" class="form-control" formControlName="desdeRegular">
-            <input type="time" class="form-control" formControlName="hastaRegular">
+            <input type="text" class="form-control" formControlName="desdeRegular" placeholder="desde 00:00">
+            <br>
+            <input type="text" class="form-control" formControlName="hastaRegular" placeholder="hasta 00:00">
           </div>
 
           <div class="justify-content-center">
@@ -170,7 +210,12 @@
           <ngx-datatable-column name="#" prop="idHorarioAtencion" [width]="40"></ngx-datatable-column>
           <ngx-datatable-column name="Desde" prop="desde"></ngx-datatable-column>
           <ngx-datatable-column name="Hasta" prop="hasta"></ngx-datatable-column>
-          <ngx-datatable-column name="" prop="opts" [width]="100" [height]="70">
+          <ngx-datatable-column name="" prop="opts" [width]="112" >
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#editar" ><i class="fa fa-pencil-square-o"></i></a>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="" prop="opts" [height]="70" [width]="100" >
             <ng-template ngx-datatable-cell-template let-row="row">
               <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar" ><i class="fa fa-trash-o"></i></a>
             </ng-template>
@@ -180,13 +225,14 @@
           <h2 class="modal-title text-white" id="estatusModal">Horarios Festivos</h2>
           <div class="form-group">
             <label>Dias</label>
-            <input type="date" placeholder="Horario Inicio Atencion" class="form-control" formControlName="diaFestivo">
+            <input type="text" placeholder="Horario Inicio Atencion" class="form-control" formControlName="diaFestivo">
           </div>
 
           <div class="form-group">
             <label>Horarios</label>
-            <input type="time" class="form-control" formControlName="desdeFestivo">
-            <input type="time" class="form-control" formControlName="hastaFestivo">
+            <input type="text" class="form-control" formControlName="desdeFestivo" placeholder="desde 00:00">
+            <br>
+            <input type="text" class="form-control" formControlName="hastaFestivo" placeholder="hasta 00:00">
           </div>
 
           <div class="justify-content-center">
@@ -198,6 +244,11 @@
           <ngx-datatable-column name="#" prop="idHorarioAtencion" [width]="40"></ngx-datatable-column>
           <ngx-datatable-column name="Desde" prop="desde"></ngx-datatable-column>
           <ngx-datatable-column name="Hasta" prop="hasta"></ngx-datatable-column>
+          <ngx-datatable-column name="" prop="opts" [width]="112" >
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#editar" ><i class="fa fa-pencil-square-o"></i></a>
+            </ng-template>
+          </ngx-datatable-column>
           <ngx-datatable-column name="" prop="opts" [width]="100" [height]="70">
             <ng-template ngx-datatable-cell-template let-row="row">
               <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
