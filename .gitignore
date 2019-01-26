@@ -110,3 +110,6 @@ backend/public/storage/slide/2019-01-23t144058978z-1548254461-330.png
 .idea/laravel-plugin.xml
 
 .idea/workspace.xml
+backend/vendor/autoload.php
+backend/vendor/autoload.php
+backend/vendor/composer/autoload_static.php

@@ -19,5 +19,6 @@ class Oferta extends Model {
 
         'base_cond',
         'activar_uso',
+        'idProducto'
     ];
 }
