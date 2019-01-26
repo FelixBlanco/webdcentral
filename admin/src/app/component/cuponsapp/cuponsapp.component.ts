@@ -25,7 +25,8 @@ export class CuponsappComponent implements OnInit {
     { prop: 'description' },
     { prop: 'set_imagen' },
     { prop: 'codeCoupns' },
-    { prop: 'dateExpired' }
+    { prop: 'dateExpired' },
+    { prop: 'base_cond'}
   ];
 
   rows: any;
@@ -60,6 +61,7 @@ export class CuponsappComponent implements OnInit {
       tipo_descuento: ['', Validators.required],
       monto: [''],
       promo: [''],
+      base_cond : ['']
     });
 
     this.cuponToUpdateForm = this.fb.group({
@@ -69,6 +71,7 @@ export class CuponsappComponent implements OnInit {
       producto: ['', Validators.required],
       fechaExp: ['', Validators.required],
       tipo_descuento: ['', Validators.required],
+      base_cond : ['']
     });
 
   }
@@ -134,6 +137,7 @@ export class CuponsappComponent implements OnInit {
     toSend.set('tipo_descuento', value.tipo_descuento);
     toSend.set('promo', value.promo);
     toSend.set('monto', value.monto);
+    toSend.set('base_cond', value.base_cond);
     
     this.inPromise = true;
     this.cuponsService.persist(toSend).subscribe(resp => {
@@ -173,6 +177,7 @@ export class CuponsappComponent implements OnInit {
     toSend.append('description', value.descripcion);
     toSend.append('dateExpired', value.fechaExp);
     toSend.append('tipo_descuento', value.tipo_descuento);
+    toSend.set('base_cond', value.base_cond);
 
     this.inPromise = true;
     this.cuponsService.update(toSend, this.cuponToUpdate.idCoupons).subscribe(resp => {
@@ -267,7 +272,8 @@ export class CuponsappComponent implements OnInit {
       descripcion: row.description,
       producto: row.fk_idProducto,
       fechaExp: row.dateExpired,
-      tipo_descuento: row.tipo_descuento
+      tipo_descuento: row.tipo_descuento,
+      base_cond : row.base_cond 
     })
   }
 

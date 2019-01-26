@@ -83,6 +83,7 @@ class GaleriaHomeProductoController extends Controller
 
                 $imagemodel->imagen = $nombre_interno;
                 $imagemodel->fk_idStatusSistema = 1;
+                $imagemodel->idMarca = $request->idMarca;
                 $imagemodel->save();
 
                 DB::commit();

@@ -9,10 +9,10 @@
           <img *ngIf="!item.urlImage" width="130" height="230" class="card-img-top" src="assets/no_image_aviable.png"
             alt="{{item.nombre}}" />
 
-          <div class="card-body" [ngStyle]=" colorTres ? {background: colorTres } : ''">
+          <div class="card-body" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#DCF5F9' }">
             <div class="text-center ">
-              <small class="text-center txt-azul txt-marca">{{item.marca}}</small>
-              <small *ngIf="!item.marca" class="text-center txt-azul txt-marca">SIN ESPECIFICAR</small>
+              <small class="text-center txt-azul txt-marca" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">{{item.marca}}</small>
+              <small *ngIf="!item.marca" class="text-center txt-azul txt-marca" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">SIN ESPECIFICAR</small>
               <h6 *ngIf="item.Agrupacion" class="card-title text-center txt-azul font-bold">
                 {{item.Agrupacion}}
               </h6>
@@ -20,13 +20,13 @@
                 {{item.nombre}}
               </h6>
             </div>
-            <div *ngIf="item.valoracion" class="valoracion text-center">
+            <div class="valoracion text-center">
                
-                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.valoracion < 1}"></fa-icon>
-                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.valoracion < 2}"></fa-icon>
-                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.valoracion < 3}"></fa-icon>
-                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.valoracion < 4}"></fa-icon>
-                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.valoracion < 5}"></fa-icon>
+                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 1}"></fa-icon>
+                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 2}"></fa-icon>
+                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 3}"></fa-icon>
+                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 4}"></fa-icon>
+                <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 5}"></fa-icon>
               
             </div>
             <div class="text-center semi-body">
@@ -91,7 +91,7 @@
 
 
 
-              <h5 class="text-center txt-naranja font-bold mt-2">POR: {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
+              <h5 class="text-center txt-naranja font-bold mt-2" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }">POR: {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
 
 
               <div class="row justify-content-center mt-2 mb-2">
@@ -107,7 +107,7 @@
                   </button>
                 </div>
               </div>
-              <button mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)">COMPRAR</button>
+              <button mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">COMPRAR</button>
             </div>
           </div>
         </div>

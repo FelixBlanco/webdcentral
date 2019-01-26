@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GaleryProductService, GaleryProduct } from 'src/app/services/galery-product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { MarcasService } from 'src/app/services/marcas.service';
 
 declare var $:any;
 
@@ -17,11 +18,13 @@ export class GaleryProductComponent implements OnInit {
   @ViewChild('image') image: ElementRef;
 
   limit: number = 5;
+  lista_marcas:any;
 
   columns: any = [
     { prop: 'titulo' },
     { prop: 'set_imagen'},
     { prop: 'fk_idStatusSistema'},
+    { prop: 'idMarca'},
     { prop: 'opts'}
   ];
 
@@ -38,15 +41,18 @@ export class GaleryProductComponent implements OnInit {
   constructor(
       private galeriaProductoService: GaleryProductService,
       private as: AlertsService,
-      private fb: FormBuilder
+      private fb: FormBuilder,
+      private marcasServices: MarcasService
   ) { }
 
   ngOnInit() {
       this.getAll();
-
+      this.getMarcas();
+      
       this.newForm = this.fb.group({
-          titulo: ['', Validators.required],
-          imagen: ['', Validators.required]
+          titulo:  ['', Validators.required],
+          imagen:  ['', Validators.required],
+          idMarca: ['']
       });
   }
 
@@ -61,7 +67,13 @@ export class GaleryProductComponent implements OnInit {
       )
   }
 
-
+  getMarcas(){
+    this.marcasServices._getMarcas().subscribe(
+      (resp:any) =>{
+        this.lista_marcas = resp;
+      }
+    )
+  }
 
   save() {
       const values = this.newForm.value;
@@ -69,6 +81,7 @@ export class GaleryProductComponent implements OnInit {
       let toSend: FormData = new FormData(); 
       toSend.append('titulo', values.titulo);
       toSend.append('imagen', this.imgLoaded, new Date().toJSON());
+      toSend.append('idMarca', values.idMarca);
 
       this.inPromise = true;
       this.galeriaProductoService.persist(toSend).subscribe(

@@ -2,18 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { CarouselItem } from 'src/app/services/productos.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsService } from 'src/app/services/alerts.service';
-import { RubrosService } from 'src/app/services/rubros.service';
+import { MarcasService } from 'src/app/services/marcas.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import { Router } from '@angular/router';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { ConfigColorService } from '../../services/config-color.service';
-
+import {MarcaComponent} from '../marca/marca.component'
+declare var $;
 @Component({
-  selector: 'app-rubrosgalery-inicio',
-  templateUrl: './rubrosgalery-inicio.component.html',
-  styleUrls: ['./rubrosgalery-inicio.component.css']
+  selector: 'app-marcas-inicio',
+  templateUrl: './marcas-inicio.component.html',
+  styleUrls: ['./marcas-inicio.component.css']
 })
-export class RubrosgaleryInicioComponent implements OnInit {
+export class MarcasInicioComponent implements OnInit {
 
   galeryList: any[] ;
   colorTres:any;
@@ -29,7 +30,7 @@ export class RubrosgaleryInicioComponent implements OnInit {
     private carouselConfig: NgbCarouselConfig, 
     private ts: AlertsService,
     private productsBehavior: ProductsBehaviorService,
-    private rubrosService: RubrosService,
+    private marcaService: MarcasService,
     private productosService: ProductosService,
     private router : Router
   ) { 
@@ -39,19 +40,17 @@ export class RubrosgaleryInicioComponent implements OnInit {
 
   ngOnInit() {
     this.setRubrosList();
-    this.configColor._paletaColor().subscribe(
+   /*  this.configColor._getColor().subscribe(
       (resp:any)=> {
         this.colorTres = resp.colorClaro
       }
-    )
-
-    console.log('aqui esta el color', this.colorTres)
+    ) */
   }
-
+  
   setRubrosList(){
     this.inPromise = true;
     
-    this.rubrosService.getRubros().subscribe(resp => {
+    this.marcaService.getMarcasBy('a').subscribe(resp => {
       if(resp.ok && resp.status === 202){
         this.galeryList = resp.body;
         console.log('this.galeryList');
@@ -102,6 +101,7 @@ e31209333aca1a9385d3c44112f74c15d929550b
     this.inPromise = false;
     //Fix ExpressionChangedAfterItHasBeenCheckedError
     setTimeout(()=> this.aTimeOutFix = true,1000); // :(
+      console.log(this.carouselItems);
   }
 
   isACarruselItem($index): boolean {
@@ -124,10 +124,10 @@ e31209333aca1a9385d3c44112f74c15d929550b
     return items;
   }
 
-  filterProducts(rubro:string){
+/*  filterProducts(rubro:string){
     this.rubrosService.updateSource(rubro);
     this.router.navigate(['/productos']);
-    /* this.inPromise=true;
+    this.inPromise=true;
     console.log(rubro);
     this.rubrosService.updateSource(rubro);
     const rubros = {rubro: rubro, subRubroA: "", subRubroB: "", searchValue: ""} ;
@@ -152,10 +152,10 @@ e31209333aca1a9385d3c44112f74c15d929550b
       console.error(error);
       this.ts.msg('ERR', 'Ha ocurrido un error interno => Filtrar por Rubros');
       this.inPromise = false;
-    }); */
+    }); 
     
-  }
-  setTittleByRubros({rubro,subRubroA, subRubroB}){
+}*/
+/*   setTittleByRubros({rubro,subRubroA, subRubroB}){
     const rubros = {rubro,subRubroA, subRubroB};
     const keys: string[] = Object.keys(rubros);
     let tittle: string = '';
@@ -166,6 +166,39 @@ e31209333aca1a9385d3c44112f74c15d929550b
     })
 
     this.productosService.productosFilterTittleSource.next(tittle);
+  } */
+  filter(marca:string){
+    
+
+    if(!marca){
+      return;
+    }
+
+    this.inPromise = true;
+    this.productosService.getByMarca(marca).subscribe((resp) => {
+      if(resp.ok && resp.status === 202){
+       // $('#marcaModal').modal('toggle');
+        this.productsBehavior.updateSource(resp.body);
+        this.productosService.productosFilterTittleSource.next(marca);
+        this.inPromise = false;
+        this.router.navigate(['/productos']);
+        setTimeout(()=> document.getElementById('productos').scrollIntoView({behavior: 'smooth'}),1000);
+      //  this.marcaSelected = '';
+      //  this.charSelected = '';
+      }else{
+        console.error(resp);
+        this.ts.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+      }
+    }, error => {
+      console.error(error);
+      this.ts.msg('ERR', 'Error', 'Ha ocurrido un error interno');
+    })
   }
+  toMarca(){
+    $('#marcaModal').modal('toggle');
+    this.marcaService.updateFromMarcaInicio(true);
+  
+  }
+  
 
 }

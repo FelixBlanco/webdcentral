@@ -52,8 +52,8 @@
                   </ng-template>
                 </ngx-datatable-column>
                 <ngx-datatable-column name="Fecha de Exp" prop="dateExpired"></ngx-datatable-column>
-
-
+                <ngx-datatable-column name="Base y condiciones" prop="base_cond"></ngx-datatable-column>
+                
   
                 <ngx-datatable-column name="" prop="opts">
                   <ng-template ngx-datatable-cell-template let-row="row">
@@ -149,7 +149,11 @@
             <div class="form-group">
               <label for="respuesta">Imagen del cupón:</label>
               <input #image type="file" (change)="onFileChange($event)" >
-            </div>
+            </div>           
+            <div class="form-group">
+              <label for="">Bases y Condiciones</label>
+              <textarea formControlName="base_cond" class="form-control" placeholder="Base y condiciones"></textarea>
+            </div>               
           </form>
         </div>
         <div class="modal-footer">
@@ -194,7 +198,11 @@
               <div class="form-group">
                 <label for="respuesta">Imagen del cupón:</label>
                 <input #image type="file" (change)="onFileChange($event)" >
-              </div>
+              </div>          
+              <div class="form-group">
+                <label for="">Bases y Condiciones</label>
+                <textarea formControlName="base_cond" class="form-control" placeholder="Base y condiciones"></textarea>
+              </div>                
             </form>
         </div>
         <div class="modal-footer">
