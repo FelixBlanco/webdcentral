@@ -776,4 +776,19 @@ class ProductoController extends Controller {
             return response()->json("Error conectando a el DC", 500);
         }
     }
+
+    public function getLocalidades() {
+
+        $rs = DB::connection('sqlsrv')->select(" SELECT * FROM  VISTALOCALIDADESAPP ");
+
+        if (is_null($rs)) {
+            $response = [
+                'msj' => 'Producto no encontrado',
+            ];
+
+            return response()->json($response, 404);
+        } else {
+            return response()->json($rs, 200);
+        }
+    }
 }

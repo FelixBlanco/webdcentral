@@ -17,6 +17,8 @@ Route::group(['prefix' => 'auth'], function() {
 
     Route::group(['middleware' => 'auth:api'], function() {
 
+        Route::post('cambiarStatusOrder','OrderHeaderController@cambiarStatusOrder');
+
         Route::post('crearGaleriaHomeProd', 'GaleriaHomeProductoController@createGaleria');
         Route::delete('borrraGaleriaHomeProd/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@destroy');
 
@@ -156,6 +158,8 @@ Route::group(['prefix' => 'auth'], function() {
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
+
+    Route::get('getLocalidades','ProductoController@getLocalidades');
 
     Route::get('getArbolProductos','ProductoController@getArbolProductos');
 
