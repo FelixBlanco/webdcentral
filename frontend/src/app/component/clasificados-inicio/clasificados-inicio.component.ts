@@ -33,7 +33,7 @@ export class ClasificadosInicioComponent implements OnInit {
   ngOnInit() {
     this.getAll();
 
-    this._color._getColor().subscribe(
+    this._color._paletaColor().subscribe(
       (resp:any) => {
         if(resp){
           this.colorTres = resp.colorClaro;

@@ -22,49 +22,30 @@ export class EnviosInicioComponent implements OnInit {
   link_mercadopago:string;
   colorUno:any;
 
-  constructor(private footerConfigService: ConfgFooterService, private configColorService: ConfigColorService) { }
-
-  ngOnInit() {
-    
-    this.getData();
-
-    this.configColorService._getColor().subscribe(
-      (resp:any) => {
-        this.colorUno = resp.colorOscuro
-      }
-    )
-    
-    $("#compra").hover(function(){      
-      $("#compra img").attr('src',"../assets/como_envio/como_comprar_2.png");
-      $("#compra h3").removeClass('hover-normal')
-      $("#compra h3").addClass('hover-blue')
-      $("#compra h3").css('background-color',this.colorUno);
-      ;
-    },function(){
-      $("#compra img").attr('src',"../assets/como_envio/como_comprar_1.png")
-      $("#compra h3").removeClass('hover-blue')
-      $("#compra h3").addClass('hover-normal')
-      $("#compra h3").css('background-color','#ffffff')
-    })
+  constructor(private footerConfigService: ConfgFooterService, private configColorService: ConfigColorService) { 
 
     $("#forma_pago").hover(function(){
       $("#forma_pago img").attr('src',"../assets/como_envio/formas_de_pago_2.png")
       $("#forma_pago h3").removeClass('hover-normal')
       $("#forma_pago h3").addClass('hover-blue')
+      $("#forma_pago h3").css('background-color',this.colorUno);
     },function(){
       $("#forma_pago img").attr('src',"../assets/como_envio/formas_de_pago_1.png")
       $("#forma_pago h3").removeClass('hover-blue')
       $("#forma_pago h3").addClass('hover-normal')
+      $("#forma_pago h3").css('background-color','none')
     })
 
     $("#envio").hover(function(){
       $("#envio img").attr('src',"../assets/como_envio/enviar_2.png")
       $("#envio h3").removeClass('hover-normal')
       $("#envio h3").addClass('hover-blue')
+      $("#envio h3").css('background-color',this.colorUno);
     },function(){
       $("#envio img").attr('src',"../assets/como_envio/enviar_1.png")
       $("#envio h3").removeClass('hover-blue')
       $("#envio h3").addClass('hover-normal')
+      $("#envio h3").css('background-color','none')
     })
 
     $("#retiro_tienda").hover(function(){
@@ -75,8 +56,35 @@ export class EnviosInicioComponent implements OnInit {
       $("#retiro_tienda img").attr('src',"../assets/como_envio/retirar_en_tienda_1.png")
       $("#retiro_tienda h3").removeClass('hover-blue')
       $("#retiro_tienda h3").addClass('hover-normal')
-    })
+    })    
+  }
+
+  ngOnInit() {
     
+    this.getData();
+
+    this.configColorService._paletaColor().subscribe(
+      (resp:any) => {
+        this.colorUno = resp.colorOscuro
+      }      
+    )
+    
+
+    
+  }
+
+  hoverShow(idIMG:any){
+    $(idIMG +" h3").css('background-color',this.colorUno);
+    $(idIMG +" img").attr('src',"../assets/como_envio/como_comprar_2.png");
+    $(idIMG +" h3").removeClass('hover-normal')
+    $(idIMG +" h3").addClass('hover-blue') 
+  }
+
+  hoverHide(idIMG:any){
+    $(idIMG +" h3").css('background-color','#ffffff')
+    $(idIMG +" img").attr('src',"../assets/como_envio/como_comprar_1.png")
+    $(idIMG +" h3").removeClass('hover-blue')
+    $(idIMG +" h3").addClass('hover-normal')      
   }
 
   getData(){
