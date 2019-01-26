@@ -437,6 +437,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     // Listar videos
     Route::get('video/listar', 'VideoController@listar');
 
+    Route::post('lista-cupones','CouponsController@listarTodo');
 });
 
 
