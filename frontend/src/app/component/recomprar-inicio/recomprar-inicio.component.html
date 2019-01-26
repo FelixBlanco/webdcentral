@@ -38,14 +38,14 @@
     <div class="row">
       <div class="col">
         <div class="card">
-          <div class="card-header bg-azul txt-blanco text-uppercase" id="recomprar">
+          <div class="card-header bg-azul txt-blanco text-uppercase" id="recomprar" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
             <h5 class="m-2">RECOMPRAR</h5>
           </div>
           <div class="card-body">
               <div class="card">
                 <div class="card-body">
                   <table class="table table-curved">
-                    <thead class="bg-azul text-white">
+                    <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
                       <tr>
                         <th scope="col" width="15%">PEDIDO</th>
                         <th scope="col" width="20%">FECHA</th>

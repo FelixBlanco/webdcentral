@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-dialog-centered" [ngClass]=" (section === 'shipping' || section === 'detalleCompra') ? 'modal-lg' : ''"
     role="document">
     <div class="modal-content">
-      <div class="modal-header bg-azul">
+      <div class="modal-header bg-azul" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
         <ng-container [ngSwitch]="section">
           <h5 *ngSwitchCase="'shipping'" class="modal-title text-white  text-uppercase" id="carritoTittle"><img src="assets/social/carrito.png"
               alt="Carrito de compras"> Carrito de Compras</h5>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="card-body">
                   <table class="table table-curved">
-                    <thead class="bg-azul text-white">
+                    <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
                       <tr>
                         <th scope="col" width="20%">MARCA</th>
                         <th scope="col" width="35%">PRODUCTO</th>
@@ -89,7 +89,7 @@
                         <th scope="col" width="15%">TOTAL</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                       <ng-container *ngFor="let item of items">
                         <tr>
                           <td>{{item.marca}}</td>
@@ -119,7 +119,7 @@
                         </tr>
                       </ng-container>
                     </tbody>
-                    <tfoot class="bg-azul text-white">
+                    <tfoot class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
                       <tr class="font-bold text-capitalize text-right">
                         <td colspan="5">
                           <span class="mr-4">PRODUCTOS: {{items.length}}</span>

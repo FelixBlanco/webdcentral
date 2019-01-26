@@ -117,4 +117,8 @@ export class ProductosService {
       return this.http.get<Producto[]>(`${environment.apiHost}/api/v1/buscar/prod/porMarcas/${marca}`, {observe: 'response'});      
     }
   
+    _getArbolProductos(){
+      return this.http.get(`${environment.apiHost}/api/v1/getArbolProductos`)
+    }
+
 }
