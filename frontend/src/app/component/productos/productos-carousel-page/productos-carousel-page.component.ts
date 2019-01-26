@@ -11,7 +11,7 @@ import { AlertsService } from 'src/app/services/alerts.service';
 })
 export class ProductosCarouselPageComponent implements OnInit {
   @Input('items') items: Producto[];
-  maxStar:number=5;
+  maxStar: number = 5;
   products: Producto[];
   kilogramos: Array<any> = [];
   colorTres: any;
@@ -34,29 +34,33 @@ export class ProductosCarouselPageComponent implements OnInit {
   // funcion para order los kilos de menor a mayor , y para mostrar "KG" y "GR" en vez de "kilos" y "Gramos"
   setAgrupacion() {
     this.items.map((val, i) => {
-      val.Valoracion_Fabricante= Number(val.Valoracion_Fabricante); 
-      if(val.Agrupacion.match(val.marca)){
+      val.kiloProdcuto = val.kiloProdcuto.replace('Kilos', 'KG');
+      val.kiloProdcuto = val.kiloProdcuto.replace('Gramos', 'GR');
+
+      val.Agrupacion.replace(val.marca, " ");
+      val.Valoracion_Fabricante = Number(val.Valoracion_Fabricante);
+      if (val.Agrupacion.match(val.marca)) {
         console.log(val);
       }
       if (val.listAgrupacion && val.listAgrupacion.length) {
         this.productsBehaviorService.parseDefaultPrice(val.listAgrupacion).then(val => {
-         // this.products[i].listAgrupacion = val;
-          val.map(value=>{
+          // this.products[i].listAgrupacion = val;
+          val.map(value => {
 
-            let i:number =value.kiloProdcuto.search(" ");
-            let str:string = value.kiloProdcuto.slice(0,i);
-            if(Number(str)){
-              value.volumenToSort=Number(str);
+            let i: number = value.kiloProdcuto.search(" ");
+            let str: string = value.kiloProdcuto.slice(0, i);
+            if (Number(str)) {
+              value.volumenToSort = Number(str);
             }
             console.log(str);
-          //  debugger;
-            value.kiloProdcuto = value.kiloProdcuto.replace('Kilos','KG');
-            value.kiloProdcuto = value.kiloProdcuto.replace('Gramos','GR');  
-            value.Valoracion_Fabricante= Number(value.Valoracion_Fabricante); 
-            value.Agrupacion.replace(value.marca," ");
+            //  debugger;
+            value.kiloProdcuto = value.kiloProdcuto.replace('Kilos', 'KG');
+            value.kiloProdcuto = value.kiloProdcuto.replace('Gramos', 'GR');
+            value.Valoracion_Fabricante = Number(value.Valoracion_Fabricante);
+            value.Agrupacion.replace(value.marca, " ");
           })
           //   console.log(this.products[i]);
-          this.products[i].listAgrupacion= val.sort((a,b)=>a.volumenToSort-b.volumenToSort);
+          this.products[i].listAgrupacion = val.sort((a, b) => a.volumenToSort - b.volumenToSort);
         })
 
       }
