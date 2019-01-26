@@ -12,13 +12,13 @@
 <app-nav-uno></app-nav-uno>
 
 <app-nav-dos></app-nav-dos>
-<router-outlet *ngIf="!showLateralCar"></router-outlet>
+
 <!-- Para mostrar el carrito de compras lateral solo si tiene items-->
-<div *ngIf="showLateralCar" class="row">
+<div  class="row">
     <div class="col">
         <router-outlet></router-outlet>
     </div>
-    <div class="col-2">
+    <div *ngIf="showLateralCar" class="col-2">
         <app-carrito-lateral></app-carrito-lateral>
     </div>
 </div>

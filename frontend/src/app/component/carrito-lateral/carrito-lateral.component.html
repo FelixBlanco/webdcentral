@@ -7,9 +7,9 @@
         <h5 class="text-center">Carrito de Compras</h5>
         <div *ngFor="let item of items" class="producto-contenedor ">
             <div class="row text-center ">
-                <div class="col-12 ">
-                    <button class="btn btn-link txt-naranja" (click)="dissmiss(item.id)">
-                        <fa-icon [icon]="['fas','times']" [size]="'xg'"></fa-icon>
+                <div class="col-12 text-end">
+                    <button class="btn btn-link txt-naranja text-end" (click)="dissmiss(item.id)" style="margin-left: 83%;">
+                        <fa-icon [icon]="['fas','times']" [size]="'xg'" ></fa-icon>
                     </button>
                 </div>
                 <div class="col-12">
