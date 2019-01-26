@@ -21,4 +21,8 @@ class Oferta extends Model {
         'activar_uso',
         'idProducto'
     ];
+
+    public function producto(){
+        return $this->belongsTo('App\Producto','idProducto');
+    }
 }

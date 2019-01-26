@@ -50,5 +50,7 @@ class Producto extends Model {
         return $this->hasMany('App\GaleriaHomeProductos', 'id');
     }    
 
-
+    public function ofertas() {
+        return $this->hasMany('App\Oferta', 'id');
+    }        
 }
