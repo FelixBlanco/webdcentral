@@ -10,6 +10,7 @@ import { UserTokenService } from '../../../services/user-token.service';
 import { ConfgFooterService } from 'src/app/services/confg-footer.service';
 import { MercadoPagoService } from 'src/app/services/mercado-pago.service';
 import { PerfilClienteService } from 'src/app/services/perfil-cliente.service';
+import { ConfigColorService } from '../../../services/config-color.service';
 
 /* import { runInThisContext } from 'vm'; */
 declare var $;
@@ -42,6 +43,7 @@ export class CarritoFormComponent implements OnInit {
 
   actualDate: string;
   twoDaysAfter: string;
+  colorUno :any;
 
   disponibilidadEnHrsList: string[] = [];
 
@@ -64,11 +66,18 @@ export class CarritoFormComponent implements OnInit {
     private userService: UserTokenService,
     private footerConfigService: ConfgFooterService,
     private mercadoPagoService: MercadoPagoService,
-    private perfilClienteService: PerfilClienteService
+    private perfilClienteService: PerfilClienteService,
+    private configColor: ConfigColorService,
+
 
   ) { }
 
   ngOnInit() {
+    this.configColor._paletaColor().subscribe(
+      (resp:any)=> {
+        this.colorUno  = resp.colorOscuro
+      }
+    )
     this.orderForm = this.fb.group({
       localidad: [''],
       fecha: ['', Validators.required],

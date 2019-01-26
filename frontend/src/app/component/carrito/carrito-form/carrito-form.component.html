@@ -45,7 +45,7 @@
     <div class="card">
       <div class="card-body">
         <table class="table table-curved justify-content-center">
-          <thead class="bg-azul text-white" >
+          <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }" >
             <tr>
               <th scope="col" width="40%">PRODUCTO</th>
               <th scope="col" width="25%">PRECIO</th>
@@ -89,7 +89,7 @@
          
         </table>
         <table  class="table table-curved">
-          <thead class="bg-azul text-white">
+          <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
             <tr>
               <th scope="col" width="35%">METODO DE ENTREGA</th>
               <th scope="col" width="35%">METODO DE PAGO</th>
@@ -117,7 +117,7 @@
           </tbody>
         </table>
         <table *ngIf="detailOrder.metodoEntrega !='inMarketForm'" class="table table-curved">
-            <thead class="bg-azul text-white">
+            <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
               <tr>
                 <th scope="col" width="23%">LOCALIDAD</th>
                 <th scope="col" width="23%">DOMICILIO DE ENTREGA</th>
@@ -156,7 +156,7 @@
             </tbody>
           </table>
           <table *ngIf="detailOrder.metodoEntrega =='internalDelivery'" class="table table-curved">
-              <thead class="bg-azul text-white">
+              <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
                 <tr>
                   <th scope="col" width="23%">PROVINCIA</th>
                   <th scope="col" width="23%">TELEFONO</th>
