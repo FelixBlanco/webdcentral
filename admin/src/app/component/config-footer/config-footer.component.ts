@@ -50,6 +50,8 @@ export class ConfigFooterComponent implements OnInit {
       link_otra_pagina: [''],
       url_app_store: [''],
       url_google_play: [''],
+      uso_cupon_web: [''],
+      uso_cupon_app: [''],
     })
     this.myFormHorarios = this.fb.group({
       diaRegular: ['', Validators.required],
@@ -89,7 +91,9 @@ export class ConfigFooterComponent implements OnInit {
             link_otra_pagina: resp.link_otra_pagina,
             url_app_store: resp.url_app_store,
             url_google_play: resp.url_google_play,
-            url_mercadopago: resp.url_mercadopago
+            url_mercadopago: resp.url_mercadopago,
+            uso_cupon_web: resp.uso_cupon_web,
+            uso_cupon_app: resp.uso_cupon_app,
 
           })
         }
