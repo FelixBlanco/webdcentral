@@ -159,7 +159,8 @@ Route::group(['prefix' => 'auth'], function() {
 
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 
-    Route::get('getLocalidades','ProductoController@getLocalidades');
+    Route::get('getProvincia','ProductoController@getProvincia');
+    Route::get('getLocalidadPorProvincia/{provincia}','ProductoController@getLocalidadPorprovincia');
 
     Route::get('getArbolProductos','ProductoController@getArbolProductos');
 
