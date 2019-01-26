@@ -73,16 +73,29 @@ export class EnviosInicioComponent implements OnInit {
     
   }
 
-  hoverShow(idIMG:any){
+  hoverShow(idIMG:any,i:number){
+Array
+    const arrayImg: any = [
+      'como_comprar_2.png',
+      'formas_de_pago_2.png',
+      'enviar_2.png',
+      'retirar_en_tienda_1.png'
+    ]
     $(idIMG +" h3").css('background-color',this.colorUno);
-    $(idIMG +" img").attr('src',"../assets/como_envio/como_comprar_2.png");
+    $(idIMG +" img").attr('src',"../assets/como_envio/"+arrayImg[i]);
     $(idIMG +" h3").removeClass('hover-normal')
     $(idIMG +" h3").addClass('hover-blue') 
   }
 
-  hoverHide(idIMG:any){
+  hoverHide(idIMG:any,i:number){
+    const arrayImg: any = [
+      'como_comprar_1.png',
+      'formas_de_pago_1.png',
+      'enviar_1.png',
+      'retirar_en_tienda_1.png'
+    ]    
     $(idIMG +" h3").css('background-color','#ffffff')
-    $(idIMG +" img").attr('src',"../assets/como_envio/como_comprar_1.png")
+    $(idIMG +" img").attr('src',"../assets/como_envio/"+arrayImg[i])
     $(idIMG +" h3").removeClass('hover-blue')
     $(idIMG +" h3").addClass('hover-normal')      
   }
