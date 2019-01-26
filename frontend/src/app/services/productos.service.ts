@@ -36,6 +36,7 @@ export interface Producto{
   listAgrupacion:Array<any>,
   Agrupacion:string,
   volumenToSort:number,
+  Valoracion_Fabricante:any,
 }
 
 export interface SearchBody{

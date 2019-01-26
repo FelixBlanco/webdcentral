@@ -63,6 +63,8 @@ import { MinoristaComponent } from './component/minorista/minorista.component';
 import { DomicilioEntregaFormComponent } from './component/carrito/carrito-form/domicilio-entrega-form/domicilio-entrega-form.component';
 import { TurnosListComponent } from './component/servicios-inicio/turnos-list/turnos-list.component';
 import { RubrosgaleryInicioComponent } from './component/rubrosgalery-inicio/rubrosgalery-inicio.component';
+import { CarritoLateralComponent } from './component/Carrito/carrito-lateral/carrito-lateral.component';
+import { MarcasInicioComponent } from './component/marcas-inicio/marcas-inicio.component';
 
 
 
@@ -128,7 +130,9 @@ const appRoutes: Routes = [
     MinoristaComponent,
     DomicilioEntregaFormComponent,
     TurnosListComponent,
-    RubrosgaleryInicioComponent
+    RubrosgaleryInicioComponent,
+    CarritoLateralComponent,
+    MarcasInicioComponent
   ],
   imports: [
     BrowserModule,

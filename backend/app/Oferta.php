@@ -16,5 +16,8 @@ class Oferta extends Model {
         'tiempoExpi',
         'imagen',
         'status',
+
+        'base_cond',
+        'activar_uso',
     ];
 }

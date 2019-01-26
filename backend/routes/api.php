@@ -79,6 +79,13 @@ Route::group(['prefix' => 'auth'], function() {
         Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
         /* PREGUNTA Y RESPUESTA */
 
+        /* VIDEOS */
+        Route::post('video', 'VideoController@store');
+        Route::put('video/{idVideo}', 'VideoController@update');
+        Route::delete('video/{idVideo}', 'VideoController@destroy');
+        Route::put('video/cambiarStatus/{idVideo}', 'VideoController@cambiarStatus');
+        /* VIDEOS */
+
         /*LOCALES ADHERIDOS*/
         Route::post('guardarLocalAdherido', 'LocalesAdheridoController@store');
         Route::post('listarLocalAdheridos', 'LocalesAdheridoController@listar');
@@ -191,6 +198,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 
     /*Para camiar el estatus a una suscripcion*/
     Route::put('cambiarStatusSus/{idSuscripcion}', 'SuscripcionController@cambiarStatusSus');
+
+    /*PARA CANCELAR UNA SUSCRIPCION POR TOKEN DE DESACTIVACION*/
+    Route::get('cancelarSuscripcionTocken/{tocken}','SuscripcionController@cancelarSuscripcionTocken');
 
     /*para cancelar una suscripcion*/
     Route::put('cancelarSus/{idSuscripcion}', 'SuscripcionController@cancelarSus');
@@ -417,6 +427,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     Route::resource('secciones-paginas','SeccionesPaginasController');
 
     Route::get('lista-slide-web','SlideController@listarWeb');
+
+    // Listar videos
+    Route::get('video/listar', 'VideoController@listar');
 
 });
 

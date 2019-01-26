@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 class SuscripcionController extends Controller
 {
     public function nuevaSus(Request $request)
-    {        
+    {
         $this->validate($request, [
             'email' => 'required|unique:tb_suscripcions,email,'.$request->idSuscripcion.',idSuscripcion',
         ], [
@@ -23,8 +23,8 @@ class SuscripcionController extends Controller
 
         DB::beginTransaction();
 
-        try {       
-             
+        try {
+
             $sus = new Suscripcion($request->all());
             $sus->fk_idStatusSistema = 1;
 
@@ -177,5 +177,29 @@ class SuscripcionController extends Controller
         ];
 
         return response()->json($response, 200);
+    }
+
+    public function cancelarSuscripcionTocken($tocken)
+    {
+        $suscripcion = Suscripcion::where('tocken', $tocken)->first();
+        if (! is_null($suscripcion)) {
+
+            $suscripcion->fk_idStatusSistema = 2;
+            $suscripcion->motivoDeCancelacion = "Cancelado por el usuario, uso el correo para eliminar la suscripcipón";
+            $suscripcion->tocken = null;
+            $suscripcion->save();
+
+            $response = [
+                'msj' => 'Suscripcion cancelada',
+            ];
+
+            return response()->json($response, 200);
+        } else {
+            $response = [
+                'msj' => 'No existe la suscripcion',
+            ];
+
+            return response()->json($response, 404);
+        }
     }
 }

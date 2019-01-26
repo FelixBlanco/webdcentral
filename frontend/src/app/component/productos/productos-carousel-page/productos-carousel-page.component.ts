@@ -12,7 +12,7 @@ import { ConfigColorService } from '../../../services/config-color.service';
 })
 export class ProductosCarouselPageComponent implements OnInit {
   @Input('items') items: Producto[];
-
+  maxStar:number=5;
   products: Producto[];
   kilogramos: Array<any> = [];
   colorTres: any; colorUno:any;
@@ -46,10 +46,15 @@ export class ProductosCarouselPageComponent implements OnInit {
   // funcion para order los kilos de menor a mayor , y para mostrar "KG" y "GR" en vez de "kilos" y "Gramos"
   setAgrupacion() {
     this.items.map((val, i) => {
+      val.Valoracion_Fabricante= Number(val.Valoracion_Fabricante); 
+      if(val.Agrupacion.match(val.marca)){
+        console.log(val);
+      }
       if (val.listAgrupacion && val.listAgrupacion.length) {
         this.productsBehaviorService.parseDefaultPrice(val.listAgrupacion).then(val => {
          // this.products[i].listAgrupacion = val;
           val.map(value=>{
+
             let i:number =value.kiloProdcuto.search(" ");
             let str:string = value.kiloProdcuto.slice(0,i);
             if(Number(str)){
@@ -59,6 +64,8 @@ export class ProductosCarouselPageComponent implements OnInit {
           //  debugger;
             value.kiloProdcuto = value.kiloProdcuto.replace('Kilos','KG');
             value.kiloProdcuto = value.kiloProdcuto.replace('Gramos','GR');  
+            value.Valoracion_Fabricante= Number(value.Valoracion_Fabricante); 
+            value.Agrupacion.replace(value.marca," ");
           })
           //   console.log(this.products[i]);
           this.products[i].listAgrupacion= val.sort((a,b)=>a.volumenToSort-b.volumenToSort);
@@ -89,6 +96,7 @@ export class ProductosCarouselPageComponent implements OnInit {
       this.products[i].defaultPrice = this.products[i].listAgrupacion[j].defaultPrice;
       this.products[i].codeProdSys = this.products[i].listAgrupacion[j].codeProdSys;
       this.products[i].urlImage = this.products[i].listAgrupacion[j].urlImage;
+      this.products[i].Valoracion_Fabricante = this.products[i].listAgrupacion[j].Valoracion_Fabricante;
     }
   }
 

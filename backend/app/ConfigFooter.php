@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ConfigFooter extends Model {
+class ConfigFooter extends Model
+{
     /**
      * The primary key for the model.
      *
@@ -40,10 +41,10 @@ class ConfigFooter extends Model {
         'url_google_play',
         'url_mercadopago',
 
-
         'img_envio_1',
         'img_envio_2',
         'img_envio_3',
         'img_como_comprar',
+        'reservaMercaderiaHrs',
     ];
 }
