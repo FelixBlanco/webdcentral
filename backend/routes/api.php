@@ -144,6 +144,12 @@ Route::group(['prefix' => 'auth'], function() {
 
         Route::post('change-password', 'UserController@setClave'); // Cambio de clave
 
+        //Filtrar Pedidos por Estado
+        Route::get('filtrarPedidos/estado/{estado}', 'OrderHeaderController@filtrarPorEstado');
+
+        //Filtrar Pedidos por Fecha
+        Route::get('filtrarPedidos/fecha', 'OrderHeaderController@filtrarPorFecha');
+
     });
 });
 
