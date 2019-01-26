@@ -34,6 +34,8 @@ class="bootstrap"
 
 <ngx-datatable-column name="Titulo" prop="titulo"></ngx-datatable-column>
 <ngx-datatable-column name="Tiempo de Expiración" prop="tiempoExpi"></ngx-datatable-column>
+<ngx-datatable-column name="Producto" prop="nombreProducto"></ngx-datatable-column>
+<ngx-datatable-column name="Base y Condiciones" prop="base_cond"></ngx-datatable-column>
 <ngx-datatable-column name="Foto" prop="foto">
   <ng-template ngx-datatable-cell-template let-row="row">
     <img [src]="row.set_imagen" width="70" height="70">
@@ -70,10 +72,20 @@ class="bootstrap"
             <input type="date" [(ngModel)]="form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempo de expiracion">
           </div>
           <div class="form-group">
+            <label for="">Productos</label>
+            <select [(ngModel)]="form_ofertas.idProducto" class="form-control">
+              <option *ngFor='let p of lista_productos' [value]="p.idProducto">{{p.nombre}}</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label for="">Subir Imagen</label>
             <input type="file" (change)="upImagen($event)">
             <small>Recomendacion 1423x400</small>
           </div>
+          <div class="form-group">
+            <label for="">Bases y Condiciones</label>
+            <textarea [(ngModel)]="form_ofertas.base_cond" class="form-control" placeholder="Base y condiciones"></textarea>
+          </div>          
         </div>
         <div class="modal-footer">
           <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
@@ -106,10 +118,20 @@ class="bootstrap"
               <input type="text" [(ngModel)]="edit_form_ofertas.tiempoExpi" class="form-control" placeholder="Tiempo de expiracion">
             </div>
             <div class="form-group">
+              <label for="">Productos</label>
+              <select [(ngModel)]="form_ofertas.idProducto" class="form-control">
+                <option *ngFor='let p of lista_productos' [value]="p.idProducto">{{p.nombre}}</option>
+              </select>
+            </div>            
+            <div class="form-group">
               <label for="">Subir Imagen</label>
               <input type="file" (change)="upImagenEdit($event)">
             </div>
           </div>
+          <div class="form-group">
+            <label for="">Bases y Condiciones</label>
+            <textarea [(ngModel)]="form_ofertas.base_cond" class="form-control" placeholder="Base y condiciones"></textarea>
+          </div>           
           <div class="modal-footer">
             <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
             <div *ngIf='!inPromise'>            

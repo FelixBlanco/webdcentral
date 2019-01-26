@@ -15,11 +15,19 @@ class GaleriaHomeProductos extends Model {
         'titulo',
         'imagen',
         'fk_idStatusSistema',
+        'idMarca'
     ];
 
     public function statu()
     {
         return $this->belongsTo('App\StatusSistema', 'fk_idStatusSistema');
     }
+
+    public function producto()
+    {
+        return $this->belongsTo('App\Producto', 'idMarca');
+    }
+
+
 
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {OfertasService} from "../../services/ofertas.service";
 import {AlertsService} from "../../services/alerts.service";
+import {ProductosService} from "../../services/productos.service";
 
 declare var $;
 
@@ -14,16 +15,18 @@ export class OfertasComponent implements OnInit {
     @ViewChild('table') table;
 
     listOfertas: any;
+    lista_productos:any;
+    form_ofertas: any = {idOferta: "", titulo: "", tiempoExpi: "", imagen: "", status: true,idProducto:null,base_cond:null}
 
-    form_ofertas: any = {idOferta: "", titulo: "", tiempoExpi: "", imagen: "", status: true}
-
-    edit_form_ofertas: any = {idOferta: "", titulo: "", tiempoExpi: "", imagen: "", status: true}
+    edit_form_ofertas: any = {idOferta: "", titulo: "", tiempoExpi: "", imagen: "", status: true,idProducto:null,base_cond:null}
     inPromise: boolean;
-
+    
     columns = [
         { prop: 'titulo' },
         { prop: 'set_imagen' },
-        { prop: 'tiempoExpi' },        
+        { prop: 'tiempoExpi' },  
+        { prop: 'base_cond' },  
+        { prop: 'nombreProducto' },        
         { prop: 'opts'}
       ];
     
@@ -31,11 +34,13 @@ export class OfertasComponent implements OnInit {
       limit: number = 10;
 
     constructor(private ofertaServices: OfertasService,
-                private _alertService: AlertsService) {
+                private _alertService: AlertsService,
+                private productosService:ProductosService) {
     }
 
     ngOnInit() {
         this.getOfertas();
+        this.getAllProductos();
     }
 
     getOfertas() {
@@ -43,6 +48,14 @@ export class OfertasComponent implements OnInit {
             resp => {                
                 this.listOfertas = resp;
                 this.rows = [...this.listOfertas];
+            }
+        )
+    }
+
+    getAllProductos(){
+        this.productosService._getProductos().subscribe(
+            resp => {
+                this.lista_productos = resp;
             }
         )
     }
@@ -64,7 +77,9 @@ export class OfertasComponent implements OnInit {
         formData.append('titulo', this.form_ofertas.titulo);
         formData.append('tiempoExpi', this.form_ofertas.tiempoExpi);
         formData.append('status', this.form_ofertas.status);
-
+        formData.append('idProducto', this.form_ofertas.idProducto);
+        formData.append('base_cond', this.form_ofertas.base_cond);
+        
         if (x == 'add') {
             this.ofertaServices._addOfertas(formData).subscribe(
                 resp => {
@@ -116,6 +131,8 @@ export class OfertasComponent implements OnInit {
         formData.append('tiempoExpi', this.edit_form_ofertas.tiempoExpi);
         formData.append('status', this.edit_form_ofertas.status);
         formData.append('idOferta', this.edit_form_ofertas.idOferta);
+        formData.append('idProducto', this.edit_form_ofertas.idProducto);
+        formData.append('base_cond', this.edit_form_ofertas.base_cond);
 
         this.ofertaServices._upgradeOferta(this.edit_form_ofertas.idOferta, formData).subscribe(
             resp => {

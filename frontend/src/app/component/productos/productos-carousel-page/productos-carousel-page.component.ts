@@ -3,6 +3,7 @@ import { Producto } from 'src/app/services/productos.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { ConfigColorService } from '../../../services/config-color.service';
 
 @Component({
   selector: 'app-productos-carousel-page',
@@ -14,14 +15,16 @@ export class ProductosCarouselPageComponent implements OnInit {
   maxStar:number=5;
   products: Producto[];
   kilogramos: Array<any> = [];
-  colorTres: any;
+  colorTres: any; colorUno:any;
   itemToBuy: Producto;
   precio: any;
   productosAgrupados: Producto[] = [];
+
   constructor(
     private carritoService: CarritoService,
     private toastr: AlertsService,
-    private productsBehaviorService: ProductsBehaviorService
+    private productsBehaviorService: ProductsBehaviorService,
+    private _color: ConfigColorService    
   ) { }
 
   ngOnInit() {
@@ -29,6 +32,15 @@ export class ProductosCarouselPageComponent implements OnInit {
     console.log(this.products);
     this.setAgrupacion();
 
+
+    this._color._paletaColor().subscribe(
+      (resp:any) => {
+        if(resp){
+          this.colorUno   = resp.colorOscuro;
+          this.colorTres  = resp.colorClaro;
+        }        
+      }
+    ); 
 
   }
   // funcion para order los kilos de menor a mayor , y para mostrar "KG" y "GR" en vez de "kilos" y "Gramos"
