@@ -85,17 +85,17 @@ export class CarritoFormComponent implements OnInit {
 
     this.interiorForm = this.fb.group({
       domicilioEntrega: ['', Validators.required],
-      localidad: ['', Validators.required],
-      identidad: ['', Validators.required],
-      authorizedPerson: ['', Validators.required],
-      authorizedPersonDni: ['', [Validators.required, Validators.pattern(new RegExp(/^(0|[1-9][0-9]*|[1-9][0-9]{0,2}(,[0-9]{3,3})*)$/))]],
-      authorizedPersonPasaporte: ['', Validators.required],
-      direccion: ['', Validators.required],
-      codigoPostal: ['', [Validators.required, Validators.maxLength(4), Validators.pattern(new RegExp(/^([A-Z]{1}\d{4}[A-Z]{3}|[A-Z]{1}\d{4}|\d{4})$/))]],
+     //localidad: ['', Validators.required],
+     //identidad: ['', Validators.required],
+     //authorizedPerson: ['', Validators.required],
+     //authorizedPersonDni: ['', [Validators.required, Validators.pattern(new RegExp(/^(0|[1-9][0-9]*|[1-9][0-9]{0,2}(,[0-9]{3,3})*)$/))]],
+     //authorizedPersonPasaporte: ['', Validators.required],
+     //direccion: ['', Validators.required],
+     //codigoPostal: ['', [Validators.required, Validators.maxLength(4), Validators.pattern(new RegExp(/^([A-Z]{1}\d{4}[A-Z]{3}|[A-Z]{1}\d{4}|\d{4})$/))]],
       metodoDePago: ['2', Validators.required],
-      provincia: ['', Validators.required],
-      telefono: ['', Validators.required],
-      celular: ['', Validators.required],
+     // provincia: ['', Validators.required],
+     // telefono: ['', Validators.required],
+     // celular: ['', Validators.required],
       imagen: [''],
     });
 
