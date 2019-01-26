@@ -90,7 +90,7 @@
           
 
         
-          <div class="container" [ngClass]="{'disabled-wrap': !searchListMarcas.length}">
+          <div class="container" [ngClass]="{'disabled-wrap':searchListMarcas && !searchListMarcas.length}">
             <div class="row justify-content-left mt-2" >
               <div class="number-wrap rounded-circle">
                 <div class="text-center bg-naranja rounded-circle text-white sub-number-wrap">

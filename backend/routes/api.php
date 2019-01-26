@@ -17,6 +17,8 @@ Route::group(['prefix' => 'auth'], function() {
 
     Route::group(['middleware' => 'auth:api'], function() {
 
+        Route::post('cambiarStatusOrder','OrderHeaderController@cambiarStatusOrder');
+
         Route::post('crearGaleriaHomeProd', 'GaleriaHomeProductoController@createGaleria');
         Route::delete('borrraGaleriaHomeProd/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@destroy');
 
@@ -144,12 +146,21 @@ Route::group(['prefix' => 'auth'], function() {
 
         Route::post('change-password', 'UserController@setClave'); // Cambio de clave
 
+        //Filtrar Pedidos por Estado
+        Route::get('filtrarPedidos/estado/{estado}', 'OrderHeaderController@filtrarPorEstado');
+
+        //Filtrar Pedidos por Fecha
+        Route::get('filtrarPedidos/fecha', 'OrderHeaderController@filtrarPorFecha');
+
     });
 });
 
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
+
+    Route::get('getProvincia','ProductoController@getProvincia');
+    Route::get('getLocalidadPorProvincia/{provincia}','ProductoController@getLocalidadPorprovincia');
 
     Route::get('getArbolProductos','ProductoController@getArbolProductos');
 
@@ -431,6 +442,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     // Listar videos
     Route::get('video/listar', 'VideoController@listar');
 
+    Route::post('lista-cupones','CouponsController@listarTodo');
 });
 
 

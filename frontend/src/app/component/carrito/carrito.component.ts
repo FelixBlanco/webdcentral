@@ -6,6 +6,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { UserTokenService } from 'src/app/services/user-token.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
+import { ConfigColorService } from '../../services/config-color.service';
 
 declare var $: any;
 
@@ -17,7 +18,7 @@ declare var $: any;
 export class CarritoComponent implements OnInit {
 
   section: 'shipping' | 'toBuy' | 'deliveryMethod' | 'inMarket' | 'delivery' | 'detalleCompra' = 'shipping';
-
+  colorUno :any;
   items: any[] = [];
   total: number;
   cantidad: number;
@@ -35,10 +36,17 @@ export class CarritoComponent implements OnInit {
     private productosService: ProductosService,
     private as: AlertsService,
     private userToken: UserTokenService,
-    private productsBehavior: ProductsBehaviorService
+    private productsBehavior: ProductsBehaviorService,
+    private configColor: ConfigColorService,
+
   ) { }
 
   ngOnInit() {
+    this.configColor._paletaColor().subscribe(
+      (resp:any)=> {
+        this.colorUno  = resp.colorOscuro
+      }
+    )
     this.carritoService.persistItemsCar();
     this.userToken.token.subscribe(val => this.token = val);
 

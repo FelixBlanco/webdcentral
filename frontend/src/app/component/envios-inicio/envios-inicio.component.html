@@ -2,13 +2,13 @@
 
 <div class="container">
   <div class="row" style="padding-top: 3%; padding-bottom: 3%;">
-    <div class="col-md-3" id="compra">
+    <div class="col-md-3" id="compra" (mouseenter)='hoverShow("#compra",0)' (mouseleave)='hoverHide("#compra",0)'>
       <div data-toggle="modal" data-target="#comoComprarModal">
         <img src="../assets/como_envio/como_comprar_1.png" width="130" class="d-block mx-auto img-fluid">
         <h3 class="text-center hover-normal"> COMO <br> <b>COMPRAR</b> </h3>
       </div>
     </div>
-    <div class="col-md-3" id="envio">
+    <div class="col-md-3" id="envio" (mouseenter)='hoverShow("#envio",1)' (mouseleave)='hoverHide("#envio",1)'>
       <div data-toggle="modal" data-target="#enviosModal">
         <a routerLink="envios" style="color:black; text-decoration: none; ">
             <img src="../assets/como_envio/enviar_1.png" width="130" class="d-block mx-auto img-fluid">
@@ -16,13 +16,13 @@
         </a>
       </div>
     </div>
-    <div class="col-md-3" id="forma_pago">
+    <div class="col-md-3" id="forma_pago" (mouseenter)='hoverShow("#forma_pago",2)' (mouseleave)='hoverHide("#forma_pago",2)'>
       <div data-toggle="modal" data-target="#formasDePagoModal">
         <img src="../assets/como_envio/formas_de_pago_1.png" width="130" class="d-block mx-auto img-fluid">
         <h3 class="text-center hover-normal"> FORMAS DE <br> <b>PAGO</b> </h3>
       </div>
     </div>
-    <div class="col-md-3" id="retiro_tienda">
+    <div class="col-md-3" id="retiro_tienda" (mouseenter)='hoverShow("#retiro_tienda",3)' (mouseleave)='hoverHide("#retiro_tienda",3)'>
       <div (click)='dondeEstamosModal()'>
         <img src="../assets/como_envio/retirar_en_tienda_1.png" width="130" class="d-block mx-auto img-fluid">
         <h3 class="text-center hover-normal"> RETIRAR EN <br> <b> LA TIENDA</b> </h3>

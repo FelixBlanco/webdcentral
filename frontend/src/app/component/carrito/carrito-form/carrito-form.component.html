@@ -45,7 +45,7 @@
     <div class="card">
       <div class="card-body">
         <table class="table table-curved justify-content-center">
-          <thead class="bg-azul text-white" >
+          <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }" >
             <tr>
               <th scope="col" width="40%">PRODUCTO</th>
               <th scope="col" width="25%">PRECIO</th>
@@ -89,7 +89,7 @@
          
         </table>
         <table  class="table table-curved">
-          <thead class="bg-azul text-white">
+          <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
             <tr>
               <th scope="col" width="35%">METODO DE ENTREGA</th>
               <th scope="col" width="35%">METODO DE PAGO</th>
@@ -117,7 +117,7 @@
           </tbody>
         </table>
         <table *ngIf="detailOrder.metodoEntrega !='inMarketForm'" class="table table-curved">
-            <thead class="bg-azul text-white">
+            <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
               <tr>
                 <th scope="col" width="23%">LOCALIDAD</th>
                 <th scope="col" width="23%">DOMICILIO DE ENTREGA</th>
@@ -156,7 +156,7 @@
             </tbody>
           </table>
           <table *ngIf="detailOrder.metodoEntrega =='internalDelivery'" class="table table-curved">
-              <thead class="bg-azul text-white">
+              <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
                 <tr>
                   <th scope="col" width="23%">PROVINCIA</th>
                   <th scope="col" width="23%">TELEFONO</th>
@@ -204,7 +204,7 @@
       <div class="jumbotron" style="background-color: #f3f6db">
         <div class="text-center">
           <h4 class="txt-verde font-bold">Atención</h4>
-          <p class="lead mt-2">La mercadería permanecerá reservada con un plazo de 48hs,
+          <p class="lead mt-2">La mercadería permanecerá reservada con un plazo de {{reservaMercaderiaHrs}} Horas Hábiles,
             pasado ese tiempo el pedido se anulará automáticamente</p>
         </div>
       </div>
@@ -215,8 +215,8 @@
     <div class="m-2">
       <form [formGroup]="inMarketForm">
         <div class="form-group">
-          <label for="fechaRetiro" class="text-uppercase font-bold">fecha de retiro <span class="text-danger">(MAX 48
-              HS)</span></label>
+          <label for="fechaRetiro" class="text-uppercase font-bold">fecha de retiro <span class="text-danger">(MAX {{reservaMercaderiaHrs}}
+              Hrs Hábiles)</span></label>
           <input type="date" class="form-control" id="fechaRetiro" min="actualDate" max="twoDaysAfter" formControlName="fechaRetiro">
           <small class="form-text text-danger" *ngIf="inMarketForm.get('fechaRetiro').invalid">
             El rango de las fechas debe estar entre {{actualDate | date: 'dd/MM/yyyy'}} y {{twoDaysAfter | date:
@@ -413,7 +413,7 @@
 
         <app-domicilio-entrega-form *ngIf="onDomicilioAdd" (onSaveDone)="onDomicilioCreate(false)"></app-domicilio-entrega-form>
 
-        <div class="form-group">
+       <!--  <div class="form-group">
           <label for="localidad" class="text-uppercase font-bold">Localidad</label>
           <ng-select formControlName="localidad" [loading]="onLocalidadesFetch" notFoundText="No se encontraron coincidencias..."
             placeholder="Seleccione la localidad" class="ng-select-custom">
@@ -467,8 +467,8 @@
         <div class="form-group">
           <label for="direccion">Dirección</label>
           <textarea rows="3" class="form-control" id="direccion" placeholder="Ingrese dirección" formControlName="direccion"></textarea>
-        </div>
-        <div class="m-2">
+        </div>-->
+        <div class="m-2"> 
           <h6 class="text-uppercase font-bold">método de pago</h6>
           <mat-radio-group formControlName="metodoDePago">
 

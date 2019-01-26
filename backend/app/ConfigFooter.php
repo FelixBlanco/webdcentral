@@ -46,5 +46,8 @@ class ConfigFooter extends Model
         'img_envio_3',
         'img_como_comprar',
         'reservaMercaderiaHrs',
+
+        'uso_cupon_web',
+        'uso_cupon_app'
     ];
 }

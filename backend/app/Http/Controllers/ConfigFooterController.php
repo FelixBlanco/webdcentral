@@ -197,6 +197,8 @@ class ConfigFooterController extends Controller
             $d->img_envio_3 = $request->img_envio_3;
             $d->img_como_comprar = $request->img_como_comprar;
             $d->reservaMercaderiaHrs = $request->reservaMercaderiaHrs;
+            $d->uso_cupon_web = $request->uso_cupon_web;
+            $d->uso_cupon_app = $request->uso_cupon_app;
 
             if (is_null($request->imagen)) {
             } else {

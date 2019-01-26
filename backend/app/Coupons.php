@@ -24,6 +24,9 @@ class Coupons extends Model {
         'tipo_descuento',
         'monto',
         'promo',
+
+        'base_cond',
+        'activar_uso',
     ];
 
     public function producto() {
