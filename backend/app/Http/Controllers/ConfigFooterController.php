@@ -38,6 +38,7 @@ class ConfigFooterController extends Controller
                 //'colectivos'  => 'required',
                 //'avenidas'    => 'required',
                 //'listaPrecio' => 'required|integer|between:1,9',
+                'reservaMercaderiaHrs' => 'required'
             ], [
                 'direccion.required'   => 'El campo es requerido',
                 'nroContacto.required' => 'El campo es requerido',
@@ -53,6 +54,8 @@ class ConfigFooterController extends Controller
                 //'colectivos.required'  => 'El campo es requerido',
                 //'avenidas.required'    => 'El campo es requerido',
                 //'listaPrecio.between'  => 'El rango para la lista de precios es :min - :max',
+                'reservaMercaderiaHrs.required' => 'El campo es requerido'
+                
             ]);
 
             $c = new ConfigFooter($request->all());
@@ -199,6 +202,8 @@ class ConfigFooterController extends Controller
             $d->reservaMercaderiaHrs = $request->reservaMercaderiaHrs;
             $d->uso_cupon_web = $request->uso_cupon_web;
             $d->uso_cupon_app = $request->uso_cupon_app;
+
+            $d->reservaMercaderiaHrs = $request->reservaMercaderiaHrs;
 
             if (is_null($request->imagen)) {
             } else {

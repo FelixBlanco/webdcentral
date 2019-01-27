@@ -35,6 +35,8 @@ class CreateConfigFootersTable extends Migration {
             $table->string('url_app_store')->nullable();
             $table->string('url_google_play')->nullable();
 
+            $table->string('reservaMercaderiaHrs')->nullable();
+
 
             $table->timestamps();
 

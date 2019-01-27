@@ -40,6 +40,10 @@ class ConfigFooter extends Model
         'url_app_store',
         'url_google_play',
         'url_mercadopago',
+<<<<<<< HEAD
+        'reservaMercaderiaHrs',
+=======
+>>>>>>> 6e480749652b7f3733868330dc628b1db0734aa3
 
         'img_envio_1',
         'img_envio_2',

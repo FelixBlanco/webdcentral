@@ -14,6 +14,7 @@ class ReclamosYSugerencia extends Model {
     protected $fillable = [
         'titulo',
         'descripcion',
+        'numero_ticket',
         'fk_idUser',
         'fk_idStatusReclamo',
     ];
