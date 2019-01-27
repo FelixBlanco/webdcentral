@@ -58,7 +58,7 @@ export class FooterComponent implements OnInit {
           this.linksR.facebook  = resp.url_face
           this.linksR.twitter   = resp.url_twit;
           this.linksR.instagram = resp.url_inst;
-          this.linksR.whatsapp  = resp.url_what;                  
+          this.linksR.whatsapp  = resp.url_what+'&text='+resp.msj_what;
         }
       }
     )

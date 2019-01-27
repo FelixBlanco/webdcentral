@@ -52,7 +52,13 @@ export class ConfigFooterComponent implements OnInit {
       link_otra_pagina: [''],
       url_app_store: [''],
       url_google_play: [''],
+<<<<<<< HEAD
       reservaMercaderiaHrs: [''],
+=======
+      reservaMercaderiaHrs:[''],
+      uso_cupon_web: [''],
+      uso_cupon_app: [''],
+>>>>>>> 6e480749652b7f3733868330dc628b1db0734aa3
     })
     this.myFormHorarios = this.fb.group({
       diaRegular: ['', Validators.required],
@@ -103,7 +109,14 @@ export class ConfigFooterComponent implements OnInit {
             url_app_store: resp.url_app_store,
             url_google_play: resp.url_google_play,
             url_mercadopago: resp.url_mercadopago,
+<<<<<<< HEAD
             reservaMercaderiaHrs: resp.url.reservaMercaderiaHrs
+=======
+            reservaMercaderiaHrs: resp.reservaMercaderiaHrs,
+
+            uso_cupon_web: resp.uso_cupon_web,
+            uso_cupon_app: resp.uso_cupon_app,
+>>>>>>> 6e480749652b7f3733868330dc628b1db0734aa3
 
           })
         }

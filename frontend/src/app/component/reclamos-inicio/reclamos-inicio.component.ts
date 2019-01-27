@@ -30,7 +30,7 @@ export class ReclamosInicioComponent implements OnInit {
       'descripcion' :['',Validators.required]
     })
 
-    this.configColor._getColor().subscribe(
+    this.configColor._paletaColor().subscribe(
       (resp:any)=> {
         this.colorTres = resp.colorClaro
       }

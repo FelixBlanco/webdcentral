@@ -4,15 +4,15 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit1052d334a1e36741de86d70f4a503813
+class ComposerStaticInitbca8e52ff8b58a678231bbef82de6904
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'cf97c57bfe0f23854afd2f3818abb7a0' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/create_uploaded_file.php',
@@ -550,6 +550,7 @@ class ComposerStaticInit1052d334a1e36741de86d70f4a503813
         'App\\Http\\Controllers\\RedSocialController' => __DIR__ . '/../..' . '/app/Http/Controllers/RedSocialController.php',
         'App\\Http\\Controllers\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegisterController.php',
         'App\\Http\\Controllers\\SeccionAppController' => __DIR__ . '/../..' . '/app/Http/Controllers/SeccionAppController.php',
+        'App\\Http\\Controllers\\SeccionesPaginasController' => __DIR__ . '/../..' . '/app/Http/Controllers/SeccionesPaginasController.php',
         'App\\Http\\Controllers\\ServiciosAddController' => __DIR__ . '/../..' . '/app/Http/Controllers/ServiciosAddController.php',
         'App\\Http\\Controllers\\ServiciosWebController' => __DIR__ . '/../..' . '/app/Http/Controllers/ServiciosWebController.php',
         'App\\Http\\Controllers\\SlideController' => __DIR__ . '/../..' . '/app/Http/Controllers/SlideController.php',
@@ -558,6 +559,7 @@ class ComposerStaticInit1052d334a1e36741de86d70f4a503813
         'App\\Http\\Controllers\\TipoDescuentoController' => __DIR__ . '/../..' . '/app/Http/Controllers/TipoDescuentoController.php',
         'App\\Http\\Controllers\\TurnoController' => __DIR__ . '/../..' . '/app/Http/Controllers/TurnoController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
+        'App\\Http\\Controllers\\VideoController' => __DIR__ . '/../..' . '/app/Http/Controllers/VideoController.php',
         'App\\Http\\Controllers\\tipoDeFacturaController' => __DIR__ . '/../..' . '/app/Http/Controllers/tipoDeFacturaController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -592,6 +594,7 @@ class ComposerStaticInit1052d334a1e36741de86d70f4a503813
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\ReclamosYSugerencia' => __DIR__ . '/../..' . '/app/ReclamosYSugerencia.php',
         'App\\RedesSocial' => __DIR__ . '/../..' . '/app/RedesSocial.php',
+        'App\\SeccionesPagina' => __DIR__ . '/../..' . '/app/SeccionesPagina.php',
         'App\\SectionApp' => __DIR__ . '/../..' . '/app/SectionApp.php',
         'App\\ServiciosWeb' => __DIR__ . '/../..' . '/app/ServiciosWeb.php',
         'App\\Slide' => __DIR__ . '/../..' . '/app/Slide.php',
@@ -605,6 +608,7 @@ class ComposerStaticInit1052d334a1e36741de86d70f4a503813
         'App\\TipoDescuento' => __DIR__ . '/../..' . '/app/TipoDescuento.php',
         'App\\TipoOrden' => __DIR__ . '/../..' . '/app/TipoOrden.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\Video' => __DIR__ . '/../..' . '/app/Video.php',
         'App\\clasificado_reclamo' => __DIR__ . '/../..' . '/app/clasificado_reclamo.php',
         'App\\metodoEntregaValues' => __DIR__ . '/../..' . '/app/metodoEntregaValues.php',
         'App\\orderBody' => __DIR__ . '/../..' . '/app/orderBody.php',
@@ -2621,6 +2625,7 @@ class ComposerStaticInit1052d334a1e36741de86d70f4a503813
         'Laravel\\Passport\\Http\\Controllers\\ScopeController' => __DIR__ . '/..' . '/laravel/passport/src/Http/Controllers/ScopeController.php',
         'Laravel\\Passport\\Http\\Controllers\\TransientTokenController' => __DIR__ . '/..' . '/laravel/passport/src/Http/Controllers/TransientTokenController.php',
         'Laravel\\Passport\\Http\\Middleware\\CheckClientCredentials' => __DIR__ . '/..' . '/laravel/passport/src/Http/Middleware/CheckClientCredentials.php',
+        'Laravel\\Passport\\Http\\Middleware\\CheckClientCredentialsForAnyScope' => __DIR__ . '/..' . '/laravel/passport/src/Http/Middleware/CheckClientCredentialsForAnyScope.php',
         'Laravel\\Passport\\Http\\Middleware\\CheckForAnyScope' => __DIR__ . '/..' . '/laravel/passport/src/Http/Middleware/CheckForAnyScope.php',
         'Laravel\\Passport\\Http\\Middleware\\CheckScopes' => __DIR__ . '/..' . '/laravel/passport/src/Http/Middleware/CheckScopes.php',
         'Laravel\\Passport\\Http\\Middleware\\CreateFreshApiToken' => __DIR__ . '/..' . '/laravel/passport/src/Http/Middleware/CreateFreshApiToken.php',
@@ -2959,6 +2964,7 @@ class ComposerStaticInit1052d334a1e36741de86d70f4a503813
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
         'Nexmo\\Account\\Balance' => __DIR__ . '/..' . '/nexmo/client/src/Account/Balance.php',
         'Nexmo\\Account\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Account/Client.php',
+        'Nexmo\\Account\\PrefixPrice' => __DIR__ . '/..' . '/nexmo/client/src/Account/PrefixPrice.php',
         'Nexmo\\Account\\Price' => __DIR__ . '/..' . '/nexmo/client/src/Account/Price.php',
         'Nexmo\\Account\\Secret' => __DIR__ . '/..' . '/nexmo/client/src/Account/Secret.php',
         'Nexmo\\Account\\SecretCollection' => __DIR__ . '/..' . '/nexmo/client/src/Account/SecretCollection.php',
@@ -4152,6 +4158,7 @@ class ComposerStaticInit1052d334a1e36741de86d70f4a503813
         'SebastianBergmann\\Timer\\RuntimeException' => __DIR__ . '/..' . '/phpunit/php-timer/src/RuntimeException.php',
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'SeccionesPaginaSeed' => __DIR__ . '/../..' . '/database/seeds/SeccionesPaginaSeed.php',
         'SectionAppSeeder' => __DIR__ . '/../..' . '/database/seeds/SectionAppSeeder.php',
         'StatusReclamo' => __DIR__ . '/../..' . '/database/seeds/StatusReclamo.php',
         'StatusSistemaSeeder' => __DIR__ . '/../..' . '/database/seeds/StatusSistemaSeeder.php',
@@ -4944,11 +4951,11 @@ class ComposerStaticInit1052d334a1e36741de86d70f4a503813
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit1052d334a1e36741de86d70f4a503813::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit1052d334a1e36741de86d70f4a503813::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit1052d334a1e36741de86d70f4a503813::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit1052d334a1e36741de86d70f4a503813::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit1052d334a1e36741de86d70f4a503813::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitbca8e52ff8b58a678231bbef82de6904::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitbca8e52ff8b58a678231bbef82de6904::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitbca8e52ff8b58a678231bbef82de6904::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitbca8e52ff8b58a678231bbef82de6904::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitbca8e52ff8b58a678231bbef82de6904::$classMap;
 
         }, null, ClassLoader::class);
     }

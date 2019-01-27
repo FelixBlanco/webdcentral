@@ -2,14 +2,19 @@
   <div class="row">
     <div id="slide">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>        
         <div class="carousel-inner">
     
-          <div class="carousel-item active" *ngIf="first">          
-            <img class="d-block w-100" src="{{first.set_imagen}}" height="850px;">
+          <div class="carousel-item active" *ngIf="first">                    
+            <img class="d-block w-100" src="{{first.set_imagen}}" height="850px;" (click)="goToProduct(first)">
           </div>                
     
           <div class="carousel-item" *ngFor="let i of listSlide; let p = index">
-            <img class="d-block w-100" src="{{i.set_imagen}}" height="850px;">
+              <img class="d-block w-100" src="{{i.set_imagen}}" height="850px;" (click)="goToProduct(i)">            
           </div>           
     
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

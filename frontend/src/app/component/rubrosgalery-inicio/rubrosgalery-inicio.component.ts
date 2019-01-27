@@ -39,11 +39,13 @@ export class RubrosgaleryInicioComponent implements OnInit {
 
   ngOnInit() {
     this.setRubrosList();
-    this.configColor._getColor().subscribe(
+    this.configColor._paletaColor().subscribe(
       (resp:any)=> {
         this.colorTres = resp.colorClaro
       }
     )
+
+    console.log('aqui esta el color', this.colorTres)
   }
 
   setRubrosList(){

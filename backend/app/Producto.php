@@ -46,5 +46,11 @@ class Producto extends Model {
         return $this->hasOne('App\TagProduct', 'codeProdSys');
     }
 
+    public function galeriaHomeProductos() {
+        return $this->hasMany('App\GaleriaHomeProductos', 'idGaleriaHomeProducto');
+    }    
 
+    public function ofertas() {
+        return $this->hasMany('App\Oferta', 'idOferta');
+    }        
 }

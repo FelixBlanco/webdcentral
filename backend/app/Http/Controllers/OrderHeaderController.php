@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\orderHeader;
+use App\StateOrder;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,58 @@ use Image;
 
 class OrderHeaderController extends Controller
 {
+
+    public function cambiarStatusOrder (Request $request)
+    {
+
+//recibe numeroPedido y fk_idStateOrder
+
+        $statusOrden_min = StateOrder::min('idStateOrder');
+        $statusOrden_max = StateOrder::max('idStateOrder');
+
+        $this->validate($request, [
+            'numeroPedido' => 'required',
+            'fk_idStateOrder' => 'required|integer',
+        ], [
+            'numeroPedido.required' => 'El campo es requerido',
+            'fk_idStateOrder.required' => 'El campo es requerido',
+            'fk_idStateOrder.integer' => 'El campo debe ser numerio',
+        ]);
+
+        $order = orderHeader::where('Numero_Pedido', $request->numeroPedido)->first();
+
+        if (!is_null($order)) {
+
+            if ($request->fk_idStateOrder > $statusOrden_max || $request->fk_idStateOrder < $statusOrden_min) {
+                $response = [
+                    'msj' => 'El Estatus que intenta asignar No existe',
+                    'statusDisponibles'=>StateOrder::pluck('StateOrder','idStateOrder'),
+                ];
+                return response()->json($response, 404);
+
+            } else {
+
+                $order->fk_idStateOrder = $request->fk_idStateOrder;
+                $order->save();
+                $order->state;
+
+                $response = [
+                    'msj' => 'Estatus de la Orden Cambiado',
+                    'order' => $order,
+                ];
+
+                return response()->json($response, 200);
+
+            }
+        } else {
+            $response = [
+                'msj' => 'Hay un problema, tal vez la orden no exista, por favor verifique',
+            ];
+
+            return response()->json($response, 404);
+        }
+
+    }
 
     public function añadir (Request $request)
     {
@@ -124,7 +177,7 @@ class OrderHeaderController extends Controller
             $response = [
                 'msj' => 'Pedido Creado',
                 'OB' => $OB,
-                'set_imagen' => asset('storage\\comprobanteDepositoTransferencia\\'.$OB->comprobanteDepositoTransferencia),
+                'set_imagen' => asset('storage\\comprobanteDepositoTransferencia\\' . $OB->comprobanteDepositoTransferencia),
             ];
             DB::commit();
 
@@ -140,7 +193,8 @@ class OrderHeaderController extends Controller
         }
     }
 
-    public function listarPorIdUsuario ($fk_idUser)
+    public
+    function listarPorIdUsuario ($fk_idUser)
     {
 
         $orders = orderHeader::select("*")->where('fk_idStateOrder', '=', '5')->where('fk_idUserClient', $fk_idUser)->get();
@@ -153,7 +207,8 @@ class OrderHeaderController extends Controller
         return response()->json($response, 200);
     }
 
-    public function safePago (Request $request)
+    public
+    function safePago (Request $request)
     {
 
 
@@ -183,7 +238,8 @@ class OrderHeaderController extends Controller
 
     }
 
-    public function getDataPay (Request $request)
+    public
+    function getDataPay (Request $request)
     {
 
 
@@ -216,5 +272,103 @@ class OrderHeaderController extends Controller
 
     }
 
+    /**
+     * Devuelve los pedidos filtrados por el estado correspondiente.
+     *
+     * @param $idEstado
+     * @return \Illuminate\Http\Response
+     */
+
+    public
+    function filtrarPorEstado ($idEstado)
+    {
+
+        $estadoMin = StateOrder::min('idStateOrder');
+        $estadoMax = StateOrder::max('idStateOrder');
+
+        if ($idEstado > $estadoMax || $idEstado < $estadoMin) {
+            $response = [
+                'msj' => 'El estado por el que quiere filtrar los pedidos no existe.',
+                'estados_disponibles' => StateOrder::orderBy('idStateOrder', 'ASC')->pluck('StateOrder', 'idStateOrder'),
+            ];
+
+            return response()->json($response, 404);
+
+        } else {
+
+            DB::beginTransaction();
+
+            try {
+
+                $pedidos  = orderHeader::where('fk_idStateOrder', $idEstado)->get();
+                $response = [
+                    'msj' => 'Lista de Pedidos',
+                    'Pedidos' => $pedidos,
+                ];
+
+                return response()->json($response, 202);
+
+            } catch (\Exception $e) {
+
+                DB::rollback();
+                Log::error('Ha ocurrido un error en OrderHeaderController: ' . $e->getMessage() . ', Linea: ' . $e->getLine());
+
+                return response()->json([
+                    'message' => 'Ha ocurrido un error al tratar de hacer la consulta de los datos.',
+                ], 500);
+
+            }
+
+        }
+
+    }
+
+    /**
+     * Devuelve los pedidos filtrados por el fecha y hora.
+     *
+     * @param \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
+
+    public
+    function filtrarPorFecha (Request $request)
+    {
+
+        $this->validate($request, [
+            'fechaInicio' => 'required',
+            'fechaFinal' => 'required',
+        ], [
+            'fechaInicio.required' => 'La Fecha de inicio es requerida',
+            'fechaFinal.required' => 'La Fecha final es requerida',
+        ]);
+
+        $from = $request->fechaInicio;
+        $to   = $request->fechaFinal;
+
+        DB::beginTransaction();
+
+        try {
+
+            $pedidos  = orderHeader::whereBetween('created_at', [$from, $to])->get();
+            $response = [
+                'msj' => 'Lista de Pedidos.',
+                'Pedidos' => $pedidos,
+            ];
+
+            return response()->json($response, 202);
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            Log::error('Ha ocurrido un error en OrderHeaderController: ' . $e->getMessage() . ', Linea: ' . $e->getLine());
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error al hacer la consultade los datos.',
+            ], 500);
+
+        }
+
+
+    }
 
 }

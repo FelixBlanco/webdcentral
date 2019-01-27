@@ -20,5 +20,7 @@ class UsersTableSeeder extends Seeder {
             'fk_idPerfil' => '1',
             'statusUser'  => '1',
         ]);
+
+        DB::table('tb_perfil_clientes')->insert([ 'fk_idPerfilCliente' => 1 ]);
     }
 }

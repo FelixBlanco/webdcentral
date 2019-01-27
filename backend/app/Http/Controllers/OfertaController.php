@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Image;
+use App\Producto;
 
 class OfertaController extends Controller {
     /**
@@ -18,8 +19,13 @@ class OfertaController extends Controller {
      */
     public function index() {
         $o = Oferta::orderby('idOferta', 'desc')->get();
+        
         $o->each(function($o) {
             $o->set_imagen = asset('storage\\oferta\\'.$o->imagen);
+        });
+        
+        $o->each(function($o){
+            $o->nombreProducto = $o->producto->nombre;
         });
 
         return $o;

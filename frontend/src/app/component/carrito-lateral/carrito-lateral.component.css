@@ -1,0 +1,22 @@
+.detail{
+  margin-right: 20%;
+}
+.car{
+    
+    width:100%;
+     border-left: solid 1px;  
+     border-bottom: solid 1px; 
+     border-top: solid 1px; 
+     border-right: solid 1px; 
+    position: -webkit-sticky;
+    position: sticky;
+   
+    top: 0;
+}
+.producto-contenedor{
+
+    margin-left: 5%;
+    margin-top: 5px;
+    width: 90%;
+    border: 0.5px solid;
+}

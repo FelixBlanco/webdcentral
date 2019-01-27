@@ -92,6 +92,13 @@ class CouponsController extends Controller {
             $Coupons->dateExpired   = $request->dateExpired;
             $Coupons->codeCoupns    = strtoupper($this->_getCodeSys());
             $Coupons->fk_idSatate   = 1;
+
+            $Coupons->tipo_descuento = $request->tipo_descuento;
+            $Coupons->monto          = $request->monto;
+            $Coupons->promo          = $request->promo;
+            $Coupons->base_cond      = $request->base_cond;
+            $Coupons->activar_uso    = $request->activar_uso;
+
             $Coupons->save();
             DB::commit();
 

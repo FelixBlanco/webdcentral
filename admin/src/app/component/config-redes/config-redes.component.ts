@@ -26,6 +26,7 @@ export class ConfigRedesComponent implements OnInit {
       instagram : ['',Validators.required],
       twitter   : ['',Validators.required],
       whatsapp  : ['',Validators.required],
+      mensaje_whatsapp  : ['',Validators.required],
     })    
   }
 
@@ -43,7 +44,8 @@ export class ConfigRedesComponent implements OnInit {
             facebook      : resp.url_face,
             twitter       : resp.url_twit,
             instagram     : resp.url_inst,
-            whatsapp      : resp.url_what
+            whatsapp      : resp.url_what,
+            mensaje_whatsapp      : resp.msj_what
           })
         }else{
           this.isNew = true;
@@ -55,7 +57,7 @@ export class ConfigRedesComponent implements OnInit {
   addRedes(){
     this.inPromise=true;
     const val: any = this.myRedes.value
-    const data:any = {url_face: val.facebook, url_twit: val.twitter, url_inst: val.instagram, url_what: val.whatsapp} 
+    const data:any = {url_face: val.facebook, url_twit: val.twitter, url_inst: val.instagram, url_what: val.whatsapp, msj_what:val.mensaje_whatsapp} 
     this.configRedesService._addRed(data).subscribe(
       resp => {
         this.inPromise=false;
@@ -74,7 +76,7 @@ export class ConfigRedesComponent implements OnInit {
     this.inPromise=true;
     const val: any = this.myRedes.value
     console.log(val)
-    const data:any = {url_face: val.facebook, url_twit: val.twitter, url_inst: val.instagram, url_what: val.whatsapp} 
+    const data:any = {url_face: val.facebook, url_twit: val.twitter, url_inst: val.instagram, url_what: val.whatsapp, msj_what:val.mensaje_whatsapp} 
     this.configRedesService._updateRed(data,this.r_edit).subscribe(
       (resp:any) => {
         this.inPromise=false;

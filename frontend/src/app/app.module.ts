@@ -63,8 +63,15 @@ import { MinoristaComponent } from './component/minorista/minorista.component';
 import { DomicilioEntregaFormComponent } from './component/carrito/carrito-form/domicilio-entrega-form/domicilio-entrega-form.component';
 import { TurnosListComponent } from './component/servicios-inicio/turnos-list/turnos-list.component';
 import { RubrosgaleryInicioComponent } from './component/rubrosgalery-inicio/rubrosgalery-inicio.component';
+<<<<<<< HEAD
 import { ClasificacionReclamosService } from './services/clasificacion-reclamos.service';
 import { HorarioAtencionServiceService } from './services/horario-atencion-service.service';
+=======
+import { CarritoLateralComponent } from './component/carrito-lateral/carrito-lateral.component';
+import { MarcasInicioComponent } from './component/marcas-inicio/marcas-inicio.component';
+
+
+>>>>>>> 6e480749652b7f3733868330dc628b1db0734aa3
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -128,7 +135,9 @@ const appRoutes: Routes = [
     MinoristaComponent,
     DomicilioEntregaFormComponent,
     TurnosListComponent,
-    RubrosgaleryInicioComponent
+    RubrosgaleryInicioComponent,
+    CarritoLateralComponent,
+    MarcasInicioComponent
   ],
   imports: [
     BrowserModule,

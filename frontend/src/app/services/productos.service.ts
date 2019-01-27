@@ -36,6 +36,7 @@ export interface Producto{
   listAgrupacion:Array<any>,
   Agrupacion:string,
   volumenToSort:number,
+  Valoracion_Fabricante:any,
 }
 
 export interface SearchBody{
@@ -116,4 +117,8 @@ export class ProductosService {
       return this.http.get<Producto[]>(`${environment.apiHost}/api/v1/buscar/prod/porMarcas/${marca}`, {observe: 'response'});      
     }
   
+    _getArbolProductos(){
+      return this.http.get(`${environment.apiHost}/api/v1/getArbolProductos`)
+    }
+
 }

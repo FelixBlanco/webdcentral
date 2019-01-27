@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-ini_set('memory_limit','512M');
-ini_set('max_execution_time','500');
+ini_set('memory_limit', '512M');
+ini_set('max_execution_time', '500');
 
 
 use App\Producto;
@@ -57,15 +57,13 @@ class ProductoController extends Controller {
             $nombre   = $this->getAgrupation($nombre);// OBTEBNER LISTADO DE PRESENTACIONES DE UN PRODUCTO //
             //$tags     = $this->getAgrupation($tags);// OBTEBNER LISTADO DE TAGS DE UN PRODUCTO //
 
-            $array_tags=array();
+            $array_tags = [];
 
-            if(count($tags)>0)
-            {
+            if (count($tags) > 0) {
                 foreach ($tags as $tag) {
                     $array_tags[] = $tag->tag;
                 }
             }
-
 
 
             $response = [
@@ -75,7 +73,6 @@ class ProductoController extends Controller {
                 'nombre'   => $nombre,
                 'tags'     => $array_tags,
             ];
-            
 
 
             return response()->json($response, 200);
@@ -120,12 +117,10 @@ class ProductoController extends Controller {
     }
 
 
-
     public function listarPorIsOutstanding() {
         $producto_activador    = Producto::where('isOutstanding', 1)->groupBy('Agrupacion')->get();
         $producto_desactivador = Producto::where('isOutstanding', 0)->groupBy('Agrupacion')->get();
 
-        
 
         $response = [
             'msj'          => 'Productos',
@@ -256,61 +251,61 @@ class ProductoController extends Controller {
 
         if (! $rs) {
 
-            $product                = new Producto();
-            $product->nombre        = $_product['nombre'];
-            $product->titulo        = $_product['titulo'];
-            $product->urlImage      = $_product['urlImage'];
-            $product->promocion     = $_product['promocion'];
-            $product->codeProdSys   = $_product['codeProdSys'];
-            $product->kiloProdcuto  = $_product['kiloProdcuto'];
-            $product->SubRubro1     = $_product['SubRubro1'];
-            $product->SubRubro2     = $_product['SubRubro2'];
-            $product->precioL1      = $_product['precioL1'];
-            $product->precioL2      = $_product['precioL2'];
-            $product->precioL3      = $_product['precioL3'];
-            $product->precioL4      = $_product['precioL4'];
-            $product->precioL5      = $_product['precioL5'];
-            $product->precioL6      = $_product['precioL6'];
-            $product->precioL7      = $_product['precioL7'];
-            $product->precioL8      = $_product['precioL8'];
-            $product->precioL9      = $_product['precioL9'];
-            $product->rubro         = $_product['rubro'];
-            $product->marca         = $_product['marca'];
-            $product->fk_idSatate   = 1;
-            $product->destacado     = 0;
-            $product->isOutstanding = 0;
-            $product->Agrupacion        = $_product['Agrupacion'];
-            $product->WebLink_Rubro = $_product['WebLink_Rubro'];
-            $product->Weblink_fabricante = $_product['Weblink_fabricante'];
-            $product->stockActual   = $_product['stockActual'];
-            $product->Valoracion_Fabricante   = $_product['Valoracion_Fabricante'];
+            $product                        = new Producto();
+            $product->nombre                = $_product['nombre'];
+            $product->titulo                = $_product['titulo'];
+            $product->urlImage              = $_product['urlImage'];
+            $product->promocion             = $_product['promocion'];
+            $product->codeProdSys           = $_product['codeProdSys'];
+            $product->kiloProdcuto          = $_product['kiloProdcuto'];
+            $product->SubRubro1             = $_product['SubRubro1'];
+            $product->SubRubro2             = $_product['SubRubro2'];
+            $product->precioL1              = $_product['precioL1'];
+            $product->precioL2              = $_product['precioL2'];
+            $product->precioL3              = $_product['precioL3'];
+            $product->precioL4              = $_product['precioL4'];
+            $product->precioL5              = $_product['precioL5'];
+            $product->precioL6              = $_product['precioL6'];
+            $product->precioL7              = $_product['precioL7'];
+            $product->precioL8              = $_product['precioL8'];
+            $product->precioL9              = $_product['precioL9'];
+            $product->rubro                 = $_product['rubro'];
+            $product->marca                 = $_product['marca'];
+            $product->fk_idSatate           = 1;
+            $product->destacado             = 0;
+            $product->isOutstanding         = 0;
+            $product->Agrupacion            = $_product['Agrupacion'];
+            $product->WebLink_Rubro         = $_product['WebLink_Rubro'];
+            $product->Weblink_fabricante    = $_product['Weblink_fabricante'];
+            $product->stockActual           = $_product['stockActual'];
+            $product->Valoracion_Fabricante = $_product['Valoracion_Fabricante'];
             $product->save();
         } else {
-            $rs->nombre       = $_product['nombre'];
-            $rs->titulo       = $_product['titulo'];
-            $rs->urlImage     = $_product['urlImage'];
-            $rs->promocion    = $_product['promocion'];
-            $rs->codeProdSys  = $_product['codeProdSys'];
-            $rs->kiloProdcuto = $_product['kiloProdcuto'];
-            $rs->SubRubro1    = $_product['SubRubro1'];
-            $rs->SubRubro2    = $_product['SubRubro2'];
-            $rs->precioL1     = $_product['precioL1'];
-            $rs->precioL2     = $_product['precioL2'];
-            $rs->precioL3     = $_product['precioL3'];
-            $rs->precioL4     = $_product['precioL4'];
-            $rs->precioL5     = $_product['precioL5'];
-            $rs->precioL6     = $_product['precioL6'];
-            $rs->precioL7     = $_product['precioL7'];
-            $rs->precioL8     = $_product['precioL8'];
-            $rs->precioL9     = $_product['precioL9'];
-            $rs->rubro        = $_product['rubro'];
-            $rs->marca        = $_product['marca'];
-            $rs->fk_idSatate  = 1;
-            $rs->Agrupacion        = $_product['Agrupacion'];
-            $rs->WebLink_Rubro = $_product['WebLink_Rubro'];
-            $rs->Weblink_fabricante = $_product['Weblink_fabricante'];
-            $rs->stockActual   = $_product['stockActual'];
-            $rs->Valoracion_Fabricante   = $_product['Valoracion_Fabricante'];
+            $rs->nombre                = $_product['nombre'];
+            $rs->titulo                = $_product['titulo'];
+            $rs->urlImage              = $_product['urlImage'];
+            $rs->promocion             = $_product['promocion'];
+            $rs->codeProdSys           = $_product['codeProdSys'];
+            $rs->kiloProdcuto          = $_product['kiloProdcuto'];
+            $rs->SubRubro1             = $_product['SubRubro1'];
+            $rs->SubRubro2             = $_product['SubRubro2'];
+            $rs->precioL1              = $_product['precioL1'];
+            $rs->precioL2              = $_product['precioL2'];
+            $rs->precioL3              = $_product['precioL3'];
+            $rs->precioL4              = $_product['precioL4'];
+            $rs->precioL5              = $_product['precioL5'];
+            $rs->precioL6              = $_product['precioL6'];
+            $rs->precioL7              = $_product['precioL7'];
+            $rs->precioL8              = $_product['precioL8'];
+            $rs->precioL9              = $_product['precioL9'];
+            $rs->rubro                 = $_product['rubro'];
+            $rs->marca                 = $_product['marca'];
+            $rs->fk_idSatate           = 1;
+            $rs->Agrupacion            = $_product['Agrupacion'];
+            $rs->WebLink_Rubro         = $_product['WebLink_Rubro'];
+            $rs->Weblink_fabricante    = $_product['Weblink_fabricante'];
+            $rs->stockActual           = $_product['stockActual'];
+            $rs->Valoracion_Fabricante = $_product['Valoracion_Fabricante'];
             $rs->update();
         }
     }
@@ -334,17 +329,16 @@ class ProductoController extends Controller {
         }
     }
 
-  
 
     public static function getAllRubros() {
 
-        $response = Producto::select("rubro","WebLink_Rubro")->where('fk_idSatate','!=','3')->groupBy('rubro')->orderBy("rubro")->get();
+        $response = Producto::select('titulo', "rubro", "WebLink_Rubro")->where('fk_idSatate', '!=', '3')->groupBy('rubro')->orderBy("rubro")->get();
 
         return response()->json($response, 202);
     }
 
     public static function getAllMarcas() {
-        $response = Producto::select("marca")->where('fk_idSatate','!=','3')->groupBy('marca')->orderBy("marca")->get();
+        $response = Producto::select("marca")->where('fk_idSatate', '!=', '3')->groupBy('marca')->orderBy("marca")->get();
 
         return response()->json($response, 202);
     }
@@ -353,7 +347,7 @@ class ProductoController extends Controller {
 
         if (! is_null($search)) {
             $busqueda = $search."%";
-            $response = Producto::select("marca","Weblink_fabricante")->where('fk_idSatate','!=','3')->where('marca', 'like', $busqueda)->groupBy('marca')->orderBy("marca")->get();
+            $response = Producto::select("marca", "Weblink_fabricante")->where('fk_idSatate', '!=', '3')->where('marca', 'like', $busqueda)->groupBy('marca')->orderBy("marca")->get();
 
             if (is_null($response)) {
                 $response = [
@@ -376,22 +370,22 @@ class ProductoController extends Controller {
 
     public function listarSubrubro1($rubro) {
         $response = Producto::select("SubRubro1")
-        ->groupBy('SubRubro1')
-        ->orderBy("SubRubro1")
-        ->where('fk_idSatate','!=','3')
-        ->where("rubro","=",$rubro)
-        ->get();
+            ->groupBy('SubRubro1')
+            ->orderBy("SubRubro1")
+            ->where('fk_idSatate', '!=', '3')
+            ->where("rubro", "=", $rubro)
+            ->get();
 
         return response()->json($response, 202);
     }
 
     public function listarSubrubro2($SubRubro1) {
         $response = Producto::select("SubRubro2")
-        ->groupBy('SubRubro2')
-        ->orderBy("SubRubro2")
-        ->where('fk_idSatate','!=','3')
-        ->where("SubRubro1","=",$SubRubro1)
-        ->get();
+            ->groupBy('SubRubro2')
+            ->orderBy("SubRubro2")
+            ->where('fk_idSatate', '!=', '3')
+            ->where("SubRubro1", "=", $SubRubro1)
+            ->get();
 
         return response()->json($response, 202);
     }
@@ -428,12 +422,12 @@ class ProductoController extends Controller {
 
             if (! is_null($busqueda_SubRubro1)) {
                 //$f2 = Producto::where('SubRubro1', $busqueda_SubRubro1)->where('fk_idSatate','!=','3')->groupBy('Agrupacion')->get();
-                
+
                 $sql = $sql." and SubRubro1 = '".$busqueda_SubRubro1."' ";
 
-               /* foreach ($f2 as $f) {
-                    $result[] = $f;
-                }*/
+                /* foreach ($f2 as $f) {
+                     $result[] = $f;
+                 }*/
 
             }
 
@@ -450,8 +444,8 @@ class ProductoController extends Controller {
 
             $result_unico = DB::connection('mysql')->select($sql);
 
-            $result=$this->getAgrupation($result_unico);
-                
+            $result = $this->getAgrupation($result_unico);
+
 
             //$result_unico = array_unique($result);
 
@@ -513,26 +507,30 @@ class ProductoController extends Controller {
 
             $rs = null;
 
-            $sql = "";
+            $sql          = "";
             $isWherActive = "where";
 
             if (! empty($request->rubro)) {
-                $sql = $isWherActive."  rubro = '".$request->rubro."' ";
+                $sql          = $isWherActive."  rubro = '".$request->rubro."' ";
                 $isWherActive = " and ";
             }
 
-            if (!empty($request->SubRubro1)) {
+            if (! empty($request->SubRubro1)) {
                 $sql = $sql." ".$isWherActive."  SubRubro1 = '".$request->SubRubro1."' ";
-                if($isWherActive == "where"){$isWherActive = " and ";}
+                if ($isWherActive == "where") {
+                    $isWherActive = " and ";
+                }
             }
 
-            if (!empty($request->SubRubro2)) {
+            if (! empty($request->SubRubro2)) {
                 $sql = $sql." ".$isWherActive."  SubRubro2 = '".$request->SubRubro2."' ";
-                if($isWherActive == "where"){$isWherActive = " and ";}
+                if ($isWherActive == "where") {
+                    $isWherActive = " and ";
+                }
 
             }
 
-            if (!empty($request->search)) {
+            if (! empty($request->search)) {
                 $sql = $sql." ".$isWherActive."  nombre  like '%".$request->search."%' ";
 
             }
@@ -575,7 +573,7 @@ class ProductoController extends Controller {
               FROM   tb_productos  
              ".$sql." order by nombre  ")->offset($request->offset)->limit($request->limit);
 
-            }else{
+            } else {
 
                 $rs = DB::connection('mysql')->select(" SELECT 
              nombre as Descripcion_Producto,
@@ -605,12 +603,12 @@ class ProductoController extends Controller {
             }
 
 
-            $i = 0;    
+            $i = 0;
             foreach ($rs as $item) {
-            
-                if($item->Agrupacion !=null){
-                    
-                    $agrupacion =  DB::connection('mysql')->select(" SELECT 
+
+                if ($item->Agrupacion != null) {
+
+                    $agrupacion = DB::connection('mysql')->select(" SELECT 
                      nombre as Descripcion_Producto,
                      urlImage as WebLink_Producto,
                      codeProdSys as Codigo_Producto,
@@ -641,13 +639,13 @@ class ProductoController extends Controller {
 
                     // LITADO DE SUB ITEM //'
                     $rs1 = $agrupacion;
-                    $j = 0;
+                    $j   = 0;
 
                     foreach ($rs1 as $item2) {
 
-                        if($item2->Agrupacion !=null){
+                        if ($item2->Agrupacion != null) {
 
-                            $agrupacion2 =  DB::connection('mysql')->select(" SELECT 
+                            $agrupacion2 = DB::connection('mysql')->select(" SELECT 
                              nombre as Descripcion_Producto,
                              urlImage as WebLink_Producto,
                              codeProdSys as Codigo_Producto,
@@ -684,8 +682,6 @@ class ProductoController extends Controller {
             }
 
 
-
-
             if ($rs != null) {
                 return response()->json($rs, 200);
             } else {
@@ -696,7 +692,7 @@ class ProductoController extends Controller {
 
             return response()->json("Error conectando a el DC", 500);
         }
-        
+
 
     }
 
@@ -706,7 +702,7 @@ class ProductoController extends Controller {
         if (! is_null($search)) {
             $busqueda = $search."%";
             $response = Producto::where('marca', 'like', $busqueda)->orderBy("marca")->groupBy('Agrupacion')->get();
-            $res=self::getAgrupation($response);
+            $res      = self::getAgrupation($response);
 
             if (is_null($response)) {
                 $response = [
@@ -743,10 +739,10 @@ class ProductoController extends Controller {
         }
     }
 
-    public static function getAgrupation($listaProductos){
+    public static function getAgrupation($listaProductos) {
         $i = 0;
         foreach ($listaProductos as $itemMascotas) {
-            $agrupacion =  Producto::where('fk_idSatate', '=', 1)
+            $agrupacion                         = Producto::where('fk_idSatate', '=', 1)
                 ->where('Agrupacion', '=', $itemMascotas->Agrupacion)
                 ->get();
             $listaProductos[$i]->listAgrupacion = $agrupacion;
@@ -773,7 +769,40 @@ class ProductoController extends Controller {
             }
         } catch (\Exception $e) {
             dd($e);
+
             return response()->json("Error conectando a el DC", 500);
+        }
+    }
+
+    public function getProvincia() {
+
+        $rs = DB::connection('sqlsrv')->select(" SELECT Descripcion_Provincia FROM  VISTALOCALIDADESAPP GROUP BY Descripcion_Provincia");
+
+        if (is_null($rs)) {
+            $response = [
+                'msj' => 'Provincia no encontrada',
+            ];
+
+            return response()->json($response, 404);
+        } else {
+            return response()->json($rs, 200);
+        }
+    }
+
+    public function getLocalidadPorProvincia($provincia) {
+
+        $rs = DB::connection('sqlsrv')->select(" SELECT Codigo_Localidad,Descripcion_Localidad 
+        FROM  VISTALOCALIDADESAPP 
+        WHERE Descripcion_Provincia='".$provincia."'");
+
+        if (is_null($rs)) {
+            $response = [
+                'msj' => 'Localidad no encontrada',
+            ];
+
+            return response()->json($response, 404);
+        } else {
+            return response()->json($rs, 200);
         }
     }
 }

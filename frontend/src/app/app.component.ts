@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ConfigHomeService } from './services/config-home.service';
 import { LoginService } from './services/login.service'
+import { CarritoService } from './services/carrito.service'
+
 
 @Component({
   selector: 'app-root',
@@ -9,10 +11,11 @@ import { LoginService } from './services/login.service'
 })
 
 export class AppComponent {
-
+  showLateralCar:boolean =false;
   constructor(    
     private loginS: LoginService,
-    private _configHomeService:ConfigHomeService
+    private _configHomeService:ConfigHomeService,
+    private carritoService:CarritoService
     ){
 
       this.loginS._getAuthUser().subscribe(
@@ -33,5 +36,14 @@ export class AppComponent {
           }
         }
     )
+    this.carritoService.carritoItems.subscribe((val)=> {
+      if(val.length){
+        console.log(val);
+        this.showLateralCar=true;
+      }else{
+        this.showLateralCar=false;
+      }
+  
+    })
   }
 }

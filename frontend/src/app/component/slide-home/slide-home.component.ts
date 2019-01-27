@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GaleriaHomeService }  from '../../services/galeria-home.service';
 import { ConfigColorService } from '../../services/config-color.service';
+import { ProductosService , Producto } from '../../services/productos.service';
+import { ProductsBehaviorService} from '../../services/products-behavior.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-slide-home',
@@ -15,7 +19,11 @@ export class SlideHomeComponent implements OnInit {
 
   constructor(
     private _galeriaHomeService:GaleriaHomeService,
-    private _color: ConfigColorService
+    private _color: ConfigColorService,
+    private productService: ProductosService,
+    private router: Router,
+    private producBehaviourService: ProductsBehaviorService
+
   ) { }
 
   ngOnInit() {
@@ -34,12 +42,21 @@ export class SlideHomeComponent implements OnInit {
     this._galeriaHomeService._getSlideHome().subscribe(
       (resp:any) => {
         if(resp != null){
+          console.log(resp)
           this.listSlide = resp.producto; // todo los slide        
           this.first = this.listSlide[0]; // agregamos el primero
           this.listSlide.shift(); // Eliminamos el primero de la lista   
         }        
       }
     )
+  }
+  goToProduct(prod:any){
+  //  console.log(prod);
+    const producto:Producto= prod.producto;
+     const listProd:Producto[]= [producto];
+    this.router.navigate(['/productos']);
+    setTimeout(() => document.getElementById('productos').scrollIntoView({ behavior: 'smooth' }), 1000);
+    this.producBehaviourService.updateSource(listProd); 
   }
 
 }

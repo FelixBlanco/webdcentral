@@ -38,14 +38,14 @@
     <div class="row">
       <div class="col">
         <div class="card">
-          <div class="card-header bg-azul txt-blanco text-uppercase">
+          <div class="card-header bg-azul txt-blanco text-uppercase" id="recomprar" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
             <h5 class="m-2">RECOMPRAR</h5>
           </div>
           <div class="card-body">
               <div class="card">
                 <div class="card-body">
                   <table class="table table-curved">
-                    <thead class="bg-azul text-white">
+                    <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
                       <tr>
                         <th scope="col" width="15%">PEDIDO</th>
                         <th scope="col" width="20%">FECHA</th>
@@ -72,15 +72,37 @@
                               >
                               Recomprar
                             </button> -->
-                            <button style="margin-right: .3rem;" class="btn btn-sm text-white btn-danger font-bold text-uppercase" (click)="viewDetail(item,false)">
+                            <button style="width: 45%; margin-right: .3rem;" class="btn btn-sm text-white btn-danger font-bold text-uppercase" (click)="viewDetail(item,false)">
                               Detalles
                             </button>
-                            <button class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="toPdf(item)">
+                            <button style="width: 45%;" class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="toPdf(item)">
                               Imprimir
                             </button>
                           </td>
                         </tr>
                       </ng-container>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td ></td>
+                        
+                        <td></td>
+                        <td>
+                         <!--  <button
+                            matTooltip="Agregar al carrito. La información será acumulada si es agregada nuevamente"
+                            matTooltipPosition="above"
+                            class="btn btn-sm text-white bg-naranja font-bold text-uppercase" 
+                            (click)="toRebuy(item)"
+                            style="margin-right: .3rem;"
+                            >
+                            Recomprar
+                          </button> -->
+                          <button *ngIf="!inPromise" style="width: 92%;" class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="goToCar()">
+                            volver al carrito
+                          </button>
+                         
+                        </td>
+                      </tr>
 
                       <ng-container *ngIf="!historialList.length && !inPromise">
                         <tr><td colspan="4" height="80" class="font-italic text-muted text-center"><h5>No existen compras asociados a su cuenta...</h5></td></tr>

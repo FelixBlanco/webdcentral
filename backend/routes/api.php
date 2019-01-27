@@ -17,6 +17,8 @@ Route::group(['prefix' => 'auth'], function() {
 
     Route::group(['middleware' => 'auth:api'], function() {
 
+        Route::post('cambiarStatusOrder','OrderHeaderController@cambiarStatusOrder');
+
         Route::post('crearGaleriaHomeProd', 'GaleriaHomeProductoController@createGaleria');
         Route::delete('borrraGaleriaHomeProd/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@destroy');
 
@@ -79,6 +81,13 @@ Route::group(['prefix' => 'auth'], function() {
         Route::put('cambiarStatus/{idPreguntaFrecuente}', 'PreguntasFrecuenteController@cambiarStatus'); //para cambiar el status
         /* PREGUNTA Y RESPUESTA */
 
+        /* VIDEOS */
+        Route::post('video', 'VideoController@store');
+        Route::put('video/{idVideo}', 'VideoController@update');
+        Route::delete('video/{idVideo}', 'VideoController@destroy');
+        Route::put('video/cambiarStatus/{idVideo}', 'VideoController@cambiarStatus');
+        /* VIDEOS */
+
         /*LOCALES ADHERIDOS*/
         Route::post('guardarLocalAdherido', 'LocalesAdheridoController@store');
         Route::post('listarLocalAdheridos', 'LocalesAdheridoController@listar');
@@ -137,12 +146,21 @@ Route::group(['prefix' => 'auth'], function() {
 
         Route::post('change-password', 'UserController@setClave'); // Cambio de clave
 
+        //Filtrar Pedidos por Estado
+        Route::get('filtrarPedidos/estado/{estado}', 'OrderHeaderController@filtrarPorEstado');
+
+        //Filtrar Pedidos por Fecha
+        Route::get('filtrarPedidos/fecha', 'OrderHeaderController@filtrarPorFecha');
+
     });
 });
 
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
 Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
+
+    Route::get('getProvincia','ProductoController@getProvincia');
+    Route::get('getLocalidadPorProvincia/{provincia}','ProductoController@getLocalidadPorprovincia');
 
     Route::get('getArbolProductos','ProductoController@getArbolProductos');
 
@@ -191,6 +209,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
 
     /*Para camiar el estatus a una suscripcion*/
     Route::put('cambiarStatusSus/{idSuscripcion}', 'SuscripcionController@cambiarStatusSus');
+
+    /*PARA CANCELAR UNA SUSCRIPCION POR TOKEN DE DESACTIVACION*/
+    Route::get('cancelarSuscripcionTocken/{tocken}','SuscripcionController@cancelarSuscripcionTocken');
 
     /*para cancelar una suscripcion*/
     Route::put('cancelarSus/{idSuscripcion}', 'SuscripcionController@cancelarSus');
@@ -414,7 +435,14 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     // Tipos de descuentos 
     Route::get('tipo-descuentos', 'TipoDescuentoController@index');
 
+    Route::resource('secciones-paginas','SeccionesPaginasController');
 
+    Route::get('lista-slide-web','SlideController@listarWeb');
+
+    // Listar videos
+    Route::get('video/listar', 'VideoController@listar');
+
+    Route::post('lista-cupones','CouponsController@listarTodo');
 });
 
 

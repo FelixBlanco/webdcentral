@@ -36,7 +36,7 @@ export class DestacadoInicioComponent implements OnInit {
   ngOnInit() {
     this.setDestacadosList();
 
-    this._color._getColor().subscribe(
+    this._color._paletaColor().subscribe(
       (resp:any) => {
         if(resp){
           this.colorUno = resp.colorOscuro;

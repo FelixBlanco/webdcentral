@@ -16,5 +16,6 @@ class RedesSocial extends Model
         'url_twit',
         'url_inst',
         'url_what',
+        'msj_what',
     ];
 }
