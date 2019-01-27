@@ -103,6 +103,7 @@ class HorarioAtencionController extends Controller
      */
     public function update(Request $request, $id)
     {        
+      
         $this->validate($request, [
             'desde'   => 'required',
             'hasta'    => 'required',

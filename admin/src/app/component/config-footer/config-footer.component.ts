@@ -15,6 +15,7 @@ export class ConfigFooterComponent implements OnInit {
   myForm: FormGroup;
   myFormHorarios: FormGroup;
   myFormHorariosFestivos: FormGroup;
+  myFormHorarioEditar: FormGroup;
   showHorarioRegular:boolean=true;
   ShowHorarioFestivo:boolean=false;
   inPromise: boolean;
@@ -23,6 +24,7 @@ export class ConfigFooterComponent implements OnInit {
   rowsHorarios2: any = [];
   limit: number = 5;  // limites tablas del modal
   horarios: any;
+  horarioElegido:any;
   validator: boolean = false;
   days: Array<string> = ["LUN", "MAR", "MIE", "JUE", "VIE", "SAB", "DOM"];
 
@@ -50,6 +52,7 @@ export class ConfigFooterComponent implements OnInit {
       link_otra_pagina: [''],
       url_app_store: [''],
       url_google_play: [''],
+      reservaMercaderiaHrs: [''],
     })
     this.myFormHorarios = this.fb.group({
       diaRegular: ['', Validators.required],
@@ -61,6 +64,16 @@ export class ConfigFooterComponent implements OnInit {
       desdeFestivo: ['', Validators.required],
       hastaFestivo: ['', Validators.required],
     })
+    this.myFormHorarioEditar = this.fb.group({
+      diaRegularEditar: ['', Validators.required],
+      desdeRegularEditar: ['', Validators.required],
+      hastaRegularEditar: ['', Validators.required],
+    })
+    this.horarioElegido = {
+      TipoDeDia : '',
+      desde: '',
+      hasta: ''
+    }
   }
 
   ngOnInit() {
@@ -89,26 +102,29 @@ export class ConfigFooterComponent implements OnInit {
             link_otra_pagina: resp.link_otra_pagina,
             url_app_store: resp.url_app_store,
             url_google_play: resp.url_google_play,
-            url_mercadopago: resp.url_mercadopago
+            url_mercadopago: resp.url_mercadopago,
+            reservaMercaderiaHrs: resp.url.reservaMercaderiaHrs
 
           })
         }
       }
     )
   }
+
   addHorarios(fecha,desde,hasta,isRegular:boolean) {  // recibimos los datos desde el formulario
-    if(desde>hasta){
+    console.log('holaaa: '+desde.substr(0,2)+' '+hasta.substr(0,2));
+    if(desde.substr(0,2)>hasta.substr(0,2)){
       this._alertService.msg('ERR','horario invalido ');
       return;
     }
     this.inPromiseHorario=true;
     // creamos el string cn el formato Date
-    const dateString=`${fecha}T${desde}`;  
-    const dateString2= `${fecha}T${hasta}`
-    const dateDesde:Date = new Date(dateString); 
-    const dateHasta:Date = new Date(dateString2);
-    console.log(dateDesde);
-    console.log(dateHasta);
+    const dateString=`${fecha}  ${desde}`;  
+    const dateString2= `${fecha}  ${hasta}`
+    //const dateDesde:Date = new Date(dateString); 
+    //const dateHasta:Date = new Date(dateString2);
+    console.log(dateString);
+    console.log(dateString2);
    //  this.rowsHorarios.push(value1);
    // creamos el dato para enviarlo a la bd
     this.horarios ={
@@ -130,7 +146,12 @@ export class ConfigFooterComponent implements OnInit {
 
   set(row: any) { // recibe la fila de los horarios seleccionados en la tabla "horarios"
     this.horarios = row;
-
+    console.log(this.horarios);
+    const id = this.horarios.idHorarioAtencion;
+    this._horariosAtencionService._getHorarioInformacion(id).subscribe(
+      (resp: any) => {
+        this.horarioElegido = resp['busqueda_horario'];
+      });
   }
 
   deleteHorarios() {
@@ -145,6 +166,37 @@ export class ConfigFooterComponent implements OnInit {
 
     )
   }
+
+  editarHorarios(fecha,desde,hasta){
+   
+    
+    if(desde.substr(0,2)>hasta.substr(0,2)){
+      this._alertService.msg('ERR','horario invalido ');
+      return;
+    }
+    this.inPromiseHorario=true;
+    const dateString=`${fecha}  ${desde}`;  
+    const dateString2= `${fecha}  ${hasta}`;
+
+    const id = this.horarios.idHorarioAtencion;
+
+    this.horarios ={
+      desde:dateString,
+      hasta:dateString2,
+    }
+  
+    this._horariosAtencionService._editHorarios(this.horarios,id).subscribe(
+      (resp: any) => {
+        $("#editar").modal('hide');
+        this.getHorarios();
+        this._alertService.msg('OK', resp.msj);
+        this.inPromiseHorario = false;
+      }
+
+    )
+  }
+
+
   getHorarios() {
     console.log("getHorarios");
     this._horariosAtencionService._getHorarios(null).subscribe(
@@ -160,18 +212,27 @@ export class ConfigFooterComponent implements OnInit {
         resp.map((val, i) => {
 
           //Agregaremos el nombre del dia al row de las fechas, esto para mostrar el dia en la vista , LUN,MAR,MIER ...
-          const dateTimeDesde: Date = new Date(val.desde);
+          
+          /*const dateTimeDesde: Date = new Date(val.desde);
           const dateTimeHasta: Date = new Date(val.hasta);
           const diaDesde: string = this.days[dateTimeDesde.getDay() - 1];
-          const diaHasta: string = this.days[dateTimeDesde.getDay() - 1];
-          //dando mejor formato
-          const dateStringDesde = dateTimeDesde.getUTCFullYear() + "/" + (dateTimeDesde.getUTCMonth() + 1) + "/" + dateTimeDesde.getUTCDate() + " " + dateTimeDesde.getHours() + ":" + dateTimeDesde.getUTCMinutes() + ":" + dateTimeDesde.getUTCSeconds();
-          const dateStringHasta = dateTimeHasta.getUTCFullYear() + "/" + (dateTimeHasta.getUTCMonth() + 1) + "/" + dateTimeHasta.getUTCDate() + " " + dateTimeHasta.getHours() + ":" + dateTimeHasta.getUTCMinutes() + ":" + dateTimeHasta.getUTCSeconds();
+          const diaHasta: string = this.days[dateTimeDesde.getDay() - 1];*/
 
-          this.rowsHorarios[i].desde = `${diaDesde} - ${dateStringDesde} Hrs`;this.rowsHorarios2[i].desde = `${diaDesde} - ${dateStringDesde} Hrs`;
-          this.rowsHorarios[i].hasta = `${diaHasta} - ${dateStringHasta} Hrs`;this.rowsHorarios2[i].hasta = `${diaHasta} - ${dateStringHasta} Hrs`;
+          const diaDesde:string = val.desde;
+          const diaHasta:string = val.hasta;  
+          //dando mejor formato
+
+          //const dateStringDesde = dateTimeDesde.getUTCFullYear() + "/" + (dateTimeDesde.getUTCMonth() + 1) + "/" + dateTimeDesde.getUTCDate() + " " + dateTimeDesde.getHours() + ":" + dateTimeDesde.getUTCMinutes() + ":" + dateTimeDesde.getUTCSeconds();
+          //const dateStringHasta = dateTimeHasta.getUTCFullYear() + "/" + (dateTimeHasta.getUTCMonth() + 1) + "/" + dateTimeHasta.getUTCDate() + " " + dateTimeHasta.getHours() + ":" + dateTimeHasta.getUTCMinutes() + ":" + dateTimeHasta.getUTCSeconds();
+
+          //this.rowsHorarios[i].desde = `${diaDesde} - ${dateStringDesde} Hrs`;this.rowsHorarios2[i].desde = `${diaDesde} - ${dateStringDesde} Hrs`;
+          //this.rowsHorarios[i].hasta = `${diaHasta} - ${dateStringHasta} Hrs`;this.rowsHorarios2[i].hasta = `${diaHasta} - ${dateStringHasta} Hrs`;
+          
+          this.rowsHorarios[i].desde =  `${diaDesde} Hrs`;this.rowsHorarios2[i].desde = `${diaDesde} Hrs`;
+          this.rowsHorarios[i].hasta = `${diaHasta}  Hrs`;this.rowsHorarios2[i].hasta = `${diaHasta} Hrs`;
+
           // dateTime.setDate(val.desde); 
-          console.log(dateTimeDesde.getDay());
+          //console.log(dateTimeDesde.getDay());
         })
       })
   

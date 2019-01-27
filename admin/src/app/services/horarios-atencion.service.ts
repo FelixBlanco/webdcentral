@@ -30,6 +30,14 @@ export class HorariosAtencionService {
   _deleteHorarios(data:any){
     return this.http.get(environment.apiHost + '/api/auth/delete-horario-atencion/'+data,httpOptions);
   }
+
+  _editHorarios(data:any,id:any){
+    return this.http.put(environment.apiHost + '/api/auth/horario-atencion/'+id,data,httpOptions);
+  }
+
+  _getHorarioInformacion(data:any){
+    return this.http.get(environment.apiHost + '/api/auth/horario-atencion/'+data,httpOptions);
+  }
 /*   // eliminar clasificados de reclamos
   _deleteClasificadosReclamos(id:number){
     return this.http.delete(environment.apiHost + '/api/auth/borrarClasificadoReclamo/'+id,httpOptions);

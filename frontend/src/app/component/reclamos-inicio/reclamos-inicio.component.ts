@@ -3,6 +3,7 @@ import { ReclamosSugerenciasService } from '../../services/reclamos-sugerencias.
 import { AlertsService } from '../../services/alerts.service'
 import { Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { ConfigColorService } from '../../services/config-color.service';
+import { ClasificacionReclamosService } from '../../services/clasificacion-reclamos.service';
 
 declare var $;
 
@@ -12,11 +13,18 @@ declare var $;
   styleUrls: ['./reclamos-inicio.component.css']
 })
 export class ReclamosInicioComponent implements OnInit {
-  
+  inPromise:boolean = false;
   myForm:FormGroup;
   colorTres:any;
+  fecha:any;
+  listaClasificacionReclamos:any;
   
-  constructor(private _reclamosSugerenciasService: ReclamosSugerenciasService, private _alertService:AlertsService , private fb:FormBuilder,private configColor: ConfigColorService,) {
+  constructor(
+    private _reclamosSugerenciasService: ReclamosSugerenciasService, 
+    private _alertService:AlertsService , 
+    private fb:FormBuilder,
+    private configColor: ConfigColorService,
+    private _clasificacionReclamos: ClasificacionReclamosService) {
     this.myForm = this.fb.group({
       'titulo'      :['',Validators.required],
       'descripcion' :['',Validators.required]
@@ -26,7 +34,19 @@ export class ReclamosInicioComponent implements OnInit {
       (resp:any)=> {
         this.colorTres = resp.colorClaro
       }
-    )    
+    ) 
+    this.inPromise = false;   
+
+    this.fecha = new Date();
+    
+    this._clasificacionReclamos._getClasificacionReclamos().subscribe(resp => {
+      this.listaClasificacionReclamos = resp['clasificados'];
+      console.log(this.listaClasificacionReclamos);
+    });
+
+    
+  
+    
    }
 
   ngOnInit() {}
@@ -41,15 +61,24 @@ export class ReclamosInicioComponent implements OnInit {
   }
   
   addReclamos(){
+    this.inPromise = true;
     const userId = JSON.parse( localStorage.getItem('user_data') ); // recuperamos el id del usuario
     const val = this.myForm.value;
-    const data: any = { titulo: val.titulo, descripcion: val.descripcion, fk_idUser: userId.id, fk_idStatusReclamo: 1 }
+    const numeroTicket = this.generarNumeroTicket();
+    const data: any = { 
+      titulo: val.titulo, 
+      descripcion: val.descripcion,
+      numero_ticket : numeroTicket,
+      fk_idUser: userId.id, 
+      fk_idStatusReclamo: 1 }
     this._reclamosSugerenciasService._addReclamos(data).subscribe(
       (resp:any) => {
         $("#reclamoModel").modal('hide');
         this._alertService.msg('OK',resp.msj); 
+        this.inPromise = false;
       },
       error => {
+        this.inPromise = false;
         if(error.error.errors.titulo != null){
           this._alertService.msg('ERR',error.error.errors.titulo); 
         }
@@ -60,7 +89,21 @@ export class ReclamosInicioComponent implements OnInit {
           this._alertService.msg('ERR',error.message); 
         }              
       }
+      
     )
+  }
+
+
+  generarNumeroTicket(){
+    const dia = this.fecha.getDate();
+    const mes = this.fecha.getMonth()+1;
+    const año = this.fecha.getFullYear();
+    const minutos = this.fecha.getMinutes();
+    const segundos = this.fecha.getSeconds();
+
+    const numeroTicket = "TK-"+dia+mes+año+minutos+segundos;
+    console.log(numeroTicket);
+    return numeroTicket;
   }
 
 }

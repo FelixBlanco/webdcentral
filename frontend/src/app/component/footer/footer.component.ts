@@ -4,6 +4,7 @@ import { ConfigColorService } from '../../services/config-color.service';
 import { ConfigRedesService } from '../../services/config-redes.service'
 import { ClasificadosService } from '../../services/clasificados.service'
 import { LocalesAdheridosService } from '../../services/locales-adheridos.service'
+import { HorarioAtencionServiceService } from '../../services/horario-atencion-service.service'
 
 @Component({
   selector: 'app-footer',
@@ -19,14 +20,22 @@ export class FooterComponent implements OnInit {
   linksR:any = { facebook:'#', instagram: '#', twitter: '#', whatsapp:'#'};
   lista_clasificados:any;
   lista_locales:any;
+  listaHorarios:any;
 
   constructor( 
     private _configFooterService:ConfgFooterService,
     private _color: ConfigColorService,
     private configRedes: ConfigRedesService,
     private clasificadoService:ClasificadosService,
-    private localesAdheridosService:LocalesAdheridosService
-  ) { }
+    private localesAdheridosService:LocalesAdheridosService,
+    private _HorarioAtencionServiceService:HorarioAtencionServiceService
+  ) { 
+    this._HorarioAtencionServiceService._getHorarios(null).subscribe(
+      (resp: any) => {
+        this.listaHorarios = resp;
+        console.log(this.listaHorarios);
+      });
+  }
 
   ngOnInit() {
     
