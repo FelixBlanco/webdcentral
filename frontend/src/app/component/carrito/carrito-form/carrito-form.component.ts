@@ -40,7 +40,7 @@ export class CarritoFormComponent implements OnInit {
   onDomicilioAdd: boolean = false;
   reservaMercaderiaHrs: number;
   check: 'inMarket' | 'delivery' | 'internalDelivery' | 'inMarketForm' = 'inMarket';
-
+  afterToday:string
   actualDate: string;
   twoDaysAfter: string;
   colorUno :any;
@@ -119,10 +119,11 @@ export class CarritoFormComponent implements OnInit {
    
     this.carritoService.orderDetails.subscribe(val => {
       if (val) {
-
+        
         this.detailOrder = val;
         this.pedidoRealizado = val.pedidoRealizado;
         this.recomprarProduct = val.recomprar;
+        
         console.log("detailcompraevent")
         this.routeTo('detalleCompra');
       }
@@ -158,6 +159,8 @@ export class CarritoFormComponent implements OnInit {
     console.log(diasHabiles);
     this.actualDate = moment().toJSON().split('T')[0];
     this.twoDaysAfter = moment().add(diasHabiles, 'days').toJSON().split('T')[0];
+    this.afterToday = moment().add(1, 'days').toJSON().split('T')[0];
+
 
     this.inMarketForm.valueChanges.subscribe(values => {
       //Validación del la fecha de retiro
@@ -182,11 +185,11 @@ export class CarritoFormComponent implements OnInit {
 
     this.orderForm.valueChanges.subscribe(values => {
       //Validación del la fecha de entrega
-      if (values.fecha < this.twoDaysAfter) {
+       if (values.fecha <= this.afterToday) {
         this.orderForm.controls['fecha'].setErrors({ 'error': true });
       } else {
         this.orderForm.controls['fecha'].setErrors(null);
-      }
+      } 
 
       //Por acá se maneja el método de pago y la imagen que se carga
       if (values.metodoDePago === "2" || values.metodoDePago === '3') {
@@ -419,15 +422,15 @@ export class CarritoFormComponent implements OnInit {
       body.append('metodoEntrega', '3');
       body.append('monto_total', total.toString());
       body.append('Domicilio_Entrega', values.domicilioEntrega);
-      body.append('localidad', values.localidad);
-      body.append('Codigo_Postal', values.codigoPostal);
-      body.append('direccion', values.direccion);
+   //   body.append('localidad', values.localidad);
+   //   body.append('Codigo_Postal', values.codigoPostal);
+   //   body.append('direccion', values.direccion);
       body.append('metodoPago', this.metodoDePago);
-      body.append('personasAutorizadas', values.authorizedPerson);
-      body.append('provincia', values.provincia);
-      body.append('telefonoAutorizado', values.telefono);
-      body.append('celularAutorizado', values.celular);
-      body.append('tipoIdentidad', values.identidad);
+   //  body.append('personasAutorizadas', values.authorizedPerson);
+   //  body.append('provincia', values.provincia);
+   //  body.append('telefonoAutorizado', values.telefono);
+   //  body.append('celularAutorizado', values.celular);
+   //  body.append('tipoIdentidad', values.identidad);
 
 
 
@@ -435,16 +438,16 @@ export class CarritoFormComponent implements OnInit {
       if (values.metodoDePago !== 1 && values.metodoDePago !== 4) {
         body.append('comprobanteDepositoTransferencia', this.imgLoaded);
       }
-      if (values.identidad == "DNI") {
+      /* if (values.identidad == "DNI") {
         body.append('DNIautorizado', values.authorizedPersonDni);
       } else {
         console.log("pasaporte");
         body.append('pasarpoteAutorizado', values.authorizedPersonPasaporte);
-      }
+      } */
 
 
     }
-    console.log("test")
+   // console.log("test")
     this.inPromise = true;
     const respOrderHeader = await this.productosService.orderHeader(body).toPromise();
     console.log(respOrderHeader);

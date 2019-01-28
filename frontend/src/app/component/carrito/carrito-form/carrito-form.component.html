@@ -93,7 +93,8 @@
             <tr>
               <th scope="col" width="35%">METODO DE ENTREGA</th>
               <th scope="col" width="35%">METODO DE PAGO</th>
-              <th scope="col" width="30%">FECHA</th>
+              <th *ngIf="detailOrder.metodoEntrega =='inMarketForm' || detailOrder.metodoEntrega =='delivery'" scope="col" width="30%">FECHA</th>
+              <th *ngIf="detailOrder.metodoEntrega =='internalDelivery'" scope="col" width="30%">DOMICILIO DE ENTREGA</th>
             </tr>
           </thead>
           <tbody>
@@ -107,16 +108,19 @@
                 <td>
                   <span class="font-bold">{{detailOrder.metodoDePago || uppercase}}</span>
                 </td>
-                <td>
+                <td *ngIf="detailOrder.metodoEntrega =='inMarketForm' || detailOrder.metodoEntrega =='delivery'">
                     <span class="font-bold">{{detailOrder.fecha | uppercase}}</span>
                 </td>
+                <td *ngIf="detailOrder.metodoEntrega =='internalDelivery'">
+                  <span class=" font-bold">{{detailOrder.domicilio | uppercase}}</span>
+              </td>
               </tr>
             </ng-container>
 
 
           </tbody>
         </table>
-        <table *ngIf="detailOrder.metodoEntrega !='inMarketForm'" class="table table-curved">
+        <table *ngIf="detailOrder.metodoEntrega =='delivery'" class="table table-curved">
             <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
               <tr>
                 <th scope="col" width="23%">LOCALIDAD</th>
@@ -155,7 +159,7 @@
   
             </tbody>
           </table>
-          <table *ngIf="detailOrder.metodoEntrega =='internalDelivery'" class="table table-curved">
+         <!--  <table *ngIf="detailOrder.metodoEntrega =='internalDelivery'" class="table table-curved">
               <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
                 <tr>
                   <th scope="col" width="23%">PROVINCIA</th>
@@ -186,7 +190,7 @@
     
     
               </tbody>
-            </table>
+            </table> -->
       </div>
     </div>
   </ng-container>
@@ -306,7 +310,7 @@
           <label for="fecha" class="text-uppercase font-bold">Fecha</label>
           <input type="date" class="form-control" id="fecha" formControlName="fecha">
           <small class="form-text text-danger" *ngIf="orderForm.get('fecha').invalid">
-            La fecha de entrega debe ser a partir de {{twoDaysAfter | date: 'dd/MM/yyyy'}}
+            La fecha de entrega debe ser a partir de {{afterToday | date: 'dd/MM/yyyy'}}
           </small>
         </div>
         <div class="form-group">
