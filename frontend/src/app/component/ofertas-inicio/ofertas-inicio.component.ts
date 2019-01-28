@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { OfertasInicioService } from '../../services/ofertas-inicio.service'
 import { ConfgFooterService } from '../../services/confg-footer.service'
 import { CuponesService } from '../../services/cupones.service'
+import { ProductosService , Producto } from '../../services/productos.service';
+import { ProductsBehaviorService} from '../../services/products-behavior.service';
+import { Router } from '@angular/router';
 
 declare var $:any;
 
@@ -20,7 +23,10 @@ export class OfertasInicioComponent implements OnInit {
   constructor(
     private ofertaInicio : OfertasInicioService,
     private configFooterService : ConfgFooterService,
-    private cuponesService : CuponesService
+    private cuponesService : CuponesService,
+    private productService: ProductosService,
+    private router: Router,
+    private producBehaviourService: ProductsBehaviorService    
   ) { }
 
   ngOnInit() {
@@ -33,7 +39,6 @@ export class OfertasInicioComponent implements OnInit {
 
     this.configFooterService._getConfigFooter().subscribe(
       (resp:any) => {  
-        console.log('copon', resp)      
         this.uso_cupon = resp.uso_cupon_web    
         this.actCupones();    
       }
@@ -41,8 +46,7 @@ export class OfertasInicioComponent implements OnInit {
   }
 
   actCupones(){    
-    console.log('status uso cupon', this.uso_cupon)
-    if(this.uso_cupon){
+    if(this.uso_cupon == 1){
       this.getCupones();
     }
   }
@@ -59,5 +63,14 @@ export class OfertasInicioComponent implements OnInit {
     this.condiciones = info.base_cond;    
     $('#concionesModal').modal('show');
   }
+
+  goToProduct(prod:any){
+      const producto:Producto= prod.producto;
+      const listProd:Producto[]= [producto];
+      this.router.navigate(['/productos']);
+      setTimeout(() => document.getElementById('productos').scrollIntoView({ behavior: 'smooth' }), 1000);
+      this.producBehaviourService.updateSource(listProd); 
+    }
+  
 
 }

@@ -4,23 +4,31 @@
       
     </div>
   </div>
+</div>
+
+<div class="container">
   <div class="row" style="margin-bottom: 3%;">
-    
-    <!-- ofertas -->
-    <div class="card" style="width: 18rem;" *ngFor="let listOferta of listOfertas">
-      <img src="{{ listOferta.set_imagen }}" class="card-img-top">
-      <div class="card-body">
-        <button class="btn btn-primary justify-content-center" (click)='openCondicion(listOferta)'>Ver condiciones</button>
+    <div class="col-md-3">
+      <!-- ofertas -->
+      <div class="card" *ngFor="let listOferta of listOfertas">
+        <img src="{{ listOferta.set_imagen }}" class="card-img-top" (click)="goToProduct(listOferta)">
+        <div class="card-body">
+          <button class="btn btn-primary justify-content-center" (click)='openCondicion(listOferta)'>Ver condiciones</button>
+        </div>
       </div>
     </div>
 
-    <!-- cupones -->
-    <div class="card" style="width: 18rem;" *ngFor="let listaCupon of lista_cupones">
-      <img src="{{ listaCupon.set_imagen }}" class="card-img-top">
-      <div class="card-body">
-        <button class="btn btn-primary justify-content-center" (click)='openCondicion(listaCupon)'>Ver condiciones</button>
-      </div>
-    </div>    
+    <div class="col-md-3">
+      <!-- cupones -->
+      <div class="card" *ngFor="let listaCupon of lista_cupones">
+        <img src="{{ listaCupon.set_imagen }}" class="card-img-top">
+        <div class="card-body">
+          <button class="btn btn-primary justify-content-center">Obtener</button>
+          <button class="btn btn-primary justify-content-center" (click)='openCondicion(listaCupon)'>Ver condiciones</button>
+        </div>
+      </div>    
+    </div>
+
   </div>
 </div>
 
