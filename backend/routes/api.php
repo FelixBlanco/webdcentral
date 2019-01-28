@@ -82,6 +82,7 @@ Route::group(['prefix' => 'auth'], function() {
         /* PREGUNTA Y RESPUESTA */
 
         /* VIDEOS */
+        Route::get('video','VideoController@listar');
         Route::post('video', 'VideoController@store');
         Route::put('video/{idVideo}', 'VideoController@update');
         Route::delete('video/{idVideo}', 'VideoController@destroy');
