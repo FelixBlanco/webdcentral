@@ -4,9 +4,50 @@
       
     </div>
   </div>
-  <div class="row" *ngFor="let listOferta of listOfertas" style="margin-bottom: 3%;">
-    <div class="col-md-12">
-      <img src="{{ listOferta.set_imagen }}" class="img-fluid d-block mx-auto rounded" style="width:100%; height:400px">
+  <div class="row" style="margin-bottom: 3%;">
+    
+    <!-- ofertas -->
+    <div class="card" style="width: 18rem;" *ngFor="let listOferta of listOfertas">
+      <img src="{{ listOferta.set_imagen }}" class="card-img-top">
+      <div class="card-body">
+        <button class="btn btn-primary justify-content-center" (click)='openCondicion(listOferta)'>Ver condiciones</button>
+      </div>
+    </div>
+
+    <!-- cupones -->
+    <div class="card" style="width: 18rem;" *ngFor="let listaCupon of lista_cupones">
+      <img src="{{ listaCupon.set_imagen }}" class="card-img-top">
+      <div class="card-body">
+        <button class="btn btn-primary justify-content-center" (click)='openCondicion(listaCupon)'>Ver condiciones</button>
+      </div>
+    </div>    
+  </div>
+</div>
+
+
+
+
+<!-- modal -->
+<div class="modal fade" id="concionesModal" tabindex="-1" role="dialog" aria-labelledby="concionesModalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-naranja">
+        <h5 class="modal-title txt-blanco" id="concionesModalTitle">BASE Y CONDICIONES</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="txt-blanco">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">  
+        <P>
+          {{condiciones}}
+        </P>
+      </div>
+      <div class="modal-footer">
+        <ng-container *ngIf="!inPromise">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>          
+        </ng-container>
+        <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner>        
+      </div>
     </div>
   </div>
 </div>
