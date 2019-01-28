@@ -48,8 +48,9 @@ export class ProductosCarouselPageComponent implements OnInit {
     this.items.map((val, i) => {
       val.kiloProdcuto = val.kiloProdcuto.replace('Kilos', 'KG');
       val.kiloProdcuto = val.kiloProdcuto.replace('Gramos', 'GR');
-
-      val.Agrupacion.replace(val.marca, " ");
+      console.log(val.marca);
+      val.Agrupacion= val.Agrupacion.replace(val.marca, "");
+      console.log(val.Agrupacion);
       val.Valoracion_Fabricante = Number(val.Valoracion_Fabricante);
       if (val.Agrupacion.match(val.marca)) {
         console.log(val);
@@ -69,7 +70,7 @@ export class ProductosCarouselPageComponent implements OnInit {
             value.kiloProdcuto = value.kiloProdcuto.replace('Kilos', 'KG');
             value.kiloProdcuto = value.kiloProdcuto.replace('Gramos', 'GR');
             value.Valoracion_Fabricante = Number(value.Valoracion_Fabricante);
-            value.Agrupacion.replace(value.marca, " ");
+            value.Agrupacion=value.Agrupacion.replace(value.marca, "");
           })
           //   console.log(this.products[i]);
           this.products[i].listAgrupacion = val.sort((a, b) => a.volumenToSort - b.volumenToSort);
