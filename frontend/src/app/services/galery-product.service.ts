@@ -14,6 +14,7 @@ export interface GaleryProduct {
     deleted_at;
     fk_idStatusSistema;
     statu: any;
+    idMarca:string
   }
   
 @Injectable({

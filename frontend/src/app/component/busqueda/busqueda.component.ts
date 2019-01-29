@@ -60,13 +60,14 @@ export class BusquedaComponent implements OnInit {
       return;
     }
     //busquedas de marcas
+    this.searchListMarcas=[];
     const search = this.searchForm.value.searchValue;
     let behaviorPromises: Promise<Producto[]>[] = [];
     this.inPromise = true;
     this.marcasServices.getMarcasBy(search).subscribe(resp => {
       if (resp.ok && resp.status === 202) {
         this.searchListMarcas = resp.body;
-        console.log(resp.body);
+        console.log(this.searchListMarcas);
 
       } else {
         this.as.msg("ERR", "Error", "Ha ocurrido un error interno");

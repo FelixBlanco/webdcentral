@@ -7,6 +7,8 @@ import { ProductosService } from 'src/app/services/productos.service';
 import { Router } from '@angular/router';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { ConfigColorService } from '../../services/config-color.service';
+import { GaleryProductService, GaleryProduct } from '../../services/galery-product.service';
+
 import {MarcaComponent} from '../marca/marca.component'
 declare var $;
 @Component({
@@ -16,15 +18,15 @@ declare var $;
 })
 export class MarcasInicioComponent implements OnInit {
 
-  galeryList: any[] ;
+  galeryList: any[]=[] ;
   colorTres:any;
 
   carouselItems: CarouselItem[] = [];
 
   aTimeOutFix: boolean = false;
-  
+  aTimeOutFix2: boolean = false;
   inPromise: boolean;
-
+  marcasList:GaleryProduct[]=[]
   constructor(
     private configColor: ConfigColorService,
     private carouselConfig: NgbCarouselConfig, 
@@ -32,35 +34,60 @@ export class MarcasInicioComponent implements OnInit {
     private productsBehavior: ProductsBehaviorService,
     private marcaService: MarcasService,
     private productosService: ProductosService,
-    private router : Router
+    private router : Router,
+    private galeryMarcasServices: GaleryProductService
   ) { 
     this.carouselConfig.interval = 5000;
     this.carouselConfig.showNavigationArrows = true;
+    
   }
 
   ngOnInit() {
-    this.setRubrosList();
+    this.inPromise=true;
+    this.galeryMarcasServices.getAll().subscribe(val=>{
+      if(val){
+       
+       this.galeryList= val.body.galeria;
+     
+      /*    this.marcasList.map((value,i)=>{
+          this.setMarcasList(value.idMarca,i); // peticiones para cargar el galeryList
+         })
+       */
+      }
+      this.inPromise= false;
+      this.generateCarousel();
+    })
+  //  this.setMarcasList();
    /*  this.configColor._getColor().subscribe(
       (resp:any)=> {
         this.colorTres = resp.colorClaro
       }
     ) */
   }
-  
-  setRubrosList(){
-    this.inPromise = true;
+
+
+  setMarcasList(marca:string,i:number){
+    //this.inPromise = true;
     
-    this.marcaService.getMarcasBy('a').subscribe(resp => {
+    this.marcaService.getMarcasBy(marca).subscribe(resp => {
       if(resp.ok && resp.status === 202){
-        this.galeryList = resp.body;
-        console.log('this.galeryList');
+        this.galeryList.push(resp.body[0]);
+    /*     console.log('this.galeryList');
         console.log(this.galeryList.length);
-        console.log(this.galeryList);
-        this.generateCarousel();
+        console.log(this.galeryList); */
+        //this.generateCarousel();
 
       }else{
-        this.inPromise = false;
+       // this.inPromise = false;
         this.ts.msg("ERR", "Error", "Ha ocurrido un error interno");
+      }
+    //  console.log(i+" position");
+      if(i>=this.marcasList.length-1){ // si ya termino de cargar el galeryList
+        this.inPromise=false;
+     //   console.log("generando carousel marcas")
+        this.generateCarousel();
+
+      
       }
     }, (error) => {
       this.inPromise = false;
@@ -77,19 +104,6 @@ export class MarcasInicioComponent implements OnInit {
     }
 
 
-    /*  let aux: any[] = [];
-e31209333aca1a9385d3c44112f74c15d929550b
-
-    //Para tener solo los items que poseen imagenes
-    this.galeryList.forEach(val => {
-      if(val.WebLink_Rubro){
-        aux.push(val);
-      }
-    });
-
-
-    this.galeryList =  [...aux];  */
-
 
     this.carouselItems = [];
     let index: number = 1;
@@ -100,8 +114,9 @@ e31209333aca1a9385d3c44112f74c15d929550b
     });
     this.inPromise = false;
     //Fix ExpressionChangedAfterItHasBeenCheckedError
-    setTimeout(()=> this.aTimeOutFix = true,1000); // :(
-      console.log(this.carouselItems);
+    setTimeout(()=> {this.aTimeOutFix = true; this.aTimeOutFix2=true;},1000); // :(
+     console.log(this.carouselItems);
+     
   }
 
   isACarruselItem($index): boolean {
@@ -198,6 +213,10 @@ e31209333aca1a9385d3c44112f74c15d929550b
     $('#marcaModal').modal('toggle');
     this.marcaService.updateFromMarcaInicio(true);
   
+  }
+  fixedSelectidSlider(){
+    this.aTimeOutFix2=false;
+    console.log("fixed");
   }
   
 

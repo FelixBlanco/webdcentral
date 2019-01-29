@@ -21,6 +21,7 @@ export class ProductosComponent implements OnInit {
   tittleList: string;
 
   carouselItems: CarouselItem[] = [];
+  list_arbol_p:any;
 
   constructor(
     private productsBehavior: ProductsBehaviorService,
@@ -32,6 +33,7 @@ export class ProductosComponent implements OnInit {
   ngOnInit() {
     this.iniBehavior();
     this.iniTittleBehavior();
+    this.getArbolProductos();
   }
 
   iniTittleBehavior(){
@@ -101,6 +103,14 @@ export class ProductosComponent implements OnInit {
     this.max=Number(max);
     console.log(this.max);
      this.generateCarousel(); 
+  }
+
+  getArbolProductos(){
+    this.productosService._getArbolProductos().subscribe(
+      resp => {
+        this.list_arbol_p = resp;
+      }
+    )
   }
 
 }

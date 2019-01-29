@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService, Producto } from 'src/app/services/productos.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
+import { ConfigColorService } from '../../services/config-color.service';
 
 import { CarritoService, detallesCompra, Item } from 'src/app/services/carrito.service';
 import { AlertsService } from 'src/app/services/alerts.service';
@@ -28,15 +29,23 @@ export class RecomprarInicioComponent implements OnInit {
   productsToParse: Producto[] = [];;
   inPromise: boolean = false;
   orderDetail: detallesCompra;
+  colorUno :any;
   constructor(
     private productosService: ProductosService,
     private carritoService: CarritoService,
     private as: AlertsService,
     private userToken: UserTokenService,
-    private productsBehavior: ProductsBehaviorService
+    private productsBehavior: ProductsBehaviorService,
+    private configColor: ConfigColorService,
+
   ) { }
 
   ngOnInit() {
+    this.configColor._paletaColor().subscribe(
+      (resp:any)=> {
+        this.colorUno  = resp.colorOscuro
+      }
+    )
     this.setHistorial();
     setTimeout(()=> document.getElementById('recomprar').scrollIntoView({behavior: 'smooth'}),1000);
   }

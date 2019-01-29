@@ -15,6 +15,7 @@ class CreateReclamosYSugerenciasTable extends Migration {
             $table->increments('idReclamosSugerencia');
             $table->string('titulo');
             $table->text('descripcion');
+            $table->string('numero_ticket');
             $table->integer('fk_idUser')->unsigned();
             $table->integer('fk_idStatusReclamo')->unsigned();
             $table->timestamps();

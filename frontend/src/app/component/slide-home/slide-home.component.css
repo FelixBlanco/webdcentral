@@ -2,3 +2,6 @@
   height: 850px;
   width: 100%;
 }
+img{
+  cursor: pointer;
+}
