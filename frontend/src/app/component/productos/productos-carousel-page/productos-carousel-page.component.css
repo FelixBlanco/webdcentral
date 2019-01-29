@@ -3,7 +3,7 @@
     border-radius: 5px;
     width: 100%;
 
-    height: 625px;
+    height: 700px;
  }
 .card:hover{
     background-color: rgba(0, 155, 221, 0.308);
@@ -18,9 +18,9 @@
 }
 
  .card .card-body{
-    border-radius: 30% 30% 0 0;
+    border-radius: 20% 20% 0 0;
     background: #DCF5F9;
-    max-height: 57%;
+    max-height: 65%;
     max-width: 100%;
     padding-bottom: 5px;
  }
@@ -30,7 +30,7 @@
     margin: auto;
     padding: 10px;
     text-align: center;
-    max-height: 43%;
+    max-height: 35%;
     width: auto;
     max-width: 100%;
 
@@ -96,5 +96,19 @@ h5{
 }
 .card:hover .disable-star{
     color:gray;
+}
+.price-text{
+    font-size: 0.7em;
+    line-height: 110%;
+    height:1.4em;
+}
+.favorito{
+    border-radius: 50%;
+    border-style: solid 1px;
+    border-color: orange;
+    height: 40px;
+}
+.fav{
+    cursor: pointer;
 }
 
