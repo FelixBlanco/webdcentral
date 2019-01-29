@@ -98,9 +98,14 @@ h5{
     color:gray;
 }
 .price-text{
-    font-size: 0.7em;
-    line-height: 110%;
-    height:1.4em;
+    font-size: 0.6em;
+    line-height: 105%;
+    height:1.2em;
+}
+.price{
+    font-size: 100%;
+
+ 
 }
 .favorito{
     border-radius: 50%;

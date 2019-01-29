@@ -71,6 +71,7 @@ export class GaleryProductComponent implements OnInit {
     this.marcasServices._getMarcas().subscribe(
       (resp:any) =>{
         this.lista_marcas = resp;
+        console.log(resp);
       }
     )
   }

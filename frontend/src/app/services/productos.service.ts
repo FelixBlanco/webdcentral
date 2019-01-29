@@ -37,6 +37,7 @@ export interface Producto{
   Agrupacion:string,
   volumenToSort:number,
   Valoracion_Fabricante:any,
+  stockActual:number
 }
 
 export interface SearchBody{
