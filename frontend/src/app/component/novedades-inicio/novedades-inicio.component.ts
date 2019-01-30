@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { SuscripcionService } from '../../services/suscripcion.service'
 import { AlertsService } from '../../services/alerts.service'
+import { ConfigColorService } from '../../services/config-color.service';
 
 @Component({
   selector: 'app-novedades-inicio',
@@ -13,11 +14,14 @@ export class NovedadesInicioComponent implements OnInit {
   f_sus: FormGroup;
 
   inPromise: boolean;
+  colorTres:any;
+  colorUno:any;
 
   constructor(
     private sus: SuscripcionService,
     private fb: FormBuilder,
-    private ms: AlertsService
+    private ms: AlertsService,
+    private _color: ConfigColorService
     ) { 
       this.f_sus = this.fb.group({
         'novedad' : ['', Validators.email]
@@ -25,6 +29,14 @@ export class NovedadesInicioComponent implements OnInit {
     }
 
   ngOnInit() {
+    this._color._paletaColor().subscribe(
+      (resp:any) => {
+        if(resp){
+          this.colorUno = resp.colorOscuro;
+          this.colorTres = resp.colorClaro;
+        }        
+      }
+    );    
   }
 
   addSus(){

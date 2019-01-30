@@ -30,6 +30,7 @@ export class CarritoComponent implements OnInit {
   pedidoRealizado:boolean =false;
   Numero_Pedido = null;
   token: string;
+  colorTres:any;
 
   constructor(
     private carritoService: CarritoService, 
@@ -45,6 +46,7 @@ export class CarritoComponent implements OnInit {
     this.configColor._paletaColor().subscribe(
       (resp:any)=> {
         this.colorUno  = resp.colorOscuro
+        this.colorTres = resp.colorClaro
       }
     )
     this.carritoService.persistItemsCar();

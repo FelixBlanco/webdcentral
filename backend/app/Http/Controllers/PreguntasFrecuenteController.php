@@ -25,7 +25,7 @@ class PreguntasFrecuenteController extends Controller {
 
         try {
 
-            $PFrec = new PreguntasFrecuente($request->all());
+            $PFrec                     = new PreguntasFrecuente($request->all());
             $PFrec->fk_idUser          = Auth::user()->id;
             $PFrec->fk_idStatusSistema = 1; //para iniciarlo activo
             $PFrec->user;

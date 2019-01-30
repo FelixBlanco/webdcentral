@@ -160,6 +160,8 @@ Route::group([ 'prefix' => 'auth' ], function() {
 
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
+    Route::get('pdf','CouponsController@pdf');
+
     Route::get('getProvincia', 'ProductoController@getProvincia');
     Route::get('getLocalidadPorProvincia/{provincia}', 'ProductoController@getLocalidadPorprovincia');
 

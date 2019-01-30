@@ -50,13 +50,16 @@ export class SlideHomeComponent implements OnInit {
       }
     )
   }
-  goToProduct(prod:any){
-  //  console.log(prod);
-    const producto:Producto= prod.producto;
+  Accion(prod:any){
+    console.log(prod);
+    // redirigir a productos y buscar dicho producto solo si existe
+    if(prod.fk_idProducto){
+         const producto:Producto= prod.producto;
      const listProd:Producto[]= [producto];
     this.router.navigate(['/productos']);
     setTimeout(() => document.getElementById('productos').scrollIntoView({ behavior: 'smooth' }), 1000);
-    this.producBehaviourService.updateSource(listProd); 
+    this.producBehaviourService.updateSource(listProd);  
+    }
   }
 
 }
