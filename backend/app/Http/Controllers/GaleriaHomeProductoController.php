@@ -47,13 +47,13 @@ class GaleriaHomeProductoController extends Controller {
             $this->validate($request, [
                 'titulo'  => 'required',
                 //'imagen' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
-                'linkImg' => 'required',
+                //'linkImg' => 'required',
 
 
             ], [
                 'titulo.required'  => 'El titulo es requerido',
                 //'imagen.required' => 'La imagen es requerida',
-                'linkImg.required' => 'El link es requerido',
+                //'linkImg.required' => 'El link es requerido',
 
             ]);
 
