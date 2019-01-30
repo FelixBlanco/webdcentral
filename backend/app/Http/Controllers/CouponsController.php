@@ -12,10 +12,22 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Image;
+use PDF;
 
-class CouponsController extends Controller {
+class CouponsController extends Controller
+{
     //
-    public function create(Request $request) {
+    public function pdf()
+    {
+        $data = ['title' => 'Welcome'];
+
+        $pdf = PDF::loadView('pdf/index', $data);
+
+        return $pdf->download('a.pdf');
+    }
+
+    public function create(Request $request)
+    {
 
         $this->validate($request, [
             'filename'      => 'image|required|mimes:jpeg,png,jpg,gif,svg',
@@ -42,7 +54,6 @@ class CouponsController extends Controller {
             ], [
                 'monto.required' => 'El campo es requerido',
             ]);
-
         }
 
         if ($request->tipo_descuento == 2) { //promocional
@@ -52,13 +63,12 @@ class CouponsController extends Controller {
             ], [
                 'promo.required' => 'El campo es requerido',
             ]);
-
         }
 
         if ($request->tipo_descuento != 1 && $request->tipo_descuento != 2) {
             $response = [
                 'msj'                => 'El Estatus no existe',
-                'estatusDisponibles' => TipoDescuento::select([ 'idTipoDescuento', 'descripcion' ])->get(),
+                'estatusDisponibles' => TipoDescuento::select(['idTipoDescuento', 'descripcion'])->get(),
             ];
 
             return response()->json($response, 404);
@@ -68,7 +78,7 @@ class CouponsController extends Controller {
 
         $thumbnailImage = Image::make($originalImage);
 
-        $thumbnailImage->fit(750, 880, function($constraint) {
+        $thumbnailImage->fit(750, 880, function ($constraint) {
             $constraint->aspectRatio();
         });
 
@@ -108,7 +118,6 @@ class CouponsController extends Controller {
             ];
 
             return response()->json($response, 201);
-
         } catch (\Exception $e) {
 
             DB::rollback();
@@ -117,11 +126,11 @@ class CouponsController extends Controller {
             return response()->json([
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
             ], 500);
-
         }
     }
 
-    public function _getCodeSys() {
+    public function _getCodeSys()
+    {
 
         $oldCode = 0;
         $rs      = Coupons::orderBy('idCoupons', 'DESC')->first();
@@ -132,7 +141,8 @@ class CouponsController extends Controller {
         return substr(md5($oldCode), 0, 5);
     }
 
-    public function listar(Request $request) {
+    public function listar(Request $request)
+    {
 
         $this->validate($request, [
             'active' => 'required',
@@ -155,7 +165,7 @@ class CouponsController extends Controller {
 
         $result = $Coupons->get();
 
-        $result->each(function($result) {
+        $result->each(function ($result) {
             $result->set_imagen = asset('storage\\coupons\\'.$result->imagen);
         });
 
@@ -167,7 +177,8 @@ class CouponsController extends Controller {
         return response()->json($response, 200);
     }
 
-    public function listarPorId($idCoupons) {
+    public function listarPorId($idCoupons)
+    {
 
         $Coupons = Coupons::where('fk_idSatate', 1)->where('idCoupons', $idCoupons)->first();
 
@@ -179,14 +190,12 @@ class CouponsController extends Controller {
         return response()->json($response, 200);
     }
 
-    public function listarPorIdUsuario($fk_idUser) {
+    public function listarPorIdUsuario($fk_idUser)
+    {
 
-        $Coupons = Coupons::select("*")
-            ->leftjoin("tb_coupons_client", "tb_coupons_client.fk_idcoupons", "=", "tb_coupons.idCoupons")
-            ->where('tb_coupons_client.fk_idSatate', 1)
-            ->where('fk_idUser', $fk_idUser)->get();
+        $Coupons = Coupons::select("*")->leftjoin("tb_coupons_client", "tb_coupons_client.fk_idcoupons", "=", "tb_coupons.idCoupons")->where('tb_coupons_client.fk_idSatate', 1)->where('fk_idUser', $fk_idUser)->get();
 
-        $Coupons->each(function($Coupons) {
+        $Coupons->each(function ($Coupons) {
             $Coupons->set_imagen = asset('storage\\coupons\\'.$Coupons->imagen);
         });
 
@@ -199,7 +208,8 @@ class CouponsController extends Controller {
         return response()->json($response, 200);
     }
 
-    public function obtenerCupon(Request $request) {
+    public function obtenerCupon(Request $request)
+    {
 
         $this->validate($request, [
             'fk_idcoupons' => 'required',
@@ -240,7 +250,8 @@ class CouponsController extends Controller {
         }
     }
 
-    public function chague($idCuponsClient = null) {
+    public function chague($idCuponsClient = null)
+    {
 
         if (is_null($idCuponsClient)) {
             $response = [
@@ -263,7 +274,7 @@ class CouponsController extends Controller {
                     $cupon->fk_idSatate = 2;
                     $cupon->update();
 
-                    $changeUser = New Chage_user([ 'idUser' => Auth::user()->id, 'idCuponsClient' => $idCuponsClient ]);
+                    $changeUser = New Chage_user(['idUser' => Auth::user()->id, 'idCuponsClient' => $idCuponsClient]);
                     $changeUser->save();
 
                     $response = [
@@ -285,7 +296,8 @@ class CouponsController extends Controller {
         }
     }
 
-    public function deleteCuponCliente($id) {
+    public function deleteCuponCliente($id)
+    {
 
         DB::beginTransaction();
 
@@ -310,11 +322,12 @@ class CouponsController extends Controller {
         }
     }
 
-    public function listarTodo() {
+    public function listarTodo()
+    {
 
         $todo = Coupons::where('fk_idSatate', 1)->get();
 
-        $todo->each(function($todo) {
+        $todo->each(function ($todo) {
             if (is_null($todo->imagen)) {
                 $todo->set_imagen = null;
             } else {
@@ -330,7 +343,8 @@ class CouponsController extends Controller {
         return response()->json($response, 201);
     }
 
-    public function updateCupon(Request $request, $idCupons) {
+    public function updateCupon(Request $request, $idCupons)
+    {
         DB::beginTransaction();
         try {
             $cupon = Coupons::findOrFail($idCupons);
@@ -349,7 +363,7 @@ class CouponsController extends Controller {
 
                 $thumbnailImage = Image::make($originalImage);
 
-                $thumbnailImage->fit(750, 880, function($constraint) {
+                $thumbnailImage->fit(750, 880, function ($constraint) {
                     $constraint->aspectRatio();
                 });
 
@@ -385,7 +399,8 @@ class CouponsController extends Controller {
         }
     }
 
-    public function deleteCupon($idCupons = null) {
+    public function deleteCupon($idCupons = null)
+    {
         if (is_null($idCupons)) {
 
             $response = [
@@ -397,7 +412,7 @@ class CouponsController extends Controller {
 
             $cupon = Coupons::findOrFail($idCupons);
 
-            $cupon->fill([ 'fk_idSatate' => 3 ]); //eliminar logicamente
+            $cupon->fill(['fk_idSatate' => 3]); //eliminar logicamente
 
             $response = [
                 'msj' => 'Cupon eliminado exitosamente',
