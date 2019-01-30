@@ -338,7 +338,7 @@ class ProductoController extends Controller {
     }
 
     public static function getAllMarcas() {
-        $response = Producto::select("marca")->where('fk_idSatate', '!=', '3')->groupBy('marca')->orderBy("marca")->get();
+        $response = Producto::select('marca','Weblink_fabricante')->where('fk_idSatate', '!=', '3')->groupBy('marca')->orderBy("marca")->get();
 
         return response()->json($response, 202);
     }

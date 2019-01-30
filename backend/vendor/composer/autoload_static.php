@@ -576,6 +576,7 @@ class ComposerStaticInitbca8e52ff8b58a678231bbef82de6904
         'App\\Mail\\EnviarTokenMail' => __DIR__ . '/../..' . '/app/Mail/EnviarTokenMail.php',
         'App\\Mail\\PagoConTarjetaMail' => __DIR__ . '/../..' . '/app/Mail/PagoConTarjetaMail.php',
         'App\\Mail\\Prueba' => __DIR__ . '/../..' . '/app/Mail/Prueba.php',
+        'App\\Mail\\ReclamosSugerenciasMail' => __DIR__ . '/../..' . '/app/Mail/ReclamosSugerenciasMail.php',
         'App\\Mail\\SuscripcionMail' => __DIR__ . '/../..' . '/app/Mail/SuscripcionMail.php',
         'App\\Mail\\TurnosMail' => __DIR__ . '/../..' . '/app/Mail/TurnosMail.php',
         'App\\Notification' => __DIR__ . '/../..' . '/app/Notification.php',
