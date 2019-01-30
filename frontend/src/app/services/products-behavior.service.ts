@@ -10,6 +10,7 @@ export class ProductsBehaviorService {
     productsItems: Observable<Producto[]> = this.productsSource.asObservable();
 
     productListValue: string;
+    productListValue2:string;
     constructor(private configFooterService: ConfgFooterService){}
 
     updateSource(products: Producto[],index_:number=null): void{
@@ -41,9 +42,12 @@ export class ProductsBehaviorService {
        // console.log(resp);
         if(!resp){
             this.productListValue = "precioL1";
+            this.productListValue2 = "precioL1";
             return;
         }
         this.productListValue = `precioL${!isNaN(resp.listaPrecio) && (resp.listaPrecio >= 1 &&  resp.listaPrecio <= 9)? resp.listaPrecio : 1}`;
+        this.productListValue2 = `precioL${!isNaN(resp.listaPrecioDistribuidor) && (resp.listaPrecioDistribuidor >= 1 &&  resp.listaPrecioDistribuidor <= 9)? resp.listaPrecioDistribuidor : 1}`;
+
     }
 
     /**
@@ -69,6 +73,7 @@ export class ProductsBehaviorService {
 
         products.forEach((product)=> {
             product.defaultPrice = product[this.productListValue];
+            product.defaultPrice2 =product[this.productListValue2]
             if(Number(product.defaultPrice)){//es 0 si viene vacío o null
                 aux.push(product);
             }

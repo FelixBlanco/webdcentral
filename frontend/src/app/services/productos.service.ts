@@ -33,10 +33,12 @@ export interface Producto{
   deleted_at: Date;
   cantidad?: number;
   defaultPrice: string;
+  defaultPrice2:string;
   listAgrupacion:Array<any>,
   Agrupacion:string,
   volumenToSort:number,
   Valoracion_Fabricante:any,
+  stockActual:number
 }
 
 export interface SearchBody{
