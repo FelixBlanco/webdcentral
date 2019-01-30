@@ -48,35 +48,31 @@ export class MarcasInicioComponent implements OnInit {
       if(val){
        
        this.galeryList= val.body.galeria;
-       console.log(this.galeryList);
+        this.kickStatusInactive();
      
-      /*    this.marcasList.map((value,i)=>{
-          this.setMarcasList(value.idMarca,i); // peticiones para cargar el galeryList
-         })
-       */
+   
       }
       this.inPromise= false;
       this.generateCarousel();
     })
-  //  this.setMarcasList();
-   /*  this.configColor._getColor().subscribe(
-      (resp:any)=> {
-        this.colorTres = resp.colorClaro
-      }
-    ) */
+
   }
 
-
+  kickStatusInactive(){
+    this.galeryList.map((val, i) =>{
+      if(val.fk_idStatusSistema == 0){
+       // console.log(val.);
+       this.galeryList.splice(i,1);
+      }
+    })
+  }
   setMarcasList(marca:string,i:number){
     //this.inPromise = true;
     
     this.marcaService.getMarcasBy(marca).subscribe(resp => {
       if(resp.ok && resp.status === 202){
         this.galeryList.push(resp.body[0]);
-    /*     console.log('this.galeryList');
-        console.log(this.galeryList.length);
-        console.log(this.galeryList); */
-        //this.generateCarousel();
+ 
 
       }else{
        // this.inPromise = false;
@@ -140,49 +136,7 @@ export class MarcasInicioComponent implements OnInit {
     return items;
   }
 
-/*  filterProducts(rubro:string){
-    this.rubrosService.updateSource(rubro);
-    this.router.navigate(['/productos']);
-    this.inPromise=true;
-    console.log(rubro);
-    this.rubrosService.updateSource(rubro);
-    const rubros = {rubro: rubro, subRubroA: "", subRubroB: "", searchValue: ""} ;
-   
-    if(!rubros.rubro && !rubros.subRubroA && !rubros.subRubroB){
-      return
-    }
 
-    this.inPromise = true;
-    this.productosService.filter3Pack(rubros).subscribe((resp) => {
-      if(resp.ok && resp.status === 201){
-        this.productsBehavior.updateSource(resp.body.productos);
-        this.router.navigate(['/productos']);
-        setTimeout(()=> document.getElementById('productos').scrollIntoView({behavior: 'smooth'}),1000);    
-        this.setTittleByRubros(rubros);
-      }else{
-        console.error(resp);
-        this.ts.msg('ERR', 'Ha ocurrido un error interno => Filtrar por Rubros');
-      }
-      this.inPromise = false;
-    },error => {
-      console.error(error);
-      this.ts.msg('ERR', 'Ha ocurrido un error interno => Filtrar por Rubros');
-      this.inPromise = false;
-    }); 
-    
-}*/
-/*   setTittleByRubros({rubro,subRubroA, subRubroB}){
-    const rubros = {rubro,subRubroA, subRubroB};
-    const keys: string[] = Object.keys(rubros);
-    let tittle: string = '';
-
-
-    keys.forEach((val,indx) => {
-      tittle = tittle.concat(indx === 0 ? rubros[val] : rubros[val] ? ` / ${rubros[val]}`: '');
-    })
-
-    this.productosService.productosFilterTittleSource.next(tittle);
-  } */
   filter(marca:string){
     
 

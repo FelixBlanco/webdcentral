@@ -71,7 +71,7 @@
                   <p  class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" >PRECIO MAYORISTA:</p><h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class=" price text-center txt-naranja font-bold mt-2"> {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
                 </div>
                 <div class="col-6 text-cont" >
-                  <p class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" >PRECIO DISTRIBUIDOR:</p><h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class="price text-center txt-naranja font-bold mt-2"> {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
+                  <p class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" >PRECIO DISTRIBUIDOR:</p><h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class="price text-center txt-naranja font-bold mt-2"> {{item.defaultPrice2 | currency: 'ARS': '$'}}</h5>
 
                 </div>
               </div>
@@ -107,7 +107,7 @@
               </div>
               <span style="color:green" *ngIf="item.stockActual > 0">En stock</span>
               <span style="color:red"  *ngIf="item.stockActual <= 0">Sin stock</span>
-              <button *ngIf="item.stockActual <= 0" mat-raised-button style="background-color: red" class=" btn-block  text-white" (click)="addItem(item)" >AVISARME</button>
+              <button *ngIf="item.stockActual <= 0" mat-raised-button style="background-color: red" class=" btn-block  text-white"  >AVISARME</button>
               <button *ngIf="item.stockActual > 0" mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">COMPRAR</button>
             </div>
           </div>

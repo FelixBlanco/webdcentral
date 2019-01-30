@@ -33,6 +33,7 @@ export interface Producto{
   deleted_at: Date;
   cantidad?: number;
   defaultPrice: string;
+  defaultPrice2:string;
   listAgrupacion:Array<any>,
   Agrupacion:string,
   volumenToSort:number,
