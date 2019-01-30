@@ -8,6 +8,8 @@ import { RubrosService } from 'src/app/services/rubros.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { Router } from '@angular/router';
 import { parse } from 'url';
+import { ConfigColorService } from '../../services/config-color.service';
+
 declare var $: any;
 @Component({
   selector: 'app-busqueda',
@@ -23,7 +25,8 @@ export class BusquedaComponent implements OnInit {
   searchListRubros:Array<any>;
 
   inPromise: boolean;
-
+  colorUno:any;
+  
   constructor(
     private fb: FormBuilder,
     private productService: ProductosService,
@@ -31,7 +34,8 @@ export class BusquedaComponent implements OnInit {
     private productsBehavior: ProductsBehaviorService,
     private router: Router,
     private marcasServices: MarcasService,
-    private rubroService:RubrosService
+    private rubroService:RubrosService,
+    private _color: ConfigColorService
   ) {
     this.searchForm = this.fb.group({
       searchValue: ['', [Validators.required, Validators.maxLength(50)]]
@@ -51,6 +55,14 @@ export class BusquedaComponent implements OnInit {
       this.searchList = val;
       this.deleteRepeatRubros();
     })
+
+    this._color._paletaColor().subscribe(
+      (resp:any) => {
+        if(resp){
+          this.colorUno = resp.colorOscuro;
+        }        
+      }
+    );    
   }
 
 

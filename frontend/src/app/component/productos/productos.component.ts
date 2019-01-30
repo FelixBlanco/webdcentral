@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { Producto, ProductosService, CarouselItem } from 'src/app/services/productos.service';
+import { ConfigColorService } from '../../services/config-color.service';
 
 @Component({
   selector: 'app-productos',
@@ -22,12 +23,23 @@ export class ProductosComponent implements OnInit {
 
   carouselItems: CarouselItem[] = [];
   list_arbol_p:any;
+  colorUno:any;
+  colorTres:any;
 
   constructor(
     private productsBehavior: ProductsBehaviorService,
-    private productosService: ProductosService
+    private productosService: ProductosService,
+    private _color: ConfigColorService
   ) { 
     this.pages = 0;
+    this._color._paletaColor().subscribe(
+      (resp:any) => {
+        if(resp){
+          this.colorUno = resp.colorOscuro;
+          this.colorTres = resp.colorClaro;
+        }        
+      }
+    );    
   }
 
   ngOnInit() {
