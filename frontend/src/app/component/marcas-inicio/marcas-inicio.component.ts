@@ -48,6 +48,7 @@ export class MarcasInicioComponent implements OnInit {
       if(val){
        
        this.galeryList= val.body.galeria;
+       console.log(this.galeryList);
      
       /*    this.marcasList.map((value,i)=>{
           this.setMarcasList(value.idMarca,i); // peticiones para cargar el galeryList
