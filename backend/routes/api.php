@@ -446,6 +446,11 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('video/listar', 'VideoController@listar');
 
     Route::post('lista-cupones', 'CouponsController@listarTodo');
+
+    // Productos Favoritos
+    Route::post('agregarProductoFavorito', 'ProductoFavoritoController@store');
+    Route::post('eliminarProductoFavorito', 'ProductoFavoritoController@destroy');
+    Route::get('listarProductosFavoritos/{idPerfilCliente}', 'ProductoFavoritoController@listar');
 });
 
 
