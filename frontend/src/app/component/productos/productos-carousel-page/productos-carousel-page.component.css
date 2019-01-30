@@ -116,4 +116,7 @@ h5{
 .fav{
     cursor: pointer;
 }
+.text-cont p, h5{
+    width: 100%;
+}
 
