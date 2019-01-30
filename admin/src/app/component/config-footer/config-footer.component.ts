@@ -80,7 +80,6 @@ export class ConfigFooterComponent implements OnInit {
 
     ngOnInit() {
         this.getConfigFooter();
-
     }
 
     getConfigFooter() {

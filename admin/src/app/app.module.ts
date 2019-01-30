@@ -61,6 +61,7 @@ import { AuthGuard } from './services/auth.guard';
 import { MaterialUiModule } from './material-ui.module';
 
 import { ClasificadoReclamoComponent } from './component/clasificado-reclamo/clasificado-reclamo.component';
+import { VideosComponent } from './component/videos/videos.component';
 
 
 
@@ -114,7 +115,7 @@ import { ClasificadoReclamoComponent } from './component/clasificado-reclamo/cla
     RegistroComponent,
     PageComponent,
     PrincipalComponent,  
-    ClasificadoReclamoComponent
+    ClasificadoReclamoComponent, VideosComponent
   ],
   imports: [
     BrowserModule,

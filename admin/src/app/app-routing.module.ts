@@ -27,6 +27,7 @@ import { ClasificadoReclamoComponent } from './component/clasificado-reclamo/cla
 import { RegistroComponent } from './component/registro/registro.component';
 import { PageComponent } from './component/layout/page/page.component';
 import { PrincipalComponent } from './component/layout/principal/principal.component';
+import { VideosComponent } from './component/videos/videos.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -58,7 +59,8 @@ const routes: Routes = [
       { path: 'blog', component: BlogComponent, canActivate: [AuthGuard] },
       { path: 'locales-adheridos', component: LocalesAdheridosComponent, canActivate: [AuthGuard] },
       { path: 'clasificadoReclamo', component: ClasificadoReclamoComponent},      
-      { path: 'Cupones', component: CuponsappComponent},      
+      { path: 'Cupones', component: CuponsappComponent},   
+      { path: 'Videos', component: VideosComponent}   
     ]
   }, 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
