@@ -12,6 +12,7 @@
           <h5 *ngSwitchCase="'howto'" class="modal-title text-uppercase font-bold text-white mt-1" id="ayudaLabel">¿cómo usar la plataforma?</h5>
           <h5 *ngSwitchCase="'contacts'" class="modal-title text-uppercase font-bold text-white mt-1" id="ayudaLabel">contáctanos</h5>
           <h5 *ngSwitchCase="'whereare'" class="modal-title text-uppercase font-bold text-white mt-1" id="ayudaLabel">¿Donde estamos?</h5>
+          <h5 *ngSwitchCase="'video'" class="modal-title text-uppercase font-bold text-white mt-1" id="videoLabel">{{titulo_video}}</h5>
         </ng-container>
         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -76,10 +77,16 @@
           </ng-container>
 
           <ng-container *ngSwitchCase="'howto'">
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-            </div>
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor='let video of videos' (click)="routeToVideo('video',video)">{{video.titulo}}</li>
+            </ul>
           </ng-container>
+
+          <ng-container *ngSwitchCase="'video'">
+            <div class="embed-responsive embed-responsive-16by9">                            
+              <iframe class="embed-responsive-item" [src]='setUrl(urlVideo)' allowfullscreen></iframe>
+            </div>
+          </ng-container>          
 
           <ng-container *ngSwitchCase="'contacts'">
             <ng-container *ngIf="footerConfig">

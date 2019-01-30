@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfgFooterService } from 'src/app/services/confg-footer.service';
+import { VideosService } from '../../services/videos.service'
+import { DomSanitizer } from '@angular/platform-browser'
+
+declare var $:any;
 
 @Component({
   selector: 'app-ayuda',
@@ -8,13 +12,21 @@ import { ConfgFooterService } from 'src/app/services/confg-footer.service';
 })
 export class AyudaComponent implements OnInit {
 
-  section: 'home' | 'questions' | 'howto' | 'contact' | 'whereare';
+  section: 'home' | 'questions' | 'howto' | 'contact' | 'whereare' | 'video';
   footerConfig: any;
-
+  videos: any;
   lat: number;
   lng: number;
-  constructor(private footerConfigService: ConfgFooterService) {
+  urlVideo : any;
+  titulo_video: any;
+
+  constructor(
+    private footerConfigService: ConfgFooterService,
+    private videoService : VideosService,
+    private sanitizer: DomSanitizer
+  ) {
     this.getConfigFooter();
+    this.getVideos();
   }
 
   ngOnInit() {
@@ -26,8 +38,14 @@ export class AyudaComponent implements OnInit {
    this.section = 'home';
   }
 
-  routeTo(section : 'home' | 'questions' | 'howto' | 'contact' | 'whereare'){
+  routeTo(section : 'home' | 'questions' | 'howto' | 'contact' | 'whereare' | 'video'){
     this.section = section;
+  }
+
+  routeToVideo(section : 'home' | 'questions' | 'howto' | 'contact' | 'whereare' | 'video',itemVideo:any){
+    this.titulo_video = itemVideo.titulo;
+    this.urlVideo     = itemVideo.url;
+    this.section      = section;
   }
 
   getConfigFooter(){
@@ -42,4 +60,16 @@ export class AyudaComponent implements OnInit {
     })
   }
   
+  getVideos(){
+    this.videoService._getListaVideos().subscribe(
+      (resp:any) => {
+        this.videos = resp.PFrec;
+      }
+    )
+  }
+
+  setUrl(url:string){
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
 }
