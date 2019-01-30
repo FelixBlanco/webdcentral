@@ -153,6 +153,10 @@ Route::group([ 'prefix' => 'auth' ], function() {
         //Filtrar Pedidos por Fecha
         Route::get('filtrarPedidos/fecha', 'OrderHeaderController@filtrarPorFecha');
 
+        /* PRODUCTOS FAVORITOS */
+        Route::post('agregarProductoFavorito', 'ProductoFavoritoController@store');
+        Route::post('eliminarProductoFavorito', 'ProductoFavoritoController@destroy');
+        /* PRODUCTOS FAVORITOS */
     });
 });
 
@@ -448,8 +452,6 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::post('lista-cupones', 'CouponsController@listarTodo');
 
     // Productos Favoritos
-    Route::post('agregarProductoFavorito', 'ProductoFavoritoController@store');
-    Route::post('eliminarProductoFavorito', 'ProductoFavoritoController@destroy');
     Route::get('listarProductosFavoritos/{idPerfilCliente}', 'ProductoFavoritoController@listar');
 });
 
