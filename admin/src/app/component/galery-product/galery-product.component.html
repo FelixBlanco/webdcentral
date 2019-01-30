@@ -41,7 +41,7 @@
               </ngx-datatable-column>           
               <ngx-datatable-column name="Imagen" prop="set_imagen">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                    <img class="clickeable" [src]="row.set_imagen" alt="{{row.title}}" width="70" (click)="showImage(row)">
+                    <img class="clickeable" [src]="row.linkImg" alt="{{row.title}}" width="70" (click)="showImage(row)">
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Estatus" prop="fk_idStatusSistema">
@@ -123,14 +123,14 @@
           </div>
           <div class="form-group">
             <label for="idMarca">Marcas:</label>
-            <select formControlName="idMarca" class="form-control" id="idMarca">
-              <option *ngFor='let m of lista_marcas' [value]="m.marca">{{m.marca}}</option>
+            <select formControlName="idMarca" class="form-control" id="idMarca" (change)="marcaSelected()">
+              <option *ngFor='let m of lista_marcas; let i = index' [value]="i">{{m.marca}}</option>
             </select>
           </div>          
-          <div class="form-group">
+         <!--  <div class="form-group">
             <label for="respuesta">Imagen del Slide:</label>
             <input #image type="file" (change)="onFileChange($event)" >
-          </div>
+          </div> -->
         </form>
       </div>
       <div class="modal-footer">
@@ -176,7 +176,7 @@
       </div>
       <div class="modal-body">
         <div style="width: 100%; text-align: center">
-          <img *ngIf="galeriaSet" [src]="galeriaSet.set_imagen" width="300" alt="">
+          <img *ngIf="galeriaSet" [src]="galeriaSet.linkImg" width="300" alt="">
         </div>
       </div>
       <div class="modal-footer">
