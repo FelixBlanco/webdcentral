@@ -45,13 +45,13 @@ class GaleriaHomeProductoController extends Controller {
         if (Auth::user()->fk_idPerfil == 1) {
 
             $this->validate($request, [
-                'titulo'  => 'required',
+                'titulo' => 'required',
                 //'imagen' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
                 //'linkImg' => 'required',
 
 
             ], [
-                'titulo.required'  => 'El titulo es requerido',
+                'titulo.required' => 'El titulo es requerido',
                 //'imagen.required' => 'La imagen es requerida',
                 //'linkImg.required' => 'El link es requerido',
 
@@ -99,8 +99,9 @@ class GaleriaHomeProductoController extends Controller {
                     'msj'         => 'Galeria guardada exitosamente',
                     'id_dataBase' => $imagemodel->idGaleriaHomeProducto,
                     'calidad'     => '2048*2048',
-                    'size'        => $size = (Storage::size('\\galeriaProductos\\'.$nombre_interno) / 1000000).' Mb',
-                    'name'        => 'storage\\galeriaProductos\\'.$nombre_interno,
+                    'urlIMG'      => $imagemodel->linkImg
+                    //'size'        => $size = (Storage::size('\\galeriaProductos\\'.$nombre_interno) / 1000000).' Mb',
+                    //'name'        => 'storage\\galeriaProductos\\'.$nombre_interno,
                 ];
 
                 return response()->json($response, 201);
