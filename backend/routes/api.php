@@ -11,13 +11,13 @@
 |
 */
 
-Route::group(['prefix' => 'auth'], function() {
+Route::group([ 'prefix' => 'auth' ], function() {
 
     Route::post('login', 'API\AuthController@login'); //logear
 
-    Route::group(['middleware' => 'auth:api'], function() {
+    Route::group([ 'middleware' => 'auth:api' ], function() {
 
-        Route::post('cambiarStatusOrder','OrderHeaderController@cambiarStatusOrder');
+        Route::post('cambiarStatusOrder', 'OrderHeaderController@cambiarStatusOrder');
 
         Route::post('crearGaleriaHomeProd', 'GaleriaHomeProductoController@createGaleria');
         Route::delete('borrraGaleriaHomeProd/{idGaleriaHomeProducto}', 'GaleriaHomeProductoController@destroy');
@@ -157,23 +157,23 @@ Route::group(['prefix' => 'auth'], function() {
 
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
-Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
+Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
-    Route::get('getProvincia','ProductoController@getProvincia');
-    Route::get('getLocalidadPorProvincia/{provincia}','ProductoController@getLocalidadPorprovincia');
+    Route::get('getProvincia', 'ProductoController@getProvincia');
+    Route::get('getLocalidadPorProvincia/{provincia}', 'ProductoController@getLocalidadPorprovincia');
 
-    Route::get('getArbolProductos','ProductoController@getArbolProductos');
+    Route::get('getArbolProductos', 'ProductoController@getArbolProductos');
 
-    Route::get('activarCuenta/{TokenActivacion}','UserController@ActivarCuenta');
+    Route::get('activarCuenta/{TokenActivacion}', 'UserController@ActivarCuenta');
 
-    Route::post('agregarDuracion/{idUser}','NotificacionDuracionAlimentoController@agregarDuracion');
-    Route::post('agregarFechaRecordatorio/{idDuracionAlimentos}','NotificacionDuracionAlimentoController@agregarFechaRecordatorio');
-    Route::get('getTodasDuracionesClientes','NotificacionDuracionAlimentoController@getTodo');
-    Route::put('editarParametrosDuracion/{idDuracionAlimentos}','NotificacionDuracionAlimentoController@editar');
+    Route::post('agregarDuracion/{idUser}', 'NotificacionDuracionAlimentoController@agregarDuracion');
+    Route::post('agregarFechaRecordatorio/{idDuracionAlimentos}', 'NotificacionDuracionAlimentoController@agregarFechaRecordatorio');
+    Route::get('getTodasDuracionesClientes', 'NotificacionDuracionAlimentoController@getTodo');
+    Route::put('editarParametrosDuracion/{idDuracionAlimentos}', 'NotificacionDuracionAlimentoController@editar');
 
 
     /* PARA SABER EL ID DEL PERFILCLIENTE DE UN USUARIO */
-    Route::get('retornarIdDelPerfil/{idUser?}','PerfilClientesController@retornarIdDelPerfil');
+    Route::get('retornarIdDelPerfil/{idUser?}', 'PerfilClientesController@retornarIdDelPerfil');
 
     Route::get('listarPorIdClasificado/{fk_idClasificado}', 'LocalesAdheridoController@listarPorIdClasificado');
 
@@ -211,7 +211,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     Route::put('cambiarStatusSus/{idSuscripcion}', 'SuscripcionController@cambiarStatusSus');
 
     /*PARA CANCELAR UNA SUSCRIPCION POR TOKEN DE DESACTIVACION*/
-    Route::get('cancelarSuscripcionTocken/{tocken}','SuscripcionController@cancelarSuscripcionTocken');
+    Route::get('cancelarSuscripcionTocken/{tocken}', 'SuscripcionController@cancelarSuscripcionTocken');
 
     /*para cancelar una suscripcion*/
     Route::put('cancelarSus/{idSuscripcion}', 'SuscripcionController@cancelarSus');
@@ -294,7 +294,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     // Config Footer
     Route::get('config-footer', 'ConfigFooterController@getInfo')->name('config-footer');
     Route::post('update-config-footer', 'ConfigFooterController@updateInfo')->name('update-config-footer');
-    Route::post('imagenes_footer','ConfigFooterController@addImgenes');
+    Route::post('imagenes_footer', 'ConfigFooterController@addImgenes');
 
     // Conexion External SYS //
     Route::post('get/order/bydriver', 'OrderDriverController@getAllByEmailDriver');
@@ -435,14 +435,14 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function() {
     // Tipos de descuentos 
     Route::get('tipo-descuentos', 'TipoDescuentoController@index');
 
-    Route::resource('secciones-paginas','SeccionesPaginasController');
+    Route::resource('secciones-paginas', 'SeccionesPaginasController');
 
-    Route::get('lista-slide-web','SlideController@listarWeb');
+    Route::get('lista-slide-web', 'SlideController@listarWeb');
 
     // Listar videos
     Route::get('video/listar', 'VideoController@listar');
 
-    Route::post('lista-cupones','CouponsController@listarTodo');
+    Route::post('lista-cupones', 'CouponsController@listarTodo');
 });
 
 

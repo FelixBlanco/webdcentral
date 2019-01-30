@@ -756,14 +756,15 @@ class ProductoController extends Controller {
 
         try {
             $rs = null;
-            $rs = DB::connection('sqlsrv')->select("  SELECT Atributo_TablaGenerica,Descripcion_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ) AS  Dato_TablaGenerica
-            FROM VistaProductosTagsAPP 
-            GROUP BY Atributo_TablaGenerica, Descripcion_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ),agrupacion
-            ORDER BY Atributo_TablaGenerica, Descripcion_TablaGenerica,Dato_TablaGenerica
+            $rs = DB::connection('sqlsrv')->select("SELECT TOP 2 Atributo_TablaGenerica,Descripcion_TablaGenerica, 
+                    CAST (Dato_TablaGenerica as VARCHAR ) AS  Dato_TablaGenerica
+                    FROM VistaProductosTagsAPP 
+                    GROUP BY Atributo_TablaGenerica, Descripcion_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ),agrupacion
+                    ORDER BY Atributo_TablaGenerica, Descripcion_TablaGenerica,Dato_TablaGenerica
             ");
 
             if ($rs) {
-                return response()->json($rs, 200);
+                return response()->json(self::getHijosTablaGenerica($rs), 200);
             } else {
                 return response()->json("No existe contenido ", 204);
             }
@@ -772,6 +773,22 @@ class ProductoController extends Controller {
 
             return response()->json("Error conectando a el DC", 500);
         }
+    }
+
+    public static function getHijosTablaGenerica($sql) {
+        $i=0;
+            foreach ($sql as $sqls){
+                $rs = DB::connection('sqlsrv')->select("SELECT Atributo_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ) AS  Dato_TablaGenerica
+                    FROM VistaProductosTagsAPP 
+                    WHERE Descripcion_TablaGenerica='".$sqls->Descripcion_TablaGenerica."'
+                    GROUP BY Atributo_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ),agrupacion
+                    ORDER BY Atributo_TablaGenerica,Dato_TablaGenerica
+                ");
+
+                $sql[$i]->hijos=$rs;
+                $i++;
+            }
+            return $sql;
     }
 
     public function getProvincia() {
