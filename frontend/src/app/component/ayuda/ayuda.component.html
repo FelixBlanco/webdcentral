@@ -2,7 +2,7 @@
 <div class="modal fade" id="ayudaModal" tabindex="-1" role="dialog" aria-labelledby="ayudaLabel" aria-hidden="true">
   <div class="modal-dialog" role="document" [ngClass]="(section !== 'contacts') ?  'modal-lg': ''">
     <div class="modal-content">
-      <div class="modal-header bg-azul">
+      <div class="modal-header bg-azul" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
         <button class="btn btn-link text-white" *ngIf="section !== 'home'" (click)="routeTo('home')">
             <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
         </button>
@@ -34,7 +34,7 @@
                     <h6 class="text-center font-bold txt-naranja text-uppercase">preguntas frecuentes</h6>
                     <img src="assets/ayuda/icono_preguntas.png" alt="preguntas frecuentes"/>
                   </div>
-                  <button class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1" (click)="routeTo('questions')">
+                  <button class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }" (click)="routeTo('questions')">
                     seleccionar
                   </button>
                 </div>
@@ -49,7 +49,7 @@
                     <h6 class="text-center font-bold txt-naranja text-uppercase">¿cómo utilizar la plataforma?</h6>
                     <img src="assets/ayuda/icono_usar_plataforma.png" alt="como utilizar"/>
                   </div>
-                  <button class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1" (click)="routeTo('howto')">
+                  <button class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }" (click)="routeTo('howto')">
                     seleccionar
                   </button>
                 </div>
@@ -61,10 +61,10 @@
                       </div>
                     </div>
                     <div class="container-figure mt-4 rounded">
-                      <h6 class="text-center font-bold txt-naranja text-uppercase">contáctanos</h6>
+                      <h6 class="text-center font-bold text-uppercase" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }">contáctanos</h6>
                       <img src="assets/ayuda/icono_contacto.png" alt="contactanos"/>
                     </div>
-                    <button class="btn btn-block bg-naranja text-white font-bold text-uppercase mt-1" (click)="routeTo('contacts')">
+                    <button class="btn btn-block text-white font-bold text-uppercase mt-1"[ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }" (click)="routeTo('contacts')">
                       seleccionar
                     </button>
                 </div>

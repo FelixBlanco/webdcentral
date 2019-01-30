@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from 'src/app/services/blog.service';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { ConfigColorService } from '../../services/config-color.service';
 
 declare var $:any;
 @Component({
@@ -20,11 +21,21 @@ export class BlogComponent implements OnInit {
 
   inPromise: boolean;
   inBatch: number;
+  colorUno: any;
 
   constructor(
     private blogService: BlogService,
-    private as: AlertsService
-  ) { }
+    private as: AlertsService,
+    private configColor: ConfigColorService
+  ) { 
+
+    this.configColor._paletaColor().subscribe(
+      (resp:any)=> {
+        this.colorUno = resp.colorOscuro
+      }
+    )  
+
+  }
 
   ngOnInit() {
     this.getAllCategories();

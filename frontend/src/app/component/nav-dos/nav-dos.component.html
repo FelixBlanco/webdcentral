@@ -24,7 +24,12 @@
           <li class="nav-item txt-gris">
             <a href="#" class="nav-link" data-toggle="modal" data-target="#marcaModal">MARCAS</a>
           </li>
-          <!-- <li class="nav-item dropdown txt-gris">
+
+          <li class="nav-item txt-gris">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#serviciosConstruccionModal">SERVICIOS</a>
+          </li>
+
+          <!-- <li class="nav-item dropdown txt-gris" >
             <span href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">SERVICIOS</span>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -53,4 +58,28 @@
     </div>
   </div>
 
+</div>
+
+
+<!-- Nodal de Salir -->
+<div class="modal fade" id="serviciosConstruccionModal" tabindex="-1" role="dialog" aria-labelledby="serviciosConstruccionModalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-naranja">
+        <h5 class="modal-title txt-blanco" id="serviciosConstruccionModalTitle">Disculpe</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="txt-blanco">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">  
+        <h4 class="text-center">Esta seccion esta en construccion</h4>
+      </div>
+      <div class="modal-footer">
+        <ng-container *ngIf="!inPromise">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>    
+        </ng-container>
+        <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner>        
+      </div>
+    </div>
+  </div>
 </div>

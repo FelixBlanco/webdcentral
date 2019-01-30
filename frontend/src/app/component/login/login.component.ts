@@ -3,6 +3,7 @@ import {LoginService} from '../../services/login.service';
 import {AlertsService} from '../../services/alerts.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import { UserTokenService, UserData } from 'src/app/services/user-token.service';
+import { ConfigColorService } from '../../services/config-color.service';
 
 declare var $: any;
 
@@ -16,17 +17,24 @@ export class LoginComponent implements OnInit {
     email: any;
     password: any;
     errors: any;
-
+    colorUno:any;
     inPromise: boolean;
 
     constructor(
         private _loginService: LoginService,
         private _alertService: AlertsService,
         private userToken: UserTokenService,
-        private router: Router
+        private router: Router,
+        private configColor: ConfigColorService,
     ) { }
 
     ngOnInit() {
+
+        this.configColor._paletaColor().subscribe(
+            (resp:any)=> {
+                this.colorUno = resp.colorOscuro
+            }
+        )          
     }
 
     ingresarLogin() {

@@ -1,7 +1,7 @@
 <div class="modal fade" id="contactanosModal" tabindex="-1" role="dialog" aria-labelledby="contactanosModalTitle" aria-hidden="true">
     <div class="modal-dialog" [ngClass]="(section !== 'contacts') ?  'modal-lg': ''" role="document">
       <div class="modal-content">
-        <div class="modal-header bg-azul">
+        <div class="modal-header" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
             <button class="btn btn-link text-white" *ngIf="section !== 'contacts'" (click)="routeTo('contacts')">
                 <fa-icon [icon]="['fa', 'arrow-left']"></fa-icon>
             </button>
@@ -48,7 +48,7 @@
                   </div>
                 </div>
               </ng-container>
-              <button class="btn btn-success btn-green btn-block font-bold text-uppercase" id='btn_contactanos' (click)="routeTo('whereare')">
+              <button class="btn btn-green btn-block font-bold text-uppercase" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#01703A' }" id='btn_contactanos' (click)="routeTo('whereare')">
                 donde estamos
               </button>
             </ng-container>

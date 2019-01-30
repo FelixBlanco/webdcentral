@@ -1,7 +1,7 @@
 
 <mat-spinner *ngIf="!rubrosList.length" [diameter]="80" style="margin: 0 auto;"></mat-spinner>
 <ng-container *ngIf="rubrosList.length">
-    <p class="bg-naranja rounded text-white p-2">FILTROS</p>
+    <p class="rounded text-white p-2" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">FILTROS</p>
     <form [formGroup]="filterForm">
         <div class="row">
             <div class="col">
@@ -46,7 +46,7 @@
             </div>
         </div>
     </form>
-    <button class="btn bg-naranja text-white btn-block font-bold" (click)="filterProducts()" [disabled]="someAreEmpty() || inPromise">
+    <button class="btn text-white btn-block font-bold" (click)="filterProducts()" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }" [disabled]="someAreEmpty() || inPromise">
         BUSCAR
     </button>
     <button class="btn btn-link btn-block font-bold" (click)="clearFilters()" [disabled]="someAreEmpty()">

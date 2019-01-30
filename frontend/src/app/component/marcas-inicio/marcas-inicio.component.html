@@ -57,8 +57,8 @@
            
               <button mat-icon-button *ngFor="let item of carouselItems" [id]="item.id" (click)="carousel.select(item.id)">
                 <ng-container [ngSwitch]="carousel.activeId">
-                  <fa-icon *ngSwitchCase="item.id.toString()" class="txt-naranja" [icon]="['fas','circle']" size="1x"></fa-icon>
-                  <fa-icon *ngSwitchDefault class="txt-naranja" [icon]="['far','circle']" size="1x"></fa-icon>
+                  <fa-icon *ngSwitchCase="item.id.toString()" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }" [icon]="['fas','circle']" size="1x"></fa-icon>
+                  <fa-icon *ngSwitchDefault [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }" [icon]="['far','circle']" size="1x"></fa-icon>
                 </ng-container>
               </button>
             </div>

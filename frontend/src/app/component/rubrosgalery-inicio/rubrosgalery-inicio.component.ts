@@ -44,8 +44,6 @@ export class RubrosgaleryInicioComponent implements OnInit {
         this.colorTres = resp.colorClaro
       }
     )
-
-    console.log('aqui esta el color', this.colorTres)
   }
 
   setRubrosList(){
@@ -54,9 +52,6 @@ export class RubrosgaleryInicioComponent implements OnInit {
     this.rubrosService.getRubros().subscribe(resp => {
       if(resp.ok && resp.status === 202){
         this.galeryList = resp.body;
-        console.log('this.galeryList');
-        console.log(this.galeryList.length);
-        console.log(this.galeryList);
         this.generateCarousel();
 
       }else{

@@ -56,6 +56,12 @@ export class MarcasInicioComponent implements OnInit {
       this.generateCarousel();
     })
 
+    this.configColor._paletaColor().subscribe(
+      (resp:any) => {
+        this.colorTres = resp.colorClaro
+      }
+    )   
+
   }
 
   kickStatusInactive(){
