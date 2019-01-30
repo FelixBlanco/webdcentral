@@ -71,8 +71,8 @@ class VideoController extends Controller
             'titulo'  => 'required',
             'url' => 'required',
         ], [
-            'titulo.required'  => 'El titulo del video es requerida',
-            'url.required' => 'La Url del video es requerida',
+            'titulo.required'  => 'El titulo del video es requerido',
+            'url.required' => 'La Url del video es requerido',
         ]);
 
         DB::beginTransaction();
@@ -84,7 +84,7 @@ class VideoController extends Controller
 
             $response = [
                 'msj'                  => 'Info actulizada',
-                'pregunta_y_respuesta' => $videoRec,
+                'video' => $videoRec,
             ];
 
             $videoRec->save();
@@ -202,8 +202,8 @@ class VideoController extends Controller
         });
 
         $response = [
-            'msj'   => 'Lista de Preguntas y respuestas',
-            'PFrec' => $videoRec,
+            'msj'   => 'Lista de Videos',
+            'videos' => $videoRec,
         ];
 
         return response()->json($response, 202);
