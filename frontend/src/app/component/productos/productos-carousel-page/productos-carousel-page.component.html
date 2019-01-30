@@ -16,7 +16,7 @@
               <h6 *ngIf="item.Agrupacion" class="card-title text-center txt-azul font-bold">
                 {{item.Agrupacion}}
               </h6>
-              <h6 *ngIf="!item.Agrupacion" class="card-title text-center txt-azul font-bold">
+              <h6 *ngIf="!item.Agrupacion" class="card-title text-center txt-azul font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">
                 {{item.nombre}}
               </h6>
             </div>
@@ -31,7 +31,7 @@
 
 
                     <div class="pr-2">
-                      <div class="  rectangle font-bold bg-azul text-white m-auto" (click)="selectAgrupacion(i,j)"
+                      <div class="  rectangle font-bold bg-azul text-white m-auto" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }" (click)="selectAgrupacion(i,j)"
                         [ngClass]="{'disable-circle':ite.codeProdSys != item.codeProdSys}">
                         {{ite.kiloProdcuto}}
                       </div>
@@ -51,7 +51,7 @@
 
                 <div class="agrupacion justify-content-center">
                   <div class="pr-2">
-                    <div class="rectangle font-bold bg-azul text-white m-auto">
+                    <div class="rectangle font-bold bg-azul text-white m-auto" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
                       {{item.kiloProdcuto}}
                     </div>
                   </div>
@@ -61,17 +61,17 @@
               </div>
               <div *ngIf="item.Agrupacion && !item.listAgrupacion" class="agrupacion justify-content-center">
                 <div class="pr-2  ">
-                  <div  class="rectangle font-bold bg-azul text-white m-auto" >
+                  <div  class="rectangle font-bold bg-azul text-white m-auto" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
                     {{item.kiloProdcuto}}
                   </div>
                 </div>
               </div>
               <div class="row text-cont" >
                 <div class="col-6 text-cont" >
-                  <p  class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" >PRECIO MAYORISTA:</p><h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class=" price text-center txt-naranja font-bold mt-2"> {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
+                  <p  class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }" >PRECIO MAYORISTA:</p><h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class=" price text-center txt-naranja font-bold mt-2"> {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
                 </div>
                 <div class="col-6 text-cont" >
-                  <p class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" >PRECIO DISTRIBUIDOR:</p><h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class="price text-center txt-naranja font-bold mt-2"> {{item.defaultPrice2 | currency: 'ARS': '$'}}</h5>
+                  <p class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }" >PRECIO DISTRIBUIDOR:</p><h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class="price text-center txt-naranja font-bold mt-2"> {{item.defaultPrice2 | currency: 'ARS': '$'}}</h5>
 
                 </div>
               </div>

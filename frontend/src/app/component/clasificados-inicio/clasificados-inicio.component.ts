@@ -17,29 +17,26 @@ export class ClasificadosInicioComponent implements OnInit {
   inPromise: boolean;
   inBatch: number;
   isLoged: boolean;
-  colorTres: any;
+  colorUno: any;
   clasificadosList: any[] = [];
   carouselItems: CarouselItem[];
-
   aTimeOutFix: boolean = false;
   constructor(
     private localesService: LocalesAdheridosService,
     private as: AlertsService,
     private router: Router,
     private userTokenService: UserTokenService,
-    private _color: ConfigColorService
+    private configColores : ConfigColorService
   ) { }
 
   ngOnInit() {
     this.getAll();
 
-    this._color._paletaColor().subscribe(
+    this.configColores._paletaColor().subscribe(
       (resp:any) => {
-        if(resp){
-          this.colorTres = resp.colorClaro;
-        }        
+        this.colorUno = resp.colorOscuro
       }
-    );       
+    )   
   }
 
   getAll() {

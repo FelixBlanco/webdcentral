@@ -4,6 +4,7 @@ import { AlertsService } from 'src/app/services/alerts.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { ProductosService, Producto } from 'src/app/services/productos.service';
 import { Router } from '@angular/router';
+import { ConfigColorService } from '../../services/config-color.service';
 
 declare var $:any;
 @Component({
@@ -18,7 +19,7 @@ export class MarcaComponent implements OnInit {
   charSelected: string;
   inPromise: boolean;
   inFetch: boolean;
-
+  colorTres: any;
   productsList: Producto[] = [];
 
   marcaSelected: string = "";
@@ -28,8 +29,15 @@ export class MarcaComponent implements OnInit {
     private ts : AlertsService,
     private productsBehavior: ProductsBehaviorService,
     private productsService: ProductosService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private configColores : ConfigColorService
+  ) { 
+    this.configColores._paletaColor().subscribe(
+      (resp:any) => {
+        this.colorTres = resp.colorClaro
+      }
+    )   
+  }
 
   ngOnInit() {
     this.marcaService.fromMarcaInicio.subscribe(val =>{

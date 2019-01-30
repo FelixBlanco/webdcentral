@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfgFooterService } from 'src/app/services/confg-footer.service';
 import { VideosService } from '../../services/videos.service'
 import { DomSanitizer } from '@angular/platform-browser'
+import { ConfigColorService } from '../../services/config-color.service';
 
 declare var $:any;
 
@@ -19,11 +20,14 @@ export class AyudaComponent implements OnInit {
   lng: number;
   urlVideo : any;
   titulo_video: any;
+  colorUno:any;
+  colorDos:any;
 
   constructor(
     private footerConfigService: ConfgFooterService,
     private videoService : VideosService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private _color: ConfigColorService,
   ) {
     this.getConfigFooter();
     this.getVideos();
@@ -31,6 +35,14 @@ export class AyudaComponent implements OnInit {
 
   ngOnInit() {
     
+
+  this._color._paletaColor().subscribe(
+    (resp:any) => {      
+      this.colorUno = resp.colorOscuro;
+      this.colorDos = resp.colorMedio;
+    }
+  )
+
    this.footerConfigService.ayudaS.subscribe(val=>{
   
      this.section=val;

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ConfgFooterService } from '../../services/confg-footer.service';
+import { ConfigColorService } from '../../services/config-color.service';
 
 @Component({
   selector: 'app-contactanos-inicio',
@@ -23,8 +24,18 @@ export class ContactanosInicioComponent implements OnInit {
   nroWhatsapp2:any='#';
   urlMaps:any;
 
-  constructor(private footerConfigService: ConfgFooterService) {
+  colorUno : any;
+  colorTres: any;
+
+  constructor(private footerConfigService: ConfgFooterService,private configColor: ConfigColorService,) {
     this.getConfigFooter();
+
+    this.configColor._paletaColor().subscribe(
+      (resp:any)=> {
+        this.colorTres = resp.colorClaro
+        this.colorUno = resp.colorOscuro
+      }
+    )     
   }
 
   ngOnInit() {
