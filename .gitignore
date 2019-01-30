@@ -9,3 +9,6 @@ backend/public/storage/imagenFooter/img-20180622-113436-1547609537-128.jpg
 backend/public/storage/imagenFooter/img-20180622-113436-1547609542-933.jpg
 .idea/workspace.xml
 .idea/blade.xml
+.idea/workspace.xml
+backend/composer.lock
+backend/vendor/composer/autoload_static.php
