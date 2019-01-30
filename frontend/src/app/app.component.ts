@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ConfigHomeService } from './services/config-home.service';
 import { LoginService } from './services/login.service'
 import { CarritoService } from './services/carrito.service'
+import { ConfigColorService } from './services/config-color.service'
 
 
 @Component({
@@ -15,7 +16,7 @@ export class AppComponent {
   constructor(    
     private loginS: LoginService,
     private _configHomeService:ConfigHomeService,
-    private carritoService:CarritoService
+    private carritoService:CarritoService,
     ){
 
       this.loginS._getAuthUser().subscribe(

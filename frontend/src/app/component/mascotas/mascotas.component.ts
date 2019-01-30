@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigColorService } from '../../services/config-color.service';
 
 @Component({
   selector: 'app-mascotas',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MascotasComponent implements OnInit {
 
-  constructor() { }
+  colorTres:any;
+  
+  constructor(
+    private configColor: ConfigColorService,
+  ) { 
+    this.configColor._paletaColor().subscribe(
+      (resp:any)=> {
+        this.colorTres = resp.colorClaro
+      }
+    )  
+  }
 
   ngOnInit() {
   }

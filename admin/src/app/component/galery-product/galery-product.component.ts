@@ -32,7 +32,8 @@ export class GaleryProductComponent implements OnInit {
 
   newForm: FormGroup;
   galeriaSet: GaleryProduct;
-
+  marca:string;
+  imagenMarca:string;
   inPromise: boolean;
   imgLoaded: File;
 
@@ -51,7 +52,7 @@ export class GaleryProductComponent implements OnInit {
       
       this.newForm = this.fb.group({
           titulo:  ['', Validators.required],
-          imagen:  ['', Validators.required],
+          imagen:  [''],
           idMarca: ['']
       });
   }
@@ -60,6 +61,7 @@ export class GaleryProductComponent implements OnInit {
   getAll() {
       this.galeriaProductoService.getAll().subscribe((resp) => {
             if(resp.ok){
+              console.log(resp.body);
               this.galeriaList = resp.body.galeria;
               this.rows = [...this.galeriaList];
             }              
@@ -71,25 +73,28 @@ export class GaleryProductComponent implements OnInit {
     this.marcasServices._getMarcas().subscribe(
       (resp:any) =>{
         this.lista_marcas = resp;
+        console.log(resp);
       }
     )
   }
 
   save() {
       const values = this.newForm.value;
-
+      console.log(values);
       let toSend: FormData = new FormData(); 
       toSend.append('titulo', values.titulo);
-      toSend.append('imagen', this.imgLoaded, new Date().toJSON());
-      toSend.append('idMarca', values.idMarca);
+    //  toSend.append('imagen', null);
+      toSend.append('idMarca', this.marca);
+      toSend.append('linkImg', this.imagenMarca);
 
       this.inPromise = true;
       this.galeriaProductoService.persist(toSend).subscribe(
           (resp) => {
             if(resp.ok && resp.status === 201){
+              console.log(resp);
               this.as.msg("OK", "Éxito", "Se ha guardado el registro");
               this.newForm.reset();
-              this.image.nativeElement.value = '';
+             // this.image.nativeElement.value = '';
               $('#nuevo').modal('hide');
             }else{
               console.error(resp);
@@ -106,7 +111,13 @@ export class GaleryProductComponent implements OnInit {
           }
       )
   }
-
+  marcaSelected(){
+   const val = this.newForm.get('idMarca').value;
+    console.log(this.lista_marcas[val]);
+    this.marca=this.lista_marcas[val].marca;
+    this.imagenMarca =this.lista_marcas[val].Weblink_fabricante;
+    console.log("marca: "+this.marca+"   imagenLink: "+this.imagenMarca);
+  }
   delete() {
       this.inPromise = true;
       this.galeriaProductoService.delete(this.galeriaSet.idGaleriaHomeProducto).subscribe(

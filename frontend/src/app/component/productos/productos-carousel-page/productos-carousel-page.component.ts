@@ -41,7 +41,7 @@ export class ProductosCarouselPageComponent implements OnInit {
         }        
       }
     ); 
-
+ 
   }
   // funcion para order los kilos de menor a mayor , y para mostrar "KG" y "GR" en vez de "kilos" y "Gramos"
   setAgrupacion() {
@@ -99,9 +99,12 @@ export class ProductosCarouselPageComponent implements OnInit {
     if (j != null) {
       this.products[i].nombre = this.products[i].listAgrupacion[j].nombre;
       this.products[i].defaultPrice = this.products[i].listAgrupacion[j].defaultPrice;
+      this.products[i].defaultPrice2 = this.products[i].listAgrupacion[j].defaultPrice2;
       this.products[i].codeProdSys = this.products[i].listAgrupacion[j].codeProdSys;
       this.products[i].urlImage = this.products[i].listAgrupacion[j].urlImage;
       this.products[i].Valoracion_Fabricante = this.products[i].listAgrupacion[j].Valoracion_Fabricante;
+      this.products[i].stockActual = this.products[i].listAgrupacion[j].stockActual;
+
     }
   }
 

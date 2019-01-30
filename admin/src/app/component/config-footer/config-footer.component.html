@@ -72,9 +72,16 @@
         </div>
 
         <div class="form-group">
-          <label>Lista de Precio</label>
-          <input type="number" placeholder="Lista de Precio" class="form-control" formControlName="listaPrecio">
+          <label>Lista de Precio Mayorista</label>
+          <input type="number" placeholder="Lista de Precio Mayorista" class="form-control" formControlName="listaPrecio">
           <p *ngIf="!myForm.get('listaPrecio').valid" class="text-danger">Lista de Precios debe ser menor 1 y mayor de
+            9</p>
+        </div>
+        <div class="form-group">
+          <label>Lista de Precio Distribuidor</label>
+          <input type="number" placeholder="Lista de Precio Distribuidor" class="form-control" formControlName="listaPrecioDistribuidor">
+          <p *ngIf="!myForm.get('listaPrecioDistribuidor').valid" class="text-danger">Lista de Precios debe ser menor 1
+            y mayor de
             9</p>
         </div>
         <div class="form-group">
@@ -99,7 +106,8 @@
         </div>
         <div class="form-group">
           <label>Reserva Mercaderia(Hrs):</label>
-          <input type="number" placeholder="Ingrese la cantidad limite de retiro en Hrs" class="form-control" formControlName="reservaMercaderiaHrs">
+          <input type="number" placeholder="Ingrese la cantidad limite de retiro en Hrs" class="form-control"
+            formControlName="reservaMercaderiaHrs">
         </div>
         <div class="form-group">
           <label>USO DE CUPON EN LA WEB</label>
@@ -108,16 +116,17 @@
         <div class="form-group">
           <label>USO DE CUPON EN LA APP</label>
           <input type="checkbox" formControlName='uso_cupon_app'>
-        </div>                
+        </div>
         <button class="btn btn-success" *ngIf='!inPromise' (click)="getHorarios()" data-toggle="modal" data-target="#horariosModal"
           style="width:100%;">Gestionar Horarios de Atencion</button>
 
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-group text-right">
-          <mat-spinner *ngIf='inPromise' diameter="30" style="margin: 0 auto"></mat-spinner>
-          <button class="btn btn-success" *ngIf='!inPromise' (click)="upgradeCondigFooter()" [disabled]="myForm.invalid || inPromise">Actualizar</button>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group text-right">
+            <mat-spinner *ngIf='inPromise' diameter="30" style="margin: 0 auto"></mat-spinner>
+            <button class="btn btn-success" *ngIf='!inPromise' (click)="upgradeCondigFooter()" [disabled]="myForm.invalid || inPromise">Actualizar</button>
+          </div>
         </div>
       </div>
     </div>
@@ -166,14 +175,17 @@
           <h2 class="modal-title text-white" id="estatusModal">Horarios Regulares</h2>
           <div class="form-group">
             <label>Dias</label>
-            <input type="text" placeholder="Horario Inicio Atencion" class="form-control" formControlName="diaRegularEditar" [value]="horarioElegido.TipoDeDia">
+            <input type="text" placeholder="Horario Inicio Atencion" class="form-control" formControlName="diaRegularEditar"
+              [value]="horarioElegido.TipoDeDia">
           </div>
 
           <div class="form-group">
             <label>Horarios</label>
-            <input type="text" class="form-control" formControlName="desdeRegularEditar" placeholder="desde 00:00" [value]=horarioElegido.desde>
+            <input type="text" class="form-control" formControlName="desdeRegularEditar" placeholder="desde 00:00"
+              [value]=horarioElegido.desde>
             <br>
-            <input type="text" class="form-control" formControlName="hastaRegularEditar" placeholder="hasta 00:00" [value]="horarioElegido.hasta">
+            <input type="text" class="form-control" formControlName="hastaRegularEditar" placeholder="hasta 00:00"
+              [value]="horarioElegido.hasta">
           </div>
 
           <div class="justify-content-center">
@@ -222,14 +234,14 @@
           <ngx-datatable-column name="#" prop="idHorarioAtencion" [width]="40"></ngx-datatable-column>
           <ngx-datatable-column name="Desde" prop="desde"></ngx-datatable-column>
           <ngx-datatable-column name="Hasta" prop="hasta"></ngx-datatable-column>
-          <ngx-datatable-column name="" prop="opts" [width]="112" >
+          <ngx-datatable-column name="" prop="opts" [width]="112">
             <ng-template ngx-datatable-cell-template let-row="row">
-              <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#editar" ><i class="fa fa-pencil-square-o"></i></a>
+              <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#editar"><i class="fa fa-pencil-square-o"></i></a>
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="" prop="opts" [height]="70" [width]="100" >
+          <ngx-datatable-column name="" prop="opts" [height]="70" [width]="100">
             <ng-template ngx-datatable-cell-template let-row="row">
-              <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar" ><i class="fa fa-trash-o"></i></a>
+              <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
             </ng-template>
           </ngx-datatable-column>
         </ngx-datatable>
@@ -248,7 +260,8 @@
           </div>
 
           <div class="justify-content-center">
-            <button type="button" class="btn btn-success " style="margin: 0 auto" [disabled]="inPromiseHorario || myFormHorariosFestivos.invalid" (click)="addHorarios(myFormHorariosFestivos.value.diaFestivo,myFormHorariosFestivos.value.desdeFestivo,myFormHorariosFestivos.value.hastaFestivo,false)">Agregar</button>
+            <button type="button" class="btn btn-success " style="margin: 0 auto" [disabled]="inPromiseHorario || myFormHorariosFestivos.invalid"
+              (click)="addHorarios(myFormHorariosFestivos.value.diaFestivo,myFormHorariosFestivos.value.desdeFestivo,myFormHorariosFestivos.value.hastaFestivo,false)">Agregar</button>
           </div>
         </form>
         <ngx-datatable #table class="bootstrap" [rows]="rowsHorarios2" [columns]="columns" [columnMode]="'force'"
@@ -256,9 +269,9 @@
           <ngx-datatable-column name="#" prop="idHorarioAtencion" [width]="40"></ngx-datatable-column>
           <ngx-datatable-column name="Desde" prop="desde"></ngx-datatable-column>
           <ngx-datatable-column name="Hasta" prop="hasta"></ngx-datatable-column>
-          <ngx-datatable-column name="" prop="opts" [width]="112" >
+          <ngx-datatable-column name="" prop="opts" [width]="112">
             <ng-template ngx-datatable-cell-template let-row="row">
-              <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#editar" ><i class="fa fa-pencil-square-o"></i></a>
+              <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#editar"><i class="fa fa-pencil-square-o"></i></a>
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="" prop="opts" [width]="100" [height]="70">
@@ -269,7 +282,7 @@
         </ngx-datatable>
       </div>
       <div class="modal-footer">
-          <mat-spinner *ngIf='inPromiseHorario' diameter="30" style="margin: 0 auto"></mat-spinner>
+        <mat-spinner *ngIf='inPromiseHorario' diameter="30" style="margin: 0 auto"></mat-spinner>
 
       </div>
 

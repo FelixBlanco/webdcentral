@@ -5,6 +5,7 @@ import { AlertsService } from 'src/app/services/alerts.service';
 import { RubrosService } from 'src/app/services/rubros.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import { Router } from '@angular/router';
+import { ConfigColorService } from '../../services/config-color.service';
 
 declare var $: any;
 
@@ -22,18 +23,26 @@ export class RubrosFilterComponent implements OnInit {
   subRubrosBList: any[] = [];
 
   inPromise: boolean;
-
+  colorTres: any;
+  
   constructor(
     private fb: FormBuilder,
     private productsBehavior: ProductsBehaviorService,
     private rubrosService: RubrosService,
     private as: AlertsService,
     private productosService: ProductosService,
-    private router: Router
+    private router: Router,
+    private configColor: ConfigColorService,
   ) { }
 
   ngOnInit() {
     
+    this.configColor._paletaColor().subscribe(
+      (resp:any)=> {
+        this.colorTres = resp.colorClaro
+      }
+    )  
+
     this.setRubro();
 
     this.filterForm = this.fb.group({

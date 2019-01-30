@@ -1,4 +1,4 @@
-<div style=" background-color: #90BB1E;" id="novedades" >
+<div id="novedades" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#90bb1e' }">
   <div class="container">
     <div class="row">
       <div class="col-md-4">
@@ -15,7 +15,7 @@
             <form [formGroup]="f_sus">
               <div class="form-inline">
                 <input type="email" class="form-control" placeholder="Ingrese su direccion email" style="width: 70%;" formControlName="novedad" id="novedadInput">
-                <button class="btn bg-naranja txt-blanco" [disabled]="!f_sus.valid || inPromise" (click)="addSus()"> REGISTRATE </button>							
+                <button class="btn txt-blanco" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }" [disabled]="!f_sus.valid || inPromise" (click)="addSus()"> REGISTRATE </button>							
                 <mat-spinner *ngIf="inPromise" diameter="30" style="margin: 0 auto"></mat-spinner>
               </div>
             </form>            

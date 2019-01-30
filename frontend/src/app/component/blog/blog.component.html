@@ -8,8 +8,8 @@
     <div class="row" style="background-color: #f2f2f2;">
       <div class="col mt-4 mb-4">
         <div class="text-center">
-            <h2 *ngIf="section !== 'blogs'" class="txt-azul font-bold">CATEGORÍAS</h2>
-            <h2 *ngIf="section === 'blogs'" class="txt-azul font-bold">BLOGS</h2>
+            <h2 *ngIf="section !== 'blogs'" class="font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">CATEGORÍAS</h2>
+            <h2 *ngIf="section === 'blogs'" class="font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">BLOGS</h2>
         </div>
         <div class="d-flex justify-content-between">
           <div class="m-2" *ngIf="section === 'blogs'">
@@ -18,8 +18,8 @@
             </button>
           </div>
           
-          <h4 *ngIf="section !== 'blogs'" class="txt-azul font-italic">TOTAL: {{categoriesList.length}}</h4>
-          <h4 *ngIf="section === 'blogs'" class="txt-azul font-italic text-uppercase">{{catSelected}} - TOTAL: {{blogsList.length}}</h4>
+          <h4 *ngIf="section !== 'blogs'" class="font-italic" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">TOTAL: {{categoriesList.length}}</h4>
+          <h4 *ngIf="section === 'blogs'" class="font-italic text-uppercase" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">{{catSelected}} - TOTAL: {{blogsList.length}}</h4>
         </div>
         <hr>
         <div class="container">

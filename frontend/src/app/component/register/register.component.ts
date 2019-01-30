@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RegisterService} from '../../services/register.service';
 import {Router} from '@angular/router';
 import {AlertsService} from '../../services/alerts.service';
+import { ConfigColorService } from '../../services/config-color.service';
 
 declare var $: any;
 
@@ -19,13 +20,20 @@ export class RegisterComponent implements OnInit {
         password_r: null,
         foto_perfil: null,
     }
-
+    colorUno:any;
+    
     constructor(
         private _registerService: RegisterService,
-        private _alertService: AlertsService
+        private _alertService: AlertsService,
+        private configColor: ConfigColorService,
     ) {}
 
     ngOnInit() {
+        this.configColor._paletaColor().subscribe(
+            (resp:any)=> {
+                this.colorUno = resp.colorOscuro
+            }
+        )          
     }
 
     upFoto(event) {

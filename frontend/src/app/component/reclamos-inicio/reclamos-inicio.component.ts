@@ -15,6 +15,7 @@ declare var $;
 export class ReclamosInicioComponent implements OnInit {
   inPromise:boolean = false;
   myForm:FormGroup;
+  colorUno:any;
   colorTres:any;
   fecha:any;
   listaClasificacionReclamos:any;
@@ -33,6 +34,7 @@ export class ReclamosInicioComponent implements OnInit {
     this.configColor._paletaColor().subscribe(
       (resp:any)=> {
         this.colorTres = resp.colorClaro
+        this.colorUno = resp.colorOscuro
       }
     ) 
     this.inPromise = false;   
