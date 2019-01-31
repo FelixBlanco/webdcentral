@@ -476,7 +476,7 @@ class UserController extends Controller {
         if (is_null($user)) {
 
             $response = [
-                'msj' => 'Si eres usuario nuestro, te enviamos un Mail, revise su correo para proceder al inicio de sesión, si no recibió el mail en unos minutos revisé la bandeja de spam',
+                'msj' => 'No te preocupes, nos pasa a todos. Para reestablecer tu contraseña, hacé click en este botón',.
             ];
 
             return response()->json($response, 200);
