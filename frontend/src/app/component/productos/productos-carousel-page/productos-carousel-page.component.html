@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
 
     <ng-container *ngFor="let item of products; let i =index">
-      <div class="col-sm-6 col-md-4 col-lg-4  col-xl-3 mt-2">
+      <div class="col-sm-6 col-md-4 col-lg-4  col-xl-4 mt-2">
         <div class="card m-auto">
           <!-- arupaciones -->
           <img *ngIf="item.urlImage" class="card-img-top " [src]="item.urlImage" alt="{{item.nombre}}">
@@ -107,8 +107,8 @@
               </div>
               <span style="color:green" *ngIf="item.stockActual > 0">En stock</span>
               <span style="color:red"  *ngIf="item.stockActual <= 0">Sin stock</span>
-              <button *ngIf="item.stockActual <= 0" mat-raised-button style="background-color: red" class=" btn-block  text-white"  >AVISARME</button>
-              <button *ngIf="item.stockActual > 0" mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">COMPRAR</button>
+<!--               <button *ngIf="item.stockActual <= 0" mat-raised-button style="background-color: red" class=" btn-block  text-white"  >AVISARME</button>
+ -->              <button  mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)" [disabled]="item.stockActual <= 0" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">COMPRAR</button>
             </div>
           </div>
         </div>

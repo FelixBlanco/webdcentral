@@ -37,14 +37,6 @@ export class AppComponent {
           }
         }
     )
-    this.carritoService.carritoItems.subscribe((val)=> {
-      if(val.length){
-        console.log(val);
-        this.showLateralCar=true;
-      }else{
-        this.showLateralCar=false;
-      }
-  
-    })
+
   }
 }
