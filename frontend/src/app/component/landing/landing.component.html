@@ -1,18 +1,24 @@
-<app-minorista></app-minorista>
-<app-slide-home></app-slide-home>
-<app-rubrosgalery-inicio></app-rubrosgalery-inicio>
-<app-marcas-inicio></app-marcas-inicio>
-<!-- <app-productos-inicio></app-productos-inicio> -->
-<app-destacado-inicio></app-destacado-inicio> 
-<app-novedades-inicio></app-novedades-inicio>
-<app-mas-vendido-inicio></app-mas-vendido-inicio> 
-<!--<app-locales-adheride-inicio></app-locales-adheride-inicio>-->
-<app-clasificados-inicio></app-clasificados-inicio>
-<app-envios-inicio></app-envios-inicio> 
-<app-img-inicio></app-img-inicio> 
-<app-entrega></app-entrega>
-<app-reclamos-inicio></app-reclamos-inicio>
-<app-baja-app-inicio></app-baja-app-inicio>
+<div class="row">
+    <div class="col">
+        <app-minorista></app-minorista>
+        <app-slide-home></app-slide-home>
+        <app-rubrosgalery-inicio></app-rubrosgalery-inicio>
+        <app-marcas-inicio></app-marcas-inicio>
+        <!-- <app-productos-inicio></app-productos-inicio> -->
+        <app-destacado-inicio></app-destacado-inicio>
+        <app-novedades-inicio></app-novedades-inicio>
+        <app-mas-vendido-inicio></app-mas-vendido-inicio>
+        <!--<app-locales-adheride-inicio></app-locales-adheride-inicio>-->
+        <app-clasificados-inicio></app-clasificados-inicio>
+        <app-envios-inicio></app-envios-inicio>
+        <app-img-inicio></app-img-inicio>
+        <app-entrega></app-entrega>
+        <app-reclamos-inicio></app-reclamos-inicio>
+        <app-baja-app-inicio></app-baja-app-inicio>
 
-
-
+    </div>
+<!--  mostrar carrito lateral si existen productos agregados-->
+    <div *ngIf="showLateralCar" class="col-2">
+        <app-carrito-lateral> </app-carrito-lateral>
+    </div>
+</div>
