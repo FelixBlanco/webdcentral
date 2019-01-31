@@ -153,12 +153,18 @@ Route::group([ 'prefix' => 'auth' ], function() {
         //Filtrar Pedidos por Fecha
         Route::get('filtrarPedidos/fecha', 'OrderHeaderController@filtrarPorFecha');
 
+        /* PRODUCTOS FAVORITOS */
+        Route::post('agregarProductoFavorito', 'ProductoFavoritoController@store');
+        Route::post('eliminarProductoFavorito', 'ProductoFavoritoController@destroy');
+        /* PRODUCTOS FAVORITOS */
     });
 });
 
 /*TODO NUESTRO GRUPO DE RUTAS*/
 
 Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
+
+    Route::get('pdf','CouponsController@pdf');
 
     Route::get('getProvincia', 'ProductoController@getProvincia');
     Route::get('getLocalidadPorProvincia/{provincia}', 'ProductoController@getLocalidadPorprovincia');
@@ -444,6 +450,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::get('video/listar', 'VideoController@listar');
 
     Route::post('lista-cupones', 'CouponsController@listarTodo');
+
+    // Productos Favoritos
+    Route::get('listarProductosFavoritos/{idPerfilCliente}', 'ProductoFavoritoController@listar');
 });
 
 
