@@ -774,22 +774,31 @@ class ProductoController extends Controller {
             return response()->json("Error conectando a el DC", 500);
         }
     }
-
     public static function getHijosTablaGenerica($sql) {
         $i=0;
-            foreach ($sql as $sqls){
-                $rs = DB::connection('sqlsrv')->select("SELECT Atributo_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ) AS  Dato_TablaGenerica
+        $j=0;
+        foreach ($sql as $sqls){
+            $rs = DB::connection('sqlsrv')->select("SELECT Atributo_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ) AS  Dato_TablaGenerica
                     FROM VistaProductosTagsAPP 
                     WHERE Descripcion_TablaGenerica='".$sqls->Descripcion_TablaGenerica."'
                     GROUP BY Atributo_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ),agrupacion
                     ORDER BY Atributo_TablaGenerica,Dato_TablaGenerica
                 ");
 
-                $sql[$i]->hijos=$rs;
-                $i++;
+            foreach($rs as $rs1){
+
+                if($rs1->Dato_TablaGenerica!=""){
+                    //dd('as',$rs1->Dato_TablaGenerica);
+                    $sql[$i]->hijos[$j]=$rs1;
+                    $j++;
+                }
             }
-            return $sql;
+            $i++;
+
+        }
+        return $sql;
     }
+
 
     public function getProvincia() {
 
