@@ -7,6 +7,7 @@ export interface Item{
     marca: string;
     precio: number;
     cantidad: number;
+    urlImage?:any
 }
 
 export interface detallesCompra{
@@ -68,7 +69,7 @@ export class CarritoService {
      * @param cantidad la cantidad bruta de los productos sin decimales en unidades
      * @param precio denominado en ARS con decimales
      */
-    addItem(id, producto, marca, cantidad, precio): Item{
+    addItem(id, producto, marca, cantidad, precio,urlImage?): Item{
         
         if(!id || !producto || !marca || !cantidad || !precio){
             //debugger;
@@ -93,7 +94,8 @@ export class CarritoService {
                 producto : producto,
                 marca : marca,
                 precio: precio,
-                cantidad: cantidad
+                cantidad: cantidad,
+                urlImage:urlImage
             }
     
             items.push(added);
@@ -180,7 +182,7 @@ export class CarritoService {
         if(dataCarrito){
             console.log(dataCarrito);
         dataCarrito.map(element => {
-            this.addItem(element.id,element.producto,element.marca,element.cantidad,element.precio);
+            this.addItem(element.id,element.producto,element.marca,element.cantidad,element.precio,element.urlImage);
         });
 
         }

@@ -108,15 +108,30 @@ h5{
  
 }
 .favorito{
-    border-radius: 50%;
-    border-style: solid 1px;
-    border-color: orange;
-    height: 40px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    margin-left: 43%;
 }
 .fav{
     cursor: pointer;
+
+
 }
 .text-cont p, h5{
     width: 100%;
 }
-
+.isFavorite{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    margin-left: 43%;
+    border-radius: 50%;
+    border: solid 2px ;
+    border-color: orange;
+}
