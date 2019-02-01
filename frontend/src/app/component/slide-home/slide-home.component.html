@@ -3,9 +3,11 @@
     <div id="slide">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleControls" *ngIf='first' data-slide-to="0" class="active"></li>
+          <div *ngFor="let item of listSlide; index as i;">          
+            <li data-target="#carouselExampleControls" *ngIf='i == 0' data-slide-to="1"></li>
+            <li data-target="#carouselExampleControls" *ngIf='i == 1' data-slide-to="2"></li>
+          </div>
         </ol>        
         <div class="carousel-inner">
     
@@ -31,5 +33,3 @@
     </div> 
   </div>
 </div>
-
-

@@ -774,7 +774,6 @@ class ProductoController extends Controller {
             return response()->json("Error conectando a el DC", 500);
         }
     }
-
     public static function getHijosTablaGenerica($sql) {
         $i=0;
         $j=0;
@@ -798,8 +797,12 @@ class ProductoController extends Controller {
                 $j=0;
                
             }
-            return $sql;
+            $i++;
+
+        }
+        return $sql;
     }
+
 
     public function getProvincia() {
 
