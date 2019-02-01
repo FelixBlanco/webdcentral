@@ -28,11 +28,27 @@ export class ProductosFavoritosService {
   ) { }
 
     agregarFavorito(data:any){
-      return this.http.post<any>('http://127.0.0.1:8000/api/auth/agregarProductoFavorito',data, httpOptions);
+      const httpOptions2 = {
+        headers: new HttpHeaders({
+          'Accept':  'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+          
+        })
+      };
+      return this.http.post<any>('http://127.0.0.1:8000/api/auth/agregarProductoFavorito',data, httpOptions2);
     }
 
     eliminarFavorito(data: any){
-      return this.http.post<any>(`${environment.apiHost}/api/auth/eliminarProductoFavorito`,data,httpOptions);
+      const httpOptions2 = {
+        headers: new HttpHeaders({
+          'Accept':  'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+          
+        })
+      };
+      return this.http.post<any>(`${environment.apiHost}/api/auth/eliminarProductoFavorito`,data,httpOptions2);
     }
 
     obtenerFavorito(idCliente){

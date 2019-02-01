@@ -6,7 +6,11 @@ import { AlertsService } from 'src/app/services/alerts.service';
 import { ConfigColorService } from '../../../services/config-color.service';
 import { PerfilClienteService } from '../../../services/perfil-cliente.service';
 import { ProductosFavoritosService, productoFavorito } from '../../../services/productos-favoritos.service';
+<<<<<<< HEAD
 
+=======
+declare var $;
+>>>>>>> erickgonzalez
 
 
 @Component({
@@ -123,7 +127,7 @@ export class ProductosCarouselPageComponent implements OnInit {
 
   addItem(item: Producto): void {
 
-    this.carritoService.addItem(item.codeProdSys, item.nombre, item.marca, item.cantidad, item.defaultPrice);
+    this.carritoService.addItem(item.codeProdSys, item.nombre, item.marca, item.cantidad, item.defaultPrice,item.urlImage);
 
 
     this.toastr.msg("OK", "Éxito", `Se han agregado ${item.cantidad} '${item.nombre}' al carrito de compras`); item.cantidad = 1;
@@ -164,6 +168,7 @@ export class ProductosCarouselPageComponent implements OnInit {
        }) 
        
        
+<<<<<<< HEAD
 
     }else{ // si no es favorito lo agrega
     
@@ -199,6 +204,47 @@ export class ProductosCarouselPageComponent implements OnInit {
         // Como no hay perfil, le decimos crear            
         console.error(error);
       }) 
+=======
+
+    }else{ // si no es favorito lo agrega
+    
+   
+     const data : FormData = new FormData();
+    const userId = JSON.parse(localStorage.getItem('user_data')); // recuperamos el id del usuario
+    // verificamos si ya tiene su informacio 
+    if(userId){
+      this.perfilClienteService._getPerfilCliente(userId.id).subscribe(
+        (resp: any) => {
+          // Como ya existe , vamos a editar
+          if (resp) {
+            console.log(resp.perfil.fk_idPerfilCliente);
+     
+            data.append('id_perfilCliente',resp.perfil.fk_idPerfilCliente);
+            data.append('idProducto',item.idProducto);
+            this.productoFavoritoService.agregarFavorito(data).subscribe(val=>{
+              if(val){
+                console.log(val);
+                this.favoritosList.push(val.productoFavorito);
+                this.products[i].isFavorite= true;
+                this.productoFavoritoService.updateFavoritesSource(this.favoritosList);
+                this.toastr.msg('OK',"Favorito Agregado",item.titulo+" Agregado a Favoritos");
+              }
+            },error=>{console.error(error)})
+           
+          }
+         
+        },
+        error => {
+          // Como no hay perfil, le decimos crear            
+          console.error(error);
+        }) 
+    }else{
+      $('#loginModal').modal('toggle');
+    }
+
+     // 
+   
+>>>>>>> erickgonzalez
   }
   }
 }
