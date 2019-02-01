@@ -795,12 +795,10 @@ class ProductoController extends Controller {
                 }
                 $i++;
                 $j=0;
-               
-            }
-            $i++;
-
-        }
-        return $sql;
+             }
+                return $sql;
+       
+        
     }
 
 
