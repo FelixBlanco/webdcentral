@@ -47,7 +47,7 @@
                 </ul>                 
             </div>
 
-            <div class="col-9">
+            <div class="col-7">
                 <mat-spinner *ngIf="!productsList || inPromise" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
                 <ng-container *ngIf="productsList && !inPromise" [ngSwitch]="productsList.length">
                     <ng-container *ngSwitchCase="0">
@@ -67,10 +67,8 @@
                     </ng-container>
                     <ng-container *ngSwitchDefault>
                         <div class="mb-3 row">
-                            <div class="col-2">
-                                <p>lista</p>
-                            </div>
-                            <div class="col-8">
+                          
+                            <div class="col-12">
                                     <ngb-carousel #carousel="ngbCarousel" (slide)="setCurrent($event)" [showNavigationArrows]="false"
                                     [showNavigationIndicators]="false">
                                     <ng-container *ngFor="let item of carouselItems">
@@ -82,9 +80,7 @@
                                 </ngb-carousel>
                             </div>
                           
-                            <div class="col-2">
-                                <app-carrito-lateral></app-carrito-lateral>
-                            </div>
+                            
                         </div>
 
                         <div class="row" *ngIf="pages > 1 && productsList">
@@ -117,6 +113,9 @@
                         </div>
                     </ng-container>
                 </ng-container>
+            </div>
+            <div class="col-2">
+                <app-carrito-lateral></app-carrito-lateral>
             </div>
         </div>
     </div>

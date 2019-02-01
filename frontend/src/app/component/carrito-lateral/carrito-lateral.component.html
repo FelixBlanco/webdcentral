@@ -16,6 +16,8 @@
                             <fa-icon [icon]="['fas','times']" [size]="'xg'" ></fa-icon>
                         </button>
                     </div>
+                    <img *ngIf="item.urlImage" class="card-img-top " [src]="item.urlImage" alt="{{item.producto}}">
+                     <img *ngIf="!item.urlImage" width="60" height="160" class="card-img-top" src="assets/no_image_aviable.png">
                     <div class="col-12">
                         <small>{{item.producto}}</small>
                     </div>
