@@ -756,13 +756,13 @@ class ProductoController extends Controller {
 
         try {
             $rs = null;
-            $rs = DB::connection('sqlsrv')->select("SELECT TOP 2 Atributo_TablaGenerica,Descripcion_TablaGenerica, 
+            $rs = DB::connection('sqlsrv')->select("SELECT TOP 20 Atributo_TablaGenerica,Descripcion_TablaGenerica, 
                     CAST (Dato_TablaGenerica as VARCHAR ) AS  Dato_TablaGenerica
                     FROM VistaProductosTagsAPP 
                     GROUP BY Atributo_TablaGenerica, Descripcion_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ),agrupacion
                     ORDER BY Atributo_TablaGenerica, Descripcion_TablaGenerica,Dato_TablaGenerica
             ");
-
+        
             if ($rs) {
                 return response()->json(self::getHijosTablaGenerica($rs), 200);
             } else {
@@ -777,6 +777,7 @@ class ProductoController extends Controller {
 
     public static function getHijosTablaGenerica($sql) {
         $i=0;
+        $j=0;
             foreach ($sql as $sqls){
                 $rs = DB::connection('sqlsrv')->select("SELECT Atributo_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ) AS  Dato_TablaGenerica
                     FROM VistaProductosTagsAPP 
@@ -784,9 +785,18 @@ class ProductoController extends Controller {
                     GROUP BY Atributo_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ),agrupacion
                     ORDER BY Atributo_TablaGenerica,Dato_TablaGenerica
                 ");
-
-                $sql[$i]->hijos=$rs;
+               
+                foreach($rs as $rs1){
+                    
+                    if($rs1->Dato_TablaGenerica!=""){
+                        //dd('as',$rs1->Dato_TablaGenerica);
+                        $sql[$i]->hijos[$j]=$rs1;
+                       $j++;
+                    }
+                }
                 $i++;
+                $j=0;
+               
             }
             return $sql;
     }

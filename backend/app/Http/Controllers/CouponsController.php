@@ -17,13 +17,21 @@ use PDF;
 class CouponsController extends Controller
 {
     //
-    public function pdf()
+    public function pdf($idCoupon=false)
     {
-        $data = ['title' => 'Welcome'];
+        $data=Coupons::where('fk_idSatate', 1)->where('idCoupons',$idCoupon)->get();
+       
+        if($idCoupon==false || count($data)<=0){
+            $response = [
+                'msj'   => 'Debe pasar algún id del cupon vàlido',
+            ];
 
-        $pdf = PDF::loadView('pdf/index', $data);
+            return response()->json($response, 404);
+        }
 
-        return $pdf->download('a.pdf');
+        $pdf = PDF::loadView('pdf/index', $data[0]);
+
+        return $pdf->stream('a.pdf');
     }
 
     public function create(Request $request)
