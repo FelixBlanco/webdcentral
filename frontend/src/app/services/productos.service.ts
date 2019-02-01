@@ -120,7 +120,9 @@ export class ProductosService {
     }
   
     _getArbolProductos(){
-      return this.http.get(`${environment.apiHost}/api/v1/getArbolProductos`)
+      
+      return this.http.get('http://depocentral.dyndns.org:8753/api/v1/getArbolProductos')
+      // return this.http.get(`${environment.apiHost}/api/v1/getArbolProductos`)
     }
 
 }

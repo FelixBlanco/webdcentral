@@ -4,6 +4,8 @@ import { ProductsBehaviorService } from 'src/app/services/products-behavior.serv
 import { Producto, ProductosService, CarouselItem } from 'src/app/services/productos.service';
 import { ConfigColorService } from '../../services/config-color.service';
 
+declare var $:any;
+
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
@@ -39,13 +41,25 @@ export class ProductosComponent implements OnInit {
           this.colorTres = resp.colorClaro;
         }        
       }
-    );    
+    ); 
+    $('.desplegado').css('display','none');        
   }
 
   ngOnInit() {
     this.iniBehavior();
     this.iniTittleBehavior();
     this.getArbolProductos();
+
+    // menu desplegable    		
+		// $('.desplegar').click(function(){ 
+    //   console.log('click menu')
+		// 	// 
+		// })     
+  }
+
+  clickMenu(){
+    console.log('click')
+    $(this).parent().find("ul.desplegado").toggle('fast'); 
   }
 
   iniTittleBehavior(){
@@ -61,7 +75,6 @@ export class ProductosComponent implements OnInit {
     this.productsList.forEach((val, i) => {
       if(this.isACarruselItem(i)){
         this.carouselItems.push({id: index++, products: this.getPartialItems(i,i+this.max)});
-        console.log(i);
       }
       
     });
@@ -120,7 +133,7 @@ export class ProductosComponent implements OnInit {
   getArbolProductos(){
     this.productosService._getArbolProductos().subscribe(
       resp => {
-        this.list_arbol_p = resp;
+        this.list_arbol_p = resp;              
       }
     )
   }

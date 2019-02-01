@@ -35,7 +35,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            
+            <div class="col-3">
+                <ul class="lista">
+                    <li *ngFor='let i of list_arbol_p'>
+                        <h4 class="desplegar font-bold" (click)='clickMenu()'>{{i.Descripcion_TablaGenerica}}</h4>
+                        <ul class="desplegado">
+                            <li *ngFor='let x of i.hijos' class="font-light">{{x.Dato_TablaGenerica}}</li>
+                        </ul>
+                    </li>				
+                </ul>                 
+            </div>
+
+            <div class="col-9">
                 <mat-spinner *ngIf="!productsList || inPromise" [diameter]="100" style="margin: 0 auto;"></mat-spinner>
                 <ng-container *ngIf="productsList && !inPromise" [ngSwitch]="productsList.length">
                     <ng-container *ngSwitchCase="0">

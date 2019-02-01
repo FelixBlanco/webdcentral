@@ -25,3 +25,20 @@ html {
     scroll-behavior: smooth;
 }
   
+/* menu */
+.lista{ width: 300px }
+.lista li{ list-style: none; }
+
+.desplegar{
+    color: #E97604;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.desplegado li{
+    border-bottom: 1px solid black;
+    color: black;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+}

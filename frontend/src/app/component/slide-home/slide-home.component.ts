@@ -42,13 +42,14 @@ export class SlideHomeComponent implements OnInit {
     this._galeriaHomeService._getSlideHome().subscribe(
       (resp:any) => {
         if(resp != null){
-          console.log(resp)
           this.listSlide = resp.producto; // todo los slide        
           this.first = this.listSlide[0]; // agregamos el primero
           this.listSlide.shift(); // Eliminamos el primero de la lista   
-        }        
+        }
+        console.log('cantidad de slide',this.listSlide.length)        
       }
     )
+    
   }
   Accion(prod:any){
     console.log(prod);
@@ -61,5 +62,4 @@ export class SlideHomeComponent implements OnInit {
     this.producBehaviourService.updateSource(listProd);  
     }
   }
-
 }
