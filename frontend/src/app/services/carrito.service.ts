@@ -182,7 +182,7 @@ export class CarritoService {
         if(dataCarrito){
             console.log(dataCarrito);
         dataCarrito.map(element => {
-            this.addItem(element.id,element.producto,element.marca,element.cantidad,element.precio);
+            this.addItem(element.id,element.producto,element.marca,element.cantidad,element.precio,element.urlImage);
         });
 
         }
