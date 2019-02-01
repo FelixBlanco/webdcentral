@@ -66,16 +66,25 @@
                         </div>
                     </ng-container>
                     <ng-container *ngSwitchDefault>
-                        <div class="mb-3">
-                            <ngb-carousel #carousel="ngbCarousel" (slide)="setCurrent($event)" [showNavigationArrows]="false"
-                                [showNavigationIndicators]="false">
-                                <ng-container *ngFor="let item of carouselItems">
-                                    <ng-template ngbSlide [id]="item.id">
-                                        <app-productos-carousel-page [items]="item.products"></app-productos-carousel-page>
-                                    </ng-template>
-                                </ng-container>
-
-                            </ngb-carousel>
+                        <div class="mb-3 row">
+                            <div class="col-2">
+                                <p>lista</p>
+                            </div>
+                            <div class="col-8">
+                                    <ngb-carousel #carousel="ngbCarousel" (slide)="setCurrent($event)" [showNavigationArrows]="false"
+                                    [showNavigationIndicators]="false">
+                                    <ng-container *ngFor="let item of carouselItems">
+                                        <ng-template ngbSlide [id]="item.id">
+                                            <app-productos-carousel-page [items]="item.products"></app-productos-carousel-page>
+                                        </ng-template>
+                                    </ng-container>
+    
+                                </ngb-carousel>
+                            </div>
+                          
+                            <div class="col-2">
+                                <app-carrito-lateral></app-carrito-lateral>
+                            </div>
                         </div>
 
                         <div class="row" *ngIf="pages > 1 && productsList">

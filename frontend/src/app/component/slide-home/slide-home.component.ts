@@ -60,6 +60,11 @@ export class SlideHomeComponent implements OnInit {
     this.router.navigate(['/productos']);
     setTimeout(() => document.getElementById('productos').scrollIntoView({ behavior: 'smooth' }), 1000);
     this.producBehaviourService.updateSource(listProd);  
+    }else if(prod.seccion_pagina.link){
+     console.log(prod.seccion_pagina.link);
+     this.router.navigate([prod.seccion_pagina.link]);
+
+
     }
   }
 }

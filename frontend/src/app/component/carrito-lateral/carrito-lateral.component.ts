@@ -6,6 +6,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { UserTokenService } from 'src/app/services/user-token.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
+declare var $;
 @Component({
   selector: 'app-carrito-lateral',
   templateUrl: './carrito-lateral.component.html',
@@ -142,6 +143,9 @@ export class CarritoLateralComponent implements OnInit {
       console.error(error);
       this.as.msg('ERR', 'Error', 'Ha ocurrido un error al encontrar un producto');
     });
+  }
+  finalizarCompra(){
+    $('#carrito').modal('toggle');
   }
 
 }
