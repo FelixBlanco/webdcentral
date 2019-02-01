@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit656a9c8e04e2e3eeb7cebda10e3f232a
+class ComposerStaticInit098f678bfaa9552f2f15a40df31abea8
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
@@ -572,6 +572,7 @@ class ComposerStaticInit656a9c8e04e2e3eeb7cebda10e3f232a
         'App\\Http\\Controllers\\PreguntasFrecuenteController' => __DIR__ . '/../..' . '/app/Http/Controllers/PreguntasFrecuenteController.php',
         'App\\Http\\Controllers\\ProductSincronizeController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductSincronizeController.php',
         'App\\Http\\Controllers\\ProductoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductoController.php',
+        'App\\Http\\Controllers\\ProductoFavoritoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductoFavoritoController.php',
         'App\\Http\\Controllers\\ReclamoSugerenciaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReclamoSugerenciaController.php',
         'App\\Http\\Controllers\\RedSocialController' => __DIR__ . '/../..' . '/app/Http/Controllers/RedSocialController.php',
         'App\\Http\\Controllers\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegisterController.php',
@@ -613,6 +614,7 @@ class ComposerStaticInit656a9c8e04e2e3eeb7cebda10e3f232a
         'App\\PesoProducto' => __DIR__ . '/../..' . '/app/PesoProducto.php',
         'App\\PreguntasFrecuente' => __DIR__ . '/../..' . '/app/PreguntasFrecuente.php',
         'App\\Producto' => __DIR__ . '/../..' . '/app/Producto.php',
+        'App\\ProductoFavorito' => __DIR__ . '/../..' . '/app/ProductoFavorito.php',
         'App\\Promocion' => __DIR__ . '/../..' . '/app/Promocion.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -5155,11 +5157,11 @@ class ComposerStaticInit656a9c8e04e2e3eeb7cebda10e3f232a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit656a9c8e04e2e3eeb7cebda10e3f232a::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit656a9c8e04e2e3eeb7cebda10e3f232a::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit656a9c8e04e2e3eeb7cebda10e3f232a::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit656a9c8e04e2e3eeb7cebda10e3f232a::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit656a9c8e04e2e3eeb7cebda10e3f232a::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit098f678bfaa9552f2f15a40df31abea8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit098f678bfaa9552f2f15a40df31abea8::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit098f678bfaa9552f2f15a40df31abea8::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit098f678bfaa9552f2f15a40df31abea8::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit098f678bfaa9552f2f15a40df31abea8::$classMap;
 
         }, null, ClassLoader::class);
     }

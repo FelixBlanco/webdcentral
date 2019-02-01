@@ -67,10 +67,8 @@
                     </ng-container>
                     <ng-container *ngSwitchDefault>
                         <div class="mb-3 row">
-                            <div class="col-2">
-                                <p>lista</p>
-                            </div>
-                            <div class="col-8">
+                          
+                            <div class="col-10">
                                     <ngb-carousel #carousel="ngbCarousel" (slide)="setCurrent($event)" [showNavigationArrows]="false"
                                     [showNavigationIndicators]="false">
                                     <ng-container *ngFor="let item of carouselItems">

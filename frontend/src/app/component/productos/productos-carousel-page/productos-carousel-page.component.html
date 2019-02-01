@@ -85,8 +85,11 @@
   
               </div>
               
-              <div class="favorito">
-                <fa-icon class=" fav txt-naranja" matSuffix [icon]="['fa', 'heart']"></fa-icon>
+              <div class="text-center">
+                <div class="favorito"  [ngClass]="{'isFavorite':item.isFavorite}">
+                  <fa-icon (click)="addFavorite(item,i)" class=" fav txt-naranja" matSuffix [icon]="['fa', 'heart']"></fa-icon>
+                </div>
+                
               </div>
 
          
