@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Producto } from 'src/app/services/productos.service';
+import { Producto ,ProductosService } from 'src/app/services/productos.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { AlertsService } from 'src/app/services/alerts.service';
@@ -24,17 +24,23 @@ export class ProductosCarouselPageComponent implements OnInit {
   precio: any;
   productosAgrupados: Producto[] = [];
   favoritosList:productoFavorito[]=[];
-
+  isViewList:boolean=false;
   constructor(
     private carritoService: CarritoService,
     private toastr: AlertsService,
     private productsBehaviorService: ProductsBehaviorService,
     private _color: ConfigColorService,
     private perfilClienteService:PerfilClienteService,
-    private productoFavoritoService: ProductosFavoritosService    
+    private productoFavoritoService: ProductosFavoritosService  ,
+    private productsService:ProductosService  
   ) { }
 
   ngOnInit() {
+    this.productsService.view.subscribe(val=>{
+      
+        this.isViewList= val;
+      
+    })
     this.productoFavoritoService.productsFavoritesItems.subscribe(val=>{
       console.log(val);
       if(val.length){

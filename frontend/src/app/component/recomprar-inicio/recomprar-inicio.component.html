@@ -30,7 +30,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h2 class="txt-azul font-bold text-center p-3">
+        <h2 class="txt-azul font-bold text-center p-3" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }" >
           RECOMPRAR
         </h2>
       </div>
@@ -72,11 +72,11 @@
                               >
                               Recomprar
                             </button> -->
-                            <button style="width: 45%; margin-right: .3rem;" class="btn btn-sm text-white btn-danger font-bold text-uppercase" (click)="viewDetail(item,false)">
-                              Detalles
+                            <button style="width: 45%; margin-right: .3rem;" class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="viewDetail(item,false)" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">
+                              VER PRODUCTOS
                             </button>
-                            <button style="width: 45%;" class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="toPdf(item)">
-                              Imprimir
+                            <button style="width: 45%;" class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="toPdf(item)" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">
+                              DESCARGAR
                             </button>
                           </td>
                         </tr>
@@ -97,7 +97,7 @@
                             >
                             Recomprar
                           </button> -->
-                          <button *ngIf="!inPromise" style="width: 92%;" class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="goToCar()">
+                          <button *ngIf="!inPromise" style="width: 92%;" class="btn btn-sm text-white bg-azul font-bold text-uppercase" (click)="goToCar()" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">
                             volver al carrito
                           </button>
                          

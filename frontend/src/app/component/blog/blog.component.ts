@@ -28,7 +28,7 @@ export class BlogComponent implements OnInit {
     private as: AlertsService,
     private configColor: ConfigColorService
   ) { 
-
+    
     this.configColor._paletaColor().subscribe(
       (resp:any)=> {
         this.colorUno = resp.colorOscuro
@@ -38,6 +38,8 @@ export class BlogComponent implements OnInit {
   }
 
   ngOnInit() {
+    setTimeout(()=> document.getElementById('scrollCategory').scrollIntoView({behavior: 'smooth'}),1000);
+
     this.getAllCategories();
   }
 

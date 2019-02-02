@@ -34,11 +34,18 @@ html {
     cursor: pointer;
     padding: 10px;
 }
-
+.desplegado{
+    display: none;
+}
 .desplegado li{
     border-bottom: 1px solid black;
     color: black;
     cursor: pointer;
     padding: 10px;
     position: relative;
+}
+.view{
+    cursor: pointer;
+    color:gray;
+
 }
