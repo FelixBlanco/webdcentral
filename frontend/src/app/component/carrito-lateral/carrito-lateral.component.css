@@ -11,7 +11,13 @@
     position: -webkit-sticky;
     position: sticky;
    
+   
     top: 0;
+}
+.body{
+max-height: 600px;
+overflow: auto;
+overflow-x: hidden;
 }
 .producto-contenedor{
 
@@ -19,4 +25,16 @@
     margin-top: 5px;
     width: 90%;
     border: 0.5px solid;
+  /*   max-height: 200px; */
+}
+.card-img-top{
+    display: block;
+    margin: auto;
+   
+    text-align: center;
+    max-height: 150px;
+    width: auto;
+    max-width: 80%;
+
+   
 }

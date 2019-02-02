@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ProductosFavoritosService, productoFavorito } from '../../services/productos-favoritos.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { Producto, ProductosService, CarouselItem } from 'src/app/services/productos.service';
 import { ConfigColorService } from '../../services/config-color.service';
+import { PerfilClienteService } from '../../services/perfil-cliente.service';
 
 declare var $:any;
 
@@ -12,7 +13,7 @@ declare var $:any;
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit {
-
+  isListView:boolean=false;
   nrSelect=19;
   productsList: Producto[];
   chargeCarrousel: boolean;
@@ -20,18 +21,20 @@ export class ProductosComponent implements OnInit {
   max:number =19;
   currentPage: number;
   pages: number;
-
+  isFavorite:boolean;
   tittleList: string;
 
   carouselItems: CarouselItem[] = [];
   list_arbol_p:any;
   colorUno:any;
   colorTres:any;
-
+  favoritosList:productoFavorito[]=[];
   constructor(
     private productsBehavior: ProductsBehaviorService,
     private productosService: ProductosService,
-    private _color: ConfigColorService
+    private _color: ConfigColorService,
+    private perfilClienteService:PerfilClienteService,
+    private productosFavoritosservices: ProductosFavoritosService
   ) { 
     this.pages = 0;
     this._color._paletaColor().subscribe(
@@ -48,6 +51,18 @@ export class ProductosComponent implements OnInit {
     this.iniBehavior();
     this.iniTittleBehavior();
     this.getArbolProductos();
+    
+    this.productosFavoritosservices.productsFavoritesItems.subscribe(val=>{
+      if(val.length){
+        this.favoritosList=val;
+      }
+    })
+    this.getFavoriteProducts();
+    // menu desplegable    		
+		// $('.desplegar').click(function(){ 
+    //   console.log('click menu')
+		// 	// 
+		// })     
   }
 
   clickMenu(id:any){
@@ -129,6 +144,45 @@ export class ProductosComponent implements OnInit {
         this.list_arbol_p = resp;              
       }
     )
+  }
+  getFavoriteProducts(){
+    console.log("getfaVoriteItems");
+    const userId = JSON.parse(localStorage.getItem('user_data')); // recuperamos el id del usuario
+    this.perfilClienteService._getPerfilCliente(userId.id).subscribe(
+      (resp: any) => {
+        // Como ya existe , vamos a editar
+        if (resp) {
+          console.log(resp.perfil.fk_idPerfilCliente);
+          this.productosFavoritosservices.obtenerFavorito(resp.perfil.fk_idPerfilCliente).subscribe(val=>{
+            if(val.ok){
+             
+            this.favoritosList=  val.body.productosFavoritos;
+            this.productosFavoritosservices.updateFavoritesSource(val.body.productosFavoritos);
+            console.log(this.favoritosList);
+            }
+            
+          })
+        
+         
+        }
+       
+      },
+      error => {
+        // Como no hay perfil, le decimos crear            
+        console.error(error);
+      }) 
+  }
+  viewMode(view:'LISTA'|'CATALOGO'){ // definir tipo de vista (tabla o lista)
+    console.log(view);
+    console.log(this.isListView)
+      if(this.isListView && view=='CATALOGO'){
+        this.productosService.updateView(false);
+        this.isListView=false;
+
+      }else if(!this.isListView && view=='LISTA'){
+        this.productosService.updateView(true);
+        this.isListView=true;
+      }
   }
 
 }

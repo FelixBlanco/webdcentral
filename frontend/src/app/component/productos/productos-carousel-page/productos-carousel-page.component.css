@@ -33,6 +33,18 @@
     max-height: 35%;
     width: auto;
     max-width: 100%;
+    align-items: center;
+
+   
+}
+.card-img-top2{
+    display: block;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    max-height: 100%;
+    width: auto;
+    max-width: 100%;
 
    
 }
@@ -71,11 +83,17 @@ h5{
     
     min-height: 50px;
 }
+
 .txt-marca{
     min-height: 24px;
 }
 .agrupacion{
     height: 90px;
+    display:flex;
+    flex-flow: row wrap;
+}
+.agrupacion2{
+    max-height: 90px;
     display:flex;
     flex-flow: row wrap;
 }
@@ -108,15 +126,55 @@ h5{
  
 }
 .favorito{
-    border-radius: 50%;
-    border-style: solid 1px;
-    border-color: orange;
-    height: 40px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    margin-left: 43%;
+}
+.favorito2{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+  
 }
 .fav{
     cursor: pointer;
+
+
 }
 .text-cont p, h5{
     width: 100%;
 }
-
+.isFavorite{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    margin-left: 43%;
+    border-radius: 50%;
+    border: solid 2px ;
+    border-color: orange;
+}
+.isFavorite2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: solid 2px ;
+    border-color: orange;
+}
+.box{
+    max-width: 99%;
+    -webkit-box-shadow: 1px 1px 15px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 15px -1px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 15px -1px rgba(0,0,0,0.75);
+}

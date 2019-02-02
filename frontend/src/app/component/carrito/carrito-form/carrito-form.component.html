@@ -47,9 +47,9 @@
         <table class="table table-curved justify-content-center">
           <thead class="bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }" >
             <tr>
-              <th scope="col" width="40%">PRODUCTO</th>
+              <th scope="col" width="50%">PRODUCTO</th>
               <th scope="col" width="25%">PRECIO</th>
-              <th scope="col" width="20%">CANTIDAD</th>
+              <th scope="col" width="10%">CANTIDAD</th>
               <th *ngIf="pedidoRealizado" scope="col" width="15%"></th>
 
             </tr>
@@ -220,7 +220,7 @@
       <form [formGroup]="inMarketForm">
         <div class="form-group">
           <label for="fechaRetiro" class="text-uppercase font-bold">fecha de retiro <span class="text-danger">(MAX {{reservaMercaderiaHrs}}
-              Hrs Hábiles)</span></label>
+              HS Hábiles)</span></label>
           <input type="date" class="form-control" id="fechaRetiro" min="actualDate" max="twoDaysAfter" formControlName="fechaRetiro">
           <small class="form-text text-danger" *ngIf="inMarketForm.get('fechaRetiro').invalid">
             El rango de las fechas debe estar entre {{actualDate | date: 'dd/MM/yyyy'}} y {{twoDaysAfter | date:

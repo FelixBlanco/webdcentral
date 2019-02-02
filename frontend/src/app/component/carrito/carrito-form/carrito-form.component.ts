@@ -471,7 +471,7 @@ export class CarritoFormComponent implements OnInit {
 
 
 
-    this.as.msg('OK', 'Éxito', 'Su pedido ha sido procesado');
+    this.as.msg('OK', 'Muchas Gracias!', 'Su pedido ha sido procesado');
     this.carritoService.clear();
     this.goToMercadoPago(idOrder, this.Numero_Pedido, unit_price);
     this.inPromise = false;
@@ -479,6 +479,7 @@ export class CarritoFormComponent implements OnInit {
     this.detailOrder.pedidoRealizado = true;
     this.detailOrder.numeroPedido = this.Numero_Pedido;
     this.carritoService.setDetailOrder(this.detailOrder);
+    $('#carrito').modal('toggle');
     /* this.carritoService.setDetallesLastOrder(this.pedidoRealizado);
     this.carritoService.setDetallesLastOrderNumber(this.Numero_Pedido); */
 
