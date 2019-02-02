@@ -42,3 +42,8 @@ html {
     padding: 10px;
     position: relative;
 }
+.view{
+    cursor: pointer;
+    color:gray;
+
+}

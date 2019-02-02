@@ -13,7 +13,7 @@ declare var $:any;
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit {
-
+  isListView:boolean=false;
   nrSelect=19;
   productsList: Producto[];
   chargeCarrousel: boolean;
@@ -172,6 +172,18 @@ export class ProductosComponent implements OnInit {
         // Como no hay perfil, le decimos crear            
         console.error(error);
       }) 
+  }
+  viewMode(view:'LISTA'|'CATALOGO'){ // definir tipo de vista (tabla o lista)
+    console.log(view);
+    console.log(this.isListView)
+      if(this.isListView && view=='CATALOGO'){
+        this.productosService.updateView(false);
+        this.isListView=false;
+
+      }else if(!this.isListView && view=='LISTA'){
+        this.productosService.updateView(true);
+        this.isListView=true;
+      }
   }
 
 }

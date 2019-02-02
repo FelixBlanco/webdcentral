@@ -29,7 +29,9 @@ import {
     faCheckCircle as fasCheckCircle,
     faEye as fasEye,
     faStar as faStar,
-    faHeart as faHeart
+    faHeart as faHeart,
+    faList as faList,
+    faTable as faTable
 } from '@fortawesome/free-solid-svg-icons';
 
 export const FA_ICONS: any = [
@@ -63,6 +65,8 @@ export const FA_ICONS: any = [
     fasChevronDown,
     fasChevronUp,
     faStar,
-    faHeart
+    faHeart,
+    faList,
+    faTable
 ];
 

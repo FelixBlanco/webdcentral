@@ -1,4 +1,5 @@
-<div class="container">
+<!-- modo catalogo -->
+<div *ngIf="!isViewList" class="container">
   <div class="row justify-content-center">
 
     <ng-container *ngFor="let item of products; let i =index">
@@ -12,7 +13,8 @@
           <div class="card-body" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#DCF5F9' }">
             <div class="text-center ">
               <small class="text-center txt-azul txt-marca" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">{{item.marca}}</small>
-              <small *ngIf="!item.marca" class="text-center txt-azul txt-marca" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">SIN ESPECIFICAR</small>
+              <small *ngIf="!item.marca" class="text-center txt-azul txt-marca" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">SIN
+                ESPECIFICAR</small>
               <h6 *ngIf="item.Agrupacion" class="card-title text-center txt-azul font-bold">
                 {{item.Agrupacion}}
               </h6>
@@ -20,9 +22,9 @@
                 {{item.nombre}}
               </h6>
             </div>
-           
+
             <div class="text-center semi-body">
-      
+
               <div *ngIf="item.Agrupacion && item.listAgrupacion">
                 <div class="agrupacion justify-content-center" *ngIf="item.listAgrupacion.length">
 
@@ -31,8 +33,8 @@
 
 
                     <div class="pr-2">
-                      <div class="  rectangle font-bold bg-azul text-white m-auto" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }" (click)="selectAgrupacion(i,j)"
-                        [ngClass]="{'disable-circle':ite.codeProdSys != item.codeProdSys}">
+                      <div class="  rectangle font-bold bg-azul text-white m-auto" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }"
+                        (click)="selectAgrupacion(i,j)" [ngClass]="{'disable-circle':ite.codeProdSys != item.codeProdSys}">
                         {{ite.kiloProdcuto}}
                       </div>
 
@@ -61,17 +63,23 @@
               </div>
               <div *ngIf="item.Agrupacion && !item.listAgrupacion" class="agrupacion justify-content-center">
                 <div class="pr-2  ">
-                  <div  class="rectangle font-bold bg-azul text-white m-auto" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
+                  <div class="rectangle font-bold bg-azul text-white m-auto" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
                     {{item.kiloProdcuto}}
                   </div>
                 </div>
               </div>
-              <div class="row text-cont" >
-                <div class="col-6 text-cont" >
-                  <p  class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }" >PRECIO MAYORISTA:</p><h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class=" price text-center txt-naranja font-bold mt-2"> {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
+              <div class="row text-cont">
+                <div class="col-6 text-cont">
+                  <p class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }">PRECIO
+                    MAYORISTA:</p>
+                  <h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class=" price text-center txt-naranja font-bold mt-2">
+                    {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
                 </div>
-                <div class="col-6 text-cont" >
-                  <p class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }" >PRECIO DISTRIBUIDOR:</p><h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class="price text-center txt-naranja font-bold mt-2"> {{item.defaultPrice2 | currency: 'ARS': '$'}}</h5>
+                <div class="col-6 text-cont">
+                  <p class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }">PRECIO
+                    DISTRIBUIDOR:</p>
+                  <h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class="price text-center txt-naranja font-bold mt-2">
+                    {{item.defaultPrice2 | currency: 'ARS': '$'}}</h5>
 
                 </div>
               </div>
@@ -82,17 +90,17 @@
                 <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 3}"></fa-icon>
                 <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 4}"></fa-icon>
                 <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 5}"></fa-icon>
-  
-              </div>
-              
-              <div class="text-center">
-                <div class="favorito"  [ngClass]="{'isFavorite':item.isFavorite}">
-                  <fa-icon (click)="addFavorite(item,i)" class=" fav txt-naranja" matSuffix [icon]="['fa', 'heart']"></fa-icon>
-                </div>
-                
+
               </div>
 
-         
+              <div class="text-center">
+                <div class="favorito" [ngClass]="{'isFavorite':item.isFavorite}">
+                  <fa-icon (click)="addFavorite(item,i)" class=" fav txt-naranja" matSuffix [icon]="['fa', 'heart']"></fa-icon>
+                </div>
+
+              </div>
+
+
 
 
               <div class="row justify-content-center mt-2 mb-2">
@@ -109,12 +117,157 @@
                 </div>
               </div>
               <span style="color:green" *ngIf="item.stockActual > 0">En stock</span>
-              <span style="color:red"  *ngIf="item.stockActual <= 0">Sin stock</span>
-              
-<!--               <button *ngIf="item.stockActual <= 0" mat-raised-button style="background-color: red" class=" btn-block  text-white"  >AVISARME</button> [disabled]="item.stockActual <= 0"
- -->              <button  mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)"  [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">COMPRAR</button>
+              <span style="color:red" *ngIf="item.stockActual <= 0">Sin stock</span>
+
+              <!--               <button *ngIf="item.stockActual <= 0" mat-raised-button style="background-color: red" class=" btn-block  text-white"  >AVISARME</button> [disabled]="item.stockActual <= 0"
+ -->
+              <button mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">COMPRAR</button>
             </div>
           </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!-- modo Lista -->
+<div *ngIf="isViewList" class="container ">
+  <div class="row justify-content-center">
+
+    <ng-container *ngFor="let item of products; let i =index">
+      <div class="col-12 m-2 box">
+        <div class=" m-auto row">
+          <!-- arupaciones -->
+          <div class="col-3 my-auto">
+            <img *ngIf="item.urlImage" class="card-img-top2 " [src]="item.urlImage" alt="{{item.nombre}}">
+            <img *ngIf="!item.urlImage" width="130" height="230" class="card-img-top2 " src="assets/no_image_aviable.png"
+              alt="{{item.nombre}}" />
+          </div>
+
+
+          <div class=" col-9" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#DCF5F9' }">
+            <div class="row">
+              <div class="text-left col-12">
+                <small class="text-center txt-azul txt-marca" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">{{item.marca}}</small>
+                <small *ngIf="!item.marca" class="text-center txt-azul txt-marca" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">SIN
+                  ESPECIFICAR</small>
+                <h6 *ngIf="item.Agrupacion" class="text-left txt-azul font-bold">
+                  {{item.Agrupacion}}
+                </h6>
+                <h6 *ngIf="!item.Agrupacion" class=" text-left txt-azul font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">
+                  {{item.nombre}}
+                </h6>
+              </div>
+
+              <div class="text-center col-5">
+
+                <div *ngIf="item.Agrupacion && item.listAgrupacion">
+                  <div class="agrupacion2 justify-content-left" *ngIf="item.listAgrupacion.length">
+
+                    <div *ngFor="let ite of item.listAgrupacion; let j = index">
+
+
+
+                      <div class="pr-2">
+                        <div class="  rectangle font-bold bg-azul text-white m-auto" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }"
+                          (click)="selectAgrupacion(i,j)" [ngClass]="{'disable-circle':ite.codeProdSys != item.codeProdSys}">
+                          {{ite.kiloProdcuto}}
+                        </div>
+
+                      </div>
+
+
+
+                    </div>
+
+
+                  </div>
+                </div>
+
+                <!--  si no existe agrupacion -->
+                <div *ngIf="!item.Agrupacion ">
+
+                  <div class="agrupacion justify-content-left">
+                    <div class="pr-2">
+                      <div class="rectangle font-bold bg-azul text-white m-auto" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
+                        {{item.kiloProdcuto}}
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div *ngIf="item.Agrupacion && !item.listAgrupacion" class="agrupacion justify-content-left mb-2">
+                  <div class="pr-2  ">
+                    <div class="rectangle font-bold bg-azul text-white m-auto" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
+                      {{item.kiloProdcuto}}
+                    </div>
+                  </div>
+                </div>
+                <div class="valoracion text-left">
+
+                  <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 1}"></fa-icon>
+                  <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 2}"></fa-icon>
+                  <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 3}"></fa-icon>
+                  <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 4}"></fa-icon>
+                  <fa-icon class="star" matSuffix [icon]="['fa', 'star']" [ngClass]="{'disable-star':item.Valoracion_Fabricante < 5}"></fa-icon>
+
+                </div>
+                <div class="text-center">
+                  <div class="favorito2" [ngClass]="{'isFavorite2':item.isFavorite}">
+                    <fa-icon (click)="addFavorite(item,i)" class=" fav txt-naranja" matSuffix [icon]="['fa', 'heart']"></fa-icon>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="row text-cont">
+                  <div class="col-12 text-cont">
+                    <p class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }">PRECIO
+                      MAYORISTA:</p>
+                    <h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class=" price text-center txt-naranja font-bold mt-2">
+                      {{item.defaultPrice | currency: 'ARS': '$'}}</h5>
+                  </div>
+                  <div class="col-12 text-cont">
+                    <p class="text-center price-text txt-naranja  mt-2 font-bold" [ngStyle]=" colorTres ? {color: colorTres } : {color: '#E97604' }">PRECIO
+                      DISTRIBUIDOR:</p>
+                    <h5 [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }" class="price text-center txt-naranja font-bold mt-2">
+                      {{item.defaultPrice2 | currency: 'ARS': '$'}}</h5>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-3 text-center my-auto">
+
+                <div class="text-rigth">
+                  <span style="color:green" *ngIf="item.stockActual > 0">En stock</span>
+                  <span style="color:red" *ngIf="item.stockActual <= 0">Sin stock</span>
+                </div>
+    
+    
+                <!--               <button *ngIf="item.stockActual <= 0" mat-raised-button style="background-color: red" class=" btn-block  text-white"  >AVISARME</button> [disabled]="item.stockActual <= 0"
+    -->
+                <button mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">COMPRAR</button>
+                <div class="text-rigth">
+                  <div class="row justify-content-center mt-2 mb-2">
+                    <div class="col-8 d-flex justify-content-center">
+                      <button mat-icon-button (click)="incrase(item, false)">
+                        <fa-icon class="txt-azul" [icon]="['fa','minus']" size="1x"></fa-icon>
+                      </button>
+                      <div class="circle font-bold bg-white text-black-50" style="font-size: 1.4rem;">
+                        {{item.cantidad}}
+                      </div>
+                      <button mat-icon-button (click)="incrase(item, true)">
+                        <fa-icon class="txt-azul" [icon]="['fa','plus']" size="1x"></fa-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </div>
       </div>
     </ng-container>

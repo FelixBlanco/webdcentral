@@ -25,17 +25,28 @@
                 </div>
                 <div class="d-flex justify-content-between">
                     <ng-container *ngIf="productsList.length">
-                        <h4 *ngIf="tittleList" class="font-italic text-uppercase font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">Coincidencias con
+                        <h4 *ngIf="tittleList" class="font-italic text-uppercase font-bold">Coincidencias con
                             '{{tittleList}}'</h4>
-                        <h4 class="font-italic text-uppercase font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">{{!currentPage ? 1 :
-                            currentPage}}/{{pages}}</h4>
+
+                        <ng-container>
+                            <section>
+                                <fa-icon (click)="viewMode('CATALOGO')" matTooltip="Vista Tipo Catalogo" matTooltipPosition="above"
+                                    [icon]="['fa','table']" [size]="'lg'" class="txt-naranja mr-2" [ngClass]="{'view':isListView}"></fa-icon >
+
+                                <fa-icon (click)="viewMode('LISTA')" matTooltip="Vista Tipo Lista" matTooltipPosition="above"
+                                    [icon]="['fa','list']" [size]="'lg'" class="txt-naranja mr-2" [ngClass]="{'view':!isListView}"></fa-icon>
+                            </section>
+                            <h4 class="font-italic text-uppercase font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">{{!currentPage
+                                ? 1 :
+                                currentPage}}/{{pages}}</h4>
+                        </ng-container>
                     </ng-container>
                 </div>
                 <hr>
             </div>
         </div>
         <div class="row">
-            
+
             <div class="col-3">
                 <ul class="lista">
                     <li *ngFor='let i of list_arbol_p'>
@@ -43,8 +54,8 @@
                         <ul class="desplegado">
                             <li *ngFor='let x of i.hijos' class="font-light">{{x.Dato_TablaGenerica}}</li>
                         </ul>
-                    </li>				
-                </ul>                 
+                    </li>
+                </ul>
             </div>
 
             <div class="col-7">
@@ -67,32 +78,32 @@
                     </ng-container>
                     <ng-container *ngSwitchDefault>
                         <div class="mb-3 row">
-                          
+
                             <div class="col-12">
-                                    <ngb-carousel #carousel="ngbCarousel" (slide)="setCurrent($event)" [showNavigationArrows]="false"
-                                    [showNavigationIndicators]="false">
+                                <ngb-carousel #carousel="ngbCarousel" (slide)="setCurrent($event)"
+                                    [showNavigationArrows]="false" [showNavigationIndicators]="false">
                                     <ng-container *ngFor="let item of carouselItems">
                                         <ng-template ngbSlide [id]="item.id">
                                             <app-productos-carousel-page [items]="item.products"></app-productos-carousel-page>
                                         </ng-template>
                                     </ng-container>
-    
+
                                 </ngb-carousel>
                             </div>
-                          
-                            
+
+
                         </div>
 
                         <div class="row" *ngIf="pages > 1 && productsList">
 
                             <div class="col d-flex justify-content-center">
-                             
+
                                 <div class="max txt-azul font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">
-                                        <h3>MAX:</h3>
-                                </div>      
+                                    <h3>MAX:</h3>
+                                </div>
                                 <div class="ver ">
-                                        
-                                    <select  (change)="MaxRangePartialItem($event.target.value)" class='form-control'>
+
+                                    <select (change)="MaxRangePartialItem($event.target.value)" class='form-control'>
                                         <option value='19'>20</option>
                                         <option value='49'>50</option>
                                         <option value='99'>100</option>
