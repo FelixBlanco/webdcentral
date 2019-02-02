@@ -50,5 +50,6 @@ class ConfigFooter extends Model {
         'uso_cupon_app',
 
         'listaPrecioDistribuidor',
+        'horario_atencion'
     ];
 }

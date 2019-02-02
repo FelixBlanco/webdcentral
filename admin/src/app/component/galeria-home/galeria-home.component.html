@@ -57,7 +57,8 @@
 
               <ngx-datatable-column name="" prop="opts">
                 <ng-template ngx-datatable-cell-template let-row="row">
-                  <a class="btn btn-default" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
+                  <button class="btn btn-primary" (click)='editSlide(row)'>Editar</button>
+                  <a class="btn btn-danger" (click)="set(row)" data-toggle="modal" data-target="#eliminar"><i class="fa fa-trash-o"></i></a>
                 </ng-template>                    
               </ngx-datatable-column>
 
@@ -149,6 +150,59 @@
   </div>
 </div>
 
+
+<!-- Modal edit -->
+<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editarModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="editarModal">editar Slide</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editForm">
+          <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" formControlName="titulo" class="form-control" id="titulo" placeholder="Escriba un título" maxlength="255">
+          </div>
+          <div class="form-group" *ngIf='visualProducto'>
+            <label for="producto">Producto:</label>
+            <select class="form-control" formControlName="fk_idProducto" (change)="changeProducto($event,'producto')">
+              <option value="none">Nada</option>
+              <option *ngFor="let product of productList" value="{{product.idProducto}}">{{product.nombre}}</option>
+            </select>
+          </div>
+
+          <div class="form-group" *ngIf='visualSeccionesPagina'>
+            <label for="producto">Seccion de la Pagina:</label>
+            <select class="form-control" formControlName="secciones_pagina" (change)="changeProducto($event,'secciones_pagina')">
+              <option value="none">Nada</option>
+              <option *ngFor="let secciones_paginas of lista_s_paginas" value="{{secciones_paginas.id}}">{{secciones_paginas.nombre}}</option>
+            </select>
+          </div>          
+
+          
+          <div class="form-group">
+            <label for="respuesta">Imagen del Slide:</label>
+            <input #image type="file" (change)="onFileChange($event)" >
+            <small>Recomendacion 1423x850</small>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <mat-spinner *ngIf='inPromise'  diameter="30" style="margin: 0 auto"></mat-spinner>
+        <div *ngIf='!inPromise'>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="editForm.invalid || inPromise" (click)="upgrade()">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
   
   <!-- Modal Eliminar -->

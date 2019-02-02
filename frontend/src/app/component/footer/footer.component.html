@@ -67,20 +67,7 @@
       
       <div class="col-md-3">
         <h4 class="font-bold txt-blanco">HORARIOS DE ATENCIÓN</h4>
-        <table class="table tableEstilo">
-          <thead>
-            <tr>
-              <th scope="col">Desde</th>
-              <th scope="col">Hasta</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let horario of listaHorarios">
-                <td>{{ horario.desde }}</td>
-                <td>{{ horario.hasta }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <p class="text-center txt-blanco font-light">{{footer_data.horario_atencion}}</p> 
       </div>
 
       

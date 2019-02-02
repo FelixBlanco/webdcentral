@@ -34,4 +34,9 @@ export class GaleriaHomeService {
     return this.http.delete(environment.apiHost + '/api/auth/destroySlides/'+id,httpOptions)
   }
 
+  upgradeSlideHome(data:any){
+    return this.http.post(environment.apiHost + '/api/auth/upgradeSlides/',data,httpOptions)
+  }
+
+  
 }

@@ -41,25 +41,18 @@ export class ProductosComponent implements OnInit {
           this.colorTres = resp.colorClaro;
         }        
       }
-    ); 
-    $('.desplegado').css('display','none');        
+    );    
   }
 
   ngOnInit() {
     this.iniBehavior();
     this.iniTittleBehavior();
     this.getArbolProductos();
-
-    // menu desplegable    		
-		// $('.desplegar').click(function(){ 
-    //   console.log('click menu')
-		// 	// 
-		// })     
   }
 
-  clickMenu(){
-    console.log('click')
-    $(this).parent().find("ul.desplegado").toggle('fast'); 
+  clickMenu(id:any){
+    const idNombre = '#posicion_'+id;
+    $(idNombre).parent().find("ul.desplegado").toggle('fast'); 
   }
 
   iniTittleBehavior(){
