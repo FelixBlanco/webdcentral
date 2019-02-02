@@ -121,7 +121,7 @@
 
               <!--               <button *ngIf="item.stockActual <= 0" mat-raised-button style="background-color: red" class=" btn-block  text-white"  >AVISARME</button> [disabled]="item.stockActual <= 0"
  -->
-              <button mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">COMPRAR</button>
+              <button mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)" [disabled]="item.stockActual <= 0" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">COMPRAR</button>
             </div>
           </div>
         </div>
@@ -248,7 +248,7 @@
     
                 <!--               <button *ngIf="item.stockActual <= 0" mat-raised-button style="background-color: red" class=" btn-block  text-white"  >AVISARME</button> [disabled]="item.stockActual <= 0"
     -->
-                <button mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">COMPRAR</button>
+                <button mat-raised-button class="btn-block bg-naranja text-white" (click)="addItem(item)" [disabled]="item.stockActual <= 0" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">COMPRAR</button>
                 <div class="text-rigth">
                   <div class="row justify-content-center mt-2 mb-2">
                     <div class="col-8 d-flex justify-content-center">
