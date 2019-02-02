@@ -11,7 +11,7 @@
             <h2 *ngIf="section !== 'blogs'" class="font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">CATEGORÍAS</h2>
             <h2 *ngIf="section === 'blogs'" class="font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">BLOGS</h2>
         </div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between" id="scrollCategory">
           <div class="m-2" *ngIf="section === 'blogs'">
             <button class="txt-azul" mat-icon-button (click)="routeTo('')" matTooltip="Categorías">
               <fa-icon [icon]="['fas','arrow-left']" size="2x"></fa-icon>
