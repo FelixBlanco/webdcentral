@@ -802,6 +802,7 @@ class ProductoController extends Controller {
     }
 
 
+
     public function getProvincia() {
 
         $rs = DB::connection('sqlsrv')->select(" SELECT Descripcion_Provincia FROM  VISTALOCALIDADESAPP GROUP BY Descripcion_Provincia");

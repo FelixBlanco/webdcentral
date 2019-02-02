@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Suscripcion;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -16,9 +17,11 @@ class EnviarTokenMail extends Mailable {
      * @return void
      */
     protected $tokenActivacion;
+    public $sus;
 
-    public function __construct($tokenActivacion) {
+    public function __construct($tokenActivacion,Suscripcion $sus) {
         $this->tokenActivacion = $tokenActivacion;
+        $this->sus=$sus;
     }
 
     /**
@@ -27,6 +30,8 @@ class EnviarTokenMail extends Mailable {
      * @return $this
      */
     public function build() {
-        return $this->view('correos.activar-cuenta')->with('token', $this->tokenActivacion);
+        return $this->view('correos.activar-cuenta')
+            ->subject('Gracias por Registrarte')
+            ->with('token', $this->tokenActivacion);
     }
 }

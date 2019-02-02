@@ -36,6 +36,8 @@ class Prueba extends Mailable
      */
     public function build()
     {
-        return $this->view('correos.informacion')->with('clave',$this->clave);
+        return $this->view('correos.informacion')
+            ->subject('Recuperación de clave')
+            ->with('clave',$this->clave);
     }
 }
