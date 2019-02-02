@@ -162,12 +162,7 @@ class UserController extends Controller
 
             $usuario->fk_idPerfil = 2;
             $usuario->userName    = $request->email;
-
-            /*PARA ACTIVACION DE USER y STATUS INICIAL=0*/
             $usuario->generateTokenActivacion();
-            Mail::to($usuario->email)->send(new EnviarTokenMail($usuario->tockenActivarCuenta));
-            /*PARA ACTIVACION DE USER y STATUS INICIAL=0*/
-
             $usuario->save();
 
             $suscripcion = new Suscripcion([
@@ -176,13 +171,17 @@ class UserController extends Controller
             ]);
             $suscripcion->generateToken();
 
-            Mail::to($request->email)->send(new SuscripcionMail($suscripcion));
             $suscripcion->save();
 
             /*PARA CREAR EL PERFIL DEL CLIENTE*/
             $perfilCliente = new PerfilCliente(['fk_idPerfilCliente' => $usuario->id]);
             $perfilCliente->save();
             /*PARA CREAR EL PERFIL DEL CLIENTE*/
+
+
+            /*PARA ACTIVACION DE USER y STATUS INICIAL=0*/
+            Mail::to($usuario->email)->send(new EnviarTokenMail($usuario->tockenActivarCuenta,$suscripcion));
+            /*PARA ACTIVACION DE USER y STATUS INICIAL=0*/
 
             $response = [
                 'msj'  => 'Usuario Creado, en breve le será enviado un correo para la activacion de su cuenta, es importante que revise aun en los mensajes spam',

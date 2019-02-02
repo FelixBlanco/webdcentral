@@ -794,10 +794,12 @@ class ProductoController extends Controller {
                 }
             }
             $i++;
-
+            $j=0;
         }
         return $sql;
+
     }
+
 
 
     public function getProvincia() {
