@@ -16,32 +16,34 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 
-class OrderDriverController extends Controller {
+class OrderDriverController extends Controller
+{
 
     // OBTENEMOS TODOS LOS PEDIDOS POR CODIGO CHOFER 
-    public function getAllByCodeDriver(Request $request) {
+    public function getAllByCodeDriver (Request $request)
+    {
 
         try {
             $rs = null;
 
             $sql = "";
             if ($request->search != "") {
-                $sql = " AND Pedido LIKE '%".$request->search."%' ";
+                $sql = " AND Pedido LIKE '%" . $request->search . "%' ";
             }
 
             // POR CHOFER
             if ($request->Codigo_Transporte != "") {
-                $sql = $sql." AND Codigo_Transporte = '".$request->Codigo_Transporte."' ";
+                $sql = $sql . " AND Codigo_Transporte = '" . $request->Codigo_Transporte . "' ";
             }
 
             // POR CLIENTE 
             if ($request->Codigo_Cliente != "") {
-                $sql += $sql." AND Codigo_Cliente = '".$request->Codigo_Cliente."' ";
+                $sql += $sql . " AND Codigo_Cliente = '" . $request->Codigo_Cliente . "' ";
             }
 
             $rs = DB::connection('sqlsrv')->select(" SELECT TOP 20 * FROM   VentasporComprobantes  
             where   (EstadoPedido = 'En Transito' 
-            or EstadoPedido ='Cerrado') ".$sql."  order by Ruta  ");
+            or EstadoPedido ='Cerrado') " . $sql . "  order by Ruta  ");
 
             if ($rs) {
 
@@ -61,7 +63,7 @@ class OrderDriverController extends Controller {
                     }
 
                     if ((strcasecmp($item->Ruta, $tempRuta) != 0) || $c == count($rs) - 1) {
-                        $data = [ "Ruta" => $tempRuta, "data" => $orders ];
+                        $data = ["Ruta" => $tempRuta, "data" => $orders];
                         array_push($result, $data);
                         $orders = [];
                     }
@@ -86,24 +88,25 @@ class OrderDriverController extends Controller {
     }
 
     // OBTENEMOS  PEDIDOS ACTUALES POR CODIGO CHOFER 
-    public function getByCodeDriver(Request $request) {
+    public function getByCodeDriver (Request $request)
+    {
 
         try {
             $rs = null;
 
             $sql = "";
             if ($request->search != "") {
-                $sql = " AND Pedido LIKE '%".$request->search."%' ";
+                $sql = " AND Pedido LIKE '%" . $request->search . "%' ";
             }
 
             // POR CHOFER
             if ($request->Codigo_Transporte != "") {
-                $sql = $sql." AND Codigo_Transporte = '".$request->Codigo_Transporte."' ";
+                $sql = $sql . " AND Codigo_Transporte = '" . $request->Codigo_Transporte . "' ";
             }
 
 
             $rs = DB::connection('sqlsrv')->select(" SELECT TOP 20 * FROM   VentasporComprobantes  
-            where   EstadoPedido != 'Reparto' ".$sql."  order by Ruta  ");
+            where   EstadoPedido != 'Reparto' " . $sql . "  order by Ruta  ");
 
             if ($rs) {
 
@@ -123,7 +126,7 @@ class OrderDriverController extends Controller {
                     }
 
                     if ((strcasecmp($item->Ruta, $tempRuta) != 0) || $c == count($rs) - 1) {
-                        $data = [ "Ruta" => $tempRuta, "data" => $orders ];
+                        $data = ["Ruta" => $tempRuta, "data" => $orders];
                         array_push($result, $data);
                         $orders = [];
                     }
@@ -147,12 +150,13 @@ class OrderDriverController extends Controller {
     }
 
     // OBTENEMOS PRODUCTOS DE UN  PEDIDOS ACTUALES POR CODIGO PEDIDO 
-    public static function getProductByPedido(Request $request) {
+    public static function getProductByPedido (Request $request)
+    {
 
         try {
             $rs = null;
             $rs = DB::connection('sqlsrv')->select("  SELECT  *  FROM VentasporProductos
-            where Pedido = ".$request->Pedido." ");
+            where Pedido = " . $request->Pedido . " ");
 
 
             if ($rs) {
@@ -168,7 +172,8 @@ class OrderDriverController extends Controller {
 
 
     // cambio esta de un pedido //
-    public function chagueEstadoPedido(Request $request) {
+    public function chagueEstadoPedido (Request $request)
+    {
 
         try {
 
@@ -182,7 +187,7 @@ class OrderDriverController extends Controller {
             }
 
             DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP
-             set Estado_Pedido = '".$request->Estado_Pedido."' where Numero_Pedido = '".$request->Numero_Pedido."' ");
+             set Estado_Pedido = '" . $request->Estado_Pedido . "' where Numero_Pedido = '" . $request->Numero_Pedido . "' ");
 
 
             // ENVIO DE NOTIFICACION A LOS CLIENTE DE FIREBASE //
@@ -193,15 +198,15 @@ class OrderDriverController extends Controller {
                         $user = User::select("tokenFirebase")->findOrFail($order->fk_idUserClient);
 
                         $data = [
-                            'descriptionNotification' => 'Confirme la recepcion de su pedido #'.$order->Numero_Pedido,
-                            'idSecctionApp'           => 4 // Pedidos
+                            'descriptionNotification' => 'Confirme la recepcion de su pedido #' . $order->Numero_Pedido,
+                            'idSecctionApp' => 4 // Pedidos
                         ];
 
                         NotificationController::sendNotificationFb('Su pedido fue entregado', $data, $user->tokenFirebase);
 
                         $notifications                          = new Notification();
                         $notifications->titleNotification       = 'Su pedido fue entregado';
-                        $notifications->descriptionNotification = 'Confirme la recepcion de su pedido #'.$order->Numero_Pedido;
+                        $notifications->descriptionNotification = 'Confirme la recepcion de su pedido #' . $order->Numero_Pedido;
                         $notifications->fk_idSecctionApp        = 4;// Pedidos
                         $notifications->fk_idUser               = $order->fk_idUserClient;// Pedidos
 
@@ -221,16 +226,17 @@ class OrderDriverController extends Controller {
 
 
     // cambio esta de un pedido //
-    public function chaguePhoneAndAdrresClinet(Request $request) {
+    public function chaguePhoneAndAdrresClinet (Request $request)
+    {
 
         try {
 
 
             DB::connection('sqlsrv')->update("  UPDATE Clientes
              set isUpdatePhoneAndAdressApp = 1, 
-             Telefonos_Cliente = '".$request->Telefonos_Cliente."' ,
-             Domicilio_Cliente = '".$request->Domicilio_Cliente."' 
-             where Codigo_Cliente = '".$request->Codigo_Cliente."' ");
+             Telefonos_Cliente = '" . $request->Telefonos_Cliente . "' ,
+             Domicilio_Cliente = '" . $request->Domicilio_Cliente . "' 
+             where Codigo_Cliente = '" . $request->Codigo_Cliente . "' ");
 
             return response()->json("Datos actualizados ", 200);
 
@@ -242,7 +248,8 @@ class OrderDriverController extends Controller {
     }
 
     // Finalizar Pedido
-    public function finishPedido(Request $request) {
+    public function finishPedido (Request $request)
+    {
         try {
 
             // CARGAMOS LA IMAGEN
@@ -258,10 +265,10 @@ class OrderDriverController extends Controller {
             $nombre_publico = $originalImage->getClientOriginalName();
             $extension      = 'png';//$originalImage->getClientOriginalExtension();
 
-            $nombre_interno = str_replace('.'.$extension, '', $nombre_publico);
-            $nombre_interno = str_slug($nombre_interno, '-').'-'.time().'-'.strval(rand(100, 999)).'.'.$extension;
+            $nombre_interno = str_replace('.' . $extension, '', $nombre_publico);
+            $nombre_interno = str_slug($nombre_interno, '-') . '-' . time() . '-' . strval(rand(100, 999)) . '.' . $extension;
 
-            Storage::disk('local')->put('\\firmas\\'.$nombre_interno, (string) $thumbnailImage->encode());
+            Storage::disk('local')->put('\\firmas\\' . $nombre_interno, (string)$thumbnailImage->encode());
 
             $order = orderHeader::where("Numero_Pedido", "=", $request->Numero_Pedido)->first();
 
@@ -274,8 +281,8 @@ class OrderDriverController extends Controller {
                 $order->save();
             }
 
-            DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP set Estado_Pedido = '".$request->Estado_Pedido."'
-            , stars = ".$request->stars."where Numero_Pedido = '".$request->Numero_Pedido."' ");
+            DB::connection('sqlsrv')->update("  UPDATE EncabezadosVentas_APP set Estado_Pedido = '" . $request->Estado_Pedido . "'
+            , stars = " . $request->stars . "where Numero_Pedido = '" . $request->Numero_Pedido . "' ");
 
 
             // ENVIO DE NOTIFICACION A LOS CLIENTE DE FIREBASE //
@@ -286,15 +293,15 @@ class OrderDriverController extends Controller {
                         $user = User::select("tokenFirebase")->findOrFail($order->fk_idUserClient);
 
                         $data = [
-                            'descriptionNotification' => 'Confirme la recepcion de su pedido #'.$order->Numero_Pedido,
-                            'idSecctionApp'           => 4 // Pedidos
+                            'descriptionNotification' => 'Confirme la recepcion de su pedido #' . $order->Numero_Pedido,
+                            'idSecctionApp' => 4 // Pedidos
                         ];
 
                         NotificationController::sendNotificationFb('Su pedido fue entregado', $data, $user->tokenFirebase);
 
                         $notifications                          = new Notification();
                         $notifications->titleNotification       = 'Su pedido fue entregado';
-                        $notifications->descriptionNotification = 'Confirme la recepcion de su pedido #'.$order->Numero_Pedido;
+                        $notifications->descriptionNotification = 'Confirme la recepcion de su pedido #' . $order->Numero_Pedido;
                         $notifications->fk_idSecctionApp        = 4;// Pedidos
                         $notifications->fk_idUser               = $order->fk_idUserClient;// Pedidos
 
@@ -314,28 +321,29 @@ class OrderDriverController extends Controller {
 
 
     // Finalizar Pedido
-    public function prefinishPedido(Request $request) {
+    public function prefinishPedido (Request $request)
+    {
 
         try {
 
             // CARGAMOS LA IMAGEN
 
-            $path_imagenes = storage_path().'\\app\\public\\firmas\\';
+            $path_imagenes = storage_path() . '\\app\\public\\firmas\\';
             //dd($path_imagenes);
 
             $binary_data = base64_decode($request->filename);
-            
 
-            $nombre = 'firma_'.time().random_int(1,100).'.jpg';
+
+            $nombre = 'firma_' . time() . random_int(1, 100) . '.jpg';
 
             //dd($binary_data);
 
             // save to server (beware of permissions)
 
-            $result = file_put_contents($path_imagenes.$nombre, $binary_data);
-           
+            $result = file_put_contents($path_imagenes . $nombre, $binary_data);
 
-            if (! $result) {
+
+            if (!$result) {
 
                 die("No se puede guardar la foto perfil!  Check file permissions.");
             }
@@ -370,8 +378,8 @@ class OrderDriverController extends Controller {
             }
 
             DB::connection('sqlsrv')->update("UPDATE EncabezadosVentas_APP
-             set Estado_Pedido = '".$request->Estado_Pedido."'
-              where Numero_Pedido = '".$request->Numero_Pedido."' ");
+             set Estado_Pedido = '" . $request->Estado_Pedido . "'
+              where Numero_Pedido = '" . $request->Numero_Pedido . "' ");
 
             return response()->json("Pedido actualizado ", 200);
 
@@ -383,22 +391,23 @@ class OrderDriverController extends Controller {
     }
 
     // devolucion  de un prodcto pedido //
-    public function devolutionProduct(Request $request) {
+    public function devolutionProduct (Request $request)
+    {
 
         try {
             DB::connection('sqlsrv')->update("  UPDATE DetallesVentas_APP
-             set Devolucion_Producto = '".$request->Devolucion_Producto."' 
-             where Numero_Pedido = '".$request->Numero_Pedido."'
-             and Codigo_Producto = '".$request->Codigo_Producto."'
+             set Devolucion_Producto = '" . $request->Devolucion_Producto . "' 
+             where Numero_Pedido = '" . $request->Numero_Pedido . "'
+             and Codigo_Producto = '" . $request->Codigo_Producto . "'
               ");
 
 
-          /*  DB::connection('sqlsrv')->update("  UPDATE DetallesVentas
-            set Devolucion_Producto = '".$request->Devolucion_Producto."' 
-            where Numero_DetalleVenta = '".$request->Numero_Pedido."'
-            and Codigo_Producto = '".$request->Codigo_Producto."'
-            ");*/
-              
+            /*  DB::connection('sqlsrv')->update("  UPDATE DetallesVentas
+              set Devolucion_Producto = '".$request->Devolucion_Producto."'
+              where Numero_DetalleVenta = '".$request->Numero_Pedido."'
+              and Codigo_Producto = '".$request->Codigo_Producto."'
+              ");*/
+
 
             $request->Pedido = $request->Numero_Pedido;
 
@@ -411,20 +420,21 @@ class OrderDriverController extends Controller {
     }
 
 
-      // devolucion  de un prodcto pedido //
-      public function existProduct(Request $request) {
+    // devolucion  de un prodcto pedido //
+    public function existProduct (Request $request)
+    {
 
         try {
             DB::connection('sqlsrv')->update("  UPDATE DetallesVentas_APP
-             set exist = '".$request->exist."' 
-             where Numero_Pedido = '".$request->Numero_Pedido."'
-             and Codigo_Producto = '".$request->Codigo_Producto."'
+             set exist = '" . $request->exist . "' 
+             where Numero_Pedido = '" . $request->Numero_Pedido . "'
+             and Codigo_Producto = '" . $request->Codigo_Producto . "'
               ");
 
             DB::connection('sqlsrv')->update("  UPDATE DetallesVentas
-            set exist = '".$request->exist."' 
-            where Numero_DetalleVenta = '".$request->Numero_Pedido."'
-            and Codigo_Producto = '".$request->Codigo_Producto."'
+            set exist = '" . $request->exist . "' 
+            where Numero_DetalleVenta = '" . $request->Numero_Pedido . "'
+            and Codigo_Producto = '" . $request->Codigo_Producto . "'
             ");
 
             $request->Pedido = $request->Numero_Pedido;
@@ -443,7 +453,8 @@ class OrderDriverController extends Controller {
     */
 
     // HEADER
-    public static function addHeader(orderHeader $request) {
+    public static function addHeader (orderHeader $request)
+    {
         try {
             $mytime = Carbon::now();
 
@@ -474,7 +485,8 @@ class OrderDriverController extends Controller {
     }
 
     // BODY
-    public static function addBody(Request $request, $fk_idOrderHeader) {
+    public static function addBody (Request $request, $fk_idOrderHeader)
+    {
         try {
             foreach ($request->items as $item) {
 
@@ -513,26 +525,28 @@ class OrderDriverController extends Controller {
 
 
     // OBTENEMOS TODOS LOS PEDIDOS POR CODIGO CLIENTE
-    public function getAllByCodeCliente(Request $request) {
+    public function getAllByCodeCliente (Request $request)
+    {
 
         try {
+
             $rs = null;
 
             $sql = "";
             if ($request->search != "") {
-                $sql = " AND Pedido LIKE '%".$request->search."%' ";
+                $sql = " AND Pedido LIKE '%" . $request->search . "%' ";
             }
 
 
             // POR CLIENTE 
             if ($request->Codigo_Cliente != "") {
-                $sql = $sql." AND Codigo_Cliente = ".$request->Codigo_Cliente." ";
+                $sql = $sql . " AND Codigo_Cliente = " . $request->Codigo_Cliente . " ";
             }
 
             $rs = DB::connection('sqlsrv')->select(" SELECT TOP 20 * FROM   VentasporComprobantes  
             where   (EstadoPedido = 'En Transito' 
             or EstadoPedido ='Cerrado' or EstadoPedido ='En Reparto' or 
-            EstadoPedido ='Visto' ) ".$sql."  order by Fecha_EncabezadoVenta  ");
+            EstadoPedido ='Visto' ) " . $sql . "  order by Fecha_EncabezadoVenta  ");
 
             if ($rs) {
                 return response()->json($rs, 200);
@@ -548,16 +562,35 @@ class OrderDriverController extends Controller {
     }
 
     // OBTENEMOS TODOS LOS PEDIDOS EN TRAFICO
-    public function getAllOrderMap() {
-
+    public function getAllOrderMap (Request $request)
+    {
+//$estado=null,$desde=null,$hasta=null,$buscador=null
         try {
             $rs = null;
 
             $sql = "";
 
+            if ($request->estado != "") {
+                $sql = " AND Estado LIKE '%" . $request->estado . "%' ";
+            }
 
-            $rs = DB::connection('sqlsrv')->select(" SELECT TOP 20 * FROM   VentasporComprobantes  
-            where   EstadoPedido != 'En Transito' ".$sql."  order by Fecha_EncabezadoVenta  ");
+            if ($request->desde != "" && $request->hasta != "") {
+                $sql = $sql . " AND Fecha_EncabezadoVenta BETWEEN '" . $request->desde . "' AND '" . $request->hasta . "'";
+            }
+
+            if ($request->buscador != "") {
+                $sql = $sql . " AND Clientes.Nombre_Cliente LIKE '%" . $request->buscador . "%' ";
+                $sql = $sql . " OR VentasporComprobantes.Nombre_Transporte LIKE '%" . $request->buscador . "%' ";
+                $sql = $sql . " OR VentasporComprobantes.Pedido LIKE '%" . $request->buscador . "%' ";
+                $sql = $sql . " OR Clientes.Telefonos_Cliente LIKE '%" . $request->buscador . "%' ";
+                $sql = $sql . " OR Clientes.Email_Cliente LIKE '%" . $request->buscador . "%' ";
+            }
+
+            $rs = DB::connection('sqlsrv')->select(" SELECT TOP 10 VentasporComprobantes.*,Clientes.Telefonos_Cliente,Clientes.Email_Cliente,Clientes.Nombre_Cliente 
+            FROM   VentasporComprobantes,Clientes 
+            where EstadoPedido != 'En Transito' " . $sql . "AND Clientes.Codigo_Cliente=VentasporComprobantes.Codigo_Cliente 
+            order by Fecha_EncabezadoVenta  ");
+
 
             if ($rs) {
                 return response()->json($rs, 200);
@@ -573,8 +606,9 @@ class OrderDriverController extends Controller {
     }
 
 
-     // AGREGAR CLEINTES DE MERCADO LIBRE 
-     public static function addClientMl(Request $request) {
+    // AGREGAR CLEINTES DE MERCADO LIBRE
+    public static function addClientMl (Request $request)
+    {
         try {
 
             DB::connection('sqlsrv')->insert("  INSERT INTO tb_clientes_ml
@@ -605,19 +639,20 @@ class OrderDriverController extends Controller {
             return response()->json("Cliente creado ", 200);
 
         } catch (\Exception $e) {
-               //dd($e);
+            //dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
 
 
-     // AGREGAR CLEINTES DE MERCADO LIBRE 
-     public static function getClientMlByUser($nameUser) {
+    // AGREGAR CLEINTES DE MERCADO LIBRE
+    public static function getClientMlByUser ($nameUser)
+    {
         try {
 
 
             $rs = DB::connection('sqlsrv')->select(" SELECT * FROM tb_clientes_ml
-                   WHERE nameUser = '".$nameUser."' ");
+                   WHERE nameUser = '" . $nameUser . "' ");
 
             if ($rs) {
                 //dd($rs);
@@ -627,13 +662,14 @@ class OrderDriverController extends Controller {
             }
 
         } catch (\Exception $e) {
-              dd($e);
+            dd($e);
             return response()->json("Error conectando a el DC", 500);
         }
     }
 
 
-    public function updateClienteMl(Request $request) {
+    public function updateClienteMl (Request $request)
+    {
 
         try {
             DB::connection('sqlsrv')->update("  UPDATE tb_clientes_ml

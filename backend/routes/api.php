@@ -349,7 +349,7 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
     Route::post('order/all/client', 'OrderDriverController@getAllByCodeCliente');
 
     // Obtener pedidos de un cliente 
-    Route::get('order/all/trafic', 'OrderDriverController@getAllOrderMap');
+    Route::post('order/all/trafic', 'OrderDriverController@getAllOrderMap');
 
     // Obtener pedidos actuales de un chofer
     Route::post('order/active/driver', 'OrderDriverController@getByCodeDriver');

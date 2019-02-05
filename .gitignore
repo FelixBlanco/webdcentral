@@ -12,3 +12,8 @@ backend/public/storage/imagenFooter/img-20180622-113436-1547609542-933.jpg
 .idea/workspace.xml
 backend/composer.lock
 backend/vendor/composer/autoload_static.php
+backend/vendor/composer/autoload_static.php
+backend/vendor/composer/autoload_real.php
+backend/vendor/autoload.php
+backend/composer.lock
+.idea/workspace.xml
