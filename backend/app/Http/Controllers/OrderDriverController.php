@@ -574,21 +574,25 @@ class OrderDriverController extends Controller
                 $sql = " AND Estado LIKE '%" . $request->estado . "%' ";
             }
 
-            if ($request->desde != "" && $request->hasta != "") {
-                $sql = $sql . " AND Fecha_EncabezadoVenta BETWEEN '" . $request->desde . "' AND '" . $request->hasta . "'";
+            if ($request->desde != "") {
+                $sql = $sql . " AND Fecha_EncabezadoVenta >= '" . $request->desde . "'";
+            }
+
+            if ($request->hasta != "") {
+                $sql = $sql . " AND Fecha_EncabezadoVenta <= '" . $request->hasta . "'";
             }
 
             if ($request->buscador != "") {
-                $sql = $sql . " AND Clientes.Nombre_Cliente LIKE '%" . $request->buscador . "%' ";
+                $sql = $sql . " AND (Clientes.Nombre_Cliente LIKE '%" . $request->buscador . "%' ";
                 $sql = $sql . " OR VentasporComprobantes.Nombre_Transporte LIKE '%" . $request->buscador . "%' ";
                 $sql = $sql . " OR VentasporComprobantes.Pedido LIKE '%" . $request->buscador . "%' ";
                 $sql = $sql . " OR Clientes.Telefonos_Cliente LIKE '%" . $request->buscador . "%' ";
-                $sql = $sql . " OR Clientes.Email_Cliente LIKE '%" . $request->buscador . "%' ";
+                $sql = $sql . " OR Clientes.Email_Cliente LIKE '%" . $request->buscador . "%' )";
             }
 
-            $rs = DB::connection('sqlsrv')->select(" SELECT TOP 10 VentasporComprobantes.*,Clientes.Telefonos_Cliente,Clientes.Email_Cliente,Clientes.Nombre_Cliente 
+            $rs = DB::connection('sqlsrv')->select(" SELECT TOP 100 VentasporComprobantes.*,Clientes.Telefonos_Cliente,Clientes.Email_Cliente,Clientes.Nombre_Cliente 
             FROM   VentasporComprobantes,Clientes 
-            where EstadoPedido != 'En Transito' " . $sql . "AND Clientes.Codigo_Cliente=VentasporComprobantes.Codigo_Cliente 
+            where EstadoPedido != 'En Transito' " . $sql . " AND Clientes.Codigo_Cliente=VentasporComprobantes.Codigo_Cliente 
             order by Fecha_EncabezadoVenta  ");
 
 
