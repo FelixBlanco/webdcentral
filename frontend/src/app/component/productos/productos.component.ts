@@ -23,7 +23,7 @@ export class ProductosComponent implements OnInit {
   pages: number;
   isFavorite:boolean;
   tittleList: string;
-
+  productFavoriteList:Producto[]=[];
   carouselItems: CarouselItem[] = [];
   list_arbol_p:any;
   colorUno:any;
@@ -184,6 +184,31 @@ export class ProductosComponent implements OnInit {
         this.productosService.updateView(true);
         this.isListView=true;
       }
+  }
+  getFavoritos(){
+    this.productFavoriteList=[];
+    if(!this.favoritosList.length){
+      this.productsBehavior.updateSource(this.productFavoriteList);
+      return
+    }
+    this.tittleList="FAVORITOS";
+    this.inPromise= true;
+    this.favoritosList.map((val,i )=>{
+      this.productosService.getById(val.fk_idProducto).subscribe(val=>{
+       if(val.ok){
+         this.productFavoriteList.push(val.body);
+         if(i >= this.favoritosList.length-1){
+          /*  this.productsList=this.productFavoriteList;
+           this.generateCarousel(); */
+           this.productsBehavior.updateSource(this.productFavoriteList);
+           console.log(this.favoritosList);
+           console.log(this.productsList);
+           this.inPromise=false;
+
+         }
+       }
+      })
+    })
   }
 
 }

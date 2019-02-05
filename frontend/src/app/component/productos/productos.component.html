@@ -12,6 +12,10 @@
         <div class="row justify-content-center">
             <div class="col-9">
                 <app-rubros-filter></app-rubros-filter>
+
+                <button mat-raised-button class="btn-block bg-naranja text-white" (click)="getFavoritos()" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">VER
+                    FAVORITOS</button>
+
             </div>
         </div>
     </div>
@@ -27,15 +31,31 @@
                     <ng-container *ngIf="productsList.length">
                         <h4 *ngIf="tittleList" class="font-italic text-uppercase font-bold">Coincidencias con
                             '{{tittleList}}'</h4>
-
                         <ng-container>
-                            <section>
-                                <fa-icon (click)="viewMode('CATALOGO')" matTooltip="Vista Tipo Catalogo" matTooltipPosition="above"
-                                    [icon]="['fa','table']" [size]="'lg'" class="txt-naranja mr-2" [ngClass]="{'view':isListView}"></fa-icon >
+                            <section class="controlMenu">
+                                <span class="font-bold pr-2 my-auto" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">TIPO
+                                    DE VISTA</span>
+                                <fa-icon  (click)="viewMode('CATALOGO')" matTooltip="Vista Tipo Catalogo"
+                                    matTooltipPosition="above" [icon]="['fa','table']" [size]="'lg'" class="txt-naranja mr-2 my-auto"
+                                    [ngClass]="{'view':isListView}"></fa-icon>
 
                                 <fa-icon (click)="viewMode('LISTA')" matTooltip="Vista Tipo Lista" matTooltipPosition="above"
-                                    [icon]="['fa','list']" [size]="'lg'" class="txt-naranja mr-2" [ngClass]="{'view':!isListView}"></fa-icon>
-                            </section>
+                                    [icon]="['fa','list']" [size]="'lg'" class="txt-naranja mr-2 my-auto" [ngClass]="{'view':!isListView}"></fa-icon>
+                                <section class="mr-2">
+                                        <select (change)="MaxRangePartialItem($event.target.value)" class='form-control'>
+                                                <option value="">MOSTRAR</option>
+                                                <option value='19'>20</option>
+                                                <option value='49'>50</option>
+                                                <option value='99'>100</option>
+                                            </select>
+                                </section>
+                                <section>
+                                        <select  class='form-control '>
+                                                <option value="">ORDENAR POR</option>
+                                               
+                                            </select>
+                                </section>
+                            </section>                           
                             <h4 class="font-italic text-uppercase font-bold" [ngStyle]=" colorUno ? {color: colorUno } : {color: '#009BDD' }">{{!currentPage
                                 ? 1 :
                                 currentPage}}/{{pages}}</h4>
