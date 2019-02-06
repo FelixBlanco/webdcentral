@@ -5,6 +5,7 @@ import { ProductosService , Producto } from '../../services/productos.service';
 import { ProductsBehaviorService} from '../../services/products-behavior.service';
 import { Router } from '@angular/router';
 
+declare var $:any;
 
 @Component({
   selector: 'app-slide-home',
@@ -41,30 +42,41 @@ export class SlideHomeComponent implements OnInit {
   getSlide(){
     this._galeriaHomeService._getSlideHome().subscribe(
       (resp:any) => {
+        console.log('info slide ', resp)
         if(resp != null){
           this.listSlide = resp.producto; // todo los slide        
           this.first = this.listSlide[0]; // agregamos el primero
           this.listSlide.shift(); // Eliminamos el primero de la lista   
-        }
-        console.log('cantidad de slide',this.listSlide.length)        
+        }        
       }
     )
     
   }
   Accion(prod:any){
-    console.log(prod);
-    // redirigir a productos y buscar dicho producto solo si existe
-    if(prod.fk_idProducto){
-         const producto:Producto= prod.producto;
-     const listProd:Producto[]= [producto];
-    this.router.navigate(['/productos']);
-    setTimeout(() => document.getElementById('productos').scrollIntoView({ behavior: 'smooth' }), 1000);
-    this.producBehaviourService.updateSource(listProd);  
-    }else if(prod.seccion_pagina.link){
-     console.log(prod.seccion_pagina.link);
-     this.router.navigate([prod.seccion_pagina.link]);
+    console.log('Accion del slide',prod);
+    /**
+     * PAGINAS
+     * Inicio, Oferta,Blog, Envios
+     * 
+     * #modal
+     * mascotas, Marcas, servicios, Contactanos
+     */
+    console.log('id producto',prod.fk_idProducto)
+    console.log('seccion de la pagina',prod.seccion_pagina)
 
-
+    if(prod.fk_idProducto != 0){ // Redirecciona a los productos
+      console.log('producto slide')
+      const producto:Producto= prod.producto;
+      const listProd:Producto[]= [producto];
+      this.router.navigate(['/productos']);
+      setTimeout(() => document.getElementById('productos').scrollIntoView({ behavior: 'smooth' }), 1000);
+      this.producBehaviourService.updateSource(listProd);  
+    } else if(prod.seccion_pagina.link != 'null'){ // Seccion de la Pagina
+      console.log('esto es un links de la pagina',prod.seccion_pagina.link);
+       this.router.navigate([prod.seccion_pagina.link]);
+    } else if(prod.seccion_pagina.modal != null){ // Seccion de la modal
+      console.log('esto es el modal',prod.seccion_pagina.modal);
+      $(prod.seccion_pagina.modal).modal('show');
     }
   }
 }

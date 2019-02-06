@@ -13,6 +13,10 @@
           <p *ngIf="!myForm.get('direccion').valid" class="text-danger">Direccion es requerida</p>
         </div>
         <div class="form-group">
+          <label>Horario de Atencion</label>
+          <input type="text" placeholder="Horario de Atencion" class="form-control" formControlName="horario_atencion">
+        </div>        
+        <div class="form-group">
           <label>Numero de Contactos</label>
           <input type="phone" placeholder="Numero de Contactos" class="form-control" formControlName="nroContacto">
           <p *ngIf="!myForm.get('nroContacto').valid" class="text-danger">Numero de Contactos es requerido</p>

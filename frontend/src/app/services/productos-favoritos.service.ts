@@ -36,7 +36,7 @@ export class ProductosFavoritosService {
           
         })
       };
-      return this.http.post<any>('http://127.0.0.1:8000/api/auth/agregarProductoFavorito',data, httpOptions2);
+      return this.http.post<any>(`${environment.apiHost}/api/auth/agregarProductoFavorito`,data, httpOptions2);
     }
 
     eliminarFavorito(data: any){

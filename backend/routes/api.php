@@ -28,7 +28,7 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::resource('galeriaHome', 'GaleriaHomeController'); //Para galeria Home
 
         Route::post('createSlides', 'SlideController@createSlides'); //Para que un user admin cree un slide
-
+        Route::post('upgradeSlides','SlideController@upgradeSlides'); // editamos el slide
         Route::delete('destroySlides/{idSlide}', 'SlideController@destroy'); //Para que un user admin elimine un slide
 
         Route::resource('sugerencias-reclamos', 'ReclamoSugerenciaController');   //sugerencias y reclamos

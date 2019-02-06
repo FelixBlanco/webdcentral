@@ -67,12 +67,16 @@ export class ProductosService {
   productosFilterTittleSource: BehaviorSubject<string> = new BehaviorSubject(null);
   productosFilterTittle: Observable<string> = this.productosFilterTittleSource.asObservable();
 
+  viewSource: BehaviorSubject<boolean> = new BehaviorSubject(null);
+  view: Observable<boolean> = this.viewSource.asObservable();
   headers: HttpHeaders;
 
   constructor(
     private http: HttpClient
   ) { }
-
+    updateView(view:boolean){
+      this.viewSource.next(view);
+    }
     _getProductos(){
       return this.http.get(`${environment.apiHost}/api/v1/getAllProductos`)
     }

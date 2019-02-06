@@ -30,6 +30,8 @@ export class RecomprarInicioComponent implements OnInit {
   inPromise: boolean = false;
   orderDetail: detallesCompra;
   colorUno :any;
+  colorDos :any;
+  colorTres :any;
   constructor(
     private productosService: ProductosService,
     private carritoService: CarritoService,
@@ -43,7 +45,8 @@ export class RecomprarInicioComponent implements OnInit {
   ngOnInit() {
     this.configColor._paletaColor().subscribe(
       (resp:any)=> {
-        this.colorUno  = resp.colorOscuro
+        this.colorUno  = resp.colorOscuro,
+        this.colorTres = resp.colorClaro
       }
     )
     this.setHistorial();
