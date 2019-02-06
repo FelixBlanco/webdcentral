@@ -20,7 +20,8 @@ button{
     background-color: #f1f1f1;
 }
 img{
-cursor: pointer; 
+cursor: pointer;
+max-width: 100%; 
 }
 .toMarca{
     cursor: pointer;
@@ -28,4 +29,10 @@ cursor: pointer;
 }
 .toMarca:hover{
     color:blue;
+}
+.box{
+    max-width: 80%;
+    -webkit-box-shadow: 1px 1px 15px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 15px -1px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 15px -1px rgba(0,0,0,0.75);
 }

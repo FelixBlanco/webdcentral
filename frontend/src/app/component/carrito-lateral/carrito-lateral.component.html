@@ -1,23 +1,26 @@
 <div class=" car justify-content-center">
     <div *ngIf="items">
         <div class="" style="display:flex;">
-                <div class="bg-azul top rounded-circle text-center">
-                        <img class=" car-img mx-auto" src="../assets/social/carrito.png" width="40px">
-                      
-                </div>
-                <div class="head">
+                <div class="bg-azul top rounded-circle text-center" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
+                        <img class=" car-img mx-auto" src="../assets/social/carrito.png" width="30px" height="30px">
+                        <div class="head bg-azul " >
 
+                        </div>
                 </div>
+                <div class="head2 bg-azul text-white" [ngStyle]=" colorUno ? {background: colorUno } : {background: '#009BDD' }">
+                    <h5 class="text-center mr-4 mt-2">MI CARRITO</h5>
+                </div>
+               
                 
         </div>
         
-        <h5 class="text-center">Carrito de Compras</h5>
+       <!--  <h5 class="text-center">Carrito de Compras</h5> -->
         <div *ngIf="!items.length" class="text-center">
             <span class="font-bold" >Carrito Vacio...</span>
         </div>
         <div *ngIf="items.length">
             <div class="body">
-                    <div *ngFor="let item of items" class="producto-contenedor">
+                    <div *ngFor="let item of items" class="producto-contenedor mb-2">
                             <div class="row text-center ">
                                 <div class="col-12 text-end">
                                     <button class="btn btn-link txt-naranja text-end" (click)="dissmiss(item.id)" style="margin-left: 83%;">

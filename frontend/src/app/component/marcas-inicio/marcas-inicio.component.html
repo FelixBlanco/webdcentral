@@ -25,7 +25,7 @@
 
                   <div class="container-fluid">
                     <div class="row justify-content-center">
-                      <div class="col-2 text-center" *ngFor="let _ of item.items">
+                      <div class="col-2 text-center box m-2" *ngFor="let _ of item.items">
                       
                           <img *ngIf="!_.linkImg" src="assets/no_image_aviable.png" alt="nombre" matTooltip="{{_.idMarca}}"
                             matTooltipPosition="above" (click)="filter(_.idMarca)" height="200" width="200" />

@@ -6,6 +6,8 @@ import { forkJoin, Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { UserTokenService } from 'src/app/services/user-token.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
+import { ConfigColorService } from '../../services/config-color.service';
+
 declare var $;
 @Component({
   selector: 'app-carrito-lateral',
@@ -24,17 +26,28 @@ export class CarritoLateralComponent implements OnInit {
   pedidoRealizado:boolean =false;
   Numero_Pedido = null;
   token: string;
+  colorUno :any;
+  colorDos :any;
+  colorTres :any;
   constructor(
     private carritoService:CarritoService,
     private productosService: ProductosService,
     private as: AlertsService,
     private userToken: UserTokenService,
-    private productsBehavior: ProductsBehaviorService
+    private productsBehavior: ProductsBehaviorService,
+    private configColor: ConfigColorService,
+
   ) {
     
    }
 
   ngOnInit() {
+    this.configColor._paletaColor().subscribe(
+      (resp:any)=> {
+        this.colorUno  = resp.colorOscuro,
+        this.colorTres = resp.colorClaro
+      }
+    )
     this.carritoService.orderItems.subscribe(val => this.updateItemsByOrder(val));
 
     this.carritoService.carritoItems.subscribe((val)=> {
