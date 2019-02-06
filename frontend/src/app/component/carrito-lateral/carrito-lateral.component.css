@@ -8,6 +8,7 @@
      border-bottom: solid 1px; 
      border-top: solid 1px; 
      border-right: solid 1px; 
+     border-radius: 2.5%;
     position: -webkit-sticky;
     position: sticky;
    
@@ -37,4 +38,14 @@ overflow-x: hidden;
     max-width: 80%;
 
    
+}
+.top{
+    width: 60px;
+    height: 60px;
+}
+.car-img{
+    margin-top: 22%;
+}
+.head{
+
 }
