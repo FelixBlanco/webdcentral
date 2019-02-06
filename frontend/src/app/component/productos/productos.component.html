@@ -69,9 +69,9 @@
 
             <div class="col-3">
                 <ul class="lista">
-                    <li *ngFor='let i of list_arbol_p'>
-                        <h4 class="desplegar font-bold" (click)='clickMenu()'>{{i.Descripcion_TablaGenerica}}</h4>
-                        <ul class="desplegado">
+                    <li *ngFor='let i of list_arbol_p; index as posicion'>
+                        <h4 class="desplegar font-bold" (click)='clickMenu(posicion)'>{{i.Descripcion_TablaGenerica}}</h4>
+                        <ul class="desplegado" id="posicion_{{posicion}}">
                             <li *ngFor='let x of i.hijos' class="font-light">{{x.Dato_TablaGenerica}}</li>
                         </ul>
                     </li>

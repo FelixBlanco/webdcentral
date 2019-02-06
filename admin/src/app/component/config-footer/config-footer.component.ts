@@ -56,6 +56,7 @@ export class ConfigFooterComponent implements OnInit {
             reservaMercaderiaHrs:[''],
             uso_cupon_web: [''],
             uso_cupon_app: [''],
+            horario_atencion : ['']
 
         })
         this.myFormHorarios = this.fb.group({
@@ -110,6 +111,7 @@ export class ConfigFooterComponent implements OnInit {
                         listaPrecioDistribuidor: resp.listaPrecioDistribuidor,
                         uso_cupon_web: resp.uso_cupon_web,
                         uso_cupon_app: resp.uso_cupon_app,
+                        horario_atencion : resp.horario_atencion
 
                     })
                 }

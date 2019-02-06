@@ -44,8 +44,7 @@ export class ProductosComponent implements OnInit {
           this.colorTres = resp.colorClaro;
         }        
       }
-    ); 
-    $('.desplegado').css('display','none');        
+    );    
   }
 
   ngOnInit() {
@@ -66,9 +65,9 @@ export class ProductosComponent implements OnInit {
 		// })     
   }
 
-  clickMenu(){
-    console.log('click')
-    $(this).parent().find("ul.desplegado").toggle('fast'); 
+  clickMenu(id:any){
+    const idNombre = '#posicion_'+id;
+    $(idNombre).parent().find("ul.desplegado").toggle('fast'); 
   }
 
   iniTittleBehavior(){

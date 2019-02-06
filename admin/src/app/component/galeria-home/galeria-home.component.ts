@@ -30,6 +30,7 @@ export class GaleriaHomeComponent implements OnInit {
     rows: any;
 
     newForm: FormGroup;
+    editForm: FormGroup;
     galeriaSet: any;
 
     inPromise: boolean;
@@ -58,6 +59,14 @@ export class GaleriaHomeComponent implements OnInit {
             fk_idProducto: [''],
             secciones_pagina: [''],
             imagen: ['', Validators.required]
+        });
+
+        this.editForm = this.fb.group({
+            idSlide         : [''],
+            titulo          : ['', Validators.required],
+            fk_idProducto   : [''],
+            secciones_pagina: [''],
+            imagen          : ['', Validators.required]
         });
     }
 
@@ -221,5 +230,56 @@ export class GaleriaHomeComponent implements OnInit {
             }
         }
 
+    }
+
+    editSlide(data:any){
+        this.editForm.setValue({
+            'idSlide'           : data.idSlide,
+            'titulo'            : data.titulo,
+            'imagen'            : data.imagen,
+            'fk_idProducto'     : data.fk_idProducto,
+            'secciones_pagina'  : data.secciones_pagina,            
+        });
+        $('#editar').modal('show');
+    }
+
+    upgrade(){        
+        const values = this.editForm.value;
+
+        let toSend: FormData = new FormData(); // Damos Formato
+        toSend.append('idSlide', values.idSlide);
+        toSend.append('titulo', values.titulo);
+        toSend.append('imagen', this.imgLoaded, new Date().toJSON());
+        toSend.append('fk_idProducto', values.fk_idProducto);
+        toSend.append('secciones_pagina', values.secciones_pagina);
+        this.inPromise = true;
+        this._galeriaHomeService.upgradeSlideHome(toSend).subscribe(
+            resp => {
+                this._alertService.msg("OK", "Éxito", "Se ha editado el registro");
+                this.editForm.reset();
+                this.image.nativeElement.value = '';
+                this.updateLists();
+                this.inPromise = false;
+                $('#editar').modal('hide');
+            },
+            error => {
+                this.inPromise = false;
+
+                this._alertService.msg("ERR", "Error", `Error: ${error.error.message}`);
+
+                if (error.error.errors.imagen != null) {
+                    this._alertService.msg("INFO", "Info", `Info: ${error.error.errors.imagen}`);
+                }
+
+                if (error.error.errors.titulo != null) {
+                    this._alertService.msg("INFO", "Info", `Info: ${error.error.errors.titulo}`);
+                }
+
+                if (error.error.errors.fk_idProducto != null) {
+                    this._alertService.msg("INFO", "Info", 'Info: El producto es requerido');
+                }                
+            }
+        )
+        
     }
 }

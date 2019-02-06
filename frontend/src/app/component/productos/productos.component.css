@@ -34,7 +34,9 @@ html {
     cursor: pointer;
     padding: 10px;
 }
-
+.desplegado{
+    display: none;
+}
 .desplegado li{
     border-bottom: 1px solid black;
     color: black;
