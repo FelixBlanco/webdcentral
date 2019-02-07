@@ -12,11 +12,11 @@
         <div class="carousel-inner">
     
           <div class="carousel-item active" *ngIf="first">                    
-            <img class="d-block w-100" src="{{first.set_imagen}}" height="850px;" (click)="Accion(first)">
+            <img class="d-block w-100" src="{{first.set_imagen}}" (click)="Accion(first)">
           </div>                
     
           <div class="carousel-item" *ngFor="let i of listSlide; let p = index">
-              <img class="d-block w-100" src="{{i.set_imagen}}" height="850px;" (click)="Accion(i)">            
+              <img class="d-block w-100" src="{{i.set_imagen}}" (click)="Accion(i)">            
           </div>           
     
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
