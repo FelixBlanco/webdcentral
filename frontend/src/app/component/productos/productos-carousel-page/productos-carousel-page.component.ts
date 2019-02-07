@@ -211,4 +211,8 @@ export class ProductosCarouselPageComponent implements OnInit {
    
   }
   }
+  orderByMayorAMenor(){
+    let array: Producto[]= this.products
+    this.products = array.sort((a, b) => Number(a.defaultPrice) - Number(b.defaultPrice));
+  }
 }
