@@ -50,8 +50,13 @@
                                             </select>
                                 </section>
                                 <section>
-                                        <select  class='form-control '>
+                                        <select  class='form-control ' (change)="OrdenamientoTipo($event.target.value)">
                                                 <option value="">ORDENAR POR</option>
+                                                <option value="A-Z">Nombre de A-Z</option>
+                                                <option value="Z-A">Nombre de Z-A</option>
+                                                <option value="MenorMayor">Precio De Menor A Mayor</option>
+                                                <option value="MayorMenor">Precio De Mayor a Menor</option>
+                                                <option value="RELEVANTE">Mas Relevantes</option>
                                                
                                             </select>
                                 </section>

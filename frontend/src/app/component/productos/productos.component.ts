@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { ProductosFavoritosService, productoFavorito } from '../../services/productos-favoritos.service';
 import { ProductsBehaviorService } from 'src/app/services/products-behavior.service';
 import { Producto, ProductosService, CarouselItem } from 'src/app/services/productos.service';
 import { ConfigColorService } from '../../services/config-color.service';
 import { PerfilClienteService } from '../../services/perfil-cliente.service';
+import { ProductosCarouselPageComponent} from './productos-carousel-page/productos-carousel-page.component'
 
 declare var $:any;
 
@@ -13,6 +14,7 @@ declare var $:any;
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit {
+  @ViewChild(ProductosCarouselPageComponent) carousel:ProductosCarouselPageComponent
   isListView:boolean=false;
   nrSelect=19;
   productsList: Producto[];
@@ -29,6 +31,7 @@ export class ProductosComponent implements OnInit {
   colorUno:any;
   colorTres:any;
   favoritosList:productoFavorito[]=[];
+  tipoOrdenamiento :"A-Z"| 'Z-A' | "MenorMayor" |  "MayorMenor" | "RELEVANTE"  = null;
   constructor(
     private productsBehavior: ProductsBehaviorService,
     private productosService: ProductosService,
@@ -185,6 +188,12 @@ export class ProductosComponent implements OnInit {
       }
   }
   getFavoritos(){
+    
+    const userId = JSON.parse(localStorage.getItem('user_data')); // recuperamos el id del usuario
+    if(!userId){
+      $('#loginModal').modal('toggle');
+      return;
+    }
     this.productFavoriteList=[];
     if(!this.favoritosList.length){
       this.productsBehavior.updateSource(this.productFavoriteList);
@@ -208,6 +217,31 @@ export class ProductosComponent implements OnInit {
        }
       })
     })
+  }
+  OrdenamientoTipo(tipo:"A-Z"| 'Z-A' | "MenorMayor" |  "MayorMenor" | "RELEVANTE"){
+    console.log(tipo);
+
+
+    if(tipo=='MayorMenor'){
+    
+      this.carousel.orderByMayorAMenor();
+    }
+    if(tipo=='MenorMayor'){
+   
+      this.carousel.orderByMenorAMayor();
+    }
+    if(tipo=='RELEVANTE'){
+    
+      this.carousel.orderByRelevante();
+    }
+    if(tipo=='A-Z'){
+   
+      this.carousel.orderByAZ();
+    }
+    if(tipo=='Z-A'){
+   
+      this.carousel.orderByZA();
+    }
   }
 
 }

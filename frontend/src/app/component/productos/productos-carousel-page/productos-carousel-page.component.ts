@@ -211,8 +211,93 @@ export class ProductosCarouselPageComponent implements OnInit {
    
   }
   }
+  orderByMenorAMayor(){
+    console.log("menor a mayor");
+    let array: Producto[]= this.products;
+    this.products = array.sort((a, b) =>a.defaultPrice - b.defaultPrice);
+    console.log(array.sort((a, b) => a.defaultPrice  - b.defaultPrice));
+  }  
+
   orderByMayorAMenor(){
-    let array: Producto[]= this.products
-    this.products = array.sort((a, b) => Number(a.defaultPrice) - Number(b.defaultPrice));
+    console.log("mayor a menor");
+    let array: Producto[]= this.products;
+    this.products = array.sort((a, b) =>a.defaultPrice - b.defaultPrice).reverse();
+    console.log(array.sort((a, b) =>a.defaultPrice - b.defaultPrice).reverse());
   }
+  orderByRelevante(){
+    console.log("RELEVANTE");
+    let array: Producto[]= this.products;
+    this.products = array.sort((a, b) =>a.Valoracion_Fabricante - b.Valoracion_Fabricante).reverse();
+    console.log(array.sort((a, b) =>a.Valoracion_Fabricante - b.Valoracion_Fabricante).reverse());
+  }
+  orderByAZ(){
+    console.log("AZ");
+    let array: Producto[]= this.products;
+    this.products = array.sort((a, b) =>{
+      if (a.Agrupacion > b.Agrupacion) {
+        return 1;
+      }
+      if (a.Agrupacion < b.Agrupacion) {
+        return -1;
+      }
+      return 0;
+    });
+    console.log(this.products);
+
+    /* let array= this.products.map((val,i)=>{
+      return { index: i, value:  val.Agrupacion.toLowerCase() };
+    })
+    array.sort( (a,b)=> {
+      if (a.value > b.value) {
+        return 1;
+      }
+      if (a.value < b.value) {
+        return -1;
+      }
+      return 0;
+    })
+    let result = array.map(function(el){
+      return this.products[el.index];
+    });
+    this.products= result;
+    
+  } */
 }
+  orderByZA(){
+   
+      console.log("AZ");
+      let array: Producto[]= this.products;
+      this.products = array.sort((a, b) =>{
+        if (a.Agrupacion > b.Agrupacion) {
+          return 1;
+        }
+        if (a.Agrupacion < b.Agrupacion) {
+          return -1;
+        }
+        return 0;
+      }).reverse();
+      console.log(this.products);
+  
+      /* let array= this.products.map((val,i)=>{
+        return { index: i, value:  val.Agrupacion.toLowerCase() };
+      })
+      array.sort( (a,b)=> {
+        if (a.value > b.value) {
+          return 1;
+        }
+        if (a.value < b.value) {
+          return -1;
+        }
+        return 0;
+      })
+      let result = array.map(function(el){
+        return this.products[el.index];
+      });
+      this.products= result;
+      
+    } */
+  }
+
+  }
+ 
+
