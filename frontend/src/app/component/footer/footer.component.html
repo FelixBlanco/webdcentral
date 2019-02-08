@@ -2,20 +2,20 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12" style="background-color: white; padding:2px; margin-top: 1%; margin-bottom: 2%;">
-        
+
       </div>
     </div>
   </div>
-  
-  <div class="container">
-    <div class="row">
+
+  <div class="container-fluid">
+    <div class="row text-start">
       <div class="col-md-6">
-          <img src="../../assets/logo-white.png" class="img-fluid" alt="">
+        <img src="../../assets/logo-white.png" class="img-fluid" alt="">
       </div>
       <div class="col-md-6 text-right">
-    <ul class="nav justify-content-end">
+        <!-- <ul class="nav justify-content-end">
 
-        <li class="nav-item txt-blanco" style="margin-left:-3%">
+          <li class="nav-item txt-blanco" style="margin-left:-3%">
             <a [href]="linksR.facebook" target="_blank" class="nav-link">
               <img src="../assets/social/facebook.png" alt="">
             </a>
@@ -34,43 +34,104 @@
             <a [href]="linksR.whatsapp" target="_blank" class="nav-link">
               <img src="../assets/social/wp.png" alt="">
             </a>
-          </li>  
-        </ul>
+          </li>
+        </ul> -->
       </div>
     </div>
     <hr style="background-color: white; padding:1px;">
-    <div class="row">
-      <div class="col-md-3">
-        <h4 class="font-bold txt-blanco">NOSOTROS </h4>
+    <div class="row text-center">
+      <div class="col-md-2">
+        <h5 class="font-bold txt-blanco">NOSOTROS </h5>
         <p class="txt-blanco font-light" *ngIf="footer_data">
-            {{footer_data.nroContacto}} <br>
-            {{footer_data.direccion}} <br>   
-            {{footer_data.mail1}} / {{footer_data.mail2}} <br>
-            Sobre Deposito Central <br>
-            Trabaja con Nosotros
+          {{footer_data.nroContacto}} <br>
+          {{footer_data.direccion}} <br>
+          {{footer_data.mail1}} / {{footer_data.mail2}} <br>
+          Sobre Deposito Central <br>
+          Trabaja con Nosotros
         </p>
       </div>
-      <div class="col-md-3">
-        <h4 class="font-bold txt-blanco">SERVICIOS</h4>
-        
+      <div class="col-md-2">
+        <h5 class="font-bold txt-blanco">SERVICIOS AL CLIENTE</h5>
+
+        <!-- <div *ngFor="let lista_clasificado of lista_clasificados" class="txt-blanco font-light">
+          {{lista_clasificado.titulo}}
+        </div> -->
+
+      </div>
+      <div class="col-md-1">
+
+        <h5 class="font-bold txt-blanco">HORARIOS</h5>
+
+        <!-- <div *ngFor="let lista_clasificado of lista_clasificados" class="txt-blanco font-light">
+          {{lista_clasificado.titulo}}
+        </div> -->
+        <h5 class="font-bold txt-blanco">LEGALES</h5>
+
+      </div>
+      <div class="col-md-2" >
+        <h5 class="font-bold txt-blanco">SERVICIOS</h5>
+
+        <div *ngFor="let lista_clasificado of lista_clasificados" class="txt-blanco font-light" style="cursor: pointer;" (click)="goToClasificado(lista_clasificado)">
+          {{lista_clasificado.titulo | uppercase}}
+        </div>
+
+      </div>
+      <div class="col-md-1">
+        <h5 class="font-bold txt-blanco">SECCIONES</h5>
+
+        <div *ngFor="let secciones of listaSecciones" class="txt-blanco font-light" style="cursor: pointer;" (click)="navegarTo(secciones)">
+          {{secciones | uppercase}}
+        </div>
+
+      </div>
+      <div class="col-md-2">
+        <h5 class="font-bold txt-blanco">SOCIALES</h5>
+
         <div *ngFor="let lista_clasificado of lista_clasificados" class="txt-blanco font-light">
           {{lista_clasificado.titulo}}
         </div>
-          
+
       </div>
-      <div class="col-md-3">
-        <h4 class="font-bold txt-blanco">LOCALES ADHERIDOS</h4>
+      <div class="col-md-2">
+        <h5 class="font-bold txt-blanco">REDES SOCIALES</h5>
+        <ul class="nav justify-content-center">
+
+            <li class="nav-item txt-blanco" style="margin-left:-3%">
+              <a [href]="linksR.facebook" target="_blank" class="nav-link">
+                <img src="../assets/social/facebook.png" alt="{{this.linksR.facebook}}">
+              </a>
+            </li>
+            <li class="nav-item txt-blanco" style="margin-left:-3%">
+              <a [href]="linksR.twitter" target="_blank" class="nav-link">
+                <img src="../assets/social/twitter.png" alt="{{this.linksR.twitter}}">
+              </a>
+            </li>
+            <li class="nav-item txt-blanco" style="margin-left:-3%">
+              <a [href]="linksR.instagram" target="_blank" class="nav-link">
+                <img src="../assets/social/instagram.png" alt="{{this.linksR.instagram}}">
+              </a>
+            </li>
+            <li class="nav-item txt-blanco" style="margin-left:-3%">
+              <a [href]="linksR.whatsapp" target="_blank" class="nav-link">
+                <img src="../assets/social/wp.png" alt="{{this.linksR.whatsapp}}">
+              </a>
+            </li>
+          </ul>
+
+      </div>
+      <!--    <div class="col-md-3">
+        <h5 class="font-bold txt-blanco">LOCALES ADHERIDOS</h5>
         <div *ngFor="let l_l of lista_locales" class="txt-blanco font-light">
             {{l_l.nombre}}
         </div>                  
       </div>
       
       <div class="col-md-3">
-        <h4 class="font-bold txt-blanco">HORARIOS DE ATENCIÓN</h4>
+        <h5 class="font-bold txt-blanco">HORARIOS DE ATENCIÓN</h5>
         <p class="text-center txt-blanco font-light">{{footer_data.horario_atencion}}</p> 
-      </div>
+      </div> -->
 
-      
-    
+
+
+    </div>
   </div>
-</div>

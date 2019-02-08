@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarouselItem } from 'src/app/services/productos.service';
 import { LocalesAdheridosService } from 'src/app/services/locales-adheridos.service';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; 
 import { AlertsService } from 'src/app/services/alerts.service';
 import { UserTokenService } from 'src/app/services/user-token.service'
 import { ConfigColorService } from '../../services/config-color.service';

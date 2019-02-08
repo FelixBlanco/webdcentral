@@ -5,7 +5,10 @@ import { ConfigRedesService } from '../../services/config-redes.service'
 import { ClasificadosService } from '../../services/clasificados.service'
 import { LocalesAdheridosService } from '../../services/locales-adheridos.service'
 import { HorarioAtencionServiceService } from '../../services/horario-atencion-service.service'
-
+import { Router } from '@angular/router';
+import { UserTokenService } from 'src/app/services/user-token.service'
+//import { LocalesAdheridosService } from 'src/app/services/locales-adheridos.service';
+declare var $;
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -21,6 +24,7 @@ export class FooterComponent implements OnInit {
   lista_clasificados:any;
   lista_locales:any;
   listaHorarios:any;
+  listaSecciones : any[]=['ofertas','destacados','productos','mascotas','marcas']
 
   constructor( 
     private _configFooterService:ConfgFooterService,
@@ -28,7 +32,9 @@ export class FooterComponent implements OnInit {
     private configRedes: ConfigRedesService,
     private clasificadoService:ClasificadosService,
     private localesAdheridosService:LocalesAdheridosService,
-    private _HorarioAtencionServiceService:HorarioAtencionServiceService
+    private _HorarioAtencionServiceService:HorarioAtencionServiceService,
+    private ruta : Router,
+    private userTokenService: UserTokenService,
   ) { 
     this._HorarioAtencionServiceService._getHorarios(null).subscribe(
       (resp: any) => {
@@ -93,5 +99,32 @@ export class FooterComponent implements OnInit {
         }        
       }
     )
+  }
+  navegarTo(section:any){
+    if(section == 'ofertas'|| section =='productos'){
+      this.ruta.navigate([`/${section}`]);
+    }else if(section=="marcas"){
+      $('#marcaModal').modal('show');
+    }  else if(section=="mascotas"){
+      $('#mascotasModal ').modal('show');
+    }else if(section=="destacados"){
+      this.ruta.navigate([`/`]);
+      setTimeout(()=> document.getElementById('destacadoSection').scrollIntoView({behavior: 'smooth'}),1000);
+
+    }
+  }
+  goToClasificado(item:any){
+    console.log(item.idClasificado);
+   
+      console.log(this.userTokenService.isNotLogged());
+      if (!this.userTokenService.isNotLogged()) {
+       // this.inBatch = clasificadoId;
+        this.localesAdheridosService.updateSource(item.idClasificado);
+        this.ruta.navigate(['/servicios']);
+      } else {
+        $('#loginModal').modal('show');
+        //this.as.msg('ERR', 'Error', 'Debe logearse para solicitar turnos' );
+      
+    }
   }
 }
