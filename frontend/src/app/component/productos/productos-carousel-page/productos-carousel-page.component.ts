@@ -132,7 +132,7 @@ export class ProductosCarouselPageComponent implements OnInit {
     this.carritoService.addItem(item.codeProdSys, item.nombre, item.marca, item.cantidad, item.defaultPrice,item.urlImage);
 
 
-    this.toastr.msg("OK", "Éxito", `Se han agregado ${item.cantidad} '${item.nombre}' al carrito de compras`); item.cantidad = 1;
+    this.toastr.msg("OK", "Éxito", `Se han agregado ${item.cantidad} '${item.nombre}' al carrito de compras`,{positionClass:'toast-bottom-right'}); item.cantidad = 1;
   }
   selectAgrupacion(i: number, j: number = null) {   // cambiando datos al producto de la  agrupacion seleccionada
     if (j != null) {
