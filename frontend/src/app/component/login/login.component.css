@@ -1,0 +1,9 @@
+#listPassword li{
+  list-style: none;
+  display: inline;
+  margin-left: 2%;
+}
+
+#mayuscula{
+  display: none;
+}

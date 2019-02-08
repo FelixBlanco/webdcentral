@@ -756,7 +756,7 @@ class ProductoController extends Controller {
 
         try {
             $rs = null;
-            $rs = DB::connection('sqlsrv')->select("SELECT TOP 20 DISTINCT Atributo_TablaGenerica,Descripcion_TablaGenerica, 
+            $rs = DB::connection('sqlsrv')->select("SELECT Atributo_TablaGenerica,Descripcion_TablaGenerica, 
                     CAST (Dato_TablaGenerica as VARCHAR ) AS  Dato_TablaGenerica
                     FROM VistaProductosTagsAPP 
                     GROUP BY Atributo_TablaGenerica, Descripcion_TablaGenerica, CAST (Dato_TablaGenerica as VARCHAR ),agrupacion

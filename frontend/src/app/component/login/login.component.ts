@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
     errors: any;
     colorUno:any;
     inPromise: boolean;
+    viewPassword:boolean = false;
+    statusKeyCapsLock:boolean = false;
 
     constructor(
         private _loginService: LoginService,
@@ -34,7 +36,21 @@ export class LoginComponent implements OnInit {
             (resp:any)=> {
                 this.colorUno = resp.colorOscuro
             }
-        )          
+        )        
+        
+        $('#password').keydown(function(event){
+            if(event.key == 'CapsLock'){
+                if(this.statusKeyCapsLock){
+                    this.statusKeyCapsLock = false;
+                    $('#mayuscula').css('display','none');
+                }else{
+                    this.statusKeyCapsLock = true;
+                    $('#mayuscula').css('display','block');
+                }          
+                console.log('statyls del key ',this.statusKeyCapsLock)     
+            }          
+        });
+        
     }
 
     ingresarLogin() {
@@ -125,4 +141,14 @@ export class LoginComponent implements OnInit {
         $('#loginModal').modal('hide');
         setTimeout(() =>  $("#olvidarContrasenaModal").modal('show'), 500);  
     }     
+
+    togglePassword(){
+        if(this.viewPassword){ 
+            $('#password').attr('type','text'); 
+            this.viewPassword = false; 
+        }else{ 
+            $('#password').attr('type','password');  
+            this.viewPassword = true;
+        }        
+    }
 }
