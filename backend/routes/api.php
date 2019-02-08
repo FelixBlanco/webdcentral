@@ -157,6 +157,9 @@ Route::group([ 'prefix' => 'auth' ], function() {
         Route::post('agregarProductoFavorito', 'ProductoFavoritoController@store');
         Route::post('eliminarProductoFavorito', 'ProductoFavoritoController@destroy');
         /* PRODUCTOS FAVORITOS */
+
+        Route::post('crearPersonaAutorizada','PersonaAutorizadaController@store');
+        Route::put('borrarPersonaAutorizada/{idPersonaAutorizada}','PersonaAutorizadaController@destroy');
     });
 });
 
@@ -453,6 +456,9 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'cors' ], function() {
 
     // Productos Favoritos
     Route::get('listarProductosFavoritos/{idPerfilCliente}', 'ProductoFavoritoController@listar');
+
+    Route::get('listarPersonasAutorizadas','PersonaAutorizadaController@listarPersonaAutorizada');
+
 });
 
 

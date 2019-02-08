@@ -642,6 +642,7 @@ class ComposerStaticInit098f678bfaa9552f2f15a40df31abea8
         'App\\metodoEntregaValues' => __DIR__ . '/../..' . '/app/metodoEntregaValues.php',
         'App\\orderBody' => __DIR__ . '/../..' . '/app/orderBody.php',
         'App\\orderHeader' => __DIR__ . '/../..' . '/app/orderHeader.php',
+        'App\\PersonasAutorizadas' => __DIR__ . '/../..',
         'App\\serviciosAdd' => __DIR__ . '/../..' . '/app/serviciosAdd.php',
         'App\\turno' => __DIR__ . '/../..' . '/app/turno.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
