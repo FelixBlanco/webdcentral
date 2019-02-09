@@ -1,6 +1,3 @@
-
-
-
 <mat-spinner *ngIf="!rubrosList.length" [diameter]="80" style="margin: 0 auto;"></mat-spinner>
 <ng-container *ngIf="rubrosList.length">
     <p class="rounded text-white p-2" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">
@@ -21,7 +18,7 @@
                         </div>
                         <button *ngIf="rubroImg" class="btn text-white btn-block font-bold mt-4"
                             [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }"
-                            (click)="cambiar('rubro')">
+                            (click)="cambiar('rubro')" [disabled]="!rubrosList.length">
                             CAMBIAR
                         </button>
                     </div>
@@ -29,15 +26,15 @@
                         <div class="box mt-4"
                             [ngStyle]=" colorTres ? {border: '2px solid colorTres' } : {border: '2px solid blue'}">
                             <div class="mt-4">
-                                <img *ngIf="!rubroImg" src="assets/no_image_aviable.png" alt="" height="90"
+                                <img *ngIf="!sub1Img" src="assets/no_image_aviable.png" alt="" height="90"
                                     width="90" />
-                                <img *ngIf="rubroImg" [src]="rubroImg" alt="" height="90" width="90">
+                                <img *ngIf="sub1Img" [src]="sub1Img" alt="" height="90" width="90">
 
                             </div>
                         </div>
                         <button *ngIf="rubroImg" class="btn text-white btn-block font-bold mt-4"
                             [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }"
-                            (click)="cambiar('sub1')">
+                            (click)="cambiar('subRubroA')" [disabled]="!subRubrosAList.length">
                             CAMBIAR
                         </button>
                     </div>
@@ -45,15 +42,15 @@
                         <div class="box mt-4"
                             [ngStyle]=" colorTres ? {border: '2px solid colorTres' } : {border: '2px solid blue'}">
                             <div class="mt-4">
-                                <img *ngIf="!rubroImg" src="assets/no_image_aviable.png" alt="" height="90"
+                                <img *ngIf="!sub2Img" src="assets/no_image_aviable.png" alt="" height="90"
                                     width="90" />
-                                <img *ngIf="rubroImg" [src]="rubroImg" alt="" height="90" width="90">
+                                <img *ngIf="sub2Img" [src]="sub2Img" alt="" height="90" width="90">
 
                             </div>
                         </div>
                         <button *ngIf="rubroImg" class="btn text-white btn-block font-bold mt-4"
                             [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }"
-                            (click)="cambiar('sub2')">
+                            (click)="cambiar('subRubroB')" [disabled]="!subRubrosBList.length">
                             CAMBIAR
                         </button>
                     </div>
@@ -68,7 +65,8 @@
                             (change)="onChange(filterForm.get('rubro').value , 'subrubro1')">
                             <option *ngIf="!rubrosList.length" value="">No existen rubros</option>
                             <option *ngIf="rubrosList.length" value="">Seleccione</option>
-                            <option *ngFor="let rubro of rubrosList; let i = index" value="{{rubro.rubro}}">{{rubro.rubro}}
+                            <option *ngFor="let rubro of rubrosList; let i = index" value="{{rubro.rubro}}">
+                                {{rubro.rubro}}
                             </option>
                         </select>
                     </div>
@@ -81,7 +79,8 @@
                             (change)="onChange(filterForm.get('subRubroA').value)">
                             <option *ngIf="!subRubrosAList.length" value="">No existen asociados</option>
                             <option *ngIf="subRubrosAList.length" value="">Seleccione</option>
-                            <option *ngFor="let rubro of subRubrosAList" value="{{rubro.SubRubro1}}">{{rubro.SubRubro1}}</option>
+                            <option *ngFor="let rubro of subRubrosAList" value="{{rubro.SubRubro1}}">{{rubro.SubRubro1}}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -89,10 +88,11 @@
                     <div class="form-group">
                         <label class="font-bold">VARIEDAD</label>
                         <select formControlName="subRubroB" [value]="filterForm.get('subRubroB').value"
-                            class="form-control" aria-describedby="subRubroBHelp">
+                            class="form-control" aria-describedby="subRubroBHelp" (change)="onChange2(filterForm.get('subRubroB').value)">
                             <option *ngIf="!subRubrosBList.length" value="">No existen asociados</option>
                             <option *ngIf="subRubrosBList.length" value="">Seleccione</option>
-                            <option *ngFor="let rubro of subRubrosBList" value="{{rubro.SubRubro2}}">{{rubro.SubRubro2}}</option>
+                            <option *ngFor="let rubro of subRubrosBList; let i = index" value="{{rubro.SubRubro2}}">{{rubro.SubRubro2}}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -121,4 +121,4 @@
     </button>
 </ng-container>
 
-
+<!--  -->
