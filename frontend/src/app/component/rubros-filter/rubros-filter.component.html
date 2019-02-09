@@ -1,55 +1,124 @@
 
+
+
 <mat-spinner *ngIf="!rubrosList.length" [diameter]="80" style="margin: 0 auto;"></mat-spinner>
 <ng-container *ngIf="rubrosList.length">
-    <p class="rounded text-white p-2" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">FILTROS</p>
+    <p class="rounded text-white p-2" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }">
+        FILTROS</p>
     <form [formGroup]="filterForm">
         <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label class="font-bold">RUBRO</label>
-                    <select  formControlName="rubro" [value]="filterForm.get('rubro').value" class="form-control" aria-describedby="rubroHelp"  (change)="onChange(filterForm.get('rubro').value , 'subrubro1')">
-                        <option *ngIf="!rubrosList.length" value="">No existen rubros</option>                        
-                        <option *ngIf="rubrosList.length" value="">Seleccione</option>
-                        <option *ngFor="let rubro of rubrosList" value="{{rubro.rubro}}">{{rubro.rubro}}</option>
-                    </select>
+            <div class="col-7">
+                <div class="row  text-center">
+                    <div class="col-4">
+                        <div class="box mt-4"
+                            [ngStyle]=" colorTres ? {border: '2px solid colorTres' } : {border: '2px solid blue'}">
+                            <div class="mt-4">
+                                <img *ngIf="!rubroImg" src="assets/no_image_aviable.png" alt="" height="90"
+                                    width="90" />
+                                <img *ngIf="rubroImg" [src]="rubroImg" alt="" height="90" width="90">
+
+                            </div>
+                        </div>
+                        <button *ngIf="rubroImg" class="btn text-white btn-block font-bold mt-4"
+                            [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }"
+                            (click)="cambiar('rubro')">
+                            CAMBIAR
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <div class="box mt-4"
+                            [ngStyle]=" colorTres ? {border: '2px solid colorTres' } : {border: '2px solid blue'}">
+                            <div class="mt-4">
+                                <img *ngIf="!rubroImg" src="assets/no_image_aviable.png" alt="" height="90"
+                                    width="90" />
+                                <img *ngIf="rubroImg" [src]="rubroImg" alt="" height="90" width="90">
+
+                            </div>
+                        </div>
+                        <button *ngIf="rubroImg" class="btn text-white btn-block font-bold mt-4"
+                            [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }"
+                            (click)="cambiar('sub1')">
+                            CAMBIAR
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <div class="box mt-4"
+                            [ngStyle]=" colorTres ? {border: '2px solid colorTres' } : {border: '2px solid blue'}">
+                            <div class="mt-4">
+                                <img *ngIf="!rubroImg" src="assets/no_image_aviable.png" alt="" height="90"
+                                    width="90" />
+                                <img *ngIf="rubroImg" [src]="rubroImg" alt="" height="90" width="90">
+
+                            </div>
+                        </div>
+                        <button *ngIf="rubroImg" class="btn text-white btn-block font-bold mt-4"
+                            [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }"
+                            (click)="cambiar('sub2')">
+                            CAMBIAR
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="form-group">
-                    <label class="font-bold">SUB-RUBRO A</label>
-                    <select formControlName="subRubroA" [value]="filterForm.get('subRubroA').value" class="form-control"  aria-describedby="subRubroAHelp" (change)="onChange(filterForm.get('subRubroA').value)">
-                        <option *ngIf="!subRubrosAList.length" value="">No existen asociados</option>
-                        <option *ngIf="subRubrosAList.length" value="">Seleccione</option>
-                        <option *ngFor="let rubro of subRubrosAList" value="{{rubro.SubRubro1}}">{{rubro.SubRubro1}}</option>
-                    </select>
+            <div class="col-5">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="font-bold">MASCOTA</label>
+                        <select formControlName="rubro" [value]="filterForm.get('rubro').value" class="form-control"
+                            aria-describedby="rubroHelp"
+                            (change)="onChange(filterForm.get('rubro').value , 'subrubro1')">
+                            <option *ngIf="!rubrosList.length" value="">No existen rubros</option>
+                            <option *ngIf="rubrosList.length" value="">Seleccione</option>
+                            <option *ngFor="let rubro of rubrosList; let i = index" value="{{i}}">{{rubro.rubro}}
+                            </option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label class="font-bold">SUB-RUBRO B</label>
-                    <select formControlName="subRubroB" [value]="filterForm.get('subRubroB').value" class="form-control" aria-describedby="subRubroBHelp">
-                        <option *ngIf="!subRubrosBList.length" value="">No existen asociados</option>
-                        <option *ngIf="subRubrosBList.length" value="">Seleccione</option>
-                        <option *ngFor="let rubro of subRubrosBList" value="{{rubro.SubRubro2}}">{{rubro.SubRubro2}}</option>
-                    </select>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="font-bold">CATEGORIA</label>
+                        <select formControlName="subRubroA" [value]="filterForm.get('subRubroA').value"
+                            class="form-control" aria-describedby="subRubroAHelp"
+                            (change)="onChange(filterForm.get('subRubroA').value)">
+                            <option *ngIf="!subRubrosAList.length" value="">No existen asociados</option>
+                            <option *ngIf="subRubrosAList.length" value="">Seleccione</option>
+                            <option *ngFor="let rubro of subRubrosAList" value="{{i}}">{{rubro.SubRubro1}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="font-bold">VARIEDAD</label>
+                        <select formControlName="subRubroB" [value]="filterForm.get('subRubroB').value"
+                            class="form-control" aria-describedby="subRubroBHelp">
+                            <option *ngIf="!subRubrosBList.length" value="">No existen asociados</option>
+                            <option *ngIf="subRubrosBList.length" value="">Seleccione</option>
+                            <option *ngFor="let rubro of subRubrosBList" value="{{i}}">{{rubro.SubRubro2}}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <mat-form-field style="width: 100%;" >
-                    <input [readonly]="inPromise"  matInput type="search" placeholder="Buscar Alimentos, Marcas, Mascotas..." formControlName="searchValue" (keyup.enter)="search()">
+                <mat-form-field style="width: 100%;">
+                    <input [readonly]="inPromise" matInput type="search"
+                        placeholder="Buscar Alimentos, Marcas, Mascotas..." formControlName="searchValue"
+                        (keyup.enter)="search()">
                     <fa-icon *ngIf="!inPromise" matSuffix [icon]="['fa', 'search']" (click)="search()"></fa-icon>
-                    <mat-spinner matSuffix *ngIf="inPromise" [diameter]="17" ></mat-spinner>
-                    <mat-error *ngIf="!filterForm.get('searchValue').valid" >Escribe algo para poder buscar</mat-error>
+                    <mat-spinner matSuffix *ngIf="inPromise" [diameter]="17"></mat-spinner>
+                    <mat-error *ngIf="!filterForm.get('searchValue').valid">Escribe algo para poder buscar</mat-error>
                 </mat-form-field>
             </div>
         </div>
     </form>
-    <button class="btn text-white btn-block font-bold" (click)="filterProducts()" [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }" [disabled]="someAreEmpty() || inPromise">
+    <button class="btn text-white btn-block font-bold" (click)="filterProducts()"
+        [ngStyle]=" colorTres ? {background: colorTres } : {background: '#E97604' }"
+        [disabled]="someAreEmpty() || inPromise">
         BUSCAR
     </button>
     <button class="btn btn-link btn-block font-bold" (click)="clearFilters()" [disabled]="someAreEmpty()">
         LIMPIAR
     </button>
 </ng-container>
+
+

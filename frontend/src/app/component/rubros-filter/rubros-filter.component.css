@@ -2,3 +2,18 @@ select.form-control {
     background-color: #f2f6db;
     border: 1px solid #e97604;
 }
+.box{
+
+    height: 140px;
+    width: 140px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #E97604;
+  /*   -webkit-box-shadow: 1px 1px 15px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 15px -1px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 15px -1px #E97604;
+    border-color:  */
+
+}
+

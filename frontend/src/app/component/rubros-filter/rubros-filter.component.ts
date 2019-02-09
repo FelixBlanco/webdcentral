@@ -21,10 +21,12 @@ export class RubrosFilterComponent implements OnInit {
   rubrosList: any[] = [];
   subRubrosAList: any[] = [];
   subRubrosBList: any[] = [];
-
+  rubroImg: string ;
+  sub1Img:string;
+  sub2Img:string;
   inPromise: boolean;
   colorTres: any;
-  
+  modalSection: 'rubro'|'sub1'|'sub2' = 'rubro';
   constructor(
     private fb: FormBuilder,
     private productsBehavior: ProductsBehaviorService,
@@ -57,10 +59,11 @@ export class RubrosFilterComponent implements OnInit {
   selectValue(){ 
   this.rubrosService.rubroItem.subscribe(val => {
     if (val) {
+      console.log(val);
        this.rubrosList.map((value,i)=>{
-      
+
          if(value.rubro==val){
-           
+          console.log(val); 
           this.filterForm.get('rubro').setValue(val); 
           this.onChange(val,'subrubro1');
           this.filterProducts();
@@ -73,6 +76,7 @@ export class RubrosFilterComponent implements OnInit {
 }
   setRubro() {
     this.rubrosService.getRubros().subscribe((resp) => {
+      console.log(resp);
       if (resp.status === 202) {
         this.rubrosList = resp.body;
         this.selectValue();
@@ -86,8 +90,12 @@ export class RubrosFilterComponent implements OnInit {
     });
   }
 
-  onChange(filter: string, criteria?: string) {
+  onChange(i:string, criteria?: string ) {
     
+  //  console.log(img);
+    let filter= criteria=="subrubro1"?this.rubrosList[i].rubro:null;
+    this.rubroImg = criteria=="subrubro1"?this.rubrosList[i].WebLink_Rubro:null;
+    console.log(this.rubroImg);
     if (!filter) {
       if (criteria) {
         this.subRubrosAList = [];
@@ -95,7 +103,7 @@ export class RubrosFilterComponent implements OnInit {
       this.subRubrosBList = [];
       return;
     }
-
+    
     if (filter && criteria) {
       this.filterForm.patchValue({
         subRubroA: '',
@@ -106,6 +114,7 @@ export class RubrosFilterComponent implements OnInit {
 
     if (criteria === 'subrubro1') {
       this.rubrosService.getSubrubroA(filter).subscribe((resp) => {
+        console.log(resp);
         if (resp.status === 202) {
           this.subRubrosAList = resp.body;
         } else {
@@ -220,5 +229,10 @@ export class RubrosFilterComponent implements OnInit {
     });
     this.someAreEmpty();
   }
-
+  cambiar(modalSection: 'rubro'|'sub1'|'sub2'){
+    if(modalSection){
+      this.modalSection = modalSection;
+      $('#loginModal').modal('show');
+    }
+  }
 }
