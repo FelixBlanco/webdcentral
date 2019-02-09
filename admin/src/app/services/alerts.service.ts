@@ -63,7 +63,8 @@ export class AlertsService {
       options =  {
         progressBar: true,
         progressAnimation: 'decreasing',
-        closeButton: true
+        closeButton: true,
+        positionClass: 'toast-bottom-right',
       }
     }
     
