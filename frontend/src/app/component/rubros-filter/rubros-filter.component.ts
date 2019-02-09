@@ -90,11 +90,11 @@ export class RubrosFilterComponent implements OnInit {
     });
   }
 
-  onChange(i:string, criteria?: string ) {
-    
+  onChange(filter:string, criteria?: string ) {
+   
   //  console.log(img);
-    let filter= criteria=="subrubro1"?this.rubrosList[i].rubro:null;
-    this.rubroImg = criteria=="subrubro1"?this.rubrosList[i].WebLink_Rubro:null;
+  //  let filter= criteria=="subrubro1"?this.rubrosList[i].rubro:null;
+  //  this.rubroImg = criteria=="subrubro1"?this.rubrosList[i].WebLink_Rubro:null;
     console.log(this.rubroImg);
     if (!filter) {
       if (criteria) {
@@ -105,6 +105,11 @@ export class RubrosFilterComponent implements OnInit {
     }
     
     if (filter && criteria) {
+      this.rubrosList.map((val,i)=>{
+        if(filter === val.rubro){
+          this.rubroImg= val.WebLink_Rubro;
+        }
+      })
       this.filterForm.patchValue({
         subRubroA: '',
         subRubroB: ''

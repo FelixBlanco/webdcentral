@@ -68,7 +68,7 @@
                             (change)="onChange(filterForm.get('rubro').value , 'subrubro1')">
                             <option *ngIf="!rubrosList.length" value="">No existen rubros</option>
                             <option *ngIf="rubrosList.length" value="">Seleccione</option>
-                            <option *ngFor="let rubro of rubrosList; let i = index" value="{{i}}">{{rubro.rubro}}
+                            <option *ngFor="let rubro of rubrosList; let i = index" value="{{rubro.rubro}}">{{rubro.rubro}}
                             </option>
                         </select>
                     </div>
@@ -81,7 +81,7 @@
                             (change)="onChange(filterForm.get('subRubroA').value)">
                             <option *ngIf="!subRubrosAList.length" value="">No existen asociados</option>
                             <option *ngIf="subRubrosAList.length" value="">Seleccione</option>
-                            <option *ngFor="let rubro of subRubrosAList" value="{{i}}">{{rubro.SubRubro1}}</option>
+                            <option *ngFor="let rubro of subRubrosAList" value="{{rubro.SubRubro1}}">{{rubro.SubRubro1}}</option>
                         </select>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                             class="form-control" aria-describedby="subRubroBHelp">
                             <option *ngIf="!subRubrosBList.length" value="">No existen asociados</option>
                             <option *ngIf="subRubrosBList.length" value="">Seleccione</option>
-                            <option *ngFor="let rubro of subRubrosBList" value="{{i}}">{{rubro.SubRubro2}}</option>
+                            <option *ngFor="let rubro of subRubrosBList" value="{{rubro.SubRubro2}}">{{rubro.SubRubro2}}</option>
                         </select>
                     </div>
                 </div>
